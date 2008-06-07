@@ -1,0 +1,49 @@
+% Copyright (C) 2008 Bert Burgemeister
+%
+% Permission is granted to copy, distribute and/or modify this
+% document under the terms of the GNU Free Documentation License,
+% Version 1.2 or any later version published by the Free Software
+% Foundation; with no Invariant Sections, no Front-Cover Texts and
+% no Back-Cover Texts. For details see file COPYING.
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Environment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{LIST}{1cm}
+
+  \IT{\arrGOO{(\FU*{GET-INTERNAL-REAL-TIME})\\
+      (\FU*{GET-INTERNAL-RUN-TIME})}{\}}}
+  Representation of \retval{current time} or \retval{computing time}, resp.
+
+  \IT{\CNS*{INTERNAL-TIME-UNITS-PER-SECOND}}
+  Number of time units per second.
+
+  \IT{\arrGOO{(\FU*{DECODE-UNIVERSAL-TIME} \VAR{universal-time} 
+      \Op{\VAR{time-zone}})\\
+    (\FU*{GET-DECODED-TIME})}{\}}}
+  Return \retval{second}, \retvalii{minute}, \retvaliii{hour}, 
+  \retval{date}, \retval{month}, \retval{year}, \retval{day}, 
+  \retval{daylight-p}, and \retval{zone}.
+
+  \IT{\arrGOO{(\FU*{ENCODE-UNIVERSAL-TIME} \VAR{ sec} \VAR{ min} 
+      \VAR{ hour} \VAR{ day} \VAR{ month} \VAR{ year} \Op{\VAR{zone}})\\
+      (\FU*{GET-UNIVERSAL-TIME})}{.}}
+  \retval{Seconds from 1900-01-01, 00:00}.
+
+  \IT{\V*{*features*}}
+  List of features of the implementation or of the environment
+
+  \IT{\arrGOO{(\FU*{SHORT-SITE-NAME})\\
+      (\FU*{LONG-SITE-NAME})}{\}}}
+  \retval{String} representing physical location of computer.
+
+  \IT{\arrGOO{(\FU*{MACHINE-TYPE})\\
+      (\FU*{MACHINE-VERSION})\\
+      (\FU*{MACHINE-INSTANCE})}{\}}} 
+    \retval{Type}, \retval{version}, or \retval{name}, resp., of computer hardware.
+
+  \IT{(\FU*{ROOM} \Op{\Goo{\T\XOR\NIL\XOR\kwd{:default}}})} Print information about internal storage management.
+
+\end{LIST}
+

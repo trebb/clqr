@@ -1,0 +1,101 @@
+% Copyright (C) 2008 Bert Burgemeister
+%
+% Permission is granted to copy, distribute and/or modify this
+% document under the terms of the GNU Free Documentation License,
+% Version 1.2 or any later version published by the Free Software
+% Foundation; with no Invariant Sections, no Front-Cover Texts and
+% no Back-Cover Texts. For details see file COPYING.
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Characters} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{LIST}{1cm}
+
+  \IT{\arrGOO{(\FU*{CHARACTERP} \VAR{ foo})\\
+      (\FU*{STANDARD-CHAR-P} \VAR{ char})}{\}}}
+  Return \retval{\T} if \VAR{foo} is indicated type.
+
+  \IT{\arrGOO{(\FU*{GRAPHIC-CHAR-P} \VAR{ char})\\
+      (\FU*{ALPHA-CHAR-P} \VAR{ char})\\
+      (\FU*{ALPHANUMERICP} \VAR{ char})}{\}}}
+  \retval{\T} if \VAR{char} is visible, alphabetic, or
+  alphanumeric, resp.
+
+  \IT{\arrGOO{(\FU*{UPPER-CASE-P} \VAR{ char})\\
+      (\FU*{LOWER-CASE-P} \VAR{ char})\\
+      (\FU*{BOTH-CASE-P} \VAR{ char})}{\}}}
+  Return \retval{\T} if \VAR{char} is uppercase, lowercase, or
+  able to be in another case, resp.
+
+  \IT{(\FU*{DIGIT-CHAR-P} \VAR{char} \VAR{radix}\DF{10})}
+  Return \retval{its weight} if \VAR{char} is a digit, or
+  \retval{\NIL} otherwise.
+
+  \IT{\arrGOO{(\FU*{CHAR=}\RP{\VAR{
+          character}})\\(\FU*{CHAR/=}\RP{\VAR{
+          character}})}{\}}} 
+  Return \retval{\T} if all \VAR{character}s, or
+  none, resp.,  are equal.
+
+  \IT{\arrGOO{(\FU*{CHAR-EQUAL}\RP{\VAR{
+          character}})\\(\FU*{CHAR-NOT-EQUAL}\RP{\VAR{ character}})}{\}}} 
+  Return \retval{\T} if all \VAR{character}s, or
+  none, resp.,  are equal ignoring case.
+
+  \IT{\arrGOO{(\FU{CHAR\boldmath$>$}\RP{\VAR{
+          character}})\\(\FU{CHAR\boldmath$>=$}\RP{\VAR{
+          character}})\\(\FU{CHAR\boldmath$<$}\RP{\VAR{
+          character}})\\(\FU{CHAR\boldmath$<=$}\RP{\VAR{
+          character}})}{\}}} 
+  \index{char>@CHAR\boldmath$>$}%
+  \index{char>=@CHAR\boldmath$>=$}%
+  \index{char<@CHAR\boldmath$<$}%
+  \index{char<=@CHAR\boldmath$<=$}%
+  Return \retval{\T} if \VAR{character}s are
+  monotonically decreasing, monotonically non-increasing, monotonically
+  increasing, or monotonically non-decreasing, resp.
+
+  \IT{\arrGOO{
+      (\FU*{CHAR-GREATERP}\RP{\VAR{ character}})\\ 
+      (\FU*{CHAR-NOT-LESSP}\RP{\VAR{ character}})\\ 
+      (\FU*{CHAR-LESSP}\RP{\VAR{ character}})\\ 
+      (\FU*{CHAR-NOT-GREATERP}\RP{\VAR{ character}})}{\}}}
+  Return \retval{\T} if \VAR{character}s are
+  monotonically decreasing, monotonically non-increasing, monotonically
+  increasing, or monotonically non-decreasing, resp., ignoring case.
+
+  \IT{\arrGOO{(\FU*{CHAR-UPCASE} \VAR{ character})\\
+      (\FU*{CHAR-DOWNCASE} \VAR{ character})}{\}}}
+  Return corresponding uppercase/lowercase \retval{character}, resp.
+
+  \IT{(\kwd*{CHAR-INT} \VAR{character})} 
+  Return \retval{integer} encoding \VAR{character}.
+
+  \IT{(\FU*{DIGIT-CHAR} \VAR{i} \Op{\VAR{radix}\DF{10}})}
+  \retval{Character} representing digit \VAR{i}.
+
+  \IT{(\FU*{CHAR-NAME} \VAR{character})} 
+  Return \retval{name} of \VAR{character} if there is one, or
+  \retval{\NIL}. 
+
+  \IT{(\FU*{NAME-CHAR} \VAR{name})} 
+  Return \retval{character} with \VAR{name} if there is one, or
+  \retval{\NIL}. 
+
+  \IT{(\FU*{CHAR-CODE} \VAR{character})} 
+  Return \retval{code of \VAR{character}}.
+
+  \IT{(\FU*{CODE-CHAR} \VAR{code})} 
+  \retval{Character} with \VAR{code}.
+
+  \IT{\CNS*{CHAR-CODE-LIMIT}} 
+  Upper bound of (\FU{CHAR-CODE} \VAR{char}).
+
+  \IT{(\FU*{CHARACTER} \VAR{c})} 
+  Return \retval{\kwd{\#$\backslash$}\VAR{c}}.
+
+\end{LIST}
+
+

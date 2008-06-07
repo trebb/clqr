@@ -1,0 +1,47 @@
+Delivered-To: trebbu@gmail.com
+Received: by 10.143.9.3 with SMTP id m3cs33882wfi;
+        Wed, 4 Jun 2008 13:12:22 -0700 (PDT)
+Received: by 10.151.153.14 with SMTP id f14mr697779ybo.73.1212610341334;
+        Wed, 04 Jun 2008 13:12:21 -0700 (PDT)
+Return-Path: <nobody@sourceforge.net>
+Received: from mail.sourceforge.net (lists.sourceforge.net [66.35.250.206])
+        by mx.google.com with ESMTP id f60si7027717pyh.37.2008.06.04.13.12.20;
+        Wed, 04 Jun 2008 13:12:21 -0700 (PDT)
+Received-SPF: pass (google.com: domain of nobody@sourceforge.net designates 66.35.250.206 as permitted sender) client-ip=66.35.250.206;
+Authentication-Results: mx.google.com; spf=pass (google.com: domain of nobody@sourceforge.net designates 66.35.250.206 as permitted sender) smtp.mail=nobody@sourceforge.net
+Received: from sc8-sf-web24-b.sourceforge.net ([10.3.1.214] helo=sc8-sf-web24.sourceforge.net)
+	by mail.sourceforge.net with esmtps (TLSv1:AES256-SHA:256)
+	(Exim 4.44)
+	id 1K3zLH-0000qF-5Q
+	for trebbu@googlemail.com; Wed, 04 Jun 2008 13:12:20 -0700
+Received: from nobody by sc8-sf-web24.sourceforge.net with local (Exim 4.43)
+	id 1K3zLG-00020i-RZ
+	for trebbu@googlemail.com; Wed, 04 Jun 2008 13:12:19 -0700
+To: trebbu@googlemail.com
+Subject: SourceForge.net Project Registration for clqr Requires Your Attention
+From: "SourceForge.net" <noreply@sourceforge.net>
+Content-type: text/html
+Message-Id: <E1K3zLG-00020i-RZ@sc8-sf-web24.sourceforge.net>
+Sender: Nobody <nobody@sc8-sf-web24.sourceforge.net>
+Date: Wed, 04 Jun 2008 13:12:18 -0700
+X-Spam-Score: 2.7 (++)
+X-Spam-Report: Spam Filtering performed by sourceforge.net.
+	See http://spamassassin.org/tag/ for more details.
+	Report problems to http://sf.net/tracker/?func=add&group_id=1&atid=200001
+	0.0 HTML_MESSAGE           BODY: HTML included in message
+	0.1 HTML_00_10             BODY: Message is 0% to 10% HTML
+	2.0 MIME_HTML_ONLY         BODY: Message only has text/html MIME parts
+	0.5 MIME_HEADER_CTYPE_ONLY 'Content-Type' found without required MIME headers
+	0.1 HTML_MIME_NO_HTML_TAG  HTML-only message, but there is no HTML tag
+
+Content generator rejection<br>Proposed Descriptive Name: Common Lisp Quick Reference<br>Proposed Unix Name: clqr<br>Registration Description: Common Lisp Quick Reference is a free booklet with short descriptions of the symbols defined in the ANSI standard.<br><br>Greetings,
+
+The project you are requesting is being rejected, as we have determined that it is a content generating project, rather than a project developing Open Source Software.
+
+SourceForge.net exists to allow projects a development environment for creating Open Source Software. Its purpose is not to host personal content or content which may take up our resources but which no real software development may be realized.
+
+Based on the description of the project you have provided us, your project is being rejected.
+
+Thank you,
+
+SourceForge.net Support<br><br>Link to Project Registration Application: <a href="https://sourceforge.net/register-project/?regid=137049">https://sourceforge.net/register-project/?regid=137049</a>

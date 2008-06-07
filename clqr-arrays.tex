@@ -1,0 +1,152 @@
+% Copyright (C) 2008 Bert Burgemeister
+%
+% Permission is granted to copy, distribute and/or modify this
+% document under the terms of the GNU Free Documentation License,
+% Version 1.2 or any later version published by the Free Software
+% Foundation; with no Invariant Sections, no Front-Cover Texts and
+% no Back-Cover Texts. For details see file COPYING.
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Arrays} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{section:Arrays}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Predicates} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{LIST}{1cm}
+
+  \IT{(\FU*{ARRAYP} \VAR{foo})}
+  Return \retval{\T} if \VAR{foo} is of type \kwd{array}.
+
+  \IT{\arrGOO{(\FU*{ADJUSTABLE-ARRAY-P} \VAR{array})\\
+      (\FU*{ARRAY-HAS-FILL-POINTER-P} \VAR{array})}{\}}}
+  Return \retval{\T} if \VAR{array} is adjustable/has a fill pointer,
+  resp. 
+
+  \IT{(\FU*{ARRAY-IN-BOUNDS-P} \VAR{array} \Op{\VAR{subscripts}})}
+  Return \retval{\T} if \VAR{subscripts} are in \VAR{array}'s bounds.
+
+  \IT{\arrGOO{%
+      (\FU*{VECTORP} \VAR{ foo})\\
+      (\FU*{SIMPLE-VECTOR-P} \VAR{ foo})\\
+      (\FU*{BIT-VECTOR-P} \VAR{ foo})\\
+      (\FU*{SIMPLE-BIT-VECTOR-P} \VAR{ foo})}{\}}}
+  Return \retval{\T} if \VAR{foo} is of type \kwd{vector},
+  \kwd{simple-vector}, \kwd{bit-vector}, or \kwd{simple-bit-vector}, resp.
+
+\end{LIST}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Array Functions} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{LIST}{1cm}
+
+  \IT{(\kwd*{SVREF} \VAR{vector} \VAR{i})} 
+  Return \retval{\VAR{i}th
+    element} of \VAR{vector}. \kwd{setf}able.
+
+  \IT{(\kwd*{AREF} \VAR{array} \OPn{\VAR{subscript}})} Return
+  \retval{array element} pointed to by \VAR{subscripts}. \kwd{setf}able.
+
+  \IT{(\FU*{ROW-MAJOR-AREF} \VAR{array} \VAR{i})}
+  Return \retval{\VAR{i}th element} of \VAR{array} in row-major order.
+
+  \IT{(\FU*{ARRAY-ROW-MAJOR-INDEX} \VAR{array} \VAR{subscripts})}
+  \retval{Index} in row-major order of element denoted by \VAR{subscripts}.
+
+  \IT{(\xorGOO{\FU*{MAKE-ARRAY}\\\FU*{ADJUST-ARRAY} \VAR{ array}}{\}}% 
+    \xorGOO{\VAR{dim}\\\kwd{'}(\OPn{\VAR{dim}})}{\}}
+    \orGOO{\kwd{:element-type} \VAR{ type}\DF{\T}\\
+      \kwd{:adjustable} \VAR{ bool}\DF{\NIL}\\
+      \kwd{:fill-pointer} \Goo{\VAR{num}\XOR\VAR{bool}}\DF{\NIL}\\
+      \xorGOO{\kwd{:initial-element} \VAR{ obj}\\
+        \kwd{:initial-contents} \VAR{ seq}\\
+        \kwd{:displaced-to} \xorGOO{\VAR{array}\\\VAR{bool}\DF{\NIL}}{\}}
+        \Op{\kwd{:displaced-index-offset} \VAR{i}\DF{0}}}{.}}{\}})}
+  Return fresh, or readjust, resp., \retval{vector or array of dimension(s) \VAR{dim}}.
+
+  \IT{(\FU*{ARRAY-DIMENSION} \VAR{array} \VAR{i})}
+  \retval{length of \VAR{i}th dimension} of \VAR{array}.
+
+  \IT{\CNS*{ARRAY-DIMENSION-LIMIT}} 
+  Upper bound of an array dimension, $> 1024$.
+
+  \IT{(\FU*{ARRAY-DIMENSIONS} \VAR{array})} \retval{List} containing
+  \VAR{array}'s dimensions.
+
+  \IT{(\FU*{ARRAY-DISPLACEMENT} \VAR{array})} \retval{Target array} and
+  \retval{offset}.
+
+  \IT{(\FU*{ARRAY-ELEMENT-TYPE} \VAR{array})} Element \retval{type}
+  \VAR{array} holds.
+
+  \IT{(\FU*{ARRAY-RANK} \VAR{array})} \retval{Number of dimensions} of
+  \VAR{array}.
+
+  \IT{\CNS*{ARRAY-RANK-LIMIT}} Upper bound of array rank, $> 8$.
+
+  \IT{(\FU*{ARRAY-TOTAL-SIZE} \VAR{array})} \retval{Number of elements}
+  in \VAR{array}.
+
+  \IT{\CNS*{ARRAY-TOTAL-SIZE-LIMIT}} Upper bound of array size, $> 1024$.
+
+  \IT{(\FU*{LDB-TEST} \VAR{byte-spec} \VAR{integer})}
+  Return \retval{\T} if any bit specified by \VAR{byte-spec} in
+  \VAR{integer} is set.
+
+  \IT{\arrGOO{(\FU*{BIT} \VAR{ bit-array} \VAR{ subscripts})\\
+      (\FU*{SBIT} \VAR{ simple-bit-array} \VAR{ subscripts})}{\}}}
+  Return \retval{element} of \VAR{bit-array} or of \VAR{simple-bit-array}. \kwd{setf}able.
+
+  \IT{(\xorGOO{\FU*{BIT-AND}\\
+      \FU*{BIT-ANDC1}\\
+      \FU*{BIT-ANDC2}\\
+      \FU*{BIT-EQV}\\
+      \FU*{BIT-IOR}\\
+      \FU*{BIT-NAND}\\
+      \FU*{BIT-NOR}\\
+      \FU*{BIT-ORC1}\\
+      \FU*{BIT-ORC2}\\
+      \FU*{BIT-XOR}}{\}} \VAR{bit-array-a} \VAR{bit-array-b}
+    \Op{\VAR{arg}\DF{\NIL}})}
+  Return \retval{result} of bit-wise logical operations on \VAR{bit-array-a} and  \VAR{bit-array-b}.
+  If \VAR{arg} is a bit array, put result there. If \VAR{arg} is \T, put result in \VAR{bit-arry-a}. If \VAR{arg} is \NIL, make a new array for result.
+
+  \IT{(\FU*{BIT-NOT} \VAR{bit-array} \Op{\VAR{arg}\DF{\NIL}})}
+  Return \retval{result} of bit-wise negation of \VAR{bit-array}.
+  If \VAR{arg} is a bit array, put result there. If \VAR{arg} is \T, put result in \VAR{bit-arry}. If \VAR{arg} is \NIL, make a new array for result.
+
+\end{LIST}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Vector Functions} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Vectors can as well be manipulated by sequence functions, see p.\ \pageref{section:Sequences}.
+
+\begin{LIST}{1cm}
+  
+  \IT{(\FU*{VECTOR} \OPn{\VAR{foo}})} Return fresh \retval{vector of \VAR{foo}s}.
+
+  \IT{(\FU*{VECTOR-PUSH} \VAR{foo} \VAR{vector})} 
+  Return \retval{\NIL} if \VAR{vector}'s fill pointer equals size of
+  \VAR{vector}. Otherwise
+  replace element of \VAR{vector} pointed to by \retval{fill pointer} with
+  \VAR{foo}, then increment fill pointer.
+
+  \IT{(\FU*{VECTOR-PUSH-EXTEND} \VAR{foo} \VAR{vector} \Op{\VAR{num}})} 
+  Replace element of \VAR{vector} pointed to by \retval{fill pointer} with
+  \VAR{foo}, then increment fill pointer. Extend \VAR{vector}'s size by
+  $\ge \VAR{num}$ if necessary.
+
+  \IT{(\FU*{VECTOR-POP} \VAR{vector})} 
+  Return \retval{element of \VAR{vector}} its fillpointer points to
+  after decrementation.
+
+\end{LIST}
+
+

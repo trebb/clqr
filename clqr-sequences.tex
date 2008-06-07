@@ -1,0 +1,220 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Sequences} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{section:Sequences}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Sequence Predicates} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{LIST}{1cm}
+
+  \IT{(\FU*{MISMATCH} \VAR{sequence-a} \VAR{sequence-b} 
+    \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
+      \kwd{:test} \VAR{ function}\\
+      \kwd{:test-not} \VAR{ function}\\
+      \kwd{:key} \VAR{ function}\\
+      \kwd{:start1} \VAR{ start-sequence-a}\DF{0}\\
+      \kwd{:end1}  \VAR{ end-sequence-a}\DF{\NIL}\\
+      \kwd{:start2} \VAR{ start-sequence-b}\DF{0}\\
+      \kwd{:end2} \VAR{ end-sequence-b}\DF{\NIL}}{\}})}  
+  Return \retval{position in \VAR{sequence-a}} where
+  \VAR{sequence-a} and \VAR{sequence-b} begin to
+  mismatch. Return \retval{\NIL} if
+  they match entirely.
+
+  \IT{(\xorGOO{\FU*{EVERY}\\\FU*{NOTEVERY}}{\}} \VAR{test} \RP{\VAR{sequence}})} 
+  Return \retval{\NIL} or \retval{\T}, resp., as soon as \VAR{test} on
+  any element of \VAR{sequence} returns \NIL.
+
+  \IT{(\xorGOO{\FU*{NOTANY}\\\FU*{SOME}}{\}} \VAR{test} \RP{\VAR{sequence}})} 
+  Return \retval{\NIL} or \retval{value of \VAR{test}}, resp., as soon as \VAR{test} on
+  any element of \VAR{sequence} returns non-\NIL.
+
+\end{LIST}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Sequence Functions} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{LIST}{1cm}
+
+  \IT{(\FU*{MAKE-SEQUENCE} \VAR{sequence-type} \VAR{size}
+    \Op{\kwd{:initial-element} \VAR{foo}})}
+  Make \retval{sequence} of \VAR{sequence-type} with \VAR{size} elements.
+
+  \IT{\arrGOO{(\FU*{REVERSE} \VAR{ sequence})\\(\FU*{NREVERSE} \VAR{ sequence})}{\}}} 
+  Return \retval{\VAR{sequence} in reverse order}. \VAR{sequence} is unmodified/possibly
+  modified, resp.
+
+  \IT{(\xorGOO{\FU*{SORT}\\\FU*{STABLE-SORT}}{\}} \VAR{sequence} \VAR{test}
+    \Op{\kwd{:key} \VAR{function}})} 
+  Return \retval{sorted sequence}. \VAR{sequence} is modified. Order
+  of elements considered equal is not guaranteed/retained, resp.
+
+  \IT{(\xorGOO{\FU*{REMOVE}\\\FU*{DELETE}}{\}} \VAR{foo} \VAR{sequence}
+    \orGOO{\kwd{:from-end} \VAR{ bool}\DF{0}\\
+      \kwd{:test} \VAR{ function}\\
+      \kwd{:test-not} \VAR{ function}\\
+      \kwd{:start} \VAR{ start}\DF{0}\\
+      \kwd{:end} \VAR{ end}\DF{\NIL}\\
+      \kwd{:key} \VAR{ function}\\
+      \kwd{:count} \VAR{ count}\DF{\NIL}}{\}})} 
+  Make \retval{copy of \VAR{sequence}} without elements matching \VAR{foo}. \VAR{sequence} is unmodified/possibly
+  modified, resp.
+
+  \IT{(\xorGOO{\FU*{REMOVE-IF}\\\FU*{REMOVE-IF-NOT}\\
+      \FU*{DELETE-IF}\\\FU*{DELETE-IF-NOT}}{\}} 
+    \VAR{test} \VAR{sequence}
+    \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
+      \kwd{:start} \VAR{ start}\DF{0}\\
+      \kwd{:end} \VAR{ end}\DF{\NIL}\\
+      \kwd{:key} \VAR{ function}\\
+      \kwd{:count} \VAR{ count}\DF{\NIL}}{\}})} 
+  Make \retval{copy of \VAR{sequence}} with all (or \VAR{count}) elements
+  satisfying test or not satisfying test, resp., removed.
+  \VAR{sequence} is unmodified/possibly modified, resp.
+
+  \IT{(\xorGOO{\FU*{SUBSTITUTE}\\\FU*{NSUBSTITUTE}}{\}} \VAR{new} \VAR{old} \VAR{foo} \VAR{sequence}
+    \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
+      \kwd{:test} \VAR{ function}\\
+      \kwd{:test-not} \VAR{ function}\\
+      \kwd{:start} \VAR{ start}\DF{0}\\
+      \kwd{:end} \VAR{ end}\DF{\NIL}\\
+      \kwd{:key} \VAR{ function}\\
+      \kwd{:count} \VAR{ count}\DF{\NIL}}{\}})} 
+  Make \retval{copy of
+    \VAR{sequence}} with all (or \VAR{count}) \VAR{old}s replaced by
+  \VAR{new}. \VAR{sequence} is unmodified/possibly modified, resp.
+
+  \IT{(\xorGOO{\FU*{SUBSTITUTE-IF}\\\FU*{SUBSTITUTE-IF-NOT}\\
+      \FU*{NSUBSTITUTE-IF}\\\FU*{NSUBSTITUTE-IF-NOT}}{\}} 
+    \VAR{new} \VAR{test} \VAR{sequence}
+    \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
+      \kwd{:start} \VAR{ start}\DF{0}\\
+      \kwd{:end} \VAR{ end}\DF{\NIL}\\
+      \kwd{:key} \VAR{ function}\\
+      \kwd{:count} \VAR{ count}\DF{\NIL}}{\}})} 
+  Make \retval{copy of
+    \VAR{sequence}} with all (or \VAR{count}) elements
+  satisfying test or not satisfying test, resp., replaced by
+  \VAR{new}. \VAR{sequence} is unmodified/possibly modified, resp.
+
+  \IT{(\xorGOO{\FU*{REMOVE-DUPLICATES}\\\FU*{DELETE-DUPLICATES}}{\}} \VAR{sequence}
+    \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
+      \kwd{:test} \VAR{ function}\\ 
+      \kwd{:test-not} \VAR{ function}\\
+      \kwd{:start} \VAR{ start}\DF{0}\\
+      \kwd{:end} \VAR{ end}\DF{\NIL}\\
+      \kwd{:key} \VAR{ function}\DF{\NIL}}{\}})} 
+  Make \retval{copy of
+    \VAR{sequence}} without duplicates. \VAR{sequence} is unmodified/possibly
+  modified, resp.
+
+  \IT{(\FU*{CONCATENATE} \VAR{type} \OPn{\VAR{sequence}})} 
+  Return \retval{concatenated sequence} of \VAR{type}.
+
+  \IT{(\FU*{MAP} \VAR{type} \VAR{function} \RP{\VAR{sequence}})} 
+  Apply \VAR{function} successively to corresponding elements of the
+  \VAR{sequence}s. Return values as a \retval{sequence of
+    \VAR{type}}. If \VAR{type} is \NIL, return \retval{\NIL}.
+
+  \IT{(\FU*{MAP-INTO} \VAR{result-sequence} \VAR{function} \RP{\VAR{sequence}})} 
+  Modify \retval{\VAR{result-sequence}} successively by applying \VAR{function} to corresponding elements of the
+  \VAR{sequence}s.
+
+  \IT{(\FU*{REDUCE} \VAR{function} \VAR{sequence} 
+    \orGOO{\kwd{:initial-value} \VAR{ foo}\DF{\NIL}\\
+      \kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
+      \kwd{:start} \VAR{ start}\DF{0}\\
+      \kwd{:end} \VAR{ end}\DF{\NIL}\\ 
+      \kwd{:key} \VAR{ function}}{\}})} 
+  Starting with the first two elements of \VAR{sequence}, apply
+  \VAR{function} successively to its last return value together with the next
+  element of \VAR{sequence}. Return \retval{last value of {function}}.
+
+  \IT{(\FU*{MERGE} \VAR{type} \VAR{sequence-a}  \VAR{sequence-b} \VAR{test} \Op{\kwd{:key} \VAR{function}})} 
+  Return \retval{interleaved sequence} of \VAR{type}. \VAR{sequence-a}
+  and \VAR{sequence-b} are possibly modified. Merged sequence  will be
+  sorted if both  \VAR{sequence-a} and \VAR{sequence-b} are sorted.
+
+  \IT{(\FU*{REPLACE} \VAR{sequence-a} \VAR{sequence-b}
+    \orGOO{\kwd{:start1} \VAR{ start-a}\DF{0}\\
+      \kwd{:start2} \VAR{ start-b}\DF{0}\\
+      \kwd{:end1} \VAR{ end-a}\DF{\NIL}\\
+      \kwd{:end2} \VAR{ end-b}\DF{\NIL}}{\}})}
+    Destructively replace elements of \retval{\VAR{sequence-a}} with elements of
+    \VAR{sequence-b}.
+
+  \IT{(\FU*{FILL} \VAR{sequence} \VAR{foo} 
+    \orGOO{\kwd{:start} \VAR{ start}\DF{0}\\
+      \kwd{:end} \VAR{ end}\DF{\NIL}}{\}})} 
+  Return \retval{\VAR{sequence}} with elements between \VAR{start}
+  and \VAR{end} set to \VAR{foo}. \VAR{sequence} is modified.
+
+  \IT{(\FU*{ELT} \VAR{sequence} \VAR{index})} Return \retval{element of
+    \VAR{sequence}} pointed to by \VAR{index}. \kwd{setf}able.
+
+  \IT{(\FU*{SUBSEQ} \VAR{sequence} \VAR{start} \Op{\VAR{end}\DF{\NIL}})} 
+  Return \retval{subsequence of \VAR{sequence}} between \VAR{start}
+    and \VAR{end}. \kwd{setf}able.
+
+  \IT{(\FU*{LENGTH} \VAR{sequence})} Return \retval{length of
+    \VAR{sequence}} (being value of fill pointer if applicable).
+
+  \IT{(\FU*{COUNT} \VAR{foo} \VAR{sequence} 
+    \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
+      \kwd{:test} \VAR{ function}\\
+      \kwd{:test-not} \VAR{ function}\\
+      \kwd{:start} \VAR{ start}\DF{0}\\
+      \kwd{:end} \VAR{ end}\DF{\NIL}\\
+      \kwd{:key} \VAR{ function}}{\}})} 
+  Return \retval{number of \VAR{foo}s in \VAR{sequence}} between \VAR{start}
+  and \VAR{end} satisfying tests.
+
+  \IT{(\xorGOO{\FU*{COUNT-IF}\\
+      \FU*{COUNT-IF-NOT}}{\}} \VAR{test} \VAR{sequence} 
+    \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
+      \kwd{:start} \VAR{ start}\DF{0}\\
+      \kwd{:end} \VAR{ end}\DF{\NIL}\\
+      \kwd{:key} \VAR{ function}}{\}})} 
+  Return \retval{number of elements in \VAR{sequence}} between \VAR{start}
+  and \VAR{end} satisfying \VAR{test}.
+
+  \IT{(\xorGOO{\FU*{FIND}\\\FU*{POSITION}}{\}} \VAR{foo} \VAR{sequence} 
+    \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
+      \kwd{:test} \VAR{ function}\\
+      \kwd{:test-not} \VAR{ function}\\
+      \kwd{:start} \VAR{ start}\DF{0}\\
+      \kwd{:end} \VAR{ end}\DF{\NIL}\\
+      \kwd{:key} \VAR{ function}}{\}})} 
+  Return \retval{first element found in \VAR{sequence}}, or
+  \retval{its position} relative to \VAR{sequence}'s start, resp., between \VAR{start}
+  and \VAR{end} satisfying tests.
+
+  \IT{(\xorGOO{\FU*{FIND-IF}\\\FU*{FIND-IF-NOT}\\\FU*{POSITION-IF}\\\FU*{POSITION-IF-NOT}}{\}} \VAR{test} \VAR{sequence} 
+    \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
+      \kwd{:start} \VAR{ start}\DF{0}\\
+      \kwd{:end} \VAR{ end}\DF{\NIL}\\
+      \kwd{:key} \VAR{ function}}{\}})} 
+  Return \retval{first element in \VAR{sequence}}, or
+  \retval{its position} relative to \VAR{sequence}'s start, resp., between \VAR{start}
+  and \VAR{end} satisfying \VAR{test}.
+
+  \IT{(\FU*{SEARCH} \VAR{sequence-a} \VAR{sequence-b} 
+    \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
+      \kwd{:test} \VAR{ function}\\
+      \kwd{:test-not} \VAR{ function}\\
+      \kwd{:start1} \VAR{ start-a}\DF{0}\\
+      \kwd{:start2} \VAR{ start-b}\DF{0}\\
+      \kwd{:end1} \VAR{ end-a}\DF{\NIL}\\
+      \kwd{:end2} \VAR{ end-b}\DF{\NIL}\\
+      \kwd{:key} \VAR{ function}}{\}})}
+  Search \VAR{sequence-b} for a subsequence matching \VAR{sequence-a}. Return \retval{index} in \VAR{sequence-b}, or \retval{\NIL}.
+
+  \IT{(\FU*{COPY-SEQ} \VAR{sequence})} 
+  Return \retval{copy of \VAR{sequence}} with the same elements.
+
+
+\end{LIST}
+
+

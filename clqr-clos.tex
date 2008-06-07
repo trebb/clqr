@@ -1,0 +1,189 @@
+% Copyright (C) 2008 Bert Burgemeister
+%
+% Permission is granted to copy, distribute and/or modify this
+% document under the terms of the GNU Free Documentation License,
+% Version 1.2 or any later version published by the Free Software
+% Foundation; with no Invariant Sections, no Front-Cover Texts and
+% no Back-Cover Texts. For details see file COPYING.
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{CLOS} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{LIST}{1cm}
+
+
+  \IT{(\FU*{NEXT-METHOD-P})}
+  \retval{\T} if enclosing method has a next method.
+
+  \IT{(\SF*{DEFCLASS} \VAR{class-name} (\OPn{\VAR{superclass}})
+    (\GOOs{\VAR{slot}\XOR
+      (\VAR{slot} 
+      \orGOO{\Goos{\kwd{:reader} \VAR{reader-fu}}\\
+        \Goos{\kwd{:writer} \VAR{writer-fu}} \\
+        \Goos{\kwd{:accessor} \VAR{reader-fu}} \\
+        \kwd{:allocation} \Goo{\kwd{:instance}\XOR\kwd{:class}}\\
+        \Goos{\kwd{:initarg} \kwd{:}\VAR{arg}} \\
+        \kwd{:initform} \VAR{ form}\\
+        \kwd{:type} \VAR{ type}\\
+        \kwd{:documentation} \VAR{ string}}{\}})})
+
+    \orGOO{(\kwd{:default-initargs} \Goos{\VAR{name}\VAR{ value}})\\
+      (\kwd{:documentation} \VAR{ string})\\
+      (\kwd{:metaclass} \VAR{ name})}{\}})} 
+  Define \retval{class \VAR{ class-name}} as a subclass of \VAR{superclass}es.
+
+  \IT{(\SF*{DEFGENERIC}
+    \xorGOO{\VAR{name}\\ (\kwd{setf} \VAR{ name})}{\}} 
+    (\OPn{\VAR{var}}%
+    \OP{\kwd*{\&optional} \Goos{\VAR{var}\XOR(\VAR{var})}}
+    \OP{\kwd*{\&rest} \VAR{var}}
+    \OP{\kwd*{\&key} \orGOO{%
+      \VAR{var}\\
+      (\VAR{var}\XOR(\kwd{:}\VAR{key}
+          \VAR{var}))}{\}^{\!\!*}} \Op{\kwd*{\&allow-other-keys}}})
+     \orGOO{%
+    (\kwd{:argument-precendence-order}\RP{\VAR{ arg}})\\
+    (\kwd{declare }\RP{(\kwd{optimize}\OPn{\VAR{ arg}})})\\
+    (\kwd{:documentation} \VAR{ string})\\
+    (\kwd{:generic-function-class} \VAR{ class})\\
+    (\kwd{:method-class} \VAR{ class})\\
+    (\kwd{:method-combination} \VAR{ symbol} \OPn{\VAR{ arg}})\\
+    \OPn{(\kwd{:method} \VAR{ defmethod-symbol} \OPn{\VAR{ defmethod-arg}})}}{\}})}
+  Define \retval{generic function \VAR{name}}.
+
+  \IT{(\FU*{ENSURE-GENERIC-FUNCTION}
+    \xorGOO{\VAR{name}\\ (\kwd{setf} \VAR{ name})}{\}}
+    \orGOO{%
+      \kwd{:argument-precendence-order}\RP{\VAR{ arg}}\\
+      \kwd{:declare}\RP{(\kwd{optimize}\OPn{\VAR{ arg}})}\\
+    \kwd{:documentation} \VAR{ string}\\
+    \kwd{:environment} \VAR{ environment}\\
+    \kwd{:generic-function-class} \VAR{ class}\\
+    \kwd{:lambda-list} \VAR{ lambda-list}\\
+    \kwd{:method-class} \VAR{ class}\\
+    \kwd{:method-combination} \VAR{ symbol} \OPn{\VAR{ arg}}}{\}})}
+  Define or modify \retval{generic function \VAR{name}}.
+
+  \IT{(\SF*{DEFMETHOD} 
+    \xorGOO{\VAR{bar}\\ (\kwd{setf} \VAR{ bar})}{\}} 
+    \Op{\xorGOO{\kwd{:before}\\
+        \kwd{:after}\\
+        \kwd{:around}}{\}}}
+    (\xorGOO{\VAR{var}\\
+      (\VAR{spec-var} \xorGOO{\VAR{class}\\(\kwd{eql} \VAR{ foo})}{\}})}{\}^{\!\!*}}
+    \OP{\kwd*{\&optional} \Goos{\VAR{var}\XOR(\VAR{var} \OP{\VAR{init}
+      \Op{\VAR{supplied-p}}})}}
+    \Op{\kwd*{\&rest} \VAR{var}}
+    \OP{\kwd*{\&key} \GOos{\VAR{var}\XOR(\Goo{\VAR{var}\XOR(\kwd{:}\VAR{key}
+          \VAR{var})}
+        \OP{\VAR{init}\Op{\VAR{supplied-p}}})}
+      \Op{\kwd*{\&allow-other-keys}}}
+    \OP{\kwd*{\&aux}\Goos{\VAR{var}\XOR(\VAR{var} \Op{\VAR{init}})}})
+    \orGOO{\OPn{(\kwd{declare} \OPn{\VAR{ decl}})}\\
+      \VAR{documentation}}{\}}
+    \OPn{\VAR{form}})} 
+  Define \retval{new method} for generic function
+  \VAR{bar}. \VAR{spec-var}s specialize to either being of \VAR{class}
+  or being \kwd{eql} \VAR{foo}, resp. On invocation, \VAR{var}s and
+  \VAR{spec-var}s of the \retval{new method}
+  act like parameters of a function with body \VAR{foo}.
+
+  \IT{(\xorGOO{\GFU*{ADD-METHOD}\\
+      \GFU*{REMOVE-METHOD}}{\}}\VAR{generic-function} \VAR{method})}
+  Add, or remove, resp., \VAR{method} from \retval{\VAR{generic-function}}.
+
+  \IT{(\GFU*{NO-APPLICABLE-METHOD} \VAR{generic-function}
+    \OPn{\VAR{arg}})}
+  Called on invocation of \VAR{generic-function} if there is no applicable method.
+
+  \IT{(\SF*{CALL-METHOD} \orGOO{\VAR{method}\\
+      (\SF*{MAKE-METHOD} \VAR{ form})}{\}}
+ \Op{\VAR{next-methods}})}
+  Call \VAR{method}, return \retval{its values}.
+
+  \IT{(\FU*{CALL-NEXT-METHOD} \Op{\VAR{args}\DF{current args}})}
+  From within a method, call next method with \VAR{args}, return
+  \retval{its values}.
+
+  \IT{(\GFU*{NO-NEXT-METHOD} \VAR{generic-function}
+    \VAR{method} \OPn{\VAR{arg}})}
+  Called on invocation of \kwd{call-next-method} if there is no next method.
+
+  \IT{(\GFU*{MAKE-INSTANCE} \VAR{class} \Goos{\kwd{:}\VAR{initarg}
+      \VAR{value}} \OPn{\kwd{:}\VAR{other-key}})} 
+  Make new \retval{instance of \VAR{class}}.
+
+  \IT{(\GFU*{INITIALIZE-INSTANCE} (\VAR{instance}))} 
+  Its primary method sets slots on behalf of
+  \GFU*{MAKE-INSTANCE}. Return \retval{instance}.
+
+  \IT{(\GFU*{REINITIALIZE-INSTANCE} \VAR{instance} \OP{\VAR{initargs}
+      \Op{\VAR{other-args}}})}
+  Change local slots of \retval{\VAR{instance}}.
+
+  \IT{(\FU*{SLOT-VALUE} \VAR{instance} \VAR{slot})} Return \retval{value
+    of \VAR{slot} in \VAR{instance}}.  \kwd{SETF}able.
+
+  \IT{(\SF*{WITH-SLOTS}(\Goos{\VAR{slot}\XOR(\VAR{var
+        slot})}) \VAR{instance} \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
+    \OPn{\VAR{form}})} Evaluate \VAR{form}s with slots of
+  \VAR{instance} locally visible as \VAR{slot}s or \VAR{var}s.
+
+
+  \IT{(\GFU*{CLASS-NAME} \VAR{class})} \retval{Name of \VAR{class}}.
+
+  \IT{(\kwd*{CLASS-OF} \VAR{foo})} \retval{Class} \VAR{foo} is an
+  instance of.
+
+  \IT{(\kwd*{MAKE-INSTANCES-OBSOLETE} \VAR{class})} Update instances of \VAR{class}.
+  
+  \IT{(\GFU*{FUNCTION-KEYWORDS} \VAR{method})}
+  \retval{Keyword parameters} of method.
+
+  \IT{(\GFU*{ALLOCATE-INSTANCE} \VAR{class} \OP{\VAR{initargs}
+      \Op{\VAR{other-args}}})}
+  Return uninitialized \retval{instance} of \VAR{class}.
+
+  \IT{(\SF*{DEFINE-METHOD-COMBINATION} \VAR{name}\orGOO{%
+    \kwd{:documentation} \VAR{ string}\\
+    \kwd{:identity-with-one-argument} \VAR{ bool}\DF{\NIL}\\
+    \kwd{:operator} \VAR{ operator}\DF{\VAR{name}}}{\}})}
+  Define new type \retval{\VAR{name}} of method combination.
+
+  \IT{(\SF*{DEFINE-METHOD-COMBINATION} \VAR{name}\orGOO{%
+    \kwd{:documentation} \VAR{ string}\\
+    \kwd{:identity-with-one-argument} \VAR{ bool}\DF{\NIL}\\
+    \kwd{:operator} \VAR{ operator}\DF{\VAR{name}}}{\}})}
+
+  \IT{(\GFU*{CHANGE-CLASS} \VAR{instance} \VAR{new-class} \Op{\VAR{arg}})}
+  Change class of \retval{\VAR{instance}} to \VAR{new-class}.
+
+  \IT{(\GFU*{UPDATE-INSTANCE-FOR-DIFFERENT-CLASS} \VAR{previous}
+    \VAR{current} \Op{\VAR{initargs}} \Op{\VAR{keyargs}})}
+  Called by \kwd{change-class}.
+
+  \IT{(\GFU*{UPDATE-INSTANCE-FOR-REDEFINED-CLASS} \VAR{instances}
+    \VAR{added-slots} \VAR{discarded-slots} \VAR{property-list
+      \Op{\VAR{initargs}} \Op{\VAR{other-args}}})}
+  Called by \kwd{make-instances-obsolete}.
+
+  \IT{(\GFU*{SHARED-INITIALIZE})}
+
+  \IT{(\GFU*{METHOD-QUALIFIERS} \VAR{method})}
+  List of qualifiers of \VAR{method}.
+
+  \IT{(\GFU*{FIND-METHOD} \VAR{generic-function} \VAR{qualifiers}
+    \VAR{specializers} \Op{\VAR{error}\DF{\T}})}
+  Return suitable \retval{method}, or \retval{\NIL}.
+
+  \IT{(\GFU*{COMPUTE-APPLICABLE-METHODS} \VAR{generic-function}
+    \VAR{args})}
+  \retval{Set of methods} suitable for \VAR{args}.
+
+  \IT{(\kwd*{STANDARD})} Method combination type.
+
+
+\end{LIST}
+
+

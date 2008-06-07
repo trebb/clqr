@@ -1,0 +1,109 @@
+% Copyright (C) 2008 Bert Burgemeister
+%
+% Permission is granted to copy, distribute and/or modify this
+% document under the terms of the GNU Free Documentation License,
+% Version 1.2 or any later version published by the Free Software
+% Foundation; with no Invariant Sections, no Front-Cover Texts and
+% no Back-Cover Texts. For details see file COPYING.
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Strings} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Strings can as well be manipulated by array and sequence functions,
+see pages \pageref{section:Sequences} and \pageref{section:Arrays}.
+
+\begin{LIST}{1cm}
+
+
+  \IT{\arrGOO{(\FU*{STRINGP} \VAR{ foo})\\
+      (\FU*{SIMPLE-STRING-P} \VAR{ foo})}{\}}}
+  Return \retval{\T} if \VAR{foo} is of type
+  \kwd{string} or \kwd{simple-string}, resp.
+
+  \IT{(\xorGOO{\FU*{STRING=}\\\FU*{STRING-EQUAL}}{\}} \VAR{foo}
+    \VAR{bar} 
+    \orGOO{\kwd{:start1} \VAR{ start-foo}\DF{\LIT{0}}\\
+      \kwd{:end1} \VAR{ end-foo}\DF{\LIT{\NIL}}\\
+      \kwd{:start2} \VAR{ start-bar}\DF{\LIT{0}}\\
+      \kwd{:end2} \VAR{ end-bar}\DF{\LIT{\NIL}}}{\}})}  
+  Return \retval{\T} if
+  subsequences of \VAR{foo} and \VAR{bar} are equal. Obey/ignore,
+  resp., case. 
+
+  \IT{(\xorGOO{\FU*{STRING/=}\\\FU{STRING\boldmath$>$}\\
+      \FU{STRING\boldmath$>=$}\\\FU{STRING\boldmath$<$}\\
+      \FU{STRING\boldmath$<=$}}{\}} \VAR{foo} \VAR{bar}
+    \orGOO{\kwd{:start1} \VAR{ start-foo}\DF{\LIT{0}}\\
+      \kwd{:end1} \VAR{ end-foo}\DF{\LIT{\NIL}}\\
+      \kwd{:start2} \VAR{ start-bar}\DF{\LIT{0}}\\
+      \kwd{:end2} \VAR{ end-bar}\DF{\LIT{\NIL}}}{\}})}  
+  \index{string>@STRING\boldmath$>$}%
+  \index{string>=@STRING\boldmath$>=$}%
+  \index{string<@STRING\boldmath$<$}%
+  \index{string<=@STRING\boldmath$<=$}%
+  If \VAR{foo} is
+  lexicographically not equal, greater, not less, less, or not greater,
+  resp., then return \retval{character number} from beginning of \VAR{foo}
+  where they begin to differ.  Otherwise return \retval{\NIL}.
+
+  \IT{(\xorGOO{\FU*{STRING-NOT-EQUAL}\\
+      \FU*{STRING-GREATERP}\\
+      \FU*{STRING-NOT-LESSP}\\
+      \FU*{STRING-LESSP}\\
+      \FU*{STRING-NOT-GREATERP}}{\}} 
+    \VAR{foo} \VAR{bar}
+    \orGOO{%
+      \kwd{:start1} \VAR{ start-foo}\DF{\LIT{0}}\\
+      \kwd{:end1} \VAR{ end-foo}\DF{\LIT{\NIL}}\\
+      \kwd{:start2} \VAR{ start-bar}\DF{\LIT{0}}\\
+      \kwd{:end2} \VAR{ end-bar}\DF{\LIT{\NIL}}}{\}})}  
+  If \VAR{foo} is
+  lexicographically not equal, greater, not less, less, or not greater,
+  resp., ignoring case, then return \retval{character number} from beginning of \VAR{foo}
+  where they begin to differ. Otherwise return \retval{\NIL}.
+
+  \IT{(\FU*{STRING} \VAR{x})}
+  Convert \VAR{x} (symbol, string, or character) into a \retval{string}.
+
+  \IT{(\FU*{MAKE-STRING} \VAR{size} \orGOO{\kwd{initial-element} \VAR{ char}\\
+      \kwd{element-type} \VAR{ type}\DF{\kwd{character}}}{\}})} 
+  Return \retval{string} of length \VAR{size}.
+
+  \IT{(\xorGOO{\FU*{STRING}\\\FU*{NSTRING}}{\}}\kwd{-}%
+    \xorGOO{\kwd{CAPITALIZE}\\\kwd{UPCASE}
+      \\\kwd{DOWNCASE}}{\}}
+    \VAR{string}  
+    \orGOO{\kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
+      \kwd{:end} \VAR{ end}\DF{\NIL}}{\}})}
+  \index{STRING-CAPITALIZE}%
+  \index{STRING-UPCASE}%
+  \index{STRING-DOWNCASE}%
+  \index{NSTRING-CAPITALIZE}%
+  \index{NSTRING-UPCASE}%
+  \index{NSTRING-DOWNCASE}%
+  Return \retval{\VAR{string}} (not modified or modified, resp.) with
+  first letter of every word turned into uppercase, all letters
+  uppercase, or all letters lowercase, resp. 
+
+  \IT{(\xorGOO{\FU*{STRING-TRIM}\\
+      \FU*{STRING-LEFT-TRIM}\\
+      \FU*{STRING-RIGHT-TRIM}}{\}} \VAR{char-bag} \VAR{string})}
+  Return \retval{string} with all characters in \VAR{char-bag} removed
+  from both ends, from the beginning, or from the end, resp., of \VAR{string}.
+
+  \IT{\arrGOO{(\FU*{CHAR} \VAR{ string} \VAR{ i})\\
+      (\FU*{SCHAR} \VAR{ string} \VAR{ i})}{\}}} 
+  Return \retval{\VAR{i}th character} of string ignoring/obeying,
+  resp., fill pointer. \kwd{setf}able. 
+
+  \IT{(\FU*{PARSE-INTEGER} \VAR{string}
+    \orGOO{\kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
+      \kwd{:end} \VAR{ end}\DF{\NIL}\\
+      \kwd{:junk-allowed} \VAR{ bool}\DF{\NIL}}{\}})}
+  Parse \retval{integer} from \VAR{string}. Second value is
+  \retvalii{index} of parse end in \VAR{string}.
+
+
+
+\end{LIST}

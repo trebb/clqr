@@ -1,0 +1,12 @@
+*.pdf
+*.ps
+*.dvi
+*.aux
+*.ilg
+*.ind
+*.idx
+*.toc
+*.log
+*.tar
+*.gz
+*.bz2

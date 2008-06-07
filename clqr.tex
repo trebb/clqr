@@ -1,0 +1,451 @@
+% Copyright (C) 2008 Bert Burgemeister
+%
+% Permission is granted to copy, distribute and/or modify this
+% document under the terms of the GNU Free Documentation License,
+% Version 1.2 or any later version published by the Free Software
+% Foundation; with no Invariant Sections, no Front-Cover Texts and
+% no Back-Cover Texts. For details see file COPYING.
+%
+
+\newcommand{\maintitle}{Common Lisp Quick Reference}
+\newcommand{\revision}{\input{REVISION}}
+
+\documentclass[8pt,pagesize,twoside,footexclude,headexclude]{scrartcl}
+%
+%%%%%%%%%%%%%%%%%%
+% outsourced page dimensions
+\input{paper-current}
+%\setlength{\paperwidth}{10.5cm}
+%\setlength{\paperheight}{29.7cm}
+%%\areaset[3mm]{9cm}{28.3cm}
+%\typearea[2mm]{20}
+%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{rotating}
+\usepackage{graphics}
+\usepackage{multicol}
+\usepackage{textcase}
+\usepackage[usenames,dvips]{color}
+\usepackage{ifthen}
+\usepackage{suffix}
+\usepackage{makeidx}
+\definecolor{lightgray}{gray}{.85}
+\usepackage[pagestyles]{titlesec}
+\usepackage{titletoc}
+%
+%%%%%%%%%%%%%%%%%%
+% Two font alternatives:
+% (A) Computer Modern
+\usepackage{type1cm}
+\usepackage{exscale}
+%%%%%%%%%%%%%%%%%%
+% (B) Times with Helvetica
+%\usepackage{mathptmx}
+%\usepackage[scaled]{helvet}
+%%%%%%%%%%%%%%%%%%
+%
+\makeindex
+\titleformat{\section}{\sffamily\mdseries\slshape}
+            {\huge\thesection}{.7em}{\huge}[{\titlerule[0.25pt]}]
+            
+\titleformat{\subsection}{\sffamily\mdseries\slshape}
+            {\Large\thesubsection}{.7em}{\Large}[{\titlerule[0.25pt]}]
+
+% Kill toc header as we want it to span columns
+\makeatletter
+\renewcommand{\toc@heading}{}
+\makeatother
+
+\titlecontents{section}
+              [1.5em]
+              {\vspace{.5em plus 1em minus .2em}\sffamily\bfseries\upshape\filright}
+              {\contentslabel{1.5em}}
+              {\hspace*{3em}}
+              {\hfill\contentspage\vspace{.1em}}
+
+\titlecontents{subsection}
+              [4em]
+              {\sffamily\mdseries\upshape\filright}
+              {\contentslabel{2.5em}}
+              {\hspace*{5.5em}}
+              {\hspace{1ex}\titlerule*[1.5ex]{.}\contentspage}
+
+\newenvironment{LIST}[1]%
+               {%
+                 \begin{list}{}%
+                   {\setlength{\itemindent}{-#1}\setlength{\leftmargin}{#1}}%
+                   %\parskip0pt\itemsep0pt
+               }%
+               {\end{list}%
+               }%
+%
+\renewcommand{\topfraction}{1}
+\renewcommand{\bottomfraction}{1}
+\renewcommand*{\figureformat}{}
+\renewcommand*{\captionformat}{}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+%
+\setlength{\parfillskip}{5cm plus1cm minus3cm}
+\setlength{\arraycolsep}{0pt}
+%
+\newcommand{\IT}[1]{\item{{\rule{0pt}{2pt}}%
+    #1}\hspace{2em plus 2em minus.5em}\penalty-9$\triangleright$}
+%
+\newpagestyle{lispref}[\sffamily\mdseries\slshape]{
+  \headrule\footrule
+  \sethead*{}{}{\maintitle\/}
+  \setfoot*{}{}{\thepage\/}}
+\pagestyle{lispref}
+
+%
+% Literal Text
+\newcommand{\LIT}[1]{\text{{\fontfamily{cmtt}\selectfont#1}}}
+%
+% Variable Text
+\newcommand{\VAR}[1]{\text{{\fontfamily{cmr}\fontshape{it}\selectfont#1\/}}}
+%
+% Default Value
+\newcommand{\DF}[1]{\text{\textsubscript{\setlength{\fboxsep}{.5pt}\setlength{\fboxrule}{.1pt}\fbox{#1}}}}
+%
+% Optional Part, [], two sizes
+\newcommand{\OP}[1]{{\text{$\big[$}{#1}\text{$\big]$}}}
+\newcommand{\Op}[1]{{\text{$[$}{#1}\text{$]$}}}
+%
+% Or, |
+\newcommand{\XOR}{\hspace{1pt}\text{\rule[-.9ex]{.25pt}{3ex}}\hspace{1pt}}
+%\newcommand{\XOR}{\text{$\mid$}\hspace{0pt}}
+%
+% Optional Parts, *
+\newcommand{\OPn}[1]{{{#1}\text{${}^{*}$}}}
+%
+% Required Parts, +
+\newcommand{\RP}[1]{{{#1}\text{${}^{+}$}}}
+%
+%
+% Group of Objects {}, three sizes
+\newcommand{\GOO}[1]{{\text{$\Big\{$}{#1}\text{$\Big\}$}}}
+\newcommand{\GOo}[1]{{\text{$\big\{$}{#1}\text{$\big\}$}}}
+\newcommand{\Goo}[1]{{\text{$\{$}{#1}\text{$\}$}}}
+% Optional Group of Objects, {}*, three sizes
+\newcommand{\GOOs}[1]{{$\Big\{${#1}$\Big\}^{\!\!*}$}}
+\newcommand{\GOos}[1]{\text{{$\big\{${#1}$\big\}^{\!\!*}$}}}
+\newcommand{\Goos}[1]{\text{{$\{${#1}$\}^{\!*}$}}}
+% Required Group of Objects, {}+, three sizes
+\newcommand{\GOOp}[1]{{$\Big\{${#1}$\Big\}^{\!\!+}$}}
+\newcommand{\GOop}[1]{{$\big\{${#1}$\big\}^{\!\!+}$}}
+\newcommand{\Goop}[1]{{$\{${#1}$\}^{\!+}$}}
+%
+% Vertically Arranged Group of Alternatives, {
+% usage: \xorGOO{line1\\ line2...}{closing delimiter}
+\newcommand{\xorGOO}[2]{\text{\(%
+    \left\{%
+    \begin{array}{l}%
+      #1%
+    \end{array}%
+    \right#2%
+    \)}}
+%
+% Vertically Arranged Group of Optional Objects, {|
+% usage: \orGOO{line1\\line2}{closing delimiter}
+\newcommand{\orGOO}[2]{\text{\(%
+    \left\{\!\left|%
+    \begin{array}{l}%
+      #1%
+    \end{array}%
+    \right.\right#2%
+    \)}}
+%
+% Vertically Arranged Group of Objects, No Opening {
+% usage: \arrGOO{line1\\line2}{closing delimiter}
+\newcommand{\arrGOO}[2]{{\(%
+    \left.%
+    \begin{array}{l}%
+      #1%
+    \end{array}%
+    \right#2%
+    \)}}
+%
+% Boxed Group of Alternatives
+% usage: \boxGOO{line1\\ line2...}
+\newcommand{\boxGOO}[1]{\text{\hspace{1ex}\(%
+    \setlength{\fboxsep}{1pt}\setlength{\fboxrule}{0pt}
+    \boxed{
+      \setlength{\fboxsep}{1pt}\setlength{\fboxrule}{.1pt}
+      \boxed{\;%
+        \begin{array}{l}%
+          #1%
+        \end{array}%
+      }%
+    }%
+    \)}}
+%
+%
+% All sorts of keywords
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Generic Keyword, Lowercase
+\newcommand{\kwd}[1]{\text{{\sffamily\bfseries\selectfont%
+      \lowercase{#1}}}}
+% Generic Keyword, Uppercase
+\newcommand{\KWD}[1]{\text{{\sffamily\bfseries\selectfont%
+      \uppercase{#1}}}}
+% Special Form
+\newcommand{\SF}[1]{\text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}SF}}\lowercase{#1}}}}}
+% Function
+\newcommand{\FU}[1]{\text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}Fu}}\lowercase{#1}}}}}
+% Generic Function
+\newcommand{\GFU}[1]{\text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}gF}}\lowercase{#1}}}}}
+% Variable
+\newcommand{\V}[1]{\text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.8em}var}}\lowercase{#1}}}}}
+% Constant
+\newcommand{\CNS}[1]{\text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}co}}\lowercase{#1}}}}}
+% Loop Keyword
+\newcommand{\LKWD}[1]{\text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}}}\lowercase{#1}}}}}
+
+% Return values, First, Second, Third
+\newcommand{\retval}[1]{\underline{#1}}
+\newcommand{\retvalii}[1]{\underline{\underline{#1}}}
+\newcommand{\retvaliii}[1]{\underline{\underline{\underline{#1}}}}
+
+% T and NIL
+\newcommand{\T}{\text{\ttfamily T}}
+\newcommand{\NIL}{\text{\ttfamily NIL}}
+% ~
+\newcommand{\TLD}{{\textasciitilde}}
+
+% Starred versions send argument into index:
+\WithSuffix\newcommand\kwd*[1]{\kwd{#1}\uppercase{\index{#1}}}
+\WithSuffix\newcommand\KWD*[1]{\KWD{#1}\uppercase{\index{#1}}}
+\WithSuffix\newcommand\SF*[1]{\SF{#1}\uppercase{\index{#1}}}
+\WithSuffix\newcommand\FU*[1]{\FU{#1}\uppercase{\index{#1}}}
+\WithSuffix\newcommand\GFU*[1]{\GFU{#1}\uppercase{\index{#1}}}
+\WithSuffix\newcommand\V*[1]{\V{#1}\uppercase{\index{#1}}}
+\WithSuffix\newcommand\CNS*[1]{\CNS{#1}\uppercase{\index{#1}}}
+\WithSuffix\newcommand\LKWD*[1]{\LKWD{#1}\uppercase{\index{#1}}}
+
+\begin{document}
+
+\newlength{\titlepagewidth}
+\setlength{\titlepagewidth}{8cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Front Cover
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+  \renewcommand{\rmdefault}{ptm} %% Always times font on title
+  \vspace*{15mm}
+  \begin{center}
+    \begin{minipage}{\titlepagewidth}
+      \begin{center}
+        \rmfamily\mdseries\itshape\fontsize{20}{0}\selectfont
+        Quick Reference\\
+      \end{center}
+    \end{minipage}
+    \vfill
+    \begin{minipage}{\titlepagewidth}
+      \begin{center}
+        \rmfamily\mdseries\itshape\fontsize{300}{0}\selectfont%
+                                           {\color{lightgray}cl\/}\\
+                                           %\rmfamily\mdseries\upshape\fontsize{350}{0}\selectfont
+                                           %{\color{lightgray}\boldmath$\lambda$}\\
+      \end{center}
+    \end{minipage}
+    \vfill
+    \begin{minipage}{\titlepagewidth}
+      \rmfamily\mdseries\itshape\fontsize{36}{0}\selectfont
+      \hfill Common\/\\[2mm]
+      \rmfamily\mdseries\upshape\fontsize{157}{0}\selectfont
+      \rule[3mm]{\textwidth}{1.5mm}\\
+      lisp\\[-10mm]
+      \rule[15mm]{5.5cm}{1.5mm}\hfill\rule[15mm]{1.77cm}{1.5mm}
+    \end{minipage}
+    \begin{minipage}{\titlepagewidth}
+      \rmfamily\mdseries\upshape\fontsize{14}{0}\selectfont
+      Bert Burgemeister
+      \vspace*{4mm}
+    \end{minipage}
+  \end{center}
+
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{\contentsname}
+\vspace{-3ex}
+{%
+  \setlength{\columnsep}{1.5em}%
+  \begin{multicols}{2}
+    \tableofcontents
+  \end{multicols}%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vfill
+\raggedright
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Typographic Conventions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{LIST}{1cm}
+
+  \IT{\kwd{NAME}, \FU{NAME}, \SF{NAME}, \GFU{NAME}, \V{*name*},
+    \CNS{name}} 
+  Symbol defined in Common Lisp; esp. function, special form, generic function,
+  variable, constant.
+
+  \IT{\VAR{them}\DF{\LIT{foo}}} Placeholder for actual code. Defaults to \LIT{foo}.
+
+  \IT{\LIT{me}} Text to input literally, or output literally.
+
+  \IT{\Op{\VAR{foo}}} Either one \VAR{foo} or nothing.
+
+  \IT{\OPn{\VAR{foo}}; \Goos{\VAR{foo}}} Any number of \VAR{foo}s.
+
+  \IT{\RP{\VAR{foo}}; \Goop{\VAR{foo}}} One or more \VAR{foo}s.
+
+  \IT{\Goo{\VAR{foo}\XOR\VAR{bar}\XOR\VAR{baz}};
+    \xorGOO{
+      \VAR{foo}\\
+      \VAR{bar}\\
+      \VAR{baz}%
+    }{.}}
+  Either \VAR{foo}, or \VAR{bar}, or \VAR{baz}.
+
+  \IT{\orGOO{
+      \VAR{foo}\\
+      \VAR{bar}\\
+      \VAR{baz} 
+    }{.}}
+  Anything from none to all of \VAR{foo}, \VAR{bar}, and \VAR{baz}.
+
+  \IT{\retval{\VAR{foo}}; \retvalii{\VAR{bar}}; \retvaliii{\VAR{baz}}}  
+  \VAR{foo}, \VAR{bar}, \VAR{baz} are 1st, 2nd, and 3rd return value.
+  
+  \IT{\T}
+  \kwd*{T}, or truth.
+  
+  \IT{\NIL}
+  \kwd*{NIL}, falsehood, or \kwd{()}.
+
+\end{LIST}
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Content starts here %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{clqr-numbers}
+
+\input{clqr-characters}
+
+\input{clqr-strings}
+
+\input{clqr-conses}
+
+\input{clqr-arrays}
+
+\input{clqr-sequences}
+
+\input{clqr-hash-tables}
+
+\input{clqr-structures}
+
+\input{clqr-control-structure}
+
+\input{clqr-clos}
+
+\input{clqr-conditions-and-errors}
+
+\input{clqr-input-output}
+
+\input{clqr-system-types-and-classes}
+
+\input{clqr-symbols-and-packages}
+
+\input{clqr-compiler}
+
+\input{clqr-environment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\indexpagestyle}{lispref}
+\renewenvironment{theindex}%
+                 {\begin{list}{}%
+                     {\setlength{\itemindent}{-1em}\setlength{\leftmargin}{1em}}%
+                     \parskip0pt\itemsep0pt}%
+                 {\end{list}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Index}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-3ex}
+\begin{multicols}{3}
+  % Stock \printindex won't do as we want three-column.
+  \tiny\sffamily\input{clqr.ind}
+\end{multicols}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Make (total) page count a multiple of four.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\pagestyle{empty}
+\newcount\currentpage 
+\currentpage=\value{page} 
+\divide\currentpage by 4  
+\multiply\currentpage by 4  
+\advance\currentpage by -\value{page}
+\ifthenelse{\equal{\the\currentpage}{-3}}{\rule{0pt}{0pt}\clearpage}{}
+\ifthenelse{\equal{\the\currentpage}{-2}}{\rule{0pt}{0pt}\clearpage\rule{0pt}{0pt}\clearpage}{}
+\ifthenelse{\equal{\the\currentpage}{-1}}{\rule{0pt}{0pt}\clearpage\rule{0pt}{0pt}\clearpage\rule{0pt}{0pt}\clearpage}{}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Back Cover
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+  \begin{center}
+    \renewcommand{\rmdefault}{ptm} %% Always times font on title
+    \vspace*{15mm}
+    \vfill
+    \begin{minipage}{\titlepagewidth}
+      \begin{center}
+        \rmfamily\mdseries\itshape\fontsize{300}{0}\selectfont
+        \reflectbox{{\color{lightgray}cl\/}}\\
+        %\ttfamily\mdseries\upshape\fontsize{200}{0}\selectfont
+        %{\color{Gray}$(\lambda)$}
+      \end{center}
+    \end{minipage}
+    \vfill
+    \rule{1.75cm}{0pt}
+    \vfill
+    \begin{minipage}{\titlepagewidth}
+      \hrule
+      \vspace{1.5mm}
+      \rmfamily\small
+      \makebox[\textwidth][l]{\maintitle\ \hfill Revision \revision [\number\year-\number\month-\number\day]}
+      \makebox[\textwidth][l]{Copyright \copyright\ 2008 Bert Burgemeister}\\
+
+      Permission is granted to copy, distribute and/or modify this
+      document under the terms of the GNU Free Documentation License,
+      Version 1.2 or any later version published by the Free Software
+      Foundation; with no Invariant Sections, no Front-Cover Texts and
+      no Back-Cover Texts.\\
+      http://www.gnu.org/licenses/fdl.html\\
+
+      \vspace{-1mm}
+      \hrule
+    \end{minipage}
+  \end{center}
+\end{titlepage}
+
+\end{document}
+% -*-latex-*-
+

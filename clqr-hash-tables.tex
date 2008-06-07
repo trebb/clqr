@@ -1,0 +1,68 @@
+% Copyright (C) 2008 Bert Burgemeister
+%
+% Permission is granted to copy, distribute and/or modify this
+% document under the terms of the GNU Free Documentation License,
+% Version 1.2 or any later version published by the Free Software
+% Foundation; with no Invariant Sections, no Front-Cover Texts and
+% no Back-Cover Texts. For details see file COPYING.
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hash Tables} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Key-value storage similar to hash tables can as well be achieved with
+association lists and with property lists; see
+pp.\ \pageref{section:Association Lists} and
+\pageref{:property_lists}. 
+
+
+\begin{LIST}{1cm}
+
+  \IT{(\FU*{HASH-TABLE-P} \VAR{foo})}
+  Return \retval{\T} if \VAR{foo} is of type \kwd{hash-table}.
+
+  \IT{(\FU*{MAKE-HASH-TABLE} 
+    \orGOO{\kwd{:test}\Goo{\kwd{\#'eq}\XOR \kwd{\#'eql}\XOR \kwd{\#'equal}}\DF{\kwd{eql}}\\
+      \kwd{:size} \VAR{ size}\\
+      \kwd{:rehash-size} \VAR{ rehash-size}\\
+      \kwd{:rehash-threshold} \VAR{ rehash-threshold}}{\}})} 
+  Make a \retval{hash table}. 
+
+  \IT{(\FU*{HASH-TABLE-TEST} \VAR{hash-table})} \retval{Test function}
+  used in \VAR{hash-table}.
+
+  \IT{(\FU*{GETHASH} \VAR{key} \VAR{hash-table} \Op{\VAR{default}})} Get
+  \retval{object with key \VAR{key} } if any or \retval{\VAR{default}}
+  otherwise. Second return value: \T\ if found, \NIL\ otherwise
+
+  \IT{(\FU*{REMHASH} \VAR{key} \VAR{hash-table})} 
+  Remove from \VAR{hash-table} entry with \VAR{key} and return \retval{\T} if it
+  existed. Return \retval{\NIL} otherwise. 
+
+  \IT{(\FU*{CLRHASH} \VAR{hash-table})} 
+  Empty \retval{\VAR{hash-table}}.
+
+
+  \IT{(\FU*{HASH-TABLE-COUNT} \VAR{hash-table})} \retval{Number of entries} in \VAR{hash-table}.
+
+  \IT{\arrGOO{(\FU*{HASH-TABLE-SIZE} \VAR{ hash-table})\\
+      (\FU*{HASH-TABLE-REHASH-SIZE} \VAR{ hash-table})\\
+      (\FU*{HASH-TABLE-REHASH-THRESHOLD} \VAR{ hash-table})}{\}}}
+  Current \retval{size}, \retval{rehash-size}, or
+  \retval{rehash-threshold}, resp., as used in \FU{make-hash-table}. 
+
+  \IT{(\FU*{MAPHASH} \VAR{function} \VAR{hash-table})} 
+  Iterate over \VAR{hash-table} calling \VAR{function} on \VAR{key}
+  and \VAR{value}. Return \retval{\NIL}.
+  
+  \IT{(\SF*{WITH-HASH-TABLE-ITERATOR} \VAR{name} \VAR{hash-table}
+    \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \OPn{form})}
+  Return \retval{values of \VAR{form}s}. In the body, successive
+  invocations of  (\VAR{name}) return: \T\ if an entry is returned;
+  its key; its value.
+
+  \IT{(\FU*{SXHASH} \VAR{foo})} \retval{Hash code} of \VAR{foo}.
+
+\end{LIST}
+
+

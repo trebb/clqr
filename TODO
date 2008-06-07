@@ -1,0 +1,30 @@
+- explanations for remaining keywords   
+
+- find better bold <, >, \, {, }
+
+- snapping-in explanation starts
+
+- \arrGOO{} adds unwanted indentation
+
+
+FINAL TESTS
+
+- usage of the three \retvals
+
+- setfiability
+
+- defaults
+
+- multiple return values mentioned
+
+- arg* vs. args (list)
+
+- dotted lists
+
+- talking metavariables
+
+- lexical vs. dynamic binding
+
+- errors/conditions always mentioned as \kwd{}
+
+- applicability of declare

@@ -1,0 +1,168 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{System Types and Classes} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}
+  \begin{center}
+    \boxGOO{%
+      \kwd*{t}%
+      \boxGOO{%
+        \kwd*{NUMBER}
+        \boxGOO{%
+          \kwd*{COMPLEX} \Op{\VAR{type}} \\
+          \kwd*{REAL} \OP{\VAR{lower-limit}\Op{\VAR{upper-limit}}}\\
+          \boxGOO{%
+            \kwd*{RATIONAL} \OP{\VAR{lower-limit}\Op{\VAR{upper-limit}}}\\
+            \boxGOO{%
+              \kwd*{INTEGER} \OP{\VAR{lower-limit}\Op{\VAR{upper-limit}}}\\
+              \boxGOO{%
+                \kwd*{FIXNUM} \\
+                \kwd*{BIGNUM} \\
+                \kwd*{SIGNED-BYTE} \Op{\VAR{bits}}\\
+                \boxGOO{\kwd*{UNSIGNED-BYTE} \Op{\VAR{bits}}
+                  \boxGOO{\kwd*{BIT} }}}\\
+              \kwd*{RATIO}}\\
+            \kwd*{FLOAT} \OP{\VAR{lower-limit}\Op{\VAR{upper-limit}}}\\
+            \boxGOO{%
+              \kwd*{SHORT-FLOAT} \OP{\VAR{lower-limit}\Op{\VAR{upper-limit}}}\\
+              \kwd*{SINGLE-FLOAT} \OP{\VAR{lower-limit}\Op{\VAR{upper-limit}}}\\
+              \kwd*{DOUBLE-FLOAT} \OP{\VAR{lower-limit}\Op{\VAR{upper-limit}}}\\
+              \kwd*{LONG-FLOAT} \OP{\VAR{lower-limit}\Op{\VAR{upper-limit}}}}}}\\
+        \kwd*{SEQUENCE}
+        \boxGOO{%
+          \kwd*{LIST}
+          \boxGOO{%
+            \kwd*{CONS} \OP{\VAR{car-type}\Op{\VAR{cdr-type}}}\\
+          \kwd*{SYMBOL}\footnotemark[2]
+          \boxGOO{
+            \kwd*{NULL}}}\\
+          \kwd*{ARRAY}\footnotemark[2] \OP{\VAR{type}\Op{\VAR{dimension}}}\\
+          \boxGOO{%
+            \kwd*{SIMPLE-ARRAY}\footnotemark[2] \OP{\VAR{type}\Op{\VAR{dimension}}}\\
+            \boxGOO{%
+              \kwd*{VECTOR}\footnotemark[2] \OP{\VAR{type}\Op{\VAR{size}}}\\
+              \boxGOO{%
+                \kwd*{SIMPLE-VECTOR} \Op{\VAR{size}}\\
+                \kwd*{BIT-VECTOR}\footnotemark[2] \Op{\VAR{size}}\\
+                \boxGOO{%
+                  \kwd*{SIMPLE-BIT-VECTOR} \Op{\VAR{size}}}\\
+                \kwd*{STRING}\footnotemark[2] \Op{\VAR{size}}\\
+                \boxGOO{%
+                  \kwd*{SIMPLE-STRING} \Op{\VAR{size}}\\
+                  \boxGOO{%
+                    \kwd*{BASE-STRING}\footnotemark[2] \Op{\VAR{size}}\\
+                    \boxGOO{%
+                      \kwd*{SIMPLE-BASE-STRING} \Op{\VAR{size}}}}}}}\\
+            \kwd*{VECTOR}\footnotemark[2]  \OP{\VAR{type}\Op{\VAR{size}}}\\
+            \boxGOO{%
+              \kwd*{BIT-VECTOR}\footnotemark[2] \Op{\VAR{size}}\\
+              \kwd*{STRING}\footnotemark[2] \Op{\VAR{size}}
+              \boxGOO{%
+                \kwd*{BASE-STRING}\footnotemark[2] \Op{\VAR{size}}}}}}\\
+        \kwd*{CHARACTER}
+        \boxGOO{%
+          \kwd*{BASE-CHAR}
+          \boxGOO{%
+            \kwd*{STANDARD-CHAR}}\\
+          \kwd*{EXTENDED-CHAR}}\\
+        \kwd*{STREAM}
+        \boxGOO{%
+          \kwd*{FILE-STREAM},\>
+          \kwd*{TWO-WAY-STREAM},\>
+          \kwd*{SYNONYM-STREAM}\\
+          \kwd*{STRING-STREAM},\>
+          \kwd*{BROADCAST-STREAM},\>
+          \kwd*{ECHO-STREAM}\\
+          \kwd*{CONCATENATED-STREAM}}\\
+        \kwd*{PATHNAME}
+        \boxGOO{%
+          \kwd*{LOGICAL-PATHNAME}}\\
+        \kwd*{SYMBOL}\footnotemark[2]
+        \boxGOO{%
+          \kwd*{KEYWORD}\\
+          \kwd*{BOOLEAN} }\\
+        \kwd*{FUNCTION} \OP{\VAR{arg-types}\Op{\VAR{value-types}}}\\
+        \boxGOO{%
+          \kwd*{GENERIC-FUNCTION}
+          \boxGOO{\kwd*{STANDARD-GENERIC-FUNCTION}}\\
+          \kwd*{COMPILED-FUNCTION}}\\
+        \kwd*{STANDARD-OBJECT}
+        \boxGOO{%
+          \kwd*{CLASS}
+          \boxGOO{%
+            \kwd*{STANDARD-CLASS} \\
+            \kwd*{STRUCTURE-CLASS} \\
+            \kwd*{BUILT-IN-CLASS}}\\
+          \kwd*{STANDARD-METHOD}}\\
+        \kwd*{ARRAY}\footnotemark[2] \OP{\VAR{type}\Op{\VAR{dimension}}}\\
+        \boxGOO{%
+          \kwd*{SIMPLE-ARRAY}\footnotemark[2] \OP{\VAR{type}\Op{\VAR{dimension}}}}\\
+        \kwd*{ATOM}\\
+        \kwd*{HASH-TABLE} \\
+        \kwd*{PACKAGE} \\
+        \kwd*{READTABLE} \\
+        \kwd*{RANDOM-STATE} \\
+        \kwd*{STRUCTURE-OBJECT}\\
+        \kwd*{RESTART}\\
+        \kwd*{METHOD}\\
+        \kwd*{METHOD-COMBINATION}}}
+  \end{center}\vspace{-1em}
+              {\footnotesize\footnotemark[2]Multiply defined}
+  \caption{Data Types.}%
+\end{figure}
+
+
+\begin{LIST}{1cm}
+
+  \IT{(\kwd*{NIL})}
+  The empty type, subtype of every type.
+
+  \IT{(\FU*{TYPEP} \VAR{foo} \VAR{type} \Op{\VAR{environment}})}
+  Return \retval{\T} if \VAR{foo} is of \VAR{type}.
+
+  \IT{(\FU*{SUBTYPEP} \VAR{type-a} \VAR{type-b} \Op{\VAR{environment}})}
+  Return \retval{\T} if \VAR{type-a} is a recognizable subtype of \VAR{type-b}.
+
+  \IT{(\FU*{COERCE} \VAR{object} \VAR{type})} Coerce \VAR{object} into \VAR{type}.
+
+  \IT{(\SF*{TYPECASE} \VAR{foo} \OPn{(\VAR{type} \OPn{\VAR{form-a}})} 
+    (\xorGOO{\kwd*{OTHERWISE}\\\T}{\}}\OPn{form-b}))}
+  Return \retval{value of a \VAR{form-a}} if \VAR{foo} is of this \VAR{type}. Return
+  \retval{value of \VAR{form-b}} otherwise.
+
+  \IT{(\xorGOO{\SF*{CTYPECASE}\\
+      \SF*{ETYPECASE}
+    }{\}}\VAR {foo} \OPn{(\VAR{type} \OPn{\VAR{form}})})}
+  Return \retval{value of a \VAR{form}} if \VAR{foo} is of this \VAR{type}.
+  Signal correctable/non-correctable error, resp.
+
+  \IT{(\SF*{DEFTYPE} \VAR{name} \OPn{\VAR{arg}} 
+    \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \Op{\VAR{documentation}} 
+    \OPn{\VAR{form}})}
+  Define new type \retval{\VAR{name}}.
+
+  \IT{(\SF*{THE} \VAR{type} {form})}
+  Return \retval{values} of \VAR{form} which are specified to be of \VAR{type}.
+
+  \IT{(\FU*{FIND-CLASS} \VAR{symbol} \OP{\VAR{errorp}\DF{\T} \Op{\VAR{environment}}})}
+  Return \retval{class object} named \VAR{symbol}. \kwd{setf}able.
+
+  \IT{(\FU*{TYPE-OF} \VAR{foo})} \retval{Type of \VAR{foo}}.
+
+  \IT{(\kwd*{VALUES} \OPn{\VAR{type}} \OP{\OPn{\VAR{type}}
+      \Op{\VAR{other-args}}})} 
+  Type specifier for multiple values.
+
+  \IT{(\kwd*{SATISFIES} \VAR{name})} Type specifier for all
+  objects satisfying predicate \VAR{name}.
+
+  \IT{(\kwd*{MOD} \VAR{n})} Type specifier for all integers $<n$.
+
+  \IT{(\FU*{UPGRADED-ARRAY-ELEMENT-TYPE} \VAR{type}
+    \Op{\VAR{environment}})} 
+  \retval{Element type} of most specialized array capable of holding
+  elements of \VAR{type}.
+
+\end{LIST}
+
+
