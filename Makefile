@@ -24,8 +24,12 @@ CP		= cp --verbose
 RM		= rm --force --verbose
 MV		= mv --force --verbose
 BZR_REVISION	= bzr revno
+BZR_EXPORT	= bzr export
+RSYNC		= rsync -va --delete
 
 all:	letter a4
+
+maintainance:	letter a4 release publish
 
 letter:	$(CLQR)-letter-booklet-all.pdf $(CLQR)-letter-booklet-four.pdf $(CLQR)-letter-consec.pdf
 
@@ -71,8 +75,14 @@ REVISION.tex:	$(CLQR).tex
 
 sample.jpg: $(CLQR)-a4-consec.pdf
 	$(CONVERT) $<'[0,19-20]' -verbose -resize 40% $@ $(SEND-TO-LOG)
-	$(MONTAGE) sample-1.jpg sample-2.jpg  -tile 2x1 -geometry +1+1 -background gray sample-doublepage.jpg
-	$(MONTAGE) sample-0.jpg               -tile 1x1 -geometry +1+1 -background gray sample-frontcover.jpg
+	$(MONTAGE) sample-1.jpg sample-2.jpg  -tile 2x1 -geometry +1+1 -background gray html/sample-doublepage.jpg
+	$(MONTAGE) sample-0.jpg               -tile 1x1 -geometry +1+1 -background gray html/sample-frontcover.jpg
 
 clean:
-	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.ps *.pdf *~ sample.*
+	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.ps *.pdf *~ sample.* *.tar.gz
+
+publish:	sample.jpg $(CLQR)-a4-consec.pdf
+	$(RSYNC) ./ trebb@shell.berlios.de:/home/groups/ftp/pub/clqr/clqr/
+
+$(CLQR).tar.gz:
+	$(BZR_EXPORT) $@

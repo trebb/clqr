@@ -50,6 +50,10 @@ h4 {
     margin-bottom: 3px;
 }
 
+img {
+    border: 0px;
+}
+
 .left {
     float:			left;
     margin-right: 2ex;
@@ -125,6 +129,19 @@ p {
     padding-bottom:		2.5em;
     border:			1px solid gray;
     text-align:		justify;
+}
+
+.content a {
+    background-color:	#FFFFFF;
+    color:			black;
+    text-decoration:	none;
+    letter-spacing: .1em;
+}
+
+.content a:hover {
+    background-color:	#FFFFFF;
+    color:		#0080C0;
+    text-decoration:	none;
 }
 
 .content ul {
