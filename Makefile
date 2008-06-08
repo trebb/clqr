@@ -85,7 +85,7 @@ html/sample-firstpage-%.jpg:	$(CLQR)-a4-booklet-%.pdf
 	$(MONTAGE) temp.jpg               -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 
 clean:
-	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.ps *.pdf *~ paper-a4 paper-letter sample.* *.tar.gz
+	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.ps *.pdf *~ html/*~ paper-a4 paper-letter *.jpg html/*.jpg *.tar.gz
 
 
 # Project hosting
