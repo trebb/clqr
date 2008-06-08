@@ -46,7 +46,7 @@
 
 \begin{LIST}{1cm}
 
-  \IT{(\kwd*{DEFVAR} \VAR{name} \Op{\VAR{value} \Op{\VAR{documentation}}} )} Unless bound
+  \IT{(\kwd*{DEFVAR} \VAR{name} \OP{\VAR{value} \Op{\VAR{documentation}}} )} Unless bound
   already, assign \VAR{value} to dynamic variable \retval{\VAR{name}}.
 
   \IT{(\kwd*{DEFPARAMETER} \VAR{name} \VAR{value} \Op{\VAR{documentation}} )} Assign
@@ -55,47 +55,33 @@
   \IT{(\kwd*{DEFCONSTANT} \VAR{name} \VAR{value} \Op{\VAR{documentation}} )} Assign
   \VAR{value} to global constant \retval{\VAR{name}}.
 
-  \IT{(\FU*{VALUES-LIST} \VAR{list})} 
-  Return \retval{elements of \VAR{list}}.
-
-  \IT{(\FU*{VALUES} \OPn{\VAR{foo}})} 
-  Return \retval{\VAR{foo}s as multiple values.} \kwd{setf}able.
-
-  \IT{(\FU*{MULTIPLE-VALUE-LIST} \OPn{\VAR{form}})} Return \retval{values
-    of \VAR{form}s}.
-
   \IT{(\FU*{NTH-VALUE} \VAR{n} \VAR{form})} 
   \retval{\VAR{n}th return value} of \VAR{form}.
-
-  \IT{(\xorGOO{\SF*{SETQ}\\\SF*{PSETQ}}{\}} \Goos{\VAR{symbol}
-      \VAR{value}})} 
-  Set \VAR{symbol}s to \retval{\VAR{value}s}, resp. Work sequentially/in
-  parallel, resp. 
 
   \IT{(\xorGOO{\SF*{SETF}\\\SF*{PSETF}}{\}} \Goos{\VAR{place}
       \VAR{value}})} 
   Set \VAR{place}s to \retval{\VAR{value}s}, resp. Work sequentially/in
   parallel, resp. 
 
-  \IT{(\SF*{ROTATEF} \OPn{\VAR{place}})} Rotate values of \VAR{place}s left,
-  old first becoming new last \VAR{place}. Return \retval{\NIL}.
+  \IT{(\xorGOO{\SF*{SETQ}\\\SF*{PSETQ}}{\}} \Goos{\VAR{symbol}
+      \VAR{value}})} 
+  Set \VAR{symbol}s to \retval{\VAR{value}s}, resp. Work sequentially/in
+  parallel, resp. 
 
-  \IT{(\kwd*{MULTIPLE-VALUE-SETQ})}
+  \IT{(\SF*{MULTIPLE-VALUE-SETQ} \VAR{vars} \VAR{form})}
+  Set \VAR{vars} to the respective values returned by
+  \VAR{form}. Return \retval{\VAR{form}'s primary value}.
 
-  \label{:property_lists}
   \IT{(\SF*{SHIFTF} \RP{\VAR{place}} \VAR{foo})} Store \VAR{foo} in
   rightmost \VAR{place} shifting values of \VAR{place}s left, returning
   \retval{first \VAR{place}}.
 
-  \IT{\arrGOO{(\FU*{REMPROP} \VAR{ symbol} \VAR{ key})
-      (\SF*{REMF} \VAR{ place} \VAR{ key})}{\}}}
-  Remove fist entry \VAR{key} from property list stored in
-  \VAR{symbol}/in \VAR{place}, resp. Return \retval{\T} if \VAR{key}
-  was there, or \retval{\NIL} otherwise.
+  \IT{(\SF*{ROTATEF} \OPn{\VAR{place}})} Rotate values of \VAR{place}s left,
+  old first becoming new last \VAR{place}. Return \retval{\NIL}.
 
-  \IT{\arrGOO{(\FU*{GET} \VAR{ symbol} \VAR{ key} \OP{\VAR{ default}\DF{\NIL}})\\
-      (\FU*{GETF} \VAR{ place} \VAR{ key} \OP{\VAR{
-          default}\DF{\NIL}})}{\}}}
+  \label{:property_lists}
+  \IT{\arrGOO{(\FU*{GET} \VAR{ symbol} \VAR{ key } \OP{\VAR{default}\DF{\NIL}})\\
+      (\FU*{GETF} \VAR{ place} \VAR{ key } \OP{\VAR{default}\DF{\NIL}})}{\}}}
   \retval{First entry \VAR{key}} from property list stored in
   \VAR{symbol}/in \VAR{place}, resp., or \retval{\VAR{default}} if
   there was no \VAR{key}. \kwd{setf}able.
@@ -105,6 +91,12 @@
   matching a key from \VAR{key-list}, and \retvaliii{tail of
     \VAR{plist}} starting with \VAR{key}. Return \retval{\NIL},
   \retvalii{\NIL}, and  \retvaliii{\NIL} if there was no \VAR{key}.
+
+  \IT{\arrGOO{(\FU*{REMPROP} \VAR{ symbol} \VAR{ key})\\
+      (\SF*{REMF} \VAR{ place} \VAR{ key})}{\}}}
+  Remove fist entry \VAR{key} from property list stored in
+  \VAR{symbol}/in \VAR{place}, resp. Return \retval{\T} if \VAR{key}
+  was there, or \retval{\NIL} otherwise.
 
 \end{LIST}
 
@@ -161,6 +153,15 @@ Below, lambda list \OPn{\VAR{fu-arg}} has the form
   \IT{(\SF*{MULTIPLE-VALUE-CALL} \VAR{foo} \OPn{\VAR{form}})} Call function
   \VAR{foo} with values of \VAR{form}s as its arguments.  Return
   \retval{values returned by \VAR{foo}}.
+
+  \IT{(\FU*{VALUES-LIST} \VAR{list})} 
+  Return \retval{elements of \VAR{list}}.
+
+  \IT{(\FU*{VALUES} \OPn{\VAR{foo}})} 
+  Return \retval{\VAR{foo}s} as multiple values. \kwd{setf}able.
+
+  \IT{(\FU*{MULTIPLE-VALUE-LIST} \OPn{\VAR{form}})} 
+  Return \retval{values of \VAR{form}s}.
 
   \IT{(\FU*{COMPLEMENT} \VAR{function})}
   Return \retval{new function} with same arguments and same side effects

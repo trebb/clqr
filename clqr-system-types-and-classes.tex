@@ -121,14 +121,16 @@
   Return \retval{\T} if \VAR{foo} is of \VAR{type}.
 
   \IT{(\FU*{SUBTYPEP} \VAR{type-a} \VAR{type-b} \Op{\VAR{environment}})}
-  Return \retval{\T} if \VAR{type-a} is a recognizable subtype of \VAR{type-b}.
+  Return \retval{\T} if \VAR{type-a} is a recognizable subtype of
+  \VAR{type-b}. 
 
-  \IT{(\FU*{COERCE} \VAR{object} \VAR{type})} Coerce \VAR{object} into \VAR{type}.
+  \IT{(\FU*{COERCE} \VAR{object} \VAR{type})} 
+  Coerce \VAR{object} into \VAR{type}.
 
   \IT{(\SF*{TYPECASE} \VAR{foo} \OPn{(\VAR{type} \OPn{\VAR{form-a}})} 
     (\xorGOO{\kwd*{OTHERWISE}\\\T}{\}}\OPn{form-b}))}
-  Return \retval{value of a \VAR{form-a}} if \VAR{foo} is of this \VAR{type}. Return
-  \retval{value of \VAR{form-b}} otherwise.
+  Return \retval{value of a \VAR{form-a}} if \VAR{foo} is of this
+  \VAR{type}. Return \retval{value of \VAR{form-b}} otherwise. 
 
   \IT{(\xorGOO{\SF*{CTYPECASE}\\
       \SF*{ETYPECASE}
@@ -142,9 +144,11 @@
   Define new type \retval{\VAR{name}}.
 
   \IT{(\SF*{THE} \VAR{type} {form})}
-  Return \retval{values} of \VAR{form} which are specified to be of \VAR{type}.
+  Return \retval{values} of \VAR{form} which are specified to be of
+  \VAR{type}. 
 
-  \IT{(\FU*{FIND-CLASS} \VAR{symbol} \OP{\VAR{errorp}\DF{\T} \Op{\VAR{environment}}})}
+  \IT{(\FU*{FIND-CLASS} \VAR{symbol} \OP{\VAR{errorp}\DF{\T}
+      \Op{\VAR{environment}}})} 
   Return \retval{class object} named \VAR{symbol}. \kwd{setf}able.
 
   \IT{(\FU*{TYPE-OF} \VAR{foo})} \retval{Type of \VAR{foo}}.
@@ -158,10 +162,16 @@
 
   \IT{(\kwd*{MOD} \VAR{n})} Type specifier for all integers $<n$.
 
+  \IT{(\FU*{STREAM-ELEMENT-TYPE} \VAR{stream})} 
+  Return \retval{type} of \VAR{stream} objects.
+
+  \IT{(\FU*{ARRAY-ELEMENT-TYPE} \VAR{array})} 
+  Element \retval{type} \VAR{array} holds.
+
   \IT{(\FU*{UPGRADED-ARRAY-ELEMENT-TYPE} \VAR{type}
     \Op{\VAR{environment}})} 
   \retval{Element type} of most specialized array capable of holding
-  elements of \VAR{type}.
+  elements of \VAR{type}. 
 
 \end{LIST}
 

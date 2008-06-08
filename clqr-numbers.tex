@@ -265,23 +265,30 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
-  \IT{(\FU*{INTEGER-LENGTH} \VAR{integer})} \retval{Number of bits} necessary to represent \VAR{integer}.
+  \IT{(\FU*{INTEGER-LENGTH} \VAR{integer})} 
+  \retval{Number of bits} necessary to represent \VAR{integer}. 
+
+  \IT{(\FU*{LDB-TEST} \VAR{byte-spec} \VAR{integer})}
+  Return \retval{\T} if any bit specified by \VAR{byte-spec} in
+  \VAR{integer} is set.
+
+  \IT{(\FU*{LDB} \VAR{byte-spec} \VAR{integer})}
+  Extract \retval{byte} denoted by \VAR{byte-spec} from
+  \VAR{integer}. \kwd{setf}able. 
 
   \IT{(\FU*{BYTE} \VAR{size} \VAR{position})}
-  \retval{Byte specifier} for a byte of \VAR{size} bits starting at a weight of $2^{\VAR{position}}$.
+  \retval{Byte specifier} for a byte of \VAR{size} bits starting at a
+  weight of $2^{\VAR{position}}$. 
 
   \IT{\arrGOO{(\FU*{BYTE-POSITION} \VAR{ byte-spec})\\
       (\FU*{BYTE-SIZE} \VAR{ byte-spec})}{\}}}
   \retval{Position} or \retval{size}, resp., of \VAR{byte-spec}.
   
-  \IT{(\FU*{LDB} \VAR{byte-spec} \VAR{integer})}
-  Extract \retval{byte} denoted by \VAR{byte-spec} from \VAR{integer}. \kwd{setf}able.
-
   \IT{(\xorGOO{\FU*{DEPOSIT-FIELD}\\
       \FU*{DPB}}{\}}\VAR{int-a} \VAR{byte-spec} \VAR{int-b})}
   Return \retval{int-b} with bits denoted by \VAR{byte-spec} replaced
-  by corresponding bits of \VAR{int-a}, or by the low (\kwd{byte-size} \VAR{bytespec}) bits
-  of \VAR{int-a}, resp.
+  by corresponding bits of \VAR{int-a}, or by the low (\kwd{byte-size}
+  \VAR{bytespec}) bits of \VAR{int-a}, resp. 
 
 \end{LIST}
 
