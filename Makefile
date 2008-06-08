@@ -73,16 +73,26 @@ paper-%:
 REVISION.tex:	$(CLQR).tex
 	if $(BZR_REVISION); then $(BZR_REVISION) > $@; else $(TOUCH) $@; fi $(SEND-TO-LOG)
 
-sample.jpg: $(CLQR)-a4-consec.pdf
-	$(CONVERT) $<'[0,19-20]' -verbose -resize 40% $@ $(SEND-TO-LOG)
-	$(MONTAGE) sample-1.jpg sample-2.jpg  -tile 2x1 -geometry +1+1 -background gray html/sample-doublepage.jpg
-	$(MONTAGE) sample-0.jpg               -tile 1x1 -geometry +1+1 -background gray html/sample-frontcover.jpg
+html/sample-frontcover.jpg:	$(CLQR)-a4-consec.pdf
+	$(CONVERT) $<'[0]' -verbose -resize 40% temp.jpg $(SEND-TO-LOG)
+	$(MONTAGE) temp.jpg               -tile 1x1 -geometry +1+1 -background gray $@
+
+html/sample-doublepage.jpg:	$(CLQR)-a4-consec.pdf
+	$(CONVERT) $<'[19-20]' -verbose -resize 30% temp.jpg $(SEND-TO-LOG)
+	$(MONTAGE) temp-0.jpg temp-1.jpg  -tile 2x1 -geometry +1+1 -background gray $@
+
+html/sample-firstpage-%.jpg:	$(CLQR)-a4-booklet-%.pdf
+	$(CONVERT) $<'[0]' -verbose -resize 15% temp.jpg $(SEND-TO-LOG)
+	$(MONTAGE) temp.jpg               -tile 1x1 -geometry +1+1 -background gray $@
 
 clean:
 	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.ps *.pdf *~ sample.* *.tar.gz
 
-publish:	sample.jpg $(CLQR)-a4-consec.pdf
+publish:	html/sample-frontcover.jpg html/sample-doublepage.jpg html/sample-firstpage-all.jpg html/sample-firstpage-four.jpg $(CLQR)-a4-consec.pdf
 	$(RSYNC) ./ trebb@shell.berlios.de:/home/groups/ftp/pub/clqr/clqr/
+
+release:	
+	./upload.sh
 
 $(CLQR).tar.gz:
 	$(BZR_EXPORT) $@

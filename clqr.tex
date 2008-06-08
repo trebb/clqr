@@ -133,9 +133,9 @@
 \newcommand{\GOos}[1]{\text{{$\big\{${#1}$\big\}^{\!\!*}$}}}
 \newcommand{\Goos}[1]{\text{{$\{${#1}$\}^{\!*}$}}}
 % Required Group of Objects, {}+, three sizes
-\newcommand{\GOOp}[1]{{$\Big\{${#1}$\Big\}^{\!\!+}$}}
-\newcommand{\GOop}[1]{{$\big\{${#1}$\big\}^{\!\!+}$}}
-\newcommand{\Goop}[1]{{$\{${#1}$\}^{\!+}$}}
+\newcommand{\GOOp}[1]{{\text{$\Big\{$}{#1}\text{$\Big\}^{\!\!+}$}}}
+\newcommand{\GOop}[1]{{\text{$\big\{$}{#1}\text{$\big\}^{\!\!+}$}}}
+\newcommand{\Goop}[1]{{\text{$\{$}{#1}\text{$\}^{\!+}$}}}
 %
 % Vertically Arranged Group of Alternatives, {
 % usage: \xorGOO{line1\\ line2...}{closing delimiter}
@@ -299,15 +299,23 @@
   Symbol defined in Common Lisp; esp. function, special form, generic function,
   variable, constant.
 
-  \IT{\VAR{them}\DF{\LIT{foo}}} Placeholder for actual code. Defaults to \LIT{foo}.
+  \IT{\VAR{them}\DF{\LIT{foo}}} 
+  Placeholder for actual code. Defaults to \LIT{foo}.
 
-  \IT{\LIT{me}} Text to input literally, or output literally.
+  \IT{\LIT{me}} 
+  Text to input literally, or output literally.
 
-  \IT{\Op{\VAR{foo}}} Either one \VAR{foo} or nothing.
+  \IT{\Op{\VAR{foo}}} 
+  Either one \VAR{foo} or nothing.
 
-  \IT{\OPn{\VAR{foo}}; \Goos{\VAR{foo}}} Any number of \VAR{foo}s.
+  \IT{\OPn{\VAR{foo}}; \Goos{\VAR{foo}}} 
+  Zero or more \VAR{foo}s.
 
-  \IT{\RP{\VAR{foo}}; \Goop{\VAR{foo}}} One or more \VAR{foo}s.
+  \IT{\RP{\VAR{foo}}; \Goop{\VAR{foo}}} 
+  One or more \VAR{foo}s.
+
+  \IT{\VAR{foos}} 
+  English plural denotes a list argument.
 
   \IT{\Goo{\VAR{foo}\XOR\VAR{bar}\XOR\VAR{baz}};
     \xorGOO{
