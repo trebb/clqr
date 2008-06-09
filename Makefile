@@ -69,7 +69,7 @@ paper-%.flag:	paper-current.tex
 	$(CP) $@.tex paper-current.tex $(SEND-TO-LOG)
 	$(TOUCH) $@
 
-REVISION.tex:	$(CLQR).tex
+REVISION.tex:	$(CLQR).tex $(CLQR)-*.tex
 	if $(BZR_REVISION); then $(BZR_REVISION) > $@; else $(TOUCH) $@; fi $(SEND-TO-LOG)
 
 html/sample-frontcover.jpg:	$(CLQR)-a4-consec.pdf
