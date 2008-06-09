@@ -134,9 +134,13 @@
 
   \IT{(\xorGOO{\SF*{CTYPECASE}\\
       \SF*{ETYPECASE}
-    }{\}}\VAR {foo} \OPn{(\VAR{type} \OPn{\VAR{form}})})}
+    }{\}}\VAR{foo} \OPn{(\VAR{type} \OPn{\VAR{form}})})}
   Return \retval{value of a \VAR{form}} if \VAR{foo} is of this \VAR{type}.
   Signal correctable/non-correctable error, resp.
+
+  \IT{(\kwd*{CHECK-TYPE} 
+    \VAR{place} \VAR{type})} Return \retval{\NIL} and signal
+  correctable error if \VAR{place} is not of {type}. 
 
   \IT{(\SF*{DEFTYPE} \VAR{name} \OPn{\VAR{arg}} 
     \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \Op{\VAR{documentation}} 

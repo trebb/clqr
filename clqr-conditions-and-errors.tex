@@ -11,7 +11,7 @@
 \section{Conditions and Errors} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{figure}
+\begin{figure}[hbt]
   \begin{center}
     \boxGOO{%
       \kwd*{t}%
@@ -62,7 +62,7 @@
 
 \begin{LIST}{1cm}
   \IT{(\SF*{DEFINE-CONDITION} \VAR{name} (\OPn{\VAR{parent}})
-    (\GOOs{\VAR{slot}\XOR
+    (\xorGOO{\VAR{slot}\\
       (\VAR{slot} 
       \orGOO{\Goos{\kwd{:reader} \VAR{reader-fu}}\\
         \Goos{\kwd{:writer} \VAR{writer-fu}} \\
@@ -70,15 +70,22 @@
         \kwd{:allocation} \Goo{\kwd{:instance}\XOR\VAR{class}}\\
         \Goos{\kwd{:initarg} \kwd{:}\VAR{arg}}\\
         \kwd{:initform} \VAR{ form}\\
-        \kwd{:type} \VAR{ type}}{\}})})
+        \kwd{:type} \VAR{ type}}{\}})}{\}})
     \orGOO{(\kwd{:default-initargs} \Goos{\VAR{name} \VAR{value}})\\
       ({\kwd{:documentation} \VAR{ string}})\\
       (\kwd{:report} \VAR{ report-name})}{\}})} 
-  Define new condition type \retval{name}.
+  Define new condition type \retval{\VAR{name}}.
 
-  \IT{(\FU*{MAKE-CONDITION} \VAR{type} \OPn{\VAR{other-arg}})} Return
-  \retval{new condition of \VAR{type}}.
+  \IT{(\FU*{MAKE-CONDITION} \VAR{type} \OPn{\VAR{initarg-plist}})} 
+  Return \retval{new condition of \VAR{type}}.
 
+  \IT{(\SF*{IGNORE-ERRORS} \OPn{\VAR{form}})}
+  Return \retval{values of \VAR{form}s} or, in case of \kwd{error}s,
+  \retval{\NIL} and the \retvalii{condition}.
+
+  \IT{(\FU*{SIGNAL} \VAR{datum} \OPn{\VAR{arg}})}
+  Signal condition denoted by \VAR{datum} and \VAR{arg}s. Return \retval{\NIL}.
+  
   \IT{(\FU*{ERROR} \VAR{message} \OPn{\VAR{other-arg}})} 
   Signal \kwd{simple-error} to debugger unless error is handled.
 
@@ -106,7 +113,7 @@
   \IT{(\kwd*{HANDLER-BIND} (\OPn{(\VAR{condition-type}
       \VAR{handler})}) \OPn{\VAR{form}})} 
   Evaluate \VAR{form}s with \VAR{condition-type}s dynamically bound to
-  their respective\VAR{handler}. Return \retval{values of \VAR{form}s}.
+  their respective \VAR{handler}. Return \retval{values of \VAR{form}s}.
 
   \IT{\arrGOO{(\FU*{INVOKE-RESTART} \VAR{ foo} \OPn{\VAR{ arg}})\\
       (\FU*{INVOKE-RESTART-INTERACTIVELY} \VAR{ restart})}{\}}}
@@ -120,24 +127,6 @@
   with \VAR{condition} or un-associated at all; or, without
   \VAR{condition}, out of all restarts. Return \retval{\NIL} if search
   is unsuccessful.
-
-  \IT{(\xorGOO{\FU*{ABORT}\\
-      \FU*{MUFFLE-WARNING}\\
-      \FU*{CONTINUE}\\
-      \FU*{STORE-VALUE} \VAR{ value}\\
-      \FU*{USE-VALUE} \VAR{ value}}{\}} \Op{\VAR{condition}})}
-  Transfer control to innermost applicable restart with same name
-  (i.e. \kwd{abort}, \ldots, \kwd{continue} \ldots) out of those either associated
-  with \VAR{condition} or un-associated at all; or, without
-  \VAR{condition}, out of all restarts. If no restart is found,
-  signal \kwd{control-error} for \FU{abort} and \FU{muffle-warning},
-  or return \retval{\NIL} for the rest.
-
-  \IT{(\FU*{UNWIND-PROTECT} \VAR{protected-form} \VAR{cleanup-form})} 
-  Evaluate \VAR{protected-form} and then, no matter how control leaves \VAR{protected-form}, \VAR{cleanup-form}. Return \retval{value of \VAR{protected-form}}.
-
-  \IT{(\kwd*{CHECK-TYPE} 
-    \VAR{place} \VAR{type})} Return \retval{\NIL} and signal correctable error if \VAR{place} is not of {type}.
 
   \IT{(\SF*{WITH-CONDITION-RESTARTS} \VAR{condition-form}
     \VAR{restarts-form} \OPn{\VAR{form}})}
@@ -175,17 +164,23 @@
   \IT{(\FU*{RESTART-NAME} \VAR{restart})}
   \retval{Name of \VAR{restart}}.
 
-  \IT{(\xorGOO{(\FU*{INVALID-METHOD-ERROR} \VAR{ method}\\
-      \FU*{METHOD-COMBINATION-ERROR})}{\}}%
-    \VAR{control} \OPn{\VAR{arg}})}
-  Signal \kwd{error} on applicable method, or on method combination,
-  with invalid qualifiers. See p.\ \pageref{section:Format}. 
+  \IT{(\xorGOO{\FU*{ABORT}\\
+      \FU*{MUFFLE-WARNING}\\
+      \FU*{CONTINUE}\\
+      \FU*{STORE-VALUE} \VAR{ value}\\
+      \FU*{USE-VALUE} \VAR{ value}}{\}} \Op{\VAR{condition}})}
+  Transfer control to innermost applicable restart with same name
+  (i.e. \kwd{abort}, \ldots, \kwd{continue} \ldots) out of those either associated
+  with \VAR{condition} or un-associated at all; or, without
+  \VAR{condition}, out of all restarts. If no restart is found,
+  signal \kwd{control-error} for \FU{abort} and \FU{muffle-warning},
+  or return \retval{\NIL} for the rest.
+
+  \IT{(\FU*{UNWIND-PROTECT} \VAR{protected-form} \VAR{cleanup-form})} 
+  Evaluate \VAR{protected-form} and then, no matter how control leaves \VAR{protected-form}, \VAR{cleanup-form}. Return \retval{value of \VAR{protected-form}}.
 
   \IT{(\FU*{INVOKE-DEBUGGER} \VAR{condition})}
   Invoke debugger with \VAR{condition}.
-
-  \IT{\V*{*debugger-hook*}\DF{\NIL}} Function of condition and
-  function itself.
 
   \IT{(\FU*{CELL-ERROR-NAME} \VAR{condition})} 
   \retval{Name of cell} which caused \VAR{condition}.
@@ -199,9 +194,6 @@
       (\FU*{TYPE-ERROR-EXPECTED-TYPE} \VAR{ condition})}{\}}}
   \retval{Datum} which caused \VAR{condition}, or its expected type, resp.
 
-  \IT{(\FU*{SIGNAL} \VAR{datum} \OPn{\VAR{arg}})}
-  Signal condition denoted by \VAR{datum} and \VAR{arg}s. Return \retval{\NIL}.
-  
   \IT{(\FU*{ARITHMETIC-ERROR-OPERANDS} \VAR{condition})} 
   \retval{List of operands} used in signalling operation.
 
@@ -222,12 +214,11 @@
   Return \retval{\kwd{format} control} or list of \retval{\kwd{format}
     arguments}, resp., of \VAR{condition}.
 
-  \IT{(\SF*{IGNORE-ERRORS} \OPn{\VAR{form}})}
-  Return \retval{values of \VAR{form}s} or, in case of \kwd{error}s,
-  \retval{\NIL} and the \retvalii{condition}.
-
   \IT{\V*{*break-on-signals*}\DF{\NIL}}
   Condition debugger is to be invoked on.
+
+  \IT{\V*{*debugger-hook*}\DF{\NIL}} Function of condition and
+  function itself.
 
 \end{LIST}
 

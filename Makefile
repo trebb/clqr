@@ -23,6 +23,7 @@ TOUCH		= touch
 CP		= cp --verbose
 RM		= rm --force --verbose
 MV		= mv --force --verbose
+MAKE		= make
 BZR_REVISION	= bzr revno
 BZR_EXPORT	= bzr export
 RSYNC		= rsync -va --delete
@@ -74,18 +75,25 @@ REVISION.tex:	$(CLQR).tex $(CLQR)-*.tex
 
 html/sample-frontcover.jpg:	$(CLQR)-a4-consec.pdf
 	$(CONVERT) $<'[0]' -verbose -resize 30% temp.jpg $(SEND-TO-LOG)
-	$(MONTAGE) temp.jpg -tile 1x1 -geometry +2+2 -background gray $@ $(SEND-TO-LOG)
+	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 
 html/sample-doublepage.jpg:	$(CLQR)-a4-consec.pdf
 	$(CONVERT) $<'[19-20]' -verbose -resize 30% temp.jpg $(SEND-TO-LOG)
-	$(MONTAGE) temp-0.jpg temp-1.jpg  -tile 2x1 -geometry +2+2 -background gray $@ $(SEND-TO-LOG)
+	$(MONTAGE) temp-0.jpg temp-1.jpg  -tile 2x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 
 html/sample-firstpage-%.jpg:	$(CLQR)-a4-booklet-%.pdf
 	$(CONVERT) $<'[0]' -verbose -resize 15% temp.jpg $(SEND-TO-LOG)
-	$(MONTAGE) temp.jpg               -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
+	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
+
+html/sample-firstpage-consec.jpg:	$(CLQR)-a4-consec.pdf
+	$(CONVERT) $<'[0]' -verbose -resize 15% temp.jpg $(SEND-TO-LOG)
+	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 
 clean:
 	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.ps *.pdf *~ html/*~ *.flag *.jpg html/*.jpg *.tar.gz
+
+publishclean:
+	$(RM) *~ html/*~
 
 
 # Project hosting
@@ -94,7 +102,8 @@ maintainance:	letter a4 release publish
 
 publish:	html/sample-frontcover.jpg html/sample-doublepage.jpg \
 		html/sample-firstpage-all.jpg html/sample-firstpage-four.jpg \
-		$(CLQR)-a4-consec.pdf REVISION.tex
+		html/sample-firstpage-consec.jpg $(CLQR)-a4-consec.pdf REVISION.tex
+	$(MAKE) publishclean
 	$(RSYNC) ./ trebb@shell.berlios.de:/home/groups/ftp/pub/clqr/clqr/
 
 release:	letter a4 $(CLQR).tar.gz

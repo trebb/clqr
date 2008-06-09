@@ -154,18 +154,24 @@
       \GFU*{REMOVE-METHOD}}{\}}\VAR{generic-function} \VAR{method})}
   Add, or remove, resp., \VAR{method} from \retval{\VAR{generic-function}}.
 
+  \IT{(\FU*{CALL-NEXT-METHOD} \Op{\VAR{args}\DF{current args}})}
+  From within a method, call next method with \VAR{args}, return
+  \retval{its values}.
+
   \IT{(\GFU*{NO-APPLICABLE-METHOD} \VAR{generic-function}
     \OPn{\VAR{arg}})}
   Called on invocation of \VAR{generic-function} if there is no applicable method.
 
+  \IT{(\xorGOO{(\FU*{INVALID-METHOD-ERROR} \VAR{ method}\\
+      \FU*{METHOD-COMBINATION-ERROR})}{\}}%
+    \VAR{control} \OPn{\VAR{arg}})}
+  Signal \kwd{error} on applicable method, or on method combination,
+  with invalid qualifiers. See p.\ \pageref{section:Format}. 
+
   \IT{(\SF*{CALL-METHOD} \orGOO{\VAR{method}\\
       (\SF*{MAKE-METHOD} \VAR{ form})}{\}}
- \Op{\VAR{next-methods}})}
+    \Op{\VAR{next-methods}})}
   Call \VAR{method}, return \retval{its values}.
-
-  \IT{(\FU*{CALL-NEXT-METHOD} \Op{\VAR{args}\DF{current args}})}
-  From within a method, call next method with \VAR{args}, return
-  \retval{its values}.
 
   \IT{(\GFU*{NO-NEXT-METHOD} \VAR{generic-function}
     \VAR{method} \OPn{\VAR{arg}})}
