@@ -198,26 +198,20 @@
 \label{section:Method Combination Types}
 \begin{LIST}{1cm}
 
-  \IT{\Goo{(\kwd*{AND})\XOR\kwd*{T}}}
+  \IT{\arrGOO{\Goo{\kwd*{AND}\XOR\kwd*{T}}\\
+      \Goo{\kwd*{OR}\XOR\kwd*{NIL}}\\
+      \kwd*{APPEND}\\
+      \kwd*{LIST}\\
+      \kwd*{NCONC}\\
+      \kwd*{PROGN}\\
+      \kwd*{MAX}\\
+      \kwd*{MIN}\\
+      \kwd*{+}}{\}}}
+  Method combination type.
 
-  \IT{\Goo{(\kwd*{OR})\XOR\kwd*{NIL}}}
-
-  \IT{(\kwd*{APPEND})}
-
-  \IT{(\kwd*{LIST})}
-
-  \IT{(\kwd*{NCONC})}
-
-  \IT{(\kwd*{PROGN})}
-
-  \IT{(\kwd*{STANDARD})}
-  Also used if no method combination type is given.
-
-  \IT{(\kwd*{MAX})}
-
-  \IT{(\kwd*{MIN})}
-
-  \IT{(\kwd*{+})}
+  \IT{\kwd*{STANDARD}}
+  Standard method combination type, also used if no method combination
+  type is given. 
 
   \IT{(\SF*{DEFINE-METHOD-COMBINATION} \VAR{c-type}\orGOO{%
     \kwd{:documentation} \VAR{ string}\\
@@ -228,12 +222,14 @@
   \VAR{c-type} is equivalent to (\VAR{c-type}
   \OPn{\VAR{applicable-method}}). 
 
-  \IT{(\SF*{DEFINE-METHOD-COMBINATION} \VAR{c-type} (\OPn{\VAR{fu-arg}})
+  \IT{(\SF*{DEFINE-METHOD-COMBINATION} \VAR{c-type}
+    (\OPn{\VAR{fu-arg}}) 
     (\GOOs{\VAR{name} \xorGOO{%
       \GOOp{\VAR{list}\XOR\kwd{*}}\\
       \VAR{predicate}}{\}} \orGOO{%
     \kwd{:description} \VAR{ control}\\
-    \kwd{:order} \Goo{\kwd{:most-specific-first}\XOR\kwd{:most-specific-last}}\\
+    \kwd{:order}
+    \Goo{\kwd{:most-specific-first}\XOR\kwd{:most-specific-last}}\\ 
     \kwd{:required} \VAR{ bool}}{\}}})
     \Op{\kwd{:arguments} (\OPn{\VAR{method-combination-arg}})}
     \Op{\kwd{:generic-function} \VAR{ symbol}}

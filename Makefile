@@ -57,7 +57,7 @@ $(CLQR)-%-signature-four.ps:	$(CLQR)-%-consec.ps
 $(CLQR)-%-consec.ps:	$(CLQR)-%.dvi
 	$(DVIPS) -o $@ $< $(SEND-TO-LOG)
 
-$(CLQR)-%.dvi:	$(CLQR).tex $(CLQR)-*.tex paper-% REVISION.tex
+$(CLQR)-%.dvi:	$(CLQR).tex $(CLQR)-*.tex paper-%.flag REVISION.tex
 	$(TOUCH) $(CLQR).ind $(SEND-TO-LOG)
 	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
 	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
@@ -65,7 +65,7 @@ $(CLQR)-%.dvi:	$(CLQR).tex $(CLQR)-*.tex paper-% REVISION.tex
 	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
 	$(MV) $(CLQR).dvi $@ $(SEND-TO-LOG)
 
-paper-%:	paper-current.tex
+paper-%.flag:	paper-current.tex
 	$(CP) $@.tex paper-current.tex $(SEND-TO-LOG)
 	$(TOUCH) $@
 
@@ -74,18 +74,18 @@ REVISION.tex:	$(CLQR).tex
 
 html/sample-frontcover.jpg:	$(CLQR)-a4-consec.pdf
 	$(CONVERT) $<'[0]' -verbose -resize 30% temp.jpg $(SEND-TO-LOG)
-	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
+	$(MONTAGE) temp.jpg -tile 1x1 -geometry +2+2 -background gray $@ $(SEND-TO-LOG)
 
 html/sample-doublepage.jpg:	$(CLQR)-a4-consec.pdf
 	$(CONVERT) $<'[19-20]' -verbose -resize 30% temp.jpg $(SEND-TO-LOG)
-	$(MONTAGE) temp-0.jpg temp-1.jpg  -tile 2x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
+	$(MONTAGE) temp-0.jpg temp-1.jpg  -tile 2x1 -geometry +2+2 -background gray $@ $(SEND-TO-LOG)
 
 html/sample-firstpage-%.jpg:	$(CLQR)-a4-booklet-%.pdf
 	$(CONVERT) $<'[0]' -verbose -resize 15% temp.jpg $(SEND-TO-LOG)
 	$(MONTAGE) temp.jpg               -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 
 clean:
-	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.ps *.pdf *~ html/*~ paper-a4 paper-letter *.jpg html/*.jpg *.tar.gz
+	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.ps *.pdf *~ html/*~ *.flag *.jpg html/*.jpg *.tar.gz
 
 
 # Project hosting

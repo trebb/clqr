@@ -1,3 +1,12 @@
+% Copyright (C) 2008 Bert Burgemeister
+%
+% Permission is granted to copy, distribute and/or modify this
+% document under the terms of the GNU Free Documentation License,
+% Version 1.2 or any later version published by the Free Software
+% Foundation; with no Invariant Sections, no Front-Cover Texts and
+% no Back-Cover Texts. For details see file COPYING.
+%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Control Structure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -171,7 +180,7 @@ Below, lambda list \OPn{\VAR{fu-arg}} has the form
   Return \retval{function} returning \VAR{foo}.
 
   \IT{(\FU*{IDENTITY} \VAR{foo})} 
-  Return \VAR{foo}.
+  Return \retval{\VAR{foo}}.
 
   \IT{(\FU*{FUNCTION-LAMBDA-EXPRESSION} \VAR{function})}
   If available, return \retval{Lambda expression} of \VAR{function},
@@ -237,10 +246,25 @@ or\\
     \OPn{\VAR{form}})}
   Define macro \retval{\VAR{name}}.
 
+  \IT{(\SF*{MACROLET} (\OPn{(\OPn{name} \OPn{\VAR{macro-arg}}
+      \OPn{(\kwd{declare} \OPn{\VAR{local-decl}})} 
+      \Op{\VAR{documentation}} \OPn{form})}) \OPn{(\kwd{declare}
+      \OPn{\VAR{decl}})} \OPn{\VAR{body}})}  
+  Evaluate \retval{\OPn{\VAR{body}}} with \VAR{name}s locally defined
+  as corresponding macros which are invisible to each other.  
+
+  \IT{(\SF*{SYMBOL-MACROLET} (\OPn{(\VAR{name}
+      \OPn{\VAR{form}})})\OPn{(\kwd{declare} \OPn{\VAR{decl}})}
+    \OPn{body})} 
+  Evaluate \retval{\OPn{\VAR{body}}} with \VAR{name}s locally defined as
+  corresponding symbol-macros. 
+
   \IT{(\SF*{DEFSETF} \VAR{function}\xorGOO{\VAR{update} \Op{\VAR{documentation}}\\
-    \OPn{\VAR{arg} (\OPn{\VAR{var}}) \OPn{(\kwd{declare} \OPn{\VAR{ decl}})} \Op{\VAR{documentation}}}}{\}})}
-  Specify how to \kwd{setf} a place accessed by \retval{\VAR{function}} if \VAR{function} 
-  evaluates all its arguments.
+    \OPn{\VAR{arg} (\OPn{\VAR{var}}) \OPn{(\kwd{declare} \OPn{\VAR{
+            decl}})} \Op{\VAR{documentation}}}}{\}})} 
+  Specify how to \kwd{setf} a place accessed by
+  \retval{\VAR{function}} if \VAR{function} evaluates all its
+  arguments. 
   
   \IT{(\SF*{DEFINE-SETF-EXPANDER} \VAR{function} \OPn{\VAR{macro-arg}}
     \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \Op{\VAR{documentation}}
@@ -257,28 +281,10 @@ or\\
   \IT{(\FU*{GET-SETF-EXPANSION} \VAR{place} \Op{\VAR{environment}})} 
   Return five values describing how to \kwd{setf} place.
 
-  \IT{(\SF*{MACROLET} (\OPn{(\OPn{name} \OPn{\VAR{macro-arg}} \OPn{(\kwd{declare} \OPn{\VAR{local-decl}})}
-      \Op{\VAR{documentation}} \OPn{form})}) \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \OPn{\VAR{body}})} 
-  Evaluate \retval{\OPn{\VAR{body}}} with \VAR{name}s locally defined as
-  corresponding macros which are invisible to each other. 
-
   \IT{\CNS*{LAMBDA-LIST-KEYWORDS}} List of macro lambda list keywords.
-
-  \IT{(\SF*{SYMBOL-MACROLET} (\OPn{(\VAR{name} \OPn{\VAR{form}})})\OPn{(\kwd{declare} \OPn{\VAR{decl}})} \OPn{body})} 
-  Evaluate \retval{\OPn{\VAR{body}}} with \VAR{name}s locally defined as
-  corresponding symbol-macros. 
 
 \end{LIST}
 
-
-% Copyright (C) 2008 Bert Burgemeister
-%
-% Permission is granted to copy, distribute and/or modify this
-% document under the terms of the GNU Free Documentation License,
-% Version 1.2 or any later version published by the Free Software
-% Foundation; with no Invariant Sections, no Front-Cover Texts and
-% no Back-Cover Texts. For details see file COPYING.
-%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Control Flow}
@@ -339,13 +345,19 @@ or\\
       (\SF*{PROG2} \VAR{ form-a} \VAR{ form-r} \OPn{\VAR{ form}})}{\}}}
   Evaluate all forms in order. Return \retval{values/1st value of \VAR{form-r}}.
 
-  \IT{(\SF*{RETURN} \Op{result})} Have implicit block of enclosing
-  iteration return with \retval{\VAR{result}}.
+  \IT{(\SF*{PROGV} \VAR{symbols} \VAR{values} \OPn{form})}
+  Evaluate \VAR{form}s with \VAR{symbols} dynamically bound to \VAR{values} or
+  \NIL. Return \retval{values returned by \VAR{form}s}.
 
   \IT{(\SF*{DESTRUCTURING-BIND} \VAR{foo} \VAR{bar}  \OPn{(\kwd{declare}
       \OPn{\VAR{decl}})} \OPn{\VAR{form}})} Evaluate \VAR{form}s, and return
   \retval{value of last \VAR{form}}, with
   variables from tree \VAR{foo} bound to corresponding elements of tree \VAR{bar}.
+
+  \IT{(\kwd*{MULTIPLE-VALUE-BIND} (\OPn{\VAR{var}}) \VAR{values-form}
+    \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \OPn{\VAR{body-form}})} Evaluate
+  body with \VAR{var}s bound to the return values of
+  \VAR{values-form}. Return \retval{values returned by \VAR{body-form}s}.
 
   \IT{(\xorGOO{\SF*{LET}\\ 
       \SF*{LET*}}{\}}(%
@@ -362,23 +374,18 @@ or\\
   Evaluate \OPn{\VAR{body}} with declarations \VAR{decl} in
   effect. Return \retval{values returned by \OPn{\VAR{body}}}. 
 
-  \IT{(\SF*{PROGV} \VAR{symbols} \VAR{values} \OPn{form})}
-  Evaluate \VAR{form}s with \VAR{symbols} dynamically bound to \VAR{values} or
-  \NIL. Return \retval{values returned by \VAR{form}s}.
-
-  \IT{(\kwd*{MULTIPLE-VALUE-BIND} (\OPn{\VAR{var}}) \VAR{values-form}
-    \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \OPn{\VAR{body-form}})} Evaluate
-  body with \VAR{var}s bound to the return values of
-  \VAR{values-form}. Return \retval{values returned by \VAR{body-form}s}.
-
   \IT{(\SF*{RETURN-FROM} \VAR{foo} \Op{result})} Have nearest enclosing
   \kwd{block} \VAR{foo} return with \VAR{result}.
+
+  \IT{(\SF*{RETURN} \Op{result})} 
+  Have enclosing block return with \retval{\VAR{result}}.
 
   \IT{(\SF*{BLOCK} \VAR{name} \OPn{\VAR{form}})} Evaluate \VAR{form}s returning
   \retval{value of last \VAR{form}} unless interrupted by \SF{RETURN-FROM}.
 
-  \IT{(\SF*{TAGBODY} \Goos{\VAR{tag}\XOR\VAR{form}})} Evaluate
-  \VAR{form}s. \VAR{tag}s (symbols or integers) are targets for \SF{GO}. Return \retval{\NIL}.
+  \IT{(\SF*{TAGBODY} \Goos{\VAR{tag}\XOR\VAR{form}})} 
+  Evaluate \VAR{form}s. \VAR{tag}s (symbols or integers) are targets
+  for \SF{GO}. Return \retval{\NIL}. 
 
   \IT{(\SF*{GO} \VAR{tag})} Jump within a \SF{tagbody} to nearest
   lexically enclosing \kwd{eql} \VAR{tag}.
@@ -392,7 +399,8 @@ or\\
 
   \IT{(\FU*{BREAK} \VAR{control} \OPn{args})}
   Jump into debugger, return \retval{\NIL}.
-  See p.\ \pageref{section:Format}, \kwd{format}, for \VAR{control} and \VAR{args}.
+  See p.\ \pageref{section:Format}, \kwd{format}, for \VAR{control}
+  and \VAR{args}. 
 
   \IT{(\FU*{SLEEP} \VAR{n})} Wait \VAR{n} seconds, return \retval{\NIL}.
 
@@ -699,7 +707,7 @@ or\\
 
   \IT{(\SF*{LOOP} \OPn{\VAR{form}})} 
   Simple Loop. If \VAR{form}s do
-  not include any keywords of the loop facility, evaluate them forever. 
+  not include any keywords of the Loop Facility, evaluate them forever. 
 
   \IT{(\SF*{LOOP} \OPn{\VAR{form}})} 
   Loop Facility. If there are loop facility keywords in \VAR{form}s
@@ -790,7 +798,7 @@ or\\
     Determine the maximum or minimum, resp., of all values of
     \VAR{form}. 
     
-    \IT{\Goo{\LKWD*{if}\XOR\LKWD*{when}\XOR\LKWD*{unless}}\VAR{test}
+    \IT{\Goo{\LKWD*{if}\XOR\LKWD*{when}\XOR\LKWD*{unless}}\VAR{ test}
       \VAR{form-i} \Goos{\LKWD*{and} 
         \VAR{form-j}}\Op{\LKWD*{else} \VAR{form-k} \Goos{\LKWD*{and} 
           \VAR{form-l}}} \Op{\LKWD*{end}}} 
@@ -800,12 +808,12 @@ or\\
     of \VAR{test} is accessible by \LKWD*{it}. 
     
     \IT{\LKWD*{repeat} \VAR{num}}
-    Terminate \SF{loop} after \VAR{num} times; \VAR{form} is evaluated once.
+    Terminate \SF{loop} after \VAR{num} times; \VAR{num} is evaluated once.
 
     \IT{\Goo{\LKWD*{while}\XOR\LKWD*{until}} \VAR{test}}
     Continue iteriation until \VAR{test} returns \NIL, or \T, resp.
 
-    \IT{\Goo{\LKWD*{always}\XOR{never}} \VAR{test}}
+    \IT{\Goo{\LKWD*{always}\XOR\LKWD{never}} \VAR{test}}
     Terminate \SF{loop} returning \NIL\ and skipping any \LKWD*{finally} parts as soon as \VAR{test} is \NIL, or \T, resp. Otherwise continue \SF{loop} with its default return value set to \T.
 
     \IT{\LKWD*{thereis} \VAR{test}}

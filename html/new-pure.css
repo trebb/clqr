@@ -14,7 +14,7 @@
 
 body {
     font-family:		sans-serif;
-    font-size: .9em;
+    font-size: small;
     background-color:	#FFFFFF;
     color:			black;
 }
@@ -56,7 +56,7 @@ img {
 
 .left {
     float: left;
-    clear: both;
+    clear: left;
     margin-right: 2ex;
 }
 
@@ -181,7 +181,8 @@ p {
 }
 
 .side-content ul {
-    padding:      0;
+    padding: 0;
+    margin: 0;
     list-style:		none;
 }
 
@@ -193,7 +194,7 @@ p {
     width: 8em;
     max-width: 124px;
     border: 0px;
-    margin-top: 200%;
+    margin-top: 10ex;
 }
 
 .quote {
@@ -202,8 +203,11 @@ p {
 }
 
 pre {
+    font-size: 100%;
     margin-top: .7ex;
     margin-bottom: .7ex;
+    margin-left: 0;
+    padding: 0;
 }
 
 .quicklinks {
