@@ -11,17 +11,13 @@
 
 FINAL TESTS
 
-- usage of the three \retvals
+- multiple return values mentioned and usage of the three \retvals
 
 - setfiability
 
 - defaults
 
-- multiple return values mentioned
-
 - arg* vs. args (list)
-
-- dotted lists
 
 - talking metavariables
 

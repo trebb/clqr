@@ -42,57 +42,14 @@
   \IT{(\xorGOO{\FU*{Y-OR-N-P}\\
       \FU*{YES-OR-NO-P}}{\}} \OP{\VAR{control} \Op{\VAR{args}}})}
   Ask user a question and return \retval{\T} or \retval{\NIL}
-  depending on their answer. See p.\ \pageref{section:Format}, \kwd{format}, for \VAR{control} and \VAR{args}.
+  depending on their answer. See p.\ \pageref{section:Format},
+  \kwd{format}, for \VAR{control} and \VAR{args}. 
 
   \IT{(\xorGOO{\FU*{READ}\\
       \FU*{READ-PRESERVING-WHITESPACE}}{\}}
     \OP{\VAR{stream}\DF{\T} \OP{\VAR{eof-err}\DF{\T}
         \Op{\VAR{eof-val}\DF{\NIL} \Op{\VAR{recursive}\DF{\NIL}}}}})} 
   Read printed representation of \retval{object}.
-
-  \IT{(\FU*{READ-DELIMITED-LIST} \VAR{char}
-    \OP{\VAR{stream}\DF{\kwd{*standard-input*}}
-      \Op{\VAR{recursive}\DF{\NIL}}})}
-  Continue reading until encountering \VAR{char}. Return \retval{list}
-  of objects read.
-
-  \IT{(\FU*{PRINT-UNREADABLE-OBJECT} (\VAR{object} \VAR{stream}
-    \Op{\kwd{:type} \VAR{bool}} \Op{\kwd{:identity} \VAR{bool}})
-    \OPn{form})} \retval{\NIL}
-
-  \IT{(\FU*{READ-CHAR} \OP{\VAR{stream}\DF{\T}
-      \OP{\VAR{eof-err}\DF{\T} \Op{\VAR{eof-val}\DF{\NIL}
-          \Op{\VAR{recursive}\DF{\NIL}}}}})} 
-  Return \retval{next character} from \VAR{stream}.
-
-  \IT{(\FU*{READ-BYTE} \VAR{stream} \OP{\VAR{eof-err}\DF{\T}
-      \Op{\VAR{eof-val}\DF{\NIL}}})} 
-  Return \retval{next byte} from binary \VAR{stream}.
-
-  \IT{(\FU*{READ-LINE} \OP{\VAR{stream}\DF{\T}
-      \OP{\VAR{eof-err}\DF{\T} \Op{\VAR{eof-val}\DF{\NIL}
-          \Op{\VAR{recursive}\DF{\NIL}}}}})} 
-  Return a \retval{line of text} from \VAR{stream}. Secondary value is \retval{\T} if line was ended by end of file.
-
-  \IT{(\FU*{READ-SEQUENCE} \VAR{sequence} \VAR{stream}
-    \OP{\kwd{:start} \VAR{start}\DF{0}}\Op{\kwd{:end}
-      \VAR{end}\DF{\NIL}})} 
-  Replace elements of \VAR{sequence} between \VAR{start} and \VAR{end}
-  with \VAR{stream}. Return index of \VAR{sequence}'s unmodified
-  element. 
-
-  \IT{(\FU*{READ-CHAR-NO-HANG}
-    \OP{\VAR{stream}\DF{\kwd{*standard-input*}}
-      \OP{\VAR{eof-error}\DF{\T} \Op{\VAR{eof-val}\DF{\NIL}
-          \Op{\VAR{recursive}\DF{\NIL}}}}})} 
-  \retval{Next character} from \VAR{stream} or \retval{\NIL} if none
-  is available.
-
-  \IT{(\FU*{PEEK-CHAR} \OP{\VAR{mode}\DF{\NIL}\OP{\VAR{stream}\DF{\kwd{*standard-input*}}
-      \OP{\VAR{eof-error}\DF{\T} \Op{\VAR{eof-val}\DF{\NIL}
-          \Op{\VAR{recursive}\DF{\NIL}}}}}})}
-  Next, or, if \VAR{mode} is \T, next non-whitespace
-  \retval{character} from stream without removing it there.
 
   \IT{(\FU*{READ-FROM-STRING} \VAR{string}\OP{\VAR{eof-error}\DF{\T}
       \Op{\VAR{eof-val}\DF{\NIL}}}\orGOO{%
@@ -102,44 +59,73 @@
   Return \retval{object} read from string and \retvalii{position} of
   next character.
 
+  \IT{(\FU*{READ-DELIMITED-LIST} \VAR{char}
+    \OP{\VAR{stream}\DF{\kwd{*standard-input*}}
+      \Op{\VAR{recursive}\DF{\NIL}}})}
+  Continue reading until encountering \VAR{char}. Return \retval{list}
+  of objects read.
+
+  \IT{(\FU*{READ-CHAR} \OP{\VAR{stream}\DF{\T}
+      \OP{\VAR{eof-err}\DF{\T} \Op{\VAR{eof-val}\DF{\NIL}
+          \Op{\VAR{recursive}\DF{\NIL}}}}})} 
+  Return \retval{next character} from \VAR{stream}.
+
+  \IT{(\FU*{READ-CHAR-NO-HANG}
+    \OP{\VAR{stream}\DF{\kwd{*standard-input*}}
+      \OP{\VAR{eof-error}\DF{\T} \Op{\VAR{eof-val}\DF{\NIL}
+          \Op{\VAR{recursive}\DF{\NIL}}}}})} 
+  \retval{Next character} from \VAR{stream} or \retval{\NIL} if none
+  is available.
+
+  \IT{(\FU*{PEEK-CHAR}
+    \OP{\VAR{mode}\DF{\NIL}\OP{\VAR{stream}\DF{\kwd{*standard-input*}} 
+      \OP{\VAR{eof-error}\DF{\T} \Op{\VAR{eof-val}\DF{\NIL}
+          \Op{\VAR{recursive}\DF{\NIL}}}}}})}
+  Next, or, if \VAR{mode} is \T, next non-whitespace
+  \retval{character} from stream without removing it there.
+
+  \IT{(\FU*{UNREAD-CHAR} \VAR{character}
+    \Op{\VAR{stream}\DF{\kwd{*standard-input*}}})} 
+  Put last read \VAR{character} back into \VAR{stream}, return
+  \retval{\NIL}. 
+
+  \IT{(\FU*{READ-BYTE} \VAR{stream} \OP{\VAR{eof-err}\DF{\T}
+      \Op{\VAR{eof-val}\DF{\NIL}}})} 
+  Return \retval{next byte} from binary \VAR{stream}.
+
+  \IT{(\FU*{READ-LINE} \OP{\VAR{stream}\DF{\T}
+      \OP{\VAR{eof-err}\DF{\T} \Op{\VAR{eof-val}\DF{\NIL}
+          \Op{\VAR{recursive}\DF{\NIL}}}}})} 
+  Return a \retval{line of text} from \VAR{stream}. Secondary value is
+  \retval{\T} if line was ended by end of file. 
+
+  \IT{(\FU*{READ-SEQUENCE} \VAR{sequence} \VAR{stream}
+    \OP{\kwd{:start} \VAR{start}\DF{0}}\Op{\kwd{:end}
+      \VAR{end}\DF{\NIL}})} 
+  Replace elements of \VAR{sequence} between \VAR{start} and \VAR{end}
+  with \VAR{stream}. Return index of \VAR{sequence}'s unmodified
+  element. 
 
   \IT{(\FU*{READTABLE-CASE} \VAR{readtable})}
   \retval{Case sensitivity attribute} of \VAR{readtable}. \kwd{setf}able.
 
   \IT{(\FU*{COPY-READTABLE} \VAR{from-readtable}\DF{\kwd{*readtable*}}
     \VAR{to}\DF{\NIL})}
-  \retval{Copy of \VAR{from-readtable}}.
+  Return \retval{Copy of \VAR{from-readtable}}.
 
   \IT{(\FU*{SET-SYNTAX-FROM-CHAR} \VAR{to-char} \VAR{from-char}
     \OP{\VAR{to-readtable}\DF{\kwd{*readtable*}}
       \Op{\VAR{from-readtable}\DF{standard readtable}}})}
   Copy syntax of \VAR{from-char} to \VAR{to-readtable}. Return \retval{\T}.
 
-  \IT{(\FU*{CLEAR-INPUT}
-    \Op{\VAR{stream}}\DF{\kwd{*standard-input*}})}
-  Clear input from \VAR{stream}, return \retval{\NIL}.
-
-  \IT{(\xorGOO{\FU*{CLEAR-OUTPUT}\\
-      \FU*{FORCE-OUTPUT}\\
-      \FU*{FINISH-OUTPUT}}{\}}%
-    \Op{\VAR{stream}\DF{\kwd{standard-output}}})}
-  End output to \VAR{stream} and return \retval{\NIL} immediately,
-  after initiating flushing of buffers, or after flushing of buffers,
-  resp. 
+  \IT{\V*{*readtable*}}
+  Current readtable.
 
   \IT{\V*{*read-base*}\DF{10}} 
   Radix for reading \kwd{integer}s and \kwd{ratio}s.
 
   \IT{\V*{*read-default-float-format*}\DF{\kwd{single-float}}}
   Floating point format to use when not indicated in the number read. 
-
-  \IT{\V*{*readtable*}}
-  Current readtable.
-
-  \IT{(\FU*{UNREAD-CHAR} \VAR{character}
-    \Op{\VAR{stream}\DF{\kwd{*standard-input*}}})} 
-  Put last read \VAR{character} back into \VAR{stream}, return
-  \retval{\NIL}. 
 
   \IT{(\FU*{SET-MACRO-CHARACTER} \VAR{char} \VAR{function}
     \OP{\VAR{non-term-p}\DF{\NIL}
@@ -174,6 +160,12 @@
 
 \begin{LIST}{1cm}
 
+  \IT{\KWD*{;}\OPn{\VAR{comment}}} 
+  Rest of line is a comment.
+
+  \IT{\KWD{\#\boldmath$|$}\OPn{\VAR{comment}}\KWD{\boldmath$|$\#}} 
+  Comment.
+
   \IT{\KWD*{(}}
   Initiate reading of a list.
 
@@ -182,24 +174,24 @@
 
   \IT{\KWD*{'}\VAR{foo}} Quote \VAR{foo}.
 
-  \IT{\KWD*{`}\VAR{foo} \KWD*{,}\VAR{bar} \KWD*{,@}\VAR{baz} \KWD*{,.}\VAR{quux} \VAR{bing}}
+  \IT{\KWD*{`}\VAR{foo} \KWD*{,}\VAR{bar} \KWD*{,@}\VAR{baz}
+    \KWD*{,.}\VAR{quux} \VAR{bing}} 
   Quote \VAR{foo} and \VAR{bing}; but neither \VAR{bar}, nor the lists
   \VAR{baz} and \VAR{quux} which are spliced into their
   elements. \VAR{quux} is possibly modified in the process.
 
-  \IT{\KWD*{\#b}, \KWD*{\#o}, \KWD*{\#x}, \KWD{\#}\VAR{n}\KWD{R}} Binary, octal, or hexadecimal
-  number, or number of base \VAR{n}.
-  \index{\#R}
+  \IT{\KWD{\#\boldmath{$\backslash$}}\VAR{c}} 
+  \index{\#@\#$\backslash$}%
+  Character \VAR{c}.
+
+  \IT{\KWD*{\#b}, \KWD*{\#o}, \KWD*{\#x}, \KWD{\#}\VAR{n}\KWD{R}} 
+  \index{\#R}%
+  Binary, octal, or hexadecimal number, or number of base \VAR{n}. 
 
   \IT{\KWD*{\#C(}\VAR{a b}\kwd{)}} Complex number \VAR{a}$+$\VAR{b}i.
 
-  \IT{\KWD{\#}\Op{\VAR{n}}\kwd{*}\OPn{\VAR{b}}} 
-  \index{\#*}%
-  Bit vector of some, or \VAR{n},
-  \VAR{b}s filled with last \VAR{b} if necessary.
-
-  \IT{\KWD*{\#S(}\VAR{type} \Goos{\VAR{slot} \VAR{value}}\kwd{)}} 
-  Structure of \VAR{type}.
+  \IT{\KWD*{\#'}\VAR{foo}} 
+  Return \retval{function named \VAR{foo}}.
 
   \IT{\KWD{\#}\VAR{n}\KWD{A}\OPn{\VAR{foo}}} 
   \index{\#A}%
@@ -210,41 +202,45 @@
   Vector of some, or \VAR{n},
   \VAR{foo}s filled with last \VAR{foo} if necessary.
 
-  \IT{\KWD*{\#:}\VAR{foo}} Uninterned Symbol \VAR{foo}.
+  \IT{\KWD{\#}\Op{\VAR{n}}\kwd{*}\OPn{\VAR{b}}} 
+  \index{\#*}%
+  Bit vector of some, or \VAR{n},
+  \VAR{b}s filled with last \VAR{b} if necessary.
 
-  \IT{\KWD*{\#.}\VAR{form}} Read-time value of \VAR{form}.
+  \IT{\KWD*{\#S(}\VAR{type} \Goos{\VAR{slot} \VAR{value}}\kwd{)}} 
+  Structure of \VAR{type}.
 
-  \IT{\KWD{\#}\VAR{label}\kwd{=} \VAR{foo}} Give value of \VAR{foo} a \VAR{label}.
+  \IT{\KWD*{\#:}\VAR{foo}} 
+  Uninterned Symbol \VAR{foo}.
+
+  \IT{\KWD*{\#.}\VAR{form}} 
+  Read-time value of \VAR{form}.
+
+  \IT{\V*{*read-eval*}\DF{\T}}
+  If \NIL, a \kwd{reader-error} is signalled by \kwd{\#.}.
+
+  \IT{\KWD{\#}\VAR{label}\kwd{=} \VAR{foo}}
   \index{\#=}%
+  Give value of \VAR{foo} a \VAR{label}.
 
-  \IT{\KWD{\#}\VAR{label}\kwd{\#}} \retval{Object labelled \VAR{label}}.
+  \IT{\KWD{\#}\VAR{label}\kwd{\#}} 
   \index{\#\#}%
+  \retval{Object labelled \VAR{label}}.
 
-  \IT{\KWD{\#\boldmath{$\backslash$}}\VAR{c}} Character \VAR{c}.
-  \index{\#@\#$\backslash$}
-
-  \IT{\KWD*{\#'}\VAR{foo}} Return \retval{function named \VAR{foo}}.
-
-  \IT{\KWD*{\#P}\VAR{foo}} Value of \retval{(\kwd{parse-namestring '}\VAR{foo})}.
-
-  \IT{\KWD*{;}\OPn{\VAR{comment}}} Rest of line is a comment.
-
-  \IT{\KWD{\#\boldmath$|$}\OPn{\VAR{comment}}\KWD{\boldmath$|$\#}} Comment
+  \IT{\KWD*{\#P}\VAR{foo}} 
+  Value of \retval{(\kwd{parse-namestring '}\VAR{foo})}.
 
   \IT{\KWD{\#\boldmath$<$}}
   \index{\#<@\#\boldmath$<$}%
   Have the reader signal an error.
 
   \IT{\KWD*{\#+}\VAR{test} \VAR{form}}
-  Means \VAR{form} if \VAR{test} returns \T, means whitespace otherwise.
+  Means \VAR{form} if \VAR{test} returns \T, means whitespace
+  otherwise. 
 
   \IT{\KWD*{\#--}\VAR{test} \VAR{form}}
-  Means \VAR{form} if \VAR{test} returns \NIL, means whitespace otherwise.
-
-  \IT{\KWD*{:}\VAR{foo}} Keyword, evaluates to \retval{:foo}
-
-  \IT{\V*{*read-eval*}\DF{\T}}
-  If \NIL, \kwd{\#.}  \kwd{reader-error} is signalled.
+  Means \VAR{form} if \VAR{test} returns \NIL, means whitespace
+  otherwise. 
 
   \IT{\V*{*read-suppress*}\DF{\NIL}}
   Used by \kwd{\#+} and \kwd{\#--}.
@@ -259,32 +255,44 @@
 
 \begin{LIST}{1cm}
 
-  \IT{(\xorGOO{\FU*{PRIN1}\\\FU*{PRINT}\\\FU*{PPRINT}\\\FU*{PRINC}}{\}} \VAR{foo} \Op{stream}\DF{\T})}
+  \IT{(\xorGOO{\FU*{PRIN1}\\ 
+      \FU*{PRINT}\\
+      \FU*{PPRINT}\\
+      \FU*{PRINC}}{\}}
+    \VAR{foo} \Op{\VAR{stream}\DF{\T}})}
   Print \retval{\VAR{foo}} to \VAR{stream} \FU{read}ably,
   \FU{read}ably after a newline and followed by a space,
-  \FU{read}ably after a newline, or human-readably without any extra characters, resp.
+  \FU{read}ably after a newline, or human-readably without any extra
+  characters, resp. 
 
-  \IT{(\FU*{WRITE-CHAR} \VAR{char} \Op{stream}\DF{\T}))}
-  Output \retval{\VAR{char}} to \VAR{stream}.
+  \IT{\arrGOO{(\FU*{PRIN1-TO-STRING} \VAR{ foo})\\
+      (\FU*{PRINC-TO-STRING} \VAR{ foo})}{\}}}
+  Print \VAR{foo} to \retval{\VAR{string}} \FU{read}ably or
+  human-readably, resp.
 
-  \IT{(\xorGOO{\FU*{WRITE-STRING}\\\FU*{WRITE-LINE}}{\}} \VAR{string}
-    \VAR{stream} 
-    \orGOO{\kwd{:start} \VAR{ start}\DF{0}\\\kwd{:end} \VAR{ end}\DF{\NIL}}{\}})}
-  Write \retval{part of \VAR{string} between \VAR{start} and \VAR{end}} to \VAR{stream}, without/with a trailing newline, resp.
+  \IT{(\FU*{PRINT-OBJECT} \VAR{object} \VAR{stream})} 
+  Print \retval{\VAR{object}} to \VAR{stream}
+
+  \IT{(\FU*{PRINT-UNREADABLE-OBJECT} (\VAR{foo} \VAR{stream}
+    \Op{\kwd{:type} \VAR{bool}} \Op{\kwd{:identity} \VAR{bool}})
+    \OPn{form})} 
+  Print \VAR{foo} enclosed in \kwd{\#\boldmath$<$} and
+  \kwd{\boldmath$>$}. Return \retval{\NIL}.
 
   \IT{(\FU*{TERPRI} \Op{\VAR{stream}\DF{\T}})}
   Output a newline to \VAR{stream} and return \NIL.
 
   \IT{(\FU*{FRESH-LINE}) \Op{\VAR{stream}\DF{\T}}}
-  Output a newline to \VAR{stream} and return \T\ unless \VAR{stream} is already at the start of a line.
-
-  \IT{(\FU*{PRINT-OBJECT} \VAR{object} \VAR{stream})} \retval{\VAR{object}}
+  Output a newline to \VAR{stream} and return \T\ unless \VAR{stream}
+  is already at the start of a line. 
 
   \IT{(\xorGOO{\FU*{WRITE}\\
       \FU*{WRITE-TO-STRING}}{\}}\VAR{foo}\orGOO{%
       \kwd{:array} \VAR{ bool}\\
       \kwd{:base} \VAR{ radix}\\
-      \kwd{:case} \xorGOO{\kwd{:upcase}\\\kwd{:downcase}\\\kwd{:capitalize}}{.}\\
+      \kwd{:case} \xorGOO{\kwd{:upcase}\\
+        \kwd{:downcase}\\
+        \kwd{:capitalize}}{.}\\
       \kwd{:circle} \VAR{ bool}\\
       \kwd{:escape} \VAR{ bool}\\
       \kwd{:gensym} \VAR{ bool}\\
@@ -304,19 +312,28 @@
   corresponding to keyword parameters (\kwd{:}\VAR{bar} becoming
   \kwd{*print-}\VAR{bar}\kwd{*}). (\kwd{:stream} keyword for \FU{write} only.)
 
+  \IT{(\FU*{WRITE-CHAR} \VAR{char} \Op{\VAR{stream}\DF{\T}}))}
+  Output \retval{\VAR{char}} to \VAR{stream}.
+
+  \IT{(\xorGOO{\FU*{WRITE-STRING}\\\FU*{WRITE-LINE}}{\}} \VAR{string}
+    \VAR{stream} 
+    \orGOO{\kwd{:start} \VAR{ start}\DF{0}\\\kwd{:end} \VAR{
+        end}\DF{\NIL}}{\}})} 
+  Write \retval{part of \VAR{string} between \VAR{start} and
+    \VAR{end}} to \VAR{stream}, without/with a trailing newline,
+  resp. 
+
   \IT{(\FU*{WRITE-BYTE} \VAR{byte} \VAR{stream})} Write one \retval{\VAR{byte}} to \VAR{stream}.
 
-  \IT{(\FU*{WRITE-SEQUENCE} \VAR{sequence} \VAR{stream}\orGOO{\kwd{:start}\VAR{ start}\DF{0}\\
-      \kwd{:end} \VAR{ end}\DF{\NIL}}{\}})} Write elements of \retval{\VAR{sequence}} to \VAR{stream}.
-
-  \IT{\arrGOO{(\FU*{PRIN1-TO-STRING} \VAR{ foo})\\
-      (\FU*{PRINC-TO-STRING} \VAR{ foo})}{\}}}
-  Print \VAR{foo} to \retval{\VAR{string}} \FU{read}ably or
-  human-readably, resp.
+  \IT{(\FU*{WRITE-SEQUENCE} \VAR{sequence}
+    \VAR{stream}\orGOO{\kwd{:start}\VAR{ start}\DF{0}\\ 
+      \kwd{:end} \VAR{ end}\DF{\NIL}}{\}})} 
+  Write elements of \retval{\VAR{sequence}} to \VAR{stream}.
 
   \IT{(\FU*{PPRINT-DISPATCH} \VAR{foo}
     \Op{\VAR{table}\DF{\kwd{*print-pprint-dispatch*}}})}
-  Highest priority \retval{\VAR{function}} associated with type of \VAR{foo}.
+  Highest priority \retval{\VAR{function}} associated with type of
+  \VAR{foo}. 
 
   \IT{(\xorGOO{\FU*{PPRINT-FILL}\\
       \FU*{PPRINT-LINEAR}}{\}}%
@@ -631,6 +648,18 @@
 
   \IT{(\FU*{CLOSE} \VAR{stream} \Op{\kwd{:abort} \VAR{bool}\DF{\NIL}})}
   Close \VAR{stream}. If \kwd{:abort} is \T, delete associated file.
+
+  \IT{(\FU*{CLEAR-INPUT}
+    \Op{\VAR{stream}\DF{\kwd{*standard-input*}}})}
+  Clear input from \VAR{stream}, return \retval{\NIL}.
+
+  \IT{(\xorGOO{\FU*{CLEAR-OUTPUT}\\
+      \FU*{FORCE-OUTPUT}\\
+      \FU*{FINISH-OUTPUT}}{\}}%
+    \Op{\VAR{stream}\DF{\kwd{standard-output}}})}
+  End output to \VAR{stream} and return \retval{\NIL} immediately,
+  after initiating flushing of buffers, or after flushing of buffers,
+  resp. 
 
   \IT{(\FU*{MAKE-STRING-OUTPUT-STREAM} \Op{\kwd{:element-type}
       \VAR{type}\DF{\kwd{character}}})} 

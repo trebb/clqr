@@ -17,7 +17,7 @@
 	<td class="side-content">
 	  <ul>
 	    <li><a href="index.html">home</a>
-	    <li><a href="download.html">download</a>
+	    <li><a href="download.php">download</a>
 	    <li><a href="printing.html">printing &amp; bookbinding</a>
 	    <li><a href="https://lists.berlios.de/mailman/listinfo/clqr-general">mailing list</a>
 	    <li><a href="source.html">source</a>
@@ -34,6 +34,10 @@
 	<td class="content">
 	  <h3>Download</h3>
 	  <p>
+	    This is revision
+	    <?php echo(file_get_contents("release-revision.txt"));?> of
+	    <?php echo(file_get_contents("release-date.txt"));?>.
+	  <p>&nbsp;
 	    <div class="here">
 	      <img class="left" src="sample-firstpage-consec.jpg"
 		   alt="Sample"/> 
