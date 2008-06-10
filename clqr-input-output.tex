@@ -45,6 +45,10 @@
   depending on their answer. See p.\ \pageref{section:Format},
   \kwd{format}, for \VAR{control} and \VAR{args}. 
 
+  \IT{(\SF*{WITH-STANDARD-IO-SYNTAX} \OPn{\VAR{form}})}
+  Evaluate \VAR{form}s with standard behaviour of reader and
+  printer. Return \retval{values of \VAR{form}s}.
+
   \IT{(\xorGOO{\FU*{READ}\\
       \FU*{READ-PRESERVING-WHITESPACE}}{\}}
     \OP{\VAR{stream}\DF{\T} \OP{\VAR{eof-err}\DF{\T}
@@ -271,7 +275,7 @@
   human-readably, resp.
 
   \IT{(\FU*{PRINT-OBJECT} \VAR{object} \VAR{stream})} 
-  Print \retval{\VAR{object}} to \VAR{stream}
+  Print \retval{\VAR{object}} to \VAR{stream}.
 
   \IT{(\FU*{PRINT-UNREADABLE-OBJECT} (\VAR{foo} \VAR{stream}
     \Op{\kwd{:type} \VAR{bool}} \Op{\kwd{:identity} \VAR{bool}})
@@ -280,11 +284,29 @@
   \kwd{\boldmath$>$}. Return \retval{\NIL}.
 
   \IT{(\FU*{TERPRI} \Op{\VAR{stream}\DF{\T}})}
-  Output a newline to \VAR{stream} and return \NIL.
+  Output a newline to \VAR{stream}. Return \retval{\NIL}.
 
   \IT{(\FU*{FRESH-LINE}) \Op{\VAR{stream}\DF{\T}}}
-  Output a newline to \VAR{stream} and return \T\ unless \VAR{stream}
+  Output a newline to \VAR{stream} and return \retval{\T} unless \VAR{stream}
   is already at the start of a line. 
+
+  \IT{(\FU*{WRITE-CHAR} \VAR{char} \Op{\VAR{stream}\DF{\T}}))}
+  Output \retval{\VAR{char}} to \VAR{stream}.
+
+  \IT{(\xorGOO{\FU*{WRITE-STRING}\\\FU*{WRITE-LINE}}{\}} \VAR{string}
+    \VAR{stream} 
+    \orGOO{\kwd{:start} \VAR{ start}\DF{0}\\\kwd{:end} \VAR{
+        end}\DF{\NIL}}{\}})} 
+  Write \retval{part of \VAR{string} between \VAR{start} and
+    \VAR{end}} to \VAR{stream}, without/with a trailing newline,
+  resp. 
+
+  \IT{(\FU*{WRITE-BYTE} \VAR{byte} \VAR{stream})} Write one \retval{\VAR{byte}} to \VAR{stream}.
+
+  \IT{(\FU*{WRITE-SEQUENCE} \VAR{sequence}
+    \VAR{stream}\orGOO{\kwd{:start}\VAR{ start}\DF{0}\\ 
+      \kwd{:end} \VAR{ end}\DF{\NIL}}{\}})} 
+  Write elements of \retval{\VAR{sequence}} to \VAR{stream}.
 
   \IT{(\xorGOO{\FU*{WRITE}\\
       \FU*{WRITE-TO-STRING}}{\}}\VAR{foo}\orGOO{%
@@ -311,29 +333,6 @@
   \retval{string}, resp., after dynamically setting printer variables
   corresponding to keyword parameters (\kwd{:}\VAR{bar} becoming
   \kwd{*print-}\VAR{bar}\kwd{*}). (\kwd{:stream} keyword for \FU{write} only.)
-
-  \IT{(\FU*{WRITE-CHAR} \VAR{char} \Op{\VAR{stream}\DF{\T}}))}
-  Output \retval{\VAR{char}} to \VAR{stream}.
-
-  \IT{(\xorGOO{\FU*{WRITE-STRING}\\\FU*{WRITE-LINE}}{\}} \VAR{string}
-    \VAR{stream} 
-    \orGOO{\kwd{:start} \VAR{ start}\DF{0}\\\kwd{:end} \VAR{
-        end}\DF{\NIL}}{\}})} 
-  Write \retval{part of \VAR{string} between \VAR{start} and
-    \VAR{end}} to \VAR{stream}, without/with a trailing newline,
-  resp. 
-
-  \IT{(\FU*{WRITE-BYTE} \VAR{byte} \VAR{stream})} Write one \retval{\VAR{byte}} to \VAR{stream}.
-
-  \IT{(\FU*{WRITE-SEQUENCE} \VAR{sequence}
-    \VAR{stream}\orGOO{\kwd{:start}\VAR{ start}\DF{0}\\ 
-      \kwd{:end} \VAR{ end}\DF{\NIL}}{\}})} 
-  Write elements of \retval{\VAR{sequence}} to \VAR{stream}.
-
-  \IT{(\FU*{PPRINT-DISPATCH} \VAR{foo}
-    \Op{\VAR{table}\DF{\kwd{*print-pprint-dispatch*}}})}
-  Highest priority \retval{\VAR{function}} associated with type of
-  \VAR{foo}. 
 
   \IT{(\xorGOO{\FU*{PPRINT-FILL}\\
       \FU*{PPRINT-LINEAR}}{\}}%
@@ -378,47 +377,20 @@
   \end{LIST}
 
 
-  \IT{(\FU*{PRINT-NOT-READABLE-OBJECT} \VAR{condition})}
-  The \retval{Object} unprintable under \VAR{condition}.
-
-  \IT{(\FU*{COPY-PPRINT-DISPATCH}\Op{\VAR{table}\DF{*print-pprint-dispatch*}})}
-  Return \retval{copy of \VAR{table}}.
-
   \IT{(\FU*{SET-PPRINT-DISPATCH} \VAR{type} \VAR{function}
     \OP{\VAR{priority}\DF{0}
       \Op{\VAR{table}\DF{*print-pprint-dispatch*}}})}
   Install entry comprising \VAR{function} and \VAR{priority} as
   \VAR{type} into \VAR{table}. Return \retval{\NIL}.
 
-  \IT{(\GFU*{DOCUMENTATION} \kwd{'}\VAR{foo}
-    \Goo{\kwd{variable}\XOR\kwd{function}\XOR
-      \kwd*{compiler-macro}\XOR
-      \kwd{method-combination}\XOR
-      \T\XOR\kwd{structure}
-      \XOR\kwd{type}\XOR\kwd{setf}\XOR\T})}
-  Return \retval{documentation string} of \VAR{foo} of given type. \kwd{setf}able.
+  \IT{(\FU*{PPRINT-DISPATCH} \VAR{foo}
+    \Op{\VAR{table}\DF{\kwd{*print-pprint-dispatch*}}})}
+  Highest priority \retval{\VAR{function}} associated with type of
+  \VAR{foo}. 
 
-
-  \IT{(\kwd*{WITH-COMPILATION-UNIT} (\Op{\kwd{:override}
-      \VAR{bool}\DF{\NIL}}) \OPn{\VAR{form}})}
-  Return \retval{values of \VAR{form}s}. Warnings deferred by the compiler until end
-  of compilation are deferred until the end of evaluation of \VAR{form}s.
-  
-
-  \IT{(\SF*{WITH-STANDARD-IO-SYNTAX} \OPn{\VAR{form}})}
-  Evaluate \VAR{form}s with standard behaviour of reader and
-  printer. Return \retval{values of \VAR{form}s}.
-
-  \IT{\arrGOO{\V*{*standard-input*}\\
-      \V*{*standard-output*}\\
-      \V*{*error-output*}}{\}}}
-  Standard input stream, standard output stream, 
-  or standard error output stream, resp.
-
-
-  \IT{\arrGOO{\V*{*debug-io*}\\
-      \V*{*query-io*}}{\}}}
-  Streams for debugging and user interaction.
+  \IT{(\FU*{COPY-PPRINT-DISPATCH}
+    \Op{\VAR{table}\DF{*print-pprint-dispatch*}})} 
+  Return \retval{copy of \VAR{table}}.
 
   \IT{\V*{*print-escape*}\DF{\T}} 
   If \NIL, do not print escape characters and package prefixes.
@@ -459,6 +431,7 @@
   Number to the number of lines to pretty-print.
 
   \IT{\V*{*print-miser-width*}}
+  Width below which a compact pretty-printing style is used.
 
   \IT{\V*{*print-pprint-dispatch*}}
   Current pretty print dispatch table.
@@ -718,8 +691,8 @@
       \kwd{:end} \VAR{ end}}{\}})}
   Return \retval{stream} supplying the characters from \VAR{string}.
 
-  \IT{(\FU*{MAKE-SYNONYM-STREAM} \VAR{symbol})} Return \retval{synonym
-    stream}.
+  \IT{(\FU*{MAKE-SYNONYM-STREAM} \VAR{symbol})} 
+  Return \retval{synonym stream}.
 
   \IT{(\FU*{MAKE-TWO-WAY-STREAM} \VAR{input-stream}
     \VAR{output-stream})} Return \retval{two-way stream}.
@@ -730,7 +703,8 @@
   \IT{(\FU*{SYNONYM-STREAM-SYMBOL} \VAR{synonym-stream})} 
   Return \retval{symbol} of \VAR{synonym-stream}.
 
-  \IT{\arrGOO{(\FU*{TWO-WAY-STREAM-INPUT-STREAM} \VAR{ two-way-stream})\\
+  \IT{\arrGOO{(\FU*{TWO-WAY-STREAM-INPUT-STREAM} \VAR{
+        two-way-stream})\\ 
       (\FU*{TWO-WAY-STREAM-OUTPUT-STREAM} \VAR{ two-way-stream})}{\}}}
   Return \retval{stream} \VAR{two-way-stream} receives from or sends
   to, resp.
@@ -738,7 +712,18 @@
   \IT{(\FU*{LISTEN} \Op{\VAR{stream}\DF{\kwd{*standard-input*}}})}
   \retval{\T} if is a character in input \VAR{stream}.
 
-  \IT{\V*{*terminal-io*}} Bidirectional stream to user terminal.
+  \IT{\arrGOO{\V*{*standard-input*}\\
+      \V*{*standard-output*}\\
+      \V*{*error-output*}}{\}}}
+  Standard input stream, standard output stream, 
+  or standard error output stream, resp.
+
+  \IT{\arrGOO{\V*{*debug-io*}\\
+      \V*{*query-io*}}{\}}}
+  Streams for debugging and user interaction.
+
+  \IT{\V*{*terminal-io*}} 
+  Bidirectional stream to user terminal.
 
 \end{LIST}
 
@@ -791,7 +776,8 @@
   Return string representing \retval{full pathname}, \retval{name, type, and version},
   \retval{directory name}, or \retval{host name}, resp., of \VAR{path}.
 
-  \IT{(\FU*{PARSE-NAMESTRING} \VAR{foo} \VAR{host} \VAR{default-pathname}\DF{\V{*default-pathname-defaults*}}
+  \IT{(\FU*{PARSE-NAMESTRING} \VAR{foo} \VAR{host}
+    \VAR{default-pathname}\DF{\V{*default-pathname-defaults*}} 
     \orGOO{\kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:junk-allowed} \VAR{ bool}\DF{\NIL}}{\}})}
@@ -837,13 +823,11 @@
   Use \FU*{OPEN} with arguments \VAR{option-form}s to temporarily
   create \VAR{stream}, and return \retval{value of \VAR{form}s}.
 
-
-
-
   \IT{(\FU*{FILE-STRING-LENGTH} \VAR{stream} \VAR{foo})} 
   \retval{Length} \VAR{foo} would have in \VAR{stream}.
 
-  \IT{(\FU*{FILL-POINTER} \VAR{vector})} Return \retval{fill pointer} of \VAR{vector}. \kwd{setf}able.
+  \IT{(\FU*{FILL-POINTER} \VAR{vector})} 
+  Return \retval{fill pointer} of \VAR{vector}. \kwd{setf}able.
 
   \IT{(\FU*{LOGICAL-PATHNAME} \VAR{path})}
   \retval{Logical name} of \VAR{path}.

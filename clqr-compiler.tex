@@ -98,6 +98,12 @@
   \VAR{form} is a macro form. 
   Return \retval{\VAR{form}} and \retval{\NIL} otherwise.
 
+  \IT{(\kwd*{WITH-COMPILATION-UNIT} (\Op{\kwd{:override}
+      \VAR{bool}\DF{\NIL}}) \OPn{\VAR{form}})}
+  Return \retval{values of \VAR{form}s}. Warnings deferred by the
+  compiler until end of compilation are deferred until the end of
+  evaluation of \VAR{form}s. 
+
   \IT{(\FU*{COMPILE} \VAR{name} \Op{\VAR{definition}})}
   Return \retval{compiled function} \VAR{name}, \retvalii{\T} in case
   of warnings, and \retvaliii{\T} in case of failure.

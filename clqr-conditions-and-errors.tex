@@ -193,20 +193,23 @@
   \IT{(\FU*{ARITHMETIC-ERROR-OPERATION} \VAR{condition})}  
   \retval{Function} used in signalling operation.
 
+  \IT{(\FU*{CELL-ERROR-NAME} \VAR{condition})} 
+  \retval{Name of cell} which caused \VAR{condition}.
+
+  \IT{(\FU*{UNBOUND-SLOT-INSTANCE} \VAR{condition})} 
+  \retval{Instance} with unbound slot which caused \VAR{condition}.
+
   \IT{(\FU*{PACKAGE-ERROR-PACKAGE} \VAR{condition})} 
   \retval{Package} which caused \VAR{condition}.
+
+  \IT{(\FU*{PRINT-NOT-READABLE-OBJECT} \VAR{condition})}
+  The \retval{object} unprintable under \VAR{condition}.
 
   \IT{(\FU*{FILE-ERROR-PATHNAME} \VAR{condition})} 
   \retval{Path} which caused condition.
 
   \IT{(\FU*{STREAM-ERROR-STREAM} \VAR{condition})} 
   \retval{Stream} which caused \VAR{condition}.
-
-  \IT{(\FU*{CELL-ERROR-NAME} \VAR{condition})} 
-  \retval{Name of cell} which caused \VAR{condition}.
-
-  \IT{(\FU*{UNBOUND-SLOT-INSTANCE} \VAR{condition})} 
-  \retval{Instance} with unbound slot which caused \VAR{condition}.
 
   \IT{\arrGOO{(\FU*{TYPE-ERROR-DATUM} \VAR{ condition})\\
       (\FU*{TYPE-ERROR-EXPECTED-TYPE} \VAR{ condition})}{\}}}

@@ -26,7 +26,17 @@
 
   \IT{\V*{*package*}} The current package.
 
-  \IT{(\FU*{SYMBOL-PACKAGE '}\VAR{foo})} Return the \retval{package \VAR{foo} came from}.
+  \IT{(\FU*{SYMBOL-PACKAGE '}\VAR{foo})} 
+  Return the \retval{package \VAR{foo} came from}.
+
+  \IT{(\GFU*{DOCUMENTATION} \kwd{'}\VAR{foo}
+    \Goo{\kwd{variable}\XOR\kwd{function}\XOR
+      \kwd*{compiler-macro}\XOR
+      \kwd{method-combination}\XOR
+      \T\XOR\kwd{structure}
+      \XOR\kwd{type}\XOR\kwd{setf}\XOR\T})}
+  Return \retval{documentation string} of \VAR{foo} of given
+  type. \kwd{setf}able. 
 
   \IT{(\kwd*{DEFPACKAGE}\VAR{ foo} 
     \orGOO{\OPn{(\kwd{:use }\OPn{\VAR{bar}})}\\
@@ -38,14 +48,17 @@
       \OPn{(\kwd{:shadow}\XOR\Goo{\kwd{:shadowing-import-from}\VAR{ p}\OPn{\VAR{ jnk}}})}\\
       (\kwd{:size }\VAR{int})\\
     }{\}})} 
-  Return \retval{defined package \VAR{foo}} which inherits symbols exported by packages \VAR{bar}
-  excluding \VAR{jnk}s and some symbols.
-  \VAR{n}s from package \VAR{p}; exports \VAR{baz}es.
+  Return \retval{defined package \VAR{foo}} which inherits symbols
+  exported by packages \VAR{bar} excluding \VAR{jnk}s and some
+  symbols. \VAR{n}s from package \VAR{p}; exports \VAR{baz}es. 
   
-  \IT{(\kwd*{IN-PACKAGE }\VAR{foo})} Make \retval{package \VAR{foo}} current.
+  \IT{(\kwd*{IN-PACKAGE }\VAR{foo})} 
+  Make \retval{package \VAR{foo}} current.
 
-  \IT{(\FU*{USE-PACKAGE} (\OPn{\VAR{foo}}) \Op{\VAR{package}}\DF{\kwd{*package*}})}  Make exported symbols
-  of packages \VAR{foo} available in \VAR{package}. Return \retval{\T}.
+  \IT{(\FU*{USE-PACKAGE} (\OPn{\VAR{foo}})
+    \Op{\VAR{package}}\DF{\kwd{*package*}})}  
+  Make exported symbols of packages \VAR{foo} available in
+  \VAR{package}. Return \retval{\T}. 
 
   \IT{(\FU*{UNUSE-PACKAGE} (\OPn{\VAR{foo}})
     \Op{\VAR{package}}\DF{\kwd{*package*}})}
@@ -112,9 +125,10 @@
 
   \IT{(\xorGOO{\FU*{INTERN}\\
       \FU*{FIND-SYMBOL}}{\} \VAR{name} \Op{\VAR{package}}})}
-  Intern or find, resp., \retval{symbol \VAR{name}} in \VAR{package}. Second return value is 
-  one of \retvalii{\kwd{:internal}}, \retvalii{\kwd{:external}}, or
-  \retvalii{\kwd{:inherited}}. 
+  Intern or find, resp., \retval{symbol \VAR{name}} in
+  \VAR{package}. Second return value is one of
+  \retvalii{\kwd{:internal}}, \retvalii{\kwd{:external}}, or
+  \retvalii{\kwd{:inherited}}.
 
   \IT{(\FU*{SHADOW} \RP{\VAR{symbol}}
     \Op{\VAR{package}\DF{\kwd{*package*}}})}
