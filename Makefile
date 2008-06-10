@@ -66,28 +66,18 @@ $(CLQR)-%.dvi:	$(CLQR).tex $(CLQR)-*.tex paper-%.flag REVISION.tex
 	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
 	$(MV) $(CLQR).dvi $@ $(SEND-TO-LOG)
 
-paper-%.flag:	paper-current.tex
-	$(CP) $@.tex paper-current.tex $(SEND-TO-LOG)
+paper-a4.flag:	
+	$(CP) paper-a4.tex paper-current.tex $(SEND-TO-LOG)
+	$(RM) paper-letter.flag $(SEND-TO-LOG)
+	$(TOUCH) $@
+
+paper-letter.flag:	
+	$(CP) paper-letter.tex paper-current.tex $(SEND-TO-LOG)
+	$(RM) paper-a4.flag $(SEND-TO-LOG)
 	$(TOUCH) $@
 
 REVISION.tex:	$(CLQR).tex $(CLQR)-*.tex
 	if $(BZR_REVISION); then $(BZR_REVISION) > $@; else $(TOUCH) $@; fi $(SEND-TO-LOG)
-
-html/sample-frontcover.jpg:	$(CLQR)-a4-consec.pdf
-	$(CONVERT) $<'[0]' -verbose -resize 30% temp.jpg $(SEND-TO-LOG)
-	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
-
-html/sample-doublepage.jpg:	$(CLQR)-a4-consec.pdf
-	$(CONVERT) $<'[19-20]' -verbose -resize 30% temp.jpg $(SEND-TO-LOG)
-	$(MONTAGE) temp-0.jpg temp-1.jpg  -tile 2x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
-
-html/sample-firstpage-%.jpg:	$(CLQR)-a4-booklet-%.pdf
-	$(CONVERT) $<'[0]' -verbose -resize 15% temp.jpg $(SEND-TO-LOG)
-	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
-
-html/sample-firstpage-consec.jpg:	$(CLQR)-a4-consec.pdf
-	$(CONVERT) $<'[0]' -verbose -resize 15% temp.jpg $(SEND-TO-LOG)
-	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 
 clean:
 	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.ps *.pdf *~ html/*~ *.flag *.jpg html/*.jpg *.tar.gz
@@ -108,6 +98,22 @@ publish:	html/sample-frontcover.jpg html/sample-doublepage.jpg \
 
 release:	letter a4 $(CLQR).tar.gz
 	./upload.sh
+
+html/sample-frontcover.jpg:	$(CLQR)-a4-consec.pdf
+	$(CONVERT) $<'[0]' -verbose -resize 30% temp.jpg $(SEND-TO-LOG)
+	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
+
+html/sample-doublepage.jpg:	$(CLQR)-a4-consec.pdf
+	$(CONVERT) $<'[19-20]' -verbose -resize 30% temp.jpg $(SEND-TO-LOG)
+	$(MONTAGE) temp-0.jpg temp-1.jpg  -tile 2x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
+
+html/sample-firstpage-%.jpg:	$(CLQR)-a4-booklet-%.pdf
+	$(CONVERT) $<'[0]' -verbose -resize 15% temp.jpg $(SEND-TO-LOG)
+	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
+
+html/sample-firstpage-consec.jpg:	$(CLQR)-a4-consec.pdf
+	$(CONVERT) $<'[0]' -verbose -resize 15% temp.jpg $(SEND-TO-LOG)
+	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 
 $(CLQR).tar.gz:
 	$(BZR_EXPORT) $@
