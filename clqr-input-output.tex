@@ -392,8 +392,24 @@
     \Op{\VAR{table}\DF{*print-pprint-dispatch*}})} 
   Return \retval{copy of \VAR{table}}.
 
+  \IT{\V*{*print-pretty*}}
+  If \T, print pretty.
+
+  \IT{\V*{*print-case*}\DF{\kwd{:upcase}}} 
+  Print symbol names all uppercase (\kwd{:upcase}), all lowercase
+  (\kwd{:downcase}), capitalized (\kwd{:capitalize}).
+
+  \IT{\V*{*print-readably*}\DF{\NIL}}
+  If \T, print \FU{read}ably.
+
+  \IT{\V*{*print-array*}}
+  If \T, print array \FU{read}ably.
+
   \IT{\V*{*print-escape*}\DF{\T}} 
   If \NIL, do not print escape characters and package prefixes.
+
+  \IT{\V*{*print-gensym*}\DF{\T}} 
+  If \T, print \kwd{:\#} before uninterned symbols.
 
   \IT{\V*{*print-radix*}\DF{\NIL}} 
   If \T, print rationals with a radix indicator.
@@ -405,39 +421,23 @@
   If \T, avoid indefinite recursion while printing circular
   structure. 
 
-  \IT{\V*{*print-pretty*}}
-  If \T, print pretty.
-
-  \IT{\V*{*print-level*}\DF{\NIL}}
-  If integer, restrict printing of nested object to that depth.
+  \IT{\V*{*print-lines*}\DF{\NIL}}
+  Number of lines to pretty-print.
 
   \IT{\V*{*print-length*}\DF{\NIL}}
   If integer, restrict printing of objects to that number per level.
 
-  \IT{\V*{*print-case*}\DF{\kwd{:upcase}}} 
-  Print symbol names all uppercase (\kwd{:upcase}), all lowercase
-  (\kwd{:downcase}), capitalized (\kwd{:capitalize}).
+  \IT{\V*{*print-level*}\DF{\NIL}}
+  If integer, restrict printing of nested object to that depth.
 
-  \IT{\V*{*print-gensym*}\DF{\T}} 
-  If \T, print \kwd{:\#} before uninterned symbols.
-
-  \IT{\V*{*print-array*}}
-  If \T, print array \FU{read}ably.
-
-  \IT{\V*{*print-readably*}\DF{\NIL}}
-  If \T, print \FU{read}ably.
-
-  \IT{\V*{*print-lines*}\DF{\NIL}}
-  Number to the number of lines to pretty-print.
+  \IT{\V*{*print-right-margin*}\DF{\NIL}}
+  Right margin width in ems while pretty-printing.
 
   \IT{\V*{*print-miser-width*}}
   Width below which a compact pretty-printing style is used.
 
   \IT{\V*{*print-pprint-dispatch*}}
   Current pretty print dispatch table.
-
-  \IT{\V*{*print-right-margin*}\DF{\NIL}}
-  Width in ems for the right margin while pretty-printing..
 
 \end{LIST}
 
@@ -466,22 +466,14 @@
 
   \begin{LIST}{.5cm}
 
-    \IT{\Goo{\KWD{\TLD C}\XOR\KWD{\TLD :C}\XOR\KWD{\TLD @:C}}} 
-    Print, spell out, or tell how to type, resp., argument as
-    (possibly non-printing) character.
-
-    \IT{\Goo{\KWD{\TLD\%}\XOR\KWD{\TLD}\VAR{n}\KWD{\%}}}
-    Print one or \VAR{n} newline(s).
-
-    \IT{\Goo{\KWD{\TLD\&}\XOR\KWD{\TLD}\VAR{n}\KWD{\&}}} 
-    Print one or \VAR{n} newline(s) unless output stream is at the
-    beginning of a line.
-
-    \IT{\Goo{\KWD{\TLD\boldmath$|$}\XOR\KWD{\TLD}\VAR{n}\KWD{\boldmath$|$}}}
-    Print one or \VAR{n} page separator(s).
-
-    \IT{\Goo{\KWD{\TLD\TLD}\XOR\KWD{\TLD}\VAR{n}\KWD{\TLD}}}
-    Print one or \VAR{n} tilde(s).
+    \IT{\KWD{\TLD}\Op{\VAR{min-col}\DF{\LIT{0}}\Op{\KWD{,}\VAR{col-inc}\DF{\LIT{1}}
+          \Op{\KWD{,}\VAR{min-pad}\DF{\LIT{0}}
+            \Op{\KWD{,}\VAR{pad-char}\DF{\LIT{\#$\backslash$Space}}}}}}
+      \KWD{\Op{:}\Op{@}\Goo{A\XOR S}}} 
+    Print argument of any type for consumption by humans/by the
+    reader, resp. With \kwd{@}, add \VAR{pad-char}s on the left
+    rather than on the right. With \kwd{:} print \NIL\ as \LIT{()} rather
+    than \LIT{nil}.
 
     \IT{\KWD{\TLD}\Op{\VAR{radix}\DF{\LIT{10}} \Op{\KWD{,}\VAR{width}
           \Op{\KWD{,}\VAR{pad-char}\DF{\KWD{\#$\backslash$Space}}
@@ -489,11 +481,6 @@
               \Op{\KWD{,}\VAR{comma-interval}\DF{\LIT{3}}}}}}} \KWD{\Op{:}\Op{@}R}}
     Print argument as number, with \KWD{:}, group digits 
     \VAR{comma-interval} each, with \kwd{@}, always prepend a sign.
-
-    \IT{\Goo{\KWD{\TLD R}\XOR\KWD{\TLD :R}\XOR\KWD{\TLD @R}\XOR\KWD{\TLD @:R}}} 
-    Take argument as number and print it as English cardinal number,
-    as English ordinal number, as Roman numeral, or as old Roman
-    numeral, resp.
 
     \IT{\KWD{\TLD}\Op{\VAR{width}
         \Op{\KWD{,}\VAR{pad-char}\DF{\KWD{\#$\backslash$Space}}
@@ -517,63 +504,14 @@
     before decimal point and \VAR{exp-digits} in the
     exponent. With \KWD{\TLD G}, chose either \KWD{\TLD E} or \KWD{\TLD F}. With \KWD{@}, always prepend a sign.
 
-    \IT{\KWD{\TLD}\Op{\VAR{min-col}\DF{\LIT{0}}\Op{\KWD{,}\VAR{col-inc}\DF{\LIT{1}}
-          \Op{\KWD{,}\VAR{min-pad}\DF{\LIT{0}}
-            \Op{\KWD{,}\VAR{pad-char}\DF{\LIT{\#$\backslash$Space}}}}}} \KWD{\Op{:}\Op{@}\Goo{A\XOR S}}}
-    Print argument of any type for consumption by humans/by the
-    reader, resp. With \kwd{@}, add \VAR{pad-char}s on the left
-    rather than on the right. With \kwd{:} print \NIL\ as \LIT{()} rather
-    than \LIT{nil}.
+    \IT{\Goo{\KWD{\TLD R}\XOR\KWD{\TLD :R}\XOR\KWD{\TLD @R}\XOR\KWD{\TLD @:R}}} 
+    Take argument as number and print it as English cardinal number,
+    as English ordinal number, as Roman numeral, or as old Roman
+    numeral, resp.
 
-    \IT{\KWD{\TLD\Op{:}\Op{@}W}}
-    Print obeying every printer control variable. \kwd{:} makes it
-    pretty-print. With \kwd{@}, prints without limits on length or depth.
-
-    \IT{\Goo{\KWD{\TLD}\_\XOR\KWD{\TLD:}\_\XOR\KWD{\TLD@}\_\XOR\KWD{\TLD}:@\_}}
-    Print newline like \kwd{pprint-newline} with argument
-    \kwd{:linear}, \kwd{:fill}, \kwd{:miser}, or \kwd{:mandatory}, resp.
-
-    \IT{\KWD{\TLD}\Op{\VAR{min-col}\DF{\LIT{0}}
-        \Op{\KWD{,}\VAR{col-inc}\DF{\LIT{1}}
-          \Op{\KWD{,}\VAR{min-pad}\DF{\LIT{0}}
-            \Op{\KWD{,}\VAR{pad-char}\DF{\LIT{\#$\backslash$Space}}}}}} \KWD{\Op{:}\Op{@}\boldmath{$<$}}
-      \Op{\VAR{text}\KWD{\TLD}\VAR{a},\VAR{b}\kwd{:;}} \Goos{\VAR{text}\KWD{\TLD;}} \KWD{\TLD\boldmath{$>$}}}
-    Justify text produced by \VAR{text}s in a field of at least
-    \VAR{min-col} columns.
-
-    \IT{\Goo{\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\kwd{I}\XOR\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\kwd{:I}}}
-    Same as (\kwd{pprint-indent} \kwd{:block} \VAR{n}) or
-    (\kwd{pprint-indent} \kwd{:current} \VAR{n}), resp.
-
-    \IT{\KWD{\TLD\Op{:}\Op{@}/}\VAR{foo}\KWD{/}}
-    Call function \VAR{foo} with arguments stream, format-argument,
-    bool-colon, and bool-at for printing format-argument.
-
-    \IT{\KWD{\TLD}\Op{\VAR{c}\Op{\KWD{,}\VAR{i}}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{T}}
-    Move cursor forward to column number $c + ki$, $k \geq 0$ being as small
-    as possible.
-
-    \IT{\KWD{\TLD}\Op{\VAR{n}}\DF{\LIT{0}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{*}}
-    Jump \VAR{n} arguments forward, or, with \kwd{:}, backward. With
-    \kwd{@}, jump to argument \VAR{n}.
-
-    \IT{\KWD{\TLD}\Op{\VAR{i}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{[}\Goos{\VAR{text}\KWD{\TLD;}}\KWD{\TLD]}}
-    The \VAR{text}s are clauses the argumenth (or the \VAR{i}th if given) of wich is chosen. With
-    \kwd{:}, the boolean argument takes first \VAR{str} for \NIL\ and
-    second for \T.
-
-    \IT{\KWD{\TLD}\Op{\VAR{limit}}\Op{\KWD{{:}}\Op{\kwd{@}}}%
-      \KWD{\boldmath{$\{$}}\VAR{text}\KWD{\TLD\boldmath{$\}$}}}
-    \VAR{text} is used repeatedly, up to \VAR{limit}, as control string for every element
-    of argument, which should be a list. With \kwd{@}, take all
-    remaining arguments.
-    \kwd{:}, argument should be a list of sublists. At each iteration
-    step the elements of a sublist can be used by \VAR{str}.
-
-    \IT{\KWD{\TLD\Op{:}\Op{@}?}}
-    Process two arguments as format string and argument list. With
-    \kwd{@}, take one argument as format string and use then the
-    original argument list
+    \IT{\Goo{\KWD{\TLD C}\XOR\KWD{\TLD :C}\XOR\KWD{\TLD @:C}}} 
+    Print, spell out, or tell how to type, resp., argument as
+    (possibly non-printing) character.
 
     \IT{\Goo{%
         \KWD{\TLD(}\VAR{text}\KWD{\TLD)}\XOR
@@ -590,12 +528,75 @@
     do the same after backing up 1 argument; if argument \kwd{eql} 1
     print \LIT{y}, otherwise print \LIT{ies}, resp.
 
-    \IT{\KWD{\TLD\^{}}}
-    Leave immediately \kwd{\TLD\boldmath{$<$}} or \kwd{\TLD\boldmath{$\{$}}.
+    \IT{\Goo{\KWD{\TLD\%}\XOR\KWD{\TLD}\VAR{n}\KWD{\%}}}
+    Print one or \VAR{n} newline(s).
+
+    \IT{\Goo{\KWD{\TLD\&}\XOR\KWD{\TLD}\VAR{n}\KWD{\&}}} 
+    Print one or \VAR{n} newline(s) unless output stream is at the
+    beginning of a line.
+
+    \IT{\Goo{\KWD{\TLD}\_\XOR\KWD{\TLD:}\_\XOR\KWD{\TLD@}\_\XOR\KWD{\TLD}:@\_}}
+    Print newline like \kwd{pprint-newline} with argument
+    \kwd{:linear}, \kwd{:fill}, \kwd{:miser}, or \kwd{:mandatory}, resp.
 
     \IT{\KWD{\TLD}\Op{\KWD{@}}}
     (Tilde-newline) Ignore newline and following
     whitespace. With \kwd{@}, ignore only newline.
+
+    \IT{\Goo{\KWD{\TLD\boldmath$|$}\XOR\KWD{\TLD}\VAR{n}\KWD{\boldmath$|$}}}
+    Print one or \VAR{n} page separator(s).
+
+    \IT{\Goo{\KWD{\TLD\TLD}\XOR\KWD{\TLD}\VAR{n}\KWD{\TLD}}}
+    Print one or \VAR{n} tilde(s).
+
+    \IT{\KWD{\TLD}\Op{\VAR{min-col}\DF{\LIT{0}}
+        \Op{\KWD{,}\VAR{col-inc}\DF{\LIT{1}}
+          \Op{\KWD{,}\VAR{min-pad}\DF{\LIT{0}}
+            \Op{\KWD{,}\VAR{pad-char}\DF{\LIT{\#$\backslash$Space}}}}}} \KWD{\Op{:}\Op{@}\boldmath{$<$}}
+      \Op{\VAR{text}\KWD{\TLD}\VAR{a},\VAR{b}\kwd{:;}} \Goos{\VAR{text}\KWD{\TLD;}} \KWD{\TLD\boldmath{$>$}}}
+    Justify text produced by \VAR{text}s in a field of at least
+    \VAR{min-col} columns.
+
+    \IT{\KWD{\TLD}\Op{\VAR{c}\Op{\KWD{,}\VAR{i}}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{T}}
+    Move cursor forward to column number $c + ki$, $k \geq 0$ being as small
+    as possible.
+
+    \IT{\Goo{\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\kwd{I}\XOR\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\kwd{:I}}}
+    Same as (\kwd{pprint-indent} \kwd{:block} \VAR{n}) or
+    (\kwd{pprint-indent} \kwd{:current} \VAR{n}), resp.
+
+    \IT{\KWD{\TLD}\Op{\VAR{n}}\DF{\LIT{0}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{*}}
+    Jump \VAR{n} arguments forward, or, with \kwd{:}, backward. With
+    \kwd{@}, jump to argument \VAR{n}.
+
+    \IT{\KWD{\TLD}\Op{\VAR{limit}}\Op{\KWD{{:}}\Op{\kwd{@}}}%
+      \KWD{\boldmath{$\{$}}\VAR{text}\KWD{\TLD\boldmath{$\}$}}}
+    \VAR{text} is used repeatedly, up to \VAR{limit}, as control string for every element
+    of argument, which should be a list. With \kwd{@}, take all
+    remaining arguments.
+    \kwd{:}, argument should be a list of sublists. At each iteration
+    step the elements of a sublist can be used by \VAR{str}.
+
+    \IT{\KWD{\TLD\^{}}}
+    Leave immediately \kwd{\TLD\boldmath{$<$}} or \kwd{\TLD\boldmath{$\{$}}.
+
+    \IT{\KWD{\TLD}\Op{\VAR{i}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{[}\Goos{\VAR{text}\KWD{\TLD;}}\KWD{\TLD]}}
+    The \VAR{text}s are clauses the argumenth (or the \VAR{i}th if given) of wich is chosen. With
+    \kwd{:}, the boolean argument takes first \VAR{str} for \NIL\ and
+    second for \T.
+
+    \IT{\KWD{\TLD\Op{:}\Op{@}?}}
+    Process two arguments as format string and argument list. With
+    \kwd{@}, take one argument as format string and use then the
+    original argument list
+
+    \IT{\KWD{\TLD\Op{:}\Op{@}/}\VAR{foo}\KWD{/}}
+    Call function \VAR{foo} with arguments stream, format-argument,
+    bool-colon, and bool-at for printing format-argument.
+
+    \IT{\KWD{\TLD\Op{:}\Op{@}W}}
+    Print obeying every printer control variable. \kwd{:} makes it
+    pretty-print. With \kwd{@}, print without limits on length or depth.
 
   \end{LIST}
 
@@ -622,6 +623,59 @@
   \IT{(\FU*{CLOSE} \VAR{stream} \Op{\kwd{:abort} \VAR{bool}\DF{\NIL}})}
   Close \VAR{stream}. If \kwd{:abort} is \T, delete associated file.
 
+  \IT{(\FU*{MAKE-STRING-OUTPUT-STREAM} \Op{\kwd{:element-type}
+      \VAR{type}\DF{\kwd{character}}})} 
+  Return a \retval{stream} accepting characters.
+
+  \IT{(\FU*{MAKE-CONCATENATED-STREAM} \OPn{\VAR{stream}})}
+  Return \retval{concatenated stream}.
+
+  \IT{(\FU*{CONCATENATED-STREAM-STREAMS} \VAR{concatenated-stream})} 
+  Return \retval{list of streams} \VAR{concatenated-stream} still
+  has to read from. 
+
+  \IT{(\FU*{MAKE-BROADCAST-STREAM} \OPn{\VAR{stream}})}
+  Return \retval{broadcast stream}.
+
+  \IT{(\FU*{BROADCAST-STREAM-STREAMS} \VAR{broadcast-stream})} 
+  Return \retval{list of streams} \VAR{broadcast-stream} is
+  broadcasting to. 
+
+  \IT{(\FU*{MAKE-ECHO-STREAM} \VAR{input-stream} \VAR{output-stream})} 
+  Place \retval{echo stream} between \VAR{input-stream} and
+  \VAR{output-stream}. 
+
+  \IT{\arrGOO{(\FU*{ECHO-STREAM-INPUT-STREAM}\VAR{ echo-stream})\\
+      (\FU*{ECHO-STREAM-OUTPUT-STREAM}\VAR{ echo-stream})}{\}}}
+  Return \retval{stream} \VAR{echo-stream} receives from or sends
+  to, resp.
+
+  \IT{(\FU*{MAKE-STRING-INPUT-STREAM} \VAR{string}
+    \orGOO{\kwd{:start}\VAR{ start}\\
+      \kwd{:end} \VAR{ end}}{\}})}
+  Return \retval{stream} supplying the characters from \VAR{string}.
+
+  \IT{(\FU*{MAKE-SYNONYM-STREAM} \VAR{symbol})} 
+  Return \retval{synonym stream}.
+
+  \IT{(\FU*{SYNONYM-STREAM-SYMBOL} \VAR{synonym-stream})} 
+  Return \retval{symbol} of \VAR{synonym-stream}.
+
+  \IT{(\FU*{MAKE-TWO-WAY-STREAM} \VAR{input-stream}
+    \VAR{output-stream})} Return \retval{two-way stream}.
+
+  \IT{\arrGOO{(\FU*{TWO-WAY-STREAM-INPUT-STREAM} \VAR{
+        two-way-stream})\\ 
+      (\FU*{TWO-WAY-STREAM-OUTPUT-STREAM} \VAR{ two-way-stream})}{\}}}
+  Return \retval{stream} \VAR{two-way-stream} receives from or sends
+  to, resp.
+
+  \IT{(\FU*{LISTEN} \Op{\VAR{stream}\DF{\kwd{*standard-input*}}})}
+  \retval{\T} if there is a character in input \VAR{stream}.
+
+  \IT{(\FU*{GET-OUTPUT-STREAM-STRING} \VAR{stream})}
+  Clear and return as a \retval{string} characters on \VAR{stream}.
+
   \IT{(\FU*{CLEAR-INPUT}
     \Op{\VAR{stream}\DF{\kwd{*standard-input*}}})}
   Clear input from \VAR{stream}, return \retval{\NIL}.
@@ -634,18 +688,10 @@
   after initiating flushing of buffers, or after flushing of buffers,
   resp. 
 
-  \IT{(\FU*{MAKE-STRING-OUTPUT-STREAM} \Op{\kwd{:element-type}
-      \VAR{type}\DF{\kwd{character}}})} 
-  Return a \retval{stream} accepting characters.
-
-  \IT{(\FU*{GET-OUTPUT-STREAM-STRING} \VAR{stream})}
-  Clear and return as a \retval{string} characters on \VAR{stream}.
-
-  \IT{(\FU*{MAKE-BROADCAST-STREAM} \OPn{\VAR{stream}})}
-  Return \retval{broadcast stream}.
-
-  \IT{(\FU*{MAKE-CONCATENATED-STREAM} \OPn{\VAR{stream}})}
-  Return \retval{concatenated} stream.
+  \IT{(\SF*{WITH-OPEN-STREAM} (\VAR{foo} \VAR{stream})
+    \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \OPn{\VAR{form}})} 
+  Evaluate \VAR{form}s with \VAR{foo} locally bound to
+  \VAR{stream}. Return \retval{value of \VAR{form}s}. 
 
   \IT{(\SF*{WITH-INPUT-FROM-STRING} (\VAR{foo} \VAR{string} 
     \orGOO{\kwd{:index} \VAR{ index}\\\kwd{:start} \VAR{
@@ -664,53 +710,11 @@
     \VAR{foo}} if \VAR{string} is given. Return \retval{string
     containing output} otherwise. 
 
-  \IT{(\SF*{WITH-OPEN-STREAM} (\VAR{foo} \VAR{stream})
-    \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \OPn{\VAR{form}})} 
-  Evaluate \VAR{form}s with \VAR{foo} locally bound to
-  \VAR{stream}. Return \retval{value of \VAR{form}s}. 
-
-  \IT{(\FU*{BROADCAST-STREAM-STREAMS} \VAR{broadcast-stream})} 
-  Return \retval{list of streams} \VAR{broadcast-stream} is
-  broadcasting to. 
-
-  \IT{(\FU*{CONCATENATED-STREAM-STREAMS} \VAR{concatenated-stream})} 
-  Return \retval{list of streams} \VAR{concatenated-stream} still
-  has to read from. 
-
-  \IT{\arrGOO{(\FU*{ECHO-STREAM-INPUT-STREAM}\VAR{ echo-stream})\\
-      (\FU*{ECHO-STREAM-OUTPUT-STREAM}\VAR{ echo-stream})}{\}}}
-  Return \retval{stream} \VAR{echo-stream} receives from or sends
-  to, resp.
-
-  \IT{(\FU*{MAKE-ECHO-STREAM} \VAR{input-stream} \VAR{output-stream})} 
-  Place \retval{echo stream} between \VAR{input-stream} and
-  \VAR{output-stream}. 
-
-  \IT{(\FU*{MAKE-STRING-INPUT-STREAM} \VAR{string}
-    \orGOO{\kwd{:start}\VAR{ start}\\
-      \kwd{:end} \VAR{ end}}{\}})}
-  Return \retval{stream} supplying the characters from \VAR{string}.
-
-  \IT{(\FU*{MAKE-SYNONYM-STREAM} \VAR{symbol})} 
-  Return \retval{synonym stream}.
-
-  \IT{(\FU*{MAKE-TWO-WAY-STREAM} \VAR{input-stream}
-    \VAR{output-stream})} Return \retval{two-way stream}.
-
   \IT{(\FU*{STREAM-EXTERNAL-FORMAT} \VAR{stream})} 
   \retval{External file format designator}.
 
-  \IT{(\FU*{SYNONYM-STREAM-SYMBOL} \VAR{synonym-stream})} 
-  Return \retval{symbol} of \VAR{synonym-stream}.
-
-  \IT{\arrGOO{(\FU*{TWO-WAY-STREAM-INPUT-STREAM} \VAR{
-        two-way-stream})\\ 
-      (\FU*{TWO-WAY-STREAM-OUTPUT-STREAM} \VAR{ two-way-stream})}{\}}}
-  Return \retval{stream} \VAR{two-way-stream} receives from or sends
-  to, resp.
-
-  \IT{(\FU*{LISTEN} \Op{\VAR{stream}\DF{\kwd{*standard-input*}}})}
-  \retval{\T} if is a character in input \VAR{stream}.
+  \IT{\V*{*terminal-io*}} 
+  Bidirectional stream to user terminal.
 
   \IT{\arrGOO{\V*{*standard-input*}\\
       \V*{*standard-output*}\\
@@ -721,9 +725,6 @@
   \IT{\arrGOO{\V*{*debug-io*}\\
       \V*{*query-io*}}{\}}}
   Streams for debugging and user interaction.
-
-  \IT{\V*{*terminal-io*}} 
-  Bidirectional stream to user terminal.
 
 \end{LIST}
 

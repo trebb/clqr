@@ -24,9 +24,9 @@ CP		= cp --verbose
 RM		= rm --force --verbose
 MV		= mv --force --verbose
 MAKE		= make
-BZR_REVISION	= bzr revno
+BZR_REVISION	= bzr revno | tr -d '\n\\' 
 BZR_EXPORT	= bzr export
-DATE		= date -I
+DATE		= date -I | tr -d '\n\\' 
 RSYNC		= rsync -va
 
 all:	letter a4
@@ -77,14 +77,14 @@ paper-letter.flag:
 	$(RM) paper-a4.flag $(SEND-TO-LOG)
 	$(TOUCH) $@
 
-REVISION.tex:	$(CLQR).tex $(CLQR)-*.tex
+REVISION.tex:	DATE.tex
 	if $(BZR_REVISION); then $(BZR_REVISION) > $@; else $(TOUCH) $@; fi $(SEND-TO-LOG)
+
+DATE.tex:	$(CLQR).tex $(CLQR)-*.tex 
+	$(DATE) > $@
 
 clean:
 	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.ps *.pdf *~ html/*~ *.flag *.jpg html/*.jpg *.tar.gz
-
-publishclean:
-	$(RM) *~ html/*~
 
 
 # Project hosting
@@ -93,7 +93,7 @@ maintainance:	letter a4 release publish
 
 publish:	html/sample-frontcover.jpg html/sample-doublepage.jpg \
 		html/sample-firstpage-all.jpg html/sample-firstpage-four.jpg \
-		html/sample-firstpage-consec.jpg $(CLQR)-a4-consec.pdf REVISION.tex
+		html/sample-firstpage-consec.jpg $(CLQR)-a4-consec.pdf
 	$(MAKE) publishclean
 	$(RSYNC) --delete ./ trebb@shell.berlios.de:/home/groups/ftp/pub/clqr/clqr/ $(SEND-TO-LOG)
 	$(RSYNC) ./html/ trebb@shell.berlios.de:/home/groups/clqr/htdocs/ $(SEND-TO-LOG)
@@ -102,7 +102,7 @@ release:	letter a4 $(CLQR).tar.gz html/release-revision.txt html/release-date.tx
 	./upload.sh
 
 html/release-date.txt:	
-	$(DATE) >> $@
+	$(DATE) > $@
 
 html/release-revision.txt:	
 	$(BZR_REVISION) > $@
@@ -129,3 +129,6 @@ html/sample-firstpage-consec.jpg:	$(CLQR)-a4-consec.pdf
 
 $(CLQR).tar.gz:
 	$(BZR_EXPORT) $@ $(SEND-TO-LOG)
+
+publishclean:
+	$(RM) *~ html/*~

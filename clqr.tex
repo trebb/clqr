@@ -8,7 +8,6 @@
 %
 
 \newcommand{\maintitle}{Common Lisp Quick Reference}
-\newcommand{\revision}{\input{REVISION}}
 
 \documentclass[8pt,pagesize,twoside,footexclude,headexclude]{scrartcl}
 %
@@ -438,16 +437,17 @@
       \hrule
       \vspace{1.5mm}
       \rmfamily\small
-      \makebox[\textwidth][l]{\maintitle\ \hfill Revision \revision [\number\year-\number\month-\number\day]}
-      \makebox[\textwidth][l]{Copyright \copyright\ 2008 Bert Burgemeister}\\
-
+      \makebox[\textwidth][l]{\maintitle\ \hfill \LaTeX\ source:
+        http://clqr.berlios.de} 
+      \makebox[\textwidth][l]{Copyright \copyright\ 2008 Bert
+        Burgemeister\hfill Revision \input{REVISION}
+       [\input{DATE}\hspace{-.65ex}]}\\[1.5mm]
       Permission is granted to copy, distribute and/or modify this
       document under the terms of the GNU Free Documentation License,
       Version 1.2 or any later version published by the Free Software
       Foundation; with no Invariant Sections, no Front-Cover Texts and
-      no Back-Cover Texts.\\
+      no Back-Cover Texts.\hfill
       http://www.gnu.org/licenses/fdl.html\\
-
       \vspace{-1mm}
       \hrule
     \end{minipage}
@@ -456,4 +456,3 @@
 
 \end{document}
 % -*-latex-*-
-
