@@ -4,7 +4,7 @@ USER='ftp'
 PASSWORD='x'
 FTPLOG='ftp.log'
 
-ftp -ni $REMOTE <<_FTP>$FTPLOG
+ftp -ni $REMOTE <<_FTP>>$FTPLOG
 quote USER $USER
 quote PASS $PASSWORD
 bin

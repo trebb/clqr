@@ -117,6 +117,10 @@
   \IT{(\kwd*{NIL})}
   The empty type, subtype of every type.
 
+  \IT{(\kwd*{T})}
+  Supertype of every type including \kwd{t}; or superclass of every
+  class except \kwd{t}.
+
   \IT{(\FU*{TYPEP} \VAR{foo} \VAR{type} \Op{\VAR{environment}})}
   Return \retval{\T} if \VAR{foo} is of \VAR{type}.
 
@@ -138,33 +142,12 @@
   Return \retval{value of a \VAR{form}} if \VAR{foo} is of this \VAR{type}.
   Signal correctable/non-correctable error, resp.
 
+  \IT{(\FU*{TYPE-OF} \VAR{foo})} 
+  \retval{Type of \VAR{foo}}.
+
   \IT{(\kwd*{CHECK-TYPE} 
     \VAR{place} \VAR{type})} Return \retval{\NIL} and signal
   correctable error if \VAR{place} is not of {type}. 
-
-  \IT{(\SF*{DEFTYPE} \VAR{name} \OPn{\VAR{arg}} 
-    \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \Op{\VAR{documentation}} 
-    \OPn{\VAR{form}})}
-  Define new type \retval{\VAR{name}}.
-
-  \IT{(\SF*{THE} \VAR{type} {form})}
-  Return \retval{values} of \VAR{form} which are specified to be of
-  \VAR{type}. 
-
-  \IT{(\FU*{FIND-CLASS} \VAR{symbol} \OP{\VAR{errorp}\DF{\T}
-      \Op{\VAR{environment}}})} 
-  Return \retval{class object} named \VAR{symbol}. \kwd{setf}able.
-
-  \IT{(\FU*{TYPE-OF} \VAR{foo})} \retval{Type of \VAR{foo}}.
-
-  \IT{(\kwd*{VALUES} \OPn{\VAR{type}} \OP{\OPn{\VAR{type}}
-      \Op{\VAR{other-args}}})} 
-  Type specifier for multiple values.
-
-  \IT{(\kwd*{SATISFIES} \VAR{name})} Type specifier for all
-  objects satisfying predicate \VAR{name}.
-
-  \IT{(\kwd*{MOD} \VAR{n})} Type specifier for all integers $<n$.
 
   \IT{(\FU*{STREAM-ELEMENT-TYPE} \VAR{stream})} 
   Return \retval{type} of \VAR{stream} objects.
@@ -177,6 +160,24 @@
   \retval{Element type} of most specialized array capable of holding
   elements of \VAR{type}. 
 
-\end{LIST}
+  \IT{(\SF*{DEFTYPE} \VAR{name} \OPn{\VAR{arg}} 
+    \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \Op{\VAR{documentation}} 
+    \OPn{\VAR{form}})}
+  Define new type \retval{\VAR{name}}.
+
+  \IT{(\SF*{THE} \VAR{type} {form})}
+  Return \retval{values} of \VAR{form} which are specified to be of
+  \VAR{type}. 
+
+  \IT{(\kwd*{VALUES} \OPn{\VAR{type}} \OP{\OPn{\VAR{type}}
+      \Op{\VAR{other-args}}})} 
+  Type specifier for multiple values.
+
+  \IT{(\kwd*{SATISFIES} \VAR{name})} Type specifier for all
+  objects satisfying predicate \VAR{name}.
+
+  \IT{(\kwd*{MOD} \VAR{n})} Type specifier for all integers $<n$.
+
+  \end{LIST}
 
 

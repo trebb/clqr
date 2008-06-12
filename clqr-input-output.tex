@@ -735,22 +735,6 @@
 
 \begin{LIST}{1cm}
 
-  \IT{(\FU*{PATHNAME} \VAR{path})}
-  Return \retval{pathname}.
-
-  \IT{\V*{*default-pathname-defaults*}}
-  Pathname to use if one is needed but none supplied.
-
-  \IT{(\xorGOO{\FU*{PATHNAME-HOST}\\
-      \FU*{PATHNAME-DEVICE}\\
-      \FU*{PATHNAME-DIRECTORY}\\
-      \FU*{PATHNAME-NAME}\\
-      \FU*{PATHNAME-TYPE}\\
-      \FU*{PATHNAME-VERSION}}{\}}
-    \VAR{path}
-    \Op{\xorGOO{\kwd{:local}\\\kwd{:common}}{\}}\DF{\kwd{:local}}})}
-  Return \retval{pathname component}.
-
   \IT{(\FU*{MAKE-PATHNAME} 
     \orGOO{\kwd{:host} \VAR{ host}\\
       \kwd{:device} \VAR{ dev}\\
@@ -765,6 +749,12 @@
   \IT{(\FU*{MERGE-PATHNAMES} \VAR{pathname}
     \Op{\VAR{default-pathname}\DF{\V{*default-pathname-defaults*}}}\XOR\Op{\VAR{version}\DF{\kwd{:newest}}})} 
   Return \retval{\VAR{pathname}} after filling in missing parts from defaults.
+
+  \IT{\V*{*default-pathname-defaults*}}
+  Pathname to use if one is needed but none supplied.
+
+  \IT{(\FU*{PATHNAME} \VAR{path})} 
+  \retval{Pathname} of \VAR{path}.
 
   \IT{(\FU*{ENOUGH-NAMESTRING} \VAR{path}
     \Op{\VAR{root-path}\DF{\V{*default-pathname-defaults*}}})}
@@ -785,25 +775,40 @@
   Return \retval{pathname} and \retval{position} converted from
   string, pathname, or stream \VAR{foo}.
 
+  \IT{(\xorGOO{\FU*{PATHNAME-HOST}\\
+      \FU*{PATHNAME-DEVICE}\\
+      \FU*{PATHNAME-DIRECTORY}\\
+      \FU*{PATHNAME-NAME}\\
+      \FU*{PATHNAME-TYPE}\\
+      \FU*{PATHNAME-VERSION}}{\}}
+    \VAR{path}
+    \Op{\xorGOO{\kwd{:local}\\\kwd{:common}}{\}}\DF{\kwd{:local}}})}
+  Return \retval{pathname component}.
+
+  \IT{(\FU*{LOGICAL-PATHNAME} \VAR{path})}
+  \retval{Logical name} of \VAR{path}.
+
+  \IT{(\FU*{TRANSLATE-PATHNAME} \VAR{path-a} \VAR{path-b}
+    \VAR{path-c})}
+  Translate \VAR{path-a} from wildcard \VAR{path-b} into wildcard
+  \VAR{path-c}. Return \retval{new path}.
+
+  \IT{(\FU*{LOGICAL-PATHNAME-TRANSLATIONS} \VAR{host})}
+  \retval{\VAR{host}'s list of translations}.
+
+  \IT{(\FU*{LOAD-LOGICAL-PATHNAME-TRANSLATIONS} \VAR{host})}
+  Load \VAR{host}'s translations. Return \retval{\NIL} if already
+  loded, return \retval{\T} if successful.
+
+  \IT{(\FU*{TRANSLATE-LOGICAL-PATHNAME} \VAR{path})} 
+  Physical \retval{pathname} of \VAR{path}. 
+
+  \IT{(\FU*{TRUENAME} \VAR{file})}
+  \retval{Canonical name} of \VAR{file}.
+
   \IT{(\FU*{PROBE-FILE} \VAR{path})}
   Return \retval{canonical file name} or \retval{\NIL} if file does
   not exist.
-
-  \IT{(\FU*{DELETE-FILE} \VAR{path})}
-  Delete file \VAR{path}, return \retval{\T}.
-
-  \IT{(\FU*{RENAME-FILE} \VAR{foo} \VAR{bar})}
-  Rename file  \VAR{foo} to \VAR{bar}. Unspecified parts of path
-  \VAR{bar} default to those of \VAR{foo}. Return \retval{new
-    pathname}, \retval{old file name}, and \retval{new file name}.
-
-  \IT{(\FU*{DIRECTORY} \VAR{path})}
-  Return \retval{list of pathnames}.
-
-  \IT{(\FU*{ENSURE-DIRECTORIES-EXIST} \VAR{path} \Op{\kwd{:verbose}
-      \VAR{bool}})}
-  Create parts of \retval{path} if necessary. Second return value is
-  \retval{\T} if something was created.
 
   \IT{(\FU*{FILE-WRITE-DATE} \VAR{path})} 
   Return \retval{time} at which file was last written.
@@ -818,44 +823,33 @@
   Return \retval{position within stream}, or set it to
   \retval{\VAR{position}} and return \retval{\T} on success. 
 
+  \IT{(\FU*{FILE-STRING-LENGTH} \VAR{stream} \VAR{foo})} 
+  \retval{Length} \VAR{foo} would have in \VAR{stream}.
+
+  \IT{(\FU*{RENAME-FILE} \VAR{foo} \VAR{bar})}
+  Rename file  \VAR{foo} to \VAR{bar}. Unspecified parts of path
+  \VAR{bar} default to those of \VAR{foo}. Return \retval{new
+    pathname}, \retval{old file name}, and \retval{new file name}.
+
+  \IT{(\FU*{DELETE-FILE} \VAR{path})}
+  Delete file \VAR{path}, return \retval{\T}.
+
+  \IT{(\FU*{DIRECTORY} \VAR{path})}
+  Return \retval{list of pathnames}.
+
+  \IT{(\FU*{ENSURE-DIRECTORIES-EXIST} \VAR{path} \Op{\kwd{:verbose}
+      \VAR{bool}})}
+  Create parts of \retval{path} if necessary. Second return value is
+  \retval{\T} if something was created.
+
   \IT{(\SF*{WITH-OPEN-FILE} (\VAR{stream path}
     \OPn{\VAR{option-form}}) \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
     \OPn{\VAR{form}})} 
   Use \FU*{OPEN} with arguments \VAR{option-form}s to temporarily
   create \VAR{stream}, and return \retval{value of \VAR{form}s}.
 
-  \IT{(\FU*{FILE-STRING-LENGTH} \VAR{stream} \VAR{foo})} 
-  \retval{Length} \VAR{foo} would have in \VAR{stream}.
-
-  \IT{(\FU*{FILL-POINTER} \VAR{vector})} 
-  Return \retval{fill pointer} of \VAR{vector}. \kwd{setf}able.
-
-  \IT{(\FU*{LOGICAL-PATHNAME} \VAR{path})}
-  \retval{Logical name} of \VAR{path}.
-
-  \IT{(\FU*{LOAD-LOGICAL-PATHNAME-TRANSLATIONS} \VAR{host})}
-  Load \VAR{host}'s translations. Return \retval{\NIL} if already
-  loded, return \retval{\T} if successful.
-
-  \IT{(\FU*{LOGICAL-PATHNAME-TRANSLATIONS} \VAR{host})}
-  \retval{\VAR{host}'s list of translations}.
-
-  \IT{(\FU*{PATHNAME} \VAR{path})} 
-  \retval{Pathname} of \VAR{path}.
-
-  \IT{(\FU*{TRANSLATE-LOGICAL-PATHNAME} \VAR{path})} 
-  Physical \retval{pathname} of \VAR{path}. 
-
-  \IT{(\FU*{TRANSLATE-PATHNAME} \VAR{path-a} \VAR{path-b}
-    \VAR{path-c})}
-  Translate \VAR{path-a} from wildcard \VAR{path-b} into wildcard
-  \VAR{path-c}. Return \retval{new path}.
-
   \IT{(\FU*{USER-HOMEDIR-PATHNAME} \Op{\VAR{host}})} 
-  User's \retval{ home directory}.
-
-  \IT{(\FU*{TRUENAME} \VAR{file})}
-  \retval{Canonical name} of \VAR{file}.
+  User's \retval{home directory}.
 
 
 \end{LIST}

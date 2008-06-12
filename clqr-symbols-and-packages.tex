@@ -3,8 +3,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
-  \IT{\arrGOO{(\FU*{SYMBOLP} \VAR{foo})\\
-      (\FU*{PACKAGEP} \VAR{foo})}{\}}}
+  \IT{\arrGOO{(\FU*{SYMBOLP} \VAR{ foo})\\
+      (\FU*{PACKAGEP} \VAR{ foo})}{\}}}
   Return \retval{\T} if \VAR{foo} is of type \kwd{symbol} or
   \kwd{package}, resp.
 
@@ -14,11 +14,11 @@
   \IT{(\FU*{KEYWORDP} \VAR{foo})}
   \retval{\T} if \VAR{foo} is a keyword.
 
-  \IT{(\kwd*{T})}
-  Truth, or \V{*terminal-io*}.
-
   \IT{\KWD*{:}\VAR{foo}} 
   Keyword, evaluates to \retval{:\VAR{foo}}
+
+  \IT{(\kwd*{T})}
+  Truth, or \V{*terminal-io*}.
 
   \IT{\Goo{(\CNS*{NIL})\XOR{\kwd*{()}}}} 
   Falsehood, the empty list, \V{*standard-input*},
