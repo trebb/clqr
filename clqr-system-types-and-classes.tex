@@ -114,19 +114,16 @@
 
 \begin{LIST}{1cm}
 
-  \IT{(\kwd*{NIL})}
-  The empty type, subtype of every type.
-
-  \IT{(\kwd*{T})}
-  Supertype of every type including \kwd{t}; or superclass of every
-  class except \kwd{t}.
-
   \IT{(\FU*{TYPEP} \VAR{foo} \VAR{type} \Op{\VAR{environment}})}
   Return \retval{\T} if \VAR{foo} is of \VAR{type}.
 
   \IT{(\FU*{SUBTYPEP} \VAR{type-a} \VAR{type-b} \Op{\VAR{environment}})}
   Return \retval{\T} if \VAR{type-a} is a recognizable subtype of
   \VAR{type-b}. 
+
+  \IT{(\SF*{THE} \VAR{type} {form})}
+  Return \retval{values} of \VAR{form} which are specified to be of
+  \VAR{type}. 
 
   \IT{(\FU*{COERCE} \VAR{object} \VAR{type})} 
   Coerce \VAR{object} into \VAR{type}.
@@ -165,18 +162,28 @@
     \OPn{\VAR{form}})}
   Define new type \retval{\VAR{name}}.
 
-  \IT{(\SF*{THE} \VAR{type} {form})}
-  Return \retval{values} of \VAR{form} which are specified to be of
-  \VAR{type}. 
+  \IT{(\kwd*{T})}
+  Supertype of every type including \kwd{t}; or superclass of every
+  class except \kwd{t}.
+
+  \IT{(\kwd*{NIL})}
+  The empty type, subtype of every type.
+
+  \IT{(\kwd*{SATISFIES} \VAR{name})} 
+  Type specifier for all objects satisfying predicate \VAR{name}. 
+
+  \IT{(\kwd*{MOD} \VAR{n})} 
+  Type specifier for all integers $<n$.
+
+  \IT{(\kwd*{AND} \OPn{\VAR{type}}\DF{\kwd{t}})}
+  Type specifier for intersection of \VAR{type}s.
+
+  \IT{(\kwd*{OR} \OPn{\VAR{type}}\DF{\kwd{nil}})} 
+  Type specifier for union of \VAR{type}s.
 
   \IT{(\kwd*{VALUES} \OPn{\VAR{type}} \OP{\OPn{\VAR{type}}
       \Op{\VAR{other-args}}})} 
   Type specifier for multiple values.
-
-  \IT{(\kwd*{SATISFIES} \VAR{name})} Type specifier for all
-  objects satisfying predicate \VAR{name}.
-
-  \IT{(\kwd*{MOD} \VAR{n})} Type specifier for all integers $<n$.
 
   \end{LIST}
 

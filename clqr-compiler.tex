@@ -32,6 +32,16 @@
 
 \begin{LIST}{1cm}
 
+  \IT{(\kwd*{WITH-COMPILATION-UNIT} (\Op{\kwd{:override}
+      \VAR{bool}\DF{\NIL}}) \OPn{\VAR{form}})}
+  Return \retval{values of \VAR{form}s}. Warnings deferred by the
+  compiler until end of compilation are deferred until the end of
+  evaluation of \VAR{form}s. 
+
+  \IT{(\FU*{COMPILE} \VAR{name} \Op{\VAR{definition}})}
+  Return \retval{compiled function} \VAR{name}, \retvalii{\T} in case
+  of warnings, and \retvaliii{\T} in case of failure.
+
   \IT{(\FU*{COMPILE-FILE} \VAR{path} 
     \orGOO{\kwd{:output-file}\VAR{ out-path}\\
       \kwd{:verbose} \VAR{ bool}\DF{\kwd{*compile-verbose*}}\\
@@ -67,20 +77,18 @@
       \V*{*load-verbose*}}{\}}}
   Defaults used in \FU{load}.
   
-  \IT{(\SF*{EVAL-WHEN} (\orGOO{{\kwd{:compile-toplevel}}\\ \kwd{:load-toplevel}\\
-      \kwd{:execute}}{\}}) \OPn{\VAR{form}})} Evaluate \VAR{form}s returning
-  \retval{value of last \VAR{form}} if \SF{EVAL-WHEN} is in the
-  top-level of a file being compiled, in the top-level of a compiled file being
-  loaded, or anywhere, resp.
-
   \IT{(\SF*{EVAL-WHEN} (%
     \orGOO{\kwd{:compile-toplevel}\\
       \kwd{:load-toplevel}\\
       \kwd{:execute}}{\}}) \OPn{\VAR{form}})} 
-  Evaluate \VAR{form}s returning
-  \retval{value of last \VAR{form}} if \SF{EVAL-WHEN} is in the
-  top-level of a file being compiled, in the top-level of a compiled file being
-  loaded, or anywhere, resp.
+  Evaluate \VAR{form}s returning \retval{value of last \VAR{form}} if
+  \SF{EVAL-WHEN} is in the top-level of a file being compiled, in the
+  top-level of a compiled file being loaded, or anywhere, resp. 
+
+  \IT{(\SF*{LOAD-TIME-VALUE} \VAR{form}
+    \Op{\VAR{read-only}\DF{\NIL}})}
+  Evaluate \VAR{form} at compile time and treat \retval{its value} as literal
+  at run time.
 
   \IT{(\SF*{QUOTE} \VAR{foo})\XOR \kwd{'}\VAR{foo}} 
   Return \retval{unevaluated \VAR{foo}}.
@@ -93,25 +101,11 @@
       \Op{\VAR{package}\DF{\kwd{*package*}}}})} 
   Intern fresh \retval{symbol} in package.
 
-  \IT{(\SF*{MACROEXPAND-1} \VAR{form})} 
-  Return \retval{macro expansion of \VAR{form}} and \retval{\T} if
-  \VAR{form} is a macro form. 
+  \IT{\arrGOO{(\SF*{MACROEXPAND-1} \VAR{form})\\
+      (\SF*{MACROEXPAND} \VAR{form})}{\}}}
+  Return \retval{macro expansion}, once or entirely, resp., of \VAR{form} and
+  \retvalii{\T} if \VAR{form} is a macro form. 
   Return \retval{\VAR{form}} and \retval{\NIL} otherwise.
-
-  \IT{(\kwd*{WITH-COMPILATION-UNIT} (\Op{\kwd{:override}
-      \VAR{bool}\DF{\NIL}}) \OPn{\VAR{form}})}
-  Return \retval{values of \VAR{form}s}. Warnings deferred by the
-  compiler until end of compilation are deferred until the end of
-  evaluation of \VAR{form}s. 
-
-  \IT{(\FU*{COMPILE} \VAR{name} \Op{\VAR{definition}})}
-  Return \retval{compiled function} \VAR{name}, \retvalii{\T} in case
-  of warnings, and \retvaliii{\T} in case of failure.
-
-  \IT{(\SF*{LOAD-TIME-VALUE} \VAR{form}
-    \Op{\VAR{read-only}\DF{\NIL}})}
-  Evaluate \VAR{form} at compile time and treat \retval{its value} as literal
-  at run time.
 
   \IT{(\SF*{TIME} \OPn{\VAR{form}})}
   Evaluate \VAR{form}s and print timing information on \V{*trace-output*}.
@@ -127,15 +121,6 @@
   \IT{\V*{*trace-output*}} 
   Stream \kwd{trace}d function and \kwd{time} print their output on.
   
-
-  \IT{(\FU*{SYMBOL-NAME} \VAR{ symbol})}
-  \retval{Name} of \VAR{symbol}.
-
-  \IT{\arrGOO{(\FU*{SYMBOL-FUNCTION} \VAR{ symbol})\\
-      (\FU*{SYMBOL-VALUE} \VAR{ symbol})\\
-      (\FU*{SYMBOL-PLIST} \VAR{ symbol})}{\}}} 
-  \retval{Function}, \retval{value}, or \retval{property list}, resp., of \VAR{symbol}. \kwd{setf}able.
-
   \IT{(\kwd*{COMPILER-MACRO-FUNCTION} \VAR{name}
     \Op{\VAR{environment}})}
   \retval{Compiler macro function}. \kwd{setfable}.
@@ -167,13 +152,6 @@
   Make \retval{two forms} yielding something equvalent to \VAR{foo}
   but preserving only \VAR{slots}.
 
-  \IT{(\FU*{MAKE-SYMBOL} \VAR{name})}
-  Make fresh, uninterned \retval{symbol \VAR{name}}.
-
-  \IT{(\FU*{COPY-SYMBOL} \VAR{symbol} \Op{\VAR{props}\DF{\NIL}})}
-  Return uninterned \retval{copy of \VAR{symbol}}. If \VAR{props} is
-  \T, the copy has the same value, function, and property list.
-
   \IT{(\FU*{MAKUNBOUND} \VAR{symbol})}
   Make \retval{\VAR{symbol}} unbound.
 
@@ -201,14 +179,6 @@
 
   \IT{(\FU*{EVAL} \VAR{form})}
   Return \retval{values of \VAR{form}}.
-
-  \IT{\arrGOO{(\FU*{LISP-IMPLEMENTATION-TYPE})\\
-      (\FU*{LISP-IMPLEMENTATION-VERSION})}{\}}}
-  \retval{Name} or \retval{version}, resp., of implementation.
-
-  \IT{\arrGOO{(\FU*{SOFTWARE-TYPE})\\
-      (\FU*{SOFTWARE-VERSION})}{\}}}
-  \retval{Name} or \retval{version}, resp., of host system.
 
 \end{LIST}
 

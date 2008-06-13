@@ -34,16 +34,25 @@
   \IT{\V*{*features*}}
   List of implementation-dependent features.
 
+  \IT{(\FU*{ROOM} \Op{\Goo{\T\XOR\NIL\XOR\kwd{:default}}})} 
+  Print information about internal storage management.
+
   \IT{\arrGOO{(\FU*{SHORT-SITE-NAME})\\
       (\FU*{LONG-SITE-NAME})}{\}}}
   \retval{String} representing physical location of computer.
+
+  \IT{\arrGOO{(\FU*{LISP-IMPLEMENTATION-TYPE})\\
+      (\FU*{LISP-IMPLEMENTATION-VERSION})}{\}}}
+  \retval{Name} or \retval{version}, resp., of implementation.
+
+  \IT{\arrGOO{(\FU*{SOFTWARE-TYPE})\\
+      (\FU*{SOFTWARE-VERSION})}{\}}}
+  \retval{Name} or \retval{version}, resp., of host system.
 
   \IT{\arrGOO{(\FU*{MACHINE-TYPE})\\
       (\FU*{MACHINE-VERSION})\\
       (\FU*{MACHINE-INSTANCE})}{\}}} 
     \retval{Type}, \retval{version}, or \retval{name}, resp., of hardware.
-
-  \IT{(\FU*{ROOM} \Op{\Goo{\T\XOR\NIL\XOR\kwd{:default}}})} Print information about internal storage management.
 
 \end{LIST}
 
