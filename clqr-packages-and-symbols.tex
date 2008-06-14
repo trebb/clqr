@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Symbols and Packages}
+\section{Packages and Symbols}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
@@ -84,6 +84,15 @@
   \IT{(\FU*{MAKE-SYMBOL} \VAR{name})}
   Make fresh, uninterned \retval{symbol \VAR{name}}.
 
+  \IT{(\FU*{GENSYM} \Op{\VAR{x}})} 
+  Return fresh symbol \retval{\#:G}\VAR{n}, \VAR{n} from
+  \kwd{*gensym-counter*} which is incremented only in case no \VAR{x}
+  is given. 
+
+  \IT{(\FU*{GENTEMP} \OP{\VAR{prefix}\DF{\LIT{T}}
+      \Op{\VAR{package}\DF{\kwd{*package*}}}})} 
+  Intern fresh \retval{symbol} in package. Deprecated.
+
   \IT{(\FU*{COPY-SYMBOL} \VAR{symbol} \Op{\VAR{props}\DF{\NIL}})}
   Return uninterned \retval{copy of \VAR{symbol}}. If \VAR{props} is
   \T, the copy has the same value, function, and property list.
@@ -163,7 +172,19 @@
   \IT{\arrGOO{(\FU*{SYMBOL-FUNCTION} \VAR{ symbol})\\
       (\FU*{SYMBOL-VALUE} \VAR{ symbol})\\
       (\FU*{SYMBOL-PLIST} \VAR{ symbol})}{\}}} 
-  \retval{Function}, \retval{value}, or \retval{property list}, resp., of \VAR{symbol}. \kwd{setf}able.
+  \retval{Function}, \retval{value}, or \retval{property list}, resp.,
+  of \VAR{symbol}. \kwd{setf}able. 
+
+  \IT{(\FU*{REQUIRE} \VAR{module} \Op{\VAR{path-list}})}
+  If not in \kwd{*modules*}, try paths in \VAR{path-list} to load
+  module from. Signal \kwd{error} if unsuccessful. Deprecated.
+
+  \IT{(\FU*{PROVIDE} \VAR{module})}
+  If not already there, add \VAR{module} to
+  \kwd{*modules*}. Deprecated. 
+
+  \IT{\V*{*modules*}}
+  List of names of modules loaded into Lisp image.
 
 \end{LIST}
 

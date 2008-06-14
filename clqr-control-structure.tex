@@ -55,14 +55,18 @@
 
 \begin{LIST}{1cm}
 
-  \IT{(\kwd*{DEFVAR} \VAR{name} \OP{\VAR{value} \Op{\VAR{documentation}}} )} Unless bound
-  already, assign \VAR{value} to dynamic variable \retval{\VAR{name}}.
+  \IT{(\kwd*{DEFVAR} \VAR{name} \OP{\VAR{value}
+      \Op{\VAR{documentation}}})} 
+  Unless bound already, assign \VAR{value} to dynamic variable
+  \retval{\VAR{name}}. 
 
-  \IT{(\kwd*{DEFPARAMETER} \VAR{name} \VAR{value} \Op{\VAR{documentation}} )} Assign
-  \VAR{value} to dynamic variable \retval{\VAR{name}}.
+  \IT{(\kwd*{DEFPARAMETER} \VAR{name} \VAR{value}
+    \Op{\VAR{documentation}})} 
+  Assign \VAR{value} to dynamic variable \retval{\VAR{name}}.
 
-  \IT{(\kwd*{DEFCONSTANT} \VAR{name} \VAR{value} \Op{\VAR{documentation}} )} Assign
-  \VAR{value} to global constant \retval{\VAR{name}}.
+  \IT{(\kwd*{DEFCONSTANT} \VAR{name} \VAR{value}
+    \Op{\VAR{documentation}})} 
+  Assign \VAR{value} to global constant \retval{\VAR{name}}.
 
   \IT{(\FU*{NTH-VALUE} \VAR{n} \VAR{form})} 
   \retval{\VAR{n}th return value} of \VAR{form}.
@@ -77,6 +81,9 @@
   Set \VAR{symbol}s to \retval{\VAR{value}s}, resp. Work sequentially/in
   parallel, resp. 
 
+  \IT{(\FU*{SET} \VAR{symbol} \VAR{foo})}  
+  Set \VAR{symbol}'s value cell to \retval{\VAR{foo}}.
+
   \IT{(\SF*{MULTIPLE-VALUE-SETQ} \VAR{vars} \VAR{form})}
   Set \VAR{vars} to the respective values returned by
   \VAR{form}. Return \retval{\VAR{form}'s primary value}.
@@ -88,9 +95,14 @@
   \IT{(\SF*{ROTATEF} \OPn{\VAR{place}})} Rotate values of \VAR{place}s left,
   old first becoming new last \VAR{place}. Return \retval{\NIL}.
 
+  \IT{(\FU*{MAKUNBOUND} \VAR{symbol})}
+  Make \retval{\VAR{symbol}} unbound.
+
   \label{:property_lists}
-  \IT{\arrGOO{(\FU*{GET} \VAR{ symbol} \VAR{ key } \OP{\VAR{default}\DF{\NIL}})\\
-      (\FU*{GETF} \VAR{ place} \VAR{ key } \OP{\VAR{default}\DF{\NIL}})}{\}}}
+  \IT{\arrGOO{(\FU*{GET} \VAR{ symbol} \VAR{ key }
+      \OP{\VAR{default}\DF{\NIL}})\\ 
+      (\FU*{GETF} \VAR{ place} \VAR{ key }
+      \OP{\VAR{default}\DF{\NIL}})}{\}}} 
   \retval{First entry \VAR{key}} from property list stored in
   \VAR{symbol}/in \VAR{place}, resp., or \retval{\VAR{default}} if
   there was no \VAR{key}. \kwd{setf}able.
@@ -195,7 +207,8 @@ Below, lambda list \OPn{\VAR{fu-arg}} has the form
 
   \IT{\arrGOO{\CNS*{CALL-ARGUMENTS-LIMIT}\\
       \CNS*{LAMBDA-PARAMETERS-LIMIT}}{\}}}
-  Upper bound of the number of function arguments or lambda list parameters, resp.; $>=50$.
+  Upper bound of the number of function arguments or lambda list
+  parameters, resp.; $>=50$. 
 
   \IT{\CNS*{MULTIPLE-VALUES-LIMIT}}
   Upper bound of the number of values a function can return; $>20$.
@@ -461,7 +474,7 @@ or\\
       \begin{array}{l}
         \text{\LKWD{with} \VAR{var} [\VAR{type}] \LKWD{=} \VAR{foo }} 
         \{\text{\LKWD{and} \VAR{var-n} [\VAR{type}] \LKWD{=} \VAR{bar}\}}^{*} \\
-        \left.
+        \left.\!
         \begin{array}{l}
           \text{\LKWD{for}}  \\
           \text{\LKWD{as}} 
@@ -470,7 +483,7 @@ or\\
           \text{\VAR{var} [\VAR{type}]}
           \left\{
           \begin{array}{l}
-            \left.
+            \left.\!
             \begin{array}{l}
               \left[
                 \left\{
@@ -515,7 +528,7 @@ or\\
             \left[   
               \text{\LKWD{by} \VAR{step}\DF{1}}
               \right]\\
-            \left.
+            \left.\!
             \begin{array}{l}
               \text{\LKWD{in}} \\
               \text{\LKWD{on}}
@@ -536,17 +549,17 @@ or\\
               \text{\LKWD{the}}\\          
               \text{\LKWD{each}}
             \end{array}
-            \right\}
+            \right\}%
             \left\{
             \begin{array}{{l}}
-              \left.
+              \left.\!
               \begin{array}{l}
-                \left.
+                \left.\!
                 \begin{array}{l}
                   \text{\LKWD{hash-key}}\\
                   \text{\LKWD{hash-keys}}
                 \end{array}
-                \right\}
+                \right\}%
                 \left\{
                 \begin{array}{l}
                   \text{\LKWD{of}}\\
@@ -557,12 +570,12 @@ or\\
                 \left[
                   \text{\LKWD{using} (\LKWD{hash-value} \VAR{v})}
                   \right]\\
-                \left.
+                \left.\!
                 \begin{array}{l}
                   \text{\LKWD{hash-value}}\\
                   \text{\LKWD{hash-values}}
                 \end{array}
-                \right\}
+                \right\}%
                 \left\{
                 \begin{array}{l}
                   \text{\LKWD{of}}\\
@@ -575,13 +588,13 @@ or\\
                   \right.\\
               \end{array}
               \right.\\
-              \left.
+              \left.\!
               \begin{array}{l}
                 \text{\LKWD{symbol\Op{s}}}\\
                 \text{\LKWD{present-symbol\Op{s}}}\\
                 \text{\LKWD{external-symbol\Op{s}}}
               \end{array}
-              \right\}
+              \right\}%
               \left[
                 \left\{
                 \begin{array}{l}
@@ -598,7 +611,7 @@ or\\
                 \left\{
                 \text{\LKWD{and} }\boxed{\mathbb{F}_i}
                 \right\}^{\!*}\\
-                \left.%
+                \left.\!%
                 \begin{array}{l}
                   \text{\LKWD{initially}} \\
                   \text{\LKWD{finally}} 
@@ -612,7 +625,7 @@ or\\
       \left\{
       \begin{array}{l}
         \text{\LKWD{repeat} \VAR{num}}\\
-        \left.
+        \left.\!
         \begin{array}{l}
           \text{\LKWD{while}}\\
           \text{\LKWD{until}}\\
@@ -623,9 +636,9 @@ or\\
         \right\} 
         \text{\VAR{test}}\\
         \boxed{
-          \left.
+          \left.\!
           \begin{array}{l}
-            \left.
+            \left.\!
             \begin{array}{l}
               \text{\LKWD{do}}\\
               \text{\LKWD{doing}}
@@ -639,7 +652,7 @@ or\\
               \text{\LKWD{it}}
             \end{array}
             \right.\\
-            \left.
+            \left.\!
             \begin{array}{l}
               \text{\LKWD{collect\Op{ing}}}\\
               \text{\LKWD{append\Op{ing}}}\\
@@ -652,7 +665,7 @@ or\\
               \text{\LKWD{it}}
             \end{array}
             \right\} [\text{\LKWD{into }\VAR{var}}]\\
-            \left.
+            \left.\!
             \begin{array}{l}
               \text{\LKWD{count\Op{ing}}}\\
               \text{\LKWD{sum\Op{ming}}}\\
@@ -670,23 +683,23 @@ or\\
             \right\} 
                 [\text{\LKWD{into }\VAR{n}}]
                 [\text{\VAR{type}}]\\
-                \left.
+                \left.\!
                 \begin{array}{l}
                   \text{\LKWD{if}}\\
                   \text{\LKWD{when}}\\
                   \text{\LKWD{unless}}
                 \end{array}
-                \right\}
+                \right\}%
                 \text{\VAR{test }}
                 \boxed{\mathbb{S}_i}\{\text{\LKWD{and}}%
                 \boxed{\mathbb{S}_j}\}^{*}[\text{\LKWD{else}}%
                   \boxed{\mathbb{S}_k}\{\text{\LKWD{and}}%
                   \boxed{\mathbb{S}_l}\}^{*}][\text{\LKWD{end}}]
           \end{array}
-          \right._{\displaystyle{\mathbb{S}_0}}
+          \right._{\!\!\!\!\displaystyle{\mathbb{S}_0}}
         }%boxed
         \\
-        \left.
+        \left.\!
         \begin{array}{l}
           \text{\LKWD{initially}} \\
           \text{\LKWD{finally}} 
@@ -761,7 +774,8 @@ or\\
           \Op{\LKWD*{using} (\LKWD*{hash-key} \VAR{key})}}
         Bind \VAR{var} successively to the values of \VAR{hash-table}; bind corresponding keys to \VAR{key}.
 
-        \IT{\Goo{\LKWD*{symbol}\XOR\LKWD*{symbols}\XOR\LKWD*{present-symbol}\XOR\LKWD*{present-symbols}\XOR\LKWD*{external-symbol}\XOR\LKWD*{external-symbols}}\Op{\Goo{\LKWD*{of}\XOR\LKWD*{in}} \VAR{package}}}
+        \IT{\Goo{\LKWD*{symbol}\XOR\LKWD*{symbols}\XOR\LKWD*{present-symbol}\XOR\LKWD*{present-symbols}\XOR\LKWD*{external-symbol}\XOR\LKWD*{external-symbols}}\Op{\Goo{\LKWD*{of}\XOR\LKWD*{in}}
+            \VAR{package}}} 
         Bind \VAR{var} successively to the symbols, or the present symbols, or the external symbols, resp., of \VAR{package}.
 
       \end{LIST}

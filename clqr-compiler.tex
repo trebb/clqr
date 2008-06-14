@@ -32,12 +32,6 @@
 
 \begin{LIST}{1cm}
 
-  \IT{(\kwd*{WITH-COMPILATION-UNIT} (\Op{\kwd{:override}
-      \VAR{bool}\DF{\NIL}}) \OPn{\VAR{form}})}
-  Return \retval{values of \VAR{form}s}. Warnings deferred by the
-  compiler until end of compilation are deferred until the end of
-  evaluation of \VAR{form}s. 
-
   \IT{(\FU*{COMPILE} \VAR{name} \Op{\VAR{definition}})}
   Return \retval{compiled function} \VAR{name}, \retvalii{\T} in case
   of warnings, and \retvaliii{\T} in case of failure.
@@ -85,62 +79,19 @@
   \SF{EVAL-WHEN} is in the top-level of a file being compiled, in the
   top-level of a compiled file being loaded, or anywhere, resp. 
 
+  \IT{(\kwd*{WITH-COMPILATION-UNIT} (\Op{\kwd{:override}
+      \VAR{bool}\DF{\NIL}}) \OPn{\VAR{form}})}
+  Return \retval{values of \VAR{form}s}. Warnings deferred by the
+  compiler until end of compilation are deferred until the end of
+  evaluation of \VAR{form}s. 
+
   \IT{(\SF*{LOAD-TIME-VALUE} \VAR{form}
     \Op{\VAR{read-only}\DF{\NIL}})}
-  Evaluate \VAR{form} at compile time and treat \retval{its value} as literal
-  at run time.
+  Evaluate \VAR{form} at compile time and treat \retval{its value} as
+  literal at run time. 
 
   \IT{(\SF*{QUOTE} \VAR{foo})\XOR \kwd{'}\VAR{foo}} 
   Return \retval{unevaluated \VAR{foo}}.
-
-  \IT{(\FU*{GENSYM} \Op{\VAR{x}})} 
-  Return fresh symbol \retval{\#:G}\VAR{n}, \VAR{n} from
-  \kwd{*gensym-counter*} which is incremented only in case no \VAR{x} is given.
-
-  \IT{(\FU*{GENTEMP} \OP{\VAR{prefix}\DF{\LIT{T}}
-      \Op{\VAR{package}\DF{\kwd{*package*}}}})} 
-  Intern fresh \retval{symbol} in package.
-
-  \IT{\arrGOO{(\SF*{MACROEXPAND-1} \VAR{form})\\
-      (\SF*{MACROEXPAND} \VAR{form})}{\}}}
-  Return \retval{macro expansion}, once or entirely, resp., of \VAR{form} and
-  \retvalii{\T} if \VAR{form} is a macro form. 
-  Return \retval{\VAR{form}} and \retval{\NIL} otherwise.
-
-  \IT{(\SF*{TIME} \OPn{\VAR{form}})}
-  Evaluate \VAR{form}s and print timing information on \V{*trace-output*}.
-  Return \retval{values of \VAR{form}s}.
-  
-  \IT{(\SF*{TRACE} \OPn{\VAR{function}})}
-  Cause \VAR{function}s to be traced. With no arguments,
-  return \retval{list of traced functions}.
-
-  \IT{(\SF*{UNTRACE} \OPn{\VAR{function}})}
-  Stop \VAR{function}s, or all currently traced functions from being traced.
-
-  \IT{\V*{*trace-output*}} 
-  Stream \kwd{trace}d function and \kwd{time} print their output on.
-  
-  \IT{(\kwd*{COMPILER-MACRO-FUNCTION} \VAR{name}
-    \Op{\VAR{environment}})}
-  \retval{Compiler macro function}. \kwd{setfable}.
-
-  \IT{(\SF*{STEP} \VAR{form})}
-  Step through evaluation of \VAR{form}. Return \retval{values of
-    \VAR{form}}. 
-
-  \IT{(\FU*{REQUIRE} \VAR{module} \Op{\VAR{path-list}})}
-  If not in \kwd{*modules*}, try paths in \VAR{path-list} to load
-  module from. Signal \kwd{error} if unsuccessful.
-
-  \IT{(\FU*{PROVIDE} \VAR{module})}
-  If not already there, add \VAR{module} to \kwd{*modules*}.
-
-  \IT{\V*{*modules*}}
-  List of names of modules loaded into Lisp image.
-
-  \IT{(\FU*{SET} \VAR{symbol} \VAR{foo})}  
-  Set \VAR{symbol}'s value cell to \retval{\VAR{foo}}.
 
   \IT{(\GFU*{MAKE-LOAD-FORM} \VAR{foo} \VAR{environment})}
   Make \retval{one or two forms} enabling \kwd{load} to construct
@@ -152,30 +103,13 @@
   Make \retval{two forms} yielding something equvalent to \VAR{foo}
   but preserving only \VAR{slots}.
 
-  \IT{(\FU*{MAKUNBOUND} \VAR{symbol})}
-  Make \retval{\VAR{symbol}} unbound.
-
-  \IT{(\FU*{INSPECT} \VAR{foo})}
-  Interactively give information about \VAR{foo}.
-
-  \IT{(\FU*{DESCRIBE} \VAR{foo}
-    \Op{\VAR{stream}\DF{\kwd{*standard-output*}}})}
-  Send information about \VAR{foo} to \VAR{stream}.
-
-  \IT{(\GFU*{DESCRIBE-OBJECT} \VAR{foo} \VAR{stream})}
-  Send information about \VAR{foo} to \VAR{stream}. Not to be
-  called by user.
-
-  \IT{(\FU*{DISASSEMBLE} \VAR{function})}
-  Send disassembled representation of \VAR{function} to
-  \kwd{*standard-output*}. Return \retval{\NIL}.
-
-  \IT{\V*{*macroexpand-hook*}}
-  Function called by \kwd{macroexpand-1} to generate macro expansions.
-
   \IT{(\FU*{MACRO-FUNCTION} \VAR{symbol} \Op{\VAR{environment}})}
   Return \retval{macro function} if \VAR{symbol}'s function definition
-  is a macro. Return \retval{\NIL} if it is not.
+  is a macro. Return \retval{\NIL} if it is not. 
+
+  \IT{(\kwd*{COMPILER-MACRO-FUNCTION} \VAR{name}
+    \Op{\VAR{environment}})}
+  \retval{Compiler macro function}. \kwd{setfable}.
 
   \IT{(\FU*{EVAL} \VAR{form})}
   Return \retval{values of \VAR{form}}.
@@ -184,7 +118,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{REPL} 
+\subsection{REPL and Debugging} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{LIST}{1cm}
@@ -197,7 +131,8 @@
   Forms most recently evaluated in the REPL.
   
   \IT{\Goo{\kwd*{/}\XOR\kwd*{//}\XOR\V*{///}}}
-  List of most recent results or of the two previous results, resp., printed in the REPL.
+  List of most recent results or of the two previous results, resp.,
+  printed in the REPL. 
   
   \IT{\kwd*{--}}
   Form currently being evaluated by the REPL.
@@ -213,6 +148,49 @@
 
   \IT{(\FU*{ED} \VAR{arg})}
   Invoke editor if possible.
+
+  \IT{\arrGOO{(\SF*{MACROEXPAND-1} \VAR{ form})\\
+      (\SF*{MACROEXPAND} \VAR{ form})}{\}}}
+  Return \retval{macro expansion}, once or entirely, resp., of
+  \VAR{form} and \retvalii{\T} if \VAR{form} is a macro form. 
+  Return \retval{\VAR{form}} and \retval{\NIL} otherwise.
+
+  \IT{\V*{*macroexpand-hook*}}
+  Function called by \kwd{macroexpand-1} to generate macro expansions.
+
+  \IT{(\SF*{TRACE} \OPn{\VAR{function}})}
+  Cause \VAR{function}s to be traced. With no arguments,
+  return \retval{list of traced functions}.
+
+  \IT{(\SF*{UNTRACE} \OPn{\VAR{function}})}
+  Stop \VAR{function}s, or all currently traced functions from being
+  traced. 
+
+  \IT{\V*{*trace-output*}} 
+  Stream \kwd{trace}d function and \kwd{time} print their output on.
+  
+  \IT{(\SF*{STEP} \VAR{form})}
+  Step through evaluation of \VAR{form}. Return \retval{values of
+    \VAR{form}}. 
+
+  \IT{(\SF*{TIME} \OPn{\VAR{form}})}
+  Evaluate \VAR{form}s and print timing information on
+  \V{*trace-output*}. Return \retval{values of \VAR{form}s}. 
+  
+  \IT{(\FU*{INSPECT} \VAR{foo})}
+  Interactively give information about \VAR{foo}.
+
+  \IT{(\FU*{DESCRIBE} \VAR{foo}
+    \Op{\VAR{stream}\DF{\kwd{*standard-output*}}})}
+  Send information about \VAR{foo} to \VAR{stream}.
+
+  \IT{(\GFU*{DESCRIBE-OBJECT} \VAR{foo} \VAR{stream})}
+  Send information about \VAR{foo} to \VAR{stream}. Not to be
+  called by user.
+
+  \IT{(\FU*{DISASSEMBLE} \VAR{function})}
+  Send disassembled representation of \VAR{function} to
+  \kwd{*standard-output*}. Return \retval{\NIL}.
 
 \end{LIST}
 
@@ -244,42 +222,46 @@
   \kwd{optimize},  
   \kwd{special}, or
   \kwd{type}. See below.      
+  
+  \begin{LIST}{.5cm}
+    
+    \IT{(\kwd*{DECLARATION} \OPn{foo})} 
+    Make \VAR{foo}s names of declarations.
+    
+    \IT{(\kwd*{DYNAMIC-EXTENT} \OPn{\VAR{var}} \OPn{(\kwd{function}
+        \VAR{fu})})}
+    Declare objects referred to by \VAR{var} or \VAR{fu} to have
+    dynamic extent. 
 
-  \IT{(\kwd*{DECLARATION} \OPn{foo})} 
-  Make \VAR{foo}s names of declarations.
+    \IT{\arrGOO{(\kwd*{TYPE} \VAR{ type} \OPn{\VAR{ variable}})\\
+        (\kwd*{FTYPE} \VAR{ type} \OPn{\VAR{ function}})}{\}}}
+    Declare \VAR{variable} or \VAR{function} to be of \VAR{type}.
 
-  \IT{\arrGOO{(\kwd*{INLINE} \OPn{\VAR{ function}})\\
-      (\kwd*{NOTINLINE} \OPn{\VAR{ function}})}{\}}}
-  Tell compiler to integrate/not to integrate, resp., called
-  \VAR{function}s into the calling routine.
-
-  \IT{(\xorGOO{\kwd*{IGNORE}\\
-      \kwd*{IGNORABLE}}{\}}\xorGOO{%
+    \IT{(\xorGOO{\kwd*{IGNORE}\\
+        \kwd*{IGNORABLE}}{\}}\xorGOO{%
         \VAR{var}\\
-        (\kwd{function} \VAR{function})}{\}^{\!\!*}})}
-  Suppress warnings about used/unused bindings.
+        (\kwd{function} \VAR{ function})}{\}^{\!\!*}})}
+    Suppress warnings about used/unused bindings.
 
-  \IT{\arrGOO{(\kwd*{TYPE} \VAR{ type} \OPn{\VAR{ variable}})\\
-      (\kwd*{FTYPE} \VAR{ type} \OPn{\VAR{ function}})}{\}}}
-  Declare \VAR{variable} or \VAR{function} to be of \VAR{type}.
+    \IT{\arrGOO{(\kwd*{INLINE} \OPn{\VAR{ function}})\\
+        (\kwd*{NOTINLINE} \OPn{\VAR{ function}})}{\}}}
+    Tell compiler to integrate/not to integrate, resp., called
+    \VAR{function}s into the calling routine.
 
-  \IT{(\kwd*{DYNAMIC-EXTENT} \OPn{\VAR{var}} \OPn{(\kwd{function}
-      \VAR{fu})})}
-  Declare objects referred to by \VAR{var} or \VAR{fu} to have dynamic extent
+    \IT{(\kwd*{OPTIMIZE}\orGOO{%
+        \kwd*{COMPILATION-SPEED}\XOR(\kwd*{COMPILATION-SPEED}\VAR{ n})\\
+        \kwd*{DEBUG}\XOR(\kwd*{DEBUG}\VAR{ n})\\
+        \kwd*{SAFETY}\XOR(\kwd*{SAFETY}\VAR{ n})\\
+        \kwd*{SPACE}\XOR(\kwd*{SPACE}\VAR{ n})\\
+        \kwd*{SPEED}\XOR(\kwd*{SPEED}\VAR{ n})}{\}})}
+    Tell compiler how to optimize. $n=0$ means unimportant, $n=1$ is
+    neutral, $n=3$ means important.
 
-  \IT{(\kwd*{OPTIMIZE}\orGOO{%
-      \kwd*{COMPILATION-SPEED}\XOR(\kwd*{COMPILATION-SPEED}\VAR{ n})\\
-      \kwd*{DEBUG}\XOR(\kwd*{DEBUG}\VAR{ n})\\
-      \kwd*{SAFETY}\XOR(\kwd*{SAFETY}\VAR{ n})\\
-      \kwd*{SPACE}\XOR(\kwd*{SPACE}\VAR{ n})\\
-      \kwd*{SPEED}\XOR(\kwd*{SPEED}\VAR{ n})}{\}})}
-  Tell compiler how to optimize. $n=0$ means unimportant, $n=1$ is
-  neutral, $n=3$ means important.
+    \IT{(\kwd*{SPECIAL} \OPn{\VAR{var}})} 
+    Declare \VAR{var}s being dynamic.
 
-  \IT{(\kwd*{SPECIAL} \OPn{\VAR{var}})} 
-  Declare \VAR{var}s being dynamic.
-
-
+  \end{LIST}
 \end{LIST}
+
 
 

@@ -139,10 +139,10 @@
 % Vertically Arranged Group of Alternatives, {
 % usage: \xorGOO{line1\\ line2...}{closing delimiter}
 \newcommand{\xorGOO}[2]{\text{\(%
-    \left\{%
+    \left\{\!%
     \begin{array}{l}%
       #1%
-    \end{array}%
+    \end{array}\!%
     \right#2%
     \)}}
 %
@@ -152,17 +152,17 @@
     \left\{\!\left|%
     \begin{array}{l}%
       #1%
-    \end{array}%
+    \end{array}\!%
     \right.\right#2%
     \)}}
 %
 % Vertically Arranged Group of Objects, No Opening {
 % usage: \arrGOO{line1\\line2}{closing delimiter}
-\newcommand{\arrGOO}[2]{{\(%
+\newcommand{\arrGOO}[2]{{\(\!%
     \left.%
     \begin{array}{l}%
       #1%
-    \end{array}%
+    \end{array}\!%
     \right#2%
     \)}}
 %
@@ -283,105 +283,91 @@
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vfill
-\raggedright
+\begin{flushleft}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \section*{Typographic Conventions}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Typographic Conventions}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{LIST}{1cm}
 
-\begin{LIST}{1cm}
+    \IT{\kwd{NAME}, \FU{NAME}, \SF{NAME}, \GFU{NAME}, \V{*name*},
+      \CNS{name}} 
+    Symbol defined in Common Lisp; esp. function, special form, generic function,
+    variable, constant.
 
-  \IT{\kwd{NAME}, \FU{NAME}, \SF{NAME}, \GFU{NAME}, \V{*name*},
-    \CNS{name}} 
-  Symbol defined in Common Lisp; esp. function, special form, generic function,
-  variable, constant.
+    \IT{\VAR{them}\DF{\LIT{foo}}} 
+    Placeholder for actual code. Defaults to \LIT{foo}.
 
-  \IT{\VAR{them}\DF{\LIT{foo}}} 
-  Placeholder for actual code. Defaults to \LIT{foo}.
+    \IT{\LIT{me}} 
+    Text to input literally, or output literally.
 
-  \IT{\LIT{me}} 
-  Text to input literally, or output literally.
+    \IT{\Op{\VAR{foo}}} 
+    Either one \VAR{foo} or nothing.
 
-  \IT{\Op{\VAR{foo}}} 
-  Either one \VAR{foo} or nothing.
+    \IT{\OPn{\VAR{foo}}; \Goos{\VAR{foo}}} 
+    Zero or more \VAR{foo}s.
 
-  \IT{\OPn{\VAR{foo}}; \Goos{\VAR{foo}}} 
-  Zero or more \VAR{foo}s.
+    \IT{\RP{\VAR{foo}}; \Goop{\VAR{foo}}} 
+    One or more \VAR{foo}s.
 
-  \IT{\RP{\VAR{foo}}; \Goop{\VAR{foo}}} 
-  One or more \VAR{foo}s.
+    \IT{\VAR{foos}} 
+    English plural denotes a list argument.
 
-  \IT{\VAR{foos}} 
-  English plural denotes a list argument.
+    \IT{\Goo{\VAR{foo}\XOR\VAR{bar}\XOR\VAR{baz}};
+      \xorGOO{
+        \VAR{foo}\\
+        \VAR{bar}\\
+        \VAR{baz}%
+      }{.}}
+    Either \VAR{foo}, or \VAR{bar}, or \VAR{baz}.
 
-  \IT{\Goo{\VAR{foo}\XOR\VAR{bar}\XOR\VAR{baz}};
-    \xorGOO{
-      \VAR{foo}\\
-      \VAR{bar}\\
-      \VAR{baz}%
-    }{.}}
-  Either \VAR{foo}, or \VAR{bar}, or \VAR{baz}.
+    \IT{\orGOO{
+        \VAR{foo}\\
+        \VAR{bar}\\
+        \VAR{baz} 
+      }{.}}
+    Anything from none to all of \VAR{foo}, \VAR{bar}, and \VAR{baz}.
 
-  \IT{\orGOO{
-      \VAR{foo}\\
-      \VAR{bar}\\
-      \VAR{baz} 
-    }{.}}
-  Anything from none to all of \VAR{foo}, \VAR{bar}, and \VAR{baz}.
+    \IT{\retval{\VAR{foo}}; \retvalii{\VAR{bar}}; \retvaliii{\VAR{baz}}}  
+    \VAR{foo}, \VAR{bar}, \VAR{baz} are 1st, 2nd, and 3rd return value.
+    
+    \IT{\T}
+    \kwd*{T}, or truth.
+    
+    \IT{\NIL}
+    \kwd*{NIL}, falsehood, or \kwd{()}.
 
-  \IT{\retval{\VAR{foo}}; \retvalii{\VAR{bar}}; \retvaliii{\VAR{baz}}}  
-  \VAR{foo}, \VAR{bar}, \VAR{baz} are 1st, 2nd, and 3rd return value.
-  
-  \IT{\T}
-  \kwd*{T}, or truth.
-  
-  \IT{\NIL}
-  \kwd*{NIL}, falsehood, or \kwd{()}.
+  \end{LIST}
+  \clearpage
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%% Content starts here %%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\end{LIST}
-\clearpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Content starts here %%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \input{clqr-numbers}
+  \input{clqr-characters}
+  \input{clqr-strings}
+  \input{clqr-conses}
+  \input{clqr-arrays}
+  \input{clqr-sequences}
+  \input{clqr-hash-tables}
+  \input{clqr-structures}
+  \input{clqr-control-structure}
+  \input{clqr-clos}
+  \input{clqr-conditions-and-errors}
+  \input{clqr-input-output}
+  \input{clqr-system-types-and-classes}
+  \input{clqr-packages-and-symbols}
+  \input{clqr-compiler}
+  \input{clqr-environment}
 
-\input{clqr-numbers}
-
-\input{clqr-characters}
-
-\input{clqr-strings}
-
-\input{clqr-conses}
-
-\input{clqr-arrays}
-
-\input{clqr-sequences}
-
-\input{clqr-hash-tables}
-
-\input{clqr-structures}
-
-\input{clqr-control-structure}
-
-\input{clqr-clos}
-
-\input{clqr-conditions-and-errors}
-
-\input{clqr-input-output}
-
-\input{clqr-system-types-and-classes}
-
-\input{clqr-symbols-and-packages}
-
-\input{clqr-compiler}
-
-\input{clqr-environment}
+\end{flushleft}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\clearpage % Uncomment this line to save some space
+%
 \renewcommand{\indexpagestyle}{lispref}
 \renewenvironment{theindex}%
                  {\begin{list}{}%
@@ -392,7 +378,7 @@
 \section*{Index}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{-3ex}
-\begin{multicols}{3}
+\begin{multicols}{4}
   % Stock \printindex won't do as we want three-column.
   \tiny\sffamily\input{clqr.ind}
 \end{multicols}
@@ -424,8 +410,6 @@
       \begin{center}
         \rmfamily\mdseries\itshape\fontsize{300}{0}\selectfont
         \reflectbox{{\color{lightgray}cl\/}}\\
-        %\ttfamily\mdseries\upshape\fontsize{200}{0}\selectfont
-        %{\color{Gray}$(\lambda)$}
       \end{center}
     \end{minipage}
     \vfill
