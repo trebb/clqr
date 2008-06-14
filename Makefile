@@ -89,7 +89,7 @@ clean:
 
 # Project hosting
 
-maintainance:	letter a4 release publish
+maintainance:	release publish
 
 publish:	html/sample-frontcover.jpg html/sample-doublepage.jpg \
 		html/sample-firstpage-all.jpg html/sample-firstpage-four.jpg \
@@ -98,14 +98,14 @@ publish:	html/sample-frontcover.jpg html/sample-doublepage.jpg \
 	$(RSYNC) --delete ./ trebb@shell.berlios.de:/home/groups/ftp/pub/clqr/clqr/ $(SEND-TO-LOG)
 	$(RSYNC) ./html/ trebb@shell.berlios.de:/home/groups/clqr/htdocs/ $(SEND-TO-LOG)
 
-release:	letter a4 $(CLQR).tar.gz html/release-revision.txt html/release-date.txt
+release:	letter a4 $(CLQR).tar.gz html/release-revision.txt
 	./upload.sh
 
-html/release-date.txt:	
-	$(DATE) > $@
-
-html/release-revision.txt:	
+html/release-revision.txt:	html/release-date.txt
 	$(BZR_REVISION) > $@
+
+html/release-date.txt:	$(CLQR).tex $(CLQR)-*.tex 
+	$(DATE) > $@
 
 html/sample-frontcover.jpg:	$(CLQR)-a4-consec.pdf
 	$(CONVERT) $<'[0]' -verbose -resize 30% temp.jpg $(SEND-TO-LOG)

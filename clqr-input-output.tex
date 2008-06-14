@@ -235,7 +235,7 @@
   Value of \retval{(\kwd{parse-namestring '}\VAR{foo})}.
 
   \IT{\KWD{\#\boldmath$<$}}
-  \index{\#<@\#\boldmath$<$}%
+  \index{\#<@\#$<$}%
   Have the reader signal an error.
 
   \IT{\KWD*{\#+}\VAR{test} \VAR{form}}
@@ -334,6 +334,14 @@
   corresponding to keyword parameters (\kwd{:}\VAR{bar} becoming
   \kwd{*print-}\VAR{bar}\kwd{*}). (\kwd{:stream} keyword for \FU{write} only.)
 
+  \IT{(\FU*{PPRINT-NEWLINE}\xorGOO{%
+      \kwd{:linear}\\
+      \kwd{:fill}\\
+      \kwd{:miser}\\
+      \kwd{:mandatory}}{\}}
+    \OP{\VAR{stream}\DF{\kwd{*standard-output*}}})} 
+  Print a conditional newline. Return \retval{\NIL}.
+
   \IT{(\xorGOO{\FU*{PPRINT-FILL}\\
       \FU*{PPRINT-LINEAR}}{\}}%
     \VAR{stream} \VAR{foo} \OP{\VAR{parenthesis}\DF{\T} \Op{\VAR{noop}}})}
@@ -370,12 +378,17 @@
     Move cursor forward to column number $c + ki$, $k \geq 0$ being as small
     as possible.
 
+    \IT{(\FU*{PPRINT-INDENT}\xorGOO{%
+        \kwd{:block}\\
+        \kwd{:current}}{\}} \VAR{n}
+      \OP{\VAR{stream}\DF{\kwd{*standard-output*}}})} 
+    Specify indentation for innermost logical block. Return \retval{\NIL}.
+
     \IT{(\kwd*{PPRINT-EXIT-IF-LIST-EXHAUSTED})}
     If \VAR{list} is empty, terminate logical block. Return
     \retval{\NIL} otherwise.
-
+    
   \end{LIST}
-
 
   \IT{(\FU*{SET-PPRINT-DISPATCH} \VAR{type} \VAR{function}
     \OP{\VAR{priority}\DF{0}
@@ -552,8 +565,10 @@
     \IT{\KWD{\TLD}\Op{\VAR{min-col}\DF{\LIT{0}}
         \Op{\KWD{,}\VAR{col-inc}\DF{\LIT{1}}
           \Op{\KWD{,}\VAR{min-pad}\DF{\LIT{0}}
-            \Op{\KWD{,}\VAR{pad-char}\DF{\LIT{\#$\backslash$Space}}}}}} \KWD{\Op{:}\Op{@}\boldmath{$<$}}
-      \Op{\VAR{text}\KWD{\TLD}\VAR{a},\VAR{b}\kwd{:;}} \Goos{\VAR{text}\KWD{\TLD;}} \KWD{\TLD\boldmath{$>$}}}
+            \Op{\KWD{,}\VAR{pad-char}\DF{\LIT{\#$\backslash$Space}}}}}}
+      \KWD{\Op{:}\Op{@}\boldmath{$<$}} 
+      \Op{\VAR{text}\KWD{\TLD}\VAR{a},\VAR{b}\kwd{:;}}
+      \Goos{\VAR{text}\KWD{\TLD;}} \KWD{\TLD\boldmath{$>$}}} 
     Justify text produced by \VAR{text}s in a field of at least
     \VAR{min-col} columns.
 
@@ -571,11 +586,11 @@
 
     \IT{\KWD{\TLD}\Op{\VAR{limit}}\Op{\KWD{{:}}\Op{\kwd{@}}}%
       \KWD{\boldmath{$\{$}}\VAR{text}\KWD{\TLD\boldmath{$\}$}}}
-    \VAR{text} is used repeatedly, up to \VAR{limit}, as control string for every element
-    of argument, which should be a list. With \kwd{@}, take all
-    remaining arguments.
-    \kwd{:}, argument should be a list of sublists. At each iteration
-    step the elements of a sublist can be used by \VAR{str}.
+    \VAR{text} is used repeatedly, up to \VAR{limit}, as control
+    string for every element of argument, which should be a list. With
+    \kwd{@}, take all remaining arguments. \kwd{:}, argument should be
+    a list of sublists. At each iteration step the elements of a
+    sublist can be used by \VAR{str}. 
 
     \IT{\KWD{\TLD\^{}}}
     Leave immediately \kwd{\TLD\boldmath{$<$}} or \kwd{\TLD\boldmath{$\{$}}.

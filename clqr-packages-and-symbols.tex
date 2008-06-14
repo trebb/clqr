@@ -1,3 +1,12 @@
+% Copyright (C) 2008 Bert Burgemeister
+%
+% Permission is granted to copy, distribute and/or modify this
+% document under the terms of the GNU Free Documentation License,
+% Version 1.2 or any later version published by the Free Software
+% Foundation; with no Invariant Sections, no Front-Cover Texts and
+% no Back-Cover Texts. For details see file COPYING.
+%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Packages and Symbols}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -86,7 +95,7 @@
 
   \IT{(\FU*{GENSYM} \Op{\VAR{x}})} 
   Return fresh symbol \retval{\#:G}\VAR{n}, \VAR{n} from
-  \kwd{*gensym-counter*} which is incremented only in case no \VAR{x}
+  \V*{*gensym-counter*} which is incremented only in case no \VAR{x}
   is given. 
 
   \IT{(\FU*{GENTEMP} \OP{\VAR{prefix}\DF{\LIT{T}}
@@ -135,11 +144,12 @@
   Revert \VAR{symbols} to internal status. Return \retval{\T}.
 
   \IT{(\GFU*{DOCUMENTATION} \kwd{'}\VAR{foo}
-    \Goo{\kwd{variable}\XOR\kwd{function}\XOR
-      \kwd*{compiler-macro}\XOR
-      \kwd{method-combination}\XOR
-      \T\XOR\kwd{structure}
-      \XOR\kwd{type}\XOR\kwd{setf}\XOR\T})}
+    \Goo{\kwd*{variable}%
+      \XOR\kwd*{function}\XOR%
+      \kwd*{compiler-macro}\XOR%
+      \kwd*{method-combination}\XOR%
+      \kwd*{structure}%
+      \XOR\kwd*{type}\XOR\kwd*{setf}\XOR\T})}
   Return \retval{documentation string} of \VAR{foo} of given
   type. \kwd{setf}able. 
 
@@ -154,8 +164,8 @@
        \OPn{form}}{\}})}
   Evaluate \VAR{form}s with \VAR{var} successively bound to all
   symbols from all registered packages, to all symbols from
-  \VAR{package}, or to all external symbols from \VAR{package}, resp. Return
-  \retval{value of \VAR{result}}.
+  \VAR{package}, or to all external symbols from \VAR{package},
+  resp. Return \retval{value of \VAR{result}}. 
 
   \IT{(\SF*{WITH-PACKAGE-ITERATOR} (\VAR{name} \RP{\VAR{package}}
     \Op{\kwd{:internal}\XOR\kwd{:external}\XOR\kwd{:inherited}})
@@ -187,5 +197,3 @@
   List of names of modules loaded into Lisp image.
 
 \end{LIST}
-
-

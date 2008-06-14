@@ -38,10 +38,10 @@ see pages \pageref{section:Sequences} and \pageref{section:Arrays}.
       \kwd{:end1} \VAR{ end-foo}\DF{\LIT{\NIL}}\\
       \kwd{:start2} \VAR{ start-bar}\DF{\LIT{0}}\\
       \kwd{:end2} \VAR{ end-bar}\DF{\LIT{\NIL}}}{\}})}  
-  \index{string>@STRING\boldmath$>$}%
-  \index{string>=@STRING\boldmath$>=$}%
-  \index{string<@STRING\boldmath$<$}%
-  \index{string<=@STRING\boldmath$<=$}%
+  \index{string>@STRING$>$}%
+  \index{string>=@STRING$>=$}%
+  \index{string<@STRING$<$}%
+  \index{string<=@STRING$<=$}%
   If \VAR{foo} is
   lexicographically not equal, greater, not less, less, or not greater,
   resp., then return \retval{character number} from beginning of \VAR{foo}
@@ -70,9 +70,10 @@ see pages \pageref{section:Sequences} and \pageref{section:Arrays}.
       \kwd{element-type} \VAR{ type}\DF{\kwd{character}}}{\}})} 
   Return \retval{string} of length \VAR{size}.
 
-  \IT{(\xorGOO{\FU*{STRING}\\\FU*{NSTRING}}{\}}\kwd{-}%
-    \xorGOO{\kwd{CAPITALIZE}\\\kwd{UPCASE}
-      \\\kwd{DOWNCASE}}{\}}
+  \IT{(\xorGOO{\FU{STRING}\\
+      \FU{NSTRING}}{\}}\kwd{-}\xorGOO{\kwd{CAPITALIZE}\\
+      \kwd{UPCASE}\\
+      \kwd{DOWNCASE}}{\}}
     \VAR{string}  
     \orGOO{\kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}}{\}})}
