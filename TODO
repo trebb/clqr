@@ -1,9 +1,9 @@
-- find better bold <, >, \, {, }
+* find better bold <, >, \, {, }
 
-- snapping-in explanation starts
+* snapping-in explanation starts
 
 
-FINAL TESTS
+* FINAL TESTS
 
 - multiple return values mentioned and usage of the three \retvals
 
@@ -20,3 +20,7 @@ FINAL TESTS
 - errors/conditions always mentioned as \kwd{}
 
 - applicability of declare
+
+
+
+
