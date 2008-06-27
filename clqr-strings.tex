@@ -11,7 +11,7 @@
 \section{Strings} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Strings can as well be manipulated by array and sequence functions,
-see pages \pageref{section:Sequences} and \pageref{section:Arrays}.
+see pages \pageref{section:Arrays} and \pageref{section:Sequences}.
 
 \begin{LIST}{1cm}
 
@@ -64,7 +64,8 @@ see pages \pageref{section:Sequences} and \pageref{section:Arrays}.
   where they begin to differ. Otherwise return \retval{\NIL}.
 
   \IT{(\FU*{STRING} \VAR{x})}
-  Convert \VAR{x} (symbol, string, or character) into a \retval{string}.
+  Convert \VAR{x} (\kwd{symbol}, \kwd{string}, or \kwd{character})
+  into a \retval{string}. 
 
   \IT{(\FU*{MAKE-STRING} \VAR{size} \orGOO{\kwd{initial-element} \VAR{ char}\\
       \kwd{element-type} \VAR{ type}\DF{\kwd{character}}}{\}})} 
@@ -90,8 +91,8 @@ see pages \pageref{section:Sequences} and \pageref{section:Arrays}.
   \IT{(\xorGOO{\FU*{STRING-TRIM}\\
       \FU*{STRING-LEFT-TRIM}\\
       \FU*{STRING-RIGHT-TRIM}}{\}} \VAR{char-bag} \VAR{string})}
-  Return \retval{string} with all characters in \VAR{char-bag} removed
-  from both ends, from the beginning, or from the end, resp., of \VAR{string}.
+  Return \retval{\VAR{string}} with all characters in \VAR{char-bag} removed
+  from both ends, from the beginning, or from the end, resp.
 
   \IT{\arrGOO{(\FU*{CHAR} \VAR{ string} \VAR{ i})\\
       (\FU*{SCHAR} \VAR{ string} \VAR{ i})}{\}}} 

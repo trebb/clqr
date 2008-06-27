@@ -17,8 +17,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
-  \IT{(\FU*{ARRAYP} \VAR{foo})}
-  Return \retval{\T} if \VAR{foo} is of type \kwd{array}.
+  \IT{\arrGOO{%
+      (\FU*{ARRAYP} \VAR{ foo})\\
+      (\FU*{VECTORP} \VAR{ foo})\\
+      (\FU*{SIMPLE-VECTOR-P} \VAR{ foo})\\
+      (\FU*{BIT-VECTOR-P} \VAR{ foo})\\
+      (\FU*{SIMPLE-BIT-VECTOR-P} \VAR{ foo})}{\}}}
+  \retval{\T} if \VAR{foo} is of indicated type.
 
   \IT{\arrGOO{(\FU*{ADJUSTABLE-ARRAY-P} \VAR{ array})\\
       (\FU*{ARRAY-HAS-FILL-POINTER-P} \VAR{ array})}{\}}}
@@ -28,13 +33,6 @@
   \IT{(\FU*{ARRAY-IN-BOUNDS-P} \VAR{array} \Op{\VAR{subscripts}})}
   Return \retval{\T} if \VAR{subscripts} are in \VAR{array}'s bounds.
 
-  \IT{\arrGOO{%
-      (\FU*{VECTORP} \VAR{ foo})\\
-      (\FU*{SIMPLE-VECTOR-P} \VAR{ foo})\\
-      (\FU*{BIT-VECTOR-P} \VAR{ foo})\\
-      (\FU*{SIMPLE-BIT-VECTOR-P} \VAR{ foo})}{\}}}
-  \retval{\T} if \VAR{foo} is of indicated type.
-
 \end{LIST}
 
 
@@ -43,15 +41,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
-  \IT{(\xorGOO{\FU*{MAKE-ARRAY}\\\FU*{ADJUST-ARRAY} \VAR{ array}}{\}}% 
-    \xorGOO{\VAR{dim}\\\kwd{'}(\OPn{\VAR{dim}})}{\}}
+  \IT{(\xorGOO{\FU*{MAKE-ARRAY}\\
+      \FU*{ADJUST-ARRAY} \VAR{ array}}{\}}
+    \VAR{dimensions}\\
     \orGOO{\kwd{:element-type} \VAR{ type}\DF{\T}\\
       \kwd{:adjustable} \VAR{ bool}\DF{\NIL}\\
-      \kwd{:fill-pointer} \Goo{\VAR{num}\XOR\VAR{bool}}\DF{\NIL}\\
+      \kwd{:fill-pointer } \Goo{\VAR{num}\XOR\VAR{bool}}\DF{\NIL}\\
       \xorGOO{\kwd{:initial-element} \VAR{ obj}\\
         \kwd{:initial-contents} \VAR{ seq}\\
         \kwd{:displaced-to} \xorGOO{\VAR{array}\\\VAR{bool}\DF{\NIL}}{\}}
-        \Op{\kwd{:displaced-index-offset} \VAR{i}\DF{0}}}{.}}{\}})}
+        \Op{\kwd{:displaced-index-offset } \VAR{i}\DF{0}}}{.}}{\}})}
   Return fresh, or readjust, resp., \retval{vector or array of
     dimension(s) \VAR{dim}}. 
 
@@ -87,7 +86,7 @@
   \IT{(\FU*{BIT-NOT} \VAR{bit-array} \Op{\VAR{arg}\DF{\NIL}})}
   Return \retval{result} of bit-wise negation of \VAR{bit-array}. If
   \VAR{arg} is a bit array, put result there. If \VAR{arg} is \T, put
-  result in \VAR{bit-arry}. If \VAR{arg} is \NIL, make a new array for
+  result in \VAR{bit-array}. If \VAR{arg} is \NIL, make a new array for
   result. 
 
   \IT{(\xorGOO{\FU*{BIT-AND}\\
@@ -104,17 +103,17 @@
   Return \retval{result} of bit-wise logical operations on
   \VAR{bit-array-a} and  \VAR{bit-array-b}. If \VAR{arg} is a bit
   array, put result there. If \VAR{arg} is \T, put result in
-  \VAR{bit-arry-a}. If \VAR{arg} is \NIL, make a new array for
+  \VAR{bit-array-a}. If \VAR{arg} is \NIL, make a new array for
   result. 
 
   \IT{\CNS*{ARRAY-RANK-LIMIT}} 
-  Upper bound of array rank, $> 8$.
+  Upper bound of array rank, $\geq 8$.
 
   \IT{\CNS*{ARRAY-DIMENSION-LIMIT}} 
-  Upper bound of an array dimension, $> 1024$.
+  Upper bound of an array dimension, $\geq 1024$.
 
   \IT{\CNS*{ARRAY-TOTAL-SIZE-LIMIT}} 
-  Upper bound of array size, $> 1024$.
+  Upper bound of array size, $\geq 1024$.
 
 \end{LIST}
 

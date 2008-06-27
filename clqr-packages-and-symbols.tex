@@ -18,7 +18,7 @@
   \kwd{package}, resp.
 
   \IT{(\FU*{BOUNDP} \VAR{symbol})}
-  \retval{\T} if \VAR{symbol} is bound.
+  \retval{\T} if \VAR{symbol} is a special variable.
 
   \IT{(\FU*{KEYWORDP} \VAR{foo})}
   \retval{\T} if \VAR{foo} is a keyword.
@@ -39,33 +39,31 @@
   Create \retval{package \VAR{name}}.
 
   \IT{(\kwd*{DEFPACKAGE}\VAR{ foo} 
-    \orGOO{\OPn{(\kwd{:use }\OPn{\VAR{bar}})}\\
+    \orGOO{\OPn{(\kwd{:use }\OPn{\VAR{from-package}})}\\
       \OPn{(\kwd{:nicknames }\OPn{\VAR{nick}})}\\
-      (\kwd{:documentation }\VAR{doc})\\
-      \OPn{(\kwd{:export }\OPn{\VAR{baz}})}\\
-      \OPn{(\kwd{:import-from }\VAR{p} \OPn{\VAR{n}})}\\
-      \OPn{(\kwd{:intern }\OPn{\VAR{n}})}\\
-      \OPn{(\kwd{:shadow}\XOR\Goo{\kwd{:shadowing-import-from}\VAR{ p}\OPn{\VAR{ jnk}}})}\\
+      (\kwd{:documentation }\VAR{string})\\
+      \OPn{(\kwd{:export }\OPn{\VAR{symbol}})}\\
+      \OPn{(\kwd{:import-from }\VAR{package } \OPn{\VAR{symbol}})}\\
+      \OPn{(\kwd{:intern }\OPn{\VAR{symbol}})}\\
+      \OPn{(\kwd{:shadow }\OPn{\VAR{symbol}})}\\
+      \OPn{(\kwd{:shadowing-import-from}\VAR{ package}\OPn{\VAR{ symbol}})}\\
       (\kwd{:size }\VAR{int})\\
     }{\}})} 
-  Return \retval{defined package \VAR{foo}} which inherits symbols
-  exported by packages \VAR{bar} excluding \VAR{jnk}s and some
-  symbols. \VAR{n}s from package \VAR{p}; exports \VAR{baz}es. 
+  Return newly defined or modified \retval{package \VAR{foo}} which inherits symbols
+  exported by \VAR{from-package}s.
   
-  \IT{(\FU*{RENAME-PACKAGE} \VAR{package} \Op{(\OPn{nick})\DF{\NIL}})}
+  \IT{(\FU*{RENAME-PACKAGE} \VAR{package} \Op{\OPn{\VAR{nicknames}}\DF{\NIL}})}
   Rename \VAR{package}. Return \retval{renamed package}.
 
   \IT{(\kwd*{IN-PACKAGE }\VAR{foo})} 
   Make \retval{package \VAR{foo}} current.
 
-  \IT{(\FU*{USE-PACKAGE} (\OPn{\VAR{foo}})
-    \Op{\VAR{package}}\DF{\kwd{*package*}})}  
-  Make exported symbols of packages \VAR{foo} available in
-  \VAR{package}. Return \retval{\T}. 
-
-  \IT{(\FU*{UNUSE-PACKAGE} (\OPn{\VAR{foo}})
-    \Op{\VAR{package}}\DF{\kwd{*package*}})}
-  Remove packages \VAR{foo} from use-list of \VAR{package}.
+  \IT{(\xorGOO{\FU*{USE-PACKAGE}\\
+    \FU*{UNUSE-PACKAGE}}{\}} 
+    \VAR{packages}
+    \Op{\VAR{package}\DF{\kwd{*package*}}})}
+  Make exported symbols of \VAR{packages} available in \VAR{package}, or remove them
+  from \VAR{package}, resp.. Return \retval{\T}. 
 
   \IT{(\FU*{DELETE-PACKAGE} \VAR{package})} 
   Delete \VAR{package}. Return \retval{\T} if successful.
@@ -81,7 +79,7 @@
   \IT{(\FU*{PACKAGE-NICKNAMES} \VAR{package})} 
   \retval{List of nicknames} of \VAR{package}.
 
-  \IT{(\FU*{FIND-PACKAGE} \Goo{\VAR{name}\XOR\VAR{package}})} 
+  \IT{(\FU*{FIND-PACKAGE} \VAR{name})}
   Return \retval{package object} with \VAR{name} (case-sensitive). 
 
   \IT{(\FU*{PACKAGE-USE-LIST} \VAR{package})}
@@ -93,28 +91,28 @@
   \IT{(\FU*{MAKE-SYMBOL} \VAR{name})}
   Make fresh, uninterned \retval{symbol \VAR{name}}.
 
-  \IT{(\FU*{GENSYM} \Op{\VAR{x}})} 
-  Return fresh symbol \retval{\#:G}\VAR{n}, \VAR{n} from
+  \IT{(\FU*{GENSYM} \Op{\VAR{x}\DF{\LIT{G}}})} 
+  Return fresh symbol \retval{\kwd{\#:}\VAR{x}\VAR{n}}, with \VAR{n} from
   \V*{*gensym-counter*} which is incremented only in case no \VAR{x}
   is given. 
 
   \IT{(\FU*{GENTEMP} \OP{\VAR{prefix}\DF{\LIT{T}}
       \Op{\VAR{package}\DF{\kwd{*package*}}}})} 
-  Intern fresh \retval{symbol} in package. Deprecated.
+  Intern fresh \retval{symbol} in \retval{package}. Deprecated.
 
   \IT{(\FU*{COPY-SYMBOL} \VAR{symbol} \Op{\VAR{props}\DF{\NIL}})}
   Return uninterned \retval{copy of \VAR{symbol}}. If \VAR{props} is
   \T, the copy has the same value, function, and property list.
 
-  \IT{(\FU*{FIND-ALL-SYMBOLS} \VAR{string})}
-  Return \retval{list of symbols} with name \VAR{string} from all
+  \IT{(\FU*{FIND-ALL-SYMBOLS} \VAR{name})}
+  Return \retval{list of symbols} with \VAR{name} from all
   registered packages.
 
-  \IT{(\FU*{SYMBOL-PACKAGE} \VAR{foo})} 
-  Return the \retval{package \VAR{foo} came from}.
+  \IT{(\FU*{SYMBOL-PACKAGE} \VAR{symbol})} 
+  Return the \retval{package \VAR{symbol} came from}.
 
   \IT{(\xorGOO{\FU*{INTERN}\\
-      \FU*{FIND-SYMBOL}}{\} \VAR{name} \Op{\VAR{package}}})}
+      \FU*{FIND-SYMBOL}}{\}} \VAR{name} \Op{\VAR{package}})}
   Intern or find, resp., \retval{symbol \VAR{name}} in
   \VAR{package}. Second return value is one of
   \retvalii{\kwd{:internal}}, \retvalii{\kwd{:external}}, or
@@ -124,15 +122,15 @@
   Remove \VAR{symbol} from \VAR{package}, return \retval{\T} on success.
 
   \IT{(\xorGOO{\FU*{IMPORT}\\
-      \FU*{SHADOWING-IMPORT}}{\}}\RP{\VAR{symbol}}
+      \FU*{SHADOWING-IMPORT}}{\}}\VAR{symbols}
     \Op{\VAR{package}\DF{\kwd{*package*}}})}
-  Make \VAR{symbol}s internal  to \VAR{package}. Return \retval{\T}. In
+  Make \VAR{symbols} internal  to \VAR{package}. Return \retval{\T}. In
   case of a name conflict, signal \kwd{package-error}, or shadow
   the old symbol, resp.
 
-  \IT{(\FU*{SHADOW} \RP{\VAR{symbol}}
+  \IT{(\FU*{SHADOW} \VAR{symbols}
     \Op{\VAR{package}\DF{\kwd{*package*}}})}
-  Add \VAR{symbol}s to shadowed list of \VAR{package}. Return \retval{\T}.
+  Add \VAR{symbols} to shadowed list of \VAR{package}. Return \retval{\T}.
   
   \IT{(\FU*{PACKAGE-SHADOWING-SYMBOLS} \VAR{package})} 
   \retval{List of shadowing symbols} of \VAR{package}.
@@ -140,39 +138,29 @@
   \IT{(\FU*{EXPORT} \VAR{symbols} \Op{\VAR{package}\DF{\kwd{*package*}}})}
   Make \VAR{symbols} external to \VAR{package}. Return \retval{\T}.
 
-  \IT{(\FU*{UNEXPORT} \VAR{symbols} \VAR{package})} 
+  \IT{(\FU*{UNEXPORT} \VAR{symbols} \VAR{package})}
   Revert \VAR{symbols} to internal status. Return \retval{\T}.
-
-  \IT{(\GFU*{DOCUMENTATION} \kwd{'}\VAR{foo}
-    \Goo{\kwd*{variable}%
-      \XOR\kwd*{function}\XOR%
-      \kwd*{compiler-macro}\XOR%
-      \kwd*{method-combination}\XOR%
-      \kwd*{structure}%
-      \XOR\kwd*{type}\XOR\kwd*{setf}\XOR\T})}
-  Return \retval{documentation string} of \VAR{foo} of given
-  type. \kwd{setf}able. 
-
+  
   \IT{(\xorGOO{%
-      \xorGOO{%
+      \arrGOO{%
         \FU*{DO-ALL-SYMBOLS}\\
-        \FU*{DO-SYMBOLS}}{\}} 
-      (\VAR{var} \OP{\VAR{package} \Op{\VAR{result}}})\\
-    \FU*{DO-EXTERNAL-SYMBOLS} (\VAR{var} \Op{\VAR{result}})}{\}}
-     \OPn{(\kwd{declare} \OPn{\VAR{decl}})} 
-     \orGOO{\OPn{tag}\\
-       \OPn{form}}{\}})}
+        \FU*{DO-SYMBOLS}}{\}}
+      (\VAR{var } \OP{\VAR{package } \Op{\VAR{result}}})\\
+      \FU*{DO-EXTERNAL-SYMBOLS } (\VAR{var } \Op{\VAR{result}})}{\}}%
+    \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
+    \OPn{\orGOO{\VAR{tag}\\
+      \VAR{form}}{\}}})}
   Evaluate \VAR{form}s with \VAR{var} successively bound to all
   symbols from all registered packages, to all symbols from
   \VAR{package}, or to all external symbols from \VAR{package},
-  resp. Return \retval{value of \VAR{result}}. 
+  resp. Return \retval{values of \VAR{result}}. 
 
-  \IT{(\SF*{WITH-PACKAGE-ITERATOR} (\VAR{name} \RP{\VAR{package}}
+  \IT{(\SF*{WITH-PACKAGE-ITERATOR} (\VAR{name} \VAR{packages}
     \Op{\kwd{:internal}\XOR\kwd{:external}\XOR\kwd{:inherited}})
     \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \OPn{\VAR{form}})}
   Return \retval{values of \VAR{form}s}. In the body, successive
   invocations of  (\VAR{name}) return: \T\ if a symbol is returned;
-  a symbol from a \VAR{package}; accessibility
+  a symbol from \VAR{packages}; accessibility
   (\kwd{:internal}, \kwd{:external}, or \kwd{:inherited}); and the
   package the symbol belongs to.
 
@@ -184,6 +172,16 @@
       (\FU*{SYMBOL-PLIST} \VAR{ symbol})}{\}}} 
   \retval{Function}, \retval{value}, or \retval{property list}, resp.,
   of \VAR{symbol}. \kwd{setf}able. 
+
+  \IT{(\GFU*{DOCUMENTATION} \VAR{foo}
+    \Goo{\kwd*{variable}%
+      \XOR\kwd*{function}\XOR%
+      \kwd*{compiler-macro}\XOR%
+      \kwd*{method-combination}\XOR%
+      \kwd*{structure}%
+      \XOR\kwd*{type}\XOR\kwd*{setf}\XOR\T})}
+  Return \retval{documentation string} of \VAR{foo} of given
+  type. \kwd{setf}able. 
 
   \IT{(\FU*{REQUIRE} \VAR{module} \Op{\VAR{path-list}})}
   If not in \kwd{*modules*}, try paths in \VAR{path-list} to load

@@ -18,20 +18,22 @@
 
   \IT{\arrGOO{(\FU*{CONSP} \VAR{ foo})\\
       (\FU*{LISTP} \VAR{ foo})}{\}}}
-    Return \retval{\T} if \VAR{foo} is either \T\ or a cons/list.
+    Return \retval{\T} if \VAR{foo} is either \T\ or a \kwd{cons}/\kwd{list}.
 
   \IT{(\FU*{ENDP} \VAR{list})}
   Return \retval{\T} if \VAR{list} is \LIT{()}.
 
-  \IT{(\FU*{ATOM} \VAR{foo})} Return \retval{\T} if \VAR{foo} is not a cons.
+  \IT{(\FU*{ATOM} \VAR{foo})} Return \retval{\T} if \VAR{foo} is not a
+  \kwd{cons}. 
 
-  \IT{(\FU*{NULL} \VAR{foo})} Return \retval{\T} when \VAR{foo} is \NIL.
+  \IT{(\FU*{NULL} \VAR{foo})} Return \retval{\T} if \VAR{foo} is \NIL.
 
   \IT{(\FU*{TAILP} \VAR{foo} \VAR{list})} 
-  Return \retval{\T} if \VAR{foo} is a tail of \VAR{list}. Return \retval{\NIL} otherwise.
+  Return \retval{\T} if \VAR{foo} is a tail of \VAR{list}.
 
-  \IT{(\xorGOO{\FU*{MEMBER}\\\FU*{MEMBER-IF}\kwd{
-        \#'}\VAR{predicate}\\\FU*{MEMBER-IF-NOT}\kwd{ \#'}\VAR{predicate}}{\}}
+  \IT{(\xorGOO{\FU*{MEMBER}\\
+      \FU*{MEMBER-IF }\VAR{predicate}\\
+      \FU*{MEMBER-IF-NOT }\VAR{predicate}}{\}}
     \VAR{foo} \VAR{list}
     \orGOO{\kwd{:test} \VAR{ function}\\
       \kwd{:test-not} \VAR{ function}\\
@@ -39,12 +41,12 @@
   Return \retval{tail of \VAR{list}} starting with
   first element of list matching \VAR{foo}. Return \retval{\NIL} otherwise.
 
-  \IT{(\FU*{SUBSETP} \VAR{foo-list} \VAR{bar-list} 
+  \IT{(\FU*{SUBSETP} \VAR{list-a} \VAR{list-b} 
     \orGOO{\kwd{:test} \VAR{ function}\\
       \kwd{:test-not} \VAR{ function}\\
       \kwd{:key} \VAR{ function}}{\}})} 
-  Return \retval{\T} if \VAR{foo-list} is a subset of
-  \VAR{bar-list}. Return \retval{\NIL} otherwise.
+  Return \retval{\T} if \VAR{list-a} is a subset of
+  \VAR{list-b}.
 
 \end{LIST}
 
@@ -55,7 +57,7 @@
 \begin{LIST}{1cm}
 
   \IT{(\FU*{CONS} \VAR{foo} \VAR{bar})}  
-  Return \retval{new cons (\VAR{foo} \VAR{bar})}.
+  Return new cons \retval{(\VAR{foo} \VAR{bar})}.
 
   \IT{(\FU*{LIST} \OPn{\VAR{foo}})} Return \retval{list of \VAR{foo}s}.
 
@@ -147,26 +149,26 @@
   \VAR{list}. \VAR{list} is unmodified/possibly
   modified, resp.
 
-  \IT{(\xorGOO{\FU*{MAPCAR}\\\FU*{MAPLIST}}{\}} \kwd{\#'}\VAR{function} \RP{\VAR{list}})} 
-  Return
-  \retval{list of return values} of
-  \VAR{function} successively invoked with corresponding arguments,
-  either cars or cdrs, resp.,
-  from each list.
+  \IT{(\xorGOO{\FU*{MAPCAR}\\
+      \FU*{MAPLIST}}{\}} \VAR{function} \RP{\VAR{list}})} 
+  Return \retval{list of return values} of \VAR{function} successively
+  invoked with corresponding arguments, either cars or cdrs, resp.,
+  from each list. 
 
-  \IT{(\xorGOO{\FU*{MAPCAN}\\\FU*{MAPCON}}{\}} \kwd{\#'}\VAR{function} \RP{\VAR{list}})} 
+  \IT{(\xorGOO{\FU*{MAPCAN}\\
+      \FU*{MAPCON}}{\}} \VAR{function} \RP{\VAR{list}})} 
   Return list of 
   \retval{concatenated return values} of
   \VAR{function} successively invoked with corresponding arguments,
   either cars or cdrs, resp.,
   from each list. \VAR{function} should return a list.
 
-  \IT{(\xorGOO{\FU*{MAPC}\\\FU*{MAPL}}{\}} \kwd{\#'}\VAR{function} \RP{\VAR{list}})} 
-  Return 
-  \retval{first \VAR{list}} after successively applying
-  \VAR{function} to corresponding arguments,
-  either cars or cdrs, resp.,
-  from each list. \VAR{function} should have some side effects.
+  \IT{(\xorGOO{\FU*{MAPC}\\
+      \FU*{MAPL}}{\}} \VAR{function} \RP{\VAR{list}})} 
+  Return \retval{first \VAR{list}} after successively applying
+  \VAR{function} to corresponding arguments, either cars or cdrs,
+  resp., from each list. \VAR{function} should have some side
+  effects. 
 
   \IT{(\FU*{COPY-LIST} \VAR{list})}
   Return \retval{copy} of \VAR{list}.
@@ -183,7 +185,7 @@
   \IT{(\FU*{PAIRLIS} \VAR{keys} \VAR{values})} 
   Make \retval{association list} from lists \VAR{keys} and \VAR{values}.
   
-  \IT{(\FU*{ACONS} \VAR{key} \VAR{datum} \VAR{a-list})}
+  \IT{(\FU*{ACONS} \VAR{key} \VAR{value} \VAR{a-list})}
   Return \retval{\VAR{a-list}} with a (\VAR{key} . \VAR{value}) pair added.
 
   \IT{\arrGOO{(\xorGOO{\FU*{ASSOC}\\
@@ -196,7 +198,7 @@
     (\xorGOO{\FU*{ASSOC-IF}\\
       \FU*{RASSOC-IF}\\
       \FU*{ASSOC-IF-NOT}\\
-      \FU*{RASSOC-IF-NOT}}{\}}\VAR{test} \VAR{ a-list}%
+      \FU*{RASSOC-IF-NOT}}{\}}\VAR{test} \VAR{ a-list }%
       \Op{\kwd{:key} \VAR{ function}})}{\}}}
   First \retval{cons} whose car, or cdr, resp., satisfies \VAR{test}.
 

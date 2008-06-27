@@ -1,3 +1,12 @@
+% Copyright (C) 2008 Bert Burgemeister
+%
+% Permission is granted to copy, distribute and/or modify this
+% document under the terms of the GNU Free Documentation License,
+% Version 1.2 or any later version published by the Free Software
+% Foundation; with no Invariant Sections, no Front-Cover Texts and
+% no Back-Cover Texts. For details see file COPYING.
+%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Numbers} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -14,7 +23,7 @@
   \index{=}%
   \index{/=}%
   Return \retval{\T} if all \VAR{number}s, or
-  none, resp.,  are equal. Return \retval{\NIL} otherwise.
+  none, resp.,  are equal.
 
   \IT{\arrGOO{(\FU{\boldmath$>$}\RP{\VAR{
           number}})\\(\FU{\boldmath$>=$}\RP{\VAR{
@@ -25,16 +34,15 @@
   \index{<@$<$}%
   \index{<=@$<=$}%
   Return \retval{\T} if \VAR{number}s are
-  monotonically decreasing, monotonically non-increasing, monotonically
-  increasing, or monotonically non-decreasing, resp. Return
-  \retval{\NIL} otherwise.
+  monotonically decreasing, monotonically non-increasing,
+  monotonically increasing, or monotonically non-decreasing, resp. 
 
   \IT{\arrGOO{(\FU*{MINUSP} \VAR{ a})\\(\FU*{ZEROP} \VAR{ a})\\(\FU*{PLUSP}
       \VAR{ a})}{\}}} 
   Return \retval{\T} if $a < 0$, $a = 0$, or $a > 0$, resp.
 
   \IT{(\xorGOO{\FU*{EVENP}\\\FU*{ODDP}}{\}} \VAR{integer})} Return \retval{\T}
-  if \VAR{integer} is even, or odd, resp. Return \retval{\NIL} otherwise.
+  if \VAR{integer} is even, or odd, resp.
 
   \IT{\arrGOO{(\FU*{NUMBERP} \VAR{ foo})\\
       (\FU*{INTEGERP} \VAR{ foo})\\
@@ -75,7 +83,7 @@
   \retval{$a-1$}, resp.
 
   \IT{(\xorGOO{\SF*{INCF}\\\SF*{DECF}}{\}} \VAR{place}
-    \Op{delta}\DF{1})} 
+    \Op{\VAR{delta}}\DF{1})} 
   Increment or
   decrement \VAR{place} by \VAR{delta} returning \retval{new value}.
 
@@ -140,8 +148,8 @@
       (\FU*{IMAGPART} \VAR{ number})}{\}}}
   Return \retval{real part} or \retval{imaginary part}, resp., of \VAR{number}.
 
-  \IT{\arrGOO{(\FU*{MAX} \Op{\VAR{num}})\\
-      (\FU*{MIN} \Op{\VAR{num}})}{\}}}
+  \IT{\arrGOO{(\FU*{MAX } \Op{\VAR{num}})\\
+      (\FU*{MIN } \Op{\VAR{num}})}{\}}}
   Return \retval{greatest} or \retval{least}, resp., of \VAR{num}s.
 
   \IT{(\xorGOO{%
@@ -151,8 +159,7 @@
       \Goo{\FU*{ROUND}\XOR\FU*{FROUND}}}{\}}
     \VAR{number} \Op{\VAR{divisor}\DF{1}})} 
   Return \retval{quotient} (integer or float, resp.) truncated
-  towards $-\infty$, $+\infty$, $0$, or rounded, resp. Second
-  return value is  \retval{remainder}.
+  towards $-\infty$, $+\infty$, $0$, or rounded, resp.; and \retvalii{remainder}.
 
   \IT{(\xorGOO{\FU*{MOD}\\
       \FU*{REM}}{\}} \VAR{n} \VAR{m})} Same as \kwd{floor} or
@@ -282,15 +289,18 @@
   \retval{Byte specifier} for a byte of \VAR{size} bits starting at a
   weight of $2^{\VAR{position}}$. 
 
-  \IT{\arrGOO{(\FU*{BYTE-POSITION} \VAR{ byte-spec})\\
-      (\FU*{BYTE-SIZE} \VAR{ byte-spec})}{\}}}
-  \retval{Position} or \retval{size}, resp., of \VAR{byte-spec}.
+  \IT{(\FU*{BYTE-POSITION} \VAR{byte-spec})}
+  \retval{Position} of \VAR{byte-spec}.
+
+  \IT{(\FU*{BYTE-SIZE} \VAR{byte-spec})}
+  \retval{Size} of \VAR{byte-spec}.
   
   \IT{(\xorGOO{\FU*{DEPOSIT-FIELD}\\
-      \FU*{DPB}}{\}}\VAR{int-a} \VAR{byte-spec} \VAR{int-b})}
-  Return \retval{int-b} with bits denoted by \VAR{byte-spec} replaced
+      \FU*{DPB}}{\}}
+    \VAR{int-a} \VAR{byte-spec} \VAR{int-b})}
+  Return \retval{\VAR{int-b}} with bits denoted by \VAR{byte-spec} replaced
   by corresponding bits of \VAR{int-a}, or by the low (\kwd{byte-size}
-  \VAR{bytespec}) bits of \VAR{int-a}, resp. 
+  \VAR{byte-spec}) bits of \VAR{int-a}, resp. 
 
 \end{LIST}
 

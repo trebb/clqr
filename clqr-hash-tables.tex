@@ -20,18 +20,18 @@ pp.\ \pageref{section:Association Lists} and \pageref{:property_lists}.
   \IT{(\FU*{HASH-TABLE-P} \VAR{foo})}
   Return \retval{\T} if \VAR{foo} is of type \kwd{hash-table}.
 
-  \IT{(\FU*{HASH-TABLE-TEST} \VAR{hash-table})} \retval{Test function}
-  used in \VAR{hash-table}.
-
   \IT{(\FU*{MAKE-HASH-TABLE} 
-    \orGOO{\kwd{:test}\Goo{\kwd{\#'eq}\XOR \kwd{\#'eql}\XOR
-        \kwd{\#'equal}}\DF{\kwd{eql}}\\ 
+    \orGOO{\kwd{:test}\Goo{\kwd{eq}\XOR \kwd{eql}\XOR
+        \kwd{equal}}\DF{\kwd{eql}}\\ 
       \kwd{:size} \VAR{ size}\\
       \kwd{:rehash-size} \VAR{ rehash-size}\\
       \kwd{:rehash-threshold} \VAR{ rehash-threshold}}{\}})} 
   Make a \retval{hash table}. 
 
-  \IT{(\FU*{GETHASH} \VAR{key} \VAR{hash-table} \Op{\VAR{default}})} Get
+  \IT{(\FU*{HASH-TABLE-TEST} \VAR{hash-table})} 
+  \retval{Test function} used in \VAR{hash-table}.
+
+  \IT{(\FU*{GETHASH} \VAR{key} \VAR{hash-table} \Op{\VAR{default}})}
   Return \retval{object} with key \VAR{key} if any or \retval{\VAR{default}}
   otherwise; and \retvalii{\T} if found, \retvalii{\NIL}
   otherwise. \kwd{setf}able. 
@@ -51,8 +51,8 @@ pp.\ \pageref{section:Association Lists} and \pageref{:property_lists}.
   and \VAR{value}. Return \retval{\NIL}.
   
   \IT{(\SF*{WITH-HASH-TABLE-ITERATOR} \VAR{name} \VAR{hash-table}
-    \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \OPn{form})}
-  Return \retval{values of \VAR{form}s}. In the body, successive
+    \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \OPn{\VAR{form}})}
+  Return \retval{values of \VAR{form}s}. In the body,
   invocations of  (\VAR{name}) return: \T\ if an entry is returned;
   its key; its value.
 

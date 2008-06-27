@@ -4,11 +4,11 @@
 
 \begin{LIST}{1cm}
   
-  \IT{(\FU*{SLOT-BOUNDP} \VAR{instance} \VAR{slot})}
-  \retval{\T} if \VAR{slot} in \VAR{instance} is bound.
-
   \IT{(\FU*{SLOT-EXISTS-P} \VAR{foo} \VAR{bar})}
   \retval{\T} if \VAR{foo} has a slot \VAR{bar}.
+
+  \IT{(\FU*{SLOT-BOUNDP} \VAR{instance} \VAR{slot})}
+  \retval{\T} if \VAR{slot} in \VAR{instance} is bound.
 
   \IT{(\SF*{DEFSTRUCT}
     \GOO{\VAR{name}\XOR
@@ -16,28 +16,26 @@
       \orGOO{%
         \xorGOO{%
           \kwd{:conc-name}\\
-          (\kwd{:conc-name} \Op{\VAR{slot-prefix}\DF{\VAR{name}\LIT{-}}})}{\}}\\
+          (\kwd{:conc-name } \Op{\VAR{slot-prefix}\DF{\VAR{name}\LIT{-}}})}{\}}\\
         \xorGOO{%
           \kwd{:constructor}\\
-          (\kwd{:constructor} \Op{\VAR{make-name}\DF{\LIT{make-}\VAR{name}}
+          (\kwd{:constructor } \OP{\VAR{maker}\DF{\LIT{make-}\VAR{name}}
             \Op{({\OPn{\VAR{arg}}})}})}{\}^{\!\!*}}\\
         \xorGOO{%
           \kwd{:copier}\\
-          (\kwd{:copier}
-          \Op{\VAR{copy-name}\DF{\LIT{copy-}\VAR{name}}})}{\}}\\
+          (\kwd{:copier }
+          \Op{\VAR{copier}\DF{\LIT{copy-}\VAR{name}}})}{\}}\\
         (\kwd{:include} \VAR{ struct} 
         \xorGOO{%
           \VAR{slot}\\
-          (\VAR{slot} \Op{\VAR{init} 
+          (\VAR{slot } \Op{\VAR{init} 
             \orGOO{
               \kwd{:type} \VAR{ type}\\
-              \kwd{:read-only} \VAR{ bool}
-            }{\}}
-          })\\
-        }{\}^{\!\!*}}
-        )\\
-        (\kwd{:type} \VAR{ type}) \Op{(\kwd{:initial-offset}
-          \VAR{ n})}\\
+              \kwd{:read-only} \VAR{ bool}}{\}}})\\
+        }{\}^{\!\!*}})\\
+        (\kwd{:type } \Goo{\kwd{list}\XOR\kwd{vector}\XOR(\kwd{vector}
+          \VAR{ type})})\\
+        (\kwd{:initial-offset} \VAR{ n})\\
         \kwd{:named}\\
         \xorGOO{%
           \kwd{:predicate}\\
@@ -47,17 +45,17 @@
           (\kwd{:print-function } \Op{\VAR{printer}})
         }{\}}%
       }{\}}%
-      )
+      )%
     }
     \Op{\VAR{documentation}}
     \xorGOO{
       \VAR{slot-name}\\
-      \VAR{slot-name} \Op{\VAR{init}
+      \VAR{slot-name } \Op{\VAR{init}
         \orGOO{
           \kwd{:type} \VAR{ type}\\
           \kwd{:read-only} \VAR{ bool}
         }{\}}}
-    }{\}^{\!\!*}}
+    }{\}^{\!\!*}}%
     )}
   Define structure \retval{\VAR{name}} together with functions
   \LIT{make-}\VAR{name}, \LIT{copy-}\VAR{name}, and
@@ -71,20 +69,11 @@
   \VAR{accessor}s of \VAR{instance}. 
   Return \retval{values of \VAR{form}s}.
 
-  \IT{(\FU*{COPY-STRUCTURE} \VAR{struct})} 
-  Return \retval{copy of structure} with shared slot values.
+  \IT{(\FU*{COPY-STRUCTURE} \VAR{structure})} 
+  Return \retval{copy of \VAR{structure}} with shared slot values.
 
   \IT{(\FU*{SLOT-MAKUNBOUND} \VAR{instance} \VAR{slot})}
-  Make \VAR{slot} \retval{\VAR{instance}} unbound.
-
-  \IT{(\GFU*{SLOT-MISSING} \VAR{class} \VAR{object} \VAR{slot}
-    \Goo{\kwd{setf} \kwd{slot-boundp} \kwd{slot-makunbound}} \Op{\VAR{value}})}
-  Called in case of attempted access to missing \VAR{slot}. Default
-  method signals an error.
-
-  \IT{(\GFU*{SLOT-UNBOUND} \VAR{class} \VAR{instance} \VAR{slot}))}
-  Called by \kwd{slot-value} in case of unbound \VAR{slot}. Default
-  method signals \kwd{unbound-slot}.
+  Make \VAR{slot} in \retval{\VAR{instance}} unbound.
 
 \end{LIST}
 

@@ -32,18 +32,23 @@
 
 \begin{LIST}{1cm}
 
-  \IT{(\FU*{COMPILE} \VAR{name} \Op{\VAR{definition}})}
-  Return \retval{compiled function} \VAR{name}, \retvalii{\T} in case
+  \IT{(\FU*{COMPILE} 
+    \xorGOO{\NIL\\
+      \VAR{name}}{\}}
+    \Op{\VAR{definition}})}
+  Return \retval{compiled function} or its \VAR{name}, \retvalii{\T} in case
   of warnings, and \retvaliii{\T} in case of failure.
 
-  \IT{(\FU*{COMPILE-FILE} \VAR{path} 
+  \IT{(\FU*{COMPILE-FILE} \VAR{file} 
     \orGOO{\kwd{:output-file}\VAR{ out-path}\\
       \kwd{:verbose} \VAR{ bool}\DF{\kwd{*compile-verbose*}}\\
       \kwd{:print}\VAR{ bool}\DF{\kwd{*compile-print*}}\\
-      \kwd{:external-format} \VAR{ file-format}\DF{\kwd{:default}}}{\}})}
+      \kwd{:external-format} \VAR{
+        file-format}\DF{\kwd{:default}}}{\}})}
+  Write compiled contents of \VAR{path} to \VAR{out-path}.
   Return \retval{true output path} or \retval{\NIL}, \retvalii{\T}
-    in case of warnings or errors, \retvaliii{\T} in case of warnings
-    or errors excluding style warnings.
+  in case of warnings or errors, \retvaliii{\T} in case of warnings
+  or errors excluding style warnings.
 
   \IT{\arrGOO{\V*{*compile-file-pathname*}\DF{\NIL}\\
       \V*{*compile-file-truename*}\DF{\NIL}}{\}}}
@@ -53,7 +58,7 @@
       \V*{*compile-verbose*}}{\}}}
   Defaults used in \FU{compile-file}.
   
-  \IT{(\FU*{COMPILE-FILE-PATHNAME} \Op{\kwd{:pathname} \{\VAR{path}})}
+  \IT{(\FU*{COMPILE-FILE-PATHNAME} \Op{\kwd{:pathname} \VAR{path}})}
   \retval{Pathname} \FU{COMPILE-FILE} writes to.
 
   \IT{(\FU*{LOAD} \VAR{path} 
@@ -75,7 +80,7 @@
     \orGOO{\kwd{:compile-toplevel}\\
       \kwd{:load-toplevel}\\
       \kwd{:execute}}{\}}) \OPn{\VAR{form}})} 
-  Evaluate \VAR{form}s returning \retval{value of last \VAR{form}} if
+  Evaluate \VAR{form}s returning \retval{values of last \VAR{form}} if
   \SF{EVAL-WHEN} is in the top-level of a file being compiled, in the
   top-level of a compiled file being loaded, or anywhere, resp. 
 
@@ -90,27 +95,27 @@
   Evaluate \VAR{form} at compile time and treat \retval{its value} as
   literal at run time. 
 
-  \IT{(\SF*{QUOTE} \VAR{foo})\XOR \kwd{'}\VAR{foo}} 
+  \IT{(\SF*{QUOTE} \VAR{foo})}
   Return \retval{unevaluated \VAR{foo}}.
 
-  \IT{(\GFU*{MAKE-LOAD-FORM} \VAR{foo} \VAR{environment})}
+  \IT{(\GFU*{MAKE-LOAD-FORM} \VAR{foo} \Op{\VAR{environment}})}
   Make \retval{one or two forms} enabling \kwd{load} to construct
   something equvalent to \VAR{foo}.
 
   \IT{(\FU*{MAKE-LOAD-FORM-SAVING-SLOTS} \VAR{foo}
-    \Op{\kwd{:slot-names} \VAR{slots}} \Op{\kwd{:environment}
-      \VAR{environment}})} 
+    \orGOO{\kwd{:slot-names} \VAR{ slots}\\
+      \kwd{:environment}  \VAR{ environment}}{\}})} 
   Make \retval{two forms} yielding something equvalent to \VAR{foo}
   but preserving only \VAR{slots}.
 
-  \IT{(\FU*{MACRO-FUNCTION} \VAR{symbol} \Op{\VAR{environment}})}
-  Return \retval{macro function} if \VAR{symbol}'s function definition
-  is a macro. Return \retval{\NIL} if it is not. 
-
-  \IT{(\kwd*{COMPILER-MACRO-FUNCTION} \VAR{name}
-    \Op{\VAR{environment}})}
-  \retval{Compiler macro function}. \kwd{setfable}.
-
+  \IT{\arrGOO{(\FU*{MACRO-FUNCTION} \VAR{ symbol }
+      \Op{\VAR{environment}})\\
+      (\kwd*{COMPILER-MACRO-FUNCTION} \VAR{ name }
+      \Op{\VAR{environment}})}{\}}} 
+  Return specified \retval{macro function}, or \retval{compiler macro
+    function}, resp., if any. Return \retval{\NIL}
+  otherwise. \kwd{setf}able. 
+  
   \IT{(\FU*{EVAL} \VAR{form})}
   Return \retval{values of \VAR{form}}.
 
@@ -124,14 +129,14 @@
 \begin{LIST}{1cm}
   
   \IT{\Goo{\kwd*{*}\XOR\kwd*{**}\XOR\V*{***}}}
-  Most recent primary result or the two previous primary results,
+  Most recent primary result or the two preceding primary results,
   resp., printed in the REPL. 
   
   \IT{\Goo{\kwd*{+}\XOR\kwd*{++}\XOR\V*{+++}}}
   Forms most recently evaluated in the REPL.
   
   \IT{\Goo{\kwd*{/}\XOR\kwd*{//}\XOR\V*{///}}}
-  List of most recent results or of the two previous results, resp.,
+  List of most recent results or of the two preceding results, resp.,
   printed in the REPL. 
   
   \IT{\kwd*{--}}
@@ -143,17 +148,17 @@
   \IT{(\FU*{APROPOS-LIST} \VAR{string} \OPn{\VAR{package}})}
   \retval{List of interned symbols} containig \VAR{string}.
 
-  \IT{(\FU*{DRIBBLE} \VAR{path})}
-  Save a record of interactive session to \VAR{path}.
+  \IT{(\FU*{DRIBBLE} \Op{\VAR{path}})}
+  Save a record of interactive session to file at \VAR{path}.
 
-  \IT{(\FU*{ED} \VAR{arg})}
+  \IT{(\FU*{ED} \Op{\VAR{file-or-function}\DF{\NIL}})}
   Invoke editor if possible.
 
-  \IT{\arrGOO{(\SF*{MACROEXPAND-1} \VAR{ form})\\
-      (\SF*{MACROEXPAND} \VAR{ form})}{\}}}
+  \IT{(\xorGOO{\SF*{MACROEXPAND-1}\\
+      \SF*{MACROEXPAND}}{\}}\VAR{form} \Op{\VAR{environment}})} 
   Return \retval{macro expansion}, once or entirely, resp., of
   \VAR{form} and \retvalii{\T} if \VAR{form} is a macro form. 
-  Return \retval{\VAR{form}} and \retval{\NIL} otherwise.
+  Return \retval{\VAR{form}} and \retvalii{\NIL} otherwise.
 
   \IT{\V*{*macroexpand-hook*}}
   Function called by \kwd{macroexpand-1} to generate macro expansions.
@@ -167,14 +172,14 @@
   traced. 
 
   \IT{\V*{*trace-output*}} 
-  Stream \kwd{trace}d function and \kwd{time} print their output on.
+  Stream \kwd{trace} and \kwd{time} print their output on.
   
   \IT{(\SF*{STEP} \VAR{form})}
   Step through evaluation of \VAR{form}. Return \retval{values of
     \VAR{form}}. 
 
   \IT{(\SF*{TIME} \OPn{\VAR{form}})}
-  Evaluate \VAR{form}s and print timing information on
+  Evaluate \VAR{form}s and print timing information to
   \V{*trace-output*}. Return \retval{values of \VAR{form}s}. 
   
   \IT{(\FU*{INSPECT} \VAR{foo})}
@@ -184,7 +189,7 @@
     \Op{\VAR{stream}\DF{\kwd{*standard-output*}}})}
   Send information about \VAR{foo} to \VAR{stream}.
 
-  \IT{(\GFU*{DESCRIBE-OBJECT} \VAR{foo} \VAR{stream})}
+  \IT{(\GFU*{DESCRIBE-OBJECT} \VAR{foo} \Op{\VAR{stream}})}
   Send information about \VAR{foo} to \VAR{stream}. Not to be
   called by user.
 
@@ -200,28 +205,30 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
-  \IT{\arrGOO{(\FU*{PROCLAIM} \OPn{\VAR{ decl}})\\
+  \IT{\arrGOO{(\FU*{PROCLAIM} \VAR{ decl})\\
       (\SF*{DECLAIM} \OPn{\VAR{ decl}})}{\}}}
-  Globally make declarations \VAR{decl}. \VAR{decl} can be:
+  Globally make declaration(s) \VAR{decl}. \VAR{decl} can be:
   \kwd{declaration},      
+  \kwd{type},
   \kwd{ftype},           
   \kwd{inline},   
   \kwd{notinline},
-  \kwd{optimize},
-  \kwd{special}, or
-  \kwd{type}. See below.
+  \kwd{optimize}, or
+  \kwd{special}.
+  See below.
 
   \IT{(\SF*{DECLARE} \OPn{\VAR{decl}})}
   Inside certain forms, locally make declarations \VAR{decl}. \VAR{decl} can be:
   \kwd{dynamic-extent},
+  \kwd{type},
   \kwd{ftype},           
   \kwd{ignorable},       
   \kwd{ignore},     
   \kwd{inline},     
   \kwd{notinline},  
-  \kwd{optimize},  
-  \kwd{special}, or
-  \kwd{type}. See below.      
+  \kwd{optimize}, or
+  \kwd{special}.
+  See below.      
   
   \begin{LIST}{.5cm}
     

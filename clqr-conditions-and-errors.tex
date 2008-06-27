@@ -112,7 +112,7 @@
   \IT{(\SF*{HANDLER-CASE} \VAR{test} 
     \OPn{(\VAR{type} (\VAR{condition-var})
       \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \OPn{\VAR{condition-form}})} 
-    \Op{\kwd{:no-error} \OPn{\VAR{fu-arg}} \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
+    \Op{\kwd{:no-error} (\OPn{\VAR{fu-arg}}) \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
       \OPn{\VAR{form}}})} 
   If, on evaluation of \VAR{test}, a condition of \VAR{type} is
   signalled, return \retval{values of matching \VAR{condition-form}s}
@@ -120,7 +120,7 @@
   \VAR{fu-arg}s to values of \VAR{test} and return \retval{value of
     \VAR{form}s} or, without a \kwd{:no-error} clause, return
   \retval{value of \VAR{test}}. See p.\ \pageref{section:Functions}
-  for \OPn{\VAR{fu-arg}}.
+  for (\OPn{\VAR{fu-arg}}).
 
   \IT{(\kwd*{HANDLER-BIND} (\OPn{(\VAR{condition-type}
       \VAR{handler})}) \OPn{\VAR{form}})} 
@@ -140,7 +140,7 @@
   dynamically associated with  condition yielded from
   \VAR{condition-form}. Return values of \VAR{form}s.
 
-  \IT{(\SF*{RESTART-CASE} \VAR{test} \OPn{(\VAR{name} \OPn{\VAR{fu-arg}}%
+  \IT{(\SF*{RESTART-CASE} \VAR{test} \OPn{(\VAR{name} (\OPn{\VAR{fu-arg}})%
       \orGOO{\kwd{:interactive}
         \VAR{ form}\\ 
       \kwd{:report} \VAR{ form}\\

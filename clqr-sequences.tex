@@ -1,3 +1,12 @@
+% Copyright (C) 2008 Bert Burgemeister
+%
+% Permission is granted to copy, distribute and/or modify this
+% document under the terms of the GNU Free Documentation License,
+% Version 1.2 or any later version published by the Free Software
+% Foundation; with no Invariant Sections, no Front-Cover Texts and
+% no Back-Cover Texts. For details see file COPYING.
+%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Sequences} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -8,15 +17,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
-  \IT{(\xorGOO{\FU*{EVERY}\\\FU*{NOTEVERY}}{\}} \VAR{test}
+  \IT{(\xorGOO{\FU*{EVERY}\\
+      \FU*{NOTEVERY}}{\}} \VAR{test}
     \RP{\VAR{sequence}})} 
   Return \retval{\NIL} or \retval{\T}, resp., as soon as \VAR{test} on
-  any element of \VAR{sequence} returns \NIL. 
+  any set of corresponding elements of \VAR{sequences} returns \NIL. 
 
   \IT{(\xorGOO{\FU*{NOTANY}\\\FU*{SOME}}{\}} \VAR{test}
     \RP{\VAR{sequence}})} 
   Return \retval{\NIL} or \retval{value of \VAR{test}}, resp., as soon
-  as \VAR{test} on any element of \VAR{sequence} returns non-\NIL. 
+  as \VAR{test} on any set of elements of \VAR{sequences} returns non-\NIL. 
 
   \IT{(\FU*{MISMATCH} \VAR{sequence-a} \VAR{sequence-b} 
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
@@ -96,16 +106,17 @@
   Return \retval{\VAR{sequence} in reverse order}. \VAR{sequence} is
   unmodified/possibly modified, resp. 
 
-  \IT{(\xorGOO{\FU*{FIND}\\\FU*{POSITION}}{\}} \VAR{foo} \VAR{sequence} 
+  \IT{(\xorGOO{\FU*{FIND}\\
+      \FU*{POSITION}}{\}} \VAR{foo} \VAR{sequence} 
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \kwd{:test} \VAR{ function}\\
       \kwd{:test-not} \VAR{ function}\\
       \kwd{:start} \VAR{ start}\DF{0}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})} 
-  Return \retval{first element found in \VAR{sequence}}, or
-  \retval{its position} relative to \VAR{sequence}'s start, resp., between \VAR{start}
-  and \VAR{end} satisfying tests.
+  Return \retval{first element} found in \VAR{sequence}, or
+  its \retval{position} relative to \VAR{sequence}'s start, resp.,
+  between \VAR{start} and \VAR{end} satisfying tests. 
 
   \IT{(\xorGOO{\FU*{FIND-IF}\\\FU*{FIND-IF-NOT}\\\FU*{POSITION-IF}\\\FU*{POSITION-IF-NOT}}{\}} \VAR{test} \VAR{sequence} 
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
@@ -126,11 +137,11 @@
       \kwd{:end2} \VAR{ end-b}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})}
   Search \VAR{sequence-b} for a subsequence matching
-  \VAR{sequence-a}. Return \retval{index} in \VAR{sequence-b}, or
+  \VAR{sequence-a}. Return \retval{position} in \VAR{sequence-b}, or
   \retval{\NIL}. 
 
   \IT{(\xorGOO{\FU*{REMOVE}\\\FU*{DELETE}}{\}} \VAR{foo} \VAR{sequence}
-    \orGOO{\kwd{:from-end} \VAR{ bool}\DF{0}\\
+    \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \kwd{:test} \VAR{ function}\\
       \kwd{:test-not} \VAR{ function}\\
       \kwd{:start} \VAR{ start}\DF{0}\\
@@ -158,7 +169,7 @@
       \kwd{:test-not} \VAR{ function}\\
       \kwd{:start} \VAR{ start}\DF{0}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
-      \kwd{:key} \VAR{ function}\DF{\NIL}}{\}})} 
+      \kwd{:key} \VAR{ function}}{\}})}
   Make \retval{copy of
     \VAR{sequence}} without duplicates. \VAR{sequence} is unmodified/possibly
   modified, resp.
