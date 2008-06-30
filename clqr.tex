@@ -71,8 +71,10 @@
               {\hspace*{5.5em}}
               {\hspace{1ex}\titlerule*[1.5ex]{.}\contentspage}
 
+\newlength{\LISTlinewidth}
 \newenvironment{LIST}[1]%
                {%
+                 \LISTlinewidth=\linewidth
                  \begin{list}{}%
                    {\setlength{\itemindent}{-#1}\setlength{\leftmargin}{#1}}%
                    %\parskip0pt\itemsep0pt
@@ -80,7 +82,7 @@
                {\end{list}%
                }%
 %
-\renewcommand{\topfraction}{1}
+%\renewcommand{\topfraction}{1}
 \renewcommand{\bottomfraction}{1}
 \renewcommand*{\figureformat}{}
 \renewcommand*{\captionformat}{}
@@ -89,8 +91,33 @@
 \setlength{\parfillskip}{5cm plus1cm minus3cm}
 \setlength{\arraycolsep}{0pt}
 %
-\newcommand{\IT}[1]{\item{{\rule{0pt}{2pt}}%
-    #1}\hspace{2em plus 2em minus.5em}\penalty-9$\triangleright$}
+%
+\def\startexplanation{$\triangleright$\hskip.8ex}
+\newlength{\ITwidth}
+\newlength{\ITrest}
+\newlength{\ITtab}\ITtab=3em
+%
+\def\IT#1 #2 {%
+  \settowidth{\ITwidth}{#1\unskip\hskip1em\hskip\ITtab}%
+  \ITrest=\LISTlinewidth\advance\ITrest by -\ITwidth%
+  \loop\ifdim\ITrest > \ITtab%
+  \advance\ITrest by -\ITtab%
+  \repeat%
+%
+  \settowidth{\ITwidth}{%
+      #1\unskip\hskip1em\hskip\ITrest%
+      \startexplanation#2%
+  }%
+  \item{}%
+  \ifdim\ITwidth < \LISTlinewidth% Entry fits into a single line
+  #1\unskip\hskip1em\hskip\ITrest%
+  \startexplanation#2%
+  \else%
+  #1%
+  \unskip\penalty-10000\startexplanation#2%
+  \fi%
+}
+%
 %
 \newpagestyle{lispref}[\sffamily\mdseries\slshape]{
   \headrule\footrule
@@ -291,27 +318,41 @@
   \begin{LIST}{1cm}
 
     \IT{\kwd{NAME}, \FU{NAME}, \SF{NAME}, \GFU{NAME}, \V{*name*},
-      \CNS{name}} 
+      \CNS{name}}
+    {
     Symbol defined in Common Lisp; esp. function, special form, generic function,
     variable, constant.
+    }
 
-    \IT{\VAR{them}\DF{\LIT{foo}}} 
+    \IT{\VAR{them}\DF{\LIT{foo}}}
+    {
     Placeholder for actual code. Defaults to \LIT{foo}.
+    }
 
-    \IT{\LIT{me}} 
+    \IT{\LIT{me}}
+    {
     Text to input literally, or output literally.
+    }
 
-    \IT{\Op{\VAR{foo}}} 
+    \IT{\Op{\VAR{foo}}}
+    {
     Either one \VAR{foo} or nothing.
+    }
 
-    \IT{\OPn{\VAR{foo}}; \Goos{\VAR{foo}}} 
+    \IT{\OPn{\VAR{foo}}; \Goos{\VAR{foo}}}
+    {
     Zero or more \VAR{foo}s.
+    }
 
-    \IT{\RP{\VAR{foo}}; \Goop{\VAR{foo}}} 
+    \IT{\RP{\VAR{foo}}; \Goop{\VAR{foo}}}
+    {
     One or more \VAR{foo}s.
+    }
 
-    \IT{\VAR{foos}} 
+    \IT{\VAR{foos}}
+    {
     English plural denotes a list argument.
+    }
 
     \IT{\Goo{\VAR{foo}\XOR\VAR{bar}\XOR\VAR{baz}};
       \xorGOO{
@@ -319,23 +360,34 @@
         \VAR{bar}\\
         \VAR{baz}%
       }{.}}
+    {
     Either \VAR{foo}, or \VAR{bar}, or \VAR{baz}.
+    }
 
     \IT{\orGOO{
         \VAR{foo}\\
         \VAR{bar}\\
         \VAR{baz} 
       }{.}}
+    {
     Anything from none to all of \VAR{foo}, \VAR{bar}, and \VAR{baz}.
+    }
 
-    \IT{\retval{\VAR{foo}}; \retvalii{\VAR{bar}}; \retvaliii{\VAR{baz}}}  
+    \IT{\retval{\VAR{foo}}; \retvalii{\VAR{bar}};
+      \retvaliii{\VAR{baz}}}
+    {
     \VAR{foo}, \VAR{bar}, \VAR{baz} are 1st, 2nd, and 3rd return value.
-    
+    }
+
     \IT{\T}
+    {
     \kwd*{T}, or truth.
+    }
     
     \IT{\NIL}
+    {
     \kwd*{NIL}, falsehood, or \kwd{()}.
+    }
 
   \end{LIST}
   \clearpage
@@ -366,7 +418,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%\clearpage % Uncomment this line to save some space
+\clearpage % Uncomment this line to save some space
 %
 \renewcommand{\indexpagestyle}{lispref}
 \renewenvironment{theindex}%

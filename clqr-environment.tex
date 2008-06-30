@@ -13,49 +13,69 @@
 \begin{LIST}{1cm}
 
   \IT{\arrGOO{(\FU*{GET-INTERNAL-REAL-TIME})\\
-      (\FU*{GET-INTERNAL-RUN-TIME})}{\}}}
+      (\FU*{GET-INTERNAL-RUN-TIME})}{.}}
+  {
   \retval{Current time}, or \retval{computing time},
   resp., in clock ticks.
+  }
 
   \IT{\CNS*{INTERNAL-TIME-UNITS-PER-SECOND}}
+  {
   Number of clock ticks per second.
+  }
 
   \IT{\arrGOO{(\FU*{DECODE-UNIVERSAL-TIME} \VAR{ universal-time } 
       \Op{\VAR{time-zone}})\\
-    (\FU*{GET-DECODED-TIME})}{\}}}
+    (\FU*{GET-DECODED-TIME})}{.}}
+  {
   Return \retval{second}, \retvalii{minute}, \retvaliii{hour}, 
   \retval{date}, \retval{month}, \retval{year}, \retval{day}, 
   \retval{daylight-p}, and \retval{zone}.
+  }
 
   \IT{\arrGOO{(\FU*{ENCODE-UNIVERSAL-TIME} \VAR{ sec} \VAR{ min} 
       \VAR{ hour} \VAR{ day} \VAR{ month} \VAR{ year }
       \Op{\VAR{zone}})\\ 
       (\FU*{GET-UNIVERSAL-TIME})}{.}}
+  {
   \retval{Seconds from 1900-01-01, 00:00}.
+  }
 
-  \IT{(\FU*{ROOM} \Op{\Goo{\NIL\XOR\kwd{:default}\XOR\T}})} 
+  \IT{(\FU*{ROOM} \Op{\Goo{\NIL\XOR\kwd{:default}\XOR\T}})}
+  {
   Print information about internal storage management.
+  }
 
   \IT{\V*{*features*}}
+  {
   List of implementation-dependent features.
+  }
 
   \IT{\arrGOO{(\FU*{SHORT-SITE-NAME})\\
-      (\FU*{LONG-SITE-NAME})}{\}}}
+      (\FU*{LONG-SITE-NAME})}{.}}
+  {
   \retval{String} representing physical location of computer.
+  }
 
   \IT{\arrGOO{(\FU*{LISP-IMPLEMENTATION-TYPE})\\
-      (\FU*{LISP-IMPLEMENTATION-VERSION})}{\}}}
+      (\FU*{LISP-IMPLEMENTATION-VERSION})}{.}}
+  {
   \retval{Name} or \retval{version}, resp., of implementation.
+  }
 
   \IT{\arrGOO{(\FU*{SOFTWARE-TYPE})\\
-      (\FU*{SOFTWARE-VERSION})}{\}}}
+      (\FU*{SOFTWARE-VERSION})}{.}}
+  {
   \retval{Name} or \retval{version}, resp., of host system.
+  }
 
   \IT{\arrGOO{(\FU*{MACHINE-TYPE})\\
       (\FU*{MACHINE-VERSION})\\
-      (\FU*{MACHINE-INSTANCE})}{\}}} 
+      (\FU*{MACHINE-INSTANCE})}{.}}
+  {
   \retval{Type}, \retval{version}, or \retval{name}, resp., of
   hardware. 
+  }
 
 \end{LIST}
 

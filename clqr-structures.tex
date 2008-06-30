@@ -5,10 +5,14 @@
 \begin{LIST}{1cm}
   
   \IT{(\FU*{SLOT-EXISTS-P} \VAR{foo} \VAR{bar})}
+  {
   \retval{\T} if \VAR{foo} has a slot \VAR{bar}.
+  }
 
   \IT{(\FU*{SLOT-BOUNDP} \VAR{instance} \VAR{slot})}
+  {
   \retval{\T} if \VAR{slot} in \VAR{instance} is bound.
+  }
 
   \IT{(\SF*{DEFSTRUCT}
     \GOO{\VAR{name}\XOR
@@ -57,23 +61,31 @@
         }{\}}}
     }{\}^{\!\!*}}%
     )}
+  {
   Define structure \retval{\VAR{name}} together with functions
   \LIT{make-}\VAR{name}, \LIT{copy-}\VAR{name}, and
   \LIT{p-}\VAR{name}; and accessors \VAR{slot-prefix-slot-name}.
+  }
 
 
   \IT{(\SF*{WITH-ACCESSORS} (\OPn{(\VAR{var} \VAR{accessor})})
     \VAR{instance}  \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
     \OPn{\VAR{form}})}
+  {
   Evaluate \VAR{form}s with variables \VAR{var} locally bound to
   \VAR{accessor}s of \VAR{instance}. 
   Return \retval{values of \VAR{form}s}.
+  }
 
-  \IT{(\FU*{COPY-STRUCTURE} \VAR{structure})} 
+  \IT{(\FU*{COPY-STRUCTURE} \VAR{structure})}
+  {
   Return \retval{copy of \VAR{structure}} with shared slot values.
+  }
 
   \IT{(\FU*{SLOT-MAKUNBOUND} \VAR{instance} \VAR{slot})}
+  {
   Make \VAR{slot} in \retval{\VAR{instance}} unbound.
+  }
 
 \end{LIST}
 

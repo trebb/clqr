@@ -115,83 +115,126 @@
 \begin{LIST}{1cm}
 
   \IT{(\FU*{TYPEP} \VAR{foo} \VAR{type} \Op{\VAR{environment}})}
+  {
   Return \retval{\T} if \VAR{foo} is of \VAR{type}.
+  }
 
-  \IT{(\FU*{SUBTYPEP} \VAR{type-a} \VAR{type-b} \Op{\VAR{environment}})}
+  \IT{(\FU*{SUBTYPEP} \VAR{type-a} \VAR{type-b}
+    \Op{\VAR{environment}})}
+  {
   Return \retval{\T} if \VAR{type-a} is a recognizable subtype of
   \VAR{type-b}, and \retvalii{\NIL} if the relationship could not be
   determined. 
+  }
 
   \IT{(\SF*{THE} \VAR{type} {form})}
+  {
   Return \retval{values} of \VAR{form} which are declared to be of
   \VAR{type}. 
+  }
 
-  \IT{(\FU*{COERCE} \VAR{object} \VAR{type})} 
+  \IT{(\FU*{COERCE} \VAR{object} \VAR{type})}
+  {
   Coerce \VAR{object} into \VAR{type}.
+  }
 
   \IT{(\SF*{TYPECASE} \VAR{foo} \OPn{(\VAR{type} \OPn{\VAR{form-a}})} 
     \OP{(\xorGOO{\kwd*{OTHERWISE}\\\T}{\}}\OPn{\VAR{form-b}})\DF{\NIL}})}
+  {
   Return \retval{values of a \VAR{form-a}} if \VAR{foo} is of this
   \VAR{type}. Return \retval{values of \VAR{form-b}} otherwise. 
+  }
 
   \IT{(\xorGOO{\SF*{CTYPECASE}\\
       \SF*{ETYPECASE}
     }{\}}\VAR{foo} \OPn{(\VAR{type} \OPn{\VAR{form}})})}
+  {
   Return \retval{value of a \VAR{form}} if \VAR{foo} is of this \VAR{type}.
   Signal correctable/non-correctable error, resp.
+  }
 
-  \IT{(\FU*{TYPE-OF} \VAR{foo})} 
+  \IT{(\FU*{TYPE-OF} \VAR{foo})}
+  {
   \retval{Type of \VAR{foo}}.
+  }
 
-  \IT{(\kwd*{CHECK-TYPE} \VAR{place} \VAR{type} \Op{\VAR{string}})} 
+  \IT{(\kwd*{CHECK-TYPE} \VAR{place} \VAR{type} \Op{\VAR{string}})}
+  {
   Return \retval{\NIL} and signal correctable error if \VAR{place} is
   not of {type}. 
+  }
 
-  \IT{(\FU*{STREAM-ELEMENT-TYPE} \VAR{stream})} 
+  \IT{(\FU*{STREAM-ELEMENT-TYPE} \VAR{stream})}
+  {
   Return \retval{type} of \VAR{stream} objects.
+  }
 
-  \IT{(\FU*{ARRAY-ELEMENT-TYPE} \VAR{array})} 
+  \IT{(\FU*{ARRAY-ELEMENT-TYPE} \VAR{array})}
+  {
   Element \retval{type} \VAR{array} holds.
+  }
 
   \IT{(\FU*{UPGRADED-ARRAY-ELEMENT-TYPE} \VAR{type}
-    \Op{\VAR{environment}})} 
+    \Op{\VAR{environment}})}
+  {
   \retval{Element type} of most specialized array capable of holding
   elements of \VAR{type}. 
+  }
 
   \IT{(\SF*{DEFTYPE} \VAR{name} \OPn{\VAR{arg}} 
     \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \Op{\VAR{documentation}} 
     \OPn{\VAR{form}})}
+  {
   Define new type \retval{\VAR{name}}.
+  }
 
   \IT{(\kwd*{T})}
+  {
   Supertype of every type including \kwd{t}; or superclass of every
   class except \kwd{t}.
+  }
 
   \IT{(\kwd*{NIL})}
+  {
   The empty type, subtype of every type.
+  }
 
   \IT{\arrGOO{(\kwd{EQL} \VAR{foo})\\
       (\kwd{MEMBER} \OPn{\VAR{foo}})}{\}}}
+  {
   Type specifier, comprising just \VAR{foo} of \VAR{foo}s, resp.
+  }
 
-  \IT{(\kwd*{SATISFIES} \VAR{name})} 
+  \IT{(\kwd*{SATISFIES} \VAR{name})}
+  {
   Type specifier for all objects satisfying predicate \VAR{name}. 
+  }
 
-  \IT{(\kwd*{MOD} \VAR{n})} 
+  \IT{(\kwd*{MOD} \VAR{n})}
+  {
   Type specifier for all integers $<n$.
-  
+  }
+
   \IT{(\kwd{NOT} \VAR{type})}
+  {
   Complement of type.
+  }
 
   \IT{(\kwd*{AND} \OPn{\VAR{type}}\DF{\kwd{t}})}
+  {
   Type specifier for intersection of \VAR{type}s.
+  }
 
-  \IT{(\kwd*{OR} \OPn{\VAR{type}}\DF{\kwd{nil}})} 
+  \IT{(\kwd*{OR} \OPn{\VAR{type}}\DF{\kwd{nil}})}
+  {
   Type specifier for union of \VAR{type}s.
+  }
 
   \IT{(\kwd*{VALUES} \OPn{\VAR{type}} \OP{\OPn{\VAR{type}}
-      \Op{\VAR{other-args}}})} 
+      \Op{\VAR{other-args}}})}
+  {
   Type specifier for multiple values.
+  }
 
   \end{LIST}
 
