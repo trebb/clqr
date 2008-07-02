@@ -14,9 +14,9 @@
 \begin{LIST}{1cm}
 
   \IT{\arrGOO{(\FU*{CHARACTERP} \VAR{ foo})\\
-      (\FU*{STANDARD-CHAR-P} \VAR{ char})}{.}}
+      (\FU*{STANDARD-CHAR-P} \VAR{ char})}{\}}}
   {
-  Return \retval{\T} if \VAR{foo} is of indicated type.
+  \retval{\T} if \VAR{foo} is of indicated type.
   }
 
   \IT{\arrGOO{(\FU*{GRAPHIC-CHAR-P} \VAR{ char})\\
@@ -24,7 +24,7 @@
       (\FU*{ALPHANUMERICP} \VAR{ char})}{.}}
   {
   \retval{\T} if \VAR{char} is visible, alphabetic, or
-  alphanumeric, resp.
+  alphanumeric, respectively.
   }
 
   \IT{\arrGOO{(\FU*{UPPER-CASE-P} \VAR{ char})\\
@@ -32,7 +32,7 @@
       (\FU*{BOTH-CASE-P} \VAR{ char})}{.}}
   {
   Return \retval{\T} if \VAR{char} is uppercase, lowercase, or
-  able to be in another case, resp.
+  able to be in another case, respectively.
   }
 
   \IT{(\FU*{DIGIT-CHAR-P} \VAR{char} \VAR{radix}\DF{10})}
@@ -46,7 +46,7 @@
           character}})}{.}}
   {
   Return \retval{\T} if all \VAR{character}s, or
-  none, resp.,  are equal.
+  none, respectively,  are equal.
   }
 
   \IT{\arrGOO{(\FU*{CHAR-EQUAL}\RP{\VAR{
@@ -54,7 +54,7 @@
           character}})}{.}}
   {
   Return \retval{\T} if all \VAR{character}s, or
-  none, resp.,  are equal ignoring case.
+  none, respectively,  are equal ignoring case.
   }
 
   \IT{\arrGOO{(\FU{CHAR\boldmath$>$}\RP{\VAR{
@@ -69,7 +69,7 @@
   \index{char<=@CHAR$<=$}%
   Return \retval{\T} if \VAR{character}s are
   monotonically decreasing, monotonically non-increasing, monotonically
-  increasing, or monotonically non-decreasing, resp.
+  increasing, or monotonically non-decreasing, respectively.
   }
 
   \IT{\arrGOO{
@@ -80,13 +80,13 @@
   {
   Return \retval{\T} if \VAR{character}s are
   monotonically decreasing, monotonically non-increasing, monotonically
-  increasing, or monotonically non-decreasing, resp., ignoring case.
+  increasing, or monotonically non-decreasing, respectively, ignoring case.
   }
 
   \IT{\arrGOO{(\FU*{CHAR-UPCASE} \VAR{ character})\\
       (\FU*{CHAR-DOWNCASE} \VAR{ character})}{.}}
   {
-  Return corresponding uppercase/lowercase \retval{character}, resp.
+  Return corresponding uppercase/lowercase \retval{character}, respectively.
   }
 
   \IT{(\kwd*{CHAR-INT} \VAR{character})}

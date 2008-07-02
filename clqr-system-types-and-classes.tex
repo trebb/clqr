@@ -108,7 +108,8 @@
         \kwd*{METHOD-COMBINATION}}}
   \end{center}\vspace{-1em}
               {\footnotesize\footnotemark[2]Multiply defined}
-  \caption{Data Types.}%
+              
+  \caption{Data Types. \quad\kwd{*} as an argument means no restriction.}%
 \end{figure}
 
 
@@ -150,7 +151,7 @@
     }{\}}\VAR{foo} \OPn{(\VAR{type} \OPn{\VAR{form}})})}
   {
   Return \retval{value of a \VAR{form}} if \VAR{foo} is of this \VAR{type}.
-  Signal correctable/non-correctable error, resp.
+  Signal correctable/non-correctable error, respectively.
   }
 
   \IT{(\FU*{TYPE-OF} \VAR{foo})}
@@ -188,21 +189,23 @@
   Define new type \retval{\VAR{name}}.
   }
 
-  \IT{(\kwd*{T})}
+  \IT{\T)}
   {
+    \index{T}%
   Supertype of every type including \kwd{t}; or superclass of every
   class except \kwd{t}.
   }
 
-  \IT{(\kwd*{NIL})}
+  \IT{\NIL}
   {
+    \index{NIL}%
   The empty type, subtype of every type.
   }
 
   \IT{\arrGOO{(\kwd{EQL} \VAR{foo})\\
       (\kwd{MEMBER} \OPn{\VAR{foo}})}{\}}}
   {
-  Type specifier, comprising just \VAR{foo} of \VAR{foo}s, resp.
+  Type specifier, comprising just \VAR{foo} of \VAR{foo}s, respectively.
   }
 
   \IT{(\kwd*{SATISFIES} \VAR{name})}
@@ -220,12 +223,12 @@
   Complement of type.
   }
 
-  \IT{(\kwd*{AND} \OPn{\VAR{type}}\DF{\kwd{t}})}
+  \IT{(\kwd*{AND} \OPn{\VAR{type}}\DF{\T})}
   {
   Type specifier for intersection of \VAR{type}s.
   }
 
-  \IT{(\kwd*{OR} \OPn{\VAR{type}}\DF{\kwd{nil}})}
+  \IT{(\kwd*{OR} \OPn{\VAR{type}}\DF{\NIL})}
   {
   Type specifier for union of \VAR{type}s.
   }

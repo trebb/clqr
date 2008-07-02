@@ -24,7 +24,7 @@
        \index{=}%
        \index{/=}%
        Return \retval{\T} if all \VAR{number}s, or
-       none, resp.,  are equal.
+       none, respectively,  are equal.
      }
 
   \IT{\arrGOO{(\FU{\boldmath$>$}\RP{\VAR{
@@ -38,18 +38,20 @@
   \index{<=@$<=$}%
   Return \retval{\T} if \VAR{number}s are
   monotonically decreasing, monotonically non-increasing,
-  monotonically increasing, or monotonically non-decreasing, resp. 
+  monotonically increasing, or monotonically non-decreasing, respectively. 
   }
 
-  \IT{\arrGOO{(\FU*{MINUSP} \VAR{ a})\\(\FU*{ZEROP} \VAR{ a})\\(\FU*{PLUSP}
-      \VAR{ a})}{\}}}
+  \IT{\arrGOO{(\FU*{MINUSP} \VAR{ a})\\
+      (\FU*{ZEROP} \VAR{ a})\\
+      (\FU*{PLUSP}
+      \VAR{ a})}{.}}
   {
-  Return \retval{\T} if $a < 0$, $a = 0$, or $a > 0$, resp.
+  Return \retval{\T} if $a < 0$, $a = 0$, or $a > 0$, respectively.
   }
 
   \IT{(\xorGOO{\FU*{EVENP}\\\FU*{ODDP}}{\}} \VAR{integer})}
   {
-    Return \retval{\T} if \VAR{integer} is even, or odd, resp.
+    Return \retval{\T} if \VAR{integer} is even, or odd, respectively.
   }
 
   \IT{\arrGOO{(\FU*{NUMBERP} \VAR{ foo})\\
@@ -60,7 +62,7 @@
       (\FU*{COMPLEXP} \VAR{ foo})
       }{\}}}
   {
-  Return \retval{\T} if \VAR{foo} is of
+  \retval{\T} if \VAR{foo} is of
   indicated type.
   }
 
@@ -90,21 +92,21 @@
   \IT{\arrGOO{(\FU*{+} \OPn{\VAR{ a}})\\
       (\FU*{*} \OPn{\VAR{ a}})}{.}}
   {
-  Return \retval{$\sum{a}$} or \retval{$\prod{a}$}, resp. Without any
-  \VAR{a}s, return \retval{0} or \retval{1}, resp.
+  Return \retval{$\sum{a}$} or \retval{$\prod{a}$}, respectively. Without any
+  \VAR{a}s, return \retval{0} or \retval{1}, respectively.
   }
 
   \IT{\arrGOO{(\FU*{--} \VAR{ a}\OPn{\VAR{ b}})\\
       (\FU*{/} \VAR{ a}
       \OPn{\VAR{ b}})}{.}}
   {
-  Return \retval{$a-\sum{b}$} or \retval{$a/\prod{b}$}, resp. Without any
-  \VAR{b}s, return \retval{$-a$} or \retval{$1/a$}, resp.
+  Return \retval{$a-\sum{b}$} or \retval{$a/\prod{b}$}, respectively. Without any
+  \VAR{b}s, return \retval{$-a$} or \retval{$1/a$}, respectively.
   }
 
   \IT{\arrGOO{(\FU*{1+} \VAR{ a})\\(\FU*{1--} \VAR{ a})}{\}}}
   {Return \retval{$a+1$} or
-  \retval{$a-1$}, resp.
+  \retval{$a-1$}, respectively.
   }
 
   \IT{(\xorGOO{\SF*{INCF}\\\SF*{DECF}}{\}} \VAR{place}
@@ -131,14 +133,14 @@
   \IT{\arrGOO{(\FU*{SQRT} \VAR{ n})\\
       (\FU*{ISQRT} \VAR{ n})}{\}}}
   {
-  Return, in complex or natural numbers, resp., $\sqrt{n}$.
+  Return, in complex or natural numbers, respectively, $\sqrt{n}$.
   }
 
   \IT{\arrGOO{(\FU*{LCM} \OPn{\VAR{ integer}})\\
       (\FU*{GCD} \OPn{\VAR{ integer}})}{.}}
   {
   \retval{Least common multiple} or \retval{greatest common
-    denominator}, resp., of \VAR{integer}s. 
+    denominator}, respectively, of \VAR{integer}s. 
   }
 
   \IT{\CNS*{PI}}
@@ -151,14 +153,14 @@
       (\FU*{TAN} \VAR{ a})}{.}}
   {
   With \VAR{a} in radians, return \retval{$\sin a$}, \retval{$\cos
-    a$}, or \retval{$\tan a$}, resp.
+    a$}, or \retval{$\tan a$}, respectively.
   }
 
   \IT{\arrGOO{(\FU*{ASIN} \VAR{ a})\\
       (\FU*{ACOS} \VAR{ a})}{\}}}
   {
-  Return \retval{$\arcsin a$} or \retval{$\arccos
-    a$}, resp., in radians.
+  \retval{$\arcsin a$} or \retval{$\arccos
+    a$}, respectively, in radians.
   }
 
   \IT{(\FU*{ATAN} \VAR{a} \Op{\VAR{b}})}
@@ -170,15 +172,15 @@
       \VAR{ a})}{\}}}
   {
   Return \retval{$\sinh a$}, \retval{$\cosh
-    a$}, or \retval{$\tanh a$}, resp.
+    a$}, or \retval{$\tanh a$}, respectively.
   }
 
   \IT{\arrGOO{(\FU*{ASINH} \VAR{ a})\\
       (\FU*{ACOSH} \VAR{ a})
       \\(\FU*{ATANH} \VAR{ a})}{\}}}
   {
-  Return \retval{$\operatorname{arsinh} a$}, \retval{$\operatorname{acosh}
-    a$}, or \retval{$\operatorname{atanh} a$}, resp.
+  \retval{$\operatorname{arsinh} a$}, \retval{$\operatorname{acosh}
+    a$}, or \retval{$\operatorname{atanh} a$}, respectively.
   }
 
   \IT{(\FU*{CIS} \VAR{n})}
@@ -195,20 +197,20 @@
   \IT{\arrGOO{(\FU*{NUMERATOR} \VAR{ rational})\\
       (\FU*{DENOMINATOR} \VAR{ rational})}{.}}
   {
-  Return \retval{numerator} or  \retval{denominator}, resp., of
+  Return \retval{numerator} or  \retval{denominator}, respectively, of
   \VAR{rational}'s canonical form.
   }
 
   \IT{\arrGOO{(\FU*{REALPART} \VAR{ number})\\
       (\FU*{IMAGPART} \VAR{ number})}{.}}
   {
-  Return \retval{real part} or \retval{imaginary part}, resp., of \VAR{number}.
+  Return \retval{real part} or \retval{imaginary part}, respectively, of \VAR{number}.
   }
 
   \IT{\arrGOO{(\FU*{MAX } \Op{\VAR{num}})\\
       (\FU*{MIN } \Op{\VAR{num}})}{\}}}
   {
-  Return \retval{greatest} or \retval{least}, resp., of \VAR{num}s.
+  Return \retval{greatest} or \retval{least}, respectively, of \VAR{num}s.
   }
 
   \IT{(\xorGOO{%
@@ -218,14 +220,14 @@
       \Goo{\FU*{ROUND}\XOR\FU*{FROUND}}}{\}}
     \VAR{number} \Op{\VAR{divisor}\DF{1}})}
   {
-  Return \retval{quotient} (integer or float, resp.) truncated
-  towards $-\infty$, $+\infty$, $0$, or rounded, resp.; and \retvalii{remainder}.
+  Return \retval{quotient} (integer or float, respectively.) truncated
+  towards $-\infty$, $+\infty$, $0$, or rounded, respectively; and \retvalii{remainder}.
   }
 
   \IT{(\xorGOO{\FU*{MOD}\\
       \FU*{REM}}{\}} \VAR{n} \VAR{m})}
   {Same as \kwd{floor} or
-  \kwd{truncate}, resp., but return \retval{remainder} only.
+  \kwd{truncate}, respectively, but return \retval{remainder} only.
   }
 
   \IT{(\FU*{RANDOM} \VAR{limit})} 
@@ -263,7 +265,7 @@
     }
 
   \IT{\arrGOO{(\FU*{RATIONAL} \VAR{ real})\\
-      (\FU*{RATIONALIZE} \VAR{ real})}{\}}}
+      (\FU*{RATIONALIZE} \VAR{ real})}{.}}
   {
   Convert \VAR{real} to \retval{rational}. Assume limited/unlimited precision for \VAR{real}.
   }
@@ -313,7 +315,7 @@
       (\FU*{LOGEQV} \OPn{\VAR{ integer}})}{.}}
   {
   Return \retval{value of anded or exclusive-nored \VAR{integer}s},
-  resp. Without any \VAR{integer}, return \retval{$-1$}.
+  respectively. Without any \VAR{integer}, return \retval{$-1$}.
   }
 
   \IT{(\FU*{LOGANDC1} \VAR{ int-a} \VAR{ int-b})}
@@ -360,7 +362,7 @@
       (\FU*{LOGXOR} \OPn{\VAR{ integer}})}{.}}
   {
   Return \retval{value of ored or exclusive-ored \VAR{integer}s},
-  resp. Without any \VAR{integer}, return \retval{0}.
+  respectively. Without any \VAR{integer}, return \retval{0}.
   }
 
   \IT{(\FU*{LOGNOT}\VAR{ integer})}
@@ -426,7 +428,7 @@
   {
   Return \retval{\VAR{int-b}} with bits denoted by \VAR{byte-spec} replaced
   by corresponding bits of \VAR{int-a}, or by the low (\kwd{byte-size}
-  \VAR{byte-spec}) bits of \VAR{int-a}, resp. 
+  \VAR{byte-spec}) bits of \VAR{int-a}, respectively. 
   }
 
 \end{LIST}
@@ -437,9 +439,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
-  \IT{\xorGOO{\CNS{SHORT-FLOAT}\\\CNS{SINGLE-FLOAT}\\\CNS{DOUBLE-FLOAT}\\\CNS{LONG-FLOAT}}{\}}\kwd{-}%
+  \IT{\arrGOO{\CNS{SHORT-FLOAT}\\
+      \CNS{SINGLE-FLOAT}\\
+      \CNS{DOUBLE-FLOAT}\\
+      \CNS{LONG-FLOAT}}{\}}\kwd{-}%
     \xorGOO{\kwd{EPSILON}\\
-      \kwd{NEGATIVE-EPSILON}}{\}}}
+      \kwd{NEGATIVE-EPSILON}}{.}}
   {
   \index{SHORT-FLOAT-EPSILON}%
   \index{SINGLE-FLOAT-EPSILON}%
@@ -449,18 +454,20 @@
   \index{SINGLE-FLOAT-NEGATIVE-EPSILON}%
   \index{DOUBLE-FLOAT-NEGATIVE-EPSILON}%
   \index{LONG-FLOAT-NEGATIVE-EPSILON}%
-  Smallest possible number making a difference when added or subtracted, resp.
+  Smallest possible number making a difference when added or subtracted, respectively.
   }
 
-  \IT{\xorGOO{%
-      \CNS{LEAST-NEGATIVE}\\\CNS{LEAST-NEGATIVE-NORMALIZED}\\
-      \CNS{LEAST-POSITIVE}\\\CNS{LEAST-POSITIVE-NORMALIZED}}{\}}%
+  \IT{\arrGOO{%
+      \CNS{LEAST-NEGATIVE}\\
+      \CNS{LEAST-NEGATIVE-NORMALIZED}\\
+      \CNS{LEAST-POSITIVE}\\
+      \CNS{LEAST-POSITIVE-NORMALIZED}}{\}}%
     \kwd{-}%
     \xorGOO{%
       \kwd{SHORT-FLOAT}\\
       \kwd{SINGLE-FLOAT}\\
       \kwd{DOUBLE-FLOAT}\\
-      \kwd{LONG-FLOAT}}{\}}}
+      \kwd{LONG-FLOAT}}{.}}
   {
   \index{LEAST-NEGATIVE-SHORT-FLOAT}%
   \index{LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT}%
@@ -478,17 +485,18 @@
   \index{LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT}%
   \index{LEAST-POSITIVE-LONG-FLOAT}%
   \index{LEAST-POSITIVE-NORMALIZED-LONG-FLOAT}%
-  Available numbers closest to $-0$ or $+0$, resp.
+  Available numbers closest to $-0$ or $+0$, respectively.
   }
 
-  \IT{\xorGOO{\CNS{MOST-NEGATIVE}\\\CNS{MOST-POSITIVE}}{\}}%
+  \IT{\arrGOO{\CNS{MOST-NEGATIVE}\\
+      \CNS{MOST-POSITIVE}}{\}}%
     \kwd{-}%
     \xorGOO{%
       \kwd{DOUBLE-FLOAT}\\
       \kwd{LONG-FLOAT}\\
       \kwd{SHORT-FLOAT}\\
       \kwd{SINGLE-FLOAT}\\
-      \kwd{FIXNUM}}{\}}}
+      \kwd{FIXNUM}}{.}}
   {
   \index{MOST-NEGATIVE-DOUBLE-FLOAT}%
   \index{MOST-NEGATIVE-LONG-FLOAT}%
@@ -500,7 +508,7 @@
   \index{MOST-POSITIVE-SHORT-FLOAT}%
   \index{MOST-POSITIVE-SINGLE-FLOAT}%
   \index{MOST-POSITIVE-FIXNUM}%
-  Available numbers closest to $-\infty$ or $+\infty$, resp.
+  Available numbers closest to $-\infty$ or $+\infty$, respectively.
   }
 
   \IT{\arrGOO{(\FU*{DECODE-FLOAT} \VAR{ n})\\
@@ -520,7 +528,7 @@
       (\FU*{FLOAT-PRECISION} \VAR{ n})}{.}}
   {
   \retval{Radix}, \retval{number of digits} in that radix,
-  \retval{precision} in that radix, resp., of float \VAR{n}.
+  \retval{precision} in that radix, respectively, of float \VAR{n}.
   }
 
   \IT{(\FU*{UPGRADED-COMPLEX-PART-TYPE} \VAR{foo})}

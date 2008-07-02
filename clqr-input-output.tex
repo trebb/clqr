@@ -12,7 +12,7 @@
       (\FU*{PATHNAMEP} \VAR{ foo})\\
       (\FU*{READTABLEP} \VAR{ foo})}{\}}}
   {
-  Return \retval{\T} if \VAR{foo} is of indicated type.
+  \retval{\T} if \VAR{foo} is of indicated type.
   }
 
   \IT{\arrGOO{(\FU*{INPUT-STREAM-P} \VAR{ stream})\\
@@ -21,7 +21,7 @@
       (\FU*{OPEN-STREAM-P} \VAR{ stream})}{.}}
   {
   Return \retval{\T} if \VAR{stream} is for input, for output,
-  interactive, or open, resp.
+  interactive, or open, respectively.
   }
 
   \IT{(\FU*{PATHNAME-MATCH-P} \VAR{path} \VAR{wildcard})}
@@ -133,7 +133,7 @@
   }
 
   \IT{(\FU*{READ-SEQUENCE} \VAR{sequence} \VAR{stream}
-    \OP{\kwd{:start} \VAR{start}\DF{0}}\Op{\kwd{:end}
+    \Op{\kwd{:start} \VAR{start}\DF{0}}\Op{\kwd{:end}
       \VAR{end}\DF{\NIL}})}
   {
   Replace elements of \VAR{sequence} between \VAR{start} and \VAR{end}
@@ -149,7 +149,7 @@
   \IT{(\FU*{COPY-READTABLE} \VAR{from-readtable}\DF{\kwd{*readtable*}}
     \VAR{to}\DF{\NIL})}
   {
-  Return \retval{Copy of \VAR{from-readtable}}.
+  Return \retval{copy of \VAR{from-readtable}}.
   }
 
   \IT{(\FU*{SET-SYNTAX-FROM-CHAR} \VAR{to-char} \VAR{from-char}
@@ -217,14 +217,10 @@
 
 \begin{LIST}{1cm}
 
-  \IT{\KWD*{;}\OPn{\VAR{comment}}}
+  \IT{\arrGOO{\KWD*{; }\OPn{\VAR{comment}}\\
+      \KWD{\#\boldmath$|$ }\OPn{\VAR{comment}}\KWD{ \boldmath$|$\#}}{\}}}
   {
-  Rest of line is a comment.
-  }
-
-  \IT{\KWD{\#\boldmath$|$}\OPn{\VAR{comment}}\KWD{\boldmath$|$\#}}
-  {
-  Comment.
+  Comments.
   }
 
   \IT{\KWD*{(}}
@@ -237,21 +233,18 @@
   Begin and end of a string.
   }
 
-  \IT{\KWD*{'}\VAR{foo}} 
-  {Quote \VAR{foo}.}
-
-  \IT{\KWD*{`}\VAR{foo} \KWD*{,}\VAR{bar} \KWD*{,@}\VAR{baz}
-    \KWD*{,.}\VAR{quux} \VAR{bing}} 
+  \IT{\KWD*{`}\VAR{foo} \Op{\KWD*{,}\VAR{bar}} \Op{\KWD*{,@}\VAR{baz}}
+    \Op{\KWD*{,.}\VAR{quux}} \Op{\VAR{bing}}}
   {
-  Quote \VAR{foo} and \VAR{bing}; but neither \VAR{bar}, nor the lists
+  \kwd{quote} \VAR{foo} and \VAR{bing}; but neither \VAR{bar} nor the lists
   \VAR{baz} and \VAR{quux} which are spliced into their
   elements. \VAR{quux} is possibly modified in the process.
   }
   \IT{\KWD{\#\boldmath{$\backslash$}}\VAR{c}}
   {
-  \index{\#@\#$\backslash$}%
   Character \VAR{c}.
   }
+  \index{\#@\#$\backslash$}%
 
   \IT{\KWD*{\#b}, \KWD*{\#o}, \KWD*{\#x}, \KWD{\#}\VAR{n}\KWD{R}}
   {
@@ -322,7 +315,7 @@
 
   \IT{\KWD*{\#P}\VAR{foo}}
   {
-  Value of \retval{(\kwd{parse-namestring '}\VAR{foo})}.
+  A pathname.
   }
 
   \IT{\KWD{\#\boldmath$<$}}
@@ -341,11 +334,6 @@
   {
   Means \VAR{form} if \VAR{test} returns \NIL, means whitespace
   otherwise. 
-  }
-
-  \IT{\V*{*read-suppress*}\DF{\NIL}}
-  {
-  Used by \kwd{\#+} and \kwd{\#--}.
   }
 
 \end{LIST}
@@ -367,14 +355,14 @@
   Print \retval{\VAR{foo}} to \VAR{stream} \FU{read}ably,
   \FU{read}ably after a newline and followed by a space,
   \FU{read}ably after a newline, or human-readably without any extra
-  characters, resp. 
+  characters, respectively. 
   }
 
   \IT{\arrGOO{(\FU*{PRIN1-TO-STRING} \VAR{ foo})\\
       (\FU*{PRINC-TO-STRING} \VAR{ foo})}{.}}
   {
   Print \VAR{foo} to \retval{\VAR{string}} \FU{read}ably or
-  human-readably, resp.
+  human-readably, respectively.
   }
 
   \IT{(\GFU*{PRINT-OBJECT} \VAR{object} \VAR{stream})}
@@ -416,7 +404,7 @@
   {
   Write \retval{part of \VAR{string} between \VAR{start} and
     \VAR{end}} to \VAR{stream}, without/with a trailing newline,
-  resp. 
+  respectively. 
   }
 
   \IT{(\FU*{WRITE-BYTE} \VAR{byte} \VAR{stream})}
@@ -454,7 +442,7 @@
     }{\}})}
   {
   Print and return \retval{\VAR{foo}}, or print \VAR{foo} into
-  \retval{string}, resp., after dynamically setting printer variables
+  \retval{string}, respectively, after dynamically setting printer variables
   corresponding to keyword parameters (\kwd{:}\VAR{bar} becoming
   \kwd{*print-}\VAR{bar}\kwd{*}). (\kwd{:stream} keyword with \FU{write} only.)
   }
@@ -466,7 +454,7 @@
   {
   Print \VAR{foo} to \VAR{stream}. If \VAR{foo} is a list, print as
   many elements per line as possible; or print either all elements on
-  one line or each on its own line, resp. Return \retval{\NIL}.
+  one line or each on its own line, respectively. Return \retval{\NIL}.
   }
 
   \IT{(\FU*{PPRINT-TABULAR} \VAR{stream} \VAR{foo}
@@ -561,6 +549,21 @@
   If \T, print pretty.
   }
 
+  \IT{\V*{*print-lines*}\DF{\NIL}}
+  {
+  Number of lines to pretty-print.
+  }
+
+  \IT{\V*{*print-right-margin*}\DF{\NIL}}
+  {
+  Right margin width in ems while pretty-printing.
+  }
+
+  \IT{\V*{*print-miser-width*}}
+  {
+  Width below which a compact pretty-printing style is used.
+  }
+
   \IT{\V*{*print-case*}\DF{\kwd{:upcase}}}
   {
   Print symbol names all uppercase (\kwd{:upcase}), all lowercase
@@ -569,12 +572,24 @@
 
   \IT{\V*{*print-readably*}\DF{\NIL}}
   {
-  If \T, print \FU{read}ably.
+  If \T, print \FU{read}ably or signal error
+  \kwd{print-not-readable}. 
   }
 
   \IT{\V*{*print-array*}}
   {
   If \T, print array \FU{read}ably.
+  }
+
+  \IT{\V*{*print-level*}\DF{\NIL}}
+  {
+  If integer, restrict printing of nested object to that depth.
+  }
+
+  \IT{\V*{*print-circle*}\DF{\NIL}}
+  {
+  If \T, avoid indefinite recursion while printing circular
+  structure. 
   }
 
   \IT{\V*{*print-escape*}\DF{\T}}
@@ -597,40 +612,19 @@
   Radix for printing rationals, between 2 and 36.
   }
 
-  \IT{\V*{*print-circle*}\DF{\NIL}}
-  {
-  If \T, avoid indefinite recursion while printing circular
-  structure. 
-  }
-
-  \IT{\V*{*print-lines*}\DF{\NIL}}
-  {
-  Number of lines to pretty-print.
-  }
-
   \IT{\V*{*print-length*}\DF{\NIL}}
   {
   If integer, restrict printing of objects to that number per level.
   }
 
-  \IT{\V*{*print-level*}\DF{\NIL}}
-  {
-  If integer, restrict printing of nested object to that depth.
-  }
-
-  \IT{\V*{*print-right-margin*}\DF{\NIL}}
-  {
-  Right margin width in ems while pretty-printing.
-  }
-
-  \IT{\V*{*print-miser-width*}}
-  {
-  Width below which a compact pretty-printing style is used.
-  }
-
   \IT{\V*{*print-pprint-dispatch*}}
   {
   Current pretty print dispatch table.
+  }
+
+  \IT{\V*{*read-suppress*}\DF{\NIL}}
+  {
+  If \T, reader is syntactically more tolerant.
   }
 
 \end{LIST}
@@ -671,7 +665,7 @@
       \KWD{\Op{:}\Op{@}\Goo{A\XOR S}}}
     {
     Print argument of any type for consumption by humans/by the
-    reader, resp. With \kwd{@}, add \VAR{pad-char}s on the left
+    reader, respectively. With \kwd{@}, add \VAR{pad-char}s on the left
     rather than on the right. With \kwd{:} print \NIL\ as \LIT{()} rather
     than \LIT{nil}.
   }
@@ -691,7 +685,7 @@
     {
     Take argument as number and print it as English cardinal number,
     as English ordinal number, as Roman numeral, or as old Roman
-    numeral, resp.
+    numeral, respectively.
   }
 
     \IT{\KWD{\TLD}\Op{\VAR{width}
@@ -701,7 +695,7 @@
           B\XOR O\XOR X}}}
     {
     Print integer argument as number (decimal, binary, octal, or
-    hexadecimal, resp.) With \kwd{:} group digits 
+    hexadecimal, respectively.) With \kwd{:} group digits 
     \VAR{comma-interval} each; with \kwd{@}, always prepend a sign.
   }
 
@@ -727,7 +721,7 @@
     \IT{\Goo{\KWD{\TLD C}\XOR\KWD{\TLD :C}\XOR\KWD{\TLD
           @C}\XOR\KWD{\TLD @:C}}}
     {
-    Print, spell out, print in \kwd{\#$\backslash$} syntax, or tell how to type, resp., argument as
+    Print, spell out, print in \kwd{\#$\backslash$} syntax, or tell how to type, respectively, argument as
     (possibly non-printing) character.
   }
 
@@ -739,7 +733,7 @@
     {
     Convert to lowercase, convert first letter of each word to
     uppercase, capitalize first word and convert
-    the rest to lowercase, or convert to uppercase, resp.
+    the rest to lowercase, or convert to uppercase, respectively.
   }
 
     \IT{\Goo{\KWD{\TLD P}\XOR\KWD{\TLD:P}
@@ -748,7 +742,7 @@
     If argument \kwd{eql} 1 print nothing, otherwise print \LIT{s};
     do the same after backing up one argument; if argument \kwd{eql} 1
     print \LIT{y}, otherwise print \LIT{ies}, do the same after
-    backing up one argument, resp. 
+    backing up one argument, respectively. 
   }
 
     \IT{\Goo{\KWD{\TLD\%}\XOR\KWD{\TLD}\VAR{n}\KWD{\%}}}
@@ -765,7 +759,7 @@
     \IT{\Goo{\KWD{\TLD}\_\XOR\KWD{\TLD:}\_\XOR\KWD{\TLD@}\_\XOR\KWD{\TLD}:@\_}}
     {
     Print newline like \kwd{pprint-newline} with argument
-    \kwd{:linear}, \kwd{:fill}, \kwd{:miser}, or \kwd{:mandatory}, resp.
+    \kwd{:linear}, \kwd{:fill}, \kwd{:miser}, or \kwd{:mandatory}, respectively.
   }
 
     \IT{\KWD{\TLD}\Op{\KWD{@}}$\hookleftarrow$}
@@ -805,7 +799,7 @@
     \IT{\Goo{\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\kwd{I}\XOR\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\kwd{:I}}}
     {
     Same as (\kwd{pprint-indent} \kwd{:block} \VAR{n}) or
-    (\kwd{pprint-indent} \kwd{:current} \VAR{n}), resp.
+    (\kwd{pprint-indent} \kwd{:current} \VAR{n}), respectively.
   }
 
     \IT{\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{*}}
@@ -952,7 +946,7 @@
       (\FU*{ECHO-STREAM-OUTPUT-STREAM}\VAR{ echo-stream})}{.}}
   {
   Return \retval{stream} \VAR{echo-stream} receives from or sends
-  to, resp.
+  to, respectively.
   }
 
   \IT{(\FU*{MAKE-STRING-INPUT-STREAM} \VAR{string}
@@ -982,7 +976,7 @@
       (\FU*{TWO-WAY-STREAM-OUTPUT-STREAM} \VAR{ two-way-stream})}{.}}
   {
   Return \retval{stream} \VAR{two-way-stream} receives from or sends
-  to, resp.
+  to, respectively.
   }
 
   \IT{(\FU*{LISTEN} \Op{\VAR{stream}\DF{\kwd{*standard-input*}}})}
@@ -1003,7 +997,7 @@
   {
   End output to \VAR{stream} and return \retval{\NIL} immediately,
   after initiating flushing of buffers, or after flushing of buffers,
-  resp. 
+  respectively. 
   }
 
   \IT{(\SF*{WITH-OPEN-STREAM} (\VAR{foo} \VAR{stream})
@@ -1049,7 +1043,7 @@
       \V*{*error-output*}}{.}}
   {
   Standard input stream, standard output stream, 
-  or standard error output stream, resp.
+  or standard error output stream, respectively.
   }
 
   \IT{\arrGOO{\V*{*debug-io*}\\
@@ -1110,7 +1104,7 @@
       (\FU*{HOST-NAMESTRING}\VAR{ path})}{.}}
   {
   Return string representing \retval{full pathname}, \retval{name, type, and version},
-  \retval{directory name}, or \retval{host name}, resp., of \VAR{path}.
+  \retval{directory name}, or \retval{host name}, respectively, of \VAR{path}.
   }
 
   \IT{(\FU*{PARSE-NAMESTRING} \VAR{foo} \OP{\VAR{host}
@@ -1169,7 +1163,7 @@
       (\FU*{TRUENAME} \VAR{file})}{.}}
   {
   \retval{Canonical name} of \VAR{file}. If \VAR{file} does not exist,
-  return \retval{\NIL}/signal error, resp.
+  return \retval{\NIL}/signal error, respectively.
   }
 
   \IT{(\FU*{FILE-WRITE-DATE} \VAR{file})}

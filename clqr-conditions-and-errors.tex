@@ -20,15 +20,13 @@
         \boxGOO{%
           \kwd*{WARNING}
           \boxGOO{%
-            \kwd*{STYLE-WARNING}}\\
-          \kwd*{SIMPLE-CONDITION}
-          \boxGOO{%
-            \kwd*{SIMPLE-WARNING}\\
-            \kwd*{SIMPLE-TYPE-ERROR}\\
-            \kwd*{SIMPLE-ERROR}}\\
+            \kwd*{STYLE-WARNING}\\
+            \kwd*{SIMPLE-CONDITION}\footnotemark[2]
+            \boxGOO{%
+              \kwd*{SIMPLE-WARNING}}}\\
           \kwd*{SERIOUS-CONDITION}\\
           \boxGOO{%
-            \kwd*{ERROR}
+            \kwd*{ERROR}\\
             \boxGOO{%
               \kwd*{CELL-ERROR}
               \boxGOO{%
@@ -40,7 +38,6 @@
                 \kwd*{END-OF-FILE}\\
                 \kwd*{PARSE-ERROR}\footnotemark[2]
                 \boxGOO{\kwd*{READER-ERROR}}}\\
-              \kwd*{PARSE-ERROR}\footnotemark[2]\\
               \kwd*{ARITHMETIC-ERROR}\\
               \boxGOO{%
                 \kwd*{DIVISION-BY-ZERO}\\
@@ -48,13 +45,22 @@
                 \kwd*{FLOATING-POINT-INVALID-OPERATION}\\
                 \kwd*{FLOATING-POINT-OVERFLOW}\\
                 \kwd*{FLOATING-POINT-UNDERFLOW}}\\
+              \kwd*{TYPE-ERROR}
+              \boxGOO{%
+                \kwd*{SIMPLE-CONDITION}\footnotemark[2]
+                \boxGOO{%
+                  \kwd*{SIMPLE-TYPE-ERROR}}}\\
+              \kwd*{SIMPLE-CONDITION}\footnotemark[2]
+              \boxGOO{%
+                \kwd*{SIMPLE-ERROR}}\\
+              \kwd*{PARSE-ERROR}\footnotemark[2]\\
               \kwd*{PROGRAM-ERROR}\\
               \kwd*{CONTROL-ERROR}\\
               \kwd*{PACKAGE-ERROR}\\
-              \kwd*{TYPE-ERROR}\\
               \kwd*{FILE-ERROR}\\
               \kwd*{PRINT-NOT-READABLE}}\\
-            \kwd*{STORAGE-CONDITION}}}}}\\
+            \kwd*{STORAGE-CONDITION}}\\
+          \kwd*{SIMPLE-CONDITION}\footnotemark[2]}}}\\
   \end{center}\vspace{-1em}
 {\footnotesize\footnotemark[2]Multiply defined}
   \caption{Condition Types.}%
@@ -67,11 +73,11 @@
       \orGOO{\Goos{\kwd{:reader} \VAR{reader-fu}}\\
         \Goos{\kwd{:writer} \VAR{writer-fu}} \\
         \Goos{\kwd{:accessor} \VAR{reader-fu}} \\
-        \kwd{:allocation} \Goo{\kwd{:instance}\XOR\VAR{class}}\\
+        \kwd{:allocation } \Goo{\kwd{:instance}\XOR\VAR{class}}\\
         \Goos{\kwd{:initarg} \kwd{:}\VAR{arg}}\\
         \kwd{:initform} \VAR{ form}\\
         \kwd{:type} \VAR{ type}}{\}})}{\}})
-    \orGOO{(\kwd{:default-initargs} \Goos{\VAR{name} \VAR{value}})\\
+    \orGOO{(\kwd{:default-initargs } \Goos{\VAR{name} \VAR{value}})\\
       ({\kwd{:documentation} \VAR{ string}})\\
       (\kwd{:report} \VAR{ report-name})}{\}})}
   {
@@ -83,15 +89,17 @@
   Return \retval{new condition of \VAR{type}}.
   }
 
-  \IT{(\FU*{UNWIND-PROTECT} \VAR{protected-form} \VAR{cleanup-form})}
+  \IT{(\FU*{UNWIND-PROTECT} \VAR{protected} \VAR{cleanup})}
   {
-  Evaluate \VAR{protected-form} and then, no matter how control leaves \VAR{protected-form}, \VAR{cleanup-form}. Return \retval{value of \VAR{protected-form}}.
+  Evaluate \VAR{protected} and then, no matter how control leaves
+  \VAR{protected}, \VAR{cleanup}. Return \retval{value of
+    \VAR{protected}}. 
   }
 
   \IT{(\xorGOO{\FU*{SIGNAL}\\
       \FU*{WARN}}{\}} \VAR{datum} \OPn{\VAR{arg}})}
   {
-  Signal \kwd{condition} or \kwd{warning}, resp.,
+  Signal \kwd{condition} or \kwd{warning}, respectively,
   as denoted by \VAR{datum} and \VAR{arg}s. Return \retval{\NIL}.
   }
 
@@ -119,8 +127,8 @@
   Invoke debugger with \VAR{condition}.
   }
 
-  \IT{(\SF*{ASSERT} \VAR{test} \OP{(\OPn{\VAR{place}})\Op{\VAR{datum}
-    \OPn{\VAR{arg}}})}}
+  \IT{(\SF*{ASSERT} \VAR{test} \OP{(\OPn{\VAR{place}}) \Op{\VAR{datum}
+    \OPn{\VAR{arg}}}})}
   {
   Signal correctable error denoted by \VAR{datum} and \VAR{arg}s if
   \VAR{test}, which may depend on \VAR{place}s, returns \NIL. Return
@@ -154,7 +162,7 @@
   {
   If \VAR{restart} is not called from \VAR{form}s, return
   \retval{values of last \VAR{form}}. Otherwise return \retval{\NIL}
-  and \retval{\T} and report restart using \kwd{format} \VAR{control}
+  and \retvalii{\T} and describe restart using \kwd{format} \VAR{control}
   and \VAR{arg}s (see p.\ \pageref{section:Format}).
   }
 
@@ -174,8 +182,8 @@
       \OPn{form})})}
   {
   Evaluate \VAR{test} with new restarts \VAR{name}. Return
-  \retval{value of \VAR{test}} or, if any of the restarts is invoked,
-  return \retval{value of its last \VAR{form}}.
+  \retval{values of \VAR{test}} or, if any of the restarts is invoked,
+  return \retval{values of its last \VAR{form}}.
   For \VAR{fu-arg}s see p.\ \pageref{section:Functions}.
   }
 
@@ -193,14 +201,14 @@
       (\FU*{INVOKE-RESTART-INTERACTIVELY} \VAR{ restart})}{.}}
   {
   Call function associated with \VAR{restart} with arguments given or
-  prompted for, resp. If restart function returns, return \retval{its values}.
+  prompted for, respectively If restart function returns, return \retval{its values}.
   }
 
   \IT{(\xorGOO{\FU*{COMPUTE-RESTARTS}\\
       \FU*{FIND-RESTART} \VAR{ name}}{\}} \Op{\VAR{condition}})}
   {
   Return list of \retval{all restarts}, or innermost \retval{restart}
-  \VAR{name}, resp., out of those either associated
+  \VAR{name}, respectively, out of those either associated
   with \VAR{condition} or un-associated at all; or, without
   \VAR{condition}, out of all restarts. Return \retval{\NIL} if search
   is unsuccessful.
@@ -252,7 +260,7 @@
 
   \IT{(\FU*{PRINT-NOT-READABLE-OBJECT} \VAR{condition})}
   {
-  The \retval{object} unprintable under \VAR{condition}.
+  The \retval{object} not readably printable under \VAR{condition}.
   }
 
   \IT{(\FU*{FILE-ERROR-PATHNAME} \VAR{condition})}
@@ -268,14 +276,14 @@
   \IT{\arrGOO{(\FU*{TYPE-ERROR-DATUM} \VAR{ condition})\\
       (\FU*{TYPE-ERROR-EXPECTED-TYPE} \VAR{ condition})}{.}}
   {
-  \retval{Datum} which caused \VAR{condition}, or its expected type, resp.
+  \retval{Datum} which caused \VAR{condition}, or its expected type, respectively
   }
 
   \IT{\arrGOO{(\FU*{SIMPLE-CONDITION-FORMAT-CONTROL} \VAR{ condition})\\
       (\FU*{SIMPLE-CONDITION-FORMAT-ARGUMENTS} \VAR{ condition})}{.}}
   {
   Return \retval{\kwd{format} control} or list of \retval{\kwd{format}
-    arguments}, resp., of \VAR{condition}.
+    arguments}, respectively, of \VAR{condition}.
   }
 
   \IT{\V*{*break-on-signals*}\DF{\NIL}}

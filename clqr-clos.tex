@@ -18,7 +18,7 @@
 \begin{LIST}{1cm}
 
   \IT{(\GFU*{MAKE-INSTANCE} \VAR{class} \Goos{\kwd{:}\VAR{initarg}
-      \VAR{value}} \OPn{\kwd{:}\VAR{other-key}})}
+      \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
   Make new \retval{instance of \VAR{class}}.
   }
@@ -74,7 +74,7 @@
       \orGOO{\Goos{\kwd{:reader} \VAR{reader-fu}}\\
         \Goos{\kwd{:writer} \VAR{writer-fu}} \\
         \Goos{\kwd{:accessor} \VAR{reader-fu}} \\
-        \kwd{:allocation} \Goo{\kwd{:instance}\XOR\kwd{:class}}\\
+        \kwd{:allocation } \Goo{\kwd{:instance}\XOR\kwd{:class}}\\
         \Goos{\kwd{:initarg} \kwd{:}\VAR{arg}} \\
         \kwd{:initform} \VAR{ form}\\
         \kwd{:type} \VAR{ type}\\
@@ -93,20 +93,20 @@
   }
 
   \IT{(\GFU*{UPDATE-INSTANCE-FOR-DIFFERENT-CLASS} \VAR{previous}
-    \VAR{current} \Op{\VAR{initargs}} \Op{\VAR{keyargs}})}
+    \VAR{current} \Op{\VAR{initargs}} \OPn{\VAR{other-keyarg}})}
   {
   Called by \kwd{change-class}.
   }
 
   \IT{(\GFU*{UPDATE-INSTANCE-FOR-REDEFINED-CLASS} \VAR{instances}
     \VAR{added-slots} \VAR{discarded-slots} \VAR{property-list
-      \Op{\VAR{initargs}} \Op{\VAR{other-args}}})}
+      \Op{\VAR{initargs}} \OPn{\VAR{other-keyarg}}})}
   {
   Called by \kwd{make-instances-obsolete}.
   }
 
   \IT{(\GFU*{SHARED-INITIALIZE} \VAR{instance} \VAR{slots}
-    \Op{\VAR{init-args}} \Op{\VAR{other-keyargs}})}
+    \Op{\VAR{init-args}} \OPn{\VAR{other-keyarg}})}
   {
   Used to fill \VAR{instance}'s \VAR{slots} using \VAR{init-args} and
   \kwd{:initform} forms.
@@ -166,7 +166,7 @@
     \xorGOO{\VAR{name}\\ (\kwd{setf} \VAR{ name})}{\}}
     \orGOO{%
       \kwd{:argument-precendence-order}\RP{\VAR{ arg}}\\
-      \kwd{:declare}\RP{(\kwd{optimize}\OPn{\VAR{ arg}})}\\
+      \kwd{:declare }\RP{(\kwd{optimize}\OPn{\VAR{ arg}})}\\
     \kwd{:documentation} \VAR{ string}\\
     \kwd{:environment} \VAR{ environment}\\
     \kwd{:generic-function-class} \VAR{ class}\\
@@ -192,22 +192,22 @@
           \VAR{var})}
         \OP{\VAR{init}\Op{\VAR{supplied-p}}})}
       \Op{\kwd*{\&allow-other-keys}}}
-    \OP{\kwd*{\&aux}\Goos{\VAR{var}\XOR(\VAR{var} \Op{\VAR{init}})}})
+    \OP{\kwd*{\&aux }\Goos{\VAR{var}\XOR(\VAR{var} \Op{\VAR{init}})}})
     \orGOO{\OPn{(\kwd{declare} \OPn{\VAR{ decl}})}\\
       \VAR{documentation}}{\}}
     \OPn{\VAR{form}})}
   {
   Define \retval{new method} for generic function
   \VAR{bar}. \VAR{spec-var}s specialize to either being of \VAR{class}
-  or being \kwd{eql} \VAR{foo}, resp. On invocation, \VAR{var}s and
+  or being \kwd{eql} \VAR{foo}, respectively On invocation, \VAR{var}s and
   \VAR{spec-var}s of the \retval{new method}
   act like parameters of a function with body \VAR{foo}.
   }
 
   \IT{(\xorGOO{\GFU*{ADD-METHOD}\\
-      \GFU*{REMOVE-METHOD}}{\}}\VAR{generic-function} \VAR{method})}
+      \GFU*{REMOVE-METHOD}}{\}} \VAR{generic-function} \VAR{method})}
   {
-  Add, or remove, resp., \VAR{method} from \retval{\VAR{generic-function}}.
+  Add, or remove, respectively, \VAR{method} from \retval{\VAR{generic-function}}.
   }
 
   \IT{(\FU*{CALL-NEXT-METHOD} \Op{\VAR{args}\DF{current args}})}
@@ -222,8 +222,8 @@
   Called on invocation of \VAR{generic-function} if there is no applicable method.
   }
 
-  \IT{(\xorGOO{(\FU*{INVALID-METHOD-ERROR} \VAR{ method}\\
-      \FU*{METHOD-COMBINATION-ERROR})}{\}}%
+  \IT{(\xorGOO{\FU*{INVALID-METHOD-ERROR} \VAR{ method}\\
+      \FU*{METHOD-COMBINATION-ERROR}}{\}}
     \VAR{control} \OPn{\VAR{arg}})}
   {
   Signal \kwd{error} on applicable method, or on method combination,
@@ -304,7 +304,7 @@
     \kwd{:identity-with-one-argument} \VAR{ bool}\DF{\NIL}\\
     \kwd{:operator} \VAR{ operator}\DF{\VAR{name}}}{\}})}
   {
-  (Short form.) Define new method combination type
+  Short form. Define new method combination type
   \retval{\VAR{c-type}}. A call to a generic function using
   \VAR{c-type} is equivalent to (\VAR{c-type}
   \OPn{\VAR{applicable-method}}). 
@@ -316,16 +316,16 @@
       \GOOp{\VAR{list}\XOR\kwd{*}}\\
       \VAR{predicate}}{\}} \orGOO{%
     \kwd{:description} \VAR{ control}\\
-    \kwd{:order}
+    \kwd{:order }
     \Goo{\kwd{:most-specific-first}\XOR\kwd{:most-specific-last}}\\ 
     \kwd{:required} \VAR{ bool}}{\}}})
     \Op{\kwd{:arguments} (\OPn{\VAR{method-combination-arg}})}
     \Op{\kwd{:generic-function} \VAR{ symbol}}
     \orGOO{\OPn{(\kwd{declare} \OPn{\VAR{ decl}})}\\
-      \VAR{documentation}}{\}}%
+      \VAR{documentation}}{\}}
     \OPn{\VAR{body}})}
   {
-  (Long form.) A call to a generic function using \VAR{c-type} is
+  Long form. A call to a generic function using \VAR{c-type} is
   equivalent to a call to the forms returned by \VAR{body}.  Lambda
   list (\OPn{\VAR{fu-arg}}) and (\OPn{\VAR{method-combination-arg}})
   according to \VAR{fu-arg} on p.\ \pageref{section:Functions}, the

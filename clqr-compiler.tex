@@ -104,7 +104,7 @@
   {
   Evaluate \VAR{form}s returning \retval{values of last \VAR{form}} if
   \SF{EVAL-WHEN} is in the top-level of a file being compiled, in the
-  top-level of a compiled file being loaded, or anywhere, resp. 
+  top-level of a compiled file being loaded, or anywhere, respectively 
   }
 
   \IT{(\kwd*{WITH-COMPILATION-UNIT} (\Op{\kwd{:override}
@@ -147,7 +147,7 @@
       \Op{\VAR{environment}})}{.}}
   {
   Return specified \retval{macro function}, or \retval{compiler macro
-    function}, resp., if any. Return \retval{\NIL}
+    function}, respectively, if any. Return \retval{\NIL}
   otherwise. \kwd{setf}able. 
   }
   
@@ -165,21 +165,13 @@
 
 \begin{LIST}{1cm}
   
-  \IT{\Goo{\kwd*{*}\XOR\kwd*{**}\XOR\V*{***}}}
+  \IT{\arrGOO{\kwd*{+}\XOR\kwd*{++}\XOR\V*{+++}\\[1pt]
+      \kwd*{*}\XOR\kwd*{**}\XOR\V*{***}\\[1pt]
+      \kwd*{/}\XOR\kwd*{//}\XOR\V*{///}}{.}}
   {
-  Most recent primary result or the two preceding primary results,
-  resp., printed in the REPL. 
-  }
-
-  \IT{\Goo{\kwd*{+}\XOR\kwd*{++}\XOR\V*{+++}}}
-  {
-  Forms most recently evaluated in the REPL.
-  }
-
-  \IT{\Goo{\kwd*{/}\XOR\kwd*{//}\XOR\V*{///}}}
-  {
-  List of most recent results or of the two preceding results, resp.,
-  printed in the REPL. 
+  Last, penultimate, or antepenultimate form evaluated in the REPL, or
+  their respective primary values, or lists of their respective
+  values. 
   }
 
   \IT{\kwd*{--}}
@@ -210,7 +202,7 @@
   \IT{(\xorGOO{\SF*{MACROEXPAND-1}\\
       \SF*{MACROEXPAND}}{\}}\VAR{form} \Op{\VAR{environment}})}
   {
-  Return \retval{macro expansion}, once or entirely, resp., of
+  Return \retval{macro expansion}, once or entirely, respectively, of
   \VAR{form} and \retvalii{\T} if \VAR{form} is a macro form. 
   Return \retval{\VAR{form}} and \retvalii{\NIL} otherwise.
   }
@@ -340,7 +332,7 @@
     \IT{\arrGOO{(\kwd*{INLINE} \OPn{\VAR{ function}})\\
         (\kwd*{NOTINLINE} \OPn{\VAR{ function}})}{\}}}
     {
-    Tell compiler to integrate/not to integrate, resp., called
+    Tell compiler to integrate/not to integrate, respectively, called
     \VAR{function}s into the calling routine.
   }
 

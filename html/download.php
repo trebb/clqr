@@ -61,9 +61,8 @@
 	      <ul>
 		<li>Suitable for folding lengthwise and nesting the
 		  folios.
-		<li>With 44 pages total, first sheet has pages 44, 1,
-		  2, 43.
-		<li>With 44 pages total, last sheet has pages 24, 21, 22, 23.
+		<li>With 48 pages total, first sheet has pages 48, 1, 2, 47.
+		<li>With 48 pages total, last sheet has pages 26, 23, 24, 25.
 	      </ul>
 	      <p>&nbsp;
 	      <p>&nbsp;
@@ -78,7 +77,7 @@
 		<li>Suitable for folding lengthwise and stacking up the
 		  folios.
 		<li>First sheet has pages 4, 1, 2, 3.
-		<li>With 44 pages total, last sheet has pages 44, 41, 42, 43.
+		<li>With 48 pages total, last sheet has pages 48, 45, 46, 47.
 	      </ul>
 	      <p>&nbsp;
 	      <p>&nbsp;

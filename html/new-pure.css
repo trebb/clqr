@@ -13,40 +13,43 @@
  */
 
 body {
-    font-family:		sans-serif;
+    font-family: sans-serif;
     font-size: small;
-    background-color:	#FFFFFF;
-    color:			black;
+    background-color: #FFFFFF;
+    color: black;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 h1 {
     letter-spacing: .1em;
-    margin:		.2ex;
-    font-size:		2em;
-    font-weight:		normal;
+    margin: .2ex;
+    font-size: 2em;
+    font-weight: normal;
 }
 
 h2 {
     letter-spacing: .1em;
-    font-size:		1.5em;
+    font-size: 1.5em;
     font-weight: normal;
-    margin-left:		.5ex;
-    margin-right:		.5ex;
+    margin-left: .5ex;
+    margin-right: .5ex;
 }
 
 h3 {
     letter-spacing: .3em;
-    font-size:		1.1em;
+    font-size: 1.1em;
     margin-bottom: 1ex;
     font-weight: normal;
-    width:			auto;
+    width: auto;
 }
 
 h4 {
     letter-spacing: .3em;
-    font-size:		1em;
-    text-align:		left;
-    font-weight:		normal;
+    font-size: 1em;
+    text-align: left;
+    font-weight: normal;
     margin-bottom: 3px;
 }
 
@@ -73,26 +76,26 @@ img {
 }
 
 a {
-    background-color:	#FFFFFF;
-    color:			black;
-    text-decoration:	none;
+    background-color: #FFFFFF;
+    color: black;
+    text-decoration: none;
 }
 
 a:hover {
-    background-color:	#FFFFFF;
-    color:			#0080C0;
-    text-decoration:	none;
+    background-color: #FFFFFF;
+    color: #0080C0;
+    text-decoration: none;
 }
 
 p {
-    margin:	5px 0;
+    margin: 5px 0;
 }
 
 .title {
     letter-spacing: 1em;
-    font-size:		1.3em;
-    font-weight:		normal;
-    border:	1px solid gray;
+    font-size: 1.3em;
+    font-weight: normal;
+    border: 1px solid gray;
     text-align: center;
     padding: .5em;
 }
@@ -125,7 +128,6 @@ p {
 }
 
 .main-table {
-    width: 100%;
     border-spacing:	8px;
 }
 

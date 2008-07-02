@@ -150,7 +150,7 @@
   \IT{(\xorGOO{\FU*{RPLACA}\\
     \FU*{RPLACD}}{\}} \VAR{cons} \VAR{object})}
   {
-  Replace car, or cdr, resp., of \retval{\VAR{cons}} with \VAR{object}.
+  Replace car, or cdr, respectively, of \retval{\VAR{cons}} with \VAR{object}.
   }
 
   \IT{(\FU*{LDIFF} \VAR{list} \VAR{foo})}
@@ -197,7 +197,7 @@
       \OPn{\VAR{ list}})}{.}}
   {
   Return \retval{concatenated list}. \VAR{list}s are unmodified/possibly
-  modified, resp.
+  modified, respectively.
   }
 
   \IT{\arrGOO{(\FU*{REVAPPEND} \VAR{ list} \VAR{ foo})\\(\FU*{NRECONC}
@@ -205,15 +205,15 @@
   {
   Return \retval{concatenated list} after reversing order in
   \VAR{list}. \VAR{list} is unmodified/possibly
-  modified, resp.
+  modified, respectively.
   }
 
   \IT{(\xorGOO{\FU*{MAPCAR}\\
       \FU*{MAPLIST}}{\}} \VAR{function} \RP{\VAR{list}})}
   {
   Return \retval{list of return values} of \VAR{function} successively
-  invoked with corresponding arguments, either cars or cdrs, resp.,
-  from each list. 
+  invoked with corresponding arguments, either cars or cdrs, respectively,
+  from each \VAR{list}. 
   }
 
   \IT{(\xorGOO{\FU*{MAPCAN}\\
@@ -222,8 +222,8 @@
   Return list of 
   \retval{concatenated return values} of
   \VAR{function} successively invoked with corresponding arguments,
-  either cars or cdrs, resp.,
-  from each list. \VAR{function} should return a list.
+  either cars or cdrs, respectively,
+  from each \VAR{list}. \VAR{function} should return a list.
   }
 
   \IT{(\xorGOO{\FU*{MAPC}\\
@@ -231,7 +231,7 @@
   {
   Return \retval{first \VAR{list}} after successively applying
   \VAR{function} to corresponding arguments, either cars or cdrs,
-  resp., from each list. \VAR{function} should have some side
+  respectively, from each \VAR{list}. \VAR{function} should have some side
   effects. 
   }
 
@@ -272,7 +272,7 @@
       \FU*{RASSOC-IF-NOT}}{\}}\VAR{test} \VAR{ a-list }%
       \Op{\kwd{:key} \VAR{ function}})}{\}}}
   {
-  First \retval{cons} whose car, or cdr, resp., satisfies \VAR{test}.
+  First \retval{cons} whose car, or cdr, respectively, satisfies \VAR{test}.
   }
 
   \IT{(\FU*{COPY-ALIST} \VAR{a-list})}
@@ -302,8 +302,8 @@
       \kwd{:test-not} \VAR{ function}}{\}})}
   {
   Make \retval{copy of
-    \VAR{tree}} with all subtrees or leaves of \VAR{old} replaced by
-  \VAR{new}. \VAR{tree} is unmodified/possibly modified, resp.
+    \VAR{tree}} with each subtree or leave of \VAR{old} replaced by
+  \VAR{new}. \VAR{tree} is unmodified/possibly modified, respectively.
   }
 
   \IT{(\xorGOO{\FU{SUBST-IF\Op{-NOT}}\\\FU{NSUBST-IF\Op{-NOT}}}{\}} 
@@ -315,9 +315,9 @@
   \index{NSUBST-IF}%
   \index{NSUBST-IF-NOT}%
   Make \retval{copy of
-    \VAR{tree}} with all subtrees or leaves
-  satisfying test or not satisfying test, resp., replaced by
-  \VAR{new}. \VAR{sequence} is unmodified/possibly modified, resp.
+    \VAR{tree}} with each subtree or leave
+  satisfying test or not satisfying test, respectively, replaced by
+  \VAR{new}. \VAR{sequence} is unmodified/possibly modified, respectively.
   }
 
   \IT{(\xorGOO{\FU*{SUBLIS}\\
@@ -326,9 +326,9 @@
       \kwd{:test} \VAR{ function}\\
       \kwd{:test-not} \VAR{ function}}{\}})}
   {
-  Make \retval{copy of \VAR{tree}} with all subtrees or leaves matching
+  Make \retval{copy of \VAR{tree}} with each subtree or leave matching
   a key in \VAR{a-list} replaced by that key's object from \VAR{a-list}. 
-  \VAR{sequence} is unmodified/possibly modified, resp.
+  \VAR{sequence} is unmodified/possibly modified, respectively.
   }
 
   \IT{(\FU*{COPY-TREE} \VAR{tree})} 
@@ -354,8 +354,8 @@
       \kwd{:key} \VAR{ function}}{\}})}
   {
   Return \retval{$a\cup b$}, \retval{$a\cap b$}, \retval{$a\setminus b$}, or
-  \retval{$a\,\triangle\, b$}, resp., of lists \VAR{a} and \VAR{b}. Work
-  non-destructively/destructively, resp.
+  \retval{$a\,\triangle\, b$}, respectively, of lists \VAR{a} and \VAR{b}. Work
+  non-destructively/destructively, respectively.
   }
 
 \end{LIST}

@@ -69,7 +69,7 @@ pp.\ \pageref{section:Association Lists} and \pageref{:property_lists}.
   \IT{(\SF*{WITH-HASH-TABLE-ITERATOR} \VAR{name} \VAR{hash-table}
     \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \OPn{\VAR{form}})}
   {
-  Return \retval{values of \VAR{form}s}. In the body,
+  Return \retval{values of \VAR{form}s}. In \VAR{form}s,
   invocations of  (\VAR{name}) return: \T\ if an entry is returned;
   its key; its value.
   }
@@ -79,7 +79,7 @@ pp.\ \pageref{section:Association Lists} and \pageref{:property_lists}.
       (\FU*{HASH-TABLE-REHASH-THRESHOLD} \VAR{ hash-table})}{.}}
   {
   Current \retval{size}, \retval{rehash-size}, or
-  \retval{rehash-threshold}, resp., as used in \FU{make-hash-table}. 
+  \retval{rehash-threshold}, respectively, as used in \FU{make-hash-table}. 
   }
 
   \IT{(\FU*{SXHASH} \VAR{foo})} \retval{Hash code} of \VAR{foo}.

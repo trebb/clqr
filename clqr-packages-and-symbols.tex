@@ -10,18 +10,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Packages and Symbols}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Predicates}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
   \IT{\arrGOO{(\FU*{SYMBOLP} \VAR{ foo})\\
-      (\FU*{PACKAGEP} \VAR{ foo})}{.}}
+      (\FU*{PACKAGEP} \VAR{ foo})}{\}}}
   {
-  Return \retval{\T} if \VAR{foo} is of type \kwd{symbol} or
-  \kwd{package}, resp.
-  }
-
-  \IT{(\FU*{BOUNDP} \VAR{symbol})}
-  {
-  \retval{\T} if \VAR{symbol} is a special variable.
+  \retval{\T} if \VAR{foo} is of indicated type.
   }
 
   \IT{(\FU*{KEYWORDP} \VAR{foo})}
@@ -29,19 +27,39 @@
   \retval{\T} if \VAR{foo} is a keyword.
   }
 
-  \IT{\KWD*{:}\VAR{foo}}
+  \IT{(\FU*{BOUNDP} \VAR{symbol})}
   {
-  Keyword, evaluates to \retval{:\VAR{foo}}
+  \retval{\T} if \VAR{symbol} is a special variable.
   }
 
-  \IT{(\kwd*{T})}
+\end{LIST}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Packages}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{LIST}{1cm}
+
+  \IT{\kwd*{:}\VAR{bar}\XOR\kwd*{keyword:}\VAR{bar}}
   {
+  Keyword, evaluates to \retval{:\VAR{bar}}
+  }
+
+  \IT{\VAR{foo}\kwd*{:}\VAR{bar}}
+  {
+  Symbol \VAR{bar} of package \VAR{foo}
+  }
+
+  \IT{\T}
+  {
+  \index{T}%
   Truth, or \V{*terminal-io*}.
   }
 
-  \IT{\Goo{(\CNS*{NIL})\XOR{\kwd*{()}}}}
+  \IT{\NIL\XOR{\kwd*{()}}}
   {
-  Falsehood, the empty list, \V{*standard-input*},
+  \index{NIL}%
+  Falsity, the empty list, \V{*standard-input*},
   \V{*standard-output*}, or the global environment.
   }
 
@@ -83,7 +101,7 @@
     \Op{\VAR{package}\DF{\kwd{*package*}}})}
   {
   Make exported symbols of \VAR{packages} available in \VAR{package}, or remove them
-  from \VAR{package}, resp.. Return \retval{\T}. 
+  from \VAR{package}, respectively. Return \retval{\T}. 
   }
 
   \IT{(\FU*{DELETE-PACKAGE} \VAR{package})}
@@ -125,30 +143,6 @@
   \retval{List of other packages} using \VAR{package}.
   }
 
-  \IT{(\FU*{MAKE-SYMBOL} \VAR{name})}
-  {
-  Make fresh, uninterned \retval{symbol \VAR{name}}.
-  }
-
-  \IT{(\FU*{GENSYM} \Op{\VAR{x}\DF{\LIT{G}}})}
-  {
-  Return fresh symbol \retval{\kwd{\#:}\VAR{x}\VAR{n}}, with \VAR{n} from
-  \V*{*gensym-counter*} which is incremented only in case no \VAR{x}
-  is given. 
-  }
-
-  \IT{(\FU*{GENTEMP} \OP{\VAR{prefix}\DF{\LIT{T}}
-      \Op{\VAR{package}\DF{\kwd{*package*}}}})}
-  {
-  Intern fresh \retval{symbol} in \retval{package}. Deprecated.
-  }
-
-  \IT{(\FU*{COPY-SYMBOL} \VAR{symbol} \Op{\VAR{props}\DF{\NIL}})}
-  {
-  Return uninterned \retval{copy of \VAR{symbol}}. If \VAR{props} is
-  \T, the copy has the same value, function, and property list.
-  }
-
   \IT{(\FU*{FIND-ALL-SYMBOLS} \VAR{name})}
   {
   Return \retval{list of symbols} with \VAR{name} from all
@@ -163,7 +157,7 @@
   \IT{(\xorGOO{\FU*{INTERN}\\
       \FU*{FIND-SYMBOL}}{\}} \VAR{name} \Op{\VAR{package}})}
   {
-  Intern or find, resp., \retval{symbol \VAR{name}} in
+  Intern or find, respectively, \retval{symbol \VAR{name}} in
   \VAR{package}. Second return value is one of
   \retvalii{\kwd{:internal}}, \retvalii{\kwd{:external}}, or
   \retvalii{\kwd{:inherited}}.
@@ -180,7 +174,7 @@
   {
   Make \VAR{symbols} internal  to \VAR{package}. Return \retval{\T}. In
   case of a name conflict, signal \kwd{package-error}, or shadow
-  the old symbol, resp.
+  the old symbol, respectively.
   }
 
   \IT{(\FU*{SHADOW} \VAR{symbols}
@@ -218,43 +212,18 @@
   Evaluate \VAR{form}s with \VAR{var} successively bound to all
   symbols from all registered packages, to all symbols from
   \VAR{package}, or to all external symbols from \VAR{package},
-  resp. Return \retval{values of \VAR{result}}. 
+  respectively. Return \retval{values of \VAR{result}}. 
   }
 
   \IT{(\SF*{WITH-PACKAGE-ITERATOR} (\VAR{name} \VAR{packages}
     \Op{\kwd{:internal}\XOR\kwd{:external}\XOR\kwd{:inherited}})
     \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \OPn{\VAR{form}})}
   {
-  Return \retval{values of \VAR{form}s}. In the body, successive
+  Return \retval{values of \VAR{form}s}. In \VAR{form}s, successive
   invocations of  (\VAR{name}) return: \T\ if a symbol is returned;
   a symbol from \VAR{packages}; accessibility
   (\kwd{:internal}, \kwd{:external}, or \kwd{:inherited}); and the
   package the symbol belongs to.
-  }
-
-  \IT{(\FU*{SYMBOL-NAME} \VAR{ symbol})}
-  {
-  \retval{Name} of \VAR{symbol}.
-  }
-
-  \IT{\arrGOO{(\FU*{SYMBOL-FUNCTION} \VAR{ symbol})\\
-      (\FU*{SYMBOL-VALUE} \VAR{ symbol})\\
-      (\FU*{SYMBOL-PLIST} \VAR{ symbol})}{.}}
-  {
-  \retval{Function}, \retval{value}, or \retval{property list}, resp.,
-  of \VAR{symbol}. \kwd{setf}able. 
-  }
-
-  \IT{(\GFU*{DOCUMENTATION} \VAR{foo}
-    \Goo{\kwd*{variable}%
-      \XOR\kwd*{function}\XOR%
-      \kwd*{compiler-macro}\XOR%
-      \kwd*{method-combination}\XOR%
-      \kwd*{structure}%
-      \XOR\kwd*{type}\XOR\kwd*{setf}\XOR\T})}
-  {
-  Return \retval{documentation string} of \VAR{foo} of given
-  type. \kwd{setf}able. 
   }
 
   \IT{(\FU*{REQUIRE} \VAR{module} \Op{\VAR{path-list}})}
@@ -272,6 +241,87 @@
   \IT{\V*{*modules*}}
   {
   List of names of modules loaded into Lisp image.
+  }
+
+\end{LIST}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Symbols}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{LIST}{1cm}
+
+  \IT{(\FU*{MAKE-SYMBOL} \VAR{name})}
+  {
+  Make fresh, uninterned \retval{symbol \VAR{name}}.
+  }
+
+  \IT{(\FU*{GENSYM} \Op{\VAR{x}\DF{\LIT{G}}})}
+  {
+  Return fresh symbol \retval{\kwd{\#:}\VAR{x}\VAR{n}}, with \VAR{n} from
+  \V*{*gensym-counter*} which is incremented only in case no \VAR{x}
+  is given. 
+  }
+
+  \IT{(\FU*{GENTEMP} \OP{\VAR{prefix}\DF{\LIT{T}}
+      \Op{\VAR{package}\DF{\kwd{*package*}}}})}
+  {
+  Intern fresh \retval{symbol} in \retval{package}. Deprecated.
+  }
+
+  \IT{(\FU*{COPY-SYMBOL} \VAR{symbol} \Op{\VAR{props}\DF{\NIL}})}
+  {
+  Return uninterned \retval{copy of \VAR{symbol}}. If \VAR{props} is
+  \T, the copy has the same value, function, and property list.
+  }
+
+  \IT{\arrGOO{(\FU*{SYMBOL-FUNCTION} \VAR{ symbol})\\
+      (\FU*{SYMBOL-VALUE} \VAR{ symbol})\\
+      (\FU*{SYMBOL-PLIST} \VAR{ symbol})}{.}}
+  {
+  \retval{Function}, \retval{value}, or \retval{property list}, respectively,
+  of \VAR{symbol}. \kwd{setf}able. 
+  }
+
+  \IT{(\GFU*{DOCUMENTATION} \VAR{foo}
+    \Goo{\kwd*{variable}%
+      \XOR\kwd*{function}\XOR%
+      \kwd*{compiler-macro}\XOR%
+      \kwd*{method-combination}\XOR%
+      \kwd*{structure}%
+      \XOR\kwd*{type}\XOR\kwd*{setf}\XOR\T})}
+  {
+  Return \retval{documentation string} of \VAR{foo} of given
+  type. \kwd{setf}able. 
+  }
+
+  \IT{(\FU*{SYMBOL-NAME} \VAR{ symbol})}
+  {
+  \retval{Name} of \VAR{symbol}.
+  }
+
+\end{LIST}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Standard Packages}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{LIST}{1cm}
+
+  \IT{\kwd*{COMMON-LISP}\XOR\kwd*{CL}}
+  {
+  Contains the defined names of Common Lisp except for those in the
+  \kwd{keyword} package.
+  }
+
+  \IT{\kwd*{COMMON-LISP-USER}\XOR\kwd*{CL-USER}}
+  {
+    Current package after startup; uses package \kwd{common-lisp}. 
+  }
+
+  \IT{\kwd*{KEYWORD}}
+  {
+    Contains symbols which are defined to be of type \kwd{KEYWORD}.
   }
 
 \end{LIST}

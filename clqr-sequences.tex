@@ -21,14 +21,14 @@
       \FU*{NOTEVERY}}{\}} \VAR{test}
     \RP{\VAR{sequence}})}
   {
-  Return \retval{\NIL} or \retval{\T}, resp., as soon as \VAR{test} on
+  Return \retval{\NIL} or \retval{\T}, respectively, as soon as \VAR{test} on
   any set of corresponding elements of \VAR{sequences} returns \NIL. 
   }
 
   \IT{(\xorGOO{\FU*{NOTANY}\\\FU*{SOME}}{\}} \VAR{test}
     \RP{\VAR{sequence}})}
   {
-  Return \retval{\NIL} or \retval{value of \VAR{test}}, resp., as soon
+  Return \retval{\NIL} or \retval{value of \VAR{test}}, respectively, as soon
   as \VAR{test} on any set of elements of \VAR{sequences} returns non-\NIL. 
   }
 
@@ -127,14 +127,14 @@
     \Op{\kwd{:key} \VAR{function}})}
   {
   Return \retval{sorted sequence}. \VAR{sequence} is modified. Order
-  of elements considered equal is not guaranteed/retained, resp.
+  of elements considered equal is not guaranteed/retained, respectively.
   }
 
   \IT{\arrGOO{(\FU*{REVERSE} \VAR{ sequence})\\(\FU*{NREVERSE} \VAR{
         sequence})}{.}}
   {
   Return \retval{\VAR{sequence} in reverse order}. \VAR{sequence} is
-  unmodified/possibly modified, resp. 
+  unmodified/possibly modified, respectively. 
   }
 
   \IT{(\xorGOO{\FU*{FIND}\\
@@ -147,7 +147,7 @@
       \kwd{:key} \VAR{ function}}{\}})}
   {
   Return \retval{first element} found in \VAR{sequence}, or
-  its \retval{position} relative to \VAR{sequence}'s start, resp.,
+  its \retval{position} relative to \VAR{sequence}'s start, respectively,
   between \VAR{start} and \VAR{end} satisfying tests. 
   }
 
@@ -158,7 +158,7 @@
       \kwd{:key} \VAR{ function}}{\}})}
   {
   Return \retval{first element in \VAR{sequence}}, or
-  \retval{its position} relative to \VAR{sequence}'s start, resp., between \VAR{start}
+  \retval{its position} relative to \VAR{sequence}'s start, respectively, between \VAR{start}
   and \VAR{end} satisfying \VAR{test}.
   }
 
@@ -187,7 +187,7 @@
       \kwd{:count} \VAR{ count}\DF{\NIL}}{\}})}
   {
   Make \retval{copy of \VAR{sequence}} without elements matching
-  \VAR{foo}. \VAR{sequence} is unmodified/possibly modified, resp. 
+  \VAR{foo}. \VAR{sequence} is unmodified/possibly modified, respectively. 
   }
 
   \IT{(\xorGOO{\FU*{REMOVE-IF}\\\FU*{REMOVE-IF-NOT}\\
@@ -200,8 +200,8 @@
       \kwd{:count} \VAR{ count}\DF{\NIL}}{\}})}
   {
   Make \retval{copy of \VAR{sequence}} with all (or \VAR{count}) elements
-  satisfying test or not satisfying test, resp., removed.
-  \VAR{sequence} is unmodified/possibly modified, resp.
+  satisfying test or not satisfying test, respectively, removed.
+  \VAR{sequence} is unmodified/possibly modified, respectively.
   }
 
   \IT{(\xorGOO{\FU*{REMOVE-DUPLICATES}\\\FU*{DELETE-DUPLICATES}}{\}} \VAR{sequence}
@@ -214,7 +214,7 @@
   {
   Make \retval{copy of
     \VAR{sequence}} without duplicates. \VAR{sequence} is unmodified/possibly
-  modified, resp.
+  modified, respectively.
   }
 
   \IT{(\xorGOO{\FU*{SUBSTITUTE}\\\FU*{NSUBSTITUTE}}{\}} \VAR{new}
@@ -229,7 +229,7 @@
   {
   Make \retval{copy of \VAR{sequence}} with all (or \VAR{count})
   \VAR{old}s replaced by \VAR{new}. \VAR{sequence} is
-  unmodified/possibly modified, resp. 
+  unmodified/possibly modified, respectively. 
   }
 
   \IT{(\xorGOO{\FU*{SUBSTITUTE-IF}\\\FU*{SUBSTITUTE-IF-NOT}\\
@@ -242,8 +242,8 @@
       \kwd{:count} \VAR{ count}\DF{\NIL}}{\}})}
   {
   Make \retval{copy of \VAR{sequence}} with all (or \VAR{count})
-  elements satisfying test or not satisfying test, resp., replaced by
-  \VAR{new}. \VAR{sequence} is unmodified/possibly modified, resp. 
+  elements satisfying test or not satisfying test, respectively, replaced by
+  \VAR{new}. \VAR{sequence} is unmodified/possibly modified, respectively. 
   }
 
   \IT{(\FU*{REPLACE} \VAR{sequence-a} \VAR{sequence-b}
