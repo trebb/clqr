@@ -10,7 +10,7 @@
 
   \IT{\arrGOO{(\FU*{STREAMP} \VAR{ foo})\\
       (\FU*{PATHNAMEP} \VAR{ foo})\\
-      (\FU*{READTABLEP} \VAR{ foo})}{\}}}
+      (\FU*{READTABLEP} \VAR{ foo})}{.}}
   {
   \retval{\T} if \VAR{foo} is of indicated type.
   }
@@ -34,7 +34,8 @@
         \kwd{:directory}\XOR\kwd{:name}\XOR\kwd{:type}
         \XOR\kwd{:version}\XOR\NIL}})}
   {
-  Return \retval{\T} if indicated component in \VAR{path} is wildcard.
+  Return \retval{\T} if indicated component in \VAR{path} is
+  wildcard. (\NIL\ indicates any component.)
   }
 
 \end{LIST}
@@ -47,11 +48,11 @@
 \begin{LIST}{1cm}
 
   \IT{(\xorGOO{\FU*{Y-OR-N-P}\\
-      \FU*{YES-OR-NO-P}}{\}} \OP{\VAR{control} \Op{\VAR{args}}})}
+      \FU*{YES-OR-NO-P}}{\}} \Op{\VAR{control} \OPn{\VAR{arg}}})}
   {
   Ask user a question and return \retval{\T} or \retval{\NIL}
   depending on their answer. See p.\ \pageref{section:Format},
-  \kwd{format}, for \VAR{control} and \VAR{args}. 
+  \kwd{format}, for \VAR{control} and \VAR{arg}s. 
   }
 
   \IT{(\SF*{WITH-STANDARD-IO-SYNTAX} \OPn{\VAR{form}})}
@@ -68,9 +69,9 @@
   Read printed representation of \retval{object}.
   }
 
-  \IT{(\FU*{READ-FROM-STRING} \VAR{string}\OP{\VAR{eof-error}\DF{\T}
+  \IT{(\FU*{READ-FROM-STRING} \VAR{string} \OP{\VAR{eof-error}\DF{\T}
       \Op{\VAR{eof-val}\DF{\NIL}}}\orGOO{%
-      \kwd{:start}\kwd{:start}\VAR{ start}\DF{0}\\
+      \kwd{:start}\VAR{ start}\DF{0}\\
       \kwd{:end}\VAR{ end}\DF{\NIL}\\
       \kwd{:preserve-whitespace}\VAR{ bool}\DF{\NIL}}{\}})}
   {
@@ -83,10 +84,10 @@
       \Op{\VAR{recursive}\DF{\NIL}}})}
   {
   Continue reading until encountering \VAR{char}. Return \retval{list}
-  of objects read.
+  of objects read. Signal error if no \VAR{char} is found in stream.
   }
 
-  \IT{(\FU*{READ-CHAR} \OP{\VAR{stream}\DF{\T}
+  \IT{(\FU*{READ-CHAR} \OP{\VAR{stream}\DF{\kwd{*standard-input*}}
       \OP{\VAR{eof-err}\DF{\T} \Op{\VAR{eof-val}\DF{\NIL}
           \Op{\VAR{recursive}\DF{\NIL}}}}})}
   {
@@ -103,18 +104,19 @@
   }
 
   \IT{(\FU*{PEEK-CHAR}
-    \OP{\VAR{mode}\DF{\NIL}\OP{\VAR{stream}\DF{\kwd{*standard-input*}} 
+    \OP{\VAR{mode}\DF{\NIL} \OP{\VAR{stream}\DF{\kwd{*standard-input*}} 
       \OP{\VAR{eof-error}\DF{\T} \Op{\VAR{eof-val}\DF{\NIL}
           \Op{\VAR{recursive}\DF{\NIL}}}}}})}
   {
-  Next, or, if \VAR{mode} is \T, next non-whitespace
-  \retval{character} from stream without removing it there.
+  Next, or if \VAR{mode} is \T, next non-whitespace
+  \retval{character}, or if \VAR{mode} is a character, \retval{next instance}
+  of it, from stream without removing it there.
   }
 
   \IT{(\FU*{UNREAD-CHAR} \VAR{character}
     \Op{\VAR{stream}\DF{\kwd{*standard-input*}}})}
   {
-  Put last read \VAR{character} back into \VAR{stream}, return
+  Put last \kwd{read-char}ed \VAR{character} back into \VAR{stream}; return
   \retval{\NIL}. 
   }
 
@@ -137,17 +139,18 @@
       \VAR{end}\DF{\NIL}})}
   {
   Replace elements of \VAR{sequence} between \VAR{start} and \VAR{end}
-  with \VAR{stream}. Return index of \VAR{sequence}'s unmodified
+  with elements from \VAR{stream}. Return \retval{index} of
+  \VAR{sequence}'s first unmodified
   element. 
   }
 
   \IT{(\FU*{READTABLE-CASE} \VAR{readtable})}
   {
-  \retval{Case sensitivity attribute} of \VAR{readtable}. \kwd{setf}able.
+  \retval{Case sensitivity attribute} (one of \kwd{:upcase}, \kwd{:downcase}, \kwd{:preserve}, \kwd{:invert}) of \VAR{readtable}. \kwd{setf}able.
   }
 
-  \IT{(\FU*{COPY-READTABLE} \VAR{from-readtable}\DF{\kwd{*readtable*}}
-    \VAR{to}\DF{\NIL})}
+  \IT{(\FU*{COPY-READTABLE} \OP{\VAR{from-readtable}\DF{\kwd{*readtable*}}
+    \Op{\VAR{to}\DF{\NIL}}})}
   {
   Return \retval{copy of \VAR{from-readtable}}.
   }
@@ -206,7 +209,7 @@
   \IT{(\FU*{GET-DISPATCH-MACRO-CHARACTER} \VAR{char} \VAR{sub-char}
     \Op{\VAR{rt}\DF{\kwd{*readtable*}}})}
   {
-  \VAR{Dispatch function} associated with \VAR{char} followed by \VAR{sub-char}.
+  \retval{Dispatch function} associated with \VAR{char} followed by \VAR{sub-char}.
   }
 
 \end{LIST}
@@ -218,7 +221,7 @@
 \begin{LIST}{1cm}
 
   \IT{\arrGOO{\KWD*{; }\OPn{\VAR{comment}}\\
-      \KWD{\#\boldmath$|$ }\OPn{\VAR{comment}}\KWD{ \boldmath$|$\#}}{\}}}
+      \KWD{\#\boldmath$|$ }\OPn{\VAR{comment}}\KWD{ \boldmath$|$\#}}{.}}
   {
   Comments.
   }
@@ -695,7 +698,7 @@
           B\XOR O\XOR X}}}
     {
     Print integer argument as number (decimal, binary, octal, or
-    hexadecimal, respectively.) With \kwd{:} group digits 
+    hexadecimal, respectively). With \kwd{:} group digits 
     \VAR{comma-interval} each; with \kwd{@}, always prepend a sign.
   }
 
@@ -1047,7 +1050,7 @@
   }
 
   \IT{\arrGOO{\V*{*debug-io*}\\
-      \V*{*query-io*}}{\}}}
+      \V*{*query-io*}}{.}}
   {
   Streams for debugging and user interaction.
   }

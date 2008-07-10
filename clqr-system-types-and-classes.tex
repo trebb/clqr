@@ -5,60 +5,60 @@
 \begin{figure}
   \begin{center}
     \boxGOO{%
-      \kwd*{t}%
+      \T\index{T}%
       \boxGOO{%
         \kwd*{NUMBER}
         \boxGOO{%
-          \kwd*{COMPLEX } \Op{\VAR{type}} \\
-          \kwd*{REAL } \OP{\VAR{lower-limit }\Op{\VAR{upper-limit}}}\\
+          \kwd*{COMPLEX } \Op{\VAR{type\footnotemark[3]}} \\
+          \kwd*{REAL } \OP{\VAR{lower-limit\footnotemark[3] }\Op{\VAR{upper-limit\footnotemark[3]}}}\\
           \boxGOO{%
-            \kwd*{RATIONAL } \OP{\VAR{lower-limit }\Op{\VAR{upper-limit}}}\\
+            \kwd*{RATIONAL } \OP{\VAR{lower-limit\footnotemark[3] }\Op{\VAR{upper-limit\footnotemark[3]}}}\\
             \boxGOO{%
-              \kwd*{INTEGER } \OP{\VAR{lower-limit }\Op{\VAR{upper-limit}}}\\
+              \kwd*{INTEGER } \OP{\VAR{lower-limit\footnotemark[3] }\Op{\VAR{upper-limit\footnotemark[3]}}}\\
               \boxGOO{%
                 \kwd*{FIXNUM} \\
                 \kwd*{BIGNUM} \\
-                \kwd*{SIGNED-BYTE } \Op{\VAR{size}}\\
-                \boxGOO{\kwd*{UNSIGNED-BYTE } \Op{\VAR{size}}
+                \kwd*{SIGNED-BYTE } \Op{\VAR{size\footnotemark[3]}}\\
+                \boxGOO{\kwd*{UNSIGNED-BYTE } \Op{\VAR{size\footnotemark[3]}}
                   \boxGOO{\kwd*{BIT} }}}\\
               \kwd*{RATIO}}\\
-            \kwd*{FLOAT } \OP{\VAR{lower-limit }\Op{\VAR{upper-limit}}}\\
+            \kwd*{FLOAT } \OP{\VAR{lower-limit\footnotemark[3] }\Op{\VAR{upper-limit\footnotemark[3]}}}\\
             \boxGOO{%
-              \kwd*{SHORT-FLOAT } \OP{\VAR{lower-limit }\Op{\VAR{upper-limit}}}\\
-              \kwd*{SINGLE-FLOAT } \OP{\VAR{lower-limit }\Op{\VAR{upper-limit}}}\\
-              \kwd*{DOUBLE-FLOAT } \OP{\VAR{lower-limit }\Op{\VAR{upper-limit}}}\\
-              \kwd*{LONG-FLOAT } \OP{\VAR{lower-limit }\Op{\VAR{upper-limit}}}}}}\\
+              \kwd*{SHORT-FLOAT } \OP{\VAR{lower-limit\footnotemark[3] }\Op{\VAR{upper-limit\footnotemark[3]}}}\\
+              \kwd*{SINGLE-FLOAT } \OP{\VAR{lower-limit\footnotemark[3] }\Op{\VAR{upper-limit\footnotemark[3]}}}\\
+              \kwd*{DOUBLE-FLOAT } \OP{\VAR{lower-limit\footnotemark[3] }\Op{\VAR{upper-limit\footnotemark[3]}}}\\
+              \kwd*{LONG-FLOAT } \OP{\VAR{lower-limit\footnotemark[3] }\Op{\VAR{upper-limit\footnotemark[3]}}}}}}\\
         \kwd*{SEQUENCE}
         \boxGOO{%
           \kwd*{LIST}
           \boxGOO{%
-            \kwd*{CONS } \OP{\VAR{car-type }\Op{\VAR{cdr-type}}}\\
+            \kwd*{CONS } \OP{\VAR{car-type\footnotemark[3] }\Op{\VAR{cdr-type\footnotemark[3]}}}\\
           \kwd*{SYMBOL}\footnotemark[2]
           \boxGOO{
             \kwd*{NULL}}}\\
-          \kwd*{ARRAY}\footnotemark[2] \OP{\VAR{type }\Op{\VAR{dimension}}}\\
+          \kwd*{ARRAY}\footnotemark[2] \OP{\VAR{type\footnotemark[3] }\Op{\VAR{dimension\footnotemark[3]}}}\\
           \boxGOO{%
-            \kwd*{SIMPLE-ARRAY}\footnotemark[2] \OP{\VAR{type }\Op{\VAR{dimension}}}\\
+            \kwd*{SIMPLE-ARRAY}\footnotemark[2] \OP{\VAR{type\footnotemark[3] }\Op{\VAR{dimension\footnotemark[3]}}}\\
             \boxGOO{%
-              \kwd*{VECTOR}\footnotemark[2] \OP{\VAR{type }\Op{\VAR{size}}}\\
+              \kwd*{VECTOR}\footnotemark[2] \OP{\VAR{type\footnotemark[3] }\Op{\VAR{size\footnotemark[3]}}}\\
               \boxGOO{%
-                \kwd*{SIMPLE-VECTOR } \Op{\VAR{size}}\\
-                \kwd*{BIT-VECTOR}\footnotemark[2] \Op{\VAR{size}}\\
+                \kwd*{SIMPLE-VECTOR } \Op{\VAR{size\footnotemark[3]}}\\
+                \kwd*{BIT-VECTOR}\footnotemark[2] \Op{\VAR{size\footnotemark[3]}}\\
                 \boxGOO{%
-                  \kwd*{SIMPLE-BIT-VECTOR } \Op{\VAR{size}}}\\
-                \kwd*{STRING}\footnotemark[2] \Op{\VAR{size}}\\
+                  \kwd*{SIMPLE-BIT-VECTOR } \Op{\VAR{size\footnotemark[3]}}}\\
+                \kwd*{STRING}\footnotemark[2] \Op{\VAR{size\footnotemark[3]}}\\
                 \boxGOO{%
-                  \kwd*{SIMPLE-STRING } \Op{\VAR{size}}\\
+                  \kwd*{SIMPLE-STRING } \Op{\VAR{size\footnotemark[3]}}\\
                   \boxGOO{%
-                    \kwd*{BASE-STRING}\footnotemark[2] \Op{\VAR{size}}\\
+                    \kwd*{BASE-STRING}\footnotemark[2] \Op{\VAR{size\footnotemark[3]}}\\
                     \boxGOO{%
-                      \kwd*{SIMPLE-BASE-STRING } \Op{\VAR{size}}}}}}}\\
-            \kwd*{VECTOR}\footnotemark[2]  \OP{\VAR{type }\Op{\VAR{size}}}\\
+                      \kwd*{SIMPLE-BASE-STRING } \Op{\VAR{size\footnotemark[3]}}}}}}}\\
+            \kwd*{VECTOR}\footnotemark[2]  \OP{\VAR{type\footnotemark[3] }\Op{\VAR{size\footnotemark[3]}}}\\
             \boxGOO{%
-              \kwd*{BIT-VECTOR}\footnotemark[2] \Op{\VAR{size}}\\
-              \kwd*{STRING}\footnotemark[2] \Op{\VAR{size}}
+              \kwd*{BIT-VECTOR}\footnotemark[2] \Op{\VAR{size\footnotemark[3]}}\\
+              \kwd*{STRING}\footnotemark[2] \Op{\VAR{size\footnotemark[3]}}
               \boxGOO{%
-                \kwd*{BASE-STRING}\footnotemark[2] \Op{\VAR{size}}}}}}\\
+                \kwd*{BASE-STRING}\footnotemark[2] \Op{\VAR{size\footnotemark[3]}}}}}}\\
         \kwd*{CHARACTER}
         \boxGOO{%
           \kwd*{BASE-CHAR}
@@ -69,7 +69,7 @@
         \boxGOO{%
           \kwd*{FILE-STREAM},\>
           \kwd*{TWO-WAY-STREAM},\>
-          \kwd*{SYNONYM-STREAM}\\
+          \kwd*{SYNONYM-STREAM},\\
           \kwd*{STRING-STREAM},\>
           \kwd*{BROADCAST-STREAM},\>
           \kwd*{ECHO-STREAM}\\
@@ -91,25 +91,26 @@
           \kwd*{CLASS}
           \boxGOO{%
             \kwd*{STANDARD-CLASS},\>
-            \kwd*{BUILT-IN-CLASS}\\
+            \kwd*{BUILT-IN-CLASS},\\
             \kwd*{STRUCTURE-CLASS}}\\
           \kwd*{STANDARD-METHOD}}\\
-        \kwd*{ARRAY}\footnotemark[2] \OP{\VAR{type }\Op{\VAR{dimension}}}\\
+        \kwd*{ARRAY}\footnotemark[2] \OP{\VAR{type\footnotemark[3] }\Op{\VAR{dimension\footnotemark[3]}}}\\
         \boxGOO{%
-          \kwd*{SIMPLE-ARRAY}\footnotemark[2] \OP{\VAR{type }\Op{\VAR{dimension}}}}\\
-        \kwd*{ATOM}\\
+          \kwd*{SIMPLE-ARRAY}\footnotemark[2] \OP{\VAR{type\footnotemark[3] }\Op{\VAR{dimension\footnotemark[3]}}}}\\
+        \kwd*{ATOM},\>
         \kwd*{HASH-TABLE},\>
-        \kwd*{STRUCTURE-OBJECT}\\
+        \kwd*{STRUCTURE-OBJECT},\>
         \kwd*{PACKAGE},\>
-        \kwd*{READTABLE} \\
-        \kwd*{RANDOM-STATE} \\
-        \kwd*{RESTART}\\
+        \kwd*{READTABLE},\\
+        \kwd*{RANDOM-STATE},\>
+        \kwd*{RESTART},\>
         \kwd*{METHOD},\>
         \kwd*{METHOD-COMBINATION}}}
   \end{center}\vspace{-1em}
-              {\footnotesize\footnotemark[2]Multiply defined}
+              {\footnotesize\footnotemark[2]Multiply defined.}\\
+              {\footnotesize\footnotemark[3]Defaults to \kwd{*} meaning no restriction.}
               
-  \caption{Data Types. \quad\kwd{*} as an argument means no restriction.}%
+  \caption{Data Types.}%
 \end{figure}
 
 
@@ -203,7 +204,7 @@
   }
 
   \IT{\arrGOO{(\kwd{EQL} \VAR{foo})\\
-      (\kwd{MEMBER} \OPn{\VAR{foo}})}{\}}}
+      (\kwd{MEMBER} \OPn{\VAR{foo}})}{.}}
   {
   Type specifier, comprising just \VAR{foo} of \VAR{foo}s, respectively.
   }

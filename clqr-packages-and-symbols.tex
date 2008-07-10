@@ -17,7 +17,7 @@
 \begin{LIST}{1cm}
 
   \IT{\arrGOO{(\FU*{SYMBOLP} \VAR{ foo})\\
-      (\FU*{PACKAGEP} \VAR{ foo})}{\}}}
+      (\FU*{PACKAGEP} \VAR{ foo})}{.}}
   {
   \retval{\T} if \VAR{foo} is of indicated type.
   }
@@ -210,7 +210,7 @@
       \VAR{form}}{\}}})}
   {
   Evaluate \VAR{form}s with \VAR{var} successively bound to all
-  symbols from all registered packages, to all symbols from
+  symbols from each registered package, to all symbols from
   \VAR{package}, or to all external symbols from \VAR{package},
   respectively. Return \retval{values of \VAR{result}}. 
   }

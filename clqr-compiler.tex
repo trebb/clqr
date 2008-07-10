@@ -59,13 +59,13 @@
   }
 
   \IT{\arrGOO{\V*{*compile-file-pathname*}\DF{\NIL}\\
-      \V*{*compile-file-truename*}\DF{\NIL}}{\}}}
+      \V*{*compile-file-truename*}\DF{\NIL}}{.}}
   {
   Input file used by \FU{compile-file}.
   }
 
   \IT{\arrGOO{\V*{*compile-print*}\\
-      \V*{*compile-verbose*}}{\}}}
+      \V*{*compile-verbose*}}{.}}
   {
   Defaults used in \FU{compile-file}.
   }
@@ -86,13 +86,13 @@
   }
 
   \IT{\arrGOO{\V*{*load-pathname*}\DF{\NIL}\\
-      \V*{*load-truename*}\DF{\NIL}}{\}}}
+      \V*{*load-truename*}\DF{\NIL}}{.}}
   {
   Input file used by \FU{load}.
   }
 
   \IT{\arrGOO{\V*{*load-print*}\\
-      \V*{*load-verbose*}}{\}}}
+      \V*{*load-verbose*}}{.}}
   {
   Defaults used in \FU{load}.
   }
@@ -220,7 +220,7 @@
 
   \IT{(\SF*{UNTRACE} \OPn{\VAR{function}})}
   {
-  Stop \VAR{function}s, or all currently traced functions from being
+  Stop \VAR{function}s, or each currently traced function from being
   traced. 
   }
 
@@ -316,7 +316,7 @@
 
 
     \IT{\arrGOO{(\kwd*{TYPE} \VAR{ type} \OPn{\VAR{ variable}})\\
-        (\kwd*{FTYPE} \VAR{ type} \OPn{\VAR{ function}})}{\}}}
+        (\kwd*{FTYPE} \VAR{ type} \OPn{\VAR{ function}})}{.}}
     {
     Declare \VAR{variable} or \VAR{function} to be of \VAR{type}.
   }
@@ -330,7 +330,7 @@
   }
 
     \IT{\arrGOO{(\kwd*{INLINE} \OPn{\VAR{ function}})\\
-        (\kwd*{NOTINLINE} \OPn{\VAR{ function}})}{\}}}
+        (\kwd*{NOTINLINE} \OPn{\VAR{ function}})}{.}}
     {
     Tell compiler to integrate/not to integrate, respectively, called
     \VAR{function}s into the calling routine.

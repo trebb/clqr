@@ -60,7 +60,7 @@
       (\FU*{FLOATP} \VAR{ foo})\\
       (\FU*{REALP} \VAR{ foo})\\
       (\FU*{COMPLEXP} \VAR{ foo})
-      }{\}}}
+      }{.}}
   {
   \retval{\T} if \VAR{foo} is of
   indicated type.
@@ -104,7 +104,7 @@
   \VAR{b}s, return \retval{$-a$} or \retval{$1/a$}, respectively.
   }
 
-  \IT{\arrGOO{(\FU*{1+} \VAR{ a})\\(\FU*{1--} \VAR{ a})}{\}}}
+  \IT{\arrGOO{(\FU*{1+} \VAR{ a})\\(\FU*{1--} \VAR{ a})}{.}}
   {Return \retval{$a+1$} or
   \retval{$a-1$}, respectively.
   }
@@ -131,7 +131,7 @@
   }
 
   \IT{\arrGOO{(\FU*{SQRT} \VAR{ n})\\
-      (\FU*{ISQRT} \VAR{ n})}{\}}}
+      (\FU*{ISQRT} \VAR{ n})}{.}}
   {
   Return, in complex or natural numbers, respectively, $\sqrt{n}$.
   }
@@ -157,7 +157,7 @@
   }
 
   \IT{\arrGOO{(\FU*{ASIN} \VAR{ a})\\
-      (\FU*{ACOS} \VAR{ a})}{\}}}
+      (\FU*{ACOS} \VAR{ a})}{.}}
   {
   \retval{$\arcsin a$} or \retval{$\arccos
     a$}, respectively, in radians.
@@ -169,7 +169,7 @@
   }
 
   \IT{\arrGOO{(\FU*{SINH} \VAR{ a})\\(\FU*{COSH} \VAR{ a})\\(\FU*{TANH}
-      \VAR{ a})}{\}}}
+      \VAR{ a})}{.}}
   {
   Return \retval{$\sinh a$}, \retval{$\cosh
     a$}, or \retval{$\tanh a$}, respectively.
@@ -177,7 +177,7 @@
 
   \IT{\arrGOO{(\FU*{ASINH} \VAR{ a})\\
       (\FU*{ACOSH} \VAR{ a})
-      \\(\FU*{ATANH} \VAR{ a})}{\}}}
+      \\(\FU*{ATANH} \VAR{ a})}{.}}
   {
   \retval{$\operatorname{arsinh} a$}, \retval{$\operatorname{acosh}
     a$}, or \retval{$\operatorname{atanh} a$}, respectively.
@@ -208,7 +208,7 @@
   }
 
   \IT{\arrGOO{(\FU*{MAX } \Op{\VAR{num}})\\
-      (\FU*{MIN } \Op{\VAR{num}})}{\}}}
+      (\FU*{MIN } \Op{\VAR{num}})}{.}}
   {
   Return \retval{greatest} or \retval{least}, respectively, of \VAR{num}s.
   }
@@ -378,8 +378,8 @@
 
   \IT{(\FU*{MASK-FIELD} \VAR{byte-spec} \VAR{integer})}
   {
-  Return \retval{\VAR{integer}} with all bits but those denoted by
-  \VAR{byte-spec} unset. \kwd{setf}able.
+  Return \retval{\VAR{integer}} with all bits unset but those denoted by
+  \VAR{byte-spec}. \kwd{setf}able.
   }
 
 

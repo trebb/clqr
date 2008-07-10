@@ -14,7 +14,7 @@
 \begin{figure}[hbt]
   \begin{center}
     \boxGOO{%
-      \kwd*{t}%
+      \T\index{T}%
       \boxGOO{%
         \kwd*{CONDITION}\\
         \boxGOO{%
@@ -53,12 +53,12 @@
               \kwd*{SIMPLE-CONDITION}\footnotemark[2]
               \boxGOO{%
                 \kwd*{SIMPLE-ERROR}}\\
-              \kwd*{PARSE-ERROR}\footnotemark[2]\\
-              \kwd*{PROGRAM-ERROR}\\
-              \kwd*{CONTROL-ERROR}\\
-              \kwd*{PACKAGE-ERROR}\\
-              \kwd*{FILE-ERROR}\\
-              \kwd*{PRINT-NOT-READABLE}}\\
+              \kwd*{PARSE-ERROR}\footnotemark[2],\>
+              \kwd*{PROGRAM-ERROR},\>
+              \kwd*{CONTROL-ERROR},\\
+              \kwd*{PACKAGE-ERROR},\>
+              \kwd*{FILE-ERROR},\>
+              \kwd*{PRINT-NOT-READABLE}},\\
             \kwd*{STORAGE-CONDITION}}\\
           \kwd*{SIMPLE-CONDITION}\footnotemark[2]}}}\\
   \end{center}\vspace{-1em}
@@ -73,7 +73,7 @@
       \orGOO{\Goos{\kwd{:reader} \VAR{reader-fu}}\\
         \Goos{\kwd{:writer} \VAR{writer-fu}} \\
         \Goos{\kwd{:accessor} \VAR{reader-fu}} \\
-        \kwd{:allocation } \Goo{\kwd{:instance}\XOR\VAR{class}}\\
+        \kwd{:allocation } \Goo{\kwd{:instance}\XOR\kwd{:class}}\\
         \Goos{\kwd{:initarg} \kwd{:}\VAR{arg}}\\
         \kwd{:initform} \VAR{ form}\\
         \kwd{:type} \VAR{ type}}{\}})}{\}})
@@ -89,10 +89,10 @@
   Return \retval{new condition of \VAR{type}}.
   }
 
-  \IT{(\FU*{UNWIND-PROTECT} \VAR{protected} \VAR{cleanup})}
+  \IT{(\FU*{UNWIND-PROTECT} \VAR{protected} \OPn{\VAR{cleanup}})}
   {
   Evaluate \VAR{protected} and then, no matter how control leaves
-  \VAR{protected}, \VAR{cleanup}. Return \retval{value of
+  \VAR{protected}, \VAR{cleanup}s. Return \retval{values of
     \VAR{protected}}. 
   }
 
@@ -105,7 +105,7 @@
 
   \IT{(\FU*{ERROR} \VAR{datum} \OPn{\VAR{arg}})}
   {
-  Signal condition as denoted by \VAR{datum} and \VAR{arg}s unless
+  Signal \kwd{simple-error} as denoted by \VAR{datum} and \VAR{arg}s unless
   error is handled. 
   }
 
@@ -118,13 +118,20 @@
 
   \IT{(\SF*{IGNORE-ERRORS} \OPn{\VAR{form}})}
   {
-  Return \retval{values of \VAR{form}s} or, in case of \kwd{error}s,
+  Return \retval{values of \VAR{form}s} as in \kwd{progn} or, in case of \kwd{error}s,
   \retval{\NIL} and the \retvalii{condition}.
   }
 
   \IT{(\FU*{INVOKE-DEBUGGER} \VAR{condition})}
   {
   Invoke debugger with \VAR{condition}.
+  }
+
+  \IT{(\FU*{BREAK} \Op{\VAR{control} \OPn{\VAR{arg}}})}
+  {
+  Jump into debugger, return \retval{\NIL}.
+  See p.\ \pageref{section:Format}, \kwd{format}, for \VAR{control}
+  and \VAR{arg}s. 
   }
 
   \IT{(\SF*{ASSERT} \VAR{test} \OP{(\OPn{\VAR{place}}) \Op{\VAR{datum}
@@ -136,17 +143,17 @@
   }
 
   \IT{(\SF*{HANDLER-CASE} \VAR{test} 
-    \OPn{(\VAR{type} (\VAR{condition-var})
+    \OPn{(\VAR{type} (\Op{\VAR{condition-var}})
       \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \OPn{\VAR{condition-form}})} 
-    \Op{\kwd{:no-error} (\OPn{\VAR{fu-arg}}) \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
-      \OPn{\VAR{form}}})}
+    \Op{(\kwd{:no-error} (\OPn{\VAR{fu-arg}}) \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
+      \OPn{\VAR{form}})})}
   {
   If, on evaluation of \VAR{test}, a condition of \VAR{type} is
   signalled, return \retval{values of matching \VAR{condition-form}s}
   with \VAR{condition-var} bound to the condition. Without a condition, bind
-  \VAR{fu-arg}s to values of \VAR{test} and return \retval{value of
+  \VAR{fu-arg}s to values of \VAR{test} and return \retval{values of
     \VAR{form}s} or, without a \kwd{:no-error} clause, return
-  \retval{value of \VAR{test}}. See p.\ \pageref{section:Functions}
+  \retval{values of \VAR{test}}. See p.\ \pageref{section:Functions}
   for (\OPn{\VAR{fu-arg}}).
   }
 
@@ -169,7 +176,7 @@
   \IT{(\SF*{WITH-CONDITION-RESTARTS} \VAR{condition-form}
     \VAR{restarts-form} \OPn{\VAR{form}})}
   {
-  Evaluate \VAR{form}s with restarts yielded from \VAR{restart-form}
+  Evaluate \VAR{form}s with restarts yielded from \VAR{restarts-form}
   dynamically associated with  condition yielded from
   \VAR{condition-form}. Return values of \VAR{form}s.
   }
@@ -184,7 +191,7 @@
   Evaluate \VAR{test} with new restarts \VAR{name}. Return
   \retval{values of \VAR{test}} or, if any of the restarts is invoked,
   return \retval{values of its last \VAR{form}}.
-  For \VAR{fu-arg}s see p.\ \pageref{section:Functions}.
+  For (\OPn{\VAR{fu-arg}}) see p.\ \pageref{section:Functions}.
   }
 
   \IT{(\SF*{RESTART-BIND} (\OPn{(\VAR{restart}
@@ -201,7 +208,7 @@
       (\FU*{INVOKE-RESTART-INTERACTIVELY} \VAR{ restart})}{.}}
   {
   Call function associated with \VAR{restart} with arguments given or
-  prompted for, respectively If restart function returns, return \retval{its values}.
+  prompted for, respectively. If restart function returns, return \retval{its values}.
   }
 
   \IT{(\xorGOO{\FU*{COMPUTE-RESTARTS}\\
@@ -233,14 +240,10 @@
   or return \retval{\NIL} for the rest.
   }
 
-  \IT{(\FU*{ARITHMETIC-ERROR-OPERANDS} \VAR{condition})}
+  \IT{\arrGOO{(\FU*{ARITHMETIC-ERROR-OPERATION} \VAR{ condition})\\
+      (\FU*{ARITHMETIC-ERROR-OPERANDS} \VAR{ condition})}{.}}
   {
-  \retval{List of operands} used in signalling operation.
-  }
-
-  \IT{(\FU*{ARITHMETIC-ERROR-OPERATION} \VAR{condition})}
-  {
-  \retval{Function} used in signalling operation.
+  \retval{Function} or \retval{list of its operands}, respectively, used in signalling operation.
   }
 
   \IT{(\FU*{CELL-ERROR-NAME} \VAR{condition})}
@@ -276,7 +279,8 @@
   \IT{\arrGOO{(\FU*{TYPE-ERROR-DATUM} \VAR{ condition})\\
       (\FU*{TYPE-ERROR-EXPECTED-TYPE} \VAR{ condition})}{.}}
   {
-  \retval{Datum} which caused \VAR{condition}, or its expected type, respectively
+  \retval{Datum} which caused \VAR{condition}, or its expected type,
+  respectively. 
   }
 
   \IT{\arrGOO{(\FU*{SIMPLE-CONDITION-FORMAT-CONTROL} \VAR{ condition})\\

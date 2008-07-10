@@ -343,30 +343,29 @@ or\\
   Make \retval{\VAR{name}} a macro call.
   }
 
-  \IT{(\SF*{MACROLET} (\OPn{(\OPn{name} (\OPn{\VAR{macro-arg}})
+  \IT{(\SF*{MACROLET} (\OPn{(\VAR{name} (\OPn{\VAR{macro-arg}})
       \OPn{(\kwd{declare} \OPn{\VAR{local-decl}})} 
-      \Op{\VAR{documentation}} \OPn{form})}) \OPn{(\kwd{declare}
-      \OPn{\VAR{decl}})} \OPn{\VAR{body}})}
+      \Op{\VAR{documentation}} \OPn{\VAR{macro-form}})}) \OPn{(\kwd{declare}
+      \OPn{\VAR{decl}})} \OPn{\VAR{form}})}
   {
-  Evaluate \retval{\OPn{\VAR{body}}} with \VAR{name}s locally defined
-  as corresponding macros which are invisible to each other.  
+  Evaluate \retval{\VAR{form}s} with \VAR{name}s locally defined
+  as macros which are invisible to each other.  
   }
 
   \IT{(\SF*{SYMBOL-MACROLET} (\OPn{(\VAR{name}
-      \OPn{\VAR{form}})})\OPn{(\kwd{declare} \OPn{\VAR{decl}})}
-    \OPn{\VAR{body}})}
+      \VAR{expansion-form})}) \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
+    \OPn{\VAR{form}})}
   {
-  Evaluate \retval{\OPn{\VAR{body}}} with \VAR{name}s locally defined as
-  corresponding symbol-macros. 
+  Evaluate \retval{\VAR{form}s} with \VAR{name}s locally defined as
+  symbol-macros. 
   }
 
-  \IT{(\SF*{DEFSETF} \VAR{function}\xorGOO{\VAR{update } \Op{\VAR{documentation}}\\
-    \OPn{\VAR{arg } (\OPn{\VAR{var}}) \OPn{(\kwd{declare} \OPn{\VAR{
-            decl}})} \Op{\VAR{documentation}}}}{\}})}
+  \IT{(\SF*{DEFSETF} \VAR{function} \xorGOO{\VAR{update } \Op{\VAR{documentation}}\\
+    \OPn{\VAR{arg } (\OPn{\VAR{var}})\text{ } \OPn{(\kwd{declare} \OPn{\VAR{
+            decl}})}\text{ } \Op{\VAR{documentation}}}}{\}})}
   {
   Specify how to \kwd{setf} a place accessed by
-  \retval{\VAR{function}} if \VAR{function} evaluates all its
-  arguments. 
+  \retval{\VAR{function}}.
   }
 
   \IT{(\SF*{DEFINE-SETF-EXPANDER} \VAR{function} (\OPn{\VAR{macro-arg}})
@@ -376,18 +375,16 @@ or\\
   Specify how to \kwd{setf} a place accessed by \retval{\VAR{function}}.
   }
 
-  \IT{(\SF*{DEFINE-MODIFY-MACRO} \VAR{foo} (\kwd{\&optional}
-    \OPn{\VAR{var}} \kwd{\&rest} \OPn{\VAR{var}}) \VAR{function}
-    \Op{documentation})}
-  {
-  Define macro \retval{\VAR{foo}} able to read and write a place. On
-  invokation, after applying \VAR{function} to place its return value
-  is stored there.
-  }
-
   \IT{(\FU*{GET-SETF-EXPANSION} \VAR{place} \Op{\VAR{environment}})}
   {
   Return five values describing how to \kwd{setf} place.
+  }
+
+  \IT{(\SF*{DEFINE-MODIFY-MACRO} \VAR{foo} (\kwd{\&optional}
+    \OPn{\VAR{var}} \kwd{\&rest} \OPn{\VAR{var}}) \VAR{function}
+    \Op{\VAR{documentation}})}
+  {
+  Define macro \retval{\VAR{foo}} able to read and write a place.
   }
 
   \IT{\CNS*{LAMBDA-LIST-KEYWORDS}}
@@ -402,52 +399,51 @@ or\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
-  \IT{(\SF*{IF} \VAR{test} \VAR{then} \Op{\VAR{else}})}
-  {Evaluate and return
-  \retval{\VAR{then}} if \VAR{test} returns \T, evaluate and return
+  \IT{(\SF*{IF} \VAR{test} \VAR{then} \Op{\VAR{else}\DF{\NIL}})}
+  {Return value of
+  \retval{\VAR{then}} if \VAR{test} returns \T; return value of
   \retval{\VAR{else}} otherwise.
   }
 
-  \IT{(\SF*{COND} \OPn{(\VAR{test} \OPn{\VAR{then}})})}
+  \IT{(\SF*{COND} \OPn{(\VAR{test} \OPn{\VAR{then}}\DF{\VAR{test}})})}
   {
-  Evaluate and return the
-  \retval{\VAR{then}s} whose \VAR{test} returns \T, return
-  \retval{\NIL} if all \VAR{test}s return \NIL.
+  Return the \retval{values} of the first
+  \VAR{then}s whose \VAR{test} returns \T; return
+  \retval{\NIL} if each \VAR{test} returns \NIL.
   }
 
-  \IT{(\xorGOO{\SF*{WHEN}\\\SF*{UNLESS}}{\}} \VAR{test}
-    \OPn{\VAR{foo}})}
+  \IT{(\xorGOO{\SF*{WHEN}\\
+      \SF*{UNLESS}}{\}} \VAR{test}
+    \OPn{\VAR{foo}}\DF{\NIL})}
   {
   Evaluate \VAR{foo}s and return \retval{values of last \VAR{foo}} if
   \VAR{test} returns \T\ or \NIL, respectively. Return \retval{\NIL} otherwise.
   }
 
-  \IT{(\SF*{CASE} \VAR{object} \OPn{(\RP{\VAR{key}}\OPn{\VAR{foo}})}
+  \IT{(\SF*{CASE} \VAR{test} \OPn{(\VAR{keys} \OPn{\VAR{foo}})}
     \Op{(\Goo{\T\XOR\kwd*{OTHERWISE}} \OPn{\VAR{bar}})\DF{\NIL}})}
   {
-  Evaluate first \VAR{foo}s whose unevaluated \VAR{key} is
-  \kwd{eql} evaluated \VAR{object} and return \retval{their values}.
-  Return \retval{values of \VAR{bar}s} if no \LIT{key} matches. 
+  Evaluate first \VAR{foo}s one of whose unevaluated \VAR{keys} is
+  \kwd{eql} evaluated \VAR{test} and return \retval{their values}.
+  Return \retval{values of \VAR{bar}s} if no \VAR{keys} match. 
   }
 
-  \IT{(\Goo{\SF*{CCASE}\XOR\SF*{ECASE}} \VAR{object}
-    \OPn{(\RP{\VAR{key}}\OPn{\VAR{foo}})})}
+  \IT{(\Goo{\SF*{CCASE}\XOR\SF*{ECASE}} \VAR{test}
+    \OPn{(\VAR{keys} \OPn{\VAR{foo}})})}
   {
-  Evaluate first \VAR{foo}s whose unevaluated \VAR{key} is \kwd{eql} evaluated
-  \VAR{object}. Return \retval{value of last evaluated
-    \VAR{foo}}. Signal correctible error/non-correctible error,
-  respectively, if no \VAR{key} matches and return \retval{\NIL} then.
+  Evaluate first \VAR{foo}s one of whose unevaluated \VAR{keys} is \kwd{eql} evaluated
+  \VAR{test} and return \retval{their values}. Signal correctible error/non-correctible \kwd{type-error},
+  respectively, if no \VAR{keys} match and return \retval{\NIL} then.
   }
 
-  \IT{(\SF*{AND} \OPn{\VAR{form}})}
+  \IT{(\SF*{AND} \OPn{\VAR{form}}\DF{\T})}
   {
   Evaluate \VAR{form}s from left to
   right. Immediately return \retval{\NIL} if one \VAR{form}'s value is \NIL. Return
-  \retval{values of last \VAR{form}} otherwise. Without any \VAR{form},
-  return \retval{\NIL}.
+  \retval{values of last \VAR{form}} otherwise.
   }
 
-  \IT{(\SF*{OR} \OPn{\VAR{form}})}
+  \IT{(\SF*{OR} \OPn{\VAR{form}}\DF{\NIL})}
   {
   Evaluate \VAR{form}s from left to
   right. Immediately return \retval{primary value} of first
@@ -455,9 +451,9 @@ or\\
   is reached. Return \retval{\NIL} if no \VAR{form} returns \T.
   }
 
-  \IT{(\kwd*{PROGN} \OPn{\VAR{form}})}
-  {Sequence \VAR{form}s. Return
-  \retval{value of last \VAR{form}}.
+  \IT{(\kwd*{PROGN} \OPn{\VAR{form}}\DF{\NIL})}
+  {Evaluate \VAR{form}s sequentially. Return
+  \retval{values of last \VAR{form}}.
   }
 
   \IT{(\xorGOO{\SF*{PROG}\\
@@ -468,8 +464,9 @@ or\\
     \OPn{(\kwd{declare} \OPn{\VAR{decl}})} 
     \xorGOO{\VAR{tag}\\\VAR{form}}{\}^{\!\!*}})}
   {
-  Evaluate \kwd{TAGBODY}-like body with locally bound
-  \VAR{var}s. Return \retval{\NIL} or explicitly \retval{\kwd{return}ed value}.
+  Evaluate \kwd{TAGBODY}-like body with \VAR{var}s locally bound (in parallel or sequentially, respectively) to
+  \VAR{value}s. Return \retval{\NIL} or explicitly
+  \retval{\kwd{return}ed value}. 
   }
 
   \IT{\arrGOO{%
@@ -477,7 +474,7 @@ or\\
       (\SF*{PROG1} \VAR{ form-r} \OPn{\VAR{ form}})\\
       (\SF*{PROG2} \VAR{ form-a} \VAR{ form-r} \OPn{\VAR{ form}})}{.}}
   {
-  Evaluate all forms in order. Return \retval{values/1st value},
+  Evaluate forms in order. Return \retval{values/1st value},
   respectively, of \VAR{form-r}. 
   }
 
@@ -498,7 +495,7 @@ or\\
   \IT{(\kwd*{MULTIPLE-VALUE-BIND} (\OPn{\VAR{var}}) \VAR{values-form}
     \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \OPn{\VAR{body-form}})}
   {Evaluate
-  body with \VAR{var}s bound to the return values of
+  \VAR{body-form}s with \VAR{var}s bound to the return values of
   \VAR{values-form}. Return \retval{values returned by \VAR{body-form}s}.
   }
 
@@ -509,9 +506,9 @@ or\\
     \OPn{(\kwd{declare} \OPn{\VAR{decl}})} 
     \OPn{\VAR{form}})}
   {
-  Evaluate \VAR{form}s with \VAR{name}s bound to \VAR{value}s or
-  \NIL. Return \retval{values of \VAR{form}s}. In \SF{LET*},
-  \VAR{value}s can refer to previous \VAR{name}s.
+  Evaluate \VAR{form}s with \VAR{name}s bound (in parallel or
+  sequentially, respectively) to \VAR{value}s or \NIL. Return
+  \retval{values of \VAR{form}s}. 
   }
 
   \IT{(\SF*{LOCALLY} \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
@@ -524,12 +521,12 @@ or\\
   \IT{(\SF*{RETURN-FROM} \VAR{foo} \Op{\VAR{result}\DF{\NIL}})}
   {
   Have nearest enclosing \kwd{block} \VAR{foo} return with
-  \VAR{result}. 
+  values of \VAR{result}. 
   }
 
   \IT{(\SF*{RETURN} \Op{\VAR{result}\DF{\NIL}})}
   {
-  Have nearest enclosing block \NIL\ return with \retval{\VAR{result}}.
+  Have nearest enclosing block \NIL\ return with values of \VAR{result}.
   }
 
   \IT{(\SF*{BLOCK} \VAR{name} \OPn{\VAR{form}})}
@@ -550,20 +547,13 @@ or\\
 
   \IT{(\SF*{CATCH} \VAR{tag} \OPn{\VAR{form}})}
   {Evaluate \VAR{form}s returning
-  \retval{value of last \VAR{form}} unless interrupted by \SF{THROW}.
+  \retval{values of last \VAR{form}} unless interrupted by \SF{THROW}.
   }
 
   \IT{(\SF*{THROW} \VAR{tag form})}
   {Have the nearest dynamically
   enclosing \SF{CATCH} with a tag \kwd{eq} \VAR{tag} return with the
-  value of \VAR{form}.
-  }
-
-  \IT{(\FU*{BREAK} \Op{\VAR{control} \OPn{arg}})}
-  {
-  Jump into debugger, return \retval{\NIL}.
-  See p.\ \pageref{section:Format}, \kwd{format}, for \VAR{control}
-  and \VAR{arg}s. 
+  values of \VAR{form}.
   }
 
   \IT{(\FU*{SLEEP} \VAR{n})}
@@ -583,7 +573,7 @@ or\\
   \IT{(\xorGOO{\SF*{DO}\\\SF*{DO*}}{\}}
     (\orGOO{%
       \VAR{var}\\
-      (\VAR{var} \Op{ \VAR{start} \Op{\VAR{step}}})}{\}^{\!\!*}})
+      (\VAR{var } \Op{ \VAR{start } \Op{\VAR{step}}})}{\}^{\!\!*}})
     (\VAR{stop} \OPn{\VAR{result}})
     \OPn{(\kwd{declare} \OPn{\VAR{decl}})} 
     \xorGOO{\VAR{tag}\\\VAR{form}}{\}^{\!\!*}})}
@@ -604,7 +594,7 @@ or\\
   \retval{\VAR{result}}, \VAR{var} is \NIL.
   }
 
-  \IT{(\SF*{DOLIST}(\VAR{var} \VAR{list} \Op{\VAR{result}})
+  \IT{(\SF*{DOLIST }(\VAR{var} \VAR{list} \Op{\VAR{result}})
     \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
     \Goos{\VAR{tag}\XOR\VAR{form}})}
   {
@@ -697,7 +687,7 @@ or\\
             \right\}
             \text{\VAR{list}} 
             \left[
-              \text{\LKWD{by} \VAR{form}\DF{\kwd{\#'cdr}}}
+              \text{\LKWD{by} \VAR{form}\DF{\kwd{cdr}}}
               \right]\\
             \text{\LKWD{=} \VAR{foo }} 
             \left[
@@ -898,7 +888,7 @@ or\\
     Give implicit \kwd{block} of loop a name.
     }
 
-    \IT{\LKWD*{with} \VAR{var} \LKWD*{=} \VAR{foo} \Op{\VAR{type}} \Goo{\LKWD*{and}
+    \IT{\LKWD*{with} \VAR{var} \Op{\VAR{type}} \LKWD*{=} \VAR{foo} \Goos{\LKWD*{and}
         \VAR{var-n} \Op{\VAR{type}} \LKWD*{=} \VAR{bar}}}
     {
     Initialize local variables in parallel.
@@ -909,7 +899,7 @@ or\\
     Evaluate \VAR{form}s before begin, or after end, respectively, of iterations.
     }
 
-    \IT{\Goo{\LKWD*{for}\XOR\LKWD*{as}} \VAR{var} \VAR{type}}
+    \IT{\Goo{\LKWD*{for}\XOR\LKWD*{as}} \VAR{var} \Op{\VAR{type}}}
     {
     Begin of iteration control clause.
     }
@@ -933,9 +923,10 @@ or\\
       Bind \VAR{var} to successive elements/tails, respectively, of \VAR{list}.
       }
 
-      \IT{\LKWD*{by} \VAR{step}\DF{1}}
+      \IT{\LKWD*{by} \Goo{\VAR{step}\DF{1}\XOR\VAR{function}\DF{\kwd{cdr}}}}
       {
-      Specify the (positive) decrement or increment.
+      Specify the (positive) decrement or increment or the
+      \VAR{function} to apply to the list.
       }
 
       \IT{\LKWD*{=} \VAR{foo} \Op{\LKWD*{then}
@@ -956,20 +947,21 @@ or\\
 
       \begin{LIST}{.5cm}
 
-        \IT{\Goo{\LKWD*{hash-key}\XOR\LKWD*{hash-keys}}\Goo{\LKWD*{of}\XOR\LKWD*{in}} \VAR{hash-table}
+        \IT{\Goo{\LKWD*{hash-key}\XOR\LKWD*{hash-keys}} \Goo{\LKWD*{of}\XOR\LKWD*{in}} \VAR{hash-table}
           \Op{\LKWD*{using} (\LKWD*{hash-value} \VAR{value})}}
         {
-        Bind \VAR{var} successively to the keys of \VAR{hash-table}; bind corresponding values to \VAR{value}.
+        Bind \VAR{var} successively to the keys of \VAR{hash-table}; bind \VAR{value} to corresponding values.
         }
 
-        \IT{\Goo{\LKWD*{hash-value}\XOR\LKWD*{hash-values}}\Goo{\LKWD*{of}\XOR\LKWD*{in}} \VAR{hash-table}
+        \IT{\Goo{\LKWD*{hash-value}\XOR\LKWD*{hash-values}} \Goo{\LKWD*{of}\XOR\LKWD*{in}} \VAR{hash-table}
           \Op{\LKWD*{using} (\LKWD*{hash-key} \VAR{key})}}
         {
-        Bind \VAR{var} successively to the values of \VAR{hash-table}; bind corresponding keys to \VAR{key}.
+        Bind \VAR{var} successively to the values of \VAR{hash-table}; bind \VAR{key} to corresponding keys.
         }
 
-        \IT{\Goo{\LKWD*{symbol}\XOR\LKWD*{symbols}\XOR\LKWD*{present-symbol}\XOR\LKWD*{present-symbols}\XOR\LKWD*{external-symbol}\XOR\LKWD*{external-symbols}}\Op{\Goo{\LKWD*{of}\XOR\LKWD*{in}}
-            \VAR{package}}}
+        \IT{\Goo{\LKWD*{symbol}\XOR\LKWD*{symbols}\XOR\LKWD*{present-symbol}\XOR\LKWD*{present-symbols}\XOR\LKWD*{external-symbol}\XOR\LKWD*{external-symbols}}
+          \Op{\Goo{\LKWD*{of}\XOR\LKWD*{in}}
+            \VAR{package}\DF{\V{*package*}}}}
         {
         Bind \VAR{var} successively to the symbols, or the present symbols, or the external symbols, respectively, of \VAR{package}.
         }
@@ -977,7 +969,7 @@ or\\
       \end{LIST}
     \end{LIST}
     
-    \IT{\LKWD*{and} \VAR{var}}
+    \IT{\LKWD*{and} \VAR{var} \Op{\VAR{type}}}
     {
     Begin of another iteration control clause with variables initialized and stepped in parallel.
     }
@@ -998,43 +990,54 @@ or\\
     Return immediately with value of \VAR{form} or \LKWD{it}.
     }
 
-    \IT{\Goo{\LKWD*{collect}\XOR\LKWD*{collecting}}\Goo{\VAR{form}\XOR\LKWD*{it}}\Op{\LKWD*{into} \VAR{list}}}
+    \IT{\Goo{\LKWD*{collect}\XOR\LKWD*{collecting}}
+      \Goo{\VAR{form}\XOR\LKWD*{it}} \Op{\LKWD*{into} \VAR{list}}}
     {
     Collect values of \VAR{form} or \LKWD{it} into \VAR{list}. If no \VAR{list} is given, collect into an anonymous list
     which is returned after termination.
     }
 
-    \IT{\Goo{\LKWD*{append}\XOR\LKWD*{appending}\XOR\LKWD*{nconc}\XOR\LKWD*{nconcing}}\Goo{\VAR{form}\XOR\LKWD*{it}}\Op{\LKWD*{into}
+    \IT{\Goo{\LKWD*{append}\XOR\LKWD*{appending}\XOR\LKWD*{nconc}\XOR\LKWD*{nconcing}}
+      \Goo{\VAR{form}\XOR\LKWD*{it}} \Op{\LKWD*{into}
         \VAR{list}}}
     {
-    Concatenate values of \VAR{form} or \LKWD{it}, which must be lists, into \VAR{list} by the means of \FU{append} 
+    Concatenate values of \VAR{form} or \LKWD{it}, which should be lists, into \VAR{list} by the means of \FU{append} 
     or \FU{nconc}, respectively.  If no \VAR{list} is given, collect into an anonymous list
     which is returned after termination.
     }
 
-    \IT{\Goo{\LKWD*{count}\XOR\LKWD*{counting}}\Goo{\VAR{form}\XOR\LKWD*{it}}\Op{\LKWD*{into}
-        \VAR{n}}}
+    \IT{\Goo{\LKWD*{count}\XOR\LKWD*{counting}}
+      \Goo{\VAR{form}\XOR\LKWD*{it}} \Op{\LKWD*{into}
+        \VAR{n}} \Op{\VAR{type}}}
     {
-    Count the number of times \VAR{form} or \LKWD{it} returns \T.
+    Count the number of times the value of \VAR{form} or of \LKWD{it} is \T.
+    If no \VAR{n} is given, count into an anonymous variable
+    which is returned after termination.
     }
 
-    \IT{\Goo{\LKWD*{sum}\XOR\LKWD*{summing}}\Goo{\VAR{form}\XOR\LKWD*{it}}\Op{\LKWD*{into} \VAR{sum}}}
+    \IT{\Goo{\LKWD*{sum}\XOR\LKWD*{summing}}
+      \Goo{\VAR{form}\XOR\LKWD*{it}} \Op{\LKWD*{into}
+        \VAR{sum}} \Op{\VAR{type}}} 
     {
     Calculate the sum of the values of \VAR{form} or of \LKWD{it}.
+    If no \VAR{sum} is given, sum into an anonymous variable
+    which is returned after termination.
     }
 
     \IT{\Goo{\LKWD*{maximize}\XOR\LKWD*{maximizing}\XOR
         \LKWD*{minimize}\XOR
-        \LKWD*{minimizing}}\Goo{\VAR{form}\XOR\LKWD*{it}}\Op{\LKWD*{into}
-        \VAR{max-min}}} 
+        \LKWD*{minimizing}} \Goo{\VAR{form}\XOR\LKWD*{it}} \Op{\LKWD*{into}
+        \VAR{max-min}} \Op{\VAR{type}}} 
     {
-    Determine the maximum or minimum, respectively, of all values of
+    Determine the maximum or minimum, respectively, of the values of
     \VAR{form} or of \LKWD{it}. 
+    If no \VAR{max-min} is given, use an anonymous variable
+    which is returned after termination.
     }
 
-    \IT{\Goo{\LKWD*{if}\XOR\LKWD*{when}\XOR\LKWD*{unless}}\VAR{ test}
+    \IT{\Goo{\LKWD*{if}\XOR\LKWD*{when}\XOR\LKWD*{unless}} \VAR{ test}
       \VAR{form-i} \Goos{\LKWD*{and} 
-        \VAR{form-j}}\Op{\LKWD*{else} \VAR{form-k} \Goos{\LKWD*{and} 
+        \VAR{form-j}} \Op{\LKWD*{else} \VAR{form-k} \Goos{\LKWD*{and} 
           \VAR{form-l}}} \Op{\LKWD*{end}}} 
     {
     If \VAR{test} returns \T, \T, or \NIL, respectively, evaluate
@@ -1050,7 +1053,7 @@ or\\
 
     \IT{\Goo{\LKWD*{while}\XOR\LKWD*{until}} \VAR{test}}
     {
-    Continue iteriation until \VAR{test} returns \NIL, or \T, respectively.
+    Continue iteration until \VAR{test} returns \NIL, or \T, respectively.
     }
 
     \IT{\Goo{\LKWD*{always}\XOR\LKWD{never}} \VAR{test}}
@@ -1063,12 +1066,14 @@ or\\
 
     \IT{\LKWD*{thereis} \VAR{test}}
     {
-    Terminate \SF{loop} when \VAR{test} is \T\ and return value of \VAR{form}, skipping any \LKWD*{finally} parts. Otherwise continue \SF{loop} with its default return value set to \T.
+    Terminate \SF{loop} when \VAR{test} is \T\ and return value of
+    \VAR{test}, skipping any \LKWD*{finally} parts. Otherwise continue
+    \SF{loop} with its default return value set to \NIL. 
     }
 
     \IT{\LKWD*{loop-finish}}
     {
-    Terminate \SF{loop} immediately; skip any \LKWD*{finally} parts
+    Terminate \SF{loop} immediately; skip any \LKWD*{finally} parts.
     }
   \end{LIST}
 \end{LIST}
