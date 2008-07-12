@@ -131,4 +131,4 @@ $(CLQR).tar.gz:
 	$(BZR_EXPORT) $@ $(SEND-TO-LOG)
 
 publishclean:
-	$(RM) *~ html/*~
+	$(RM) *.ps *~ html/*~
