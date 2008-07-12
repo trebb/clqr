@@ -156,7 +156,7 @@
   }
 
   \IT{(\FU*{SET-SYNTAX-FROM-CHAR} \VAR{to-char} \VAR{from-char}
-    \OP{\VAR{to-readtable}\DF{\FU{*readtable*}}
+    \OP{\VAR{to-readtable}\DF{\V{*readtable*}}
       \Op{\VAR{from-readtable}\DF{standard readtable}}})}
   {
   Copy syntax of \VAR{from-char} to \VAR{to-readtable}. Return \retval{\T}.
@@ -179,14 +179,14 @@
 
   \IT{(\FU*{SET-MACRO-CHARACTER} \VAR{char} \VAR{function}
     \OP{\VAR{non-term-p}\DF{\NIL}
-      \Op{\VAR{rt}\DF{\FU{*readtable*}}}})}
+      \Op{\VAR{rt}\DF{\V{*readtable*}}}})}
   {
   Make \VAR{char} a macro character associated with
   \VAR{function}. Return \retval{\T}.
   }
 
   \IT{(\FU*{GET-MACRO-CHARACTER} \VAR{char}
-    \Op{\VAR{rt}\DF{\FU{*readtable*}}})}
+    \Op{\VAR{rt}\DF{\V{*readtable*}}})}
   {
   \retval{Reader macro function} associated with \VAR{char}, and
   \retvalii{\T} if \VAR{char} is a non-terminating macro character.
@@ -194,20 +194,20 @@
 
   \IT{(\FU*{MAKE-DISPATCH-MACRO-CHARACTER} \VAR{char}
     \OP{\VAR{non-term-p}\DF{\NIL}
-      \Op{\VAR{rt}\DF{\FU{*readtable*}}}})}
+      \Op{\VAR{rt}\DF{\V{*readtable*}}}})}
   {
   Make \VAR{char} a dispatching macro character. Return \retval{\T}.
   }
 
   \IT{(\FU*{SET-DISPATCH-MACRO-CHARACTER} \VAR{char} \VAR{sub-char} \VAR{function}
-    \Op{\VAR{rt}\DF{\FU{*readtable*}}})}
+    \Op{\VAR{rt}\DF{\V{*readtable*}}})}
   {
   Make \VAR{function} a dispatch function of \VAR{char} followed by
   \VAR{sub-char}. Return \retval{\T}.
   }
 
   \IT{(\FU*{GET-DISPATCH-MACRO-CHARACTER} \VAR{char} \VAR{sub-char}
-    \Op{\VAR{rt}\DF{\FU{*readtable*}}})}
+    \Op{\VAR{rt}\DF{\V{*readtable*}}})}
   {
   \retval{Dispatch function} associated with \VAR{char} followed by \VAR{sub-char}.
   }
