@@ -24,7 +24,7 @@
   \IT{(\FU*{EQL} \VAR{foo bar})}
   {
   \retval{\T} if \VAR{foo} and \VAR{bar}
-  are identical, or are the same character, or are the same number.
+  are identical, or the same character, or the same number.
   }
 
   \IT{(\FU*{EQUAL} \VAR{foo bar})}
@@ -43,7 +43,12 @@
 
   \IT{(\FU*{NOT} \VAR{bool})}
   {
-  Return \retval{\NIL} if \VAR{bool} is \T, return \retval{\T} if \VAR{bool} is \NIL.
+  \retval{\NIL} if \VAR{bool} is \T; \retval{\T} if \VAR{bool} is \NIL.
+  }
+
+  \IT{(\FU*{BOUNDP} \VAR{symbol})}
+  {
+  \retval{\T} if \VAR{symbol} is a special variable.
   }
 
   \IT{(\FU*{CONSTANTP} \VAR{foo} \Op{\VAR{environment}})}
@@ -58,7 +63,7 @@
 
   \IT{(\FU*{FBOUNDP} \VAR{foo})}
   {
-  \retval{\T} if \VAR{foo} is the name of a global function or macro..
+  \retval{\T} if \VAR{foo} is a global function or macro.
   }
 
 
@@ -71,42 +76,39 @@
 
 \begin{LIST}{1cm}
 
-  \IT{(\kwd*{DEFVAR} \VAR{name} \OP{\VAR{value}
+  \IT{(\kwd*{DEFVAR} \VAR{name} \OP{\VAR{form}
       \Op{\VAR{documentation}}})}
   {
-  Unless bound already, assign \VAR{value} to dynamic variable
+  Unless bound already, assign value of \VAR{form} to dynamic variable
   \retval{\VAR{name}}. 
   }
 
-  \IT{(\kwd*{DEFPARAMETER} \VAR{name} \VAR{value}
+  \IT{(\kwd*{DEFPARAMETER} \VAR{name} \VAR{form}
     \Op{\VAR{documentation}})}
   {
-  Assign \VAR{value} to dynamic variable \retval{\VAR{name}}.
+  Assign value of \VAR{form} to dynamic variable \retval{\VAR{name}}.
   }
 
-  \IT{(\kwd*{DEFCONSTANT} \VAR{name} \VAR{value}
+  \IT{(\kwd*{DEFCONSTANT} \VAR{name} \VAR{form}
     \Op{\VAR{documentation}})}
   {
-  Assign \VAR{value} to global constant \retval{\VAR{name}}.
+  Assign value of \VAR{form} to global constant \retval{\VAR{name}}.
   }
 
-  \IT{(\FU*{NTH-VALUE} \VAR{n} \VAR{form})}
+  \IT{(\xorGOO{\SF*{SETF}\\
+      \SF*{PSETF}}{\}} \Goos{\VAR{place}
+      \VAR{form}})}
   {
-  \retval{\VAR{n}th return value} of \VAR{form}.
+  Set \VAR{place}s to values of \VAR{form}s returning \retval{value
+    of last \VAR{form}}. Work sequentially/in parallel, respectively. 
   }
 
-  \IT{(\xorGOO{\SF*{SETF}\\\SF*{PSETF}}{\}} \Goos{\VAR{place}
-      \VAR{value}})}
+  \IT{(\xorGOO{\SF*{SETQ}\\
+      \SF*{PSETQ}}{\}} \Goos{\VAR{symbol}
+      \VAR{form}})}
   {
-  Set \VAR{place}s to \retval{\VAR{value}s}, respectively. Work sequentially/in
-  parallel, respectively. 
-  }
-
-  \IT{(\xorGOO{\SF*{SETQ}\\\SF*{PSETQ}}{\}} \Goos{\VAR{symbol}
-      \VAR{value}})}
-  {
-  Set \VAR{symbol}s to \retval{\VAR{value}s}, respectively. Work sequentially/in
-  parallel, respectively. 
+  Set \VAR{symbol}s to values of \VAR{form}s returning \retval{value
+    of last \VAR{form}}. Work sequentially/in parallel, respectively. 
   }
 
   \IT{(\FU*{SET} \VAR{symbol} \VAR{foo})}
@@ -116,13 +118,13 @@
 
   \IT{(\SF*{MULTIPLE-VALUE-SETQ} \VAR{vars} \VAR{form})}
   {
-  Set \VAR{vars} to the respective values returned by
+  Set elements of \VAR{vars} to the values of
   \VAR{form}. Return \retval{\VAR{form}'s primary value}.
   }
 
   \IT{(\SF*{SHIFTF} \RP{\VAR{place}} \VAR{foo})}
   {
-  Store \VAR{foo} in rightmost \VAR{place} shifting values of
+  Store valueof \VAR{foo} in rightmost \VAR{place} shifting values of
   \VAR{place}s left, returning \retval{first \VAR{place}}. 
   }
 
@@ -134,7 +136,7 @@
 
   \IT{(\FU*{MAKUNBOUND} \VAR{symbol})}
   {
-  Make \retval{\VAR{symbol}} unbound.
+  Delete special variable \retval{\VAR{symbol}}.
   }
 
   \label{:property_lists}
@@ -148,12 +150,13 @@
   there was no \VAR{key}. \kwd{setf}able.
   }
 
-  \IT{(\FU*{GET-PROPERTIES} \VAR{plist} \VAR{key-list})}
+  \IT{(\FU*{GET-PROPERTIES} \VAR{property-list} \VAR{keys})}
   {
-  Return \retval{key} and \retvalii{value} of first entry from \VAR{plist}
-  matching a key from \VAR{key-list}, and \retvaliii{tail of
-    \VAR{plist}} starting with \VAR{key}. Return \retval{\NIL},
-  \retvalii{\NIL}, and  \retvaliii{\NIL} if there was no \VAR{key}.
+  Return \retval{key} and \retvalii{value} of first entry from \VAR{property-list}
+  matching a key from \VAR{keys}, and \retvaliii{tail of
+    \VAR{property-list}} starting with that key. Return \retval{\NIL},
+  \retvalii{\NIL}, and  \retvaliii{\NIL} if there was no matching key
+  in \VAR{property-list}.
   }
 
   \IT{\arrGOO{(\FU*{REMPROP} \VAR{ symbol} \VAR{ key})\\
@@ -182,7 +185,7 @@ Below, lambda list (\OPn{\VAR{fu-arg}}) has the form\\
       \VAR{var})}
     \OP{\VAR{init }\Op{\VAR{supplied-p}}})}
   \Op{\kwd*{\&allow-other-keys}}}
-\OP{\kwd*{\&aux}\Goos{\VAR{var}\XOR(\VAR{var} \Op{\VAR{init}})}}).\\
+\OP{\kwd*{\&aux} \Goos{\VAR{var}\XOR(\VAR{var} \Op{\VAR{init}})}}).\\
 \VAR{supplied-p} is \T\ if there is a corresponding argument.
 
 \begin{LIST}{1cm}
@@ -197,17 +200,18 @@ Below, lambda list (\OPn{\VAR{fu-arg}}) has the form\\
   applies \VAR{form}s to \VAR{fu-arg}s.
   }
 
-  \IT{(\xorGOO{\SF*{FLET}\\ \SF*{LABELS}}{\}}%
+  \IT{(\xorGOO{\SF*{FLET}\\
+      \SF*{LABELS}}{\}}
     (\OPn{(\VAR{foo}
       (\OPn{\VAR{fu-arg}}) 
       \OPn{(\kwd{declare} \OPn{\VAR{local-decl}})}%
       \Op{\VAR{documentation}}
-      \OPn{\VAR{local-form}})})\OPn{(\kwd{declare} \VAR{decl})}
+      \OPn{\VAR{local-form}})}) \OPn{(\kwd{declare} \VAR{decl})}
     \OPn{\VAR{form}})}
   {
   Evaluate \VAR{form}s with
-  locally defined functions \OPn{\VAR{foo}}. Only for \SF{LABELS},
-  \VAR{name}s are visible inside \VAR{local-forms}. Return
+  locally defined functions \VAR{foo}. Only for \SF{LABELS},
+  \VAR{foo}s are visible inside \VAR{local-forms}. Return
   \retval{values of \VAR{form}s}.
   }
 
@@ -217,7 +221,7 @@ Below, lambda list (\OPn{\VAR{fu-arg}}) has the form\\
 
   \IT{(\FU*{APPLY} \VAR{function} \RP{\VAR{arg}})}
   {
-  Return \retval{value of \VAR{function}} called with
+  Return \retval{value of \VAR{function}} called on
   \VAR{arg}s. Last \VAR{arg} must be a list.
   }
 
@@ -242,9 +246,14 @@ Below, lambda list (\OPn{\VAR{fu-arg}}) has the form\\
   Return \retval{\VAR{foo}s} as multiple values. \kwd{setf}able.
   }
 
-  \IT{(\FU*{MULTIPLE-VALUE-LIST} \OPn{\VAR{form}})}
+  \IT{(\FU*{MULTIPLE-VALUE-LIST} \VAR{form})}
   {
-  Return in a \retval{list} values of \VAR{form}s.
+  Return in a \retval{list} values of \VAR{form}.
+  }
+
+  \IT{(\FU*{NTH-VALUE} \VAR{n} \VAR{form})}
+  {
+  Zero-based \retval{\VAR{n}th return value} of \VAR{form}.
   }
 
   \IT{(\FU*{COMPLEMENT} \VAR{function})}
@@ -255,7 +264,7 @@ Below, lambda list (\OPn{\VAR{fu-arg}}) has the form\\
 
   \IT{(\FU*{CONSTANTLY} \VAR{foo})}
   {
-  Return \retval{function} returning \VAR{foo}.
+  Return \retval{function} of any number of arguments returning \VAR{foo}.
   }
 
   \IT{(\FU*{IDENTITY} \VAR{foo})}

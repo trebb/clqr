@@ -27,11 +27,6 @@
   \retval{\T} if \VAR{foo} is a keyword.
   }
 
-  \IT{(\FU*{BOUNDP} \VAR{symbol})}
-  {
-  \retval{\T} if \VAR{symbol} is a special variable.
-  }
-
 \end{LIST}
 
 
@@ -48,19 +43,6 @@
   \IT{\VAR{foo}\kwd*{:}\VAR{bar}}
   {
   Symbol \VAR{bar} of package \VAR{foo}
-  }
-
-  \IT{\T}
-  {
-  \index{T}%
-  Truth, or \V{*terminal-io*}.
-  }
-
-  \IT{\NIL\XOR{\kwd*{()}}}
-  {
-  \index{NIL}%
-  Falsity, the empty list, \V{*standard-input*},
-  \V{*standard-output*}, or the global environment.
   }
 
   \IT{(\FU*{MAKE-PACKAGE} \VAR{name}
@@ -135,7 +117,7 @@
 
   \IT{(\FU*{PACKAGE-USE-LIST} \VAR{package})}
   {
-  \retval{List of other packeges} used by \VAR{package}.
+  \retval{List of other packages} used by \VAR{package}.
   }
 
   \IT{(\FU*{PACKAGE-USED-BY-LIST} \VAR{package})}
@@ -298,6 +280,18 @@
   \IT{(\FU*{SYMBOL-NAME} \VAR{ symbol})}
   {
   \retval{Name} of \VAR{symbol}.
+  }
+
+  \IT{\kwd*{T}}
+  {
+  Truth; the supertype of every type including \kwd{t}; the superclass of every
+  class except \kwd{t}; \V{*terminal-io*}.
+  }
+
+  \IT{\CNS*{NIL}\XOR{\kwd*{()}}}
+  {
+  Falsity, the empty list; the empty type, subtype of every type; \V{*standard-input*};
+  \V{*standard-output*}; the global environment.
   }
 
 \end{LIST}

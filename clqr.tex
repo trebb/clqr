@@ -92,7 +92,7 @@
 \setlength{\arraycolsep}{0pt}
 %
 %
-\def\startexplanation{$\triangleright$\hskip.8ex}
+\def\startexplanation{$\triangleright$\hskip1.4ex}
 \newlength{\ITwidth}
 \newlength{\ITrest}
 \newlength{\ITtab}\ITtab=3em
@@ -206,6 +206,11 @@
       }%
     }%
     \)}}
+%
+%
+% In a Boxed Group of Alternatives: Replacement for \\ with additional
+% vspace 
+\newcommand{\boxGOOcr}{\vspace{1ex}\\}
 %
 %
 % All sorts of keywords
@@ -324,19 +329,19 @@
     variable, constant.
     }
 
-    \IT{\VAR{them}\DF{\LIT{foo}}}
+    \IT{\VAR{them}\qquad\qquad}
     {
-    Placeholder for actual code. Defaults to \LIT{foo}.
+    Placeholder for actual code.
     }
 
-    \IT{\LIT{me}}
+    \IT{\LIT{me}\qquad\qquad\qquad\qquad}
     {
     Text to input literally, or output literally.
     }
 
-    \IT{\Op{\VAR{foo}}}
+    \IT{\Op{\VAR{foo}\DF{\LIT{bar}}}\qquad\qquad}
     {
-    Either one \VAR{foo} or nothing.
+    Either one \VAR{foo} or nothing; defaults to \LIT{bar}.
     }
 
     \IT{\OPn{\VAR{foo}}; \Goos{\VAR{foo}}}
@@ -349,7 +354,7 @@
     One or more \VAR{foo}s.
     }
 
-    \IT{\VAR{foos}}
+    \IT{\VAR{foos}\qquad\qquad\qquad}
     {
     English plural denotes a list argument.
     }
@@ -376,17 +381,17 @@
     \IT{\retval{\VAR{foo}}; \retvalii{\VAR{bar}};
       \retvaliii{\VAR{baz}}}
     {
-    \VAR{foo}, \VAR{bar}, \VAR{baz} are 1st, 2nd, and 3rd return value.
+    First, second and third return value.
     }
 
-    \IT{\T}
+    \IT{\T\qquad\qquad\qquad\qquad}
     {
-    \kwd*{T}, or truth.
+    \kwd*{T}, or truth in general.
     }
     
-    \IT{\NIL}
+    \IT{\NIL\qquad\qquad\qquad}
     {
-    \kwd*{NIL}, falsity, or \kwd{()}.
+    \kwd*{NIL} or \kwd{()}.
     }
 
   \end{LIST}
