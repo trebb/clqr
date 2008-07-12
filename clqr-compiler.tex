@@ -47,8 +47,8 @@
 
   \IT{(\FU*{COMPILE-FILE} \VAR{file} 
     \orGOO{\kwd{:output-file}\VAR{ out-path}\\
-      \kwd{:verbose} \VAR{ bool}\DF{\kwd{*compile-verbose*}}\\
-      \kwd{:print}\VAR{ bool}\DF{\kwd{*compile-print*}}\\
+      \kwd{:verbose} \VAR{ bool}\DF{\V{*compile-verbose*}}\\
+      \kwd{:print}\VAR{ bool}\DF{\V{*compile-print*}}\\
       \kwd{:external-format} \VAR{
         file-format}\DF{\kwd{:default}}}{\}})}
   {
@@ -76,8 +76,8 @@
   }
 
   \IT{(\FU*{LOAD} \VAR{path} 
-    \orGOO{\kwd{:verbose} \VAR{ bool}\DF{\kwd{*load-verbose*}}\\
-      \kwd{:print} \VAR{ bool}\DF{\kwd{*load-print*}}\\
+    \orGOO{\kwd{:verbose} \VAR{ bool}\DF{\V{*load-verbose*}}\\
+      \kwd{:print} \VAR{ bool}\DF{\V{*load-print*}}\\
       \kwd{:if-does-not-exist} \VAR{ bool}\DF{\T}\\
       \kwd{:external-format} \VAR{
         file-format}\DF{\kwd{:default}}}{\}})}
@@ -129,7 +129,7 @@
 
   \IT{(\GFU*{MAKE-LOAD-FORM} \VAR{foo} \Op{\VAR{environment}})}
   {
-  Make \retval{one or two forms} enabling \kwd{load} to construct
+  Make \retval{one or two forms} enabling \FU{load} to construct
   something equvalent to \VAR{foo}.
   }
 
@@ -209,7 +209,7 @@
 
   \IT{\V*{*macroexpand-hook*}}
   {
-  Function called by \kwd{macroexpand-1} to generate macro expansions.
+  Function called by \FU{macroexpand-1} to generate macro expansions.
   }
 
   \IT{(\SF*{TRACE} \OPn{\VAR{function}})}
@@ -226,7 +226,7 @@
 
   \IT{\V*{*trace-output*}}
   {
-  Stream \kwd{trace} and \kwd{time} print their output on.
+  Stream \SF{trace} and \SF{time} print their output on.
   }
 
   \IT{(\SF*{STEP} \VAR{form})}
@@ -246,7 +246,7 @@
   }
 
   \IT{(\FU*{DESCRIBE} \VAR{foo}
-    \Op{\VAR{stream}\DF{\kwd{*standard-output*}}})}
+    \Op{\VAR{stream}\DF{\V{*standard-output*}}})}
   {
   Send information about \VAR{foo} to \VAR{stream}.
   }
@@ -260,7 +260,7 @@
   \IT{(\FU*{DISASSEMBLE} \VAR{function})}
   {
   Send disassembled representation of \VAR{function} to
-  \kwd{*standard-output*}. Return \retval{\NIL}.
+  \V{*standard-output*}. Return \retval{\NIL}.
   }
 
 \end{LIST}

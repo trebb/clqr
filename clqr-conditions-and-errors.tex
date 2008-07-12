@@ -112,13 +112,13 @@
   \IT{(\FU*{CERROR} \VAR{control} \VAR{datum} \OPn{arg})}
   {
   Signal correctable \kwd{simple-error} to debugger unless error is
-  handled. Show \kwd{format} \VAR{control} (see
+  handled. Show \FU{format} \VAR{control} (see
   p.\ \pageref{section:Format}) with the debugger's continue option.
   }
 
   \IT{(\SF*{IGNORE-ERRORS} \OPn{\VAR{form}})}
   {
-  Return \retval{values of \VAR{form}s} as in \kwd{progn} or, in case of \kwd{error}s,
+  Return \retval{values of \VAR{form}s} as in \SF{progn} or, in case of \kwd{error}s,
   \retval{\NIL} and the \retvalii{condition}.
   }
 
@@ -130,7 +130,7 @@
   \IT{(\FU*{BREAK} \Op{\VAR{control} \OPn{\VAR{arg}}})}
   {
   Jump into debugger, return \retval{\NIL}.
-  See p.\ \pageref{section:Format}, \kwd{format}, for \VAR{control}
+  See p.\ \pageref{section:Format}, \FU{format}, for \VAR{control}
   and \VAR{arg}s. 
   }
 
@@ -169,7 +169,7 @@
   {
   If \VAR{restart} is not called from \VAR{form}s, return
   \retval{values of last \VAR{form}}. Otherwise return \retval{\NIL}
-  and \retvalii{\T} and describe restart using \kwd{format} \VAR{control}
+  and \retvalii{\T} and describe restart using \FU{format} \VAR{control}
   and \VAR{arg}s (see p.\ \pageref{section:Format}).
   }
 
@@ -286,7 +286,7 @@
   \IT{\arrGOO{(\FU*{SIMPLE-CONDITION-FORMAT-CONTROL} \VAR{ condition})\\
       (\FU*{SIMPLE-CONDITION-FORMAT-ARGUMENTS} \VAR{ condition})}{.}}
   {
-  Return \retval{\kwd{format} control} or list of \retval{\kwd{format}
+  Return \retval{\FU{format} control} or list of \retval{\FU{format}
     arguments}, respectively, of \VAR{condition}.
   }
 

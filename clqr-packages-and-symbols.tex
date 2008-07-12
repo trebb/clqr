@@ -80,7 +80,7 @@
   \IT{(\xorGOO{\FU*{USE-PACKAGE}\\
     \FU*{UNUSE-PACKAGE}}{\}} 
     \VAR{packages}
-    \Op{\VAR{package}\DF{\kwd{*package*}}})}
+    \Op{\VAR{package}\DF{\V{*package*}}})}
   {
   Make exported symbols of \VAR{packages} available in \VAR{package}, or remove them
   from \VAR{package}, respectively. Return \retval{\T}. 
@@ -171,7 +171,7 @@
   }
 
   \IT{(\FU*{EXPORT} \VAR{symbols}
-    \Op{\VAR{package}\DF{\kwd{*package*}}})}
+    \Op{\VAR{package}\DF{\V{*package*}}})}
   {
   Make \VAR{symbols} external to \VAR{package}. Return \retval{\T}.
   }
@@ -210,14 +210,14 @@
 
   \IT{(\FU*{REQUIRE} \VAR{module} \Op{\VAR{path-list}})}
   {
-  If not in \kwd{*modules*}, try paths in \VAR{path-list} to load
+  If not in \V{*modules*}, try paths in \VAR{path-list} to load
   module from. Signal \kwd{error} if unsuccessful. Deprecated.
   }
 
   \IT{(\FU*{PROVIDE} \VAR{module})}
   {
   If not already there, add \VAR{module} to
-  \kwd{*modules*}. Deprecated. 
+  \V{*modules*}. Deprecated. 
   }
 
   \IT{\V*{*modules*}}
@@ -246,7 +246,7 @@
   }
 
   \IT{(\FU*{GENTEMP} \OP{\VAR{prefix}\DF{\LIT{T}}
-      \Op{\VAR{package}\DF{\kwd{*package*}}}})}
+      \Op{\VAR{package}\DF{\V{*package*}}}})}
   {
   Intern fresh \retval{symbol} in \retval{package}. Deprecated.
   }

@@ -164,7 +164,7 @@
     }
 
   \IT{(\kwd*{NTHCDR} \VAR{n list})}
-  {Return \retval{tail of \VAR{list}} after calling \kwd{cdr} \VAR{n} times.
+  {Return \retval{tail of \VAR{list}} after calling \FU{cdr} \VAR{n} times.
     }
 
   \IT{(\FU*{ADJOIN} \VAR{foo} \VAR{list} \orGOO{\kwd{:test}
@@ -172,24 +172,24 @@
       \kwd{:test-not} \VAR{ function}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {Return \retval{\VAR{list}} if \VAR{foo} is
-  already member of \VAR{list}. If not, return \retval{(\kwd{CONS}
+  already member of \VAR{list}. If not, return \retval{(\FU{CONS}
     \VAR{foo} \VAR{list})}.
   }
 
   \IT{(\FU*{POP} \VAR{place})}
   {
-  Set \VAR{place} to \retval{(\kwd{CDR} \VAR{place})}, return
-  \retval{(\kwd{CAR} \VAR{place})}
+  Set \VAR{place} to \retval{(\FU{CDR} \VAR{place})}, return
+  \retval{(\FU{CAR} \VAR{place})}
   }
 
   \IT{(\FU*{PUSH} \VAR{foo} \VAR{place})}
   {Set \VAR{place} to
-  \retval{(\kwd{cons} \VAR{foo} \VAR{place})}.
+  \retval{(\FU{cons} \VAR{foo} \VAR{place})}.
   }
 
   \IT{(\FU*{PUSHNEW} \VAR{foo} \VAR{place} )}
   {Set \VAR{place} to
-  \retval{(\kwd{adjoin} \VAR{foo} \VAR{place})}.
+  \retval{(\FU{adjoin} \VAR{foo} \VAR{place})}.
   }
 
   \IT{\arrGOO{(\FU*{APPEND} \OPn{\VAR{ list}})\\

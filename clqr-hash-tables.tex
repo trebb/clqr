@@ -23,11 +23,11 @@ pp.\ \pageref{section:Association Lists} and \pageref{:property_lists}.
   }
 
   \IT{(\FU*{MAKE-HASH-TABLE} 
-    \orGOO{\kwd{:test}\Goo{\kwd{eq}\XOR \kwd{eql}\XOR
-        \kwd{equal}}\DF{\kwd{eql}}\\ 
-      \kwd{:size} \VAR{ size}\\
-      \kwd{:rehash-size} \VAR{ rehash-size}\\
-      \kwd{:rehash-threshold} \VAR{ rehash-threshold}}{\}})}
+    \orGOO{\kwd{:test}\Goo{\FU{eq}\XOR \FU{eql}\XOR
+        \FU{equal}}\DF{\FU{eql}}\\ 
+      \kwd{:size} \VAR{ int}\\
+      \kwd{:rehash-size} \VAR{ int}\\
+      \kwd{:rehash-threshold} \VAR{ int}}{\}})}
   {
   Make a \retval{hash table}. 
   }
@@ -39,7 +39,7 @@ pp.\ \pageref{section:Association Lists} and \pageref{:property_lists}.
 
   \IT{(\FU*{GETHASH} \VAR{key} \VAR{hash-table} \Op{\VAR{default}})}
   {
-  Return \retval{object} with key \VAR{key} if any or \retval{\VAR{default}}
+  Return \retval{object} with \VAR{key} if any or \retval{\VAR{default}}
   otherwise; and \retvalii{\T} if found, \retvalii{\NIL}
   otherwise. \kwd{setf}able. 
   }
@@ -66,7 +66,7 @@ pp.\ \pageref{section:Association Lists} and \pageref{:property_lists}.
   and \VAR{value}. Return \retval{\NIL}.
   }
 
-  \IT{(\SF*{WITH-HASH-TABLE-ITERATOR} \VAR{name} \VAR{hash-table}
+  \IT{(\SF*{WITH-HASH-TABLE-ITERATOR} (\VAR{name} \VAR{hash-table})
     \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \OPn{\VAR{form}})}
   {
   Return \retval{values of \VAR{form}s}. In \VAR{form}s,
@@ -82,7 +82,10 @@ pp.\ \pageref{section:Association Lists} and \pageref{:property_lists}.
   \retval{rehash-threshold}, respectively, as used in \FU{make-hash-table}. 
   }
 
-  \IT{(\FU*{SXHASH} \VAR{foo})} \retval{Hash code} of \VAR{foo}.
+  \IT{(\FU*{SXHASH} \VAR{foo})}
+     {
+       \retval{Hash code} unique for any argument \FU{equal} \VAR{foo}.
+     }
 
 \end{LIST}
 

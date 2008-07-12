@@ -26,9 +26,9 @@ see pages \pageref{section:Arrays} and \pageref{section:Sequences}.
   \IT{(\xorGOO{\FU*{STRING=}\\\FU*{STRING-EQUAL}}{\}} \VAR{foo}
     \VAR{bar} 
     \orGOO{\kwd{:start1} \VAR{ start-foo}\DF{\LIT{0}}\\
-      \kwd{:end1} \VAR{ end-foo}\DF{\LIT{\NIL}}\\
+      \kwd{:end1} \VAR{ end-foo}\DF{\NIL}\\
       \kwd{:start2} \VAR{ start-bar}\DF{\LIT{0}}\\
-      \kwd{:end2} \VAR{ end-bar}\DF{\LIT{\NIL}}}{\}})}
+      \kwd{:end2} \VAR{ end-bar}\DF{\NIL}}{\}})}
   {
   Return \retval{\T} if
   subsequences of \VAR{foo} and \VAR{bar} are equal. Obey/ignore,
@@ -39,9 +39,9 @@ see pages \pageref{section:Arrays} and \pageref{section:Sequences}.
       \FU{STRING\boldmath$>=$}\\\FU{STRING\boldmath$<$}\\
       \FU{STRING\boldmath$<=$}}{\}} \VAR{foo} \VAR{bar}
     \orGOO{\kwd{:start1} \VAR{ start-foo}\DF{\LIT{0}}\\
-      \kwd{:end1} \VAR{ end-foo}\DF{\LIT{\NIL}}\\
+      \kwd{:end1} \VAR{ end-foo}\DF{\NIL}\\
       \kwd{:start2} \VAR{ start-bar}\DF{\LIT{0}}\\
-      \kwd{:end2} \VAR{ end-bar}\DF{\LIT{\NIL}}}{\}})}
+      \kwd{:end2} \VAR{ end-bar}\DF{\NIL}}{\}})}
   {
   \index{string>@STRING$>$}%
   \index{string>=@STRING$>=$}%
@@ -61,9 +61,9 @@ see pages \pageref{section:Arrays} and \pageref{section:Sequences}.
     \VAR{foo} \VAR{bar}
     \orGOO{%
       \kwd{:start1} \VAR{ start-foo}\DF{\LIT{0}}\\
-      \kwd{:end1} \VAR{ end-foo}\DF{\LIT{\NIL}}\\
+      \kwd{:end1} \VAR{ end-foo}\DF{\NIL}\\
       \kwd{:start2} \VAR{ start-bar}\DF{\LIT{0}}\\
-      \kwd{:end2} \VAR{ end-bar}\DF{\LIT{\NIL}}}{\}})}
+      \kwd{:end2} \VAR{ end-bar}\DF{\NIL}}{\}})}
   {
   If \VAR{foo} is
   lexicographically not equal, greater, not less, less, or not greater,
@@ -77,8 +77,8 @@ see pages \pageref{section:Arrays} and \pageref{section:Sequences}.
   into a \retval{string}. 
   }
 
-  \IT{(\FU*{MAKE-STRING} \VAR{size} \orGOO{\kwd{initial-element} \VAR{ char}\\
-      \kwd{element-type} \VAR{ type}\DF{\kwd{character}}}{\}})}
+  \IT{(\FU*{MAKE-STRING} \VAR{size} \orGOO{\kwd{:initial-element} \VAR{ char}\\
+      \kwd{:element-type} \VAR{ type}\DF{\kwd{character}}}{\}})}
   {
   Return \retval{string} of length \VAR{size}.
   }

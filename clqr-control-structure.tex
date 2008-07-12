@@ -38,7 +38,7 @@
   {
   \retval{\T} if \VAR{foo} and \VAR{bar}
   are \FU{EQUAL}, or if they have corresponding components of the same
-  type which are \kwd{equalp}.
+  type which are \FU{equalp}.
   }
 
   \IT{(\FU*{NOT} \VAR{bool})}
@@ -473,9 +473,9 @@ or\\
     \OPn{(\kwd{declare} \OPn{\VAR{decl}})} 
     \xorGOO{\VAR{tag}\\\VAR{form}}{\}^{\!\!*}})}
   {
-  Evaluate \kwd{TAGBODY}-like body with \VAR{var}s locally bound (in parallel or sequentially, respectively) to
+  Evaluate \SF{TAGBODY}-like body with \VAR{var}s locally bound (in parallel or sequentially, respectively) to
   \VAR{value}s. Return \retval{\NIL} or explicitly
-  \retval{\kwd{return}ed value}. 
+  \retval{\SF{return}ed value}. 
   }
 
   \IT{\arrGOO{%
@@ -529,7 +529,7 @@ or\\
 
   \IT{(\SF*{RETURN-FROM} \VAR{foo} \Op{\VAR{result}\DF{\NIL}})}
   {
-  Have nearest enclosing \kwd{block} \VAR{foo} return with
+  Have nearest enclosing \SF{block} \VAR{foo} return with
   values of \VAR{result}. 
   }
 
@@ -561,7 +561,7 @@ or\\
 
   \IT{(\SF*{THROW} \VAR{tag form})}
   {Have the nearest dynamically
-  enclosing \SF{CATCH} with a tag \kwd{eq} \VAR{tag} return with the
+  enclosing \SF{CATCH} with a tag \FU{eq} \VAR{tag} return with the
   values of \VAR{form}.
   }
 
@@ -932,7 +932,7 @@ or\\
       Bind \VAR{var} to successive elements/tails, respectively, of \VAR{list}.
       }
 
-      \IT{\LKWD*{by} \Goo{\VAR{step}\DF{1}\XOR\VAR{function}\DF{\kwd{cdr}}}}
+      \IT{\LKWD*{by} \Goo{\VAR{step}\DF{1}\XOR\VAR{function}\DF{\FU{cdr}}}}
       {
       Specify the (positive) decrement or increment or the
       \VAR{function} to apply to the list.

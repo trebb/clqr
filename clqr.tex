@@ -36,11 +36,11 @@
 %
 %%%%%%%%%%%%%%%%%%
 % Two font alternatives:
-% (A) Computer Modern
+% (A) All Computer Modern
 \usepackage{type1cm}
 \usepackage{exscale}
 %%%%%%%%%%%%%%%%%%
-% (B) Times with Helvetica
+% (B) Times mixed with Helvetica
 %\usepackage{mathptmx}
 %\usepackage[scaled]{helvet}
 %%%%%%%%%%%%%%%%%%
@@ -435,6 +435,7 @@
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   [\section*{Index}\vspace{-5ex}]
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \renewcommand{\tolerance}{10000}
   % Stock \printindex won't do as we want three-column.
   \tiny\sffamily\input{clqr.ind}
 \end{multicols}

@@ -17,6 +17,11 @@
 
 \begin{LIST}{1cm}
 
+  \IT{(\FU*{SLOT-BOUNDP} \VAR{instance} \VAR{slot})}
+  {
+  \retval{\T} if \VAR{slot} in \VAR{instance} is bound.
+  }
+
   \IT{(\GFU*{MAKE-INSTANCE} \VAR{class} \Goos{\kwd{:}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
@@ -40,12 +45,26 @@
     of \VAR{slot} in \VAR{instance}}.  \kwd{SETF}able.
   }
 
+  \IT{(\FU*{SLOT-MAKUNBOUND} \VAR{instance} \VAR{slot})}
+  {
+  Make \VAR{slot} in \retval{\VAR{instance}} unbound.
+  }
+
   \IT{(\SF*{WITH-SLOTS} (\Goos{\VAR{slot}\XOR(\VAR{var
         slot})}) \VAR{instance} \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
     \OPn{\VAR{form}})}
   {
   Evaluate \VAR{form}s with slots of \VAR{instance} locally visible as
   \VAR{slot}s or \VAR{var}s. 
+  }
+
+  \IT{(\SF*{WITH-ACCESSORS} (\OPn{(\VAR{var} \VAR{accessor})})
+    \VAR{instance}  \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
+    \OPn{\VAR{form}})}
+  {
+  Evaluate \VAR{form}s with variables \VAR{var} locally bound to
+  \VAR{accessor}s of \VAR{instance}. 
+  Return \retval{values of \VAR{form}s}.
   }
 
   \IT{(\GFU*{CLASS-NAME} \VAR{class})}
@@ -92,7 +111,7 @@
     \VAR{current} \Goos{\kwd{:}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
-  Called by \kwd{change-class}.
+  Called by \GFU{change-class}.
   }
 
   \IT{(\kwd*{MAKE-INSTANCES-OBSOLETE} \VAR{class})}
@@ -105,7 +124,7 @@
      \Goos{\kwd{:}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
-  Called by \kwd{make-instances-obsolete}.
+  Called by \GFU{make-instances-obsolete}.
   }
 
   \IT{(\GFU*{SHARED-INITIALIZE} \VAR{instance} \VAR{slots}
@@ -128,7 +147,7 @@
 
   \IT{(\GFU*{SLOT-UNBOUND} \VAR{class} \VAR{instance} \VAR{slot})}
   {
-  Called by \kwd{slot-value} in case of unbound \VAR{slot}. Default primary
+  Called by \FU{slot-value} in case of unbound \VAR{slot}. Default primary
   method signals \kwd{unbound-slot}.
   }
 
@@ -189,7 +208,8 @@
         \kwd{:after}\\
         \kwd{:around}}{\}}}
     (\xorGOO{\VAR{var}\\
-      (\VAR{spec-var } \xorGOO{\VAR{class}\\(\kwd{eql} \VAR{ foo})}{\}})}{\}^{\!\!*}}
+      (\VAR{spec-var } \xorGOO{\VAR{class}\\
+        (\kwd{eql} \VAR{ foo})}{\}})}{\}^{\!\!*}}
     \OP{\kwd*{\&optional} \Goos{\VAR{var}\XOR(\VAR{var} \OP{\VAR{init}
       \Op{\VAR{supplied-p}}})}}
     \Op{\kwd*{\&rest} \VAR{var}}

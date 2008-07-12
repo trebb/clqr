@@ -1,3 +1,12 @@
+% Copyright (C) 2008 Bert Burgemeister
+%
+% Permission is granted to copy, distribute and/or modify this
+% document under the terms of the GNU Free Documentation License,
+% Version 1.2 or any later version published by the Free Software
+% Foundation; with no Invariant Sections, no Front-Cover Texts and
+% no Back-Cover Texts. For details see file COPYING.
+%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Structures}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -9,82 +18,63 @@
   \retval{\T} if \VAR{foo} has a slot \VAR{bar}.
   }
 
-  \IT{(\FU*{SLOT-BOUNDP} \VAR{instance} \VAR{slot})}
-  {
-  \retval{\T} if \VAR{slot} in \VAR{instance} is bound.
-  }
-
   \IT{(\SF*{DEFSTRUCT}
     \GOO{\VAR{name}\XOR
       (\VAR{name}
       \orGOO{%
         \xorGOO{%
           \kwd{:conc-name}\\
-          (\kwd{:conc-name } \Op{\VAR{slot-prefix}\DF{\VAR{name}\LIT{-}}})}{\}}\\
+          (\kwd{:conc-name } \Op{\VAR{slot-prefix}\DF{\VAR{name}\LIT{-}}})}{.}\\
         \xorGOO{%
           \kwd{:constructor}\\
-          (\kwd{:constructor } \OP{\VAR{maker}\DF{\LIT{make-}\VAR{name}}
+          (\kwd{:constructor }
+          \OP{\VAR{maker}\DF{\LIT{make-}\VAR{name}}\text{ }
             \Op{({\OPn{\VAR{arg}}})}})}{\}^{\!\!*}}\\
         \xorGOO{%
           \kwd{:copier}\\
           (\kwd{:copier }
-          \Op{\VAR{copier}\DF{\LIT{copy-}\VAR{name}}})}{\}}\\
-        (\kwd{:include} \VAR{ struct} 
+          \Op{\VAR{copier}\DF{\LIT{copy-}\VAR{name}}})}{.}\\
+        (\kwd{:include } \VAR{ struct}\text{ }
         \xorGOO{%
           \VAR{slot}\\
-          (\VAR{slot } \Op{\VAR{init} 
+          (\VAR{slot } \Op{\VAR{init}\text{ }
             \orGOO{
               \kwd{:type} \VAR{ type}\\
               \kwd{:read-only} \VAR{ bool}}{\}}})\\
         }{\}^{\!\!*}})\\
-        (\kwd{:type } \Goo{\kwd{list}\XOR\kwd{vector}\XOR(\kwd{vector}
-          \VAR{ type})})\\
+        (\kwd{:type } \xorGOO{\kwd{list}\\
+          \kwd{vector}\\
+          (\kwd{vector}\VAR{ type})}{\}})\text{ }\Op{\kwd{:named}}\\
         (\kwd{:initial-offset} \VAR{ n})\\
-        \kwd{:named}\\
         \xorGOO{%
           \kwd{:predicate}\\
-          (\kwd{:predicate } \Op{\VAR{p-name}\DF{\VAR{name}\LIT{-p}}})}{\}}\\
+          (\kwd{:predicate } \Op{\VAR{p-name}\DF{\VAR{name}\LIT{-p}}})}{.}\\
         \xorGOO{
           (\kwd{:print-object } \Op{\VAR{printer}})\\
           (\kwd{:print-function } \Op{\VAR{printer}})
-        }{\}}%
+        }{.}%
       }{\}}%
       )%
     }
     \Op{\VAR{documentation}}
     \xorGOO{
       \VAR{slot-name}\\
-      \VAR{slot-name } \Op{\VAR{init}
+      (\VAR{slot-name } \Op{\VAR{init}\text{ }
         \orGOO{
           \kwd{:type} \VAR{ type}\\
           \kwd{:read-only} \VAR{ bool}
-        }{\}}}
+        }{\}}})
     }{\}^{\!\!*}}%
     )}
   {
   Define structure \retval{\VAR{name}} together with functions
-  \LIT{make-}\VAR{name}, \LIT{copy-}\VAR{name}, and
-  \LIT{p-}\VAR{name}; and accessors \VAR{slot-prefix-slot-name}.
-  }
-
-
-  \IT{(\SF*{WITH-ACCESSORS} (\OPn{(\VAR{var} \VAR{accessor})})
-    \VAR{instance}  \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
-    \OPn{\VAR{form}})}
-  {
-  Evaluate \VAR{form}s with variables \VAR{var} locally bound to
-  \VAR{accessor}s of \VAR{instance}. 
-  Return \retval{values of \VAR{form}s}.
+  \LIT{make-}\VAR{name}, \LIT{copy-}\VAR{name} and
+  \VAR{name}\LIT{-p}; and accessors \VAR{name}\LIT{-}\VAR{slot-name}.
   }
 
   \IT{(\FU*{COPY-STRUCTURE} \VAR{structure})}
   {
   Return \retval{copy of \VAR{structure}} with shared slot values.
-  }
-
-  \IT{(\FU*{SLOT-MAKUNBOUND} \VAR{instance} \VAR{slot})}
-  {
-  Make \VAR{slot} in \retval{\VAR{instance}} unbound.
   }
 
 \end{LIST}
