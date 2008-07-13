@@ -9,7 +9,6 @@
       \boxGOO{%
         \kwd*{NUMBER}
         \boxGOO{%
-          \kwd*{COMPLEX } \Op{\VAR{type\footnotemark[3]}} \\
           \kwd*{REAL } \OP{\VAR{lower-limit\footnotemark[3] }\Op{\VAR{upper-limit\footnotemark[3]}}}\\
           \boxGOO{%
             \kwd*{RATIONAL } \OP{\VAR{lower-limit\footnotemark[3] }\Op{\VAR{upper-limit\footnotemark[3]}}}\\
@@ -20,14 +19,16 @@
                 \kwd*{BIGNUM} \\
                 \kwd*{SIGNED-BYTE } \Op{\VAR{size\footnotemark[3]}}\\
                 \boxGOO{\kwd*{UNSIGNED-BYTE } \Op{\VAR{size\footnotemark[3]}}
-                  \boxGOO{\kwd*{BIT} }}}\\
+                  \boxGOO{\kwd*{BIT} }}}\boxGOOcr
               \kwd*{RATIO}}\boxGOOcr
             \kwd*{FLOAT } \OP{\VAR{lower-limit\footnotemark[3] }\Op{\VAR{upper-limit\footnotemark[3]}}}\\
             \boxGOO{%
               \kwd*{SHORT-FLOAT } \OP{\VAR{lower-limit\footnotemark[3] }\Op{\VAR{upper-limit\footnotemark[3]}}}\\
               \kwd*{SINGLE-FLOAT } \OP{\VAR{lower-limit\footnotemark[3] }\Op{\VAR{upper-limit\footnotemark[3]}}}\\
               \kwd*{DOUBLE-FLOAT } \OP{\VAR{lower-limit\footnotemark[3] }\Op{\VAR{upper-limit\footnotemark[3]}}}\\
-              \kwd*{LONG-FLOAT } \OP{\VAR{lower-limit\footnotemark[3] }\Op{\VAR{upper-limit\footnotemark[3]}}}}}}\boxGOOcr
+              \kwd*{LONG-FLOAT } \OP{\VAR{lower-limit\footnotemark[3]
+                }\Op{\VAR{upper-limit\footnotemark[3]}}}}}\boxGOOcr
+          \kwd*{COMPLEX } \Op{\VAR{type\footnotemark[3]}}}\boxGOOcr
         \kwd*{SEQUENCE}
         \boxGOO{%
           \kwd*{LIST}
@@ -42,7 +43,6 @@
             \boxGOO{%
               \kwd*{VECTOR}\footnotemark[2] \OP{\VAR{type\footnotemark[3] }\Op{\VAR{size\footnotemark[3]}}}\\
               \boxGOO{%
-                \kwd*{SIMPLE-VECTOR } \Op{\VAR{size\footnotemark[3]}}\\
                 \kwd*{BIT-VECTOR}\footnotemark[2] \Op{\VAR{size\footnotemark[3]}}\\
                 \boxGOO{%
                   \kwd*{SIMPLE-BIT-VECTOR } \Op{\VAR{size\footnotemark[3]}}}\boxGOOcr
@@ -52,18 +52,19 @@
                   \boxGOO{%
                     \kwd*{BASE-STRING}\footnotemark[2] \Op{\VAR{size\footnotemark[3]}}\\
                     \boxGOO{%
-                      \kwd*{SIMPLE-BASE-STRING } \Op{\VAR{size\footnotemark[3]}}}}}}}\boxGOOcr
-            \kwd*{VECTOR}\footnotemark[2]  \OP{\VAR{type\footnotemark[3] }\Op{\VAR{size\footnotemark[3]}}}\\
+                      \kwd*{SIMPLE-BASE-STRING } \Op{\VAR{size\footnotemark[3]}}}}}\boxGOOcr
+                \kwd*{SIMPLE-VECTOR } \Op{\VAR{size\footnotemark[3]}}}}\boxGOOcr
+            \kwd*{VECTOR}  \OP{\VAR{type\footnotemark[3] }\Op{\VAR{size\footnotemark[3]}}}\\
             \boxGOO{%
-              \kwd*{BIT-VECTOR}\footnotemark[2] \Op{\VAR{size\footnotemark[3]}}\\
-              \kwd*{STRING}\footnotemark[2] \Op{\VAR{size\footnotemark[3]}}
+              \kwd*{STRING} \Op{\VAR{size\footnotemark[3]}}
               \boxGOO{%
-                \kwd*{BASE-STRING}\footnotemark[2] \Op{\VAR{size\footnotemark[3]}}}}}}\boxGOOcr
+                \kwd*{BASE-STRING} \Op{\VAR{size\footnotemark[3]}}}\boxGOOcr
+              \kwd*{BIT-VECTOR} \Op{\VAR{size\footnotemark[3]}}}}}\boxGOOcr
         \kwd*{CHARACTER}
         \boxGOO{%
           \kwd*{BASE-CHAR}
           \boxGOO{%
-            \kwd*{STANDARD-CHAR}}\\
+            \kwd*{STANDARD-CHAR}}\boxGOOcr
           \kwd*{EXTENDED-CHAR}}\boxGOOcr
         \kwd*{STREAM}
         \boxGOO{%
@@ -77,14 +78,14 @@
         \kwd*{PATHNAME}
         \boxGOO{%
           \kwd*{LOGICAL-PATHNAME}}\boxGOOcr
-        \kwd*{SYMBOL}\footnotemark[2]
+        \kwd*{SYMBOL}
         \boxGOO{%
-          \kwd*{KEYWORD}\\
-          \kwd*{BOOLEAN} }\boxGOOcr
+          \kwd*{KEYWORD},\>
+          \kwd*{BOOLEAN}}\boxGOOcr
         \kwd*{FUNCTION } \OP{\VAR{arg-types }\Op{\VAR{value-types}}}\\
         \boxGOO{%
           \kwd*{GENERIC-FUNCTION}
-          \boxGOO{\kwd*{STANDARD-GENERIC-FUNCTION}}\\
+          \boxGOO{\kwd*{STANDARD-GENERIC-FUNCTION}}\boxGOOcr
           \kwd*{COMPILED-FUNCTION}}\boxGOOcr
         \kwd*{STANDARD-OBJECT}
         \boxGOO{%
@@ -92,11 +93,11 @@
           \boxGOO{%
             \kwd*{STANDARD-CLASS},\>
             \kwd*{BUILT-IN-CLASS},\\
-            \kwd*{STRUCTURE-CLASS}}\\
+            \kwd*{STRUCTURE-CLASS}}\boxGOOcr
           \kwd*{STANDARD-METHOD}}\boxGOOcr
-        \kwd*{ARRAY}\footnotemark[2] \OP{\VAR{type\footnotemark[3] }\Op{\VAR{dimension\footnotemark[3]}}}\\
+        \kwd*{ARRAY} \OP{\VAR{type\footnotemark[3] }\Op{\VAR{dimension\footnotemark[3]}}}\\
         \boxGOO{%
-          \kwd*{SIMPLE-ARRAY}\footnotemark[2] \OP{\VAR{type\footnotemark[3] }\Op{\VAR{dimension\footnotemark[3]}}}}\boxGOOcr
+          \kwd*{SIMPLE-ARRAY} \OP{\VAR{type\footnotemark[3] }\Op{\VAR{dimension\footnotemark[3]}}}}\boxGOOcr
         \kwd*{ATOM},\>
         \kwd*{HASH-TABLE},\>
         \kwd*{STRUCTURE-OBJECT},\>
@@ -107,7 +108,8 @@
         \kwd*{METHOD},\>
         \kwd*{METHOD-COMBINATION}}}
   \end{center}\vspace{-1em}
-              {\footnotesize\footnotemark[2]Multiply defined.}\\
+              {\footnotesize\footnotemark[2]For supertypes of this
+                type look for the instance without a \footnotemark[2].}\\
               {\footnotesize\footnotemark[3]Defaults to \kwd{*} meaning no restriction.}
               
   \caption{Data Types.}%

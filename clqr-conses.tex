@@ -19,38 +19,46 @@
   \IT{\arrGOO{(\FU*{CONSP} \VAR{ foo})\\
       (\FU*{LISTP} \VAR{ foo})}{.}}
   {
-    Return \retval{\T} if \VAR{foo} is either \T\ or a \kwd{cons}/\kwd{list}.
+    Return \retval{\T} if \VAR{foo} is of indicated type.
     }
 
   \IT{(\FU*{ENDP} \VAR{list})}
   {
-  Return \retval{\T} if \VAR{list} is \LIT{()}.
-  }
-
-  \IT{(\FU*{ATOM} \VAR{foo})}
-  {Return \retval{\T} if \VAR{foo} is not a
-  \kwd{cons}. 
+  Return \retval{\T} if \VAR{list} is \NIL.
   }
 
   \IT{(\FU*{NULL} \VAR{foo})}
   {Return \retval{\T} if \VAR{foo} is \NIL.
     }
 
+  \IT{(\FU*{ATOM} \VAR{foo})}
+  {Return \retval{\T} if \VAR{foo} is not a
+  \kwd{cons}. 
+  }
+
   \IT{(\FU*{TAILP} \VAR{foo} \VAR{list})}
   {
   Return \retval{\T} if \VAR{foo} is a tail of \VAR{list}.
   }
 
-  \IT{(\xorGOO{\FU*{MEMBER}\\
-      \FU*{MEMBER-IF }\VAR{predicate}\\
-      \FU*{MEMBER-IF-NOT }\VAR{predicate}}{\}}
-    \VAR{foo} \VAR{list}
+  \IT{(\FU*{MEMBER} \VAR{foo} \VAR{list}
     \orGOO{\kwd{:test} \VAR{ function}\\
       \kwd{:test-not} \VAR{ function}\\
-      \kwd{:key} \VAR{ function}}{.})}
+      \kwd{:key} \VAR{ function}}{\}})}
   {
   Return \retval{tail of \VAR{list}} starting with
-  first element of list matching \VAR{foo}. Return \retval{\NIL} otherwise.
+  its first element matching \VAR{foo}. Return \retval{\NIL} if
+  there is no such element.
+  }
+
+  \IT{(\xorGOO{\FU*{MEMBER-IF}\\
+      \FU*{MEMBER-IF-NOT}}{\}}
+    \VAR{test} \VAR{list}
+    \Op{\kwd{:key} \VAR{ function}})}
+  {
+  Return \retval{tail of \VAR{list}} starting with
+  its first element satisfying \VAR{test}. Return \retval{\NIL} if
+  there is no such element.
   }
 
   \IT{(\FU*{SUBSETP} \VAR{list-a} \VAR{list-b} 
@@ -72,7 +80,7 @@
 
   \IT{(\FU*{CONS} \VAR{foo} \VAR{bar})}
   {
-  Return new cons \retval{(\VAR{foo} \VAR{bar})}.
+  Return new cons \retval{(\VAR{foo} \LIT{.} \VAR{bar})}.
   }
 
   \IT{(\FU*{LIST} \OPn{\VAR{foo}})}
@@ -87,8 +95,8 @@
 
   \IT{(\FU*{MAKE-LIST} \VAR{num} \Op{\kwd{:initial-element}
       \VAR{foo}\DF{\NIL}})}
-  {Return \retval{list with \VAR{num} elements}
-  set to \VAR{foo}.
+  {
+    New \retval{list} with \VAR{num} elements set to \VAR{foo}.
   }
 
   \IT{(\FU*{LIST-LENGTH} \VAR{list})}
@@ -96,32 +104,40 @@
   \retval{\NIL} for circular \VAR{list}.
   }
 
-  \IT{(\FU*{CAR} \VAR{ foo})}
+  \IT{(\FU*{CAR} \VAR{ list})}
   {
-  \retval{car of list \VAR{foo}} or \retval{\NIL} if \VAR{foo} is
+  \retval{car of \VAR{list}} or \retval{\NIL} if \VAR{list} is
   \NIL. \kwd{SETF}able. 
   }
 
-  \IT{\arrGOO{(\FU*{CDR} \VAR{ foo})\\
-      (\FU*{REST} \VAR{ foo})}{.}}
+  \IT{\arrGOO{(\FU*{CDR} \VAR{ list})\\
+      (\FU*{REST} \VAR{ list})}{.}}
   {
-  \retval{cdr of list \VAR{foo}} or \retval{\NIL} if \VAR{foo}
+  \retval{cdr of \VAR{list}} or \retval{\NIL} if \VAR{list}
   is \NIL. \kwd{SETF}able. 
   }
 
+  \IT{(\kwd*{NTHCDR} \VAR{n list})}
+  {Return \retval{tail of \VAR{list}} after calling \FU{cdr} \VAR{n} times.
+    }
+
   \IT{(\Goo{\FU*{FIRST}\XOR\FU*{SECOND}\XOR\FU*{THIRD}\XOR\dots\XOR\FU*{NINTH}\XOR\FU*{TENTH}}
-    \VAR{foo})}
+    \VAR{list})}
   {
   \index{FOURTH}%
   \index{FIFTH}%
   \index{SIXTH}%
   \index{SEVENTH}%
   \index{EIGHTH}%
-  Return \retval{nth element of list \VAR{foo}} if any,
+  Return \retval{nth element of \VAR{list}} if any,
   or \retval{\NIL} otherwise. \kwd{SETF}able.
   }
 
-  \IT{(\FU{C}\VAR{X}\kwd{R} \VAR{foo})}
+  \IT{(\kwd*{NTH} \VAR{n list})}
+  {Return \VAR{n}th element (zero-indexed) of \VAR{list}. \kwd{setf}able.
+    }
+
+  \IT{(\FU{C}\VAR{X}\kwd{R} \VAR{list})}
   {
   \index{CAAR}
   \index{CADR}
@@ -134,17 +150,19 @@
   \kwd{SETF}able.
   }
 
-  \IT{(\FU*{LAST} \VAR{foo} \Op{\VAR{num}})}
+  \IT{(\FU*{LAST} \VAR{list} \Op{\VAR{num}\DF{1}})}
   {
   Return list of \retval{last \VAR{num}
-    conses} of list \VAR{foo}.
+    conses} of \VAR{list}.
   }
 
-  \IT{(\xorGOO{\FU*{BUTLAST}\\\FU*{NBUTLAST}}{\}} \VAR{foo}
+  \IT{(\xorGOO{\FU*{BUTLAST}\\
+      \FU*{NBUTLAST}}{\}} \VAR{list}
     \Op{\VAR{num}})}
   {
-  Return \retval{list excluding last \VAR{num}
-    conses} of list \VAR{foo}.
+  Return \retval{list} excluding last \VAR{num}
+    conses of \VAR{list}. \VAR{list} is unmodified/possibly modified,
+    respectively. 
   }
 
   \IT{(\xorGOO{\FU*{RPLACA}\\
@@ -159,14 +177,6 @@
     part of \VAR{list}}. Otherwise return \retval{\VAR{list}}.
   }
 
-  \IT{(\kwd*{NTH} \VAR{n list})}
-  {Return \VAR{n}th element (zero-based) of \VAR{list}.
-    }
-
-  \IT{(\kwd*{NTHCDR} \VAR{n list})}
-  {Return \retval{tail of \VAR{list}} after calling \FU{cdr} \VAR{n} times.
-    }
-
   \IT{(\FU*{ADJOIN} \VAR{foo} \VAR{list} \orGOO{\kwd{:test}
       \VAR{ function}\\
       \kwd{:test-not} \VAR{ function}\\
@@ -179,7 +189,7 @@
   \IT{(\FU*{POP} \VAR{place})}
   {
   Set \VAR{place} to \retval{(\FU{CDR} \VAR{place})}, return
-  \retval{(\FU{CAR} \VAR{place})}
+  \retval{(\FU{CAR} \VAR{place})}.
   }
 
   \IT{(\FU*{PUSH} \VAR{foo} \VAR{place})}
@@ -187,16 +197,18 @@
   \retval{(\FU{cons} \VAR{foo} \VAR{place})}.
   }
 
-  \IT{(\FU*{PUSHNEW} \VAR{foo} \VAR{place} )}
+  \IT{(\FU*{PUSHNEW} \VAR{foo} \VAR{place}  \orGOO{\kwd{:test}
+      \VAR{ function}\\
+      \kwd{:test-not} \VAR{ function}\\
+      \kwd{:key} \VAR{ function}}{\}})}
   {Set \VAR{place} to
   \retval{(\FU{adjoin} \VAR{foo} \VAR{place})}.
   }
 
-  \IT{\arrGOO{(\FU*{APPEND} \OPn{\VAR{ list}})\\
-      (\FU*{NCONC}
-      \OPn{\VAR{ list}})}{.}}
+  \IT{\arrGOO{(\FU*{APPEND } \Op{\OPn{\VAR{list}} \VAR{ foo}})\\
+      (\FU*{NCONC } \Op{\OPn{\VAR{list}} \VAR{ foo}})}{.}}
   {
-  Return \retval{concatenated list}. \VAR{list}s are unmodified/possibly
+  Return \retval{concatenated list}. \VAR{foo} can be of any type. \VAR{list}s are unmodified/possibly
   modified, respectively.
   }
 
@@ -260,18 +272,17 @@
   }
 
   \IT{\arrGOO{(\xorGOO{\FU*{ASSOC}\\
-        \FU*{RASSOC}}{\}}%
-      \VAR{foo} \VAR{ a-list}%
+        \FU*{RASSOC}}{\}}
+      \VAR{foo} \VAR{ a-list}
       \xorGOO{\kwd{:key} \VAR{ function}\\
         \kwd{:test} \VAR{ test}\\
         \kwd{:test-not} \VAR{ test}
       }{\}})\\
-    (\xorGOO{\FU*{ASSOC-IF}\\
-      \FU*{RASSOC-IF}\\
-      \FU*{ASSOC-IF-NOT}\\
-      \FU*{RASSOC-IF-NOT}}{\}}\VAR{test} \VAR{ a-list }%
+    (\xorGOO{\FU*{ASSOC-IF}\Op{\kwd{-NOT}}\\
+      \FU*{RASSOC-IF}\Op{\kwd{-NOT}}}{\}} \VAR{test} \VAR{ a-list }
       \Op{\kwd{:key} \VAR{ function}})}{.}}
   {
+\index{ASSOC-IF-NOT}\index{RASSOC-IF-NOT}%
   First \retval{cons} whose car, or cdr, respectively, satisfies \VAR{test}.
   }
 
@@ -293,16 +304,17 @@
       \kwd{:test-not} \VAR{ function}}{\}})}
   {
   Return \retval{\T} if trees \VAR{foo} and \VAR{bar} have same
-  shape and \kwd{eql} leaves, return \retval{\NIL} otherwise.
+  shape and \kwd{eql} leaves.
   }
 
-  \IT{(\xorGOO{\FU*{SUBST}\\\FU*{NSUBST}}{\}} \VAR{new} \VAR{old} \VAR{tree}
+  \IT{(\xorGOO{\FU*{SUBST}\\
+      \FU*{NSUBST}}{\}} \VAR{new} \VAR{old} \VAR{tree}
     \orGOO{\kwd{:key} \VAR{ function}\\
       \kwd{:test} \VAR{ function}\\
       \kwd{:test-not} \VAR{ function}}{\}})}
   {
   Make \retval{copy of
-    \VAR{tree}} with each subtree or leave of \VAR{old} replaced by
+    \VAR{tree}} with each subtree or leaf matching \VAR{old} replaced by
   \VAR{new}. \VAR{tree} is unmodified/possibly modified, respectively.
   }
 
@@ -315,25 +327,25 @@
   \index{NSUBST-IF}%
   \index{NSUBST-IF-NOT}%
   Make \retval{copy of
-    \VAR{tree}} with each subtree or leave
-  satisfying test or not satisfying test, respectively, replaced by
+    \VAR{tree}} with each subtree or leaf
+  satisfying test replaced by
   \VAR{new}. \VAR{sequence} is unmodified/possibly modified, respectively.
   }
 
   \IT{(\xorGOO{\FU*{SUBLIS}\\
-      \FU*{NSUBLIS}}{\}}\VAR{a-list} \VAR{tree}\orGOO{%
+      \FU*{NSUBLIS}}{\}} \VAR{a-list} \VAR{tree} \orGOO{%
       \kwd{:key} \VAR{ function}\\
       \kwd{:test} \VAR{ function}\\
       \kwd{:test-not} \VAR{ function}}{\}})}
   {
-  Make \retval{copy of \VAR{tree}} with each subtree or leave matching
-  a key in \VAR{a-list} replaced by that key's object from \VAR{a-list}. 
+  Make \retval{copy of \VAR{tree}} with each subtree or leaf matching
+  a key in \VAR{a-list} replaced by that key's value.
   \VAR{sequence} is unmodified/possibly modified, respectively.
   }
 
   \IT{(\FU*{COPY-TREE} \VAR{tree})} 
   {
-  Return \retval{copy of \VAR{tree}}.
+    \retval{Copy of \VAR{tree}} with same shape and leaves.
   }
 
 \end{LIST}

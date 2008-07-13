@@ -26,6 +26,7 @@
 \usepackage{graphics}
 \usepackage{multicol}
 \usepackage{textcase}
+\usepackage{ulem}
 \usepackage[usenames,dvips]{color}
 \usepackage{ifthen}
 \usepackage{suffix}
@@ -242,8 +243,8 @@
       {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}}}\lowercase{#1}}}}}
 
 % Return values, First, Second, Third
-\newcommand{\retval}[1]{\underline{#1}}
-\newcommand{\retvalii}[1]{\underline{\underline{#1}}}
+\newcommand{\retval}[1]{\uline{#1}}
+\newcommand{\retvalii}[1]{\uuline{#1}}
 \newcommand{\retvaliii}[1]{\underline{\underline{\underline{#1}}}}
 
 % T and NIL
@@ -429,13 +430,14 @@
 \renewenvironment{theindex}%
                  {\begin{list}{}%
                      {\setlength{\itemindent}{-1em}\setlength{\leftmargin}{1em}}%
-                     \parskip0pt plus .1pt \itemsep0pt}%
+                     \parskip0pt plus .1pt \itemsep0pt%
+                     \raggedright\looseness=-1%
+                 }%
                  {\end{list}}
 \begin{multicols}{4}
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   [\section*{Index}\vspace{-5ex}]
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \renewcommand{\tolerance}{10000}
   % Stock \printindex won't do as we want three-column.
   \tiny\sffamily\input{clqr.ind}
 \end{multicols}

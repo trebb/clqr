@@ -17,9 +17,9 @@
 
 \begin{LIST}{1cm}
 
-  \IT{\arrGOO{(\FU{\boldmath$=$}\OPn{\VAR{
+  \IT{\arrGOO{(\FU{\boldmath$=$}\RP{\VAR{
           number}})\\
-      (\FU{\boldmath$/=$}\OPn{\VAR{ number}})}{.}}
+      (\FU{\boldmath$/=$}\RP{\VAR{ number}})}{.}}
      {
        \index{=}%
        \index{/=}%
@@ -49,9 +49,10 @@
   Return \retval{\T} if $a < 0$, $a = 0$, or $a > 0$, respectively.
   }
 
-  \IT{(\xorGOO{\FU*{EVENP}\\\FU*{ODDP}}{\}} \VAR{integer})}
+  \IT{\arrGOO{(\FU*{EVENP } \VAR{integer})\\
+      (\FU*{ODDP } \VAR{integer})}{\}}}
   {
-    Return \retval{\T} if \VAR{integer} is even, or odd, respectively.
+    Return \retval{\T} if \VAR{integer} is even or odd, respectively.
   }
 
   \IT{\arrGOO{(\FU*{NUMBERP} \VAR{ foo})\\
@@ -59,7 +60,8 @@
       (\FU*{RATIONALP} \VAR{ foo})\\
       (\FU*{FLOATP} \VAR{ foo})\\
       (\FU*{REALP} \VAR{ foo})\\
-      (\FU*{COMPLEXP} \VAR{ foo})
+      (\FU*{COMPLEXP} \VAR{ foo})\\
+      (\FU*{RANDOM-STATE-P} \VAR{ foo})
       }{.}}
   {
   \retval{\T} if \VAR{foo} is of
@@ -68,13 +70,9 @@
 
   \IT{(\FU*{LOGBITP} \VAR{i} \VAR{integer})}
   {
-  \retval{\T} if zero-based \VAR{i}th bit of \VAR{integer} is set.
+  \retval{\T} if zero-indexed \VAR{i}th bit of \VAR{integer} is set.
   }
 
-  \IT{(\FU*{RANDOM-STATE-P} \VAR{foo})}
-  {
-  \retval{\T} if \VAR{foo} is of type random state.
-  }
 
 \end{LIST}
 
@@ -110,7 +108,7 @@
   }
 
   \IT{(\xorGOO{\SF*{INCF}\\\SF*{DECF}}{\}} \VAR{place}
-    \Op{\VAR{delta}}\DF{1})}
+    \Op{\VAR{delta}\DF{1}})}
   {
   Increment or
   decrement \VAR{place} by \VAR{delta} returning \retval{new value}.
@@ -136,7 +134,7 @@
   Return, in complex or natural numbers, respectively, $\sqrt{n}$.
   }
 
-  \IT{\arrGOO{(\FU*{LCM} \OPn{\VAR{ integer}})\\
+  \IT{\arrGOO{(\FU*{LCM} \OPn{\VAR{ integer}}\DF{1})\\
       (\FU*{GCD} \OPn{\VAR{ integer}})}{.}}
   {
   \retval{Least common multiple} or \retval{greatest common
@@ -163,9 +161,9 @@
     a$}, respectively, in radians.
   }
 
-  \IT{(\FU*{ATAN} \VAR{a} \Op{\VAR{b}})}
+  \IT{(\FU*{ATAN} \VAR{a} \Op{\VAR{b}\DF{1}})}
   {
-  Return \retval{$\arctan a$} or \retval{$\arctan \frac{a}{b}$} , in radians.
+  \retval{$\arctan \frac{a}{b}$} in radians.
   }
 
   \IT{\arrGOO{(\FU*{SINH} \VAR{ a})\\(\FU*{COSH} \VAR{ a})\\(\FU*{TANH}
@@ -179,19 +177,19 @@
       (\FU*{ACOSH} \VAR{ a})
       \\(\FU*{ATANH} \VAR{ a})}{.}}
   {
-  \retval{$\operatorname{arsinh} a$}, \retval{$\operatorname{acosh}
+  \retval{$\operatorname{asinh} a$}, \retval{$\operatorname{acosh}
     a$}, or \retval{$\operatorname{atanh} a$}, respectively.
   }
 
-  \IT{(\FU*{CIS} \VAR{n})}
+  \IT{(\FU*{CIS} \VAR{a})}
   {
   Return
-  \retval{$\operatorname{e}^{\operatorname{i} n} = \cos n +
-    \operatorname{i}\sin n$}.
+  \retval{$\operatorname{e}^{\operatorname{i} a} = \cos a +
+    \operatorname{i}\sin a$}.
   }
 
-  \IT{(\FU*{CONJUGATE} \VAR{n})}
-  {Return \retval{conjugate of \VAR{n}}.
+  \IT{(\FU*{CONJUGATE} \VAR{a})}
+  {Return \retval{conjugate of \VAR{a}}.
     }
 
   \IT{\arrGOO{(\FU*{NUMERATOR} \VAR{ rational})\\
@@ -207,8 +205,8 @@
   Return \retval{real part} or \retval{imaginary part}, respectively, of \VAR{number}.
   }
 
-  \IT{\arrGOO{(\FU*{MAX } \Op{\VAR{num}})\\
-      (\FU*{MIN } \Op{\VAR{num}})}{.}}
+  \IT{\arrGOO{(\FU*{MAX } \RP{\VAR{num}})\\
+      (\FU*{MIN } \RP{\VAR{num}})}{.}}
   {
   Return \retval{greatest} or \retval{least}, respectively, of \VAR{num}s.
   }
@@ -218,19 +216,19 @@
       \Goo{\FU*{CEILING}\XOR\FU*{FCEILING}}\\
       \Goo{\FU*{TRUNCATE}\XOR\FU*{FTRUNCATE}}\\
       \Goo{\FU*{ROUND}\XOR\FU*{FROUND}}}{\}}
-    \VAR{number} \Op{\VAR{divisor}\DF{1}})}
+    \VAR{n} \Op{\VAR{d}\DF{1}})}
   {
-  Return \retval{quotient} (integer or float, respectively.) truncated
+  Return \retval{$n/d$} (\kwd{integer} or \kwd{float}, respectively) truncated
   towards $-\infty$, $+\infty$, $0$, or rounded, respectively; and \retvalii{remainder}.
   }
 
   \IT{(\xorGOO{\FU*{MOD}\\
-      \FU*{REM}}{\}} \VAR{n} \VAR{m})}
+      \FU*{REM}}{\}} \VAR{n} \Op{\VAR{d}\DF{1}})}
   {Same as \FU{floor} or
   \FU{truncate}, respectively, but return \retval{remainder} only.
   }
 
-  \IT{(\FU*{RANDOM} \VAR{limit})} 
+  \IT{(\FU*{RANDOM} \VAR{limit} \Op{\VAR{state}\DF{\V{*random-state}}})} 
   {
     Return non-negative \retval{random
     number} less then, and  of type of \VAR{limit}.
@@ -238,7 +236,7 @@
 
   \IT{(\FU*{MAKE-RANDOM-STATE} \Op{\VAR{state}\DF{\NIL}})}
   {
-  Make \retval{random state object}.
+  Make \retval{random state}.
   }
 
   \IT{\V*{*random-state*}}
@@ -256,7 +254,7 @@
   representing sign or phase of \VAR{n}.
   }
 
-  \IT{(\FU*{COMPLEX} \VAR{real} \VAR{imag})}
+  \IT{(\FU*{COMPLEX} \VAR{real} \Op{\VAR{imag}\DF{0}})}
   {Make a \retval{complex number}.
     }
 
@@ -267,7 +265,7 @@
   \IT{\arrGOO{(\FU*{RATIONAL} \VAR{ real})\\
       (\FU*{RATIONALIZE} \VAR{ real})}{.}}
   {
-  Convert \VAR{real} to \retval{rational}. Assume limited/unlimited precision for \VAR{real}.
+  Convert \VAR{real} to \retval{rational}. Assume complete/limited accuracy for \VAR{real}.
   }
 
   \IT{(\FU*{FLOAT} \VAR{real}
@@ -282,6 +280,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Logic Functions} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{section:Logic Functions}
 
 \begin{LIST}{1cm}
 
@@ -297,24 +296,29 @@
     \IT{\CNS*{BOOLE-2}} {\retval{\VAR{int-b}}.}
     \IT{\CNS*{BOOLE-C1}} {\retval{Two's complement of \VAR{int-a}}.}
     \IT{\CNS*{BOOLE-C2}} {\retval{Two's complement of \VAR{int-b}}.}
+    \IT{\CNS*{BOOLE-SET}} {\retval{All bits set}.}
+    \IT{\CNS*{BOOLE-CLR}} {\retval{All bits zero}.}
+    \IT{\CNS*{BOOLE-EQV}} {\retval{$\text{\VAR{int-a}} \equiv \text{\VAR{int-b}}$}.}
     \IT{\CNS*{BOOLE-AND}} {\retval{$\text{\VAR{int-a}}\land\text{\VAR{int-b}}$}.}
     \IT{\CNS*{BOOLE-ANDC1}} {\retval{Two's complement of \VAR{int-a} $\land$ \VAR{int-b}}.}
     \IT{\CNS*{BOOLE-ANDC2}} {\retval{\VAR{int-a} $\land$ two's complement of \VAR{int-b}}.}
-    \IT{\CNS*{BOOLE-CLR}} {\retval{All bits zero}.}
-    \IT{\CNS*{BOOLE-EQV}} {\retval{$\text{\VAR{int-a}} \equiv \text{\VAR{int-b}}$}.}
-    \IT{\CNS*{BOOLE-IOR}} {\retval{$\text{\VAR{int-a}} \lor \text{\VAR{int-b}}$}.}
     \IT{\CNS*{BOOLE-NAND}} {\retval{$\lnot(\text{\VAR{int-a}} \land \text{\VAR{int-b}})$}.}
-    \IT{\CNS*{BOOLE-NOR}} {\retval{$\lnot(\text{\VAR{int-a}} \lor \text{\VAR{int-b}})$}.}
+    \IT{\CNS*{BOOLE-IOR}} {\retval{$\text{\VAR{int-a}} \lor \text{\VAR{int-b}}$}.}
     \IT{\CNS*{BOOLE-ORC1}} {\retval{Two's complement of \VAR{int-a} $\lor$ \VAR{int-b}}.}
     \IT{\CNS*{BOOLE-ORC2}} {\retval{\VAR{int-a} $\lor$ two's complement of \VAR{int-b}}.}
-    \IT{\CNS*{BOOLE-SET}} {\retval{All bits set}.}
     \IT{\CNS*{BOOLE-XOR}} {\retval{$\lnot(\text{\VAR{int-a}} \equiv \text{\VAR{int-b}})$}.}
+    \IT{\CNS*{BOOLE-NOR}} {\retval{$\lnot(\text{\VAR{int-a}} \lor \text{\VAR{int-b}})$}.}
   \end{LIST}
 
-  \IT{\arrGOO{(\FU*{LOGAND} \OPn{\VAR{ integer}})\\
-      (\FU*{LOGEQV} \OPn{\VAR{ integer}})}{.}}
+  \IT{(\FU*{LOGNOT}\VAR{ integer})}
   {
-  Return \retval{value of anded or exclusive-nored \VAR{integer}s},
+    \retval{Two's complement of \VAR{integer}}.
+  }
+
+  \IT{\arrGOO{(\FU*{LOGEQV} \OPn{\VAR{ integer}})\\
+      (\FU*{LOGAND} \OPn{\VAR{ integer}})}{.}}
+  {
+  Return \retval{value of exclusive-nored or anded \VAR{integer}s},
   respectively. Without any \VAR{integer}, return \retval{$-1$}.
   }
 
@@ -323,19 +327,9 @@
    \retval{Two's complement of \VAR{int-a} $\land$ \VAR{int-b}}.
    }
 
-  \IT{(\FU*{LOGORC1} \VAR{ int-a} \VAR{ int-b})}
-  {
- \retval{Two's complement of \VAR{int-a} $\lor$ \VAR{int-b}}.
- }
-
   \IT{(\FU*{LOGANDC2} \VAR{ int-a} \VAR{ int-b})}
   {
   \retval{\VAR{int-a} $\land$ two's complement of \VAR{int-b}}.
-  }
-
-  \IT{(\FU*{LOGORC2} \VAR{ int-a} \VAR{ int-b})}
-  {
-  \retval{\VAR{int-a} $\lor$ two's complement of \VAR{int-b}}.
   }
 
   \IT{(\FU*{LOGNAND} \VAR{ int-a} \VAR{ int-b})}
@@ -343,14 +337,26 @@
   \retval{$\lnot(\text{\VAR{int-a}} \land \text{\VAR{int-b}})$}.
   }
 
+  \IT{\arrGOO{(\FU*{LOGXOR} \OPn{\VAR{ integer}})\\
+      (\FU*{LOGIOR} \OPn{\VAR{ integer}})}{.}}
+  {
+  Return \retval{value of exclusive-ored or ored \VAR{integer}s},
+  respectively. Without any \VAR{integer}, return \retval{0}.
+  }
+
+  \IT{(\FU*{LOGORC1} \VAR{ int-a} \VAR{ int-b})}
+  {
+ \retval{Two's complement of \VAR{int-a} $\lor$ \VAR{int-b}}.
+ }
+
+  \IT{(\FU*{LOGORC2} \VAR{ int-a} \VAR{ int-b})}
+  {
+  \retval{\VAR{int-a} $\lor$ two's complement of \VAR{int-b}}.
+  }
+
   \IT{(\FU*{LOGNOR} \VAR{ int-a} \VAR{ int-b})}
   {
   \retval{$\lnot(\text{\VAR{int-a}} \lor \text{\VAR{int-b}})$}.
-  }
-
-  \IT{(\FU*{LOGCOUNT} \VAR{integer})}
-  {Return \retval{number of bits} set
-  in \VAR{integer}.
   }
 
   \IT{(\FU*{LOGTEST} \VAR{int-a} \VAR{int-b})}
@@ -358,27 +364,22 @@
   there is any bit set in \VAR{int-a} which ist set in \VAR{int-b} as well.
   }
 
-  \IT{\arrGOO{(\FU*{LOGIOR} \OPn{\VAR{ integer}})\\
-      (\FU*{LOGXOR} \OPn{\VAR{ integer}})}{.}}
+  \IT{(\FU*{LOGCOUNT} \VAR{integer})}
   {
-  Return \retval{value of ored or exclusive-ored \VAR{integer}s},
-  respectively. Without any \VAR{integer}, return \retval{0}.
+    \retval{number of bits} set
+  in \VAR{integer}.
   }
-
-  \IT{(\FU*{LOGNOT}\VAR{ integer})}
-  {Return \retval{two's complement of \VAR{integer}}.
-    }
 
   \IT{(\FU*{ASH} \VAR{integer} \VAR{count})}
   {
-  Return \retval{integer} arithmetically shifted left with zeros added
+  Return copy of \retval{\VAR{integer}} arithmetically shifted left with zeros added
   at the right, or, for $\VAR{count}<0$, shifted right discarding
   bits. 
   }
 
   \IT{(\FU*{MASK-FIELD} \VAR{byte-spec} \VAR{integer})}
   {
-  Return \retval{\VAR{integer}} with all bits unset but those denoted by
+  Return copy of \retval{\VAR{integer}} with all bits unset but those denoted by
   \VAR{byte-spec}. \kwd{setf}able.
   }
 
@@ -413,15 +414,12 @@
   weight of $2^{\VAR{position}}$. 
   }
 
-  \IT{(\FU*{BYTE-POSITION} \VAR{byte-spec})}
+  \IT{\arrGOO{(\FU*{BYTE-SIZE} \VAR{ byte-spec})\\
+      (\FU*{BYTE-POSITION} \VAR{ byte-spec})}{.}}
   {
-  \retval{Position} of \VAR{byte-spec}.
+  \retval{Size} or \retval{position}, respective,  of \VAR{byte-spec}.
   }
 
-  \IT{(\FU*{BYTE-SIZE} \VAR{byte-spec})}
-  {
-  \retval{Size} of \VAR{byte-spec}.
-  }
   \IT{(\xorGOO{\FU*{DEPOSIT-FIELD}\\
       \FU*{DPB}}{\}}
     \VAR{int-a} \VAR{byte-spec} \VAR{int-b})}
@@ -514,7 +512,8 @@
   \IT{\arrGOO{(\FU*{DECODE-FLOAT} \VAR{ n})\\
       (\FU*{INTEGER-DECODE-FLOAT} \VAR{ n})}{.}}
   {
-  Return \retval{significand}, \retvalii{exponent}, and \retvaliii{sign}.
+  Return \retval{significand}, \retvalii{exponent}, and
+  \retvaliii{sign} of \kwd{float} \VAR{n}.
   }
 
   \IT{(\FU*{SCALE-FLOAT} \VAR{n} \Op{\VAR{i}})}
@@ -527,7 +526,7 @@
       (\FU*{FLOAT-DIGITS} \VAR{ n})\\
       (\FU*{FLOAT-PRECISION} \VAR{ n})}{.}}
   {
-  \retval{Radix}, \retval{number of digits} in that radix,
+  \retval{Radix}, \retval{number of digits} in that radix, or
   \retval{precision} in that radix, respectively, of float \VAR{n}.
   }
 

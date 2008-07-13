@@ -54,12 +54,12 @@
       \kwd{:adjustable} \VAR{ bool}\DF{\NIL}\\
       \kwd{:fill-pointer } \Goo{\VAR{num}\XOR\VAR{bool}}\DF{\NIL}\\
       \xorGOO{\kwd{:initial-element} \VAR{ obj}\\
-        \kwd{:initial-contents} \VAR{ seq}\\
-        \kwd{:displaced-to} \xorGOO{\VAR{array}\\\VAR{bool}\DF{\NIL}}{\}}
+        \kwd{:initial-contents} \VAR{ sequence}\\
+        \kwd{:displaced-to } \VAR{array}\DF{\NIL}\text{ }
         \Op{\kwd{:displaced-index-offset } \VAR{i}\DF{0}}}{.}}{\}})}
   { 
-  Return fresh, or readjust, respectively, \retval{vector or array of
-    dimension(s) \VAR{dim}}. 
+  Return fresh, or readjust, respectively, \retval{vector or array} of
+    \VAR{dimensions}. 
   }
 
   \IT{(\kwd*{AREF} \VAR{array} \OP{\VAR{subscripts}})}
@@ -70,22 +70,23 @@
 
   \IT{(\FU*{ROW-MAJOR-AREF} \VAR{array} \VAR{i})}
   {
-  Return \retval{\VAR{i}th element} of \VAR{array} in row-major order.
+  Return \retval{\VAR{i}th element} of \VAR{array} in row-major
+  order. \kwd{setf}able.
   }
 
-  \IT{(\FU*{ARRAY-ROW-MAJOR-INDEX} \VAR{array} \VAR{subscripts})}
+  \IT{(\FU*{ARRAY-ROW-MAJOR-INDEX} \VAR{array} \Op{\VAR{subscripts}})}
   {
   \retval{Index} in row-major order of element denoted by \VAR{subscripts}.
   }
 
   \IT{(\FU*{ARRAY-DIMENSIONS} \VAR{array})}
   {
-  \retval{List} containing \VAR{array}'s dimensions. 
+  \retval{List} containing the lengths of \VAR{array}'s dimensions. 
   }
 
   \IT{(\FU*{ARRAY-DIMENSION} \VAR{array} \VAR{i})}
   {
-  \retval{length of \VAR{i}th dimension} of \VAR{array}.
+  \retval{Length of \VAR{i}th dimension} of \VAR{array}.
   }
 
   \IT{(\FU*{ARRAY-TOTAL-SIZE} \VAR{array})}
@@ -95,7 +96,7 @@
 
   \IT{(\FU*{ARRAY-DISPLACEMENT} \VAR{array})}
   {
-  \retval{Target array} and \retval{offset}.
+  \retval{Target array} and \retvalii{offset}.
   }
 
    \IT{(\FU*{ARRAY-RANK} \VAR{array})}
@@ -103,37 +104,37 @@
   \retval{Number of dimensions} of \VAR{array}.
   }
 
-  \IT{\arrGOO{(\FU*{BIT} \VAR{ bit-array} \VAR{ subscripts})\\
-      (\FU*{SBIT} \VAR{ simple-bit-array} \VAR{ subscripts})}{.}}
+  \IT{\arrGOO{(\FU*{BIT} \VAR{ bit-array } \Op{\VAR{subscripts}})\\
+      (\FU*{SBIT} \VAR{ simple-bit-array } \Op{\VAR{subscripts}})}{.}}
   {
   Return \retval{element} of \VAR{bit-array} or of
   \VAR{simple-bit-array}. \kwd{setf}able. 
   }
 
-  \IT{(\FU*{BIT-NOT} \VAR{bit-array} \Op{\VAR{arg}\DF{\NIL}})}
+  \IT{(\FU*{BIT-NOT} \VAR{bit-array} \Op{\VAR{result-bit-array}\DF{\NIL}})}
   {
-  Return \retval{result} of bit-wise negation of \VAR{bit-array}. If
-  \VAR{arg} is a bit array, put result there. If \VAR{arg} is \T, put
-  result in \VAR{bit-array}. If \VAR{arg} is \NIL, make a new array for
+  Return \retval{result} of bit-wise negation of \VAR{bit-array}. If \VAR{result-bit-array} is \T, put
+  result in \VAR{bit-array}; if it is \NIL, make a new array for
   result. 
   }
 
-  \IT{(\xorGOO{\FU*{BIT-AND}\\
+  \IT{(\xorGOO{%
+      \FU*{BIT-EQV}\\
+      \FU*{BIT-AND}\\
       \FU*{BIT-ANDC1}\\
       \FU*{BIT-ANDC2}\\
-      \FU*{BIT-EQV}\\
-      \FU*{BIT-IOR}\\
       \FU*{BIT-NAND}\\
-      \FU*{BIT-NOR}\\
+      \FU*{BIT-IOR}\\
       \FU*{BIT-ORC1}\\
       \FU*{BIT-ORC2}\\
-      \FU*{BIT-XOR}}{\}} \VAR{bit-array-a} \VAR{bit-array-b}
-    \Op{\VAR{arg}\DF{\NIL}})}
+      \FU*{BIT-XOR}\\
+      \FU*{BIT-NOR}}{\}} \VAR{bit-array-a} \VAR{bit-array-b}
+    \Op{\VAR{result-bit-array}\DF{\NIL}})}
   {
-  Return \retval{result} of bit-wise logical operations on
-  \VAR{bit-array-a} and  \VAR{bit-array-b}. If \VAR{arg} is a bit
-  array, put result there. If \VAR{arg} is \T, put result in
-  \VAR{bit-array-a}. If \VAR{arg} is \NIL, make a new array for
+  Return \retval{result} of bit-wise logical operations
+  (cf.\ operations of \kwd{boole}, p.\ \pageref{section:Logic Functions}) on
+  \VAR{bit-array-a} and  \VAR{bit-array-b}.  If \VAR{result-bit-array} is \T, put result in
+  \VAR{bit-array-a}; if \VAR{arg} is \NIL, make a new array for
   result. 
   }
 
@@ -166,7 +167,7 @@ s.\ \ref{section:Sequences}.
   
   \IT{(\FU*{VECTOR} \OPn{\VAR{foo}})}
   {
-  Return fresh \retval{vector of \VAR{foo}s}.
+  Return fresh \retval{simple vector of \VAR{foo}s}.
   }
 
   \IT{(\kwd*{SVREF} \VAR{vector} \VAR{i})}
@@ -179,7 +180,7 @@ s.\ \ref{section:Sequences}.
   {
   Return \retval{\NIL} if \VAR{vector}'s fill pointer equals size of
   \VAR{vector}. Otherwise replace element of \VAR{vector} pointed to
-  by \retval{fill pointer} with \VAR{foo}, then increment fill
+  by \retval{fill pointer} with \VAR{foo}; then increment fill
   pointer. 
   }
 

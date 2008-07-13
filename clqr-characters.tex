@@ -89,11 +89,6 @@
   Return corresponding uppercase/lowercase \retval{character}, respectively.
   }
 
-  \IT{(\kwd*{CHAR-INT} \VAR{character})}
-  {
-  Return \retval{integer} encoding \VAR{character}.
-  }
-
   \IT{(\FU*{DIGIT-CHAR} \VAR{i} \Op{\VAR{radix}\DF{10}})}
   {
   \retval{Character} representing digit \VAR{i}.
@@ -101,19 +96,20 @@
 
   \IT{(\FU*{CHAR-NAME} \VAR{character})}
   {
-  Return \retval{name} of \VAR{character} if there is one, or
+    \retval{Name} of \VAR{character} if there is one, or
   \retval{\NIL}. 
   }
 
   \IT{(\FU*{NAME-CHAR} \VAR{name})}
   {
-  Return \retval{character} with \VAR{name} if there is one, or
+  \retval{Character} with \VAR{name} if there is one, or
   \retval{\NIL}. 
   }
 
-  \IT{(\FU*{CHAR-CODE} \VAR{character})}
+  \IT{\arrGOO{(\kwd*{CHAR-INT} \VAR{ character})\\
+      (\FU*{CHAR-CODE} \VAR{ character})}{.}}
   {
-  Return \retval{code of \VAR{character}}.
+  \retval{Code} of \VAR{character}.
   }
 
   \IT{(\FU*{CODE-CHAR} \VAR{code})}
