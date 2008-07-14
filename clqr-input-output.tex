@@ -236,13 +236,19 @@
   Begin and end of a string.
   }
 
-  \IT{\KWD*{`}\VAR{foo} \Op{\KWD*{,}\VAR{bar}} \Op{\KWD*{,@}\VAR{baz}}
-    \Op{\KWD*{,.}\VAR{quux}} \Op{\VAR{bing}}}
+  \IT{\KWD*{'}\VAR{foo}}
   {
-  \SF{quote} \VAR{foo} and \VAR{bing}; but neither \VAR{bar} nor the lists
-  \VAR{baz} and \VAR{quux} which are spliced into their
-  elements. \VAR{quux} is possibly modified in the process.
+  \SF{quote} \VAR{foo}.
   }
+
+  \IT{\KWD*{`}(\Op{\VAR{foo}} \Op{\KWD*{,}\VAR{bar}} \Op{\KWD*{,@}\VAR{baz}}
+    \Op{\KWD*{,.}\VAR{quux}} \Op{\VAR{bing}})}
+  {
+  \SF{quote} \VAR{foo} and \VAR{bing}; evaluate \VAR{bar} and splice the lists
+  \VAR{baz} and \VAR{quux} into their
+  elements. \VAR{quux} is possibly modified during evaluation.
+  }
+
   \IT{\KWD{\#\boldmath{$\backslash$}}\VAR{c}}
   {
   Character \VAR{c}.
