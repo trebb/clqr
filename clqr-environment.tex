@@ -57,24 +57,25 @@
   \retval{String} representing physical location of computer.
   }
 
-  \IT{\arrGOO{(\FU*{LISP-IMPLEMENTATION-TYPE})\\
-      (\FU*{LISP-IMPLEMENTATION-VERSION})}{.}}
+  \IT{(\xorGOO{\FU{LISP-IMPLEMENTATION}\\
+      \FU{SOFTWARE}\\
+      \FU{MACHINE}}{\}}\kwd{-}%
+    \xorGOO{\kwd{TYPE}\\
+      \kwd{VERSION}}{\}})}
   {
-  \retval{Name} or \retval{version}, respectively, of implementation.
+  \index{LISP-IMPLEMENTATION-TYPE}%
+  \index{LISP-IMPLEMENTATION-VERSION}%
+  \index{SOFTWARE-TYPE}%
+  \index{SOFTWARE-VERSION}%
+  \index{MACHINE-TYPE}%
+  \index{MACHINE-VERSION}%
+  \retval{Name} or \retval{version} of implementation, operating
+  system, or hardware, respectively.
   }
 
-  \IT{\arrGOO{(\FU*{SOFTWARE-TYPE})\\
-      (\FU*{SOFTWARE-VERSION})}{.}}
+  \IT{(\FU*{MACHINE-INSTANCE})}
   {
-  \retval{Name} or \retval{version}, respectively, of host system.
-  }
-
-  \IT{\arrGOO{(\FU*{MACHINE-TYPE})\\
-      (\FU*{MACHINE-VERSION})\\
-      (\FU*{MACHINE-INSTANCE})}{.}}
-  {
-  \retval{Type}, \retval{version}, or \retval{name}, respectively, of
-  hardware. 
+  \retval{Computer name}.
   }
 
 \end{LIST}

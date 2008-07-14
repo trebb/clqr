@@ -270,7 +270,7 @@
   Return \retval{function named \VAR{foo}}.
   }
 
-  \IT{\KWD{\#}\VAR{n}\KWD{A}\OPn{\VAR{foo}}}
+  \IT{\KWD{\#}\VAR{n}\KWD{A}\OPn{\VAR{sequence}}}
   {
   \index{\#A}%
   \VAR{n}-dimensional array
@@ -411,8 +411,7 @@
     \orGOO{\kwd{:start} \VAR{ start}\DF{0}\\\kwd{:end} \VAR{
         end}\DF{\NIL}}{\}})}
   {
-  Write \retval{part of \VAR{string} between \VAR{start} and
-    \VAR{end}} to \VAR{stream}, without/with a trailing newline,
+  Write \retval{\VAR{string}} to \VAR{stream} without/with a trailing newline,
   respectively. 
   }
 
@@ -422,7 +421,7 @@
   }
 
   \IT{(\FU*{WRITE-SEQUENCE} \VAR{sequence}
-    \OP{\VAR{stream}}\orGOO{\kwd{:start}\VAR{ start}\DF{0}\\ 
+    \OP{\VAR{stream}} \orGOO{\kwd{:start}\VAR{ start}\DF{0}\\ 
       \kwd{:end} \VAR{ end}\DF{\NIL}}{\}})}
   {
   Write elements of \retval{\VAR{sequence}} to \VAR{stream}.
@@ -442,7 +441,7 @@
       \kwd{:level} \VAR{ int}\\
       \kwd{:lines} \VAR{ int}\\
       \kwd{:miser-width} \VAR{ int}\\
-      \kwd{:pprint-dispatch} \VAR{ d-tbl}\\
+      \kwd{:pprint-dispatch} \VAR{ dispatch-table}\\
       \kwd{:pretty} \VAR{ bool}\\
       \kwd{:radix} \VAR{ bool}\\
       \kwd{:readably} \VAR{ bool}\\
@@ -457,7 +456,7 @@
   }
 
   \IT{(\xorGOO{\FU*{PPRINT-FILL}\\
-      \FU*{PPRINT-LINEAR}}{\}}%
+      \FU*{PPRINT-LINEAR}}{\}}
     \VAR{stream} \VAR{foo} \OP{\VAR{parenthesis}\DF{\T}
       \Op{\VAR{noop}}})}
   {
@@ -504,7 +503,7 @@
     as possible.
   }
 
-    \IT{(\FU*{PPRINT-INDENT}\xorGOO{%
+    \IT{(\FU*{PPRINT-INDENT} \xorGOO{%
         \kwd{:block}\\
         \kwd{:current}}{\}} \VAR{n}
       \OP{\VAR{stream}\DF{\V{*standard-output*}}})}
@@ -520,7 +519,7 @@
     
   \end{LIST}
 
-  \IT{(\FU*{PPRINT-NEWLINE}\xorGOO{%
+  \IT{(\FU*{PPRINT-NEWLINE} \xorGOO{%
       \kwd{:linear}\\
       \kwd{:fill}\\
       \kwd{:miser}\\
@@ -655,12 +654,12 @@
   }
 
   \IT{(\FU*{FORMAT} \Goo{\T\XOR\NIL\XOR\VAR{out-string}\XOR\VAR{out-stream}}
-    \VAR{control} \OPn{arg})}
+    \VAR{control} \OPn{\VAR{arg}})}
   {
   Output string \VAR{control} which may
   contain \kwd{\TLD} directives possibly taking some
   \VAR{arg}s. Alternatively, \VAR{control} can be a function returned
-  by \SF{formatter}.
+  by \SF{formatter} which is then applied to \VAR{out-stream} and \OPn{\VAR{arg}}.
   Output to \VAR{out-string}, \VAR{out-stream}, or, if first
   argument is \T, to \V{*standard-output*}. Return \retval{\NIL}. If
   first argument is \NIL, return \retval{formatted output}. 
@@ -822,14 +821,15 @@
     {
     \VAR{text} is used repeatedly, up to \VAR{limit}, as control
     string for every element of argument, which should be a list. With
-    \kwd{@}, take all remaining arguments. \kwd{:}, argument should be
+    \kwd{@}, take all remaining arguments. With \kwd{:}, argument should be
     a list of sublists. At each iteration step the elements of a
     sublist can be used by \VAR{str}. 
   }
 
     \IT{\KWD{\TLD\^{}}}
     {
-    Leave immediately \kwd{\TLD\boldmath{$<$}} or \kwd{\TLD\boldmath{$\{$}}.
+    Leave immediately \kwd{\TLD\boldmath{$<$} \TLD\boldmath{$>$}} or
+    \kwd{\TLD\boldmath{$\{$} \TLD\boldmath{$\}$}}.
   }
 
     \IT{\KWD{\TLD}\Op{\VAR{i}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{[}\Goos{\VAR{text}\KWD{\TLD;}}\KWD{\TLD]}}
@@ -846,9 +846,9 @@
     original argument list
   }
 
-    \IT{\KWD{\TLD\Op{:}\Op{@}/}\VAR{foo}\KWD{/}}
+    \IT{\KWD{\TLD\Op{:}\Op{@}/}\VAR{function}\KWD{/}}
     {
-    Call function \VAR{foo} with arguments stream, format-argument,
+    Call \VAR{function} with arguments stream, format-argument,
     bool-colon, and bool-at for printing format-argument.
   }
 
@@ -867,7 +867,7 @@
     \IT{\KWD{\#}}
     {
     (Replacing one of the comma-separated prefix parameters) Take as
-    prefix parameter the remaining number of unprocessed arguments.
+    prefix parameter the number of remaining unprocessed arguments.
   }
 
   \end{LIST}
@@ -1112,8 +1112,8 @@
       (\FU*{DIRECTORY-NAMESTRING}\VAR{ path})\\
       (\FU*{HOST-NAMESTRING}\VAR{ path})}{.}}
   {
-  Return string representing \retval{full pathname}, \retval{name, type, and version},
-  \retval{directory name}, or \retval{host name}, respectively, of \VAR{path}.
+  Return string representing \retval{full pathname}; \retval{name, type, and version};
+  \retval{directory name}; or \retval{host name}, respectively, of \VAR{path}.
   }
 
   \IT{(\FU*{PARSE-NAMESTRING} \VAR{foo} \OP{\VAR{host}
@@ -1134,7 +1134,7 @@
       \FU*{PATHNAME-TYPE}\\
       \FU*{PATHNAME-VERSION}}{\}}
     \VAR{path}
-    \Op{\kwd{:case}\xorGOO{\kwd{:local}\\
+    \Op{\kwd{:case} \xorGOO{\kwd{:local}\\
         \kwd{:common}}{\}}\DF{\kwd{:local}}})}
   {
   Return \retval{pathname component}.
@@ -1168,8 +1168,8 @@
   Physical \retval{pathname} of \VAR{path}. 
   }
 
-  \IT{\arrGOO{(\FU*{PROBE-FILE} \VAR{file})\\
-      (\FU*{TRUENAME} \VAR{file})}{.}}
+  \IT{\arrGOO{(\FU*{PROBE-FILE} \VAR{ file})\\
+      (\FU*{TRUENAME} \VAR{ file})}{.}}
   {
   \retval{Canonical name} of \VAR{file}. If \VAR{file} does not exist,
   return \retval{\NIL}/signal error, respectively.
@@ -1177,7 +1177,7 @@
 
   \IT{(\FU*{FILE-WRITE-DATE} \VAR{file})}
   {
-  Return \retval{time} at which \VAR{file} was last written.
+  \retval{Time} at which \VAR{file} was last written.
   }
 
   \IT{(\FU*{FILE-AUTHOR} \VAR{file})}

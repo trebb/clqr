@@ -131,7 +131,7 @@
   determined. 
   }
 
-  \IT{(\SF*{THE} \VAR{type} {form})}
+  \IT{(\SF*{THE} \VAR{type} \VAR{form})}
   {
   Return \retval{values} of \VAR{form} which are declared to be of
   \VAR{type}. 
@@ -143,10 +143,10 @@
   }
 
   \IT{(\SF*{TYPECASE} \VAR{foo} \OPn{(\VAR{type} \OPn{\VAR{form-a}})} 
-    \OP{(\xorGOO{\kwd*{OTHERWISE}\\\T}{\}}\OPn{\VAR{form-b}})\DF{\NIL}})}
+    \OP{(\xorGOO{\kwd*{OTHERWISE}\\\T}{\}} \OPn{\VAR{form-b}})\DF{\NIL}})}
   {
-  Return \retval{values of a \VAR{form-a}} if \VAR{foo} is of this
-  \VAR{type}. Return \retval{values of \VAR{form-b}} otherwise. 
+  Return \retval{values of a \VAR{form-a}s} if \VAR{foo} is of the corresponding
+  \VAR{type}. Return \retval{values of \VAR{form-b}s} otherwise. 
   }
 
   \IT{(\xorGOO{\SF*{CTYPECASE}\\

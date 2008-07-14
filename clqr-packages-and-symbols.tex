@@ -17,14 +17,10 @@
 \begin{LIST}{1cm}
 
   \IT{\arrGOO{(\FU*{SYMBOLP} \VAR{ foo})\\
-      (\FU*{PACKAGEP} \VAR{ foo})}{.}}
+      (\FU*{PACKAGEP} \VAR{ foo})\\
+      (\FU*{KEYWORDP} \VAR{ foo})}{.}}
   {
   \retval{\T} if \VAR{foo} is of indicated type.
-  }
-
-  \IT{(\FU*{KEYWORDP} \VAR{foo})}
-  {
-  \retval{\T} if \VAR{foo} is a keyword.
   }
 
 \end{LIST}
@@ -37,7 +33,7 @@
 
   \IT{\kwd*{:}\VAR{bar}\XOR\kwd*{keyword:}\VAR{bar}}
   {
-  Keyword, evaluates to \retval{:\VAR{bar}}
+  Keyword, evaluates to \retval{:\VAR{bar}}.
   }
 
   \IT{\VAR{foo}\kwd*{:}\VAR{bar}}
@@ -151,7 +147,7 @@
   }
 
   \IT{(\xorGOO{\FU*{IMPORT}\\
-      \FU*{SHADOWING-IMPORT}}{\}}\VAR{symbols}
+      \FU*{SHADOWING-IMPORT}}{\}} \VAR{symbols}
     \Op{\VAR{package}\DF{\kwd{*package*}}})}
   {
   Make \VAR{symbols} internal  to \VAR{package}. Return \retval{\T}. In
@@ -184,16 +180,16 @@
   \IT{(\xorGOO{%
       \arrGOO{%
         \FU*{DO-ALL-SYMBOLS}\\
-        \FU*{DO-SYMBOLS}}{\}}
+        \FU*{DO-SYMBOLS}}{\}}\text{ }
       (\VAR{var } \OP{\VAR{package } \Op{\VAR{result}}})\\
-      \FU*{DO-EXTERNAL-SYMBOLS } (\VAR{var } \Op{\VAR{result}})}{\}}%
+      \FU*{DO-EXTERNAL-SYMBOLS } (\VAR{var } \Op{\VAR{result}})}{\}}
     \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
     \OPn{\orGOO{\VAR{tag}\\
       \VAR{form}}{\}}})}
   {
-  Evaluate \VAR{form}s with \VAR{var} successively bound to all
-  symbols from each registered package, to all symbols from
-  \VAR{package}, or to all external symbols from \VAR{package},
+  Evaluate \VAR{form}s with \VAR{var} successively bound to every
+  symbol from all registered packages, to every symbol from
+  \VAR{package}, or to every external symbol from \VAR{package},
   respectively. Return \retval{values of \VAR{result}}. 
   }
 
