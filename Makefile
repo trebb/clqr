@@ -26,6 +26,7 @@ MV		= mv --force --verbose
 MAKE		= make
 BZR_REVISION	= bzr revno | tr -d '\n\\' 
 BZR_EXPORT	= bzr export
+BZR_COMMIT	= bzr commit
 DATE		= date -I | tr -d '\n\\' 
 RSYNC		= rsync -va
 
@@ -98,7 +99,7 @@ publish:	html/sample-frontcover.jpg html/sample-doublepage.jpg \
 	$(RSYNC) --delete ./ trebb@shell.berlios.de:/home/groups/ftp/pub/clqr/clqr/ $(SEND-TO-LOG)
 	$(RSYNC) ./html/ trebb@shell.berlios.de:/home/groups/clqr/htdocs/ $(SEND-TO-LOG)
 
-release:	letter a4 $(CLQR).tar.gz html/release-revision.txt
+release:	emergency-commit letter a4 $(CLQR).tar.gz html/release-revision.txt
 	./upload.sh
 
 html/release-revision.txt:	html/release-date.txt
@@ -126,6 +127,9 @@ html/sample-firstpage-consec.jpg:	$(CLQR)-a4-consec.pdf
 	$(CONVERT) $<'[0]' -verbose -resize 15% temp.jpg $(SEND-TO-LOG)
 	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 	$(RM) temp.jpg
+
+emergency-commit:	
+	$(BZR_COMMIT) -m "committed automatically by Makefile"
 
 $(CLQR).tar.gz:
 	$(BZR_EXPORT) $@ $(SEND-TO-LOG)
