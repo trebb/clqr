@@ -22,6 +22,30 @@
   \retval{\T} if \VAR{slot} in \VAR{instance} is bound.
   }
 
+  \IT{(\SF*{DEFCLASS} \VAR{class-name} (\OPn{\VAR{superclass}})
+    (\OPn{\xorGOO{\VAR{slot}\\
+      (\VAR{slot} 
+      \orGOO{\Goos{\kwd{:reader} \VAR{reader-fu}}\\
+        \Goos{\kwd{:writer} \VAR{writer-fu}} \\
+        \Goos{\kwd{:accessor} \VAR{reader-fu}} \\
+        \kwd{:allocation } \Goo{\kwd{:instance}\XOR\kwd{:class}}\\
+        \Goos{\kwd{:initarg} \kwd{:}\VAR{arg}} \\
+        \kwd{:initform} \VAR{ form}\\
+        \kwd{:type} \VAR{ type}\\
+        \kwd{:documentation} \VAR{ string}}{\}})}{\}}})
+    \orGOO{(\kwd{:default-initargs} \Goos{\VAR{name}\VAR{ value}})\\
+      (\kwd{:documentation} \VAR{ string})\\
+      (\kwd{:metaclass} \VAR{ name})}{\}})}
+  {
+  Define \retval{class \VAR{ class-name}} as a subclass of \VAR{superclass}es.
+  }
+
+  \IT{(\FU*{FIND-CLASS} \VAR{symbol} \OP{\VAR{errorp}\DF{\T}
+      \Op{\VAR{environment}}})}
+  {
+  Return \retval{class object} named \VAR{symbol}. \kwd{setf}able.
+  }
+
   \IT{(\GFU*{MAKE-INSTANCE} \VAR{class} \Goos{\kwd{:}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
@@ -75,30 +99,6 @@
   \IT{(\kwd*{CLASS-OF} \VAR{foo})}
   {
   \retval{Class} \VAR{foo} is an instance of.
-  }
-
-  \IT{(\FU*{FIND-CLASS} \VAR{symbol} \OP{\VAR{errorp}\DF{\T}
-      \Op{\VAR{environment}}})}
-  {
-  Return \retval{class object} named \VAR{symbol}. \kwd{setf}able.
-  }
-
-  \IT{(\SF*{DEFCLASS} \VAR{class-name} (\OPn{\VAR{superclass}})
-    (\GOOs{\VAR{slot}\XOR
-      (\VAR{slot} 
-      \orGOO{\Goos{\kwd{:reader} \VAR{reader-fu}}\\
-        \Goos{\kwd{:writer} \VAR{writer-fu}} \\
-        \Goos{\kwd{:accessor} \VAR{reader-fu}} \\
-        \kwd{:allocation } \Goo{\kwd{:instance}\XOR\kwd{:class}}\\
-        \Goos{\kwd{:initarg} \kwd{:}\VAR{arg}} \\
-        \kwd{:initform} \VAR{ form}\\
-        \kwd{:type} \VAR{ type}\\
-        \kwd{:documentation} \VAR{ string}}{\}})})
-    \orGOO{(\kwd{:default-initargs} \Goos{\VAR{name}\VAR{ value}})\\
-      (\kwd{:documentation} \VAR{ string})\\
-      (\kwd{:metaclass} \VAR{ name})}{\}})} 
-  {
-  Define \retval{class \VAR{ class-name}} as a subclass of \VAR{superclass}es.
   }
 
   \IT{(\GFU*{CHANGE-CLASS} \VAR{instance} \VAR{new-class} \Goos{\kwd{:}\VAR{initarg}
@@ -226,7 +226,7 @@
   \VAR{bar}. \VAR{spec-var}s specialize to either being of \VAR{class}
   or being \kwd{eql} \VAR{foo}, respectively. On invocation, \VAR{var}s and
   \VAR{spec-var}s of the \retval{new method}
-  act like parameters of a function with body \VAR{foo}.
+  act like parameters of a function with body \OPn{\VAR{form}}.
   }
 
   \IT{(\xorGOO{\GFU*{ADD-METHOD}\\
@@ -352,7 +352,7 @@
       \VAR{documentation}}{\}}
     \OPn{\VAR{body}})}
   {
-  Long form. A call to a generic function using \VAR{c-type} will
+  Long form. A call to a generic function using \VAR{c-type} will be
   equivalent to a call to the forms returned by \VAR{body}.  Lambda
   lists (\OPn{\VAR{fu-arg}}) and (\OPn{\VAR{method-combination-arg}})
   according to \VAR{fu-arg} on p.\ \pageref{section:Functions}, the

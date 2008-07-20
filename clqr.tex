@@ -76,11 +76,13 @@
 \newenvironment{LIST}[1]%
                {%
                  \LISTlinewidth=\linewidth
+                 \begin{flushleft}%
                  \begin{list}{}%
                    {\setlength{\itemindent}{-#1}\setlength{\leftmargin}{#1}}%
                    %\parskip0pt\itemsep0pt
                }%
                {\end{list}%
+                 \end{flushleft}%
                }%
 %
 %\renewcommand{\topfraction}{1}
@@ -115,7 +117,8 @@
   \startexplanation#2%
   \else%
   #1%
-  \unskip\penalty-10000\startexplanation#2%
+  \unskip\penalty-10000%
+  \parbox[t]{\linewidth}{\startexplanation#2}%
   \fi%
 }
 %

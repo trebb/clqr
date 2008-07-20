@@ -31,14 +31,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
-  \IT{\kwd*{:}\VAR{bar}\XOR\kwd*{keyword:}\VAR{bar}}
+  \IT{\kwd*{:}\VAR{bar}\XOR\kwd*{keyword}\kwd{:}\VAR{bar}}
   {
   Keyword, evaluates to \retval{:\VAR{bar}}.
   }
 
-  \IT{\VAR{foo}\kwd*{:}\VAR{bar}}
+  \IT{\VAR{package}\kwd*{:}\VAR{symbol}}
   {
-  Symbol \VAR{bar} of package \VAR{foo}
+  Exported \VAR{symbol} of \VAR{package}.
+  }
+
+  \IT{\VAR{package}\kwd*{::}\VAR{symbol}}
+  {
+  Possibly unexported \VAR{symbol} of \VAR{package}.
   }
 
   \IT{(\FU*{MAKE-PACKAGE} \VAR{name}
