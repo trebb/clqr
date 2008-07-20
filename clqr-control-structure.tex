@@ -176,17 +176,19 @@
 \label{section:Functions}
 
 
-Below, lambda list (\OPn{\VAR{fu-arg}}) has the form\\
-(\OPn{\VAR{var}}
-\OP{\kwd*{\&optional} \Goos{\VAR{var}\XOR(\VAR{var} \OP{\VAR{init}
-      \Op{\VAR{supplied-p}}})}}
-\Op{\kwd*{\&rest} \VAR{var}}
-\OP{\kwd*{\&key} \GOos{\VAR{var}\XOR(\Goo{\VAR{var}\XOR(\kwd{:}\VAR{key}
-      \VAR{var})}
-    \OP{\VAR{init }\Op{\VAR{supplied-p}}})}
-  \Op{\kwd*{\&allow-other-keys}}}
-\OP{\kwd*{\&aux} \Goos{\VAR{var}\XOR(\VAR{var} \Op{\VAR{init}})}}).\\
-\VAR{supplied-p} is \T\ if there is a corresponding argument.
+\begin{flushleft}
+  Below, lambda list (\OPn{\VAR{fu-arg}}) has the form\\
+  (\OPn{\VAR{var}}
+  \OP{\kwd*{\&optional} \Goos{\VAR{var}\XOR(\VAR{var} \OP{\VAR{init}
+        \Op{\VAR{supplied-p}}})}}
+  \Op{\kwd*{\&rest} \VAR{var}}
+  \OP{\kwd*{\&key} \GOos{\VAR{var}\XOR(\Goo{\VAR{var}\XOR(\kwd{:}\VAR{key}
+        \VAR{var})}
+      \OP{\VAR{init }\Op{\VAR{supplied-p}}})}
+    \Op{\kwd*{\&allow-other-keys}}}
+  \OP{\kwd*{\&aux} \Goos{\VAR{var}\XOR(\VAR{var} \Op{\VAR{init}})}}).\\
+  \VAR{supplied-p} is \T\ if there is a corresponding argument.
+\end{flushleft}
 
 \begin{LIST}{1cm}
 
@@ -308,34 +310,36 @@ Below, lambda list (\OPn{\VAR{fu-arg}}) has the form\\
 \subsection{Macros}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Below, macro lambda list (\OPn{\VAR{macro-arg}}) has the form of either\\
-(\Op{\kwd*{\&whole} \VAR{var}}
-\Op{\kwd*{\&environment} \VAR{var}}
-\OPn{\VAR{var}}
-\Op{\kwd*{\&environment} \VAR{var}}
-\Op{\kwd*{\&optional} \Goos{\VAR{var}\XOR(\VAR{var} \OP{\VAR{init}
-      \Op{\VAR{supplied-p}}})}}
-\Op{\kwd*{\&environment} \VAR{var}}
-\Op{\Goo{\kwd*{\&rest}\XOR\kwd*{\&body}} \VAR{var}}
-\Op{\kwd*{\&environment} \VAR{var}}
-\OP{\kwd*{\&key} \GOos{\VAR{var}\XOR(\Goo{\VAR{var}\XOR(\kwd{:}\VAR{key}
-      \VAR{var})}
-    \OP{\VAR{init} \Op{\VAR{supplied-p}}})}
+\begin{flushleft}
+  Below, macro lambda list (\OPn{\VAR{macro-arg}}) has the form of either\\
+  (\Op{\kwd*{\&whole} \VAR{var}}
   \Op{\kwd*{\&environment} \VAR{var}}
-  \Op{\kwd*{\&allow-other-keys}}}
-\Op{\kwd*{\&aux} \Goos{\VAR{var}\XOR(\VAR{var} \Op{\VAR{init}})}}
-\Op{\kwd*{\&environment} \VAR{var}})\\
-or\\
-(\Op{\kwd*{\&whole} \VAR{var}}
-\Op{\kwd*{\&environment} \VAR{var}}
-\OPn{\VAR{var}}
-\Op{\kwd*{\&environment} \VAR{var}}
-\Op{\kwd*{\&optional} \Goos{\VAR{var}\XOR(\VAR{var} \OP{\VAR{init}
-      \Op{\VAR{supplied-p}}})}}
-\Op{\kwd*{\&environment} \VAR{var}}
-\kwd{.} \VAR{var}).\\
-\kwd*{\&environment} \VAR{var} may appear only once.
-\VAR{supplied-p} is \T\ if there is a corresponding argument.
+  \OPn{\VAR{var}}
+  \Op{\kwd*{\&environment} \VAR{var}}
+  \Op{\kwd*{\&optional} \Goos{\VAR{var}\XOR(\VAR{var} \OP{\VAR{init}
+        \Op{\VAR{supplied-p}}})}}
+  \Op{\kwd*{\&environment} \VAR{var}}
+  \Op{\Goo{\kwd*{\&rest}\XOR\kwd*{\&body}} \VAR{var}}
+  \Op{\kwd*{\&environment} \VAR{var}}
+  \OP{\kwd*{\&key} \GOos{\VAR{var}\XOR(\Goo{\VAR{var}\XOR(\kwd{:}\VAR{key}
+        \VAR{var})}
+      \OP{\VAR{init} \Op{\VAR{supplied-p}}})}
+    \Op{\kwd*{\&environment} \VAR{var}}
+    \Op{\kwd*{\&allow-other-keys}}}
+  \Op{\kwd*{\&aux} \Goos{\VAR{var}\XOR(\VAR{var} \Op{\VAR{init}})}}
+  \Op{\kwd*{\&environment} \VAR{var}})\\
+  or\\
+  (\Op{\kwd*{\&whole} \VAR{var}}
+  \Op{\kwd*{\&environment} \VAR{var}}
+  \OPn{\VAR{var}}
+  \Op{\kwd*{\&environment} \VAR{var}}
+  \Op{\kwd*{\&optional} \Goos{\VAR{var}\XOR(\VAR{var} \OP{\VAR{init}
+        \Op{\VAR{supplied-p}}})}}
+  \Op{\kwd*{\&environment} \VAR{var}}
+  \kwd{.} \VAR{var}).\\
+  \kwd*{\&environment} \VAR{var} may appear only once.
+  \VAR{supplied-p} is \T\ if there is a corresponding argument.
+\end{flushleft}
 
 \begin{LIST}{1cm}
 
