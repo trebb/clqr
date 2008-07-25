@@ -1,25 +1,25 @@
-* find better bold <, >, \, {, }
+   * find better (bolder) bold <, >, \, {, }
 
-* mark unevaluated args of special forms
+   * mark unevaluated args of special forms; perhaps \widehat{}
 
-* FINAL TESTS
+   * mark modifiable args; perhaps \widetilde{}
 
-- multiple return values mentioned and usage of the three \retvals
+   * FINAL TESTS
 
-- setfiability
+   - multiple return values mentioned and usage of the three \retvals
 
-- defaults
+   - setfiability
 
-- arg* vs. args (list)
+   - defaults
 
-- talking metavariables
+   - arg* vs. args (list)
 
-- lexical vs. dynamic binding
+   - talking metavariables
 
-- errors/conditions always mentioned as \kwd{}
+   - lexical vs. dynamic binding
 
-- applicability of declare
+   - errors/conditions always mentioned as \kwd{}
 
-
+   - applicability of declare
 
 
