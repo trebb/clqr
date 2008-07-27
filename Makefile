@@ -129,7 +129,7 @@ html/sample-firstpage-consec.jpg:	$(CLQR)-a4-consec.pdf
 	$(RM) temp.jpg
 
 emergency-commit:	
-	$(BZR_COMMIT) -m "committed automatically by Makefile"
+	if $(BZR_COMMIT) -m "committed automatically by Makefile"; then true; else true; fi
 
 $(CLQR).tar.gz:
 	$(BZR_EXPORT) $@ $(SEND-TO-LOG)
