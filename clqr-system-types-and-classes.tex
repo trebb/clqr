@@ -1,3 +1,12 @@
+% Copyright (C) 2008 Bert Burgemeister
+%
+% Permission is granted to copy, distribute and/or modify this
+% document under the terms of the GNU Free Documentation License,
+% Version 1.2 or any later version published by the Free Software
+% Foundation; with no Invariant Sections, no Front-Cover Texts and
+% no Back-Cover Texts. For details see file COPYING.
+%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{System Types and Classes} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -131,7 +140,7 @@
   determined. 
   }
 
-  \IT{(\SF*{THE} \VAR{type} \VAR{form})}
+  \IT{(\SO*{THE} \NEV{\VAR{type}} \VAR{form})}
   {
   Return \retval{values} of \VAR{form} which are declared to be of
   \VAR{type}. 
@@ -142,15 +151,15 @@
   Coerce \VAR{object} into \VAR{type}.
   }
 
-  \IT{(\SF*{TYPECASE} \VAR{foo} \OPn{(\VAR{type} \OPn{\VAR{form-a}})} 
+  \IT{(\MC*{TYPECASE} \VAR{foo} \OPn{(\VAR{type} \OPn{\VAR{form-a}})} 
     \OP{(\xorGOO{\kwd*{OTHERWISE}\\\T}{\}} \OPn{\VAR{form-b}})\DF{\NIL}})}
   {
   Return \retval{values of a \VAR{form-a}s} if \VAR{foo} is of the corresponding
   \VAR{type}. Return \retval{values of \VAR{form-b}s} otherwise. 
   }
 
-  \IT{(\xorGOO{\SF*{CTYPECASE}\\
-      \SF*{ETYPECASE}}{\}} \VAR{foo} \OPn{(\VAR{type} \OPn{\VAR{form}})})}
+  \IT{(\xorGOO{\MC*{CTYPECASE}\\
+      \MC*{ETYPECASE}}{\}} \VAR{foo} \OPn{(\VAR{type} \OPn{\VAR{form}})})}
   {
   Return \retval{value of a \VAR{form}} if \VAR{foo} is of this \VAR{type}.
   Signal correctable/non-correctable error, respectively.
@@ -184,8 +193,8 @@
   elements of \VAR{type}. 
   }
 
-  \IT{(\SF*{DEFTYPE} \VAR{name} \OPn{\VAR{arg}} 
-    \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \Op{\VAR{documentation}} 
+  \IT{(\MC*{DEFTYPE} \VAR{name} \OPn{\VAR{arg}} 
+    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \Op{\NEV{\VAR{documentation}}} 
     \OPn{\VAR{form}})}
   {
   Define new type \retval{\VAR{name}}.

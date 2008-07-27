@@ -68,12 +68,12 @@
 \end{figure}
 
 \begin{LIST}{1cm}
-  \IT{(\SF*{DEFINE-CONDITION} \VAR{name} (\OPn{\VAR{parent}})
+  \IT{(\MC*{DEFINE-CONDITION} \VAR{name} (\OPn{\VAR{parent}})
     (\xorGOO{\VAR{slot}\\
       (\VAR{slot} 
-      \orGOO{\Goos{\kwd{:reader} \VAR{reader-fu}}\\
-        \Goos{\kwd{:writer} \VAR{writer-fu}} \\
-        \Goos{\kwd{:accessor} \VAR{reader-fu}} \\
+      \orGOO{\Goos{\kwd{:reader} \VAR{reader-function}}\\
+        \Goos{\kwd{:writer} \VAR{writer-function}} \\
+        \Goos{\kwd{:accessor} \VAR{reader-function}} \\
         \kwd{:allocation } \Goo{\kwd{:instance}\XOR\kwd{:class}}\\
         \Goos{\kwd{:initarg} \kwd{:}\VAR{arg}}\\
         \kwd{:initform} \VAR{ form}\\
@@ -117,9 +117,9 @@
   p.\ \pageref{section:Format}) with the debugger's continue option.
   }
 
-  \IT{(\SF*{IGNORE-ERRORS} \OPn{\VAR{form}})}
+  \IT{(\MC*{IGNORE-ERRORS} \OPn{\VAR{form}})}
   {
-  Return \retval{values of \VAR{form}s} as in \SF{progn} or, in case of \kwd{error}s,
+  Return \retval{values of \VAR{form}s} as in \SO{progn} or, in case of \kwd{error}s,
   \retval{\NIL} and the \retvalii{condition}.
   }
 
@@ -135,7 +135,7 @@
   and \VAR{arg}s. 
   }
 
-  \IT{(\SF*{ASSERT} \VAR{test} \OP{(\OPn{\VAR{place}}) \Op{\VAR{datum}
+  \IT{(\MC*{ASSERT} \VAR{test} \OP{(\OPn{\VAR{place}}) \Op{\VAR{datum}
     \OPn{\VAR{arg}}}})}
   {
   Signal correctable error denoted by \VAR{datum} and \VAR{arg}s if
@@ -143,10 +143,10 @@
   \retval{\NIL}. 
   }
 
-  \IT{(\SF*{HANDLER-CASE} \VAR{test} 
+  \IT{(\MC*{HANDLER-CASE} \VAR{test} 
     \OPn{(\VAR{type} (\Op{\VAR{condition-var}})
-      \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \OPn{\VAR{condition-form}})} 
-    \Op{(\kwd{:no-error} (\OPn{\VAR{fu-arg}}) \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
+      \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \OPn{\VAR{condition-form}})} 
+    \Op{(\kwd{:no-error} (\OPn{\VAR{fu-arg}}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
       \OPn{\VAR{form}})})}
   {
   If, on evaluation of \VAR{test}, a condition of \VAR{type} is
@@ -158,23 +158,24 @@
   for (\OPn{\VAR{fu-arg}}).
   }
 
-  \IT{(\kwd*{HANDLER-BIND} (\OPn{(\VAR{condition-type}
+  \IT{(\MC*{HANDLER-BIND} (\OPn{(\VAR{condition-type}
       \VAR{handler})}) \OPn{\VAR{form}})}
   {
   Evaluate \VAR{form}s with \VAR{condition-type}s dynamically bound to
   their respective \VAR{handler}. Return \retval{values of \VAR{form}s}.
   }
 
-  \IT{(\SF*{WITH-SIMPLE-RESTART} (\VAR{restart} \VAR{control}
+  \IT{(\MC*{WITH-SIMPLE-RESTART} (\VAR{restart} \VAR{control}
     \OPn{\VAR{arg}}) \OPn{\VAR{form}})}
   {
   If \VAR{restart} is not called from \VAR{form}s, return
-  \retval{values of last \VAR{form}}. Otherwise return \retval{\NIL}
-  and \retvalii{\T} and describe restart using \FU{format} \VAR{control}
-  and \VAR{arg}s (see p.\ \pageref{section:Format}).
+  \retval{values of last \VAR{form}}. Otherwise describe restart using
+  \FU{format} \VAR{control} and \VAR{arg}s (see
+  p.\ \pageref{section:Format}) and return \retval{\NIL}
+  and \retvalii{\T}.
   }
 
-  \IT{(\SF*{WITH-CONDITION-RESTARTS} \VAR{condition-form}
+  \IT{(\MC*{WITH-CONDITION-RESTARTS} \VAR{condition-form}
     \VAR{restarts-form} \OPn{\VAR{form}})}
   {
   Evaluate \VAR{form}s with restarts yielded from \VAR{restarts-form}
@@ -182,11 +183,11 @@
   \VAR{condition-form}. Return values of \VAR{form}s.
   }
 
-  \IT{(\SF*{RESTART-CASE} \VAR{test} \OPn{(\VAR{name} (\OPn{\VAR{fu-arg}})
+  \IT{(\MC*{RESTART-CASE} \VAR{test} \OPn{(\VAR{name} (\OPn{\VAR{fu-arg}})
       \orGOO{\kwd{:interactive}
         \VAR{ form}\\ 
       \kwd{:report} \VAR{ form}\\
-      \kwd{:test} \VAR{ form}}{\}} \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
+      \kwd{:test} \VAR{ form}}{\}} \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
       \OPn{form})})}
   {
   Evaluate \VAR{test} with new restarts \VAR{name}. Return
@@ -195,7 +196,7 @@
   For (\OPn{\VAR{fu-arg}}) see p.\ \pageref{section:Functions}.
   }
 
-  \IT{(\SF*{RESTART-BIND} (\OPn{(\VAR{restart}
+  \IT{(\MC*{RESTART-BIND} (\OPn{(\VAR{restart}
       \VAR{restart-function} \orGOO{\kwd{:interactive-function}
         \VAR{ function}\\ 
       \kwd{:report-function} \VAR{ function}\\
@@ -205,7 +206,7 @@
   dynamically bound to \VAR{restart-function}s.
   }
 
-  \IT{\arrGOO{(\FU*{INVOKE-RESTART} \VAR{ foo} \OPn{\VAR{ arg}})\\
+  \IT{\arrGOO{(\FU*{INVOKE-RESTART} \VAR{ restart} \OPn{\VAR{ arg}})\\
       (\FU*{INVOKE-RESTART-INTERACTIVELY} \VAR{ restart})}{.}}
   {
   Call function associated with \VAR{restart} with arguments given or

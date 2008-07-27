@@ -1,6 +1,6 @@
-* find better (bolder) bold <, >, \, {, }
+* find bolder bold <, >, \, {, }
 
-* mark unevaluated args of special forms; perhaps \widehat{}
+* make a clean distinction between foo* being/not being implicit progn
 
 * mark modifiable args; perhaps \widetilde{}
 
@@ -22,8 +22,5 @@
 
 - applicability of declare
 
-
-* find better return value markers; maybe underline + number
-
-* change Fu and SF to ANSI conform function, macro, special operator
+- unevaluated args
 

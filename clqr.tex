@@ -229,15 +229,12 @@
 % Generic Keyword, Uppercase
 \newcommand{\KWD}[1]{\text{{\sffamily\bfseries\selectfont%
       \uppercase{#1}}}}
-% Macro (currently same appearance as \SF)
+% Macro
 \newcommand{\MC}[1]{\text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}SF}}\lowercase{#1}}}}}
-% Special Operator (currently same appearance as \SF)
+      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}M}}\lowercase{#1}}}}}
+% Special Operator
 \newcommand{\SO}[1]{\text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}SF}}\lowercase{#1}}}}}
-% Special Form (to be replaced by \MC and \SO)
-\newcommand{\SF}[1]{\text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}SF}}\lowercase{#1}}}}}
+      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}SO}}\lowercase{#1}}}}}
 % Function
 \newcommand{\FU}[1]{\text{{\sffamily\bfseries\selectfont%
       {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}Fu}}\lowercase{#1}}}}}
@@ -270,9 +267,8 @@
 % Starred versions send argument into index:
 \WithSuffix\newcommand\kwd*[1]{\kwd{#1}\uppercase{\index{#1}}}
 \WithSuffix\newcommand\KWD*[1]{\KWD{#1}\uppercase{\index{#1}}}
-\WithSuffix\newcommand\MC*[1]{\SF{#1}\uppercase{\index{#1}}}
-\WithSuffix\newcommand\SO*[1]{\SF{#1}\uppercase{\index{#1}}}
-\WithSuffix\newcommand\SF*[1]{\SF{#1}\uppercase{\index{#1}}}
+\WithSuffix\newcommand\MC*[1]{\MC{#1}\uppercase{\index{#1}}}
+\WithSuffix\newcommand\SO*[1]{\SO{#1}\uppercase{\index{#1}}}
 \WithSuffix\newcommand\FU*[1]{\FU{#1}\uppercase{\index{#1}}}
 \WithSuffix\newcommand\GFU*[1]{\GFU{#1}\uppercase{\index{#1}}}
 \WithSuffix\newcommand\V*[1]{\V{#1}\uppercase{\index{#1}}}
@@ -339,10 +335,10 @@
 
   \begin{LIST}{1cm}
 
-    \IT{\kwd{NAME}, \FU{NAME}, \SF{NAME}, \GFU{NAME}, \V{*name*},
+    \IT{\kwd{NAME}, \FU{NAME}, \MC{NAME}, \SO{NAME}, \GFU{NAME}, \V{*name*},
       \CNS{name}}
     {
-    Symbol defined in Common Lisp; esp. function, special form, generic function,
+    Symbol defined in Common Lisp; esp.\ function, macro, special operator, generic function,
     variable, constant.
     }
 
@@ -395,6 +391,11 @@
     Anything from none to each of \VAR{foo}, \VAR{bar}, and \VAR{baz}.
     }
 
+    \IT{\NEV{\VAR{bar}}\qquad\qquad\qquad}
+    {
+    \VAR{bar} is not evaluated.
+    }
+
     \IT{\retval{\VAR{foo}}; \retvalii{\VAR{bar}};
       \retvaln{\VAR{n}}{\VAR{baz}}}
     {
@@ -440,7 +441,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-\clearpage % Uncomment this line to save some space
+\clearpage % Uncomment/comment this line to save/waste some space
 %
 \renewcommand{\indexpagestyle}{lispref}
 \renewenvironment{theindex}%
@@ -454,7 +455,7 @@
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   [\section*{Index}\vspace{-5ex}]
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  % Stock \printindex won't do as we want three-column.
+  % Stock \printindex won't do as we want more than two columns.
   \tiny\sffamily\input{clqr.ind}
 \end{multicols}
 

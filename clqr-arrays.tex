@@ -62,7 +62,7 @@
     \VAR{dimensions}. 
   }
 
-  \IT{(\kwd*{AREF} \VAR{array} \OP{\VAR{subscripts}})}
+  \IT{(\FU*{AREF} \VAR{array} \OP{\VAR{subscripts}})}
   {
   Return
   \retval{array element} pointed to by \VAR{subscripts}. \kwd{setf}able.
@@ -132,7 +132,7 @@
     \Op{\VAR{result-bit-array}\DF{\NIL}})}
   {
   Return \retval{result} of bit-wise logical operations
-  (cf.\ operations of \kwd{boole}, p.\ \pageref{section:Logic Functions}) on
+  (cf.\ operations of \FU{boole}, p.\ \pageref{section:Logic Functions}) on
   \VAR{bit-array-a} and  \VAR{bit-array-b}.  If \VAR{result-bit-array} is \T, put result in
   \VAR{bit-array-a}; if \VAR{arg} is \NIL, make a new array for
   result. 
@@ -170,7 +170,7 @@ s.\ \ref{section:Sequences}.
   Return fresh \retval{simple vector of \VAR{foo}s}.
   }
 
-  \IT{(\kwd*{SVREF} \VAR{vector} \VAR{i})}
+  \IT{(\FU*{SVREF} \VAR{vector} \VAR{i})}
   {
   Return \retval{\VAR{i}th
     element} of \VAR{vector}. \kwd{setf}able.

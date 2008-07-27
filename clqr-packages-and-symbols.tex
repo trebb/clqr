@@ -53,7 +53,7 @@
   Create \retval{package \VAR{name}}.
   }
 
-  \IT{(\kwd*{DEFPACKAGE}\VAR{ foo} 
+  \IT{(\MC*{DEFPACKAGE}\VAR{ foo} 
     \orGOO{\OPn{(\kwd{:use }\OPn{\VAR{from-package}})}\\
       \OPn{(\kwd{:nicknames }\OPn{\VAR{nick}})}\\
       (\kwd{:documentation }\VAR{string})\\
@@ -73,7 +73,7 @@
   Rename \VAR{package}. Return \retval{renamed package}.
   }
 
-  \IT{(\MC*{IN-PACKAGE }\VAR{foo})}
+  \IT{(\MC*{IN-PACKAGE }\NEV{\VAR{foo}})}
   {
   Make \retval{package \VAR{foo}} current.
   }
@@ -146,7 +146,7 @@
   \retvalii{\kwd{:inherited}}.
   }
 
-  \IT{(\kwd*{UNINTERN} \VAR{symbol} \Op{\VAR{package}})}
+  \IT{(\FU*{UNINTERN} \VAR{symbol} \Op{\VAR{package}})}
   {
   Remove \VAR{symbol} from \VAR{package}, return \retval{\T} on success.
   }
@@ -184,12 +184,12 @@
   
   \IT{(\xorGOO{%
       \arrGOO{%
-        \FU*{DO-ALL-SYMBOLS}\\
-        \FU*{DO-SYMBOLS}}{\}}\text{ }
-      (\VAR{var } \OP{\VAR{package } \Op{\VAR{result}}})\\
-      \FU*{DO-EXTERNAL-SYMBOLS } (\VAR{var } \Op{\VAR{result}})}{\}}
-    \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
-    \OPn{\orGOO{\VAR{tag}\\
+        \MC*{DO-ALL-SYMBOLS}\\
+        \MC*{DO-SYMBOLS}}{\}}\text{ }
+      (\NEV{\VAR{var}}\text{ } \OP{\VAR{package } \Op{\VAR{result}}})\\
+      \MC*{DO-EXTERNAL-SYMBOLS } (\VAR{var } \Op{\VAR{result}})}{\}}
+    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
+    \OPn{\orGOO{\NEV{\VAR{tag}}\\
       \VAR{form}}{\}}})}
   {
   Evaluate \VAR{form}s with \VAR{var} successively bound to every
@@ -198,9 +198,9 @@
   respectively. Return \retval{values of \VAR{result}}. 
   }
 
-  \IT{(\SF*{WITH-PACKAGE-ITERATOR} (\VAR{name} \VAR{packages}
+  \IT{(\MC*{WITH-PACKAGE-ITERATOR} (\VAR{name} \VAR{packages}
     \Op{\kwd{:internal}\XOR\kwd{:external}\XOR\kwd{:inherited}})
-    \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \OPn{\VAR{form}})}
+    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \OPn{\VAR{form}})}
   {
   Return \retval{values of \VAR{form}s}. In \VAR{form}s, successive
   invocations of  (\VAR{name}) return: \T\ if a symbol is returned;

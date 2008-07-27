@@ -22,7 +22,7 @@
   \retval{\T} if \VAR{slot} in \VAR{instance} is bound.
   }
 
-  \IT{(\SF*{DEFCLASS} \VAR{class-name} (\OPn{\VAR{superclass}})
+  \IT{(\MC*{DEFCLASS} \VAR{class-name} (\OPn{\VAR{superclass}})
     (\OPn{\xorGOO{\VAR{slot}\\
       (\VAR{slot} 
       \orGOO{\Goos{\kwd{:reader} \VAR{reader-fu}}\\
@@ -74,16 +74,16 @@
   Make \VAR{slot} in \retval{\VAR{instance}} unbound.
   }
 
-  \IT{(\SF*{WITH-SLOTS} (\Goos{\VAR{slot}\XOR(\VAR{var
-        slot})}) \VAR{instance} \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
+  \IT{(\MC*{WITH-SLOTS} (\Goos{\VAR{slot}\XOR(\VAR{var
+        slot})}) \VAR{instance} \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \OPn{\VAR{form}})}
   {
   Evaluate \VAR{form}s with slots of \VAR{instance} locally visible as
   \VAR{slot}s or \VAR{var}s. 
   }
 
-  \IT{(\SF*{WITH-ACCESSORS} (\OPn{(\VAR{var} \VAR{accessor})})
-    \VAR{instance}  \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
+  \IT{(\MC*{WITH-ACCESSORS} (\OPn{(\NEV{\VAR{var}} \NEV{\VAR{accessor}})})
+    \VAR{instance}  \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \OPn{\VAR{form}})}
   {
   Evaluate \VAR{form}s with variables \VAR{var} locally bound to
@@ -96,7 +96,7 @@
   \retval{Name of \VAR{class}}. \kwd{setf}able.
   }
 
-  \IT{(\kwd*{CLASS-OF} \VAR{foo})}
+  \IT{(\FU*{CLASS-OF} \VAR{foo})}
   {
   \retval{Class} \VAR{foo} is an instance of.
   }
@@ -114,7 +114,7 @@
   Called by \GFU{change-class}.
   }
 
-  \IT{(\kwd*{MAKE-INSTANCES-OBSOLETE} \VAR{class})}
+  \IT{(\GFU*{MAKE-INSTANCES-OBSOLETE} \VAR{class})}
   {
   Update instances of \VAR{class}.
   }
@@ -164,7 +164,7 @@
   \retval{\T} if enclosing method has a next method.
   }
 
-  \IT{(\SF*{DEFGENERIC}
+  \IT{(\MC*{DEFGENERIC}
     \xorGOO{\VAR{name}\\ (\kwd{setf} \VAR{ name})}{\}} 
     (\OPn{\VAR{var}}%
     \OP{\kwd*{\&optional} \Goos{\VAR{var}\XOR(\VAR{var})}}
@@ -176,7 +176,7 @@
      \orGOO{%
     (\kwd{:argument-precendence-order}\RP{\VAR{ var}})\\
     (\kwd{declare }\RP{(\kwd{optimize}\OPn{\VAR{ arg}})})\\
-    (\kwd{:documentation} \VAR{ string})\\
+    (\kwd{:documentation } \NEV{\VAR{string}})\\
     (\kwd{:generic-function-class} \VAR{ class}\DF{\kwd{standard-generic-function}})\\
     (\kwd{:method-class} \VAR{ class}\DF{\kwd{standard-method}})\\
     (\kwd{:method-combination} \VAR{ c-type} \OPn{\VAR{ arg}})\\
@@ -202,7 +202,7 @@
   s.\ \ref{section:Method Combination Types}.
   }
 
-  \IT{(\SF*{DEFMETHOD} 
+  \IT{(\MC*{DEFMETHOD} 
     \xorGOO{\VAR{bar}\\ (\kwd{setf} \VAR{ bar})}{\}} 
     \Op{\xorGOO{\kwd{:before}\\
         \kwd{:after}\\
@@ -218,8 +218,8 @@
         \OP{\VAR{init }\Op{\VAR{supplied-p}}})}
       \Op{\kwd*{\&allow-other-keys}}}
     \OP{\kwd*{\&aux }\Goos{\VAR{var}\XOR(\VAR{var} \Op{\VAR{init}})}})
-    \orGOO{\OPn{(\kwd{declare} \OPn{\VAR{ decl}})}\\
-      \VAR{documentation}}{\}}
+    \orGOO{\OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\\
+      \NEV{\VAR{documentation}}}{\}}
     \OPn{\VAR{form}})}
   {
   Define \retval{new method} for generic function
@@ -241,9 +241,9 @@
   \retval{its values}.
   }
 
-  \IT{(\SF*{CALL-METHOD} \orGOO{\VAR{method}\\
-      (\SF*{MAKE-METHOD} \VAR{ form})}{\}}
-    \Op{\VAR{next-methods}})}
+  \IT{(\MC*{CALL-METHOD} \orGOO{\NEV{\VAR{method}}\\
+      (\MC*{MAKE-METHOD} \VAR{ form})}{\}}
+    \Op{\NEV{\VAR{next-methods}}})}
   {
   Call \VAR{method}, return \retval{its values}.
   }
@@ -326,8 +326,8 @@
   type is given. 
   }
 
-  \IT{(\SF*{DEFINE-METHOD-COMBINATION} \VAR{c-type} \orGOO{%
-    \kwd{:documentation} \VAR{ string}\\
+  \IT{(\MC*{DEFINE-METHOD-COMBINATION} \VAR{c-type} \orGOO{%
+    \kwd{:documentation } \NEV{\VAR{string}}\\
     \kwd{:identity-with-one-argument} \VAR{ bool}\DF{\NIL}\\
     \kwd{:operator} \VAR{ operator}\DF{\VAR{c-type}}}{\}})}
   {
@@ -337,7 +337,7 @@
   \OPn{\VAR{applicable-method}}). 
   }
 
-  \IT{(\SF*{DEFINE-METHOD-COMBINATION} \VAR{c-type}
+  \IT{(\MC*{DEFINE-METHOD-COMBINATION} \VAR{c-type}
     (\OPn{\VAR{fu-arg}}) 
     (\GOOs{\VAR{name} \xorGOO{%
       \GOOp{\VAR{list}\XOR\kwd{*}}\\
@@ -348,8 +348,8 @@
     \kwd{:required} \VAR{ bool}}{\}}})
     \Op{\kwd{:arguments} (\OPn{\VAR{method-combination-arg}})}
     \Op{\kwd{:generic-function} \VAR{ symbol}}
-    \orGOO{\OPn{(\kwd{declare} \OPn{\VAR{ decl}})}\\
-      \VAR{documentation}}{\}}
+    \orGOO{\OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\\
+      \NEV{\VAR{documentation}}}{\}}
     \OPn{\VAR{body}})}
   {
   Long form. A call to a generic function using \VAR{c-type} will be

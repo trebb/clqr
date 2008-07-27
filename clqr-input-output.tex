@@ -1,3 +1,12 @@
+% Copyright (C) 2008 Bert Burgemeister
+%
+% Permission is granted to copy, distribute and/or modify this
+% document under the terms of the GNU Free Documentation License,
+% Version 1.2 or any later version published by the Free Software
+% Foundation; with no Invariant Sections, no Front-Cover Texts and
+% no Back-Cover Texts. For details see file COPYING.
+%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Input/Output} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -55,7 +64,7 @@
   \FU{format}, for \VAR{control} and \VAR{arg}s. 
   }
 
-  \IT{(\SF*{WITH-STANDARD-IO-SYNTAX} \OPn{\VAR{form}})}
+  \IT{(\MC*{WITH-STANDARD-IO-SYNTAX} \OPn{\VAR{form}})}
   {
   Evaluate \VAR{form}s with standard behaviour of reader and
   printer. Return \retval{values of \VAR{form}s}.
@@ -238,13 +247,13 @@
 
   \IT{\KWD*{'}\VAR{foo}}
   {
-  \SF{quote} \VAR{foo}.
+  \retval{(\SO{quote} \NEV{\VAR{foo}})}.
   }
 
   \IT{\KWD*{`}(\Op{\VAR{foo}} \Op{\KWD*{,}\VAR{bar}} \Op{\KWD*{,@}\VAR{baz}}
     \Op{\KWD*{,.}\VAR{quux}} \Op{\VAR{bing}})}
   {
-  \SF{quote} \VAR{foo} and \VAR{bing}; evaluate \VAR{bar} and splice the lists
+  \SO{quote} \VAR{foo} and \VAR{bing}; evaluate \VAR{bar} and splice the lists
   \VAR{baz} and \VAR{quux} into their
   elements. \VAR{quux} is possibly modified during evaluation.
   }
@@ -473,11 +482,11 @@
   elements in a table with column width \VAR{n} ems.  Return \retval{\NIL}.
   }
 
-  \IT{(\SF*{PPRINT-LOGICAL-BLOCK} (\VAR{stream} \VAR{list}
+  \IT{(\MC*{PPRINT-LOGICAL-BLOCK} (\VAR{stream} \VAR{list}
     \orGOO{\xorGOO{\kwd{:prefix} \VAR{ prefix}\\
         \kwd{:per-line-prefix} \VAR{ per-line-prefix}}{\}}\\
       \kwd{:suffix} \VAR{ suffix}\DF{\LIT{""}}}{\}})
-    \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \OPn{\VAR{form}})}
+    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \OPn{\VAR{form}})}
   {
   Evaluate \VAR{form}s, which should print \VAR{list}, with
   \VAR{stream} locally bound to a pretty 
@@ -487,7 +496,7 @@
 
   \begin{LIST}{.5cm}
 
-    \IT{(\SF*{PPRINT-POP})}
+    \IT{(\MC*{PPRINT-POP})}
     {
     Take \retval{next element} off \VAR{list}. If there is no remaining
     list in \VAR{list}, or \V{*print-length*} or \V{*print-circle*} indicate
@@ -646,7 +655,7 @@
 
 \begin{LIST}{1cm}
 
-  \IT{(\SF*{FORMATTER} \VAR{control})}
+  \IT{(\MC*{FORMATTER} \VAR{control})}
   {
   Return \retval{function} of stream and a \kwd{\&rest} argument applying \FU{format} to
   stream, \VAR{control}, and the \kwd{\&rest} argument
@@ -659,7 +668,7 @@
   Output string \VAR{control} which may
   contain \kwd{\TLD} directives possibly taking some
   \VAR{arg}s. Alternatively, \VAR{control} can be a function returned
-  by \SF{formatter} which is then applied to \VAR{out-stream} and \OPn{\VAR{arg}}.
+  by \MC{formatter} which is then applied to \VAR{out-stream} and \OPn{\VAR{arg}}.
   Output to \VAR{out-string}, \VAR{out-stream}, or, if first
   argument is \T, to \V{*standard-output*}. Return \retval{\NIL}. If
   first argument is \NIL, return \retval{formatted output}. 
@@ -1009,27 +1018,27 @@
   respectively. 
   }
 
-  \IT{(\SF*{WITH-OPEN-STREAM} (\VAR{foo} \VAR{stream})
-    \OPn{(\kwd{declare} \OPn{\VAR{decl}})} \OPn{\VAR{form}})}
+  \IT{(\MC*{WITH-OPEN-STREAM} (\VAR{foo} \VAR{stream})
+    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \OPn{\VAR{form}})}
   {
   Evaluate \VAR{form}s with \VAR{foo} locally bound to
   \VAR{stream}. Return \retval{values of \VAR{form}s}. 
   }
 
-  \IT{(\SF*{WITH-INPUT-FROM-STRING} (\VAR{foo} \VAR{string} 
+  \IT{(\MC*{WITH-INPUT-FROM-STRING} (\VAR{foo} \VAR{string} 
     \orGOO{\kwd{:index} \VAR{ index}\\\kwd{:start} \VAR{
         start}\\\kwd{:end} \VAR{ end}}{\}}) \OPn{(\kwd{declare}
-      \OPn{\VAR{decl}})} \OPn{\VAR{form}})}
+      \OPn{\NEV{\VAR{decl}}})} \OPn{\VAR{form}})}
   {
   Evaluate \VAR{form}s with \VAR{foo} locally bound to input stream
   from \VAR{string}. \VAR{index} contains the reading position in
   \VAR{string} after leaving. Return \retval{values of \VAR{form}s}. 
   }
 
-  \IT{(\SF*{WITH-OUTPUT-TO-STRING} (\VAR{foo} 
+  \IT{(\MC*{WITH-OUTPUT-TO-STRING} (\VAR{foo} 
     \Op{\VAR{string}}\DF{\NIL} \Op{\kwd{:element-type}
       \VAR{type}\DF{\kwd{character}}}) \OPn{(\kwd{declare}
-      \OPn{\VAR{decl}})} \OPn{\VAR{form}})}
+      \OPn{\NEV{\VAR{decl}}})} \OPn{\VAR{form}})}
   {
   Evaluate \VAR{form}s with \VAR{foo} locally bound to output
   stream. Append output to \VAR{string} and return \retval{value of
@@ -1227,8 +1236,8 @@
   \retvalii{\T} if something has been created.
   }
 
-  \IT{(\SF*{WITH-OPEN-FILE} (\VAR{stream path}
-    \OPn{\VAR{option-form}}) \OPn{(\kwd{declare} \OPn{\VAR{decl}})}
+  \IT{(\MC*{WITH-OPEN-FILE} (\VAR{stream path}
+    \OPn{\VAR{option-form}}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \OPn{\VAR{form}})}
   {
   Use \FU*{OPEN} with arguments \VAR{option-form}s to temporarily
