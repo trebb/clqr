@@ -1,25 +1,29 @@
-   * find better (bolder) bold <, >, \, {, }
+* find better (bolder) bold <, >, \, {, }
 
-   * mark unevaluated args of special forms; perhaps \widehat{}
+* mark unevaluated args of special forms; perhaps \widehat{}
 
-   * mark modifiable args; perhaps \widetilde{}
+* mark modifiable args; perhaps \widetilde{}
 
-   * FINAL TESTS
+* FINAL TESTS
 
-   - multiple return values mentioned and usage of the three \retvals
+- multiple return values mentioned and usage of the three \retvals
 
-   - setfiability
+- setfiability
 
-   - defaults
+- defaults
 
-   - arg* vs. args (list)
+- arg* vs. args (list)
 
-   - talking metavariables
+- talking metavariables
 
-   - lexical vs. dynamic binding
+- lexical vs. dynamic binding
 
-   - errors/conditions always mentioned as \kwd{}
+- errors/conditions always mentioned as \kwd{}
 
-   - applicability of declare
+- applicability of declare
 
+
+* find better return value markers; maybe underline + number
+
+* change Fu and SF to ANSI conform function, macro, special operator
 

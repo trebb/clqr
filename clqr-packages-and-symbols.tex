@@ -73,7 +73,7 @@
   Rename \VAR{package}. Return \retval{renamed package}.
   }
 
-  \IT{(\kwd*{IN-PACKAGE }\VAR{foo})}
+  \IT{(\MC*{IN-PACKAGE }\VAR{foo})}
   {
   Make \retval{package \VAR{foo}} current.
   }
@@ -113,7 +113,7 @@
 
   \IT{(\FU*{FIND-PACKAGE} \VAR{name})}
   {
-  Return \retval{package object} with \VAR{name} (case-sensitive). 
+  \retval{Package object} with \VAR{name} (case-sensitive). 
   }
 
   \IT{(\FU*{PACKAGE-USE-LIST} \VAR{package})}
@@ -291,7 +291,7 @@
 
   \IT{\CNS*{NIL}\XOR{\kwd*{()}}}
   {
-  Falsity, the empty list; the empty type, subtype of every type; \V{*standard-input*};
+  Falsity; the empty list; the empty type, subtype of every type; \V{*standard-input*};
   \V{*standard-output*}; the global environment.
   }
 

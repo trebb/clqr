@@ -136,6 +136,9 @@
 % Variable Text
 \newcommand{\VAR}[1]{\text{{\fontfamily{cmr}\fontshape{it}\selectfont#1\/}}}
 %
+% Not Evaluated
+\newcommand{\NEV}[1]{\text{{$\widehat{#1}$}}}
+%
 % Default Value
 \newcommand{\DF}[1]{\text{\textsubscript{\setlength{\fboxsep}{.5pt}\setlength{\fboxrule}{.1pt}\fbox{#1}}}}
 %
@@ -226,7 +229,13 @@
 % Generic Keyword, Uppercase
 \newcommand{\KWD}[1]{\text{{\sffamily\bfseries\selectfont%
       \uppercase{#1}}}}
-% Special Form
+% Macro (currently same appearance as \SF)
+\newcommand{\MC}[1]{\text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}SF}}\lowercase{#1}}}}}
+% Special Operator (currently same appearance as \SF)
+\newcommand{\SO}[1]{\text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}SF}}\lowercase{#1}}}}}
+% Special Form (to be replaced by \MC and \SO)
 \newcommand{\SF}[1]{\text{{\sffamily\bfseries\selectfont%
       {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}SF}}\lowercase{#1}}}}}
 % Function
@@ -245,10 +254,12 @@
 \newcommand{\LKWD}[1]{\text{{\sffamily\bfseries\selectfont%
       {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}}}\lowercase{#1}}}}}
 
-% Return values, First, Second, Third
+% Return values, First, Second, nth, Third
 \newcommand{\retval}[1]{\uline{#1}}
 \newcommand{\retvalii}[1]{\uuline{#1}}
-\newcommand{\retvaliii}[1]{\underline{\underline{\underline{#1}}}}
+\newcommand{\retvaln}[2]{{%
+      {\raisebox{-1.7ex}[1ex][0pt]{\tiny\sffamily\upshape\mdseries\makebox[0pt][l]{\hspace{-.1em}#1}}\uline{#2}}}}
+\newcommand{\retvaliii}[1]{\retvaln{3}{#1}}
 
 % T and NIL
 \newcommand{\T}{\text{\ttfamily T}}
@@ -259,6 +270,8 @@
 % Starred versions send argument into index:
 \WithSuffix\newcommand\kwd*[1]{\kwd{#1}\uppercase{\index{#1}}}
 \WithSuffix\newcommand\KWD*[1]{\KWD{#1}\uppercase{\index{#1}}}
+\WithSuffix\newcommand\MC*[1]{\SF{#1}\uppercase{\index{#1}}}
+\WithSuffix\newcommand\SO*[1]{\SF{#1}\uppercase{\index{#1}}}
 \WithSuffix\newcommand\SF*[1]{\SF{#1}\uppercase{\index{#1}}}
 \WithSuffix\newcommand\FU*[1]{\FU{#1}\uppercase{\index{#1}}}
 \WithSuffix\newcommand\GFU*[1]{\GFU{#1}\uppercase{\index{#1}}}
@@ -383,9 +396,9 @@
     }
 
     \IT{\retval{\VAR{foo}}; \retvalii{\VAR{bar}};
-      \retvaliii{\VAR{baz}}}
+      \retvaln{\VAR{n}}{\VAR{baz}}}
     {
-    First, second and third return value.
+    First, second and \VAR{n}th return value.
     }
 
     \IT{\T\qquad\qquad\qquad\qquad}
