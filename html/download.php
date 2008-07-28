@@ -44,10 +44,11 @@
 	      <a href="http://download.berlios.de/clqr/clqr-a4-consec.pdf">clqr-a4-consec.pdf</a><br />
 	      <a href="http://download.berlios.de/clqr/clqr-letter-consec.pdf">clqr-letter-consec.pdf</a><br />
 	      <ul>
-		<li> Pages in their natural order. 
-		<li>Most convenient for reading on the screen. 
-		<li>Not of much use for printing because of the odd
-		  paper format. 
+		<li>Pages in their natural order. 
+		<li>Suitable only for reading on the screen. Comes
+		with bookmarks and hyperlinks.
+		<li>Not meant for printing because of the odd
+		  paper format and the coloured hyperlinks. 
 	      </ul>
 	      <p>&nbsp;
 	      <p>&nbsp;
@@ -59,7 +60,7 @@
 	      <a href="http://download.berlios.de/clqr/clqr-a4-booklet-all.pdf">clqr-a4-booklet-all.pdf</a><br />
 	      <a href="http://download.berlios.de/clqr/clqr-letter-booklet-all.pdf">clqr-letter-booklet-all.pdf</a><br />
 	      <ul>
-		<li>Suitable for folding lengthwise and nesting the
+		<li>Suitable for printing, folding lengthwise and nesting the
 		  folios.
 		<li>With 48 pages total, first sheet has pages 48, 1, 2, 47.
 		<li>With 48 pages total, last sheet has pages 26, 23, 24, 25.
@@ -74,7 +75,7 @@
 	      <a href="http://download.berlios.de/clqr/clqr-a4-booklet-four.pdf">clqr-a4-booklet-four.pdf</a><br />
 	      <a href="http://download.berlios.de/clqr/clqr-letter-booklet-four.pdf">clqr-letter-booklet-four.pdf</a><br />
 	      <ul>
-		<li>Suitable for folding lengthwise and stacking up the
+		<li>Suitable for printing, folding lengthwise and stacking up the
 		  folios.
 		<li>First sheet has pages 4, 1, 2, 3.
 		<li>With 48 pages total, last sheet has pages 48, 45, 46, 47.
@@ -84,6 +85,8 @@
 	      <p>&nbsp;
 	    </div>
 	    <div class="here">
+	      <img class="left" src="sample-source.jpg"
+		   alt="Sample"/> 
 	      <a href="http://download.berlios.de/clqr/clqr.tar.gz">clqr.tar.gz</a><br />
 	      <ul>
 		<li>LaTeX sources.

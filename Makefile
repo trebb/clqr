@@ -19,6 +19,8 @@ PSBOOK-FOUR	= psbook -s4
 PS2PDF		= ps2pdf
 CONVERT		= convert
 MONTAGE		= montage
+HEAD		= head
+TAIL		= tail
 TOUCH		= touch
 CP		= cp --verbose
 RM		= rm --force --verbose
@@ -32,11 +34,19 @@ RSYNC		= rsync -va
 
 all:	letter a4
 
-letter:	$(CLQR)-letter-booklet-all.pdf $(CLQR)-letter-booklet-four.pdf $(CLQR)-letter-consec.pdf
+letter:	 
+	$(MAKE) letter-booklets
+	$(MAKE) $(CLQR)-letter-consec.pdf
 
-a4:	$(CLQR)-a4-booklet-all.pdf $(CLQR)-a4-booklet-four.pdf $(CLQR)-a4-consec.pdf 
+a4:	
+	$(MAKE) a4-booklets
+	$(MAKE) $(CLQR)-a4-consec.pdf 
 
-$(CLQR)-%-consec.pdf:	$(CLQR)-%-consec.ps
+letter-booklets:	$(CLQR)-letter-booklet-all.pdf $(CLQR)-letter-booklet-four.pdf
+
+a4-booklets:	 $(CLQR)-a4-booklet-all.pdf  $(CLQR)-a4-booklet-four.pdf 
+
+$(CLQR)-%-consec.pdf:	$(CLQR)-%-consec.ps color-colorful.flag
 	$(PS2PDF) $< $@ $(SEND-TO-LOG)
 
 $(CLQR)-letter-booklet-%.pdf:	$(CLQR)-letter-booklet-%.ps
@@ -45,10 +55,10 @@ $(CLQR)-letter-booklet-%.pdf:	$(CLQR)-letter-booklet-%.ps
 $(CLQR)-a4-booklet-%.pdf:	$(CLQR)-a4-booklet-%.ps
 	$(PS2PDF) -sPAPERSIZE=a4 $< $@ $(SEND-TO-LOG)
 
-$(CLQR)-letter-booklet-%.ps:	$(CLQR)-letter-signature-%.ps
+$(CLQR)-letter-booklet-%.ps:	$(CLQR)-letter-signature-%.ps color-black.flag
 	$(PSNUP-LETTER) $< > $@ $(SEND-TO-LOG)
 
-$(CLQR)-a4-booklet-%.ps:	$(CLQR)-a4-signature-%.ps
+$(CLQR)-a4-booklet-%.ps:	$(CLQR)-a4-signature-%.ps color-black.flag
 	$(PSNUP-A4) $< > $@ $(SEND-TO-LOG)
 
 $(CLQR)-%-signature-all.ps:	$(CLQR)-%-consec.ps
@@ -60,7 +70,7 @@ $(CLQR)-%-signature-four.ps:	$(CLQR)-%-consec.ps
 $(CLQR)-%-consec.ps:	$(CLQR)-%.dvi
 	$(DVIPS) -o $@ $< $(SEND-TO-LOG)
 
-$(CLQR)-%.dvi:	$(CLQR).tex $(CLQR)-*.tex paper-%.flag REVISION.tex
+$(CLQR)-%.dvi:	$(CLQR).tex $(CLQR)-*.tex paper-%.flag color-current.tex REVISION.tex
 	$(TOUCH) $(CLQR).ind $(SEND-TO-LOG)
 	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
 	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
@@ -78,6 +88,16 @@ paper-letter.flag:
 	$(RM) paper-a4.flag $(SEND-TO-LOG)
 	$(TOUCH) $@
 
+color-colorful.flag:	
+	$(CP) color-colorful.tex color-current.tex $(SEND-TO-LOG)
+	$(RM) color-black.flag $(SEND-TO-LOG)
+	$(TOUCH) $@
+
+color-black.flag:	
+	$(CP) color-black.tex color-current.tex $(SEND-TO-LOG)
+	$(RM) color-colorful.flag $(SEND-TO-LOG)
+	$(TOUCH) $@
+
 REVISION.tex:	DATE.tex
 	if $(BZR_REVISION); then $(BZR_REVISION) > $@; else $(TOUCH) $@; fi $(SEND-TO-LOG)
 
@@ -85,7 +105,7 @@ DATE.tex:	$(CLQR).tex $(CLQR)-*.tex
 	$(DATE) > $@
 
 clean:
-	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.ps *.pdf *~ html/*~ *.flag *.jpg html/*.jpg *.tar.gz
+	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.out *.ps *.pdf *~ html/*~ *.flag *.jpg html/*.jpg *.tar.gz
 
 
 # Project hosting
@@ -94,7 +114,7 @@ maintainance:	release publish
 
 publish:	html/sample-frontcover.jpg html/sample-doublepage.jpg \
 		html/sample-firstpage-all.jpg html/sample-firstpage-four.jpg \
-		html/sample-firstpage-consec.jpg $(CLQR)-a4-consec.pdf
+		html/sample-firstpage-consec.jpg html/sample-source.jpg $(CLQR)-a4-consec.pdf
 	$(MAKE) publishclean
 	$(RSYNC) --delete ./ trebb@shell.berlios.de:/home/groups/ftp/pub/clqr/clqr/ $(SEND-TO-LOG)
 	$(RSYNC) ./html/ trebb@shell.berlios.de:/home/groups/clqr/htdocs/ $(SEND-TO-LOG)
@@ -125,6 +145,11 @@ html/sample-firstpage-%.jpg:	$(CLQR)-a4-booklet-%.pdf
 
 html/sample-firstpage-consec.jpg:	$(CLQR)-a4-consec.pdf
 	$(CONVERT) $<'[0]' -verbose -resize 15% temp.jpg $(SEND-TO-LOG)
+	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
+	$(RM) temp.jpg
+
+html/sample-source.jpg:	$(CLQR)-numbers.tex
+	$(HEAD) -n 57  $< | $(TAIL) -n 40 | $(CONVERT) -font Courier -crop 120x80+30+2 +repage label:@- temp.jpg $(SEND-TO-LOG)
 	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 	$(RM) temp.jpg
 

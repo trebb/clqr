@@ -1,7 +1,15 @@
-Common Lisp Quick Reference is a free booklet with short descriptions
-of the thousand or so symbols defined in the ANSI standard. 
+Common Lisp Quick Reference is a free (see file COPYING) booklet with
+short descriptions of the thousand or so symbols defined in the ANSI
+standard.
+
 
 It builds well on a Debian system. Have a look into the Makefile to
-learn more about prerequisites.
+learn more about prerequisites. If you have them all in place, type
 
-Visit http://clqr.berlios.de/ for the most recent revision.
+$ make
+
+and be patient.
+
+
+Visit http://clqr.berlios.de/ for the latest revision including
+ready-made pdfs.

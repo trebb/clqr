@@ -7,7 +7,8 @@
 % no Back-Cover Texts. For details see file COPYING.
 %
 
-\newcommand{\maintitle}{Common Lisp Quick Reference}
+\newcommand{\maintitle}{Common\ Lisp\ Quick\ Reference}
+\newcommand{\AUTHOR}{Bert~Burgemeister}
 
 \documentclass[8pt,pagesize,twoside,footexclude,headexclude]{scrartcl}
 %
@@ -19,6 +20,16 @@
 %%\areaset[3mm]{9cm}{28.3cm}
 %\typearea[2mm]{20}
 %%%%%%%%%%%%%%%%%%
+%
+%%%%%%%%%%%%%%%%%%
+% outsourced hypertext colors
+\input{color-current}
+%\newcommand{\linkcolor}{Fuchsia}
+%\newcommand{\urlcolor}{MidnightBlue}
+%\newcommand{\bookmarks}{true}
+%\newcommand{\pdfpagelayout}{TwoColumnLeft}
+%%%%%%%%%%%%%%%%%%
+%
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -45,6 +56,15 @@
 %\usepackage{mathptmx}
 %\usepackage[scaled]{helvet}
 %%%%%%%%%%%%%%%%%%
+%
+% should remain last usepackage:
+\usepackage%
+    [breaklinks,linktocpage,colorlinks,%
+      bookmarksnumbered,bookmarks=\bookmarks,%
+      linkcolor=\linkcolor,urlcolor=\urlcolor,%
+      pdfpagelayout=\pdfpagelayout,%
+      pdftitle=\maintitle,pdfauthor=\AUTHOR]%
+    {hyperref}
 %
 \makeindex
 \titleformat{\section}{\sffamily\mdseries\slshape}
@@ -310,7 +330,7 @@
     \end{minipage}
     \begin{minipage}{\titlepagewidth}
       \rmfamily\mdseries\upshape\fontsize{14}{0}\selectfont
-      Bert Burgemeister
+      \AUTHOR
       \vspace*{4mm}
     \end{minipage}
   \end{center}
@@ -496,15 +516,14 @@
       \rmfamily\small
       \makebox[\textwidth][l]{\maintitle\ \hfill  Revision \input{REVISION}
        [\input{DATE}\hspace{-.65ex}]}
-      \makebox[\textwidth][l]{Copyright \copyright\ 2008 Bert
-        Burgemeister\hfill\LaTeX\ source:
-        http://clqr.berlios.de}\\[1.5mm] 
+      \makebox[\textwidth][l]{Copyright \copyright\ 2008 \AUTHOR\hfill\LaTeX\ source:
+        \href{http://clqr.berlios.de}{http://clqr.berlios.de}}\\[1.5mm] 
       Permission is granted to copy, distribute and/or modify this
       document under the terms of the GNU Free Documentation License,
       Version 1.2 or any later version published by the Free Software
       Foundation; with no Invariant Sections, no Front-Cover Texts and
       no Back-Cover Texts.\hfill
-      http://www.gnu.org/licenses/fdl.html\\
+      \href{http://www.gnu.org/licenses/fdl.html}{http://www.gnu.org/licenses/fdl.html}\\
       \vspace{-1mm}
       \hrule
     \end{minipage}
