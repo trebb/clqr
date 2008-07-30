@@ -195,7 +195,7 @@
   \IT{\arrGOO{(\FU*{NUMERATOR} \VAR{ rational})\\
       (\FU*{DENOMINATOR} \VAR{ rational})}{.}}
   {
-  Return \retval{numerator} or  \retval{denominator}, respectively, of
+  \retval{Numerator} or  \retval{denominator}, respectively, of
   \VAR{rational}'s canonical form.
   }
 
@@ -219,13 +219,13 @@
     \VAR{n} \Op{\VAR{d}\DF{1}})}
   {
   Return \retval{$n/d$} (\kwd{integer} or \kwd{float}, respectively) truncated
-  towards $-\infty$, $+\infty$, $0$, or rounded, respectively; and \retvalii{remainder}.
+  towards $-\infty$, $+\infty$, $0$, or rounded, respectively; and \retvalii{re\-main\-der}.
   }
 
   \IT{(\xorGOO{\FU*{MOD}\\
       \FU*{REM}}{\}} \VAR{n} \Op{\VAR{d}\DF{1}})}
   {Same as \FU{floor} or
-  \FU{truncate}, respectively, but return \retval{remainder} only.
+  \FU{truncate}, respectively, but return \retval{re\-main\-der} only.
   }
 
   \IT{(\FU*{RANDOM} \VAR{limit} \Op{\VAR{state}\DF{\V{*random-state}}})} 

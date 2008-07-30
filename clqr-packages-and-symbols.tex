@@ -184,17 +184,17 @@
   
   \IT{(\xorGOO{%
       \arrGOO{%
-        \MC*{DO-ALL-SYMBOLS}\\
-        \MC*{DO-SYMBOLS}}{\}}\text{ }
-      (\NEV{\VAR{var}}\text{ } \OP{\VAR{package } \Op{\VAR{result}}})\\
-      \MC*{DO-EXTERNAL-SYMBOLS } (\VAR{var } \Op{\VAR{result}})}{\}}
+        \MC*{DO-SYMBOLS}\\
+        \MC*{DO-EXTERNAL-SYMBOLS}}{\}}\text{ }
+      (\NEV{\VAR{var}}\text{ } \OP{\VAR{package}\DF{\V{*package*}}\text{ } \Op{\VAR{result}}})\\
+      \MC*{DO-ALL-SYMBOLS } (\VAR{var } \Op{\VAR{result}})}{\}}
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \OPn{\orGOO{\NEV{\VAR{tag}}\\
       \VAR{form}}{\}}})}
   {
   Evaluate \VAR{form}s with \VAR{var} successively bound to every
-  symbol from all registered packages, to every symbol from
-  \VAR{package}, or to every external symbol from \VAR{package},
+  symbol from \VAR{package}, to every external symbol from
+  \VAR{package}, or to every symbol from all registered packages, 
   respectively. Return \retval{values of \VAR{result}}. 
   }
 
