@@ -31,6 +31,7 @@ BZR_EXPORT	= bzr export
 BZR_COMMIT	= bzr commit
 DATE		= date -I | tr -d '\n\\' 
 RSYNC		= rsync -va
+SSH		= ssh
 
 all:	letter a4
 
@@ -118,6 +119,7 @@ publish:	html/sample-frontcover.jpg html/sample-doublepage.jpg \
 	$(MAKE) publishclean
 	$(RSYNC) --delete ./ trebb@shell.berlios.de:/home/groups/ftp/pub/clqr/clqr/ $(SEND-TO-LOG)
 	$(RSYNC) ./html/ trebb@shell.berlios.de:/home/groups/clqr/htdocs/ $(SEND-TO-LOG)
+	$(SSH) trebb@shell.berlios.de /home/groups/ftp/pub/clqr/clqr/fetch-news.sh $(SEND-TO-LOG)
 
 release:	emergency-commit letter a4 $(CLQR).tar.gz html/release-revision.txt
 	./upload.sh

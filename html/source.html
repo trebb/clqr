@@ -10,13 +10,13 @@
     <table class="main-table">
       <tr>
 	<td class="title" colspan="2">
-	  <a href="index.html">Common Lisp Quick Reference</a>
+	  <a href="index.php">Common Lisp Quick Reference</a>
 	</td>
       </tr>
       <tr>
 	<td class="side-content">
 	  <ul>
-	    <li><a href="index.html">home</a>
+	    <li><a href="index.php">home</a>
 	    <li><a href="download.php">download</a>
 	    <li><a href="printing.html">printing &amp; bookbinding</a>
 	    <li><a href="https://lists.berlios.de/mailman/listinfo/clqr-general">mailing list</a>

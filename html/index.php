@@ -10,13 +10,13 @@
     <table class="main-table">
       <tr>
 	<td class="title" colspan="2">
-	  <a href="index.html">Common Lisp Quick Reference</a>
+	  <a href="index.php">Common Lisp Quick Reference</a>
 	</td>
       </tr>
       <tr>
 	<td class="side-content">
 	  <ul>
-	    <li><a href="index.html">home</a>
+	    <li><a href="index.php">home</a>
 	    <li><a href="download.php">download</a>
 	    <li><a href="printing.html">printing &amp; bookbinding</a>
 	    <li><a href="https://lists.berlios.de/mailman/listinfo/clqr-general">mailing list</a>
@@ -59,12 +59,6 @@
 	    they can easily be turned into a handy booklet. 
 	  </p>
 	  
-	  <h3>Status</h3>
-	  <p>
-	    It is complete in terms of Common Lisp's defined
-	    symbols. Recently, I
-	    went through the text for errors correcting hundreds of them
-	    while probably overlooking or introducing dozens.
 	  <p>
 	    Although far from perfect, it should be usable now and
 	    would benefit from users sending in error reports or making
@@ -74,6 +68,8 @@
 	    or <a href="mailto:trebb@users.berlios.de?subject=CLQR ">
 	    send me an email</a>.
 
+	  <h3>Recent News</h3>
+	  <?php echo(file_get_contents("news-clqr.html"));?>	
 	</td>
       </tr>
       <tr>

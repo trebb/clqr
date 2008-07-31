@@ -41,6 +41,7 @@ h2 {
 h3 {
     letter-spacing: .3em;
     font-size: 1.1em;
+    margin-top: 2.5ex;
     margin-bottom: 1ex;
     font-weight: normal;
     width: auto;
@@ -52,6 +53,14 @@ h4 {
     text-align: left;
     font-weight: normal;
     margin-bottom: 3px;
+}
+
+h5 {
+    letter-spacing: .1em;
+    text-align: left;
+    font-weight: normal;
+    margin-top: 1.8ex;
+    margin-bottom: .5ex;
 }
 
 img {
