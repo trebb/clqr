@@ -39,12 +39,12 @@
           \VAR{slot}\\
           (\VAR{slot } \Op{\VAR{init}\text{ }
             \orGOO{
-              \kwd{:type} \VAR{ type}\\
-              \kwd{:read-only} \VAR{ bool}}{\}}})\\
+              \kwd{:type } \NEV{\VAR{type}}\\
+              \kwd{:read-only } \NEV{\VAR{bool}}}{\}}})\\
         }{\}^{\!\!*}})\\
         (\kwd{:type } \xorGOO{\kwd{list}\\
           \kwd{vector}\\
-          (\kwd{vector}\VAR{ type})}{\}})\text{ }\Op{\kwd{:named}}\\
+          (\kwd{vector}\VAR{ size})}{\}})\text{ }\Op{\kwd{:named}}\\
         (\kwd{:initial-offset} \VAR{ n})\\
         \xorGOO{%
           \kwd{:predicate}\\
@@ -61,8 +61,8 @@
       \VAR{slot-name}\\
       (\VAR{slot-name } \Op{\VAR{init}\text{ }
         \orGOO{
-          \kwd{:type} \VAR{ type}\\
-          \kwd{:read-only} \VAR{ bool}
+          \kwd{:type } \NEV{\VAR{type}}\\
+          \kwd{:read-only } \NEV{\VAR{bool}}
         }{\}}})
     }{\}^{\!\!*}}%
     )}

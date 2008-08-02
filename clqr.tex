@@ -78,19 +78,19 @@
 \renewcommand{\toc@heading}{}
 \makeatother
 
-\titlecontents{section}
-              [1.5em]
-              {\vspace{.5em plus 1em minus .2em}\sffamily\bfseries\upshape\filright}
-              {\contentslabel{1.5em}}
-              {\hspace*{3em}}
-              {\hfill\contentspage\vspace{.1em}}
+\titlecontents{section}%
+              [1.5em]%
+              {\vspace{.5em plus 1em minus .2em}\sffamily\bfseries\upshape\filright}%
+              {\contentslabel{1.5em}}%
+              {\hspace*{3em}}%
+              {\hfill\contentspage\vspace{.1em}}%
 
-\titlecontents{subsection}
-              [4em]
-              {\sffamily\mdseries\upshape\filright}
-              {\contentslabel{2.5em}}
-              {\hspace*{5.5em}}
-              {\hspace{1ex}\titlerule*[1.5ex]{.}\contentspage}
+\titlecontents{subsection}%
+              [4em]%
+              {\sffamily\mdseries\upshape\filright}%
+              {\contentslabel{2.5em}}%
+              {\hspace*{5.5em}}%
+              {\hspace{1ex}\titlerule*[1.5ex]{.}\contentspage}%
 
 \newlength{\LISTlinewidth}
 \newenvironment{LIST}[1]%
@@ -158,6 +158,9 @@
 %
 % Not Evaluated
 \newcommand{\NEV}[1]{\text{{$\widehat{#1}$}}}
+%
+% Subjected to Destruction
+\newcommand{\DES}[1]{\text{{$\widetilde{#1}$}}}
 %
 % Default Value
 \newcommand{\DF}[1]{\text{\textsubscript{\setlength{\fboxsep}{.5pt}\setlength{\fboxrule}{.1pt}\fbox{#1}}}}
@@ -450,7 +453,7 @@
   \input{clqr-clos}
   \input{clqr-conditions-and-errors}
   \input{clqr-input-output}
-  \input{clqr-system-types-and-classes}
+  \input{clqr-types-and-classes}
   \input{clqr-packages-and-symbols}
   \input{clqr-compiler}
   \input{clqr-environment}
@@ -532,3 +535,5 @@
 
 \end{document}
 % -*-latex-*-
+
+% LocalWords:  ptm lightgray cl lispref theindex pt

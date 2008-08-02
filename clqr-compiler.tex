@@ -98,13 +98,14 @@
   }
 
   \IT{(\SO*{EVAL-WHEN} (%
-    \orGOO{\kwd{:compile-toplevel}\\
-      \kwd{:load-toplevel}\\
-      \kwd{:execute}}{\}}) \OPn{\VAR{form}})} 
+    \orGOO{\Goo{\kwd{:compile-toplevel}\XOR\kwd{compile}}\\
+      \Goo{\kwd{:load-toplevel}\XOR\kwd{load}}\\
+      \Goo{\kwd{:execute}\XOR\kwd{eval}}}{\}}) \OPn{\VAR{form}})} 
   {
   Evaluate \VAR{form}s returning \retval{values of last \VAR{form}} if
   \SO{EVAL-WHEN} is in the top-level of a file being compiled, in the
-  top-level of a compiled file being loaded, or anywhere, respectively.
+  top-level of a compiled file being loaded, or anywhere,
+  respectively. (\kwd{compile}, \kwd{load} and \kwd{eval} deprecated.)
   }
 
   \IT{(\MC*{WITH-COMPILATION-UNIT} (\Op{\kwd{:override}
@@ -130,14 +131,14 @@
   \IT{(\GFU*{MAKE-LOAD-FORM} \VAR{foo} \Op{\VAR{environment}})}
   {
   Make \retval{one or two forms} enabling \FU{load} to construct
-  something equvalent to \VAR{foo}.
+  something equivalent to \VAR{foo}.
   }
 
   \IT{(\FU*{MAKE-LOAD-FORM-SAVING-SLOTS} \VAR{foo}
     \orGOO{\kwd{:slot-names} \VAR{ slots}\\
       \kwd{:environment}  \VAR{ environment}}{\}})}
   {
-  Make \retval{two forms} yielding something equvalent to \VAR{foo}
+  Make \retval{two forms} yielding something equivalent to \VAR{foo}
   but preserving only \VAR{slots}.
   }
 
@@ -146,8 +147,8 @@
       (\FU*{COMPILER-MACRO-FUNCTION} \VAR{ name }
       \Op{\VAR{environment}})}{.}}
   {
-  Return specified \retval{macro function}, or \retval{compiler macro
-    function}, respectively, if any. Return \retval{\NIL}
+  Return specified \retval{macro function}, or \retval{compiler mac\-ro
+    func\-tion}, respectively, if any. Return \retval{\NIL}
   otherwise. \kwd{setf}able. 
   }
   
@@ -160,7 +161,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{REPL and Debugging} 
+\subsection[REPL~\&~Debug]{REPL and Debugging} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{LIST}{1cm}
@@ -169,24 +170,24 @@
       \kwd*{*}\XOR\kwd*{**}\XOR\V*{***}\\[1pt]
       \kwd*{/}\XOR\kwd*{//}\XOR\V*{///}}{.}}
   {
-  Last, penultimate, or antepenultimate form evaluated in the REPL, or
-  their respective primary values, or lists of their respective
+  Last, penultimate, or antepenultimate \retval{form} evaluated in the REPL, or
+  their respective \retval{primary values}, or \retval{lists} of their respective
   values. 
   }
 
   \IT{\kwd*{--}}
   {
-  Form currently being evaluated by the REPL.
+  \retval{Form} currently being evaluated by the REPL.
   }
 
   \IT{(\FU*{APROPOS} \VAR{string} \OPn{\VAR{package}})}
   {
-  Print interned symbols containig \VAR{string}.
+  Print interned symbols containing \VAR{string}.
   }
 
   \IT{(\FU*{APROPOS-LIST} \VAR{string} \OPn{\VAR{package}})}
   {
-  \retval{List of interned symbols} containig \VAR{string}.
+  \retval{List of interned symbols} containing \VAR{string}.
   }
 
   \IT{(\FU*{DRIBBLE} \Op{\VAR{path}})}
@@ -358,3 +359,5 @@
 
 
 
+
+% LocalWords:  mac ro func tion

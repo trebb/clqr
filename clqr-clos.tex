@@ -131,7 +131,7 @@
      \Goos{\kwd{:}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
-  Fill \VAR{instance}'s \VAR{slots} using \VAR{init-args} and
+  Fill \VAR{instance}'s \VAR{slots} using \VAR{initarg}s and
   \kwd{:initform} forms.
   }
 
@@ -155,7 +155,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Generic Functions} 
+\subsection[Generic~Functns]{Generic Functions} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{LIST}{1cm}
@@ -174,7 +174,7 @@
       (\VAR{var}\XOR(\kwd{:}\VAR{key}
           \VAR{var}))}{\}^{\!\!*}} \Op{\kwd*{\&allow-other-keys}}})
      \orGOO{%
-    (\kwd{:argument-precendence-order}\RP{\VAR{ var}})\\
+    (\kwd{:argument-precedence-order}\RP{\VAR{ var}})\\
     (\kwd{declare }\RP{(\kwd{optimize}\OPn{\VAR{ arg}})})\\
     (\kwd{:documentation } \NEV{\VAR{string}})\\
     (\kwd{:generic-function-class} \VAR{ class}\DF{\kwd{standard-generic-function}})\\
@@ -189,7 +189,7 @@
   \IT{(\FU*{ENSURE-GENERIC-FUNCTION}
     \xorGOO{\VAR{name}\\ (\kwd{setf} \VAR{ name})}{\}}
     \orGOO{%
-      \kwd{:argument-precendence-order}\RP{\VAR{ arg}}\\
+      \kwd{:argument-precedence-order}\RP{\VAR{ arg}}\\
       \kwd{:declare }\RP{(\kwd{optimize}\OPn{\VAR{ arg}})}\\
     \kwd{:documentation} \VAR{ string}\\
     \kwd{:environment} \VAR{ environment}\\
@@ -272,7 +272,7 @@
   \IT{(\GFU*{FUNCTION-KEYWORDS} \VAR{method})}
   {
   Return list of \retval{keyword parameters} of \VAR{method} and
-  \retvalii{\T} of other keys are alowed.
+  \retvalii{\T} of other keys are allowed.
   }
 
   \IT{(\GFU*{ALLOCATE-INSTANCE} \VAR{class} \Goos{\kwd{:}\VAR{initarg}
@@ -302,7 +302,7 @@
 \end{LIST}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Method Combination Types} 
+\subsection[Method Combi- nation Types]{Method Combination Types} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{section:Method Combination Types}
 \begin{LIST}{1cm}

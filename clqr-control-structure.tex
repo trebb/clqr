@@ -124,7 +124,7 @@
 
   \IT{(\MC*{SHIFTF} \RP{\VAR{place}} \VAR{foo})}
   {
-  Store valueof \VAR{foo} in rightmost \VAR{place} shifting values of
+  Store value of \VAR{foo} in rightmost \VAR{place} shifting values of
   \VAR{place}s left, returning \retval{first \VAR{place}}. 
   }
 
@@ -162,7 +162,7 @@
   \IT{\arrGOO{(\FU*{REMPROP} \VAR{ symbol} \VAR{ key})\\
       (\MC*{REMF} \VAR{ place} \VAR{ key})}{.}}
   {
-  Remove fist entry \VAR{key} from property list stored in
+  Remove first entry \VAR{key} from property list stored in
   \VAR{symbol}/in \VAR{place}, respectively. Return \retval{\T} if \VAR{key}
   was there, or \retval{\NIL} otherwise.
   }
@@ -444,7 +444,7 @@
     \OPn{(\VAR{keys} \OPn{\VAR{foo}})})}
   {
   Evaluate first \VAR{foo}s one of whose unevaluated \VAR{keys} is \kwd{eql} evaluated
-  \VAR{test} and return \retval{their values}. Signal correctible error/non-correctible \kwd{type-error},
+  \VAR{test} and return \retval{their values}. Signal correctable error/non-correctable \kwd{type-error},
   respectively, if no \VAR{keys} match and return \retval{\NIL} then.
   }
 
@@ -975,7 +975,9 @@
           \Op{\Goo{\LKWD*{of}\XOR\LKWD*{in}}
             \VAR{package}\DF{\V{*package*}}}}
         {
-        Bind \VAR{var} successively to the symbols, or the present symbols, or the external symbols, respectively, of \VAR{package}.
+        Bind \VAR{var} successively to the symbols, or the present
+        symbols, or the external symbols, respectively, of
+        \VAR{package}. 
         }
 
       \end{LIST}
@@ -983,7 +985,8 @@
     
     \IT{\LKWD*{and} \VAR{var} \Op{\VAR{type}}}
     {
-    Begin of another iteration control clause with variables initialized and stepped in parallel.
+    Begin of another iteration control clause with variables
+    initialized and stepped in parallel. 
     }
 
     \IT{\Goo{\LKWD*{do}\XOR\LKWD*{doing}} \RP{\VAR{form}}}
@@ -993,8 +996,8 @@
 
     \IT{\LKWD*{it}}
     {
-      Value of the test form of an enclosing \LKWD{if}, \LKWD{when},
-      or \LKWD{unless} clause.
+      Value of \VAR{test} form of an enclosing \LKWD{if},
+      \LKWD{when}, \LKWD{unless}, or \LKWD{else} clause.
     }
 
     \IT{\LKWD*{return} \Goo{\VAR{form}\XOR\LKWD*{it}}}
@@ -1005,17 +1008,19 @@
     \IT{\Goo{\LKWD*{collect}\XOR\LKWD*{collecting}}
       \Goo{\VAR{form}\XOR\LKWD*{it}} \Op{\LKWD*{into} \VAR{list}}}
     {
-    Collect values of \VAR{form} or \LKWD{it} into \VAR{list}. If no \VAR{list} is given, collect into an anonymous list
-    which is returned after termination.
+    Collect values of \VAR{form} or \LKWD{it} into \VAR{list}. If no
+    \VAR{list} is given, collect into an anonymous list which is
+    returned after termination. 
     }
 
     \IT{\Goo{\LKWD*{append}\XOR\LKWD*{appending}\XOR\LKWD*{nconc}\XOR\LKWD*{nconcing}}
       \Goo{\VAR{form}\XOR\LKWD*{it}} \Op{\LKWD*{into}
         \VAR{list}}}
     {
-    Concatenate values of \VAR{form} or \LKWD{it}, which should be lists, into \VAR{list} by the means of \FU{append} 
-    or \FU{nconc}, respectively.  If no \VAR{list} is given, collect into an anonymous list
-    which is returned after termination.
+    Concatenate values of \VAR{form} or \LKWD{it}, which should be
+    lists, into \VAR{list} by the means of \FU{append} or \FU{nconc},
+    respectively.  If no \VAR{list} is given, collect into an
+    anonymous list which is returned after termination. 
     }
 
     \IT{\Goo{\LKWD*{count}\XOR\LKWD*{counting}}
@@ -1092,3 +1097,5 @@
 
 
 
+
+% LocalWords:  pt

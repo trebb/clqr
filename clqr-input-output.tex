@@ -139,8 +139,8 @@
       \OP{\VAR{eof-err}\DF{\T} \Op{\VAR{eof-val}\DF{\NIL}
           \Op{\VAR{recursive}\DF{\NIL}}}}})}
   {
-  Return a \retval{line of text} from \VAR{stream}. Secondary value is
-  \retval{\T} if line was ended by end of file. 
+  Return a \retval{line of text} from \VAR{stream} and
+  \retvalii{\T} if line has been ended by end of file. 
   }
 
   \IT{(\FU*{READ-SEQUENCE} \VAR{sequence} \VAR{stream}
@@ -224,7 +224,7 @@
 \end{LIST}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Macro Characters}
+\subsection[Macro Chars]{Macro Characters}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{LIST}{1cm}
@@ -267,7 +267,7 @@
   \IT{\KWD*{\#b}, \KWD*{\#o}, \KWD*{\#x}, \KWD{\#}\VAR{n}\KWD{R}}
   {
   \index{\#R}%
-  Binary, octal, or hexadecimal number, or number of base \VAR{n}. 
+  Binary, octal or hexadecimal number, or number of base \VAR{n}. 
   }
 
   \IT{\KWD*{\#C(}\VAR{a b}\kwd{)}}
@@ -843,7 +843,7 @@
 
     \IT{\KWD{\TLD}\Op{\VAR{i}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{[}\Goos{\VAR{text}\KWD{\TLD;}}\KWD{\TLD]}}
     {
-    The \VAR{text}s are clauses the argumenth (or the \VAR{i}th if given) of wich is chosen. With
+    The \VAR{text}s are clauses the argumenth (or the \VAR{i}th if given) of which is chosen. With
     \kwd{:}, the argument is boolean and takes first \VAR{text} for \NIL\ and
     second \VAR{text} for \T.
   }
@@ -857,7 +857,7 @@
 
     \IT{\KWD{\TLD\Op{:}\Op{@}/}\VAR{function}\KWD{/}}
     {
-    Call \VAR{function} with arguments stream, format-argument,
+    Call \VAR{function} with arguments stream, format-ar\-gu\-ment,
     bool-colon, and bool-at for printing format-argument.
   }
 
@@ -1169,7 +1169,7 @@
   \IT{(\FU*{LOAD-LOGICAL-PATHNAME-TRANSLATIONS} \VAR{host})}
   {
   Load \VAR{host}'s translations. Return \retval{\NIL} if already
-  loded, return \retval{\T} if successful.
+  loaded, return \retval{\T} if successful.
   }
 
   \IT{(\FU*{TRANSLATE-LOGICAL-PATHNAME} \VAR{path})}
@@ -1253,3 +1253,5 @@
 \end{LIST}
 
 
+
+% LocalWords:  ies argumenth ar gu ment
