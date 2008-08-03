@@ -156,8 +156,8 @@ html/sample-source.jpg:	$(CLQR)-numbers.tex
 	$(RM) temp.jpg
 
 emergency-commit $(CLQR).tar.gz:	
-	if $(BZR_COMMIT) -m "committed automatically by Makefile"; then true; else true; fi
-	$(BZR_EXPORT) $@ $(SEND-TO-LOG)
+	if $(BZR_COMMIT) -m "committed automatically by Makefile"; then true; else true; fi $(SEND-TO-LOG)
+	if $(BZR_EXPORT) $(CLQR).tar.gz; then true; else true; fi $(SEND-TO-LOG)
 
 publishclean:
 	$(RM) *.ps *~ html/*~
