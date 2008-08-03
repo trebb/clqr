@@ -155,10 +155,8 @@ html/sample-source.jpg:	$(CLQR)-numbers.tex
 	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 	$(RM) temp.jpg
 
-emergency-commit:	
+emergency-commit $(CLQR).tar.gz:	
 	if $(BZR_COMMIT) -m "committed automatically by Makefile"; then true; else true; fi
-
-$(CLQR).tar.gz:
 	$(BZR_EXPORT) $@ $(SEND-TO-LOG)
 
 publishclean:
