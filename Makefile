@@ -75,7 +75,7 @@ $(CLQR)-%.dvi:	$(CLQR).tex $(CLQR)-*.tex paper-%.flag color-current.tex REVISION
 	$(TOUCH) $(CLQR).ind $(SEND-TO-LOG)
 	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
 	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
-	$(MAKEINDEX) $(CLQR).idx $(SEND-TO-LOG)
+	$(MAKEINDEX) -s $(CLQR).ist $(CLQR).idx $(SEND-TO-LOG)
 	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
 	$(MV) $(CLQR).dvi $@ $(SEND-TO-LOG)
 

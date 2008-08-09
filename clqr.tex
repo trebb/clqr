@@ -95,11 +95,11 @@
 \newlength{\LISTlinewidth}
 \newenvironment{LIST}[1]%
                {%
-                 \LISTlinewidth=\linewidth
+                 \LISTlinewidth=\linewidth%
                  \begin{flushleft}%
                  \begin{list}{}%
                    {\setlength{\itemindent}{-#1}\setlength{\leftmargin}{#1}}%
-                   %\parskip0pt\itemsep0pt
+                   %\parskip0pt\itemsep0pt%
                }%
                {\end{list}%
                  \end{flushleft}%
@@ -160,7 +160,9 @@
 \newcommand{\NEV}[1]{\text{{$\widehat{#1}$}}}
 %
 % Subjected to Destruction
-\newcommand{\DES}[1]{\text{{$\widetilde{#1}$}}}
+% (not yet visible)
+%\newcommand{\DES}[1]{\text{{$\widetilde{#1}$}}}
+\newcommand{\DES}[1]{#1}
 %
 % Default Value
 \newcommand{\DF}[1]{\text{\textsubscript{\setlength{\fboxsep}{.5pt}\setlength{\fboxrule}{.1pt}\fbox{#1}}}}
@@ -243,51 +245,140 @@
 \newcommand{\boxGOOcr}{\vspace{1ex}\\}
 %
 %
-% All sorts of keywords
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% All sorts of tags attached to lisp keywords
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+\newlength{\TAGwidth}
+\newlength{\KEYWORDwidth}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Generic Keyword, Lowercase
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\kwd}[1]{\text{{\sffamily\bfseries\selectfont%
       \lowercase{#1}}}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Generic Keyword, Uppercase
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\KWD}[1]{\text{{\sffamily\bfseries\selectfont%
       \uppercase{#1}}}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Macro
-\newcommand{\MC}[1]{\text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}M}}\lowercase{#1}}}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\MC}[1]{%
+  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}M}%
+  \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
+  \ifdim\TAGwidth > \KEYWORDwidth%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{0em}M}}\lowercase{#1}}}}%
+  \else%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}M}}\lowercase{#1}}}}%
+  \fi}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Special Operator
-\newcommand{\SO}[1]{\text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}SO}}\lowercase{#1}}}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\SO}[1]{%
+  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}SO}%
+  \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
+  \ifdim\TAGwidth > \KEYWORDwidth%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{0em}SO}}\lowercase{#1}}}}%
+  \else%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}SO}}\lowercase{#1}}}}%
+  \fi}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Function
-\newcommand{\FU}[1]{\text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}Fu}}\lowercase{#1}}}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\FU}[1]{%
+  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}Fu}%
+  \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
+  \ifdim\TAGwidth > \KEYWORDwidth%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{0em}Fu}}\lowercase{#1}}}}%
+  \else%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}Fu}}\lowercase{#1}}}}%
+  \fi}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Generic Function
-\newcommand{\GFU}[1]{\text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}gF}}\lowercase{#1}}}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\GFU}[1]{%
+  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}gF}%
+  \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
+  \ifdim\TAGwidth > \KEYWORDwidth%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{0em}gF}}\lowercase{#1}}}}%
+  \else%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}gF}}\lowercase{#1}}}}%
+  \fi}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Variable
-\newcommand{\V}[1]{\text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.8em}var}}\lowercase{#1}}}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\V}[1]{%
+  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.8em}var}%
+  \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
+  \ifdim\TAGwidth > \KEYWORDwidth%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{0em}var}}\lowercase{#1}}}}%
+  \else%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.8em}var}}\lowercase{#1}}}}%
+  \fi}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Constant
-\newcommand{\CNS}[1]{\text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}co}}\lowercase{#1}}}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\CNS}[1]{%
+  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}co}%
+  \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
+  \ifdim\TAGwidth > \KEYWORDwidth%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{0em}co}}\lowercase{#1}}}}%
+  \else%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}co}}\lowercase{#1}}}}%
+  \fi}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Loop Keyword
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\LKWD}[1]{\text{{\sffamily\bfseries\selectfont%
       {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}}}\lowercase{#1}}}}}
-
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Return values, First, Second, nth, Third
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\retval}[1]{\uline{#1}}
 \newcommand{\retvalii}[1]{\uuline{#1}}
 \newcommand{\retvaln}[2]{{%
       {\raisebox{-1.7ex}[1ex][0pt]{\tiny\sffamily\upshape\mdseries\makebox[0pt][l]{\hspace{-.1em}#1}}\uline{#2}}}}
 \newcommand{\retvaliii}[1]{\retvaln{3}{#1}}
-
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % T and NIL
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\T}{\text{\ttfamily T}}
 \newcommand{\NIL}{\text{\ttfamily NIL}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ~
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\TLD}{{\textasciitilde}}
-
-% Starred versions send argument into index:
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Starred versions send their argument into index:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \WithSuffix\newcommand\kwd*[1]{\kwd{#1}\uppercase{\index{#1}}}
 \WithSuffix\newcommand\KWD*[1]{\KWD{#1}\uppercase{\index{#1}}}
 \WithSuffix\newcommand\MC*[1]{\MC{#1}\uppercase{\index{#1}}}
@@ -351,120 +442,118 @@
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vfill
-%\begin{flushleft}
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \section*{Typographic Conventions}
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  \begin{LIST}{1cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Typographic Conventions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    \IT{\kwd{NAME}, \FU{NAME}, \MC{NAME}, \SO{NAME}, \GFU{NAME}, \V{*name*},
-      \CNS{name}}
-    {
-    Symbol defined in Common Lisp; esp.\ function, macro, special operator, generic function,
-    variable, constant.
-    }
+\begin{LIST}{1cm}
 
-    \IT{\VAR{them}\qquad\qquad\qquad}
-    {
-    Placeholder for actual code.
-    }
+  \IT{\kwd{NAME}, \FU{NAME}, \MC{NAME}, \SO{NAME}, \GFU{NAME}, \V{*name*},
+    \CNS{name}}
+  {
+  Symbol defined in Common Lisp; esp.\ function, macro, special operator, generic function,
+  variable, constant.
+  }
 
-    \IT{\LIT{me}\qquad\qquad\qquad\qquad}
-    {
-    Text to input literally, or output literally.
-    }
+  \IT{\VAR{them}\qquad\qquad\qquad}
+  {
+  Placeholder for actual code.
+  }
 
-    \IT{\Op{\VAR{foo}\DF{\LIT{bar}}}\qquad\qquad}
-    {
-    Either one \VAR{foo} or nothing; defaults to \LIT{bar}.
-    }
+  \IT{\LIT{me}\qquad\qquad\qquad\qquad}
+  {
+  Text to input literally, or output literally.
+  }
 
-    \IT{\OPn{\VAR{foo}}; \Goos{\VAR{foo}}}
-    {
-    Zero or more \VAR{foo}s.
-    }
+  \IT{\Op{\VAR{foo}\DF{\LIT{bar}}}\qquad\qquad}
+  {
+  Either one \VAR{foo} or nothing; defaults to \LIT{bar}.
+  }
 
-    \IT{\RP{\VAR{foo}}; \Goop{\VAR{foo}}}
-    {
-    One or more \VAR{foo}s.
-    }
+  \IT{\OPn{\VAR{foo}}; \Goos{\VAR{foo}}}
+  {
+  Zero or more \VAR{foo}s.
+  }
 
-    \IT{\VAR{foos}\qquad\qquad\qquad}
-    {
-    English plural denotes a list argument.
-    }
+  \IT{\RP{\VAR{foo}}; \Goop{\VAR{foo}}}
+  {
+  One or more \VAR{foo}s.
+  }
 
-    \IT{\Goo{\VAR{foo}\XOR\VAR{bar}\XOR\VAR{baz}};
-      \xorGOO{
-        \VAR{foo}\\
-        \VAR{bar}\\
-        \VAR{baz}%
-      }{.}}
-    {
-    Either \VAR{foo}, or \VAR{bar}, or \VAR{baz}.
-    }
+  \IT{\VAR{foos}\qquad\qquad\qquad}
+  {
+  English plural denotes a list argument.
+  }
 
-    \IT{\orGOO{
-        \VAR{foo}\\
-        \VAR{bar}\\
-        \VAR{baz} 
-      }{.}}
-    {
-    Anything from none to each of \VAR{foo}, \VAR{bar}, and \VAR{baz}.
-    }
+  \IT{\Goo{\VAR{foo}\XOR\VAR{bar}\XOR\VAR{baz}};
+    \xorGOO{
+      \VAR{foo}\\
+      \VAR{bar}\\
+      \VAR{baz}%
+    }{.}}
+  {
+  Either \VAR{foo}, or \VAR{bar}, or \VAR{baz}.
+  }
 
-    \IT{\NEV{\VAR{bar}}\qquad\qquad\qquad}
-    {
-    \VAR{bar} is not evaluated.
-    }
+  \IT{\orGOO{
+      \VAR{foo}\\
+      \VAR{bar}\\
+      \VAR{baz} 
+    }{.}}
+  {
+  Anything from none to each of \VAR{foo}, \VAR{bar}, and \VAR{baz}.
+  }
 
-    \IT{\retval{\VAR{foo}}; \retvalii{\VAR{bar}};
-      \retvaln{\VAR{n}}{\VAR{baz}}}
-    {
-    First, second and \VAR{n}th return value.
-    }
+  \IT{\NEV{\VAR{bar}}\qquad\qquad\qquad}
+  {
+  \VAR{bar} is not evaluated.
+  }
 
-    \IT{\T\qquad\qquad\qquad\qquad}
-    {
-    \kwd*{T}, or truth in general.
-    }
-    
-    \IT{\NIL\qquad\qquad\qquad}
-    {
-    \kwd*{NIL} or \kwd{()}.
-    }
+  \IT{\retval{\VAR{foo}}; \retvalii{\VAR{bar}};
+    \retvaln{\VAR{n}}{\VAR{baz}}}
+  {
+  First, second and \VAR{n}th return value.
+  }
 
-  \end{LIST}
-  \clearpage
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  %%% Content starts here %%%%%%%%%%%%%%%%%%%%%%%%%%
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \IT{\T\qquad\qquad\qquad\qquad}
+  {
+  \kwd*{T}, or truth in general.
+  }
+  
+  \IT{\NIL\qquad\qquad\qquad}
+  {
+  \kwd*{NIL} or \kwd{()}.
+  }
 
-  \input{clqr-numbers}
-  \input{clqr-characters}
-  \input{clqr-strings}
-  \input{clqr-conses}
-  \input{clqr-arrays}
-  \input{clqr-sequences}
-  \input{clqr-hash-tables}
-  \input{clqr-structures}
-  \input{clqr-control-structure}
-  \input{clqr-clos}
-  \input{clqr-conditions-and-errors}
-  \input{clqr-input-output}
-  \input{clqr-types-and-classes}
-  \input{clqr-packages-and-symbols}
-  \input{clqr-compiler}
-  \input{clqr-environment}
+\end{LIST}
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Content starts here %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\end{flushleft}
+\input{clqr-numbers}
+\input{clqr-characters}
+\input{clqr-strings}
+\input{clqr-conses}
+\input{clqr-arrays}
+\input{clqr-sequences}
+\input{clqr-hash-tables}
+\input{clqr-structures}
+\input{clqr-control-structure}
+\input{clqr-clos}
+\input{clqr-conditions-and-errors}
+\input{clqr-input-output}
+\input{clqr-types-and-classes}
+\input{clqr-packages-and-symbols}
+\input{clqr-compiler}
+\input{clqr-environment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-\clearpage % Uncomment/comment this line to save/waste some space
+\clearpage % Uncomment/comment this line to waste/save some space
 %
 \renewcommand{\indexpagestyle}{lispref}
 \renewenvironment{theindex}%
