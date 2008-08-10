@@ -63,6 +63,30 @@ h5 {
     margin-bottom: .5ex;
 }
 
+a {
+    background-color: #FFFFFF;
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: #FFFFFF;
+    color: #0080C0;
+    text-decoration: none;
+}
+
+p {
+    margin: 5px 0;
+}
+
+pre {
+    font-size: 100%;
+    margin-top: .7ex;
+    margin-bottom: .7ex;
+    margin-left: 0;
+    padding: 0;
+}
+
 img {
     border: 0px;
 }
@@ -85,22 +109,6 @@ img {
     margin-left: 2ex;
 }
 
-a {
-    background-color: #FFFFFF;
-    color: black;
-    text-decoration: none;
-}
-
-a:hover {
-    background-color: #FFFFFF;
-    color: #0080C0;
-    text-decoration: none;
-}
-
-p {
-    margin: 5px 0;
-}
-
 .title {
     letter-spacing: 1em;
     font-size: 1.3em;
@@ -108,94 +116,95 @@ p {
     border: 1px solid gray;
     text-align: center;
     padding: .5em;
+    width: 1000px;
 }
 
 .subtitle {
     letter-spacing: .5em;
-    font-size:		1em;
+    font-size: 1em;
     font-weight: normal;
     padding: .2%;
-    border:	  1px solid gray;
-    text-align:   center;
+    border: 1px solid gray;
+    text-align: center;
 }
 
 .toolbar {
-    border:			1px solid gray;
-    text-align:		center;
+    border: 1px solid gray;
+    text-align: center;
 }
 
 .logo {
     padding-top: .5%;
     padding-bottom: .5%;
-    float:			left;
-    clear:			left;
-    width:			22%;
-    border:			1px solid gray;
-    text-align:		center;
+    float: left;
+    clear: left;
+    width: 22%;
+    border: 1px solid gray;
+    text-align: center;
     letter-spacing: .1em;
-    font-size:		3em;
-    font-weight:		normal;
+    font-size: 3em;
+    font-weight: normal;
 }
 
 .main-table {
-    border-spacing:	8px;
+    border-spacing: 8px;
 }
 
 .content {
-    vertical-align:	top;
-    padding-left:		1.5em;
-    padding-right:		1.5em;
-    padding-top:		1em;
-    padding-bottom:		2.5em;
-    border:			1px solid gray;
-    text-align:		justify;
+    vertical-align: top;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    padding-top: 1em;
+    padding-bottom: 2.5em;
+    border: 1px solid gray;
+    text-align: justify;
 }
 
 .content a {
-    background-color:	#FFFFFF;
-    color:			black;
-    text-decoration:	none;
+    background-color: #FFFFFF;
+    color: black;
+    text-decoration: none;
     letter-spacing: .1em;
 }
 
 .content a:hover {
-    background-color:	#FFFFFF;
-    color:		#0080C0;
-    text-decoration:	none;
+    background-color: #FFFFFF;
+    color: #0080C0;
+    text-decoration: none;
 }
 
 .content ul {
-    list-style:		none;
+    list-style: none;
 }
 
 .side-content {
-    vertical-align:	top;
-    width:			8em;
-    border:			1px solid gray;
-    padding-left:		1.5em;
-    padding-right:		1.5em;
-    padding-top:		1.5em;
-    padding-bottom:		2.5em;
-    text-align:		left;
+    vertical-align: top;
+    width: 8em;
+    border: 1px solid gray;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    padding-top: 1.5em;
+    padding-bottom: 2.5em;
+    text-align: left;
 }
 
 .side-content a {
-    background-color:	#FFFFFF;
-    color:			black;
-    text-decoration:	none;
+    background-color: #FFFFFF;
+    color: black;
+    text-decoration: none;
     letter-spacing: .1em;
 }
 
 .side-content a:hover {
-    background-color:	#FFFFFF;
-    color:		#0080C0;
-    text-decoration:	none;
+    background-color: #FFFFFF;
+    color: #0080C0;
+    text-decoration: none;
 }
 
 .side-content ul {
     padding: 0;
     margin: 0;
-    list-style:		none;
+    list-style: none;
 }
 
 .side-content li {
@@ -210,27 +219,17 @@ p {
 }
 
 .quote {
-    text-align:		justify;
-    font-style:		italic;
-}
-
-pre {
-    font-size: 100%;
-    margin-top: .7ex;
-    margin-bottom: .7ex;
-    margin-left: 0;
-    padding: 0;
+    text-align: justify;
+    font-style: italic;
 }
 
 .quicklinks {
-    border:	    1px solid gray;
-    clear:	    both;
-    vertical-align:	bottom;
-    text-align:	center;
+    border: 1px solid gray;
+    vertical-align: bottom;
+    text-align: center;
 }
 
 .footer {
-    font-size:	.8em;
-    text-align:	center;
-
+    font-size: .8em;
+    text-align: center;
 }
