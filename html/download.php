@@ -41,8 +41,10 @@
 	    <div class="here">
 	      <img class="left" src="sample-firstpage-consec.jpg"
 		   alt="Sample"/> 
-	      <a href="http://download.berlios.de/clqr/clqr-a4-consec.pdf">clqr-a4-consec.pdf</a><br />
-	      <a href="http://download.berlios.de/clqr/clqr-letter-consec.pdf">clqr-letter-consec.pdf</a><br />
+	      <a href="http://download.berlios.de/clqr/clqr-a4-consec.pdf"
+		 title="half A4 size, not for printing">clqr-a4-consec.pdf</a><br />
+	      <a href="http://download.berlios.de/clqr/clqr-letter-consec.pdf"
+		 title="half US letter size, not for printing">clqr-letter-consec.pdf</a><br />
 	      <ul>
 		<li>Pages in their natural order. 
 		<li>Suitable only for reading on the screen. Comes
@@ -57,8 +59,10 @@
 	    <div class="here">
 	      <img class="left" src="sample-firstpage-all.jpg"
 		   alt="Sample"/> 
-	      <a href="http://download.berlios.de/clqr/clqr-a4-booklet-all.pdf">clqr-a4-booklet-all.pdf</a><br />
-	      <a href="http://download.berlios.de/clqr/clqr-letter-booklet-all.pdf">clqr-letter-booklet-all.pdf</a><br />
+	      <a href="http://download.berlios.de/clqr/clqr-a4-booklet-all.pdf"
+		 title="A4 size paper, nested folios">clqr-a4-booklet-all.pdf</a><br />
+	      <a href="http://download.berlios.de/clqr/clqr-letter-booklet-all.pdf"
+		 title="US letter size paper, nested folios">clqr-letter-booklet-all.pdf</a><br />
 	      <ul>
 		<li>Suitable for printing, folding lengthwise and nesting the
 		  folios.
@@ -72,8 +76,10 @@
 	    <div class="here">
 	      <img class="left" src="sample-firstpage-four.jpg"
 		   alt="Sample"/> 
-	      <a href="http://download.berlios.de/clqr/clqr-a4-booklet-four.pdf">clqr-a4-booklet-four.pdf</a><br />
-	      <a href="http://download.berlios.de/clqr/clqr-letter-booklet-four.pdf">clqr-letter-booklet-four.pdf</a><br />
+	      <a href="http://download.berlios.de/clqr/clqr-a4-booklet-four.pdf"
+		 title="A4 size paper, stacked folios">clqr-a4-booklet-four.pdf</a><br />
+	      <a href="http://download.berlios.de/clqr/clqr-letter-booklet-four.pdf"
+		 title="US letter size paper, stacked folios">clqr-letter-booklet-four.pdf</a><br />
 	      <ul>
 		<li>Suitable for printing, folding lengthwise and stacking up the
 		  folios.
@@ -87,10 +93,11 @@
 	    <div class="here">
 	      <img class="left" src="sample-source.jpg"
 		   alt="Sample"/> 
-	      <a href="http://download.berlios.de/clqr/clqr.tar.gz">clqr.tar.gz</a><br />
+	      <a href="http://download.berlios.de/clqr/clqr.tar.gz"
+	      title="download source code">clqr.tar.gz</a><br />
 	      <ul>
-		<li>LaTeX sources.
-		<li>Not of any use unless you want to make some changes.
+		<li>LaTeX source.
+		<li>Not of much use unless you want to make some changes.
 	      </ul>
 	    </div>
 	</td>

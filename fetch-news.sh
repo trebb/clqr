@@ -3,7 +3,7 @@
 #       Fetch news and prune them for inclusion by html/index.php
 #
 /usr/bin/wget -q -O news-clqr.tmp \
-    'http://developer.berlios.de/export/projnews.php?group_id=9765&limit=10&flat=1&show_summaries=1' \
+    'http://developer.berlios.de/export/projnews.php?group_id=9765&limit=7&flat=1&show_summaries=1' \
     > /dev/null
 /bin/sed -e "s/  &nbsp; - &nbsp; <a href=\"\/\/developer.berlios.de\/projects\/clqr\/\">Common Lisp Quick Reference<\/a>//g"\
     -e "s/<a [^>]*>//g" -e "s/<\/a>//g"\

@@ -99,7 +99,7 @@
       \MC*{PSETF}}{\}} \Goos{\VAR{place}
       \VAR{form}})}
   {
-  Set \VAR{place}s to values of \VAR{form}s returning \retval{value
+  Set \VAR{place}s to values of \VAR{form}s. Return \retval{value
     of last \VAR{form}}. Work sequentially/in parallel, respectively. 
   }
 
@@ -107,11 +107,11 @@
       \MC*{PSETQ}}{\}} \Goos{\VAR{symbol}
       \VAR{form}})}
   {
-  Set \VAR{symbol}s to values of \VAR{form}s returning \retval{value
+  Set \VAR{symbol}s to values of \VAR{form}s. Return \retval{value
     of last \VAR{form}}. Work sequentially/in parallel, respectively. 
   }
 
-  \IT{(\FU*{SET} \VAR{symbol} \VAR{foo})}
+  \IT{(\FU*{SET} \DES{\VAR{symbol}} \VAR{foo})}
   {
   Set \VAR{symbol}'s value cell to \retval{\VAR{foo}}.
   }
@@ -122,19 +122,19 @@
   \VAR{form}. Return \retval{\VAR{form}'s primary value}.
   }
 
-  \IT{(\MC*{SHIFTF} \RP{\VAR{place}} \VAR{foo})}
+  \IT{(\MC*{SHIFTF} \RP{\DES{\VAR{place}}} \VAR{foo})}
   {
   Store value of \VAR{foo} in rightmost \VAR{place} shifting values of
   \VAR{place}s left, returning \retval{first \VAR{place}}. 
   }
 
-  \IT{(\MC*{ROTATEF} \OPn{\VAR{place}})}
+  \IT{(\MC*{ROTATEF} \OPn{\DES{\VAR{place}}})}
   {
   Rotate values of \VAR{place}s left, old first becoming new last
   \VAR{place}'s value. Return \retval{\NIL}.
   }
 
-  \IT{(\FU*{MAKUNBOUND} \VAR{symbol})}
+  \IT{(\FU*{MAKUNBOUND} \DES{\VAR{symbol}})}
   {
   Delete special variable \retval{\VAR{symbol}}.
   }
@@ -159,8 +159,8 @@
   in \VAR{property-list}.
   }
 
-  \IT{\arrGOO{(\FU*{REMPROP} \VAR{ symbol} \VAR{ key})\\
-      (\MC*{REMF} \VAR{ place} \VAR{ key})}{.}}
+  \IT{\arrGOO{(\FU*{REMPROP } \DES{\VAR{symbol}} \VAR{ key})\\
+      (\MC*{REMF } \DES{\VAR{place}} \VAR{ key})}{.}}
   {
   Remove first entry \VAR{key} from property list stored in
   \VAR{symbol}/in \VAR{place}, respectively. Return \retval{\T} if \VAR{key}
@@ -348,12 +348,12 @@
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \Op{\NEV{\VAR{documentation}}}
     \OPn{\VAR{form}})}
   {
-  Define macro \retval{\VAR{foo}}.
+  Define macro \retval{\VAR{foo}}. %FIXME:AUGMENT
   }
 
   \IT{(\MC*{DEFINE-SYMBOL-MACRO} \VAR{name} \VAR{expansion-form})}
   {
-  Make \retval{\VAR{name}} a macro call.
+  Make \retval{\VAR{name}} a macro call. %FIXME:AUGMENT
   }
 
   \IT{(\SO*{MACROLET} (\OPn{(\VAR{name} (\OPn{\VAR{macro-arg}})
@@ -373,11 +373,12 @@
   symbol-macros. 
   }
 
-  \IT{(\MC*{DEFSETF} \VAR{function} \xorGOO{\VAR{update } \Op{\NEV{\VAR{documentation}}}\\
+  \IT{(\MC*{DEFSETF} \NEV{\VAR{function}} \xorGOO{\NEV{\VAR{update}}
+      \text{ } \Op{\NEV{\VAR{documentation}}}\\
     \OPn{\VAR{arg } (\OPn{\VAR{var}})\text{ } \OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\text{ } \Op{\NEV{\VAR{documentation}}}}}{\}})}
   {
   Specify how to \kwd{setf} a place accessed by
-  \retval{\VAR{function}}.
+  \retval{\VAR{function}}. %FIXME:AUGMENT
   }
 
   \IT{(\MC*{DEFINE-SETF-EXPANDER} \VAR{function} (\OPn{\VAR{macro-arg}})
@@ -420,7 +421,7 @@
   \IT{(\MC*{COND} \OPn{(\VAR{test} \OPn{\VAR{then}}\DF{\VAR{test}})})}
   {
   Return the \retval{values} of the first
-  \VAR{then}s whose \VAR{test} returns \T; return
+  \VAR{then} whose \VAR{test} returns \T; return
   \retval{\NIL} if each \VAR{test} returns \NIL.
   }
 
@@ -582,10 +583,11 @@
 
 \begin{LIST}{1cm}
   
-  \IT{(\xorGOO{\MC*{DO}\\\MC*{DO*}}{\}}
+  \IT{(\xorGOO{\MC*{DO}\\
+      \MC*{DO*}}{\}}
     (\orGOO{%
       \VAR{var}\\
-      (\VAR{var } \Op{ \VAR{start } \Op{\VAR{step}}})}{\}^{\!\!*}})
+      (\VAR{var } \OP{ \VAR{start } \Op{\VAR{step}}})}{\}^{\!\!*}})
     (\VAR{stop} \OPn{\VAR{result}})
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} 
     \xorGOO{\NEV{\VAR{tag}}\\\VAR{form}}{\}^{\!\!*}})}
@@ -655,7 +657,7 @@
                   \text{\LKWD{from}}
                 \end{array}
                 \right\}
-                \text{\VAR{start}\DF{0}}
+                \text{\VAR{start}\DF{\LIT{0}}}
                 \right]
               \left[
                 \left\{
@@ -689,7 +691,7 @@
             \end{array}
             \right\}
             \left[   
-              \text{\LKWD{by} \VAR{step}\DF{1}}
+              \text{\LKWD{by} \VAR{step}\DF{\LIT{1}}}
               \right]\\
             \left.\!
             \begin{array}{l}
@@ -935,7 +937,7 @@
       Bind \VAR{var} to successive elements/tails, respectively, of \VAR{list}.
       }
 
-      \IT{\LKWD*{by} \Goo{\VAR{step}\DF{1}\XOR\VAR{function}\DF{\FU{cdr}}}}
+      \IT{\LKWD*{by} \Goo{\VAR{step}\DF{\LIT{1}}\XOR\VAR{function}\DF{\FU{cdr}}}}
       {
       Specify the (positive) decrement or increment or the
       \VAR{function} to apply to the list.

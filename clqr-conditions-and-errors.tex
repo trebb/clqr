@@ -82,7 +82,7 @@
       ({\kwd{:documentation} \VAR{ string}})\\
       (\kwd{:report} \VAR{ report-name})}{\}})}
   {
-  Define new condition type \retval{\VAR{name}}.
+  Define new condition type \retval{\VAR{name}}. %FIXME:AUGMENT
   }
 
   \IT{(\FU*{MAKE-CONDITION} \VAR{type} \OPn{\VAR{initarg-plist}})}
@@ -130,7 +130,7 @@
 
   \IT{(\FU*{BREAK} \Op{\VAR{control} \OPn{\VAR{arg}}})}
   {
-  Jump into debugger, return \retval{\NIL}.
+  Jump into debugger; return \retval{\NIL}.
   See p.\ \pageref{section:Format}, \FU{format}, for \VAR{control}
   and \VAR{arg}s. 
   }

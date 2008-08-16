@@ -37,7 +37,8 @@
       (\kwd{:documentation} \VAR{ string})\\
       (\kwd{:metaclass} \VAR{ name})}{\}})}
   {
-  Define \retval{class \VAR{ class-name}} as a subclass of \VAR{superclass}es.
+  Define \retval{class \VAR{ class-name}} as a subclass of
+  \VAR{superclass}es. %FIXME:AUGMENT
   }
 
   \IT{(\FU*{FIND-CLASS} \VAR{symbol} \OP{\VAR{errorp}\DF{\T}
@@ -101,8 +102,8 @@
   \retval{Class} \VAR{foo} is an instance of.
   }
 
-  \IT{(\GFU*{CHANGE-CLASS} \VAR{instance} \VAR{new-class} \Goos{\kwd{:}\VAR{initarg}
-      \VAR{value}} \OPn{\VAR{other-keyarg}})}
+  \IT{(\GFU*{CHANGE-CLASS} \DES{\VAR{instance}} \VAR{new-class}
+    \Goos{\kwd{:}\VAR{initarg} \VAR{value}} \OPn{\VAR{other-keyarg}})} 
   {
   Change class of \retval{\VAR{instance}} to \VAR{new-class}.
   }
@@ -183,7 +184,7 @@
     \OPn{(\kwd{:method} \VAR{ defmethod-arguments})}}{\}})}
   {
   Define \retval{generic function \VAR{name}}. For \VAR{c-type} see
-  s.\ \ref{section:Method Combination Types}.
+  s.\ \ref{section:Method Combination Types}. %FIXME:AUGMENT
   }
 
   \IT{(\FU*{ENSURE-GENERIC-FUNCTION}
@@ -199,7 +200,7 @@
     \kwd{:method-combination} \VAR{ c-type} \OPn{\VAR{ arg}}}{\}})}
   {
   Define or modify \retval{generic function \VAR{name}}. For \VAR{c-type} see
-  s.\ \ref{section:Method Combination Types}.
+  s.\ \ref{section:Method Combination Types}. %FIXME:AUGMENT
   }
 
   \IT{(\MC*{DEFMETHOD} 
@@ -245,7 +246,7 @@
       (\MC*{MAKE-METHOD} \VAR{ form})}{\}}
     \Op{\NEV{\VAR{next-methods}}})}
   {
-  Call \VAR{method}, return \retval{its values}.
+  Call \VAR{method}, return \retval{its values}. %FIXME:AUGMENT
   }
 
   \IT{(\GFU*{NO-APPLICABLE-METHOD} \VAR{generic-function}

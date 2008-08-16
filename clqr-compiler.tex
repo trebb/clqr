@@ -42,7 +42,7 @@
     \Op{\VAR{definition}})}
   {
   Return \retval{compiled function} or its \VAR{name}, \retvalii{\T} in case
-  of warnings, and \retvaliii{\T} in case of failure.
+  of warnings, and \retvaliii{\T} in case of failure. %FIXME:AUGMENT
   }
 
   \IT{(\FU*{COMPILE-FILE} \VAR{file} 
@@ -52,7 +52,7 @@
       \kwd{:external-format} \VAR{
         file-format}\DF{\kwd{:default}}}{\}})}
   {
-  Write compiled contents of \VAR{path} to \VAR{out-path}.
+  Write compiled contents of \VAR{file} to \VAR{out-path}.
   Return \retval{true output path} or \retval{\NIL}, \retvalii{\T}
   in case of warnings or errors, \retvaliii{\T} in case of warnings
   or errors excluding style warnings.
@@ -70,9 +70,11 @@
   Defaults used in \FU{compile-file}.
   }
 
-  \IT{(\FU*{COMPILE-FILE-PATHNAME} \Op{\kwd{:pathname} \VAR{path}})}
+  \IT{(\FU*{COMPILE-FILE-PATHNAME} \VAR{file} \Op{\kwd{:output-file}
+      \VAR{path}} \Op{\VAR{other-keyargs}})}
   {
-  \retval{Pathname} \FU{COMPILE-FILE} writes to.
+  \retval{Pathname} \FU{COMPILE-FILE} writes to if invoked with the
+  same arguments.
   }
 
   \IT{(\FU*{LOAD} \VAR{path} 
@@ -82,7 +84,7 @@
       \kwd{:external-format} \VAR{
         file-format}\DF{\kwd{:default}}}{\}})}
   {
-  Load source or compiled file. Return \retval{\T} if successful.
+  Load source or compiled file. Return \retval{\T} if successful. %FIXME:AUGMENT
   }
 
   \IT{\arrGOO{\V*{*load-pathname*}\DF{\NIL}\\
@@ -91,7 +93,7 @@
   Input file used by \FU{load}.
   }
 
-  \IT{\arrGOO{\V*{*load-print*}\\
+  \IT{\arrGOO{\V*{*load-print*}\DF{\NIL}\\
       \V*{*load-verbose*}}{.}}
   {
   Defaults used in \FU{load}.
@@ -131,7 +133,7 @@
   \IT{(\GFU*{MAKE-LOAD-FORM} \VAR{foo} \Op{\VAR{environment}})}
   {
   Make \retval{one or two forms} enabling \FU{load} to construct
-  something equivalent to \VAR{foo}.
+  something equivalent to \VAR{foo}. %FIXME:AUGMENT
   }
 
   \IT{(\FU*{MAKE-LOAD-FORM-SAVING-SLOTS} \VAR{foo}
@@ -139,7 +141,7 @@
       \kwd{:environment}  \VAR{ environment}}{\}})}
   {
   Make \retval{two forms} yielding something equivalent to \VAR{foo}
-  but preserving only \VAR{slots}.
+  but preserving only \VAR{slots}. %FIXME:AUGMENT
   }
 
   \IT{\arrGOO{(\FU*{MACRO-FUNCTION} \VAR{ symbol }
@@ -248,12 +250,12 @@
   }
 
   \IT{(\FU*{DESCRIBE} \VAR{foo}
-    \Op{\VAR{stream}\DF{\V{*standard-output*}}})}
+    \Op{\DES{\VAR{stream}}\DF{\V{*standard-output*}}})}
   {
   Send information about \VAR{foo} to \VAR{stream}.
   }
 
-  \IT{(\GFU*{DESCRIBE-OBJECT} \VAR{foo} \Op{\VAR{stream}})}
+  \IT{(\GFU*{DESCRIBE-OBJECT} \VAR{foo} \Op{\DES{\VAR{stream}}})}
   {
   Send information about \VAR{foo} to \VAR{stream}. Not to be
   called by user.

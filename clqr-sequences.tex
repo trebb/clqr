@@ -37,8 +37,8 @@
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \kwd{:test} \VAR{ function}\\
       \kwd{:test-not} \VAR{ function}\\
-      \kwd{:start1} \VAR{ start-a}\DF{0}\\
-      \kwd{:start2} \VAR{ start-b}\DF{0}\\
+      \kwd{:start1} \VAR{ start-a}\DF{\LIT{0}}\\
+      \kwd{:start2} \VAR{ start-b}\DF{\LIT{0}}\\
       \kwd{:end1}  \VAR{ end-a}\DF{\NIL}\\
       \kwd{:end2} \VAR{ end-b}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})}
@@ -68,16 +68,16 @@
   Return \retval{concatenated sequence} of \VAR{type}.
   }
 
-  \IT{(\FU*{MERGE} \VAR{type} \VAR{sequence-a}  \VAR{sequence-b}
+  \IT{(\FU*{MERGE} \VAR{type} \DES{\VAR{sequence-a}} \DES{\VAR{sequence-b}}
     \VAR{test} \Op{\kwd{:key} \VAR{function}})}
   {
-  Return \retval{interleaved sequence} of \VAR{type}. \VAR{sequence-a}
-  and \VAR{sequence-b} are possibly modified. Merged sequence  will be
-  sorted if both  \VAR{sequence-a} and \VAR{sequence-b} are sorted.
+  Return \retval{interleaved sequence} of \VAR{type}. Merged sequence
+  will be sorted if both  \VAR{sequence-a} and \VAR{sequence-b} are
+  sorted. 
   }
 
-  \IT{(\FU*{FILL} \VAR{sequence} \VAR{foo} 
-    \orGOO{\kwd{:start} \VAR{ start}\DF{0}\\
+  \IT{(\FU*{FILL} \DES{\VAR{sequence}} \VAR{foo} 
+    \orGOO{\kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}}{\}})}
   {
   Return \retval{\VAR{sequence}} after setting elements between \VAR{start}
@@ -93,7 +93,7 @@
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \kwd{:test} \VAR{ function}\\
       \kwd{:test-not} \VAR{ function}\\
-      \kwd{:start} \VAR{ start}\DF{0}\\
+      \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {
@@ -104,7 +104,7 @@
   \IT{(\xorGOO{\FU*{COUNT-IF}\\
       \FU*{COUNT-IF-NOT}}{\}} \VAR{test} \VAR{sequence} 
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
-      \kwd{:start} \VAR{ start}\DF{0}\\
+      \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {
@@ -125,18 +125,17 @@
     }
 
   \IT{(\xorGOO{\FU*{SORT}\\
-      \FU*{STABLE-SORT}}{\}} \VAR{sequence} \VAR{test}
+      \FU*{STABLE-SORT}}{\}} \DES{\VAR{sequence}} \VAR{test}
     \Op{\kwd{:key} \VAR{function}})}
   {
-  Return \retval{\VAR{sequence} sorted}. \VAR{sequence} is modified. Order
+  Return \retval{\VAR{sequence} sorted}. Order
   of elements considered equal is not guaranteed/retained, respectively.
   }
 
-  \IT{\arrGOO{(\FU*{REVERSE} \VAR{ sequence})\\(\FU*{NREVERSE} \VAR{
-        sequence})}{.}}
+  \IT{\arrGOO{(\FU*{REVERSE} \VAR{ sequence})\\
+      (\FU*{NREVERSE } \DES{\VAR{sequence}})}{.}}
   {
-  Return \retval{\VAR{sequence} in reverse order}. \VAR{sequence} is
-  unmodified/possibly modified, respectively. 
+  Return \retval{\VAR{sequence} in reverse order}.
   }
 
   \IT{(\xorGOO{\FU*{FIND}\\
@@ -144,7 +143,7 @@
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \kwd{:test} \VAR{ function}\\
       \kwd{:test-not} \VAR{ function}\\
-      \kwd{:start} \VAR{ start}\DF{0}\\
+      \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {
@@ -155,7 +154,7 @@
 
   \IT{(\xorGOO{\FU*{FIND-IF}\\\FU*{FIND-IF-NOT}\\\FU*{POSITION-IF}\\\FU*{POSITION-IF-NOT}}{\}} \VAR{test} \VAR{sequence} 
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
-      \kwd{:start} \VAR{ start}\DF{0}\\
+      \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {
@@ -168,8 +167,8 @@
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \kwd{:test} \VAR{ function}\\
       \kwd{:test-not} \VAR{ function}\\
-      \kwd{:start1} \VAR{ start-a}\DF{0}\\
-      \kwd{:start2} \VAR{ start-b}\DF{0}\\
+      \kwd{:start1} \VAR{ start-a}\DF{\LIT{0}}\\
+      \kwd{:start2} \VAR{ start-b}\DF{\LIT{0}}\\
       \kwd{:end1} \VAR{ end-a}\DF{\NIL}\\
       \kwd{:end2} \VAR{ end-b}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})}
@@ -179,83 +178,93 @@
   \retval{\NIL}. 
   }
 
-  \IT{(\xorGOO{\FU*{REMOVE}\\\FU*{DELETE}}{\}} \VAR{foo} \VAR{sequence}
+  \IT{(\xorGOO{\FU*{REMOVE} \VAR{ foo } \VAR{sequence}\\
+      \FU*{DELETE} \VAR{ foo } \DES{\VAR{sequence}}}{\}}
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \kwd{:test} \VAR{ function}\\
       \kwd{:test-not} \VAR{ function}\\
-      \kwd{:start} \VAR{ start}\DF{0}\\
+      \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}\\
       \kwd{:count} \VAR{ count}\DF{\NIL}}{\}})}
   {
   Make \retval{copy of \VAR{sequence}} without elements matching
-  \VAR{foo}. \VAR{sequence} is unmodified/possibly modified, respectively. 
+  \VAR{foo}.
   }
 
-  \IT{(\xorGOO{\FU*{REMOVE-IF}\\\FU*{REMOVE-IF-NOT}\\
-      \FU*{DELETE-IF}\\\FU*{DELETE-IF-NOT}}{\}} 
-    \VAR{test} \VAR{sequence}
-    \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
-      \kwd{:start} \VAR{ start}\DF{0}\\
+  \IT{(\xorGOO{%
+      \arrGOO{
+        \FU*{REMOVE-IF}\\
+        \FU*{REMOVE-IF-NOT}}{\}} \VAR{ test } \VAR{sequence}\\
+      \arrGOO{
+        \FU*{DELETE-IF}\\
+        \FU*{DELETE-IF-NOT}}{\}} \VAR{ test }
+      \DES{\VAR{sequence}}\text{ }}{\}}
+      \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
+      \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}\\
       \kwd{:count} \VAR{ count}\DF{\NIL}}{\}})}
   {
   Make \retval{copy of \VAR{sequence}} with all (or \VAR{count}) elements
-  satisfying test removed.
-  \VAR{sequence} is unmodified/possibly modified, respectively.
+  satisfying \VAR{test} removed.
   }
 
-  \IT{(\xorGOO{\FU*{REMOVE-DUPLICATES}\\\FU*{DELETE-DUPLICATES}}{\}} \VAR{sequence}
+  \IT{(\xorGOO{\FU*{REMOVE-DUPLICATES} \VAR{ sequence }\\
+      \FU*{DELETE-DUPLICATES } \DES{\VAR{sequence}}}{\}}
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \kwd{:test} \VAR{ function}\\ 
       \kwd{:test-not} \VAR{ function}\\
-      \kwd{:start} \VAR{ start}\DF{0}\\
+      \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {
-  Make \retval{copy of
-    \VAR{sequence}} without duplicates. \VAR{sequence} is unmodified/possibly
-  modified, respectively.
+  Make \retval{copy of \VAR{sequence}} without duplicates.
   }
 
-  \IT{(\xorGOO{\FU*{SUBSTITUTE}\\
-      \FU*{NSUBSTITUTE}}{\}} \VAR{new}
-    \VAR{old} \VAR{sequence} 
+  \IT{(\xorGOO{%
+      \FU*{SUBSTITUTE} \VAR{ new} \VAR{ old } \VAR{sequence} \\
+      \FU*{NSUBSTITUTE} \VAR{ new} \VAR{ old } \DES{\VAR{sequence}} }{\}} 
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \kwd{:test} \VAR{ function}\\
       \kwd{:test-not} \VAR{ function}\\
-      \kwd{:start} \VAR{ start}\DF{0}\\
+      \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}\\
       \kwd{:count} \VAR{ count}\DF{\NIL}}{\}})}
   {
   Make \retval{copy of \VAR{sequence}} with all (or \VAR{count})
-  \VAR{old}s replaced by \VAR{new}. \VAR{sequence} is
-  unmodified/possibly modified, respectively. 
+  \VAR{old}s replaced by \VAR{new}.
   }
 
-  \IT{(\xorGOO{\FU*{SUBSTITUTE-IF}\\\FU*{SUBSTITUTE-IF-NOT}\\
-      \FU*{NSUBSTITUTE-IF}\\\FU*{NSUBSTITUTE-IF-NOT}}{\}} 
-    \VAR{new} \VAR{test} \VAR{sequence}
+  \IT{(\xorGOO{%
+      \arrGOO{%
+        \FU*{SUBSTITUTE-IF}\\
+        \FU*{SUBSTITUTE-IF-NOT}}{\}}
+      \VAR{ new} \VAR{ test } \VAR{sequence}\\
+      \arrGOO{%
+        \FU*{NSUBSTITUTE-IF}\\
+        \FU*{NSUBSTITUTE-IF-NOT}}{\}}
+      \VAR{ new} \VAR{ test } \DES{\VAR{sequence}}\text{ }
+    }{\}}
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
-      \kwd{:start} \VAR{ start}\DF{0}\\
+      \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}\\
       \kwd{:count} \VAR{ count}\DF{\NIL}}{\}})}
   {
-  Make \retval{copy of \VAR{sequence}} with all (or \VAR{count})
-  elements satisfying test replaced by
-  \VAR{new}. \VAR{sequence} is unmodified/possibly modified, respectively. 
+    Make \retval{copy of \VAR{sequence}} with all (or \VAR{count})
+    elements satisfying \VAR{test} replaced by
+    \VAR{new}.
   }
 
-  \IT{(\FU*{REPLACE} \VAR{sequence-a} \VAR{sequence-b}
-    \orGOO{\kwd{:start1} \VAR{ start-a}\DF{0}\\
-      \kwd{:start2} \VAR{ start-b}\DF{0}\\
+  \IT{(\FU*{REPLACE} \DES{\VAR{sequence-a}} \VAR{sequence-b}
+    \orGOO{\kwd{:start1} \VAR{ start-a}\DF{\LIT{0}}\\
+      \kwd{:start2} \VAR{ start-b}\DF{\LIT{0}}\\
       \kwd{:end1} \VAR{ end-a}\DF{\NIL}\\
       \kwd{:end2} \VAR{ end-b}\DF{\NIL}}{\}})}
   {
-    Destructively replace elements of \retval{\VAR{sequence-a}} with elements of
+    Replace elements of \retval{\VAR{sequence-a}} with elements of
     \VAR{sequence-b}.
     }
 
@@ -266,7 +275,7 @@
     \VAR{type}. If \VAR{type} is \NIL, return \retval{\NIL}.
   }
 
-  \IT{(\FU*{MAP-INTO} \VAR{result-sequence} \VAR{function}
+  \IT{(\FU*{MAP-INTO} \DES{\VAR{result-sequence}} \VAR{function}
     \RP{\VAR{sequence}})}
   {
   Store into \retval{\VAR{result-sequence}} successively values of
@@ -276,7 +285,7 @@
   \IT{(\FU*{REDUCE} \VAR{function} \VAR{sequence} 
     \orGOO{\kwd{:initial-value} \VAR{ foo}\DF{\NIL}\\
       \kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
-      \kwd{:start} \VAR{ start}\DF{0}\\
+      \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\ 
       \kwd{:key} \VAR{ function}}{\}})}
   {

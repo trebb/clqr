@@ -160,9 +160,7 @@
 \newcommand{\NEV}[1]{\text{{$\widehat{#1}$}}}
 %
 % Subjected to Destruction
-% (not yet visible)
-%\newcommand{\DES}[1]{\text{{$\widetilde{#1}$}}}
-\newcommand{\DES}[1]{#1}
+\newcommand{\DES}[1]{\text{{$\widetilde{#1}$}}}
 %
 % Default Value
 \newcommand{\DF}[1]{\text{\textsubscript{\setlength{\fboxsep}{.5pt}\setlength{\fboxrule}{.1pt}\fbox{#1}}}}
@@ -288,10 +286,10 @@
   \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
   \ifdim\TAGwidth > \KEYWORDwidth%
   \text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{0em}SO}}\lowercase{#1}}}}%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{0em}sO}}\lowercase{#1}}}}%
   \else%
   \text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}SO}}\lowercase{#1}}}}%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}sO}}\lowercase{#1}}}}%
   \fi}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -463,7 +461,7 @@
 
   \IT{\LIT{me}\qquad\qquad\qquad\qquad}
   {
-  Text to input literally, or output literally.
+  Literal text.
   }
 
   \IT{\Op{\VAR{foo}\DF{\LIT{bar}}}\qquad\qquad}
@@ -505,9 +503,14 @@
   Anything from none to each of \VAR{foo}, \VAR{bar}, and \VAR{baz}.
   }
 
-  \IT{\NEV{\VAR{bar}}\qquad\qquad\qquad}
+  \IT{\NEV{\VAR{foo}}\qquad\qquad\qquad}
   {
-  \VAR{bar} is not evaluated.
+  Argument \VAR{foo} is not evaluated.
+  }
+
+  \IT{\DES{\VAR{bar}}\qquad\qquad\qquad}
+  {
+  Argument \VAR{bar} is possibly modified.
   }
 
   \IT{\retval{\VAR{foo}}; \retvalii{\VAR{bar}};

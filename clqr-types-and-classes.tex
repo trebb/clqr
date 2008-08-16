@@ -151,18 +151,21 @@
   Coerce \VAR{object} into \VAR{type}.
   }
 
-  \IT{(\MC*{TYPECASE} \VAR{foo} \OPn{(\VAR{type} \OPn{\VAR{form-a}})} 
-    \OP{(\xorGOO{\kwd*{OTHERWISE}\\\T}{\}} \OPn{\VAR{form-b}})\DF{\NIL}})}
+  \IT{(\MC*{TYPECASE} \VAR{foo} \OPn{(\NEV{\VAR{type}} \OPn{\VAR{form-a}})} 
+    \OP{(\xorGOO{\kwd*{OTHERWISE}\\
+        \T}{\}} \OPn{\VAR{form-b}\DF{\NIL}})})}
   {
-  Return \retval{values of a \VAR{form-a}s} if \VAR{foo} is of the corresponding
-  \VAR{type}. Return \retval{values of \VAR{form-b}s} otherwise. 
+  Return \retval{values of the \VAR{form-a}s} whose \VAR{type} is
+  \VAR{foo} of. Return \retval{values of \VAR{form-b}s} if no
+  \VAR{type} matches.
   }
 
   \IT{(\xorGOO{\MC*{CTYPECASE}\\
-      \MC*{ETYPECASE}}{\}} \VAR{foo} \OPn{(\VAR{type} \OPn{\VAR{form}})})}
+      \MC*{ETYPECASE}}{\}} \VAR{foo} \OPn{(\NEV{\VAR{type}} \OPn{\VAR{form}\DF{\NIL}})})}
   {
-  Return \retval{value of a \VAR{form}} if \VAR{foo} is of this \VAR{type}.
-  Signal correctable/non-correctable error, respectively.
+  Return \retval{value of the \VAR{form}s} whose \VAR{type} is
+  \VAR{foo} of. Signal correctable/non-correctable error, respectively
+  if no \VAR{type} matches.
   }
 
   \IT{(\FU*{TYPE-OF} \VAR{foo})}
@@ -197,7 +200,7 @@
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \Op{\NEV{\VAR{documentation}}} 
     \OPn{\VAR{form}})}
   {
-  Define new type \retval{\VAR{name}}.
+  Define new type \retval{\VAR{name}}. %FIXME:AUGMENT
   }
 
   \IT{\arrGOO{(\kwd{EQL } \VAR{foo})\\

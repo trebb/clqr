@@ -32,7 +32,7 @@
 	  </ul>
 	</td>
 	<td class="content">
-	  <a href="clqr-a4-consec.pdf">
+	  <a href="clqr-a4-consec.pdf" title="preview">
 	    <img class="right" src="sample-frontcover.jpg" 
 		 alt="Front Cover"/>
 	  </a>
@@ -41,7 +41,7 @@
 	    descriptions of the thousand or so symbols defined in the ANSI standard. 
 	    It comes with a comprehensive index.
 	  </p>
-	  <a href="clqr-a4-consec.pdf">
+	  <a href="clqr-a4-consec.pdf" title="preview">
 	    <img class="left" src="sample-doublepage.jpg"
 		 alt="Doublepage Sample"/> 
 	  </a>

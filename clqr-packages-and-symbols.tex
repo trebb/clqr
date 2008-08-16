@@ -66,7 +66,7 @@
     }{\}})}
   {
   Return newly defined or modified \retval{package \VAR{foo}} which inherits symbols
-  exported by \VAR{from-package}s.
+  exported by \VAR{from-package}s. %FIXME:AUGMENT
   }
   \IT{(\FU*{RENAME-PACKAGE} \VAR{package} \Op{\OPn{\VAR{nicknames}}\DF{\NIL}})}
   {
@@ -87,7 +87,7 @@
   from \VAR{package}, respectively. Return \retval{\T}. 
   }
 
-  \IT{(\FU*{DELETE-PACKAGE} \VAR{package})}
+  \IT{(\FU*{DELETE-PACKAGE} \DES{\VAR{package}})}
   {
   Delete \VAR{package}. Return \retval{\T} if successful.
   }
@@ -255,7 +255,7 @@
   \IT{(\FU*{COPY-SYMBOL} \VAR{symbol} \Op{\VAR{props}\DF{\NIL}})}
   {
   Return uninterned \retval{copy of \VAR{symbol}}. If \VAR{props} is
-  \T, the copy has the same value, function, and property list.
+  \T, the copy has the same value, function and property list.
   }
 
   \IT{\arrGOO{(\FU*{SYMBOL-FUNCTION} \VAR{ symbol})\\
@@ -267,12 +267,14 @@
   }
 
   \IT{(\GFU*{DOCUMENTATION} \VAR{foo}
-    \Goo{\kwd*{variable}%
-      \XOR\kwd*{function}\XOR%
-      \kwd*{compiler-macro}\XOR%
-      \kwd*{method-combination}\XOR%
-      \kwd*{structure}%
-      \XOR\kwd*{type}\XOR\kwd*{setf}\XOR\T})}
+    \Goo{\kwd*{'variable}%
+      \XOR\kwd*{'function}%
+      \XOR\kwd*{'compiler-macro}%
+      \XOR\kwd*{'method-combination}%
+      \XOR\kwd*{'structure}%
+      \XOR\kwd*{'type}%
+      \XOR\kwd*{'setf}%
+      \XOR\T})}
   {
   Return \retval{documentation string} of \VAR{foo} of given
   type. \kwd{setf}\-able. 

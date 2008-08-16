@@ -48,7 +48,7 @@
 \begin{LIST}{1cm}
 
   \IT{(\xorGOO{\FU*{MAKE-ARRAY}\\
-      \FU*{ADJUST-ARRAY} \VAR{ array}}{\}}
+      \FU*{ADJUST-ARRAY } \DES{\VAR{array}}}{\}}
     \VAR{dimensions}
     \orGOO{\kwd{:element-type} \VAR{ type}\DF{\T}\\
       \kwd{:adjustable} \VAR{ bool}\DF{\NIL}\\
@@ -56,7 +56,7 @@
       \xorGOO{\kwd{:initial-element} \VAR{ obj}\\
         \kwd{:initial-contents} \VAR{ sequence}\\
         \kwd{:displaced-to } \VAR{array}\DF{\NIL}\text{ }
-        \Op{\kwd{:displaced-index-offset } \VAR{i}\DF{0}}}{.}}{\}})}
+        \Op{\kwd{:displaced-index-offset } \VAR{i}\DF{\LIT{0}}}}{.}}{\}})}
   { 
   Return fresh, or readjust, respectively, \retval{vector or array} of
     \VAR{dimensions}. 
@@ -111,7 +111,7 @@
   \VAR{simple-bit-array}. \kwd{setf}able. 
   }
 
-  \IT{(\FU*{BIT-NOT} \VAR{bit-array} \Op{\VAR{result-bit-array}\DF{\NIL}})}
+  \IT{(\FU*{BIT-NOT} \DES{\VAR{bit-array}} \Op{\DES{\VAR{result-bit-array}}\DF{\NIL}})}
   {
   Return \retval{result} of bit-wise negation of \VAR{bit-array}. If \VAR{result-bit-array} is \T, put
   result in \VAR{bit-array}; if it is \NIL, make a new array for
@@ -128,13 +128,13 @@
       \FU*{BIT-ORC1}\\
       \FU*{BIT-ORC2}\\
       \FU*{BIT-XOR}\\
-      \FU*{BIT-NOR}}{\}} \VAR{bit-array-a} \VAR{bit-array-b}
-    \Op{\VAR{result-bit-array}\DF{\NIL}})}
+      \FU*{BIT-NOR}}{\}} \DES{\VAR{bit-array-a}} \VAR{bit-array-b}
+    \Op{\DES{\VAR{result-bit-array}}\DF{\NIL}})}
   {
   Return \retval{result} of bit-wise logical operations
   (cf.\ operations of \FU{boole}, p.\ \pageref{section:Logic Functions}) on
   \VAR{bit-array-a} and  \VAR{bit-array-b}.  If \VAR{result-bit-array} is \T, put result in
-  \VAR{bit-array-a}; if \VAR{arg} is \NIL, make a new array for
+  \VAR{bit-array-a}; if it is \NIL, make a new array for
   result. 
   }
 
@@ -176,7 +176,7 @@ s.~\ref{section:Sequences}.
     element} of \VAR{vector}. \kwd{setf}able.
   }
 
-  \IT{(\FU*{VECTOR-PUSH} \VAR{foo} \VAR{vector})}
+  \IT{(\FU*{VECTOR-PUSH} \VAR{foo} \DES{\VAR{vector}})}
   {
   Return \retval{\NIL} if \VAR{vector}'s fill pointer equals size of
   \VAR{vector}. Otherwise replace element of \VAR{vector} pointed to
@@ -184,7 +184,7 @@ s.~\ref{section:Sequences}.
   pointer. 
   }
 
-  \IT{(\FU*{VECTOR-PUSH-EXTEND} \VAR{foo} \VAR{vector}
+  \IT{(\FU*{VECTOR-PUSH-EXTEND} \VAR{foo} \DES{\VAR{vector}}
     \Op{\VAR{num}})}
   {
   Replace element of \VAR{vector} pointed to by \retval{fill pointer} with
@@ -192,7 +192,7 @@ s.~\ref{section:Sequences}.
   $\ge \VAR{num}$ if necessary.
   }
 
-  \IT{(\FU*{VECTOR-POP} \VAR{vector})}
+  \IT{(\FU*{VECTOR-POP} \DES{\VAR{vector}})}
   {
   Return \retval{element of \VAR{vector}} its fillpointer points to
   after decrementation.

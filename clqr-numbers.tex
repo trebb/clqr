@@ -107,8 +107,9 @@
   \retval{$a-1$}, respectively.
   }
 
-  \IT{(\xorGOO{\MC*{INCF}\\\MC*{DECF}}{\}} \VAR{place}
-    \Op{\VAR{delta}\DF{1}})}
+  \IT{(\xorGOO{\MC*{INCF}\\
+      \MC*{DECF}}{\}} \DES{\VAR{place}}
+    \Op{\VAR{delta}\DF{\LIT{1}}})}
   {
   Increment or
   decrement \VAR{place} by \VAR{delta} returning \retval{new value}.
@@ -134,7 +135,7 @@
     \retval{$\sqrt{n}$} in complex or natural numbers, respectively.
   }
 
-  \IT{\arrGOO{(\FU*{LCM} \OPn{\VAR{ integer}}\DF{1})\\
+  \IT{\arrGOO{(\FU*{LCM} \OPn{\VAR{ integer}}\DF{\LIT{1}})\\
       (\FU*{GCD} \OPn{\VAR{ integer}})}{.}}
   {
   \retval{Least common multiple} or \retval{greatest common
@@ -161,7 +162,7 @@
     a$}, respectively, in radians.
   }
 
-  \IT{(\FU*{ATAN} \VAR{a} \Op{\VAR{b}\DF{1}})}
+  \IT{(\FU*{ATAN} \VAR{a} \Op{\VAR{b}\DF{\LIT{1}}})}
   {
   \retval{$\arctan \frac{a}{b}$} in radians.
   }
@@ -216,14 +217,14 @@
       \Goo{\FU*{CEILING}\XOR\FU*{FCEILING}}\\
       \Goo{\FU*{TRUNCATE}\XOR\FU*{FTRUNCATE}}\\
       \Goo{\FU*{ROUND}\XOR\FU*{FROUND}}}{\}}
-    \VAR{n} \Op{\VAR{d}\DF{1}})}
+    \VAR{n} \Op{\VAR{d}\DF{\LIT{1}}})}
   {
   Return \retval{$n/d$} (\kwd{integer} or \kwd{float}, respectively) truncated
   towards $-\infty$, $+\infty$, $0$, or rounded, respectively; and \retvalii{re\-main\-der}.
   }
 
   \IT{(\xorGOO{\FU*{MOD}\\
-      \FU*{REM}}{\}} \VAR{n} \Op{\VAR{d}\DF{1}})}
+      \FU*{REM}}{\}} \VAR{n} \Op{\VAR{d}\DF{\LIT{1}}})}
   {Same as \FU{floor} or
   \FU{truncate}, respectively, but return \retval{re\-main\-der} only.
   }
@@ -244,7 +245,7 @@
   Current random state.
   }
 
-  \IT{(\FU*{FLOAT-SIGN} \VAR{num-a} \Op{\VAR{num-b}\DF{1}})}
+  \IT{(\FU*{FLOAT-SIGN} \VAR{num-a} \Op{\VAR{num-b}\DF{\LIT{1}}})}
   {
   \retval{\VAR{num-b}} with the sign of \VAR{num-a}.
   }
@@ -254,7 +255,7 @@
   representing sign or phase of \VAR{n}.
   }
 
-  \IT{(\FU*{COMPLEX} \VAR{real} \Op{\VAR{imag}\DF{0}})}
+  \IT{(\FU*{COMPLEX} \VAR{real} \Op{\VAR{imag}\DF{\LIT{0}}})}
   {Make a \retval{complex number}.
     }
 
