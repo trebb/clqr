@@ -2,7 +2,6 @@
 
 * make a clean distinction between foo* being/not being implicit progn
 
-* mark modifiable args; perhaps \widetilde{}
 
 * FINAL TESTS
 

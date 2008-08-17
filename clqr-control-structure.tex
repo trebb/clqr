@@ -77,20 +77,20 @@
 \begin{LIST}{1cm}
 
   \IT{(\MC*{DEFVAR} \NEV{\VAR{name}} \OP{\VAR{form}
-      \Op{\NEV{\VAR{documentation}}}})}
+      \Op{\NEV{\VAR{doc}}}})}
   {
   Unless bound already, assign value of \VAR{form} to dynamic variable
   \retval{\VAR{name}}. 
   }
 
   \IT{(\MC*{DEFPARAMETER} \NEV{\VAR{name}} \VAR{form}
-    \Op{\NEV{\VAR{documentation}}})}
+    \Op{\NEV{\VAR{doc}}})}
   {
   Assign value of \VAR{form} to dynamic variable \retval{\VAR{name}}.
   }
 
   \IT{(\MC*{DEFCONSTANT} \NEV{\VAR{name}} \VAR{form}
-    \Op{\NEV{\VAR{documentation}}})}
+    \Op{\NEV{\VAR{doc}}})}
   {
   Assign value of \VAR{form} to global constant \retval{\VAR{name}}.
   }
@@ -175,18 +175,27 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{section:Functions}
 
-
 \begin{flushleft}
   Below, lambda list (\OPn{\VAR{fu-arg}}) has the form\\
   (\OPn{\VAR{var}}
-  \OP{\kwd*{\&optional} \Goos{\VAR{var}\XOR(\VAR{var} \OP{\VAR{init}
-        \Op{\VAR{supplied-p}}})}}
+  \OP{\kwd*{\&optional} \xorGOO{%
+      \VAR{var}\\
+      (\VAR{var } \OP{\VAR{init } \Op{\VAR{supplied-p}}})}{\}}}
+  \penalty-5
   \Op{\kwd*{\&rest} \VAR{var}}
-  \OP{\kwd*{\&key} \GOos{\VAR{var}\XOR(\Goo{\VAR{var}\XOR(\kwd{:}\VAR{key}
-        \VAR{var})}
-      \OP{\VAR{init }\Op{\VAR{supplied-p}}})}
+  \penalty-5
+  \OP{\kwd*{\&key} \xorGOO{%
+        \VAR{var}\\
+        (\xorGOO{%
+          \VAR{var}\\
+          (\kwd{:}\VAR{key } \VAR{var})}{\}}
+      \text{ }\OP{\VAR{init }\Op{\VAR{supplied-p}}})}{\}^{\!\!*}}
+  \penalty-5
     \Op{\kwd*{\&allow-other-keys}}}
-  \OP{\kwd*{\&aux} \Goos{\VAR{var}\XOR(\VAR{var} \Op{\VAR{init}})}}).\\
+  \penalty-5
+  \OP{\kwd*{\&aux} \xorGOO{%
+      \VAR{var}\\
+      (\VAR{var } \Op{\VAR{init}})}{\}}}).\\
   \VAR{supplied-p} is \T\ if there is a corresponding argument.
 \end{flushleft}
 
@@ -194,7 +203,7 @@
 
   \IT{(\xorGOO{\MC*{DEFUN} \VAR{ foo}\\ \MC*{LAMBDA}}{\}}
     (\VAR{\OPn{fu-arg}}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
-    \Op{\NEV{\VAR{documentation}}} 
+    \Op{\NEV{\VAR{doc}}} 
     \OPn{\VAR{form}})}
   {
   Define function with \retval{name \VAR{foo}} or an anonymous
@@ -207,7 +216,7 @@
     (\OPn{(\VAR{foo}
       (\OPn{\VAR{fu-arg}}) 
       \OPn{(\kwd{declare} \OPn{\NEV{\VAR{local-decl}}})}%
-      \Op{\NEV{\VAR{documentation}}}
+      \Op{\NEV{\VAR{doc}}}
       \OPn{\VAR{local-form}})}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \OPn{\VAR{form}})}
   {
@@ -311,33 +320,67 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{flushleft}
-  Below, macro lambda list (\OPn{\VAR{macro-arg}}) has the form of either\\
+  Below, macro lambda list (\OPn{\VAR{macro-arg}}) has the form of
+  either
+  \penalty-5
   (\Op{\kwd*{\&whole} \VAR{var}}
-  \Op{\kwd*{\&environment} \VAR{var}}
+  \penalty-5
+  \Op{\VAR{\&Ev}}
+  \penalty-5
   \OPn{\VAR{var}}
-  \Op{\kwd*{\&environment} \VAR{var}}
-  \Op{\kwd*{\&optional} \Goos{\VAR{var}\XOR(\VAR{var} \OP{\VAR{init}
-        \Op{\VAR{supplied-p}}})}}
-  \Op{\kwd*{\&environment} \VAR{var}}
-  \Op{\Goo{\kwd*{\&rest}\XOR\kwd*{\&body}} \VAR{var}}
-  \Op{\kwd*{\&environment} \VAR{var}}
-  \OP{\kwd*{\&key} \GOos{\VAR{var}\XOR(\Goo{\VAR{var}\XOR(\kwd{:}\VAR{key}
-        \VAR{var})}
-      \OP{\VAR{init} \Op{\VAR{supplied-p}}})}
-    \Op{\kwd*{\&environment} \VAR{var}}
+  \penalty-5
+  \Op{\VAR{\&Ev}}
+  \penalty-5
+  \Op{\kwd*{\&optional} 
+    \xorGOO{%
+      \VAR{var}\\
+      (\VAR{var } \OP{\VAR{init } \Op{\VAR{supplied-p}}})}{\}^{\!\!*}}}
+  \penalty-5
+  \Op{\VAR{\&Ev}}
+  \penalty-5
+  \Op{%
+    \xorGOO{%
+      \kwd*{\&rest}\\
+      \kwd*{\&body}}{\}} \VAR{var}}
+  \penalty-5
+  \Op{\VAR{\&Ev}}
+  \penalty-5
+  \OP{\kwd*{\&key} 
+    \xorGOO{%
+      \VAR{var}\\
+      (\xorGOO{%
+        \VAR{var}\\
+        (\kwd{:}\VAR{key } \VAR{var})}{\}}
+      \text{ }\OP{\VAR{init } \Op{\VAR{supplied-p}}})}{\}^{\!\!*}}
+    \Op{\VAR{\&Ev}}
     \Op{\kwd*{\&allow-other-keys}}}
-  \Op{\kwd*{\&aux} \Goos{\VAR{var}\XOR(\VAR{var} \Op{\VAR{init}})}}
-  \Op{\kwd*{\&environment} \VAR{var}})\\
-  or\\
+  \penalty-5
+  \Op{\kwd*{\&aux} 
+    \xorGOO{%
+      \VAR{var}\\
+      (\VAR{var } \Op{\VAR{init}})}{\}^{\!\!*}}}
+  \penalty-5
+  \Op{\VAR{\&Ev}})
+  \\
+  or
+  \penalty-5
   (\Op{\kwd*{\&whole} \VAR{var}}
-  \Op{\kwd*{\&environment} \VAR{var}}
+  \penalty-5
+  \Op{\VAR{\&Ev}}
+  \penalty-5
   \OPn{\VAR{var}}
-  \Op{\kwd*{\&environment} \VAR{var}}
-  \Op{\kwd*{\&optional} \Goos{\VAR{var}\XOR(\VAR{var} \OP{\VAR{init}
-        \Op{\VAR{supplied-p}}})}}
-  \Op{\kwd*{\&environment} \VAR{var}}
-  \kwd{.} \VAR{var}).\\
-  \kwd*{\&environment} \VAR{var} may appear only once.
+  \penalty-5
+  \Op{\VAR{\&Ev}}
+  \penalty-5
+  \Op{\kwd*{\&optional} 
+    \xorGOO{%
+      \VAR{var}\\
+      (\VAR{var } \OP{\VAR{init } \Op{\VAR{supplied-p}}})}{\}^{\!\!*}}}
+  \penalty-5
+  \Op{\VAR{\&Ev}}
+  \kwd{.} \VAR{var}).
+  \penalty-5
+  One \Op{\VAR{\&Ev}} may be replaced by \kwd*{\&environment} \VAR{var}.
   \VAR{supplied-p} is \T\ if there is a corresponding argument.
 \end{flushleft}
 
@@ -345,7 +388,7 @@
 
   \IT{(\xorGOO{\MC*{DEFMACRO}\\\FU*{DEFINE-COMPILER-MACRO}}{\}}
     \VAR{foo} (\OPn{\VAR{macro-arg}})
-    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \Op{\NEV{\VAR{documentation}}}
+    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \Op{\NEV{\VAR{doc}}}
     \OPn{\VAR{form}})}
   {
   Define macro \retval{\VAR{foo}}. %FIXME:AUGMENT
@@ -358,7 +401,7 @@
 
   \IT{(\SO*{MACROLET} (\OPn{(\VAR{name} (\OPn{\VAR{macro-arg}})
       \OPn{(\kwd{declare} \OPn{\NEV{\VAR{local-decl}}})} 
-      \Op{\NEV{\VAR{documentation}}} \OPn{\VAR{macro-form}})}) \OPn{(\kwd{declare}
+      \Op{\NEV{\VAR{doc}}} \OPn{\VAR{macro-form}})}) \OPn{(\kwd{declare}
       \OPn{\NEV{\VAR{decl}}})} \OPn{\VAR{form}})}
   {
   Evaluate \retval{\VAR{form}s} with \VAR{name}s locally defined
@@ -373,16 +416,40 @@
   symbol-macros. 
   }
 
-  \IT{(\MC*{DEFSETF} \NEV{\VAR{function}} \xorGOO{\NEV{\VAR{update}}
-      \text{ } \Op{\NEV{\VAR{documentation}}}\\
-    \OPn{\VAR{arg } (\OPn{\VAR{var}})\text{ } \OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\text{ } \Op{\NEV{\VAR{documentation}}}}}{\}})}
+  \IT{(\MC*{DEFSETF} \NEV{\VAR{function}} \xorGOO{%
+      \NEV{\VAR{update}} \text{ } \Op{\NEV{\VAR{doc}}}\\
+      (\OPn{\VAR{setf-arg}}) \text{ } (\OPn{\VAR{var}}) \text{ } 
+        \OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\text{ }
+        \Op{\NEV{\VAR{doc}}} \text{ } \OPn{form}}{\}})
+    \penalty-5
+  where setf lambda list (\OPn{\VAR{setf-arg}}) has the form
+  \penalty-5
+  (\OPn{\VAR{var}}
+  \OP{\kwd*{\&optional} \xorGOO{%
+      \VAR{var}\\
+      (\VAR{var } \OP{\VAR{init } \Op{\VAR{supplied-p}}})}{\}}}
+  \penalty-5
+  \Op{\kwd*{\&rest} \VAR{var}}
+  \penalty-5
+  \OP{\kwd*{\&key} \xorGOO{%
+      \VAR{var}\\
+      (\xorGOO{%
+        \VAR{var}\\
+        (\kwd{:}\VAR{key } \VAR{var})}{\}}
+      \text{ }\OP{\VAR{init }\Op{\VAR{supplied-p}}})}{\}^{\!\!*}}
+    \penalty-5
+    \Op{\kwd*{\&allow-other-keys}}}
+  \penalty-5
+  \OP{\kwd*{\&environment} \VAR{var}}%
+  ).
+  }
   {
-  Specify how to \kwd{setf} a place accessed by
-  \retval{\VAR{function}}. %FIXME:AUGMENT
+    Specify how to \kwd{setf} a place accessed by
+    \retval{\VAR{function}}. %FIXME:AUGMENT
   }
 
   \IT{(\MC*{DEFINE-SETF-EXPANDER} \VAR{function} (\OPn{\VAR{macro-arg}})
-    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \Op{\NEV{\VAR{documentation}}}
+    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \Op{\NEV{\VAR{doc}}}
     \OPn{\VAR{form}})}
   {
   Specify how to \kwd{setf} a place accessed by \retval{\VAR{function}}.
@@ -395,7 +462,7 @@
 
   \IT{(\MC*{DEFINE-MODIFY-MACRO} \VAR{foo} (\kwd{\&optional}
     \OPn{\VAR{var}} \kwd{\&rest} \OPn{\VAR{var}}) \VAR{function}
-    \Op{\NEV{\VAR{documentation}}})}
+    \Op{\NEV{\VAR{doc}}})}
   {
   Define macro \retval{\VAR{foo}} able to read and write a place.
   }
