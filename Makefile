@@ -121,14 +121,8 @@ publish:	html/sample-frontcover.jpg html/sample-doublepage.jpg \
 	$(RSYNC) ./html/ trebb@shell.berlios.de:/home/groups/clqr/htdocs/ $(SEND-TO-LOG)
 	$(SSH) trebb@shell.berlios.de /home/groups/ftp/pub/clqr/clqr/fetch-news.sh $(SEND-TO-LOG)
 
-release:	emergency-commit letter a4 $(CLQR).tar.gz html/release-revision.txt
+release:	emergency-commit letter a4 $(CLQR).tar.gz
 	./upload.sh
-
-html/release-revision.txt:	html/release-date.txt
-	$(BZR_REVISION) > $@
-
-html/release-date.txt:	$(CLQR).tex $(CLQR)-*.tex 
-	$(DATE) > $@
 
 html/sample-frontcover.jpg:	$(CLQR)-a4-consec.pdf
 	$(CONVERT) $<'[0]' -verbose -resize 30% temp.jpg $(SEND-TO-LOG)
