@@ -176,7 +176,7 @@
 \label{section:Functions}
 
 \begin{flushleft}
-  Below, lambda list (\OPn{\VAR{fu-arg}}) has the form\\
+  Below, ordinary lambda list (\OPn{\VAR{ord-$\lambda$}}) has the form\\
   (\OPn{\VAR{var}}
   \OP{\kwd*{\&optional} \xorGOO{%
       \VAR{var}\\
@@ -202,19 +202,19 @@
 \begin{LIST}{1cm}
 
   \IT{(\xorGOO{\MC*{DEFUN} \VAR{ foo}\\ \MC*{LAMBDA}}{\}}
-    (\VAR{\OPn{fu-arg}}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
+    (\VAR{\OPn{ord-$\lambda$}}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \Op{\NEV{\VAR{doc}}} 
     \OPn{\VAR{form}})}
   {
   Define function with \retval{name \VAR{foo}} or an anonymous
   function, respectively, which
-  applies \VAR{form}s to \VAR{fu-arg}s.
+  applies \VAR{form}s to \VAR{ord-$\lambda$}s.
   }
 
   \IT{(\xorGOO{\SO*{FLET}\\
       \SO*{LABELS}}{\}}
     (\OPn{(\VAR{foo}
-      (\OPn{\VAR{fu-arg}}) 
+      (\OPn{\VAR{ord-$\lambda$}}) 
       \OPn{(\kwd{declare} \OPn{\NEV{\VAR{local-decl}}})}%
       \Op{\NEV{\VAR{doc}}}
       \OPn{\VAR{local-form}})}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
@@ -320,14 +320,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{flushleft}
-  Below, macro lambda list (\OPn{\VAR{macro-arg}}) has the form of
+  Below, macro lambda list (\OPn{\VAR{macro-$\lambda$}}) has the form of
   either
   \penalty-5
-  (\Op{\kwd*{\&whole} \VAR{var}}
+  (\Op{\kwd*{\&whole} 
+    \xorGOO{%
+      \VAR{var}\\
+      (\OPn{\VAR{macro-$\lambda$}})}{\}}}
   \penalty-5
   \Op{\VAR{\&Ev}}
   \penalty-5
-  \OPn{\VAR{var}}
+  \xorGOO{%
+    \VAR{var}\\
+    (\OPn{\VAR{macro-$\lambda$}})}{\}^{\!\!*}}
   \penalty-5
   \Op{\VAR{\&Ev}}
   \penalty-5
@@ -341,7 +346,10 @@
   \Op{%
     \xorGOO{%
       \kwd*{\&rest}\\
-      \kwd*{\&body}}{\}} \VAR{var}}
+      \kwd*{\&body}}{\}}
+    \xorGOO{%
+      \VAR{var}\\
+      (\OPn{\VAR{macro-$\lambda$}})}{\}}}
   \penalty-5
   \Op{\VAR{\&Ev}}
   \penalty-5
@@ -364,11 +372,16 @@
   \\
   or
   \penalty-5
-  (\Op{\kwd*{\&whole} \VAR{var}}
+  (\Op{\kwd*{\&whole}
+    \xorGOO{%
+      \VAR{var}\\
+      (\OPn{\VAR{macro-$\lambda$}})}{\}}}
   \penalty-5
   \Op{\VAR{\&Ev}}
   \penalty-5
-  \OPn{\VAR{var}}
+  \xorGOO{%
+    \VAR{var}\\
+    (\OPn{\VAR{macro-$\lambda$}})}{\}^{\!\!*}}
   \penalty-5
   \Op{\VAR{\&Ev}}
   \penalty-5
@@ -378,20 +391,25 @@
       (\VAR{var } \OP{\VAR{init } \Op{\VAR{supplied-p}}})}{\}^{\!\!*}}}
   \penalty-5
   \Op{\VAR{\&Ev}}
-  \kwd{.} \VAR{var}).
+  \kwd{.}
+  \xorGOO{%
+    \VAR{var}\\
+    (\OPn{\VAR{macro-$\lambda$}})}{\}}).
   \penalty-5
-  One \Op{\VAR{\&Ev}} may be replaced by \kwd*{\&environment} \VAR{var}.
+  One toplevel \Op{\VAR{\&Ev}} may be replaced by \kwd*{\&environment} \VAR{var}.
   \VAR{supplied-p} is \T\ if there is a corresponding argument.
 \end{flushleft}
 
 \begin{LIST}{1cm}
 
   \IT{(\xorGOO{\MC*{DEFMACRO}\\\FU*{DEFINE-COMPILER-MACRO}}{\}}
-    \VAR{foo} (\OPn{\VAR{macro-arg}})
+    \VAR{foo} (\OPn{\VAR{macro-$\lambda$}})
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \Op{\NEV{\VAR{doc}}}
     \OPn{\VAR{form}})}
   {
-  Define macro \retval{\VAR{foo}}. %FIXME:AUGMENT
+  Define macro \retval{\VAR{foo}} which on evaluation as (\VAR{foo} \VAR{tree}) applies expanded
+  \VAR{form}s to arguments from \VAR{tree} which corresponds to
+  \VAR{tree}-shaped \VAR{macro-$\lambda$}s.
   }
 
   \IT{(\MC*{DEFINE-SYMBOL-MACRO} \VAR{name} \VAR{expansion-form})}
@@ -399,7 +417,7 @@
   Make \retval{\VAR{name}} a macro call. %FIXME:AUGMENT
   }
 
-  \IT{(\SO*{MACROLET} (\OPn{(\VAR{name} (\OPn{\VAR{macro-arg}})
+  \IT{(\SO*{MACROLET} (\OPn{(\VAR{name} (\OPn{\VAR{macro-$\lambda$}})
       \OPn{(\kwd{declare} \OPn{\NEV{\VAR{local-decl}}})} 
       \Op{\NEV{\VAR{doc}}} \OPn{\VAR{macro-form}})}) \OPn{(\kwd{declare}
       \OPn{\NEV{\VAR{decl}}})} \OPn{\VAR{form}})}
@@ -418,11 +436,11 @@
 
   \IT{(\MC*{DEFSETF} \NEV{\VAR{function}} \xorGOO{%
       \NEV{\VAR{update}} \text{ } \Op{\NEV{\VAR{doc}}}\\
-      (\OPn{\VAR{setf-arg}}) \text{ } (\OPn{\VAR{var}}) \text{ } 
+      (\OPn{\VAR{setf-$\lambda$}}) \text{ } (\OPn{\VAR{var}}) \text{ } 
         \OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\text{ }
         \Op{\NEV{\VAR{doc}}} \text{ } \OPn{form}}{\}})
     \penalty-5
-  where setf lambda list (\OPn{\VAR{setf-arg}}) has the form
+  where setf lambda list (\OPn{\VAR{setf-$\lambda$}}) has the form
   \penalty-5
   (\OPn{\VAR{var}}
   \OP{\kwd*{\&optional} \xorGOO{%
@@ -448,7 +466,7 @@
     \retval{\VAR{function}}. %FIXME:AUGMENT
   }
 
-  \IT{(\MC*{DEFINE-SETF-EXPANDER} \VAR{function} (\OPn{\VAR{macro-arg}})
+  \IT{(\MC*{DEFINE-SETF-EXPANDER} \VAR{function} (\OPn{\VAR{macro-$\lambda$}})
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \Op{\NEV{\VAR{doc}}}
     \OPn{\VAR{form}})}
   {

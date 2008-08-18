@@ -146,16 +146,16 @@
   \IT{(\MC*{HANDLER-CASE} \VAR{test} 
     \OPn{(\VAR{type} (\Op{\VAR{condition-var}})
       \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \OPn{\VAR{condition-form}})} 
-    \Op{(\kwd{:no-error} (\OPn{\VAR{fu-arg}}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
+    \Op{(\kwd{:no-error} (\OPn{\VAR{ord-$\lambda$}}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
       \OPn{\VAR{form}})})}
   {
   If, on evaluation of \VAR{test}, a condition of \VAR{type} is
   signalled, return \retval{values of matching \VAR{condition-form}s}
   with \VAR{condition-var} bound to the condition. Without a condition, bind
-  \VAR{fu-arg}s to values of \VAR{test} and return \retval{values of
+  \VAR{ord-$\lambda$}s to values of \VAR{test} and return \retval{values of
     \VAR{form}s} or, without a \kwd{:no-error} clause, return
   \retval{values of \VAR{test}}. See p.\ \pageref{section:Functions}
-  for (\OPn{\VAR{fu-arg}}).
+  for (\OPn{\VAR{ord-$\lambda$}}).
   }
 
   \IT{(\MC*{HANDLER-BIND} (\OPn{(\VAR{condition-type}
@@ -183,7 +183,7 @@
   \VAR{condition-form}. Return values of \VAR{form}s.
   }
 
-  \IT{(\MC*{RESTART-CASE} \VAR{test} \OPn{(\VAR{name} (\OPn{\VAR{fu-arg}})
+  \IT{(\MC*{RESTART-CASE} \VAR{test} \OPn{(\VAR{name} (\OPn{\VAR{ord-$\lambda$}})
       \orGOO{\kwd{:interactive}
         \VAR{ form}\\ 
       \kwd{:report} \VAR{ form}\\
@@ -193,7 +193,7 @@
   Evaluate \VAR{test} with new restarts \VAR{name}. Return
   \retval{values of \VAR{test}} or, if any of the restarts is invoked,
   return \retval{values of its last \VAR{form}}.
-  For (\OPn{\VAR{fu-arg}}) see p.\ \pageref{section:Functions}.
+  For (\OPn{\VAR{ord-$\lambda$}}) see p.\ \pageref{section:Functions}.
   }
 
   \IT{(\MC*{RESTART-BIND} (\OPn{(\VAR{restart}

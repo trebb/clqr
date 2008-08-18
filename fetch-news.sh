@@ -13,5 +13,5 @@
     -e "s/^[ \t\]*//g" -e "s/&nbsp;&nbsp;&nbsp;//g"\
     news-clqr.tmp > /home/groups/clqr/htdocs/news-clqr.html
 /bin/rm news-clqr.tmp
-cp REVISION.tex /home/groups/clqr/htdocs/release-revision.txt
-cp DATE.tex /home/groups/clqr/htdocs/release-date.txt
+cp /home/groups/ftp/pub/clqr/clqr/REVISION.tex /home/groups/clqr/htdocs/release-revision.txt
+cp /home/groups/ftp/pub/clqr/clqr/DATE.tex /home/groups/clqr/htdocs/release-date.txt
