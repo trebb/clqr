@@ -129,10 +129,10 @@ html/sample-frontcover.jpg:	$(CLQR)-a4-consec.pdf
 	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 	$(RM) temp.jpg
 
-html/sample-doublepage.jpg:	$(CLQR)-a4-consec.pdf
-	$(CONVERT) $<'[19-20]' -verbose -resize 30% temp.jpg $(SEND-TO-LOG)
-	$(MONTAGE) temp-0.jpg temp-1.jpg  -tile 2x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
-	$(RM) temp-0.jpg temp-1.jpg
+html/sample-doublepage.jpg:	$(CLQR)-a4-booklet-four.pdf
+	$(CONVERT) $<'[10]' -verbose -resize 30% temp.jpg $(SEND-TO-LOG)
+	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
+	$(RM) temp.jpg
 
 html/sample-firstpage-%.jpg:	$(CLQR)-a4-booklet-%.pdf
 	$(CONVERT) $<'[0]' -verbose -resize 15% temp.jpg $(SEND-TO-LOG)

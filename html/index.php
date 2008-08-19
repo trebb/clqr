@@ -36,8 +36,8 @@
 	</td>
 	<td class="content">
 	  <a href="clqr-a4-consec.pdf" title="preview">
-	    <img class="right" src="sample-frontcover.jpg" 
-		 alt="Front Cover"/>
+	    <img class="right" src="sample-doublepage.jpg" 
+		 alt="Doublepage Cover"/>
 	  </a>
 	  <h3>Introduction</h3>
 	  <p> Common Lisp Quick Reference is a free booklet with short
@@ -45,8 +45,8 @@
 	    It comes with a comprehensive index.
 	  </p>
 	  <a href="clqr-a4-consec.pdf" title="preview">
-	    <img class="left" src="sample-doublepage.jpg"
-		 alt="Doublepage Sample"/> 
+	    <img class="left" src="sample-frontcover.jpg"
+		 alt="Front Cover Sample"/> 
 	  </a>
 	  <p>
 	    This rather humble effort is by no means meant to rival
