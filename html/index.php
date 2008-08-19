@@ -2,6 +2,9 @@
 <html>
   <head>
     <title>Common Lisp Quick Reference</title>
+    <meta name="author" content="Bert Burgemeister">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="new-pure.css" type="text/css">
   </head>
 
