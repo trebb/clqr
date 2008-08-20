@@ -396,25 +396,29 @@
     \VAR{var}\\
     (\OPn{\VAR{macro-$\lambda$}})}{\}}).
   \penalty-5
-  One toplevel \Op{\VAR{\&Ev}} may be replaced by \kwd*{\&environment} \VAR{var}.
-  \VAR{supplied-p} is \T\ if there is a corresponding argument.
+  One toplevel \Op{\VAR{\&Ev}} may be replaced by \kwd*{\&environment}
+  \VAR{var}. \VAR{supplied-p} is \T\ if there is a corresponding
+  argument. 
 \end{flushleft}
 
 \begin{LIST}{1cm}
 
-  \IT{(\xorGOO{\MC*{DEFMACRO}\\\FU*{DEFINE-COMPILER-MACRO}}{\}}
+  \IT{(\xorGOO{\MC*{DEFMACRO}\\
+      \FU*{DEFINE-COMPILER-MACRO}}{\}}
     \VAR{foo} (\OPn{\VAR{macro-$\lambda$}})
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \Op{\NEV{\VAR{doc}}}
     \OPn{\VAR{form}})}
   {
-  Define macro \retval{\VAR{foo}} which on evaluation as (\VAR{foo} \VAR{tree}) applies expanded
-  \VAR{form}s to arguments from \VAR{tree} which corresponds to
-  \VAR{tree}-shaped \VAR{macro-$\lambda$}s.
+  Define macro \retval{\VAR{foo}} which on evaluation as (\VAR{foo}
+  \VAR{tree}) applies expanded \VAR{form}s to arguments from
+  \VAR{tree} which corresponds to \VAR{tree}-shaped
+  \VAR{macro-$\lambda$}s. 
   }
 
-  \IT{(\MC*{DEFINE-SYMBOL-MACRO} \VAR{name} \VAR{expansion-form})}
+  \IT{(\MC*{DEFINE-SYMBOL-MACRO} \VAR{foo} \VAR{form})}
   {
-  Make \retval{\VAR{name}} a macro call. %FIXME:AUGMENT
+  Define symbol macro \retval{\VAR{foo}} which on evaluation evaluates
+  expanded \VAR{form}. 
   }
 
   \IT{(\SO*{MACROLET} (\OPn{(\VAR{name} (\OPn{\VAR{macro-$\lambda$}})
