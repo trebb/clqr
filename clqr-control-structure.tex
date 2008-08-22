@@ -439,12 +439,12 @@
   }
 
   \IT{(\MC*{DEFSETF} \NEV{\VAR{function}} \xorGOO{%
-      \NEV{\VAR{update}} \text{ } \Op{\NEV{\VAR{doc}}}\\
+      \NEV{\VAR{updater}} \text{ } \Op{\NEV{\VAR{doc}}}\\
       (\OPn{\VAR{setf-$\lambda$}}) \text{ } (\OPn{\VAR{var}}) \text{ } 
         \OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\text{ }
         \Op{\NEV{\VAR{doc}}} \text{ } \OPn{form}}{\}})
     \penalty-5
-  where setf lambda list (\OPn{\VAR{setf-$\lambda$}}) has the form
+  where defsetf lambda list (\OPn{\VAR{setf-$\lambda$}}) has the form
   \penalty-5
   (\OPn{\VAR{var}}
   \OP{\kwd*{\&optional} \xorGOO{%
@@ -463,11 +463,20 @@
     \Op{\kwd*{\&allow-other-keys}}}
   \penalty-5
   \OP{\kwd*{\&environment} \VAR{var}}%
-  ).
+  )
   }
   {
     Specify how to \kwd{setf} a place accessed by
-    \retval{\VAR{function}}. %FIXME:AUGMENT
+    \retval{\VAR{function}}.
+    Short form: (\kwd{setf} (\VAR{function} \OPn{\VAR{arg}}) \VAR{value-form}) is
+    replaced by (\VAR{updater} \OPn{\VAR{arg}} \VAR{value-form}).
+    Long form: on invocation of (\kwd{setf} (\VAR{function}
+    \OPn{\VAR{arg}}) \VAR{value-form}), \OPn{\VAR{form}} must expand
+    into code setting the place accessed where \VAR{setf-$\lambda$}
+    and \OPn{\VAR{var}} describe the arguments of \VAR{function} and
+    the value(s) to be stored, respectively. \VAR{form}s must provide for returning
+    the value(s) of \OPn{\VAR{var}}.
+ %FIXME:AUGMENT
   }
 
   \IT{(\MC*{DEFINE-SETF-EXPANDER} \VAR{function} (\OPn{\VAR{macro-$\lambda$}})
@@ -487,7 +496,7 @@
     \Op{\NEV{\VAR{doc}}})}
   {
   Define macro \retval{\VAR{foo}} able to read and write a place.
-  }
+  } %FIXME:AUGMENT
 
   \IT{\CNS*{LAMBDA-LIST-KEYWORDS}}
   {List of macro lambda list keywords.
