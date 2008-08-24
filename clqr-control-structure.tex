@@ -476,19 +476,31 @@
     and \OPn{\VAR{var}} describe the arguments of \VAR{function} and
     the value(s) to be stored, respectively. \VAR{form}s must provide for returning
     the value(s) of \OPn{\VAR{var}}.
- %FIXME:AUGMENT
   }
 
   \IT{(\MC*{DEFINE-SETF-EXPANDER} \VAR{function} (\OPn{\VAR{macro-$\lambda$}})
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \Op{\NEV{\VAR{doc}}}
     \OPn{\VAR{form}})}
   {
-  Specify how to \kwd{setf} a place accessed by \retval{\VAR{function}}.
+  Specify how to \kwd{setf} a place accessed by
+  \retval{\VAR{function}}. On invocation of (\kwd{setf} (\VAR{function}
+    \OPn{\VAR{arg}}) \VAR{value-form}), \OPn{\VAR{form}} must expand
+    into code returning \VAR{arg-vars}, \VAR{args}, \VAR{newval-vars},
+    \VAR{set-form}, and \VAR{get-form} as described with
+    \FU{GET-SETF-EXPANSION}. In the expansion, the elements of macro
+    lambda list \OPn{\VAR{macro-$\lambda$}} are bound to corresponding
+    \VAR{arg}s.
   }
 
   \IT{(\FU*{GET-SETF-EXPANSION} \VAR{place} \Op{\VAR{environment}})}
   {
-  Return five values describing how to \kwd{setf} place.
+    Return lists of temporary variables \retval{\VAR{arg-vars}} and of
+    corresponding \retvalii{\VAR{args}} as given with \VAR{place};
+    list \retvaliii{\VAR{\VAR{newval-vars}}} with temporary variables
+    corresponding to the new values; and \retvaln{4}{\VAR{set-form}}
+    and \retvaln{5}{get-form} specifying in terms of \VAR{arg-vars}
+    and \VAR{newval-vars} how to \kwd{setf} and how to read
+    \VAR{place}. 
   }
 
   \IT{(\MC*{DEFINE-MODIFY-MACRO} \VAR{foo} (\kwd{\&optional}
@@ -531,20 +543,21 @@
   \VAR{test} returns \T\ or \NIL, respectively. Return \retval{\NIL} otherwise.
   }
 
-  \IT{(\MC*{CASE} \VAR{test} \OPn{(\VAR{keys} \OPn{\VAR{foo}})}
+  \IT{(\MC*{CASE} \VAR{test} \OPn{(\NEV{\VAR{keys}} \OPn{\VAR{foo}})}
     \Op{(\Goo{\T\XOR\kwd*{OTHERWISE}} \OPn{\VAR{bar}})\DF{\NIL}})}
   {
-  Evaluate first \VAR{foo}s one of whose unevaluated \VAR{keys} is
-  \kwd{eql} evaluated \VAR{test} and return \retval{their values}.
+  Evaluate first \VAR{foo}s one of whose \VAR{keys} is
+  \kwd{eql} \VAR{test} and return \retval{their values}.
   Return \retval{values of \VAR{bar}s} if no \VAR{keys} match. 
   }
 
   \IT{(\Goo{\MC*{CCASE}\XOR\MC*{ECASE}} \VAR{test}
-    \OPn{(\VAR{keys} \OPn{\VAR{foo}})})}
+    \OPn{(\NEV{\VAR{keys}} \OPn{\VAR{foo}})})}
   {
-  Evaluate first \VAR{foo}s one of whose unevaluated \VAR{keys} is \kwd{eql} evaluated
-  \VAR{test} and return \retval{their values}. Signal correctable error/non-correctable \kwd{type-error},
-  respectively, if no \VAR{keys} match and return \retval{\NIL} then.
+  Evaluate first \VAR{foo}s one of whose \VAR{keys} is \kwd{eql}
+  \VAR{test} and return \retval{their values}. Signal correctable
+  error/non-correctable \kwd{type-error}, respectively, if no
+  \VAR{keys} match and return \retval{\NIL} then. 
   }
 
   \IT{(\MC*{AND} \OPn{\VAR{form}}\DF{\T})}
@@ -729,14 +742,15 @@
       (%  
       \arraycolsep0pt
       \(
-      \text{\kwd{loop}}
-      \left[
+      \text{\kwd{loop}}\text{ }
+      \Op{
         \text{\LKWD{named} \VAR{n}}
-        \right]
+      }
       \left\{
       \begin{array}{l}
-        \text{\LKWD{with} \VAR{var} [\VAR{type}] \LKWD{=} \VAR{foo }} 
-        \{\text{\LKWD{and} \VAR{var-n} [\VAR{type}] \LKWD{=} \VAR{bar}\}}^{*} \\
+        \text{\LKWD{with} \VAR{var} \Op{\VAR{type}} \LKWD{=} \VAR{foo }} 
+        \{\text{\LKWD{and} \VAR{var-n} \Op{\VAR{type}} \LKWD{=}
+          \VAR{bar}\}}^{*} \\[.1ex]
         \left.\!
         \begin{array}{l}
           \text{\LKWD{for}}  \\
@@ -748,7 +762,7 @@
           \begin{array}{l}
             \left.\!
             \begin{array}{l}
-              \left[
+              \OP{
                 \left\{
                 \begin{array}{l}
                   \text{\LKWD{upfrom}}\\
@@ -756,8 +770,8 @@
                 \end{array}
                 \right\}
                 \text{\VAR{start}\DF{\LIT{0}}}
-                \right]
-              \left[
+              }\text{ }
+              \OP{
                 \left\{
                 \begin{array}{l}
                   \text{\LKWD{upto}}\\
@@ -766,7 +780,7 @@
                 \end{array}
                 \right\}
                 \text{\VAR{form}}
-                \right]\\
+              }\\
               \text{\LKWD{from} \VAR{start}}
               \left\{
               \begin{array}{l}
@@ -775,8 +789,8 @@
               \end{array}
               \right\}              
               \text{\VAR{form }}\\
-              \text{\LKWD{downfrom} \VAR{start}}
-              \left[
+              \text{\LKWD{downfrom} \VAR{start}}\text{ }
+              \OP{
                 \left\{
                 \begin{array}{l}
                   \text{\LKWD{downto}}\\
@@ -785,26 +799,26 @@
                 \end{array}
                 \right\}            
                 \text{\VAR{form}}
-                \right]
+              }
             \end{array}
             \right\}
-            \left[   
+            \Op{   
               \text{\LKWD{by} \VAR{step}\DF{\LIT{1}}}
-              \right]\\
+            }\\
             \left.\!
             \begin{array}{l}
               \text{\LKWD{in}} \\
               \text{\LKWD{on}}
             \end{array}
             \right\}
-            \text{\VAR{list}} 
-            \left[
+            \text{\VAR{list}}\text{ }
+            \Op{
               \text{\LKWD{by} \VAR{form}\DF{\kwd{cdr}}}
-              \right]\\
+            }\\
             \text{\LKWD{=} \VAR{foo }} 
-            \left[
+            \Op{
               \text{\LKWD{then} \VAR{bar}}
-              \right] \\
+            }\\
             \text{\LKWD{across} \VAR{vector}}\\
             \text{\LKWD{being}}
             \left\{
@@ -830,9 +844,9 @@
                 \end{array}
                 \right\}
                 \text{\VAR{hash }} 
-                \left[
+                \Op{
                   \text{\LKWD{using} (\LKWD{hash-value} \VAR{v})}
-                  \right]\\
+                }\\
                 \left.\!
                 \begin{array}{l}
                   \text{\LKWD{hash-value}}\\
@@ -846,9 +860,9 @@
                 \end{array}
                 \right\}
                 \text{\VAR{hash }}
-                \left[
+                \Op{
                   \text{\LKWD{using} (\LKWD{hash-key} \VAR{k})}
-                  \right.\\
+                }\\
               \end{array}
               \right.\\
               \left.\!
@@ -858,14 +872,14 @@
                 \text{\LKWD{external-symbol\Op{s}}}
               \end{array}
               \right\}%
-              \left[
+              \OP{
                 \left\{
                 \begin{array}{l}
                   \text{\LKWD{of}}\\
                   \text{\LKWD{in}}
                 \end{array}
                 \right\} \text{\VAR{package}\DF{\V{*package*}}}
-                \right]
+              }
             \end{array}
             \right.
           \end{array}
@@ -874,6 +888,7 @@
                 \left\{
                 \text{\LKWD{and} }\boxed{\mathbb{F}_i}
                 \right\}^{\!*}\\
+                \\[-2.4ex]
                 \left.\!%
                 \begin{array}{l}
                   \text{\LKWD{initially}} \\
@@ -927,7 +942,7 @@
               \text{\VAR{form}}\\
               \text{\LKWD{it}}
             \end{array}
-            \right\} [\text{\LKWD{into }\VAR{var}}]\\
+            \right\} \Op{\text{\LKWD{into }\VAR{var}}}\\
             \left.\!
             \begin{array}{l}
               \text{\LKWD{count\Op{ing}}}\\
@@ -944,8 +959,8 @@
               \text{\LKWD{it}}
             \end{array}
             \right\} 
-                [\text{\LKWD{into }\VAR{n}}]
-                [\text{\VAR{type}}]\\
+                \Op{\text{\LKWD{into }\VAR{num}}}\text{ }
+                \Op{\text{\VAR{type}}}\\
                 \left.\!
                 \begin{array}{l}
                   \text{\LKWD{if}}\\
@@ -955,13 +970,15 @@
                 \right\}%
                 \text{\VAR{test }}
                 \boxed{\mathbb{S}_i}\{\text{\LKWD{and}}%
-                \boxed{\mathbb{S}_j}\}^{*}[\text{\LKWD{else}}%
+                \boxed{\mathbb{S}_j}\}^{*}\Op{\text{\LKWD{else}}%
                   \boxed{\mathbb{S}_k}\{\text{\LKWD{and}}%
-                  \boxed{\mathbb{S}_l}\}^{*}][\text{\LKWD{end}}]
+                  \boxed{\mathbb{S}_l}\}^{*}}
+                      \Op{\text{\LKWD{end}}}
           \end{array}
           \right._{\!\!\!\!\displaystyle{\mathbb{S}_0}}
         }%boxed
         \\
+        \\[-2.4ex]
         \left.\!
         \begin{array}{l}
           \text{\LKWD{initially}} \\
@@ -1076,7 +1093,7 @@
             \VAR{package}\DF{\V{*package*}}}}
         {
         Bind \VAR{var} successively to the symbols, or the present
-        symbols, or the external symbols, respectively, of
+        symbols, or the external symbols respectively, of
         \VAR{package}. 
         }
 

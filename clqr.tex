@@ -360,7 +360,7 @@
 \newcommand{\retval}[1]{\uline{#1}}
 \newcommand{\retvalii}[1]{\uuline{#1}}
 \newcommand{\retvaln}[2]{{%
-      {\raisebox{-1.7ex}[1ex][0pt]{\tiny\sffamily\upshape\mdseries\makebox[0pt][l]{\hspace{-.1em}#1}}\uline{#2}}}}
+      {\raisebox{-1.7ex}[0pt][1.4ex]{\tiny\sffamily\upshape\mdseries\makebox[0pt][l]{\hspace{-.1em}#1}}\uline{#2}}}}
 \newcommand{\retvaliii}[1]{\retvaln{3}{#1}}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -447,11 +447,11 @@
 
 \begin{LIST}{1cm}
 
-  \IT{\kwd{NAME}, \FU{NAME}, \MC{NAME}, \SO{NAME}, \GFU{NAME}, \V{*name*},
+  \IT{\kwd{NAME}; \FU{NAME}; \MC{NAME}; \SO{NAME}; \GFU{NAME}; \V{*name*};
     \CNS{name}}
   {
-  Symbol defined in Common Lisp; esp.\ function, macro, special operator, generic function,
-  variable, constant.
+  Symbol defined in Common Lisp; esp.\ function, macro, special
+  operator, generic function, variable, constant. 
   }
 
   \IT{\VAR{them}\qquad\qquad\qquad}
