@@ -54,7 +54,7 @@
   \IT{(\xorGOO{\FU*{MEMBER-IF}\\
       \FU*{MEMBER-IF-NOT}}{\}}
     \VAR{test} \VAR{list}
-    \Op{\kwd{:key} \VAR{ function}})}
+    \Op{\kwd{:key} \VAR{function}})}
   {
   Return \retval{tail of \VAR{list}} starting with
   its first element satisfying \VAR{test}. Return \retval{\NIL} if
@@ -80,7 +80,7 @@
 
   \IT{(\FU*{CONS} \VAR{foo} \VAR{bar})}
   {
-  Return new cons \retval{(\VAR{foo} \LIT{.} \VAR{bar})}.
+  Return new cons \retval{(\VAR{foo} \kwd {.} \VAR{bar})}.
   }
 
   \IT{(\FU*{LIST} \OPn{\VAR{foo}})}
@@ -131,7 +131,7 @@
   }
 
   \IT{(\FU*{NTH} \VAR{n list})}
-  {Return \VAR{n}th element (zero-indexed) of \VAR{list}. \kwd{setf}able.
+  {Return zero-indexed \VAR{n}th element of \VAR{list}. \kwd{setf}able.
     }
 
   \IT{(\FU{C}\VAR{X}\kwd{R} \VAR{list})}
@@ -263,7 +263,7 @@
 
   \IT{(\FU*{ACONS} \VAR{key} \VAR{value} \VAR{a-list})}
   {
-  Return \retval{\VAR{a-list}} with a (\VAR{key} . \VAR{value}) pair added.
+  Return \retval{\VAR{a-list}} with a (\VAR{key} \kwd{.} \VAR{value}) pair added.
   }
 
   \IT{\arrGOO{(\xorGOO{\FU*{ASSOC}\\

@@ -80,10 +80,10 @@
 
   \IT{(\xorGOO{\FU*{USE-PACKAGE}\\
     \FU*{UNUSE-PACKAGE}}{\}} 
-    \VAR{packages}
+    \VAR{other-packages}
     \Op{\VAR{package}\DF{\V{*package*}}})}
   {
-  Make exported symbols of \VAR{packages} available in \VAR{package}, or remove them
+  Make exported symbols of \VAR{other-packages} available in \VAR{package}, or remove them
   from \VAR{package}, respectively. Return \retval{\T}. 
   }
 
@@ -138,9 +138,9 @@
   }
 
   \IT{(\xorGOO{\FU*{INTERN}\\
-      \FU*{FIND-SYMBOL}}{\}} \VAR{name} \Op{\VAR{package}})}
+      \FU*{FIND-SYMBOL}}{\}} \VAR{symbol} \Op{\VAR{package}})}
   {
-  Intern or find, respectively, \retval{symbol \VAR{name}} in
+  Intern or find, respectively, \retval{\VAR{symbol}} in
   \VAR{package}. Second return value is one of
   \retvalii{\kwd{:internal}}, \retvalii{\kwd{:external}}, or
   \retvalii{\kwd{:inherited}}.
@@ -186,8 +186,8 @@
       \arrGOO{%
         \MC*{DO-SYMBOLS}\\
         \MC*{DO-EXTERNAL-SYMBOLS}}{\}}\text{ }
-      (\NEV{\VAR{var}}\text{ } \OP{\VAR{package}\DF{\V{*package*}}\text{ } \Op{\VAR{result}}})\\
-      \MC*{DO-ALL-SYMBOLS } (\VAR{var } \Op{\VAR{result}})}{\}}
+      (\NEV{\VAR{var}}\text{ } \OP{\VAR{package}\DF{\V{*package*}}\text{ } \Op{\VAR{result}\DF{\NIL}}})\\
+      \MC*{DO-ALL-SYMBOLS } (\VAR{var } \Op{\VAR{result}\DF{\NIL}})}{\}}
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \OPn{\orGOO{\NEV{\VAR{tag}}\\
       \VAR{form}}{\}}})}

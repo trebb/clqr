@@ -1,0 +1,97 @@
+% Copyright (C) 2008 Bert Burgemeister
+%
+% Permission is granted to copy, distribute and/or modify this
+% document under the terms of the GNU Free Documentation License,
+% Version 1.2 or any later version published by the Free Software
+% Foundation; with no Invariant Sections, no Front-Cover Texts and
+% no Back-Cover Texts. For details see file COPYING.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Typographic Conventions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{LIST}{1cm}
+
+  \IT{\kwd{NAME}; \FU{NAME}; \MC{NAME}; \SO{NAME}; \GFU{NAME}; \V{*name*};
+    \CNS{name}}
+  {
+  Symbol defined in Common Lisp; esp.\ function, macro, special
+  operator, generic function, variable, constant. 
+  }
+
+  \IT{\VAR{them}\qquad\qquad\qquad}
+  {
+  Placeholder for actual code.
+  }
+
+  \IT{\LIT{me}\qquad\qquad\qquad\qquad}
+  {
+  Literal text.
+  }
+
+  \IT{\Op{\VAR{foo}\DF{\LIT{bar}}}\qquad\qquad}
+  {
+  Either one \VAR{foo} or nothing; defaults to \LIT{bar}.
+  }
+
+  \IT{\OPn{\VAR{foo}}; \Goos{\VAR{foo}}}
+  {
+  Zero or more \VAR{foo}s.
+  }
+
+  \IT{\RP{\VAR{foo}}; \Goop{\VAR{foo}}}
+  {
+  One or more \VAR{foo}s.
+  }
+
+  \IT{\VAR{foos}\qquad\qquad\qquad}
+  {
+  English plural denotes a list argument.
+  }
+
+  \IT{\Goo{\VAR{foo}\XOR\VAR{bar}\XOR\VAR{baz}};
+    \xorGOO{
+      \VAR{foo}\\
+      \VAR{bar}\\
+      \VAR{baz}%
+    }{.}}
+  {
+  Either \VAR{foo}, or \VAR{bar}, or \VAR{baz}.
+  }
+
+  \IT{\orGOO{
+      \VAR{foo}\\
+      \VAR{bar}\\
+      \VAR{baz} 
+    }{.}}
+  {
+  Anything from none to each of \VAR{foo}, \VAR{bar}, and \VAR{baz}.
+  }
+
+  \IT{\NEV{\VAR{foo}}\qquad\qquad\qquad}
+  {
+  Argument \VAR{foo} is not evaluated.
+  }
+
+  \IT{\DES{\VAR{bar}}\qquad\qquad\qquad}
+  {
+  Argument \VAR{bar} is possibly modified.
+  }
+
+  \IT{\retval{\VAR{foo}}; \retvalii{\VAR{bar}};
+    \retvaln{\VAR{n}}{\VAR{baz}}}
+  {
+  First, second and \VAR{n}th return value.
+  }
+
+  \IT{\T\qquad\qquad\qquad\qquad}
+  {
+  \kwd*{T}, or truth in general.
+  }
+  
+  \IT{\NIL\qquad\qquad\qquad}
+  {
+  \kwd*{NIL} or \kwd{()}.
+  }
+
+\end{LIST}

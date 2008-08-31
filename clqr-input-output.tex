@@ -84,7 +84,7 @@
       \kwd{:end}\VAR{ end}\DF{\NIL}\\
       \kwd{:preserve-whitespace}\VAR{ bool}\DF{\NIL}}{\}})}
   {
-  Return \retval{object} read from string and \retvalii{position} of
+  Return \retval{object} read from string and zero-indexed \retvalii{position} of
   next character.
   }
 
@@ -159,7 +159,7 @@
   }
 
   \IT{(\FU*{COPY-READTABLE} \OP{\VAR{from-readtable}\DF{\V{*readtable*}}
-    \Op{\VAR{to}\DF{\NIL}}})}
+    \Op{\DES{\VAR{to-readtable}}\DF{\NIL}}})}
   {
   Return \retval{copy of \VAR{from-readtable}}.
   }
@@ -229,11 +229,26 @@
 
 \begin{LIST}{1cm}
 
-  \IT{\arrGOO{\KWD*{; }\OPn{\VAR{comment}}\\
-      \KWD{\#\boldmath$|$ }\OPn{\VAR{comment}}\KWD{ \boldmath$|$\#}}{.}}
+  \IT{\arrGOO{%
+      \KWD{\#\boldmath$|$ }\OPn{\VAR{multi-line-comment}}\KWD{ \boldmath$|$\#}\\
+      \KWD*{; }\OPn{\VAR{one-line-comment}}}{.}}
   {
-  Comments.
+  Comments. There are conventions:
   }
+  \begin{LIST}{.5cm}
+    \IT{\KWD{;;;;} \VAR{title}}
+    {Short title for a block of code.}
+
+    \IT{\KWD{;;;} \VAR{intro}}
+    {Description before a block of code.}
+
+    \IT{\KWD{;;} \VAR{state}}
+    {State of program or of following code.}
+
+    \IT{\KWD{;} \VAR{explanation}}
+    {Regarding line on which it appears.}
+
+  \end{LIST}
 
   \IT{\KWD*{(}}
   {
@@ -247,7 +262,7 @@
 
   \IT{\KWD*{'}\VAR{foo}}
   {
-  \retval{(\SO{quote} \NEV{\VAR{foo}})}.
+  (\SO{quote} \VAR{foo}); \VAR{foo} unevaluated
   }
 
   \IT{\KWD*{`}(\Op{\VAR{foo}} \Op{\KWD*{,}\VAR{bar}} \Op{\KWD*{,@}\VAR{baz}}
@@ -266,7 +281,7 @@
   \IT{\KWD*{\#b}, \KWD*{\#o}, \KWD*{\#x}, \KWD{\#}\VAR{n}\KWD{R}}
   {
   \index{\#R}%
-  Binary, octal or hexadecimal number, or number of base \VAR{n}. 
+  Binary, octal or hexadecimal number, or number of radix \VAR{n}. 
   }
 
   \IT{\KWD*{\#C(}\VAR{a b}\kwd{)}}
@@ -275,13 +290,13 @@
 
   \IT{\KWD*{\#'}\VAR{foo}}
   {
-  Return \retval{function named \VAR{foo}}.
+  (\SO{function} \VAR{foo}); the function named \VAR{foo}.
   }
 
-  \IT{\KWD{\#}\VAR{n}\KWD{A}\OPn{\VAR{sequence}}}
+  \IT{\KWD{\#}\VAR{n}\KWD{A}\VAR{sequence}}
   {
   \index{\#A}%
-  \VAR{n}-dimensional array
+  \VAR{n}-dimensional array.
   }
 
   \IT{\KWD{\#}\Op{\VAR{n}}\kwd{(}\OPn{\VAR{foo}}\kwd{)}}
@@ -327,7 +342,7 @@
   \IT{\KWD{\#}\VAR{label}\kwd{\#}}
   {
   \index{\#\#}%
-  \retval{Object labelled \VAR{label}}.
+  Object labelled \VAR{label}.
   }
 
   \IT{\KWD*{\#P}\VAR{foo}}
@@ -349,7 +364,7 @@
 
   \IT{\KWD*{\#--}\VAR{feature-expression} \VAR{form}}
   {
-  Means \VAR{form} if \VAR{feature-expression} returns \NIL, means whitespace
+  Means whitespace if \VAR{feature-expression} returns \T, means \VAR{form} 
   otherwise. 
   }
 
@@ -387,12 +402,13 @@
   Print \retval{\VAR{object}} to \VAR{stream}.
   }
 
-  \IT{(\FU*{PRINT-UNREADABLE-OBJECT} (\VAR{foo} \DES{\VAR{stream}}
-    \Op{\kwd{:type} \VAR{bool}} \Op{\kwd{:identity} \VAR{bool}})
+  \IT{(\MC*{PRINT-UNREADABLE-OBJECT} (\VAR{foo} \DES{\VAR{stream}}
+    \orGOO{\kwd{:type } \VAR{bool}\\
+      \kwd{:identity } \VAR{bool}}{\}})
     \OPn{\VAR{form}})}
   {
   Enclosed in \kwd{\#\boldmath$<$} and \kwd{\boldmath$>$}, print
-  \VAR{foo} by means of \VAR{form}s. Return \retval{\NIL}. 
+  \VAR{foo} by means of \VAR{form}s to \VAR{stream}. Return \retval{\NIL}. 
   }
 
   \IT{(\FU*{TERPRI} \Op{\DES{\VAR{stream}}\DF{\V{*standard-output*}}})}
@@ -419,13 +435,12 @@
     \orGOO{\kwd{:start} \VAR{ start}\DF{\LIT{0}}\\\kwd{:end} \VAR{
         end}\DF{\NIL}}{\}})}
   {
-  Write \retval{\VAR{string}} to \VAR{stream} without/with a trailing newline,
-  respectively. 
+  Write \retval{\VAR{string}} to \VAR{stream} without/with a trailing newline.
   }
 
   \IT{(\FU*{WRITE-BYTE} \VAR{byte} \DES{\VAR{stream}})}
   {
-  Write one \retval{\VAR{byte}} to \VAR{stream}.
+  Write \retval{\VAR{byte}} to binary \VAR{stream}.
   }
 
   \IT{(\FU*{WRITE-SEQUENCE} \VAR{sequence}
@@ -516,10 +531,11 @@
         \kwd{:current}}{\}} \VAR{n}
       \OP{\DES{\VAR{stream}}\DF{\V{*standard-output*}}})}
     {
-    Specify indentation for innermost logical block. Return \retval{\NIL}.
+    Specify indentation for innermost logical block relative to
+    leftmost position/to current position. Return \retval{\NIL}.
   }
 
-    \IT{(\kwd*{PPRINT-EXIT-IF-LIST-EXHAUSTED})}
+    \IT{(\MC*{PPRINT-EXIT-IF-LIST-EXHAUSTED})}
     {
     If \VAR{list} is empty, terminate logical block. Return
     \retval{\NIL} otherwise.
@@ -535,6 +551,79 @@
     \OP{\DES{\VAR{stream}}\DF{\V{*standard-output*}}})}
   {
   Print a conditional newline. Return \retval{\NIL}.
+  } %FIXME:AUGMENT
+
+  \IT{\V*{*print-array*}}
+  {
+  If \T, print arrays \FU{read}ably.
+  }
+
+  \IT{\V*{*print-base*}\DF{\LIT{10}}}
+  {
+  Radix for printing rationals, between 2 and 36.
+  }
+
+  \IT{\V*{*print-case*}\DF{\kwd{:upcase}}}
+  {
+  Print symbol names all uppercase (\kwd{:upcase}), all lowercase
+  (\kwd{:downcase}), capitalized (\kwd{:capitalize}).
+  }
+
+  \IT{\V*{*print-circle*}\DF{\NIL}}
+  {
+  If \T, avoid indefinite recursion while printing circular
+  structure. 
+  }
+
+  \IT{\V*{*print-escape*}\DF{\T}}
+  {
+  If \NIL, do not print escape characters and package prefixes.
+  }
+
+  \IT{\V*{*print-gensym*}\DF{\T}}
+  {
+  If \T, print \kwd{:\#} before uninterned symbols.
+  }
+
+  \IT{\V*{*print-length*}\DF{\NIL}}
+  {
+  If integer, restrict printing of objects to that number per level.
+  }
+
+  \IT{\V*{*print-level*}\DF{\NIL}}
+  {
+  If integer, restrict printing of nested objects to that depth.
+  }
+
+  \IT{\V*{*print-lines*}\DF{\NIL}}
+  {
+  Number of lines to pretty-print.
+  }
+
+  \IT{\V*{*print-miser-width*}}
+  {
+  Width below which a compact pretty-printing style is used.
+  }
+
+  \IT{\V*{*print-pretty*}}
+  {
+  If \T, print pretty.
+  }
+
+  \IT{\V*{*print-radix*}\DF{\NIL}}
+  {
+  If \T, print rationals with a radix indicator.
+  }
+
+  \IT{\V*{*print-readably*}\DF{\NIL}}
+  {
+  If \T, print \FU{read}ably or signal error
+  \kwd{print-not-readable}. 
+  }
+
+  \IT{\V*{*print-right-margin*}\DF{\NIL}}
+  {
+  Right margin width in ems while pretty-printing.
   }
 
   \IT{(\FU*{SET-PPRINT-DISPATCH} \VAR{type} \VAR{function}
@@ -558,79 +647,6 @@
     \Op{\VAR{table}\DF{\V{*print-pprint-dispatch*}}})}
   {
   Return \retval{copy of \VAR{table}}.
-  }
-
-  \IT{\V*{*print-pretty*}}
-  {
-  If \T, print pretty.
-  }
-
-  \IT{\V*{*print-lines*}\DF{\NIL}}
-  {
-  Number of lines to pretty-print.
-  }
-
-  \IT{\V*{*print-right-margin*}\DF{\NIL}}
-  {
-  Right margin width in ems while pretty-printing.
-  }
-
-  \IT{\V*{*print-miser-width*}}
-  {
-  Width below which a compact pretty-printing style is used.
-  }
-
-  \IT{\V*{*print-case*}\DF{\kwd{:upcase}}}
-  {
-  Print symbol names all uppercase (\kwd{:upcase}), all lowercase
-  (\kwd{:downcase}), capitalized (\kwd{:capitalize}).
-  }
-
-  \IT{\V*{*print-readably*}\DF{\NIL}}
-  {
-  If \T, print \FU{read}ably or signal error
-  \kwd{print-not-readable}. 
-  }
-
-  \IT{\V*{*print-array*}}
-  {
-  If \T, print array \FU{read}ably.
-  }
-
-  \IT{\V*{*print-level*}\DF{\NIL}}
-  {
-  If integer, restrict printing of nested object to that depth.
-  }
-
-  \IT{\V*{*print-circle*}\DF{\NIL}}
-  {
-  If \T, avoid indefinite recursion while printing circular
-  structure. 
-  }
-
-  \IT{\V*{*print-escape*}\DF{\T}}
-  {
-  If \NIL, do not print escape characters and package prefixes.
-  }
-
-  \IT{\V*{*print-gensym*}\DF{\T}}
-  {
-  If \T, print \kwd{:\#} before uninterned symbols.
-  }
-
-  \IT{\V*{*print-radix*}\DF{\NIL}}
-  {
-  If \T, print rationals with a radix indicator.
-  }
-
-  \IT{\V*{*print-base*}\DF{\LIT{10}}}
-  {
-  Radix for printing rationals, between 2 and 36.
-  }
-
-  \IT{\V*{*print-length*}\DF{\NIL}}
-  {
-  If integer, restrict printing of objects to that number per level.
   }
 
   \IT{\V*{*print-pprint-dispatch*}}
@@ -668,28 +684,28 @@
   contain \kwd{\TLD} directives possibly taking some
   \VAR{arg}s. Alternatively, \VAR{control} can be a function returned
   by \MC{formatter} which is then applied to \VAR{out-stream} and \OPn{\VAR{arg}}.
-  Output to \VAR{out-string}, \VAR{out-stream}, or, if first
+  Output to \VAR{out-string}, \VAR{out-stream} or, if first
   argument is \T, to \V{*standard-output*}. Return \retval{\NIL}. If
   first argument is \NIL, return \retval{formatted output}. 
   }
 
   \begin{LIST}{.5cm}
 
-    \IT{\KWD{\TLD}\Op{\VAR{min-col}\DF{\LIT{0}} \Op{\KWD{,}\VAR{col-inc}\DF{\LIT{1}}
-          \Op{\KWD{,}\VAR{min-pad}\DF{\LIT{0}}
-            \Op{\KWD{,}\VAR{pad-char}\DF{\LIT{\#$\backslash$Space}}}}}}
+    \IT{\KWD{\TLD}\OP{\VAR{min-col}\DF{\LIT{0}} \OP{\KWD{,}\Op{\VAR{col-inc}\DF{\LIT{1}}}
+          \OP{\KWD{,}\Op{\VAR{min-pad}\DF{\LIT{0}}}
+            \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}}
       \KWD{\Op{:}\Op{@}\Goo{A\XOR S}}}
     {
     Print argument of any type for consumption by humans/by the
-    reader, respectively. With \kwd{@}, add \VAR{pad-char}s on the left
-    rather than on the right. With \kwd{:} print \NIL\ as \LIT{()} rather
-    than \LIT{nil}.
+    reader, respectively. With \kwd{:}, print \NIL\ as \LIT{()} rather
+    than \LIT{nil}; with \kwd{@}, add \VAR{pad-char}s on the left
+    rather than on the right.
   }
 
-    \IT{\KWD{\TLD}\Op{\VAR{radix}\DF{\LIT{10}} \Op{\KWD{,}\VAR{width}
-          \Op{\KWD{,}\VAR{pad-char}\DF{\LIT{\#$\backslash$Space}}
-            \Op{\KWD{,}\VAR{comma-char}\DF{\KWD{,}}
-              \Op{\KWD{,}\VAR{comma-interval}\DF{\LIT{3}}}}}}}
+    \IT{\KWD{\TLD}\OP{\VAR{radix}\DF{\LIT{10}} \OP{\KWD{,}\Op{\VAR{width}}
+          \OP{\KWD{,}\Op{\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}
+            \OP{\KWD{,}\Op{\VAR{comma-char}\DF{\kwd{'}\LIT{,}}}
+              \OP{\KWD{,}\VAR{comma-interval}\DF{\LIT{3}}}}}}}
       \KWD{\Op{:}\Op{@}R}}
     {
     Print argument as number; with \KWD{:}, group digits 
@@ -704,29 +720,31 @@
     numeral, respectively.
   }
 
-    \IT{\KWD{\TLD}\Op{\VAR{width}
-        \Op{\KWD{,}\VAR{pad-char}\DF{\LIT{\#$\backslash$Space}}
-          \Op{\KWD{,}\VAR{comma-char}\DF{\KWD{,}}
-            \Op{\KWD{,}\VAR{comma-interval}\DF{\LIT{3}}}}}} \KWD{\Op{:}\Op{@}\Goo{D\XOR
-          B\XOR O\XOR X}}}
+    \IT{\KWD{\TLD}\OP{\VAR{width}
+        \OP{\KWD{,}\Op{\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}
+          \OP{\KWD{,}\Op{\VAR{comma-char}\DF{\kwd{'}\LIT{,}}}
+            \OP{\KWD{,}\VAR{comma-interval}\DF{\LIT{3}}}}}}
+      \KWD{\Op{:}\Op{@}\Goo{D\XOR B\XOR O\XOR X}}}
     {
     Print integer argument as number (decimal, binary, octal, or
     hexadecimal, respectively). With \kwd{:} group digits 
     \VAR{comma-interval} each; with \kwd{@}, always prepend a sign.
   }
 
-    \IT{\KWD{\TLD}\Op{\VAR{width} \Op{\KWD{,}\VAR{dec-digits} \Op{\KWD{,}\VAR{shift}\DF{\LIT{0}}
-            \Op{\KWD{,}\VAR{overflow-char}
-              \Op{\KWD{,}\VAR{pad-char}\DF{\LIT{\#$\backslash$Space}}}}}}}
+    \IT{\KWD{\TLD}\OP{\VAR{width} \OP{\KWD{,}\Op{\VAR{dec-digits}} \OP{\KWD{,}\Op{\VAR{shift}\DF{\LIT{0}}}
+            \OP{\KWD{,}\Op{\VAR{overflow-char}}
+              \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}}}
       \KWD{\Op{@}F}}
     {
     Print argument as floating-point number. With \kwd{@}, always prepend a sign.
   }
 
-    \IT{\KWD{\TLD}\Op{\VAR{width} \Op{\KWD{,}\VAR{int-digits} \Op{\KWD{,}\VAR{exp-digits}
-            \Op{\KWD{,}\VAR{scale-factor}\DF{\LIT{1}} \Op{\KWD{,}\VAR{overflow-char}
-                \Op{\KWD{,}\VAR{pad-char}\DF{\LIT{\#$\backslash$Space}}
-                  \Op{\KWD{,}\VAR{exp-char}}}}}}}}
+    \IT{\KWD{\TLD}\OP{\VAR{width} \OP{\KWD{,}\Op{\VAR{int-digits}}
+          \OP{\KWD{,}\Op{\VAR{exp-digits}}
+            \OP{\KWD{,}\Op{\VAR{scale-factor}\DF{\LIT{1}}}
+              \OP{\KWD{,}\Op{\VAR{overflow-char}}
+                \OP{\KWD{,}\Op{\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}
+                  \OP{\KWD{,}\VAR{exp-char}}}}}}}}
       \KWD{\Op{@}\Goo{E\XOR  G}}}
     {
     Print argument as floating-point number with \VAR{int-digits}
@@ -755,9 +773,9 @@
     \IT{\Goo{\KWD{\TLD P}\XOR\KWD{\TLD:P}
         \XOR\KWD{\TLD @P}\XOR\KWD{\TLD:@P}}}
     {
-    If argument \kwd{eql} 1 print nothing, otherwise print \LIT{s};
-    do the same after backing up one argument; if argument \kwd{eql} 1
-    print \LIT{y}, otherwise print \LIT{ies}, do the same after
+    If argument \kwd{eql} \LIT{1} print nothing, otherwise print \LIT{s};
+    do the same after backing up one argument; if argument \kwd{eql} \LIT{1}
+    print \LIT{y}, otherwise print \LIT{ies}; do the same after
     backing up one argument, respectively. 
   }
 
@@ -778,10 +796,11 @@
     \kwd{:linear}, \kwd{:fill}, \kwd{:miser}, or \kwd{:mandatory}, respectively.
   }
 
-    \IT{\KWD{\TLD}\Op{\KWD{@}}$\hookleftarrow$}
+    \IT{\KWD{\TLD}\Op{\KWD{:}}\Op{\KWD{@}}$\hookleftarrow$}
     {
     (Tilde-newline) Ignore newline and following
-    whitespace. With \kwd{@}, ignore only newline.
+    whitespace. With \kwd{:}, ignore only newline; with \kwd{@},
+    ignore only following whitespace.
   }
 
     \IT{\Goo{\KWD{\TLD\boldmath$|$}\XOR\KWD{\TLD}\VAR{n}\KWD{\boldmath$|$}}}
@@ -794,10 +813,10 @@
     Print one or \VAR{n} tilde(s).
   }
 
-    \IT{\KWD{\TLD}\Op{\VAR{min-col}\DF{\LIT{0}}
-        \Op{\KWD{,}\VAR{col-inc}\DF{\LIT{1}}
-          \Op{\KWD{,}\VAR{min-pad}\DF{\LIT{0}}
-            \Op{\KWD{,}\VAR{pad-char}\DF{\LIT{\#$\backslash$Space}}}}}}
+    \IT{\KWD{\TLD}\OP{\VAR{min-col}\DF{\LIT{0}}
+        \OP{\KWD{,}\Op{\VAR{col-inc}\DF{\LIT{1}}}
+          \OP{\KWD{,}\Op{\VAR{min-pad}\DF{\LIT{0}}}
+            \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}}
       \KWD{\Op{:}\Op{@}\boldmath{$<$}} 
       \Op{\VAR{text}\KWD{\TLD}\VAR{a},\VAR{b}\kwd{:;}}
       \Goos{\VAR{text}\KWD{\TLD;}} \KWD{\TLD\boldmath{$>$}}}
@@ -806,7 +825,7 @@
     \VAR{min-col} columns.
   }
 
-    \IT{\KWD{\TLD}\Op{\VAR{c}\Op{\KWD{,}\VAR{i}}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{T}}
+    \IT{\KWD{\TLD}\OP{\VAR{c}\OP{\KWD{,}\VAR{i}}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{T}}
     {
     Move cursor forward to column number $c + ki$, $k \geq 0$ being as small
     as possible.
@@ -830,8 +849,8 @@
     \VAR{text} is used repeatedly, up to \VAR{limit}, as control
     string for every element of argument, which should be a list. With
     \kwd{@}, take all remaining arguments. With \kwd{:}, argument should be
-    a list of sublists. At each iteration step the elements of a
-    sublist can be used by \VAR{str}. 
+    a list of sublists. At each iteration step the elements of a new
+    sublist are used by \VAR{text}. 
   }
 
     \IT{\KWD{\TLD\^{}}}
@@ -851,13 +870,13 @@
     {
     Process two arguments as format string and argument list. With
     \kwd{@}, take one argument as format string and use then the
-    original argument list
+    original argument list.
   }
 
-    \IT{\KWD{\TLD\Op{:}\Op{@}/}\VAR{function}\KWD{/}}
+    \IT{\KWD{\TLD}\OP{\VAR{prefix}\Goos{\kwd{,} \VAR{prefix}}}\Op{\kwd{:}}\Op{\kwd{@}}\KWD{/}\VAR{function}\KWD{/}}
     {
-    Call \VAR{function} with arguments stream, format-ar\-gu\-ment,
-    bool-colon, and bool-at for printing format-argument.
+    Call \VAR{function} with the arguments stream, format-ar\-gu\-ment,
+    bool-colon, bool-at and \VAR{prefix}es for printing format-argument.
   }
 
     \IT{\KWD{\TLD\Op{:}\Op{@}W}}
@@ -923,7 +942,7 @@
   \IT{(\FU*{MAKE-STRING-OUTPUT-STREAM} \Op{\kwd{:element-type}
       \VAR{type}\DF{\kwd{character}}})}
   {
-  Return a \retval{string stream} accepting characters.
+  Return a \retval{\kwd{string-stream}} accepting characters.
   }
 
   \IT{(\FU*{GET-OUTPUT-STREAM-STRING} \DES{\VAR{string-stream}})}
@@ -933,7 +952,7 @@
 
   \IT{(\FU*{MAKE-CONCATENATED-STREAM} \OPn{\VAR{stream}})}
   {
-  Return \retval{concatenated stream}.
+  Return \retval{\kwd{concatenated-stream}}.
   }
 
   \IT{(\FU*{CONCATENATED-STREAM-STREAMS} \VAR{concatenated-stream})}
@@ -944,7 +963,7 @@
 
   \IT{(\FU*{MAKE-BROADCAST-STREAM} \OPn{\VAR{stream}})}
   {
-  Return \retval{broadcast stream}.
+  Return \retval{\kwd{broadcast-stream}}.
   }
 
   \IT{(\FU*{BROADCAST-STREAM-STREAMS} \VAR{broadcast-stream})}
@@ -955,7 +974,7 @@
 
   \IT{(\FU*{MAKE-ECHO-STREAM} \VAR{input-stream} \VAR{output-stream})}
   {
-  Place \retval{echo stream} between \VAR{input-stream} and
+  Place \retval{\kwd{echo-stream}} between \VAR{input-stream} and
   \VAR{output-stream}. 
   }
 
@@ -975,7 +994,7 @@
 
   \IT{(\FU*{MAKE-SYNONYM-STREAM} \VAR{symbol})}
   {
-  Return \retval{synonym stream}.
+  Return \retval{\kwd{synonym-stream}}.
   }
 
   \IT{(\FU*{SYNONYM-STREAM-SYMBOL} \VAR{synonym-stream})}
@@ -985,7 +1004,7 @@
 
   \IT{(\FU*{MAKE-TWO-WAY-STREAM} \VAR{input-stream}
     \VAR{output-stream})}
-  {Return \retval{two-way stream}.
+  {Return \retval{\kwd{two-way-stream}}.
   }
 
   \IT{\arrGOO{(\FU*{TWO-WAY-STREAM-INPUT-STREAM} \VAR{
@@ -1041,8 +1060,8 @@
       \OPn{\NEV{\VAR{decl}}})} \OPn{\VAR{form}})}
   {
   Evaluate \VAR{form}s with \VAR{foo} locally bound to output
-  stream. Append output to \VAR{string} and return \retval{value of
-    \VAR{foo}} if \VAR{string} is given. Return \retval{string
+  stream. Append output to \VAR{string} and return \retval{values of
+    \VAR{form}s} if \VAR{string} is given. Return \retval{string
     containing output} otherwise. 
   }
 

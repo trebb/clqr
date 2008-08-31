@@ -201,14 +201,16 @@
 
 \begin{LIST}{1cm}
 
-  \IT{(\xorGOO{\MC*{DEFUN} \VAR{ foo}\\ \MC*{LAMBDA}}{\}}
+  \IT{(\xorGOO{\MC*{DEFUN }\xorGOO{ \VAR{foo}\\
+      (\kwd{setf} \VAR{ foo})}{.}\\ 
+      \MC*{LAMBDA}}{\}}
     (\VAR{\OPn{ord-$\lambda$}}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \Op{\NEV{\VAR{doc}}} 
     \OPn{\VAR{form}})}
   {
-  Define function with \retval{name \VAR{foo}} or an anonymous
-  function, respectively, which
-  applies \VAR{form}s to \VAR{ord-$\lambda$}s.
+  Define function with name \retval{\VAR{foo}} or \retval{(\kwd{setf}
+  \VAR{foo})}, or an anonymous \retval{function}, respectively, which applies
+  \VAR{form}s to \VAR{ord-$\lambda$}s. 
   }
 
   \IT{(\xorGOO{\SO*{FLET}\\
@@ -495,9 +497,9 @@
   \IT{(\FU*{GET-SETF-EXPANSION} \VAR{place} \Op{\VAR{environment}})}
   {
     Return lists of temporary variables \retval{\VAR{arg-vars}} and of
-    corresponding \retvalii{\VAR{args}} as given with \VAR{place};
+    corresponding \retvalii{\VAR{args}} as given with \VAR{place},
     list \retvaliii{\VAR{\VAR{newval-vars}}} with temporary variables
-    corresponding to the new values; and \retvaln{4}{\VAR{set-form}}
+    corresponding to the new values, and \retvaln{4}{\VAR{set-form}}
     and \retvaln{5}{get-form} specifying in terms of \VAR{arg-vars}
     and \VAR{newval-vars} how to \kwd{setf} and how to read
     \VAR{place}. 

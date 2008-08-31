@@ -84,14 +84,13 @@
 
   \IT{(\FU*{ABS} \VAR{n})}
   {
-  Return \retval{$|n|$}
+    Return \retval{$|n|$}.
   }
 
-  \IT{\arrGOO{(\FU*{+} \OPn{\VAR{ a}})\\
-      (\FU*{*} \OPn{\VAR{ a}})}{.}}
+  \IT{\arrGOO{(\FU*{+} \OPn{\VAR{ a}\DF{\LIT{0}}})\\
+      (\FU*{*} \OPn{\VAR{ a}\DF{\LIT{1}}})}{.}}
   {
-  Return \retval{$\sum{a}$} or \retval{$\prod{a}$}, respectively. Without any
-  \VAR{a}s, return \retval{0} or \retval{1}, respectively.
+  Return \retval{$\sum{a}$} or \retval{$\prod{a}$}, respectively.
   }
 
   \IT{\arrGOO{(\FU*{--} \VAR{ a}\OPn{\VAR{ b}})\\
@@ -151,8 +150,8 @@
       (\FU*{COS} \VAR{ a})\\
       (\FU*{TAN} \VAR{ a})}{.}}
   {
-  With \VAR{a} in radians, return \retval{$\sin a$}, \retval{$\cos
-    a$}, or \retval{$\tan a$}, respectively.
+    \retval{$\sin a$}, \retval{$\cos
+    a$}, or \retval{$\tan a$}, respectively. (\VAR{a} in radians.)
   }
 
   \IT{\arrGOO{(\FU*{ASIN} \VAR{ a})\\
@@ -170,7 +169,7 @@
   \IT{\arrGOO{(\FU*{SINH} \VAR{ a})\\(\FU*{COSH} \VAR{ a})\\(\FU*{TANH}
       \VAR{ a})}{.}}
   {
-  Return \retval{$\sinh a$}, \retval{$\cosh
+  \retval{$\sinh a$}, \retval{$\cosh
     a$}, or \retval{$\tanh a$}, respectively.
   }
 
@@ -185,7 +184,7 @@
   \IT{(\FU*{CIS} \VAR{a})}
   {
   Return
-  \retval{$\operatorname{e}^{\operatorname{i} a} = \cos a +
+  \retval{$\operatorname{e}^{\operatorname{i} a}$} $=$ \retval{$\cos a +
     \operatorname{i}\sin a$}.
   }
 
@@ -231,8 +230,8 @@
 
   \IT{(\FU*{RANDOM} \VAR{limit} \Op{\VAR{state}\DF{\V{*random-state}}})} 
   {
-    Return non-negative \retval{random
-    number} less then, and  of type of \VAR{limit}.
+    Return non-negative \retval{random number} less than \VAR{limit},
+    and of the same type. 
   }
 
   \IT{(\FU*{MAKE-RANDOM-STATE} \Op{\VAR{state}\DF{\NIL}})}

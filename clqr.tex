@@ -42,7 +42,8 @@
 \usepackage{ifthen}
 \usepackage{suffix}
 \usepackage{makeidx}
-\definecolor{lightgray}{gray}{.85}
+\definecolor{frontcovergray}{gray}{.85}
+\definecolor{backcovergray}{gray}{.87}
 \usepackage[pagestyles]{titlesec}
 \usepackage{titletoc}
 %
@@ -387,6 +388,8 @@
 \WithSuffix\newcommand\CNS*[1]{\CNS{#1}\uppercase{\index{#1}}}
 \WithSuffix\newcommand\LKWD*[1]{\LKWD{#1}\uppercase{\index{#1}}}
 
+\hyphenation{white-space pa-ra-me-ters}
+
 \begin{document}
 
 \newlength{\titlepagewidth}
@@ -408,7 +411,7 @@
     \begin{minipage}{\titlepagewidth}
       \begin{center}
         \rmfamily\mdseries\itshape\fontsize{300}{0}\selectfont%
-                                           {\color{lightgray}cl\/}\\
+                                           {\color{frontcovergray}cl\/}\\
       \end{center}
     \end{minipage}
     \vfill
@@ -430,6 +433,8 @@
 \end{titlepage}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TOC
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{\contentsname}
 \vspace{-3ex}
 {%
@@ -440,101 +445,13 @@
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vfill
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Typographic Conventions}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{LIST}{1cm}
-
-  \IT{\kwd{NAME}; \FU{NAME}; \MC{NAME}; \SO{NAME}; \GFU{NAME}; \V{*name*};
-    \CNS{name}}
-  {
-  Symbol defined in Common Lisp; esp.\ function, macro, special
-  operator, generic function, variable, constant. 
-  }
-
-  \IT{\VAR{them}\qquad\qquad\qquad}
-  {
-  Placeholder for actual code.
-  }
-
-  \IT{\LIT{me}\qquad\qquad\qquad\qquad}
-  {
-  Literal text.
-  }
-
-  \IT{\Op{\VAR{foo}\DF{\LIT{bar}}}\qquad\qquad}
-  {
-  Either one \VAR{foo} or nothing; defaults to \LIT{bar}.
-  }
-
-  \IT{\OPn{\VAR{foo}}; \Goos{\VAR{foo}}}
-  {
-  Zero or more \VAR{foo}s.
-  }
-
-  \IT{\RP{\VAR{foo}}; \Goop{\VAR{foo}}}
-  {
-  One or more \VAR{foo}s.
-  }
-
-  \IT{\VAR{foos}\qquad\qquad\qquad}
-  {
-  English plural denotes a list argument.
-  }
-
-  \IT{\Goo{\VAR{foo}\XOR\VAR{bar}\XOR\VAR{baz}};
-    \xorGOO{
-      \VAR{foo}\\
-      \VAR{bar}\\
-      \VAR{baz}%
-    }{.}}
-  {
-  Either \VAR{foo}, or \VAR{bar}, or \VAR{baz}.
-  }
-
-  \IT{\orGOO{
-      \VAR{foo}\\
-      \VAR{bar}\\
-      \VAR{baz} 
-    }{.}}
-  {
-  Anything from none to each of \VAR{foo}, \VAR{bar}, and \VAR{baz}.
-  }
-
-  \IT{\NEV{\VAR{foo}}\qquad\qquad\qquad}
-  {
-  Argument \VAR{foo} is not evaluated.
-  }
-
-  \IT{\DES{\VAR{bar}}\qquad\qquad\qquad}
-  {
-  Argument \VAR{bar} is possibly modified.
-  }
-
-  \IT{\retval{\VAR{foo}}; \retvalii{\VAR{bar}};
-    \retvaln{\VAR{n}}{\VAR{baz}}}
-  {
-  First, second and \VAR{n}th return value.
-  }
-
-  \IT{\T\qquad\qquad\qquad\qquad}
-  {
-  \kwd*{T}, or truth in general.
-  }
-  
-  \IT{\NIL\qquad\qquad\qquad}
-  {
-  \kwd*{NIL} or \kwd{()}.
-  }
-
-\end{LIST}
-\clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Content starts here %%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\input{typographic-conventions}
+\clearpage
 \input{clqr-numbers}
 \input{clqr-characters}
 \input{clqr-strings}
@@ -600,7 +517,7 @@
     \begin{minipage}{\titlepagewidth}
       \begin{center}
         \rmfamily\mdseries\itshape\fontsize{300}{0}\selectfont
-        \reflectbox{{\color{lightgray}cl\/}}\\
+        \reflectbox{{\color{backcovergray}cl\/}}\\
       \end{center}
     \end{minipage}
     \vfill

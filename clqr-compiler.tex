@@ -173,7 +173,7 @@
       \V*{/}\text{ }\XOR\text{ }\V*{//}\text{ }\XOR\text{ }\V*{///}}{.}}
   {
   Last, penultimate, or antepenultimate \retval{form} evaluated in the REPL, or
-  their respective \retval{primary values}, or \retval{lists} of their respective
+  their respective \retval{primary value}, or a \retval{list} of their respective
   values. 
   }
 
@@ -311,10 +311,10 @@
     Make \VAR{foo}s names of declarations.
    }
  
-    \IT{(\kwd*{DYNAMIC-EXTENT} \OPn{\VAR{var}} \OPn{(\kwd{function}
-        \VAR{fu})})}
+    \IT{(\kwd*{DYNAMIC-EXTENT} \OPn{\VAR{variable}} \OPn{(\kwd{function}
+        \VAR{function})})}
     {
-    Declare objects referred to by \VAR{var}s or \VAR{fu}s to have
+    Declare \VAR{variable}s and/or \VAR{function}s to have
     dynamic extent. 
   }
 
@@ -322,11 +322,11 @@
     \IT{\arrGOO{(\kwd*{TYPE} \VAR{ type} \OPn{\VAR{ variable}})\\
         (\kwd*{FTYPE} \VAR{ type} \OPn{\VAR{ function}})}{.}}
     {
-    Declare \VAR{variable} or \VAR{function} to be of \VAR{type}.
+    Declare \VAR{variable}s or \VAR{function}s to be of \VAR{type}.
   }
 
-    \IT{(\xorGOO{\kwd*{IGNORE}\\
-        \kwd*{IGNORABLE}}{\}}\xorGOO{%
+    \IT{(\xorGOO{\kwd*{IGNORABLE}\\
+        \kwd*{IGNORE}}{\}}\xorGOO{%
         \VAR{var}\\
         (\kwd{function} \VAR{ function})}{\}^{\!\!*}})}
     {

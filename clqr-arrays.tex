@@ -38,6 +38,7 @@
   {
   Return \retval{\T} if \VAR{subscripts} are in \VAR{array}'s bounds.
   }
+  % No default subscripts in standard.
 
 \end{LIST}
 
@@ -58,7 +59,7 @@
         \kwd{:displaced-to } \VAR{array}\DF{\NIL}\text{ }
         \Op{\kwd{:displaced-index-offset } \VAR{i}\DF{\LIT{0}}}}{.}}{\}})}
   { 
-  Return fresh, or readjust, respectively, \retval{vector or array} of
+  Return fresh, or readjust, respectively, \retval{vector} or \retval{array} of
     \VAR{dimensions}. 
   }
 
@@ -67,6 +68,7 @@
   Return
   \retval{array element} pointed to by \VAR{subscripts}. \kwd{setf}able.
   }
+  % No subscripts means sole element of rank zero array.
 
   \IT{(\FU*{ROW-MAJOR-AREF} \VAR{array} \VAR{i})}
   {
@@ -161,7 +163,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Vectors can as well be manipulated by sequence functions, see
-s.~\ref{section:Sequences}. 
+section~\ref{section:Sequences}. 
 
 \begin{LIST}{1cm}
   
@@ -169,6 +171,7 @@ s.~\ref{section:Sequences}.
   {
   Return fresh \retval{simple vector of \VAR{foo}s}.
   }
+  % No default foo in standard.
 
   \IT{(\FU*{SVREF} \VAR{vector} \VAR{i})}
   {
