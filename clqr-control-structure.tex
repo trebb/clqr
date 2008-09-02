@@ -113,7 +113,7 @@
 
   \IT{(\FU*{SET} \DES{\VAR{symbol}} \VAR{foo})}
   {
-  Set \VAR{symbol}'s value cell to \retval{\VAR{foo}}.
+  Set \VAR{symbol}'s value cell to \retval{\VAR{foo}}. Deprecated.
   }
 
   \IT{(\MC*{MULTIPLE-VALUE-SETQ} \VAR{vars} \VAR{form})}
@@ -320,6 +320,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Macros}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{section:Macros}
 
 \begin{flushleft}
   Below, macro lambda list (\OPn{\VAR{macro-$\lambda$}}) has the form of
@@ -509,8 +510,11 @@
     \OPn{\VAR{var}} \kwd{\&rest} \OPn{\VAR{var}}) \VAR{function}
     \Op{\NEV{\VAR{doc}}})}
   {
-  Define macro \retval{\VAR{foo}} able to read and write a place.
-  } %FIXME:AUGMENT
+  Define macro \retval{\VAR{foo}} able to modify a place. On
+  invocation of (\VAR{foo} \VAR{place} \OPn{\VAR{arg}}), the value of
+  \VAR{function} applied to \VAR{place} and \VAR{arg}s will be stored into
+  \VAR{place} and returned.
+  } 
 
   \IT{\CNS*{LAMBDA-LIST-KEYWORDS}}
   {List of macro lambda list keywords.

@@ -22,23 +22,27 @@
   \retval{\T} if \VAR{slot} in \VAR{instance} is bound.
   }
 
-  \IT{(\MC*{DEFCLASS} \VAR{class-name} (\OPn{\VAR{superclass}})
+  \IT{(\MC*{DEFCLASS} \VAR{foo} (\OPn{\VAR{s-cl}})
     (\OPn{\xorGOO{\VAR{slot}\\
       (\VAR{slot} 
-      \orGOO{\Goos{\kwd{:reader} \VAR{reader-fu}}\\
-        \Goos{\kwd{:writer} \VAR{writer-fu}} \\
-        \Goos{\kwd{:accessor} \VAR{reader-fu}} \\
-        \kwd{:allocation } \Goo{\kwd{:instance}\XOR\kwd{:class}}\\
-        \Goos{\kwd{:initarg} \kwd{:}\VAR{arg}} \\
+      \orGOO{\Goos{\kwd{:reader} \VAR{reader-function}}\\
+        \Goos{\kwd{:writer} \VAR{writer-function}} \\
+        \Goos{\kwd{:accessor} \VAR{reader-function}} \\
+        \kwd{:allocation } \xorGOO{\kwd{:instance}\\
+          \kwd{:class}}{\}}\DF{\kwd{:instance}}\\
+        \Goos{\kwd{:initarg} \kwd{:}\VAR{initarg-name}} \\
         \kwd{:initform} \VAR{ form}\\
         \kwd{:type} \VAR{ type}\\
-        \kwd{:documentation} \VAR{ string}}{\}})}{\}}})
+        \kwd{:documentation} \VAR{ slot-doc}}{\}})}{\}}})
     \orGOO{(\kwd{:default-initargs } \Goos{\VAR{name}\VAR{ value}})\\
-      (\kwd{:documentation} \VAR{ string})\\
+      (\kwd{:documentation} \VAR{ class-doc})\\
       (\kwd{:metaclass} \VAR{ name})}{\}})}
   {
-  Define \retval{class \VAR{ class-name}} as a subclass of
-  \VAR{superclass}es. %FIXME:AUGMENT
+  Define, as a subclass of classes \OPn{\VAR{s-cl}}, \retval{class}
+  \VAR{foo}. On new instances, a \VAR{slot}'s value defaults to 
+  \VAR{form} unless set by \kwd{:}\VAR{initarg-name} and is accessible
+  by \VAR{reader-function} and \VAR{writer-function}. With
+  \kwd{:allocation :class}, \VAR{slot} is shared by all instances.
   }
 
   \IT{(\FU*{FIND-CLASS} \VAR{symbol} \OP{\VAR{errorp}\DF{\T}
@@ -166,41 +170,44 @@
   }
 
   \IT{(\MC*{DEFGENERIC}
-    \xorGOO{\VAR{name}\\ (\kwd{setf} \VAR{ name})}{\}} 
-    (\OPn{\VAR{var}}%
-    \OP{\kwd*{\&optional} \Goos{\VAR{var}\XOR(\VAR{var})}}
+    \xorGOO{\VAR{foo}\\ (\kwd{setf} \VAR{ foo})}{\}} 
+    (\OPn{\VAR{required-var}}%
+    \OP{\kwd*{\&optional} \xorGOO{\VAR{var}\\
+        (\VAR{var})}{\}^{\!\!*}}}
     \OP{\kwd*{\&rest} \VAR{var}}
     \OP{\kwd*{\&key} \orGOO{%
       \VAR{var}\\
       (\VAR{var}\XOR(\kwd{:}\VAR{key}
           \VAR{var}))}{\}^{\!\!*}} \Op{\kwd*{\&allow-other-keys}}})
      \orGOO{%
-    (\kwd{:argument-precedence-order}\RP{\VAR{ var}})\\
+    (\kwd{:argument-precedence-order}\RP{\VAR{ required-var}})\\
     (\kwd{declare }\RP{(\kwd{optimize}\OPn{\VAR{ arg}})})\\
     (\kwd{:documentation } \NEV{\VAR{string}})\\
     (\kwd{:generic-function-class} \VAR{ class}\DF{\kwd{standard-generic-function}})\\
     (\kwd{:method-class} \VAR{ class}\DF{\kwd{standard-method}})\\
     (\kwd{:method-combination} \VAR{ c-type} \OPn{\VAR{ arg}})\\
-    \OPn{(\kwd{:method} \VAR{ defmethod-arguments})}}{\}})}
+    \OPn{(\kwd{:method} \VAR{ defmethod-args})}}{\}})}
   {
-  Define \retval{generic function \VAR{name}}. For \VAR{c-type} see
-  s.\ \ref{section:Method Combination Types}. %FIXME:AUGMENT
+  Define \retval{generic function} \VAR{foo} with \VAR{defmethod-args}
+  describing some methods. \VAR{defmethod-args} resemble those of
+  \MC{defmethod}. For \VAR{c-type} see section \ref{section:Method
+    Combination Types}. 
   }
 
   \IT{(\FU*{ENSURE-GENERIC-FUNCTION}
-    \xorGOO{\VAR{name}\\ (\kwd{setf} \VAR{ name})}{\}}
+    \xorGOO{\VAR{foo}\\ (\kwd{setf} \VAR{ foo})}{\}}
     \orGOO{%
-      \kwd{:argument-precedence-order}\RP{\VAR{ arg}}\\
+      \kwd{:argument-precedence-order}\RP{\VAR{ required-var}}\\
       \kwd{:declare }\RP{(\kwd{optimize}\OPn{\VAR{ arg}})}\\
-    \kwd{:documentation} \VAR{ string}\\
-    \kwd{:environment} \VAR{ environment}\\
-    \kwd{:generic-function-class} \VAR{ class}\\
-    \kwd{:lambda-list} \VAR{ lambda-list}\\
-    \kwd{:method-class} \VAR{ class}\\
-    \kwd{:method-combination} \VAR{ c-type} \OPn{\VAR{ arg}}}{\}})}
+      \kwd{:documentation} \VAR{ string}\\
+      \kwd{:generic-function-class} \VAR{ class}\\
+      \kwd{:method-class} \VAR{ class}\\
+      \kwd{:method-combination} \VAR{ c-type} \OPn{\VAR{ arg}}\\
+      \kwd{:lambda-list} \VAR{ lambda-list}\\
+      \kwd{:environment} \VAR{ environment}}{\}})}
   {
-  Define or modify \retval{generic function \VAR{name}}. For \VAR{c-type} see
-  s.\ \ref{section:Method Combination Types}. %FIXME:AUGMENT
+  Define or modify \retval{generic function} \VAR{foo}. For \VAR{c-type} see
+  section \ref{section:Method Combination Types}.
   }
 
   \IT{(\MC*{DEFMETHOD} 
@@ -236,7 +243,7 @@
   Add, or remove, respectively, \VAR{method} from \retval{\VAR{generic-function}}.
   }
 
-  \IT{(\FU*{CALL-NEXT-METHOD} \OPn{\VAR{args}}\DF{current args})}
+  \IT{(\FU*{CALL-NEXT-METHOD} \OPn{\VAR{arg}}\DF{current args})}
   {
   From within a method, call next method with \VAR{arg}s; return
   \retval{its values}.
@@ -246,7 +253,9 @@
       (\MC*{MAKE-METHOD} \VAR{ form})}{\}}
     \Op{\NEV{\VAR{next-methods}}})}
   {
-  Call \VAR{method}, return \retval{its values}. %FIXME:AUGMENT
+  From within a method form, call \VAR{method} with arguments and
+  with information about its \VAR{next-methods}; return \retval{its
+    values}. 
   }
 
   \IT{(\GFU*{NO-APPLICABLE-METHOD} \VAR{generic-function}
@@ -335,7 +344,7 @@
   Short form. Define new method combination type
   \retval{\VAR{c-type}}. A call to a generic function using
   \VAR{c-type} will be equivalent to (\VAR{c-type}
-  \OPn{\VAR{applicable-method}}). 
+  \OPn{\VAR{applicable-method}} \Op{\kwd{:order} \xorGOO{\kwd{:most-specific-first}\\\kwd{:most-specific-last}}{\}}}). 
   }
 
   \IT{(\MC*{DEFINE-METHOD-COMBINATION} \VAR{c-type}

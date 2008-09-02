@@ -196,11 +196,14 @@
   elements of \VAR{type}. 
   }
 
-  \IT{(\MC*{DEFTYPE} \VAR{name} \OPn{\VAR{arg}} 
+  \IT{(\MC*{DEFTYPE} \VAR{foo} (\OPn{\VAR{macro-$\lambda$}}) 
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \Op{\NEV{\VAR{doc}}} 
     \OPn{\VAR{form}})}
   {
-  Define new type \retval{\VAR{name}}. %FIXME:AUGMENT
+  Define type \retval{\VAR{foo}} which when referenced by (\VAR{foo}
+  \OPn{\NEV{\VAR{arg}}}) applies expanded \VAR{form}s to \VAR{arg}s
+  returning the new type. For (\OPn{\VAR{macro-$\lambda$}}) see
+  p.~\pageref{section:Macros} 
   }
 
   \IT{\arrGOO{(\kwd{EQL } \VAR{foo})\\

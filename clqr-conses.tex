@@ -184,7 +184,7 @@
 
   \IT{(\FU*{POP} \DES{\VAR{place}})}
   {
-  Set \VAR{place} to \retval{(\FU{CDR} \VAR{place})}, return
+  Set \VAR{place} to (\FU{CDR} \VAR{place}), return
   \retval{(\FU{CAR} \VAR{place})}.
   }
 
@@ -256,34 +256,34 @@
 \label{section:Association Lists}
 \begin{LIST}{1cm}
 
-  \IT{(\FU*{PAIRLIS} \VAR{keys} \VAR{values} \Op{\VAR{alist}\DF{\kwd{()}}})}
+  \IT{(\FU*{PAIRLIS} \VAR{keys} \VAR{values} \Op{\VAR{alist}\DF{\NIL}})}
   {
     Prepend to \retval{\VAR{alist}} an association list made from lists \VAR{keys} and \VAR{values}.
   }
 
-  \IT{(\FU*{ACONS} \VAR{key} \VAR{value} \VAR{a-list})}
+  \IT{(\FU*{ACONS} \VAR{key} \VAR{value} \VAR{alist})}
   {
-  Return \retval{\VAR{a-list}} with a (\VAR{key} \kwd{.} \VAR{value}) pair added.
+  Return \retval{\VAR{alist}} with a (\VAR{key} \kwd{.} \VAR{value}) pair added.
   }
 
   \IT{\arrGOO{(\xorGOO{\FU*{ASSOC}\\
         \FU*{RASSOC}}{\}}
-      \VAR{ foo} \VAR{ a-list }
+      \VAR{ foo} \VAR{ alist }
       \xorGOO{\kwd{:key} \VAR{ function}\\
         \kwd{:test} \VAR{ test}\\
         \kwd{:test-not} \VAR{ test}
       }{\}})\\
     (\xorGOO{\FU*{ASSOC-IF}\Op{\kwd{-NOT}}\\
-      \FU*{RASSOC-IF}\Op{\kwd{-NOT}}}{\}} \VAR{ test} \VAR{ a-list }
+      \FU*{RASSOC-IF}\Op{\kwd{-NOT}}}{\}} \VAR{ test} \VAR{ alist }
       \Op{\kwd{:key} \VAR{ function}})}{.}}
   {
 \index{ASSOC-IF-NOT}\index{RASSOC-IF-NOT}%
   First \retval{cons} whose car, or cdr, respectively, satisfies \VAR{test}.
   }
 
-  \IT{(\FU*{COPY-ALIST} \VAR{a-list})}
+  \IT{(\FU*{COPY-ALIST} \VAR{alist})}
   {
-  Return \retval{copy} of \VAR{a-list}.
+  Return \retval{copy} of \VAR{alist}.
   }
 
 \end{LIST}
@@ -325,15 +325,15 @@
   satisfying \VAR{test} replaced by \VAR{new}. 
   }
 
-  \IT{(\xorGOO{\FU*{SUBLIS} \VAR{ a-list } \VAR{tree} \\
-      \FU*{NSUBLIS} \VAR{ a-list } \DES{\VAR{tree}} }{\}}
+  \IT{(\xorGOO{\FU*{SUBLIS} \VAR{ association-list } \VAR{tree} \\
+      \FU*{NSUBLIS} \VAR{ association-list } \DES{\VAR{tree}} }{\}}
     \orGOO{%
       \kwd{:key} \VAR{ function}\\
       \kwd{:test} \VAR{ function}\\
       \kwd{:test-not} \VAR{ function}}{\}})}
   {
   Make \retval{copy of \VAR{tree}} with each subtree or leaf matching
-  a key in \VAR{a-list} replaced by that key's value.
+  a key in \VAR{association-list} replaced by that key's value.
   }
 
   \IT{(\FU*{COPY-TREE} \VAR{tree})} 

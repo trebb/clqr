@@ -274,7 +274,7 @@
 
   \IT{\KWD{\#\boldmath{$\backslash$}}\VAR{c}}
   {
-  Character \VAR{c}.
+  (\FU{character} \LIT{"}\VAR{c}\LIT{"}), the character \VAR{c}.
   }
   \index{\#@\#$\backslash$}%
 
@@ -518,8 +518,10 @@
     indicator to \VAR{stream}. 
   }
 
-    \IT{(\FU*{PPRINT-TAB} \Goo{\kwd{:line}\XOR\kwd{:line-relative}%
-        \XOR\kwd{:section}\XOR\kwd{:section-relative}} \VAR{c}
+    \IT{(\FU*{PPRINT-TAB} \xorGOO{\kwd{:line}\\
+        \kwd{:line-relative}\\
+        \kwd{:section}\\
+        \kwd{:section-relative}}{\}} \VAR{c}
       \VAR{i} \Op{\DES{\VAR{stream}}\DF{\V{*standard-output*}}})}
     {
     Move cursor forward to column number $c + ki$, $k \geq 0$ being as small
@@ -819,16 +821,18 @@
             \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}}
       \KWD{\Op{:}\Op{@}\boldmath{$<$}} 
       \Op{\VAR{text}\KWD{\TLD}\VAR{a},\VAR{b}\kwd{:;}}
-      \Goos{\VAR{text}\KWD{\TLD;}} \KWD{\TLD\boldmath{$>$}}}
+      \Goos{\VAR{text}\KWD{\TLD;}}\VAR{text} \KWD{\TLD\boldmath{$>$}}}
     {
     Justify text produced by \VAR{text}s in a field of at least
     \VAR{min-col} columns.
-  }
+  } %FIXME:AUGMENT
 
-    \IT{\KWD{\TLD}\OP{\VAR{c}\OP{\KWD{,}\VAR{i}}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{T}}
+    \IT{\KWD{\TLD}\OP{\VAR{c}\DF{\LIT{1}}\OP{\KWD{,}\VAR{i}\DF{\LIT{1}}}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{T}}
     {
     Move cursor forward to column number $c + ki$, $k \geq 0$ being as small
-    as possible.
+    as possible. With \kwd{:}, calculate column numbers relative to
+    the immediately enclosing section. With \kwd{@}, move to column
+    number $c_0 + c + ki$ where $c_0$ is the current position.
   }
 
     \IT{\Goo{\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\kwd{I}\XOR\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\kwd{:I}}}
@@ -859,11 +863,14 @@
     \kwd{\TLD\boldmath{$\{$} \TLD\boldmath{$\}$}}.
   }
 
-    \IT{\KWD{\TLD}\Op{\VAR{i}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{[}\Goos{\VAR{text}\KWD{\TLD;}}\KWD{\TLD]}}
+    \IT{\KWD{\TLD}\Op{\VAR{i}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{[}\Op{\Goos{\VAR{text}\KWD{\TLD;}}\VAR{text}}\Op{\kwd{\TLD:;}\VAR{default}}\KWD{\TLD]}}
     {
-    The \VAR{text}s are clauses the argumenth (or the \VAR{i}th if given) of which is chosen. With
-    \kwd{:}, the argument is boolean and takes first \VAR{text} for \NIL\ and
-    second \VAR{text} for \T.
+    The \VAR{text}s are format control subclauses the zero-indexed argumenth (or the
+    \VAR{i}th if given) of which is chosen. With \kwd{:}, the argument
+    is boolean and takes first \VAR{text} for \NIL\ and second
+    \VAR{text} for \T. With \kwd{@}, the argument is boolean and if \T, takes
+    the only \VAR{text} and remains to be read; no \VAR{text} is
+    chosen and the argument isu sed up if it is \NIL.
   }
 
     \IT{\KWD{\TLD\Op{@}?}}
@@ -994,7 +1001,8 @@
 
   \IT{(\FU*{MAKE-SYNONYM-STREAM} \VAR{symbol})}
   {
-  Return \retval{\kwd{synonym-stream}}.
+  Return \retval{\kwd{synonym-stream}}. \VAR{symbol} should be bound
+  to some stream.
   }
 
   \IT{(\FU*{SYNONYM-STREAM-SYMBOL} \VAR{synonym-stream})}

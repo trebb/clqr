@@ -68,21 +68,24 @@
 \end{figure}
 
 \begin{LIST}{1cm}
-  \IT{(\MC*{DEFINE-CONDITION} \VAR{name} (\OPn{\VAR{parent}})
+  \IT{(\MC*{DEFINE-CONDITION} \VAR{foo} (\OPn{\VAR{parent-type}}\DF{\kwd{condition}})
     (\xorGOO{\VAR{slot}\\
       (\VAR{slot} 
       \orGOO{\Goos{\kwd{:reader} \VAR{reader-function}}\\
         \Goos{\kwd{:writer} \VAR{writer-function}} \\
         \Goos{\kwd{:accessor} \VAR{reader-function}} \\
-        \kwd{:allocation } \Goo{\kwd{:instance}\XOR\kwd{:class}}\\
-        \Goos{\kwd{:initarg} \kwd{:}\VAR{arg}}\\
+        \kwd{:allocation } \xorGOO{\kwd{:instance}\\
+          \kwd{:class}}{\}}\DF{\kwd{:instance}}\\
+        \Goos{\kwd{:initarg} \kwd{:}\VAR{initarg-name}}\\
         \kwd{:initform} \VAR{ form}\\
-        \kwd{:type} \VAR{ type}}{\}})}{\}})
+        \kwd{:type} \VAR{ type}\\
+        \kwd{:documentation} \VAR{ slot-doc}%
+      }{\}})}{\}})
     \orGOO{(\kwd{:default-initargs } \Goos{\VAR{name} \VAR{value}})\\
-      ({\kwd{:documentation} \VAR{ string}})\\
+      ({\kwd{:documentation} \VAR{ condition-doc}})\\
       (\kwd{:report} \VAR{ report-name})}{\}})}
   {
-  Define new condition type \retval{\VAR{name}}. %FIXME:AUGMENT
+  Define, as a subtype of \VAR{parent-type}s, condition type \retval{\VAR{foo}}. %FIXME:AUGMENT
   }
 
   \IT{(\FU*{MAKE-CONDITION} \VAR{type} \OPn{\VAR{initarg-plist}})}

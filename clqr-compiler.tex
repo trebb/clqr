@@ -41,8 +41,10 @@
       \VAR{name}}{\}}
     \Op{\VAR{definition}})}
   {
-  Return \retval{compiled function} or its \VAR{name}, \retvalii{\T} in case
-  of warnings, and \retvaliii{\T} in case of failure. %FIXME:AUGMENT
+  Return \retval{compiled function} or replace \retval{\VAR{name}}'s
+  function definition with the compiled function. Return \retvalii{\T} in case
+  of warnings or errors, and \retvaliii{\T} in case of warnings
+  or errors excluding style warnings.
   }
 
   \IT{(\FU*{COMPILE-FILE} \VAR{file} 
@@ -84,7 +86,8 @@
       \kwd{:external-format} \VAR{
         file-format}\DF{\kwd{:default}}}{\}})}
   {
-  Load source or compiled file. Return \retval{\T} if successful. %FIXME:AUGMENT
+  Load source file or compiled file into Lisp environment. Return
+  \retval{\T} if successful. 
   }
 
   \IT{\arrGOO{\V*{*load-pathname*}\DF{\NIL}\\
@@ -132,16 +135,20 @@
 
   \IT{(\GFU*{MAKE-LOAD-FORM} \VAR{foo} \Op{\VAR{environment}})}
   {
-  Make \retval{one or two forms} enabling \FU{load} to construct
-  something equivalent to \VAR{foo}. %FIXME:AUGMENT
+  Its methods are to return a \retval{creation form} which on
+  evaluation at \FU{load} time returns an object equivalent to
+  \VAR{foo}, and an optional \retvalii{initialization form} which on
+  evaluation performs some initialization of the object. 
   }
 
   \IT{(\FU*{MAKE-LOAD-FORM-SAVING-SLOTS} \VAR{foo}
     \orGOO{\kwd{:slot-names} \VAR{ slots}\\
       \kwd{:environment}  \VAR{ environment}}{\}})}
   {
-  Make \retval{two forms} yielding something equivalent to \VAR{foo}
-  but preserving only \VAR{slots}. %FIXME:AUGMENT
+  Return a \retval{creation form} and an \retvalii{initialization
+    form} which on evaluation construct an object equivalent to
+  \VAR{foo} with \VAR{slots} initialized with the corresponding values
+  from \VAR{foo}. 
   }
 
   \IT{\arrGOO{(\FU*{MACRO-FUNCTION} \VAR{ symbol }
@@ -314,8 +321,8 @@
     \IT{(\kwd*{DYNAMIC-EXTENT} \OPn{\VAR{variable}} \OPn{(\kwd{function}
         \VAR{function})})}
     {
-    Declare \VAR{variable}s and/or \VAR{function}s to have
-    dynamic extent. 
+    Declare lifetime of \VAR{variable}s and/or \VAR{function}s to end
+    when control leaves enclosing block.
   }
 
 

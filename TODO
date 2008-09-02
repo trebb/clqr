@@ -3,6 +3,7 @@
 * make a clean distinction between foo* being/not being implicit progn
 
 
+
 * FINAL TESTS
 
 - multiple return values mentioned and usage of the three \retvals
@@ -22,4 +23,6 @@
 - applicability of declare
 
 - unevaluated args
+
+- destructible args
 

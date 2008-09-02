@@ -46,29 +46,33 @@
   Possibly unexported \VAR{symbol} of \VAR{package}.
   }
 
-  \IT{(\FU*{MAKE-PACKAGE} \VAR{name}
-    \orGOO{\kwd{:nicknames }(\OPn{\VAR{nick}})\DF{\NIL}\\
-      \kwd{:use }(\OPn{package})}{\}})}
-  {
-  Create \retval{package \VAR{name}}.
-  }
-
   \IT{(\MC*{DEFPACKAGE}\VAR{ foo} 
-    \orGOO{\OPn{(\kwd{:use }\OPn{\VAR{from-package}})}\\
+    \orGOO{%
       \OPn{(\kwd{:nicknames }\OPn{\VAR{nick}})}\\
       (\kwd{:documentation }\VAR{string})\\
-      \OPn{(\kwd{:export }\OPn{\VAR{symbol}})}\\
-      \OPn{(\kwd{:import-from }\VAR{package } \OPn{\VAR{symbol}})}\\
-      \OPn{(\kwd{:intern }\OPn{\VAR{symbol}})}\\
-      \OPn{(\kwd{:shadow }\OPn{\VAR{symbol}})}\\
-      \OPn{(\kwd{:shadowing-import-from}\VAR{ package}\OPn{\VAR{ symbol}})}\\
-      (\kwd{:size }\VAR{int})\\
+      \OPn{(\kwd{:intern }\OPn{\VAR{interned-symbol}})}\\
+      \OPn{(\kwd{:use }\OPn{\VAR{used-package}})}\\
+      \OPn{(\kwd{:import-from }\VAR{pkg } \OPn{\VAR{imported-symbol}})}\\
+      \OPn{(\kwd{:shadowing-import-from}\VAR{ pkg}\OPn{\VAR{ shd-symbol}})}\\
+      \OPn{(\kwd{:shadow }\OPn{\VAR{shd-symbol}})}\\
+      \OPn{(\kwd{:export }\OPn{\VAR{exported-symbol}})}\\
+      (\kwd{:size }\VAR{int})%
     }{\}})}
   {
-  Return newly defined or modified \retval{package \VAR{foo}} which inherits symbols
-  exported by \VAR{from-package}s. %FIXME:AUGMENT
+  Create or modify \retval{package \VAR{foo}} with
+  \VAR{interned-symbol}s, symbols from \VAR{used-package}s,
+  \VAR{imported-symbol}s, and \VAR{shd-symbol}s. Add \VAR{shd-symbol}s
+  to \VAR{foo}'s shadowing list.
   }
-  \IT{(\FU*{RENAME-PACKAGE} \VAR{package} \Op{\OPn{\VAR{nicknames}}\DF{\NIL}})}
+
+  \IT{(\FU*{MAKE-PACKAGE} \VAR{foo}
+    \orGOO{\kwd{:nicknames }(\OPn{\VAR{nick}})\DF{\NIL}\\
+      \kwd{:use }(\OPn{used-package})}{\}})}
+  {
+  Create \retval{package \VAR{foo}}.
+  }
+
+  \IT{(\FU*{RENAME-PACKAGE} \VAR{package} \VAR{new-name} \Op{\VAR{new-nicknames}\DF{\NIL}})}
   {
   Rename \VAR{package}. Return \retval{renamed package}.
   }
@@ -163,7 +167,9 @@
   \IT{(\FU*{SHADOW} \VAR{symbols}
     \Op{\VAR{package}\DF{\kwd{*package*}}})}
   {
-  Add \VAR{symbols} to shadowed list of \VAR{package}. Return \retval{\T}.
+  Add \VAR{symbols} to shadowing list of \VAR{package} making equally
+  named inherited symbols shadowed. Return
+  \retval{\T}. 
   }
 
   \IT{(\FU*{PACKAGE-SHADOWING-SYMBOLS} \VAR{package})} 

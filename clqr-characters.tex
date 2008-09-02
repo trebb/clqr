@@ -16,28 +16,28 @@
   \IT{\arrGOO{(\FU*{CHARACTERP} \VAR{ foo})\\
       (\FU*{STANDARD-CHAR-P} \VAR{ char})}{.}}
   {
-  \retval{\T} if \VAR{foo} is of indicated type.
+  \retval{\T} if argument is of indicated type.
   }
 
-  \IT{\arrGOO{(\FU*{GRAPHIC-CHAR-P} \VAR{ char})\\
-      (\FU*{ALPHA-CHAR-P} \VAR{ char})\\
-      (\FU*{ALPHANUMERICP} \VAR{ char})}{.}}
+  \IT{\arrGOO{(\FU*{GRAPHIC-CHAR-P} \VAR{ character})\\
+      (\FU*{ALPHA-CHAR-P} \VAR{ character})\\
+      (\FU*{ALPHANUMERICP} \VAR{ character})}{.}}
   {
-  \retval{\T} if \VAR{char} is visible, alphabetic, or
+  \retval{\T} if \VAR{character} is visible, alphabetic, or
   alphanumeric, respectively.
   }
 
-  \IT{\arrGOO{(\FU*{UPPER-CASE-P} \VAR{ char})\\
-      (\FU*{LOWER-CASE-P} \VAR{ char})\\
-      (\FU*{BOTH-CASE-P} \VAR{ char})}{.}}
+  \IT{\arrGOO{(\FU*{UPPER-CASE-P} \VAR{ character})\\
+      (\FU*{LOWER-CASE-P} \VAR{ character})\\
+      (\FU*{BOTH-CASE-P} \VAR{ character})}{.}}
   {
-  Return \retval{\T} if \VAR{char} is uppercase, lowercase, or
+  Return \retval{\T} if \VAR{character} is uppercase, lowercase, or
   able to be in another case, respectively.
   }
 
-  \IT{(\FU*{DIGIT-CHAR-P} \VAR{char} \Op{\VAR{radix}\DF{\LIT{10}}})}
+  \IT{(\FU*{DIGIT-CHAR-P} \VAR{character} \Op{\VAR{radix}\DF{\LIT{10}}})}
   {
-  Return \retval{its weight} if \VAR{char} is a digit, or
+  Return \retval{its weight} if \VAR{character} is a digit, or
   \retval{\NIL} otherwise.
   }
 
