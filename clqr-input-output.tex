@@ -265,9 +265,9 @@
   (\SO{quote} \VAR{foo}); \VAR{foo} unevaluated
   }
 
-  \IT{\KWD*{`}(\Op{\VAR{foo}} \Op{\KWD*{,}\VAR{bar}} \Op{\KWD*{,@}\VAR{baz}}
+  \IT{\KWD*{`}(\Op{\VAR{foo}} \Op{\KWD*{,}\VAR{bar}} \Op{\KWD{,@}\VAR{baz}}
     \Op{\KWD*{,.}\DES{\VAR{quux}}} \Op{\VAR{bing}})}
-  {
+  {\index{,"@}
   \SO{quote} \VAR{foo} and \VAR{bing}; evaluate \VAR{bar} and splice
   the lists \VAR{baz} and \VAR{quux} into their elements. 
   }
@@ -552,8 +552,9 @@
       \kwd{:mandatory}}{\}}
     \OP{\DES{\VAR{stream}}\DF{\V{*standard-output*}}})}
   {
-  Print a conditional newline. Return \retval{\NIL}.
-  } %FIXME:AUGMENT
+  Print a conditional newline if \VAR{stream} is a pretty printing
+  stream. Return \retval{\NIL}. 
+  }
 
   \IT{\V*{*print-array*}}
   {
@@ -697,7 +698,7 @@
           \OP{\KWD{,}\Op{\VAR{min-pad}\DF{\LIT{0}}}
             \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}}
       \KWD{\Op{:}\Op{@}\Goo{A\XOR S}}}
-    {
+    {%FIXME: index entries like this: \index{\TLD S}
     Print argument of any type for consumption by humans/by the
     reader, respectively. With \kwd{:}, print \NIL\ as \LIT{()} rather
     than \LIT{nil}; with \kwd{@}, add \VAR{pad-char}s on the left
@@ -792,7 +793,7 @@
     beginning of a line.
   }
 
-    \IT{\Goo{\KWD{\TLD}\_\XOR\KWD{\TLD:}\_\XOR\KWD{\TLD@}\_\XOR\KWD{\TLD}:@\_}}
+    \IT{\Goo{\KWD{\TLD\_}\XOR\KWD{\TLD:\_}\XOR\KWD{\TLD@\_}\XOR\KWD{\TLD:@\_}}}
     {
     Print newline like \kwd{pprint-newline} with argument
     \kwd{:linear}, \kwd{:fill}, \kwd{:miser}, or \kwd{:mandatory}, respectively.
@@ -824,8 +825,9 @@
       \Goos{\VAR{text}\KWD{\TLD;}}\VAR{text} \KWD{\TLD\boldmath{$>$}}}
     {
     Justify text produced by \VAR{text}s in a field of at least
-    \VAR{min-col} columns.
-  } %FIXME:AUGMENT
+    \VAR{min-col} columns. With \kwd{:}, right justify; with \kwd{@},
+    left justify.
+  }
 
     \IT{\KWD{\TLD}\OP{\VAR{c}\DF{\LIT{1}}\OP{\KWD{,}\VAR{i}\DF{\LIT{1}}}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{T}}
     {

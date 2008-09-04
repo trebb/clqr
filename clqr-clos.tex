@@ -22,7 +22,7 @@
   \retval{\T} if \VAR{slot} in \VAR{instance} is bound.
   }
 
-  \IT{(\MC*{DEFCLASS} \VAR{foo} (\OPn{\VAR{s-cl}})
+  \IT{(\MC*{DEFCLASS} \VAR{foo} (\OPn{\VAR{superclass}}\DF{\kwd{standard-object}})
     (\OPn{\xorGOO{\VAR{slot}\\
       (\VAR{slot} 
       \orGOO{\Goos{\kwd{:reader} \VAR{reader-function}}\\
@@ -36,13 +36,14 @@
         \kwd{:documentation} \VAR{ slot-doc}}{\}})}{\}}})
     \orGOO{(\kwd{:default-initargs } \Goos{\VAR{name}\VAR{ value}})\\
       (\kwd{:documentation} \VAR{ class-doc})\\
-      (\kwd{:metaclass} \VAR{ name})}{\}})}
+      (\kwd{:metaclass} \VAR{ name}\DF{\kwd{standard-class}})}{\}})}
   {
-  Define, as a subclass of classes \OPn{\VAR{s-cl}}, \retval{class}
-  \VAR{foo}. On new instances, a \VAR{slot}'s value defaults to 
+  Define, as a subclass of \VAR{superclass}es, \retval{class}
+  \VAR{foo}. In new instances, a \VAR{slot}'s value defaults to 
   \VAR{form} unless set by \kwd{:}\VAR{initarg-name} and is accessible
   by \VAR{reader-function} and \VAR{writer-function}. With
-  \kwd{:allocation :class}, \VAR{slot} is shared by all instances.
+  \kwd{:allocation :class}, \VAR{slot} is shared by all instances of
+  class \VAR{foo}.
   }
 
   \IT{(\FU*{FIND-CLASS} \VAR{symbol} \OP{\VAR{errorp}\DF{\T}
@@ -177,7 +178,7 @@
     \OP{\kwd*{\&rest} \VAR{var}}
     \OP{\kwd*{\&key} \orGOO{%
       \VAR{var}\\
-      (\VAR{var}\XOR(\kwd{:}\VAR{key}
+      (\VAR{var}\XOR(\kwd{:}\VAR{key }
           \VAR{var}))}{\}^{\!\!*}} \Op{\kwd*{\&allow-other-keys}}})
      \orGOO{%
     (\kwd{:argument-precedence-order}\RP{\VAR{ required-var}})\\
@@ -218,14 +219,18 @@
     (\xorGOO{\VAR{var}\\
       (\VAR{spec-var } \xorGOO{\VAR{class}\\
         (\kwd{eql} \VAR{ foo})}{\}})}{\}^{\!\!*}}
-    \OP{\kwd*{\&optional} \Goos{\VAR{var}\XOR(\VAR{var} \OP{\VAR{init}
-      \Op{\VAR{supplied-p}}})}}
+    \OP{\kwd*{\&optional} \xorGOO{\VAR{var}\\
+        (\VAR{var } \OP{\VAR{init }
+          \Op{\VAR{supplied-p}}})}{\}^{\!\!*}}}
     \Op{\kwd*{\&rest} \VAR{var}}
-    \OP{\kwd*{\&key} \GOos{\VAR{var}\XOR(\Goo{\VAR{var}\XOR(\kwd{:}\VAR{key}
-          \VAR{var})}
-        \OP{\VAR{init }\Op{\VAR{supplied-p}}})}
+    \OP{\kwd*{\&key} \xorGOO{\VAR{var}\\
+        (\xorGOO{\VAR{var}\\
+          (\kwd{:}\VAR{key }
+          \VAR{var})}{\}}
+        \OP{\VAR{init }\Op{\VAR{supplied-p}}})}{\}^{\!\!*}}
       \Op{\kwd*{\&allow-other-keys}}}
-    \OP{\kwd*{\&aux }\Goos{\VAR{var}\XOR(\VAR{var} \Op{\VAR{init}})}})
+    \OP{\kwd*{\&aux }\xorGOO{\VAR{var}\\
+        (\VAR{var } \Op{\VAR{init}})}{\}^{\!\!*}}})
     \orGOO{\OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\\
       \NEV{\VAR{doc}}}{\}}
     \OPn{\VAR{form}})}
@@ -344,7 +349,8 @@
   Short form. Define new method combination type
   \retval{\VAR{c-type}}. A call to a generic function using
   \VAR{c-type} will be equivalent to (\VAR{c-type}
-  \OPn{\VAR{applicable-method}} \Op{\kwd{:order} \xorGOO{\kwd{:most-specific-first}\\\kwd{:most-specific-last}}{\}}}). 
+  \OPn{\VAR{applicable-method}} \Op{\kwd{:order}
+    \xorGOO{\kwd{:most-specific-first}\\\kwd{:most-specific-last}}{\}}}). 
   }
 
   \IT{(\MC*{DEFINE-METHOD-COMBINATION} \VAR{c-type}
@@ -352,19 +358,21 @@
     (\GOOs{\VAR{name} \xorGOO{%
       \GOOp{\VAR{list}\XOR\kwd{*}}\\
       \VAR{predicate}}{\}} \orGOO{%
-    \kwd{:description} \VAR{ control}\\
-    \kwd{:order }
-    \Goo{\kwd{:most-specific-first}\XOR\kwd{:most-specific-last}}\\ 
-    \kwd{:required} \VAR{ bool}}{\}}})
-    \Op{\kwd{:arguments} (\OPn{\VAR{method-combination-arg}})}
-    \Op{\kwd{:generic-function} \VAR{ symbol}}
-    \orGOO{\OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\\
+        \kwd{:description} \VAR{ control}\\
+        \kwd{:order }
+        \xorGOO{\kwd{:most-specific-first}\\
+          \kwd{:most-specific-last}}{\}}\DF{\kwd{:most-specific-first}}\\ 
+        \kwd{:required} \VAR{ bool}}{\}}})
+    \orGOO{%
+      (\kwd{:arguments } (\OPn{\VAR{method-combination-$\lambda$}}))\\
+      (\kwd{:generic-function} \VAR{ symbol})\\
+      \OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\\
       \NEV{\VAR{doc}}}{\}}
     \OPn{\VAR{body}})}
   {
   Long form. A call to a generic function using \VAR{c-type} will be
   equivalent to a call to the forms returned by \VAR{body}.  Lambda
-  lists (\OPn{\VAR{ord-$\lambda$}}) and (\OPn{\VAR{method-combination-arg}})
+  lists (\OPn{\VAR{ord-$\lambda$}}) and (\OPn{\VAR{method-combination-$\lambda$}})
   according to \VAR{ord-$\lambda$} on p.\ \pageref{section:Functions}, the
   latter enhanced by an optional \kwd{\&whole} argument. 
   }

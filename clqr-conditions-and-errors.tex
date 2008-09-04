@@ -83,9 +83,16 @@
       }{\}})}{\}})
     \orGOO{(\kwd{:default-initargs } \Goos{\VAR{name} \VAR{value}})\\
       ({\kwd{:documentation} \VAR{ condition-doc}})\\
-      (\kwd{:report} \VAR{ report-name})}{\}})}
+      (\kwd{:report} \xorGOO{\VAR{string}\\
+      \VAR{report-function}}{\}})}{\}})}
   {
-  Define, as a subtype of \VAR{parent-type}s, condition type \retval{\VAR{foo}}. %FIXME:AUGMENT
+  Define, as a subtype of \VAR{parent-type}s, condition type
+  \retval{\VAR{foo}}. In new conditions, a \VAR{slot}'s value defaults
+  to \VAR{form} unless set by \kwd{:}\VAR{initarg-name} and is
+  accessible by \VAR{reader-function} and \VAR{writer-function}. With
+  \kwd{:allocation :class}, \VAR{slot} is shared by all conditions of
+  type \VAR{foo}. A condition is reported by \VAR{string} or by
+  \VAR{report-function} of arguments condition and stream.
   }
 
   \IT{(\FU*{MAKE-CONDITION} \VAR{type} \OPn{\VAR{initarg-plist}})}
@@ -101,23 +108,35 @@
   }
 
   \IT{(\xorGOO{\FU*{SIGNAL}\\
-      \FU*{WARN}}{\}} \VAR{datum} \OPn{\VAR{arg}})}
+      \FU*{WARN}\\
+      \FU*{ERROR}%
+    }{\}}
+    \xorGOO{%
+      \VAR{condition}\\
+      \VAR{type}\text{ } \OPn{\VAR{initarg}}\\ 
+      \VAR{control}\text{ } \OPn{\VAR{arg}}%
+    }{\}})}
   {
-  Signal \kwd{condition} or \kwd{warning}, respectively,
-  as denoted by \VAR{datum} and \VAR{arg}s. Return \retval{\NIL}.
+  Unless handled, signal as \kwd{condition}, \kwd{warning} or \kwd{error},
+  respectively, \VAR{condition} or a new condition of \VAR{type} or,
+  with \FU{format} \VAR{control} and \VAR{arg}s (see p.\ \pageref{section:Format}),
+  \kwd{simple-condition}, \kwd{simple-warning}, or \kwd{simple-error}, respectively.
+  From \FU{SIGNAL} and \FU{WARN}, return \retval{\NIL}.
   }
 
-  \IT{(\FU*{ERROR} \VAR{datum} \OPn{\VAR{arg}})}
+  \IT{(\FU*{CERROR} \VAR{continue-control}
+    \xorGOO{%
+      \VAR{condition}\text{ }  \OPn{\VAR{continue-arg}}\\
+      \VAR{type}\text{ } \OPn{\VAR{initarg}}\\ 
+      \VAR{control}\text{ } \OPn{\VAR{arg}}%
+    }{\}})}
   {
-  Signal \kwd{simple-error} as denoted by \VAR{datum} and \VAR{arg}s unless
-  error is handled. 
-  }
-
-  \IT{(\FU*{CERROR} \VAR{control} \VAR{datum} \OPn{arg})}
-  {
-  Signal correctable \kwd{simple-error} to debugger unless error is
-  handled. Show \FU{format} \VAR{control} (see
-  p.\ \pageref{section:Format}) with the debugger's continue option.
+  Unless handled, signal as correctable \kwd{error} \VAR{condition} or
+  a new condition of \VAR{type} or, with \FU{format} \VAR{control} and
+  \VAR{arg}s (see p.\ \pageref{section:Format}),
+  \kwd{simple-error}. In the debugger, use \FU{format} arguments
+  \VAR{continue-control} and \VAR{continue-arg}s to tag the continue
+  option. Return \retval{\NIL}.
   }
 
   \IT{(\MC*{IGNORE-ERRORS} \OPn{\VAR{form}})}
