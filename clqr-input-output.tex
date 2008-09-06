@@ -232,7 +232,7 @@
   \IT{\arrGOO{%
       \KWD{\#\boldmath$|$ }\OPn{\VAR{multi-line-comment}}\KWD{ \boldmath$|$\#}\\
       \KWD*{; }\OPn{\VAR{one-line-comment}}}{.}}
-  {
+  {\index{\#{$"|$}{$"|$}\#}
   Comments. There are conventions:
   }
   \begin{LIST}{.5cm}
@@ -285,7 +285,7 @@
   }
 
   \IT{\KWD*{\#C(}\VAR{a b}\kwd{)}}
-  {Complex number \VAR{a}$+$\VAR{b}i.
+  {Complex number $\VAR{a}+\VAR{b}\text{i}$.
   }
 
   \IT{\KWD*{\#'}\VAR{foo}}
@@ -698,7 +698,7 @@
           \OP{\KWD{,}\Op{\VAR{min-pad}\DF{\LIT{0}}}
             \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}}
       \KWD{\Op{:}\Op{@}\Goo{A\XOR S}}}
-    {%FIXME: index entries like this: \index{\TLD S}
+    {\index{\TLD S}
     Print argument of any type for consumption by humans/by the
     reader, respectively. With \kwd{:}, print \NIL\ as \LIT{()} rather
     than \LIT{nil}; with \kwd{@}, add \VAR{pad-char}s on the left
@@ -710,7 +710,7 @@
             \OP{\KWD{,}\Op{\VAR{comma-char}\DF{\kwd{'}\LIT{,}}}
               \OP{\KWD{,}\VAR{comma-interval}\DF{\LIT{3}}}}}}}
       \KWD{\Op{:}\Op{@}R}}
-    {
+    {\index{\TLD R}
     Print argument as number; with \KWD{:}, group digits 
     \VAR{comma-interval} each; with \kwd{@}, always prepend a sign.
   }
@@ -728,7 +728,7 @@
           \OP{\KWD{,}\Op{\VAR{comma-char}\DF{\kwd{'}\LIT{,}}}
             \OP{\KWD{,}\VAR{comma-interval}\DF{\LIT{3}}}}}}
       \KWD{\Op{:}\Op{@}\Goo{D\XOR B\XOR O\XOR X}}}
-    {
+    {\index{\TLD D}\index{\TLD B}\index{\TLD O}\index{\TLD X}
     Print integer argument as number (decimal, binary, octal, or
     hexadecimal, respectively). With \kwd{:} group digits 
     \VAR{comma-interval} each; with \kwd{@}, always prepend a sign.
@@ -738,7 +738,7 @@
             \OP{\KWD{,}\Op{\VAR{overflow-char}}
               \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}}}
       \KWD{\Op{@}F}}
-    {
+    {\index{\TLD F}
     Print argument as floating-point number. With \kwd{@}, always prepend a sign.
   }
 
@@ -749,7 +749,7 @@
                 \OP{\KWD{,}\Op{\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}
                   \OP{\KWD{,}\VAR{exp-char}}}}}}}}
       \KWD{\Op{@}\Goo{E\XOR  G}}}
-    {
+    {\index{\TLD E}\index{\TLD G}
     Print argument as floating-point number with \VAR{int-digits}
     before decimal point and \VAR{exp-digits} in the
     exponent. With \KWD{\TLD G}, chose either \KWD{\TLD E} or \KWD{\TLD F}. With \KWD{@}, always prepend a sign.
@@ -757,7 +757,7 @@
 
     \IT{\Goo{\KWD{\TLD C}\XOR\KWD{\TLD :C}\XOR\KWD{\TLD
           @C}\XOR\KWD{\TLD @:C}}}
-    {
+    {\index{\TLD C}
     Print, spell out, print in \kwd{\#$\backslash$} syntax, or tell how to type, respectively, argument as
     (possibly non-printing) character.
   }
@@ -767,7 +767,7 @@
         \KWD{\TLD:(}\VAR{text}\KWD{\TLD)}\XOR
         \KWD{\TLD @(}\VAR{text}\KWD{\TLD)}\XOR
         \KWD{\TLD:@(}\VAR{text}\KWD{\TLD)}}}
-    {
+    {\index{\TLD ()}
     Convert to lowercase, convert first letter of each word to
     uppercase, capitalize first word and convert
     the rest to lowercase, or convert to uppercase, respectively.
@@ -775,7 +775,7 @@
 
     \IT{\Goo{\KWD{\TLD P}\XOR\KWD{\TLD:P}
         \XOR\KWD{\TLD @P}\XOR\KWD{\TLD:@P}}}
-    {
+    {\index{\TLD P}
     If argument \kwd{eql} \LIT{1} print nothing, otherwise print \LIT{s};
     do the same after backing up one argument; if argument \kwd{eql} \LIT{1}
     print \LIT{y}, otherwise print \LIT{ies}; do the same after
@@ -783,18 +783,18 @@
   }
 
     \IT{\Goo{\KWD{\TLD\%}\XOR\KWD{\TLD}\VAR{n}\KWD{\%}}}
-    {
+    {\index{\TLD\%}
     Print one or \VAR{n} newline(s).
   }
 
     \IT{\Goo{\KWD{\TLD\&}\XOR\KWD{\TLD}\VAR{n}\KWD{\&}}}
-    {
+    {\index{\TLD\&}
     Print one or \VAR{n} newline(s) unless output stream is at the
     beginning of a line.
   }
 
     \IT{\Goo{\KWD{\TLD\_}\XOR\KWD{\TLD:\_}\XOR\KWD{\TLD@\_}\XOR\KWD{\TLD:@\_}}}
-    {
+    {\index{\TLD\_{}}
     Print newline like \kwd{pprint-newline} with argument
     \kwd{:linear}, \kwd{:fill}, \kwd{:miser}, or \kwd{:mandatory}, respectively.
   }
@@ -807,12 +807,12 @@
   }
 
     \IT{\Goo{\KWD{\TLD\boldmath$|$}\XOR\KWD{\TLD}\VAR{n}\KWD{\boldmath$|$}}}
-    {
+    {\index{\TLD\textbar@\TLD{$"|$}}
     Print one or \VAR{n} page separator(s).
   }
 
     \IT{\Goo{\KWD{\TLD\TLD}\XOR\KWD{\TLD}\VAR{n}\KWD{\TLD}}}
-    {
+    {\index{\TLD\TLD}
     Print one or \VAR{n} tilde(s).
   }
 
@@ -823,14 +823,14 @@
       \KWD{\Op{:}\Op{@}\boldmath{$<$}} 
       \Op{\VAR{text}\KWD{\TLD}\VAR{a},\VAR{b}\kwd{:;}}
       \Goos{\VAR{text}\KWD{\TLD;}}\VAR{text} \KWD{\TLD\boldmath{$>$}}}
-    {
+    {\index{\TLD< >@\TLD$< >$}
     Justify text produced by \VAR{text}s in a field of at least
     \VAR{min-col} columns. With \kwd{:}, right justify; with \kwd{@},
     left justify.
   }
 
     \IT{\KWD{\TLD}\OP{\VAR{c}\DF{\LIT{1}}\OP{\KWD{,}\VAR{i}\DF{\LIT{1}}}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{T}}
-    {
+    {\index{\TLD T}
     Move cursor forward to column number $c + ki$, $k \geq 0$ being as small
     as possible. With \kwd{:}, calculate column numbers relative to
     the immediately enclosing section. With \kwd{@}, move to column
@@ -838,20 +838,20 @@
   }
 
     \IT{\Goo{\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\kwd{I}\XOR\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\kwd{:I}}}
-    {
+    {\index{\TLD I}
     Same as (\kwd{pprint-indent} \kwd{:block} \VAR{n}) or
     (\kwd{pprint-indent} \kwd{:current} \VAR{n}), respectively.
   }
 
     \IT{\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{*}}
-    {
+    {\index{\TLD *}
     Jump \VAR{n} arguments forward, or, with \kwd{:}, backward. With
     \kwd{@}, jump to argument \VAR{n}.
   }
 
     \IT{\KWD{\TLD}\Op{\VAR{limit}}\Op{\KWD{{:}}\Op{\kwd{@}}}%
       \KWD{\boldmath{$\{$}}\VAR{text}\KWD{\TLD\boldmath{$\}$}}}
-    {
+    {\index{\TLD\{\}@\TLD $\{\}$}
     \VAR{text} is used repeatedly, up to \VAR{limit}, as control
     string for every element of argument, which should be a list. With
     \kwd{@}, take all remaining arguments. With \kwd{:}, argument should be
@@ -860,13 +860,13 @@
   }
 
     \IT{\KWD{\TLD\^{}}}
-    {
+    {\index{\TLD\^{}}
     Leave immediately \kwd{\TLD\boldmath{$<$} \TLD\boldmath{$>$}} or
     \kwd{\TLD\boldmath{$\{$} \TLD\boldmath{$\}$}}.
   }
 
     \IT{\KWD{\TLD}\Op{\VAR{i}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{[}\Op{\Goos{\VAR{text}\KWD{\TLD;}}\VAR{text}}\Op{\kwd{\TLD:;}\VAR{default}}\KWD{\TLD]}}
-    {
+    {\index{\TLD [ ]}
     The \VAR{text}s are format control subclauses the zero-indexed argumenth (or the
     \VAR{i}th if given) of which is chosen. With \kwd{:}, the argument
     is boolean and takes first \VAR{text} for \NIL\ and second
@@ -876,32 +876,32 @@
   }
 
     \IT{\KWD{\TLD\Op{@}?}}
-    {
+    {\index{\TLD ?}
     Process two arguments as format string and argument list. With
     \kwd{@}, take one argument as format string and use then the
     original argument list.
   }
 
     \IT{\KWD{\TLD}\OP{\VAR{prefix}\Goos{\kwd{,} \VAR{prefix}}}\Op{\kwd{:}}\Op{\kwd{@}}\KWD{/}\VAR{function}\KWD{/}}
-    {
+    {\index{\TLD//}
     Call \VAR{function} with the arguments stream, format-ar\-gu\-ment,
     bool-colon, bool-at and \VAR{prefix}es for printing format-argument.
   }
 
     \IT{\KWD{\TLD\Op{:}\Op{@}W}}
-    {
+    {\index{\TLD W}
     Print obeying every printer control variable. With \kwd{:},
     pretty-print. With \kwd{@}, print without limits on length or depth.
   }
 
     \IT{\KWD{V}}
-    {
+    {\index{V}
     (Replacing one of the comma-separated prefix parameters) Take next
     argument as prefix parameter.
   }
 
     \IT{\KWD{\#}}
-    {
+    {\index{\# }
     (Replacing one of the comma-separated prefix parameters) Take as
     prefix parameter the number of remaining unprocessed arguments.
   }

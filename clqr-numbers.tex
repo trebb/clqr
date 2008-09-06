@@ -281,6 +281,8 @@
 \subsection{Logic Functions} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{section:Logic Functions}
+Negative integers are used in
+two's complement representation.
 
 \begin{LIST}{1cm}
 
@@ -294,25 +296,25 @@
   \begin{LIST}{.5cm}
     \IT{\CNS*{BOOLE-1}} {\retval{\VAR{int-a}}.}
     \IT{\CNS*{BOOLE-2}} {\retval{\VAR{int-b}}.}
-    \IT{\CNS*{BOOLE-C1}} {\retval{Two's complement of \VAR{int-a}}.}
-    \IT{\CNS*{BOOLE-C2}} {\retval{Two's complement of \VAR{int-b}}.}
+    \IT{\CNS*{BOOLE-C1}} {\retval{$\lnot\text{\VAR{int-a}}$}.}
+    \IT{\CNS*{BOOLE-C2}} {\retval{$\lnot\text{\VAR{int-b}}$}.}
     \IT{\CNS*{BOOLE-SET}} {\retval{All bits set}.}
     \IT{\CNS*{BOOLE-CLR}} {\retval{All bits zero}.}
     \IT{\CNS*{BOOLE-EQV}} {\retval{$\text{\VAR{int-a}} \equiv \text{\VAR{int-b}}$}.}
     \IT{\CNS*{BOOLE-AND}} {\retval{$\text{\VAR{int-a}}\land\text{\VAR{int-b}}$}.}
-    \IT{\CNS*{BOOLE-ANDC1}} {\retval{Two's complement of \VAR{int-a} $\land$ \VAR{int-b}}.}
-    \IT{\CNS*{BOOLE-ANDC2}} {\retval{\VAR{int-a} $\land$ two's complement of \VAR{int-b}}.}
+    \IT{\CNS*{BOOLE-ANDC1}} {\retval{$\lnot \text{\VAR{int-a}} \land \text{\VAR{int-b}}$}.}
+    \IT{\CNS*{BOOLE-ANDC2}} {\retval{$\text{\VAR{int-a}} \land \lnot\text{\VAR{int-b}}$}.}
     \IT{\CNS*{BOOLE-NAND}} {\retval{$\lnot(\text{\VAR{int-a}} \land \text{\VAR{int-b}})$}.}
     \IT{\CNS*{BOOLE-IOR}} {\retval{$\text{\VAR{int-a}} \lor \text{\VAR{int-b}}$}.}
-    \IT{\CNS*{BOOLE-ORC1}} {\retval{Two's complement of \VAR{int-a} $\lor$ \VAR{int-b}}.}
-    \IT{\CNS*{BOOLE-ORC2}} {\retval{\VAR{int-a} $\lor$ two's complement of \VAR{int-b}}.}
+    \IT{\CNS*{BOOLE-ORC1}} {\retval{$\lnot \text{\VAR{int-a}} \lor \text{\VAR{int-b}}$}.}
+    \IT{\CNS*{BOOLE-ORC2}} {\retval{$\text{\VAR{int-a}} \lor \lnot\text{\VAR{int-b}}$}.}
     \IT{\CNS*{BOOLE-XOR}} {\retval{$\lnot(\text{\VAR{int-a}} \equiv \text{\VAR{int-b}})$}.}
     \IT{\CNS*{BOOLE-NOR}} {\retval{$\lnot(\text{\VAR{int-a}} \lor \text{\VAR{int-b}})$}.}
   \end{LIST}
 
   \IT{(\FU*{LOGNOT}\VAR{ integer})}
   {
-    \retval{Two's complement of \VAR{integer}}.
+    \retval{$\lnot\text{\VAR{integer}}$}.
   }
 
   \IT{\arrGOO{(\FU*{LOGEQV} \OPn{\VAR{ integer}})\\
@@ -324,12 +326,12 @@
 
   \IT{(\FU*{LOGANDC1} \VAR{ int-a} \VAR{ int-b})}
   {
-   \retval{Two's complement of \VAR{int-a} $\land$ \VAR{int-b}}.
+    \retval{$\lnot \text{\VAR{int-a}} \land \text{\VAR{int-b}}$}.
    }
 
   \IT{(\FU*{LOGANDC2} \VAR{ int-a} \VAR{ int-b})}
   {
-  \retval{\VAR{int-a} $\land$ two's complement of \VAR{int-b}}.
+    \retval{$\text{\VAR{int-a}} \land \lnot\text{\VAR{int-b}}$}.
   }
 
   \IT{(\FU*{LOGNAND} \VAR{ int-a} \VAR{ int-b})}
@@ -346,12 +348,12 @@
 
   \IT{(\FU*{LOGORC1} \VAR{ int-a} \VAR{ int-b})}
   {
- \retval{Two's complement of \VAR{int-a} $\lor$ \VAR{int-b}}.
+    \retval{$\lnot \text{\VAR{int-a}} \lor \text{\VAR{int-b}}$}.
  }
 
   \IT{(\FU*{LOGORC2} \VAR{ int-a} \VAR{ int-b})}
   {
-  \retval{\VAR{int-a} $\lor$ two's complement of \VAR{int-b}}.
+    \retval{$\text{\VAR{int-a}} \lor \lnot\text{\VAR{int-b}}$}.
   }
 
   \IT{(\FU*{LOGNOR} \VAR{ int-a} \VAR{ int-b})}
@@ -366,7 +368,7 @@
 
   \IT{(\FU*{LOGCOUNT} \VAR{integer})}
   {
-    \retval{number of bits} set
+    \retval{Number of bits} set
   in \VAR{integer}.
   }
 

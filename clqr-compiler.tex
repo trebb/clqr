@@ -231,7 +231,7 @@
 
   \IT{(\MC*{UNTRACE} \OPn{\VAR{function}})}
   {
-  Stop \VAR{function}s, or each currently traced function from being
+  Stop \VAR{function}s, or each currently traced function, from being
   traced. 
   }
 
@@ -244,6 +244,13 @@
   {
   Step through evaluation of \VAR{form}. Return \retval{values of
     \VAR{form}}. 
+  }
+
+  \IT{(\FU*{BREAK} \Op{\VAR{control} \OPn{\VAR{arg}}})}
+  {
+  Jump directly into debugger; return \retval{\NIL}.
+  See p.\ \pageref{section:Format}, \FU{format}, for \VAR{control}
+  and \VAR{arg}s. 
   }
 
   \IT{(\MC*{TIME} \OPn{\VAR{form}})}

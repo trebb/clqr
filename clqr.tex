@@ -8,8 +8,13 @@
 %
 
 \newcommand{\maintitle}{Common\ Lisp\ Quick\ Reference}
-\newcommand{\AUTHOR}{Bert~Burgemeister}
-
+\newcommand{\AUTHOR}{Bert\ Burgemeister}
+%
+%%%%%%%%%%%%%%%%%%
+% pdf info
+\newcommand{\SUBJECT}{Common\ Lisp}
+\newcommand{\KEYWORDS}{clqr}
+%
 \documentclass[8pt,pagesize,twoside,footexclude,headexclude]{scrartcl}
 %
 %%%%%%%%%%%%%%%%%%
@@ -39,7 +44,6 @@
 \usepackage{textcase}
 \usepackage{ulem}
 \usepackage[usenames,dvips]{color}
-\usepackage{ifthen}
 \usepackage{suffix}
 \usepackage{makeidx}
 \definecolor{frontcovergray}{gray}{.85}
@@ -49,11 +53,15 @@
 %
 %%%%%%%%%%%%%%%%%%
 % Two font alternatives:
-% (A) All Computer Modern
+% (A) All (except cover pages) Computer Modern --
+%     everything comes from the same sound root; gets about 5% longer
+%     than alternative (B) 
 \usepackage{type1cm}
 \usepackage{exscale}
 %%%%%%%%%%%%%%%%%%
-% (B) Times mixed with Helvetica
+% (B) Times mixed with Helvetica --
+%     different sources; need scaling as they don't even agree in
+%     their concept of height
 %\usepackage{mathptmx}
 %\usepackage[scaled]{helvet}
 %%%%%%%%%%%%%%%%%%
@@ -64,7 +72,8 @@
       bookmarksnumbered,bookmarks=\bookmarks,%
       linkcolor=\linkcolor,urlcolor=\urlcolor,%
       pdfpagelayout=\pdfpagelayout,%
-      pdftitle=\maintitle,pdfauthor=\AUTHOR]%
+      pdftitle=\maintitle,pdfauthor=\AUTHOR,%
+      pdfsubject=\SUBJECT,pdfkeywords=\KEYWORDS]%
     {hyperref}
 %
 \makeindex
@@ -108,8 +117,8 @@
 %
 %\renewcommand{\topfraction}{1}
 \renewcommand{\bottomfraction}{1}
-\renewcommand*{\figureformat}{}
-\renewcommand*{\captionformat}{}
+%\renewcommand*{\figureformat}{}
+%\renewcommand*{\captionformat}{}
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 %
 \setlength{\parfillskip}{5cm plus1cm minus3cm}
@@ -358,10 +367,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Return values, First, Second, nth, Third
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\ULthickness}{.2pt}
 \newcommand{\retval}[1]{\uline{#1}}
-\newcommand{\retvalii}[1]{\uuline{#1}}
+%\newcommand{\retvalii}[1]{\uuline{#1}}
 \newcommand{\retvaln}[2]{{%
       {\raisebox{-1.7ex}[0pt][1.4ex]{\tiny\sffamily\upshape\mdseries\makebox[0pt][l]{\hspace{-.1em}#1}}\uline{#2}}}}
+\newcommand{\retvalii}[1]{\retvaln{2}{#1}}
 \newcommand{\retvaliii}[1]{\retvaln{3}{#1}}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -373,7 +384,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ~
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\TLD}{{\textasciitilde}}
+%\newcommand{\TLD}{{\textasciitilde}}
+\newcommand{\TLD}{{\protect\raisebox{-.8ex}{\textasciitilde}}}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Starred versions send their argument into index:
@@ -398,7 +410,7 @@
 %% Front Cover
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{titlepage}
-  \renewcommand{\rmdefault}{ptm} %% Always times font on title
+  \renewcommand{\rmdefault}{ptm} %% Always times fonts on title
   \vspace*{15mm}
   \begin{center}
     \begin{minipage}{\titlepagewidth}
@@ -410,8 +422,8 @@
     \vfill
     \begin{minipage}{\titlepagewidth}
       \begin{center}
-        \rmfamily\mdseries\itshape\fontsize{300}{0}\selectfont%
-                                           {\color{frontcovergray}cl\/}\\
+        \rmfamily\mdseries\itshape%
+        \fontsize{300}{0}\selectfont{\color{frontcovergray}cl\/}\\
       \end{center}
     \end{minipage}
     \vfill
@@ -502,16 +514,21 @@
 \divide\currentpage by 4  
 \multiply\currentpage by 4  
 \advance\currentpage by -\value{page}
-\ifthenelse{\equal{\the\currentpage}{-3}}{\rule{0pt}{0pt}\clearpage}{}
-\ifthenelse{\equal{\the\currentpage}{-2}}{\rule{0pt}{0pt}\clearpage\rule{0pt}{0pt}\clearpage}{}
-\ifthenelse{\equal{\the\currentpage}{-1}}{\rule{0pt}{0pt}\clearpage\rule{0pt}{0pt}\clearpage\rule{0pt}{0pt}\clearpage}{}
+%
+\ifnum\the\currentpage=-3 
+\rule{0pt}{0pt}\clearpage
+\else\ifnum\the\currentpage=-2
+\rule{0pt}{0pt}\clearpage\rule{0pt}{0pt}\clearpage 
+\else\ifnum\the\currentpage=-1
+\rule{0pt}{0pt}\clearpage\rule{0pt}{0pt}\clearpage\rule{0pt}{0pt}\clearpage 
+\fi\fi\fi
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Back Cover
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{titlepage}
   \begin{center}
-    \renewcommand{\rmdefault}{ptm} %% Always times font on title
+    \renewcommand{\rmdefault}{ptm} %% Always times fonts on title
     \vspace*{20pt}
     \vfill
     \begin{minipage}{\titlepagewidth}
