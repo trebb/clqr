@@ -206,7 +206,7 @@
       \MC*{LAMBDA}}{\}}
     (\VAR{\OPn{ord-$\lambda$}}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \Op{\NEV{\VAR{doc}}} 
-    \OPn{\VAR{form}})}
+    \PROGN{\VAR{form}})}
   {
   Define function with name \retval{\VAR{foo}} or \retval{(\kwd{setf}
   \VAR{foo})}, or an anonymous \retval{function}, respectively, which applies
@@ -219,8 +219,8 @@
       (\OPn{\VAR{ord-$\lambda$}}) 
       \OPn{(\kwd{declare} \OPn{\NEV{\VAR{local-decl}}})}%
       \Op{\NEV{\VAR{doc}}}
-      \OPn{\VAR{local-form}})}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
-    \OPn{\VAR{form}})}
+      \PROGN{\VAR{local-form}})}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
+    \PROGN{\VAR{form}})}
   {
   Evaluate \VAR{form}s with
   locally defined functions \VAR{foo}. Only for \SO{LABELS},
@@ -426,8 +426,8 @@
 
   \IT{(\SO*{MACROLET} (\OPn{(\VAR{name} (\OPn{\VAR{macro-$\lambda$}})
       \OPn{(\kwd{declare} \OPn{\NEV{\VAR{local-decl}}})} 
-      \Op{\NEV{\VAR{doc}}} \OPn{\VAR{macro-form}})}) \OPn{(\kwd{declare}
-      \OPn{\NEV{\VAR{decl}}})} \OPn{\VAR{form}})}
+      \Op{\NEV{\VAR{doc}}} \PROGN{\VAR{macro-form}})}) \OPn{(\kwd{declare}
+      \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{form}})}
   {
   Evaluate \retval{\VAR{form}s} with \VAR{name}s locally defined
   as macros which are invisible to each other.  
@@ -435,7 +435,7 @@
 
   \IT{(\SO*{SYMBOL-MACROLET} (\OPn{(\VAR{name}
       \VAR{expansion-form})}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
-    \OPn{\VAR{form}})}
+    \PROGN{\VAR{form}})}
   {
   Evaluate \retval{\VAR{form}s} with \VAR{name}s locally defined as
   symbol-macros. 
@@ -483,7 +483,7 @@
 
   \IT{(\MC*{DEFINE-SETF-EXPANDER} \VAR{function} (\OPn{\VAR{macro-$\lambda$}})
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \Op{\NEV{\VAR{doc}}}
-    \OPn{\VAR{form}})}
+    \PROGN{\VAR{form}})}
   {
   Specify how to \kwd{setf} a place accessed by
   \retval{\VAR{function}}. On invocation of (\kwd{setf} (\VAR{function}
@@ -534,23 +534,23 @@
   \retval{\VAR{else}} otherwise.
   }
 
-  \IT{(\MC*{COND} \OPn{(\VAR{test} \OPn{\VAR{then}}\DF{\VAR{test}})})}
+  \IT{(\MC*{COND} \OPn{(\VAR{test} \PROGN{\VAR{then}}\DF{\VAR{test}})})}
   {
   Return the \retval{values} of the first
-  \VAR{then} whose \VAR{test} returns \T; return
+  \OPn{\VAR{then}} whose \VAR{test} returns \T; return
   \retval{\NIL} if each \VAR{test} returns \NIL.
   }
 
   \IT{(\xorGOO{\MC*{WHEN}\\
       \MC*{UNLESS}}{\}} \VAR{test}
-    \OPn{\VAR{foo}}\DF{\NIL})}
+    \PROGN{\VAR{foo}}\DF{\NIL})}
   {
-  Evaluate \VAR{foo}s and return \retval{values of last \VAR{foo}} if
-  \VAR{test} returns \T\ or \NIL, respectively. Return \retval{\NIL} otherwise.
+  Evaluate \VAR{foo}s and return \retval{their values} if \VAR{test}
+  returns \T\ or \NIL, respectively. Return \retval{\NIL} otherwise. 
   }
 
-  \IT{(\MC*{CASE} \VAR{test} \OPn{(\NEV{\VAR{keys}} \OPn{\VAR{foo}})}
-    \Op{(\Goo{\T\XOR\kwd*{OTHERWISE}} \OPn{\VAR{bar}})\DF{\NIL}})}
+  \IT{(\MC*{CASE} \VAR{test} \OPn{(\NEV{\VAR{keys}} \PROGN{\VAR{foo}})}
+    \Op{(\Goo{\T\XOR\kwd*{OTHERWISE}} \PROGN{\VAR{bar}})\DF{\NIL}})}
   {
   Evaluate first \VAR{foo}s one of whose \VAR{keys} is
   \kwd{eql} \VAR{test} and return \retval{their values}.
@@ -558,7 +558,7 @@
   }
 
   \IT{(\Goo{\MC*{CCASE}\XOR\MC*{ECASE}} \VAR{test}
-    \OPn{(\NEV{\VAR{keys}} \OPn{\VAR{foo}})})}
+    \OPn{(\NEV{\VAR{keys}} \PROGN{\VAR{foo}})})}
   {
   Evaluate first \VAR{foo}s one of whose \VAR{keys} is \kwd{eql}
   \VAR{test} and return \retval{their values}. Signal correctable
@@ -582,8 +582,9 @@
   }
 
   \IT{(\SO*{PROGN} \OPn{\VAR{form}}\DF{\NIL})}
-  {Evaluate \VAR{form}s sequentially. Return
-  \retval{values of last \VAR{form}}.
+  {\label{:progn}
+    Evaluate \VAR{form}s sequentially. Return
+    \retval{values of last \VAR{form}}.
   }
 
   \IT{(\xorGOO{\MC*{PROG}\\
@@ -608,23 +609,24 @@
   respectively, of \VAR{form-r}. 
   }
 
-  \IT{(\SO*{PROGV} \VAR{symbols} \VAR{values} \OPn{\VAR{form}})}
+  \IT{(\SO*{PROGV} \VAR{symbols} \VAR{values} \PROGN{\VAR{form}})}
   {
   Evaluate \VAR{form}s with \VAR{symbols} dynamically bound to \VAR{values} or
-  \NIL. Return \retval{values returned by \VAR{form}s}.
+  \NIL. Return \retval{values of \VAR{form}s}.
   }
 
   \IT{(\MC*{DESTRUCTURING-BIND} \VAR{foo} \VAR{bar}  \OPn{(\kwd{declare}
-      \OPn{\NEV{\VAR{decl}}})} \OPn{\VAR{form}})}
+      \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{form}})}
   {
-  Evaluate \VAR{form}s, and return \retval{values of last \VAR{form}},
+  Evaluate \VAR{form}s and return \retval{their values},
   with variables from tree \VAR{foo} bound to corresponding elements
   of tree \VAR{bar}. 
   }
 
   \IT{(\MC*{MULTIPLE-VALUE-BIND} (\OPn{\VAR{var}}) \VAR{values-form}
-    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \OPn{\VAR{body-form}})}
-  {Evaluate
+    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{body-form}})}
+  {
+  Evaluate
   \VAR{body-form}s with \VAR{var}s bound to the return values of
   \VAR{values-form}. Return \retval{values of \VAR{body-form}s}.
   }
@@ -634,7 +636,7 @@
     \orGOO{\VAR{name}\\
       (\VAR{name }\Op{\VAR{value}})}{\}^{\!\!*}}) 
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} 
-    \OPn{\VAR{form}})}
+    \PROGN{\VAR{form}})}
   {
   Evaluate \VAR{form}s with \VAR{name}s bound (in parallel or
   sequentially, respectively) to \VAR{value}s or \NIL. Return
@@ -642,7 +644,7 @@
   }
 
   \IT{(\SO*{LOCALLY} \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
-    \OPn{\VAR{form}})}
+    \PROGN{\VAR{form}})}
   {
   Evaluate \VAR{form}s with declarations \VAR{decl} in
   effect. Return \retval{values of \VAR{form}s}. 
@@ -659,9 +661,10 @@
   Have nearest enclosing block \NIL\ return with values of \VAR{result}.
   }
 
-  \IT{(\SO*{BLOCK} \VAR{name} \OPn{\VAR{form}})}
-  {Evaluate \VAR{form}s returning
-  \retval{values of last \VAR{form}} unless interrupted by \SO{RETURN-FROM}.
+  \IT{(\SO*{BLOCK} \VAR{name} \PROGN{\VAR{form}})}
+  { 
+    Evaluate \VAR{form}s and return \retval{their values} unless
+    interrupted by \SO{RETURN-FROM}. 
   }
 
   \IT{(\SO*{TAGBODY} \Goos{\NEV{\VAR{tag}}\XOR\VAR{form}})}
@@ -675,9 +678,10 @@
   lexically enclosing \kwd{eql} \VAR{tag}.
   }
 
-  \IT{(\SO*{CATCH} \VAR{tag} \OPn{\VAR{form}})}
-  {Evaluate \VAR{form}s returning
-  \retval{values of last \VAR{form}} unless interrupted by \SO{THROW}.
+  \IT{(\SO*{CATCH} \VAR{tag} \PROGN{\VAR{form}})}
+  {
+    Evaluate \VAR{form}s and returning \retval{their values} unless
+    interrupted by \SO{THROW}. 
   }
 
   \IT{(\SO*{THROW} \VAR{tag} \VAR{form})}
@@ -693,7 +697,6 @@
 \end{LIST}
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Iteration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -705,14 +708,14 @@
     (\orGOO{%
       \VAR{var}\\
       (\VAR{var } \OP{ \VAR{start } \Op{\VAR{step}}})}{\}^{\!\!*}})
-    (\VAR{stop} \OPn{\VAR{result}})
+    (\VAR{stop} \PROGN{\VAR{result}})
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} 
     \xorGOO{\NEV{\VAR{tag}}\\\VAR{form}}{\}^{\!\!*}})}
   {
   Evaluate \SO{TAGBODY}-like body with \VAR{var}s successively bound according
   to the values of the corresponding \VAR{start} and \VAR{step}
   forms. \VAR{var}s are bound in parallel/sequentially, respectively.
-  Stop iteration when \VAR{stop} is \T. Return \retval{value of
+  Stop iteration when \VAR{stop} is \T. Return \retval{values of
     last \VAR{result}}.
   }
 

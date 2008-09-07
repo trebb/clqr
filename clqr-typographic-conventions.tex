@@ -78,20 +78,20 @@
   Argument \VAR{bar} is possibly modified.
   }
 
+  \IT{\PROGN{\VAR{foo}}}
+  {
+  \OPn{\VAR{foo}} is evaluated as an implicit \SO{progn}; see p.\ \pageref{:progn}.
+  }
+
   \IT{\retval{\VAR{foo}}; \retvalii{\VAR{bar}};
     \retvaln{\VAR{n}}{\VAR{baz}}}
   {
   First, second and \VAR{n}th return value.
   }
 
-  \IT{\T\qquad\qquad\qquad\qquad}
+  \IT{\T; \NIL\qquad\qquad\qquad}
   {
-  \kwd*{T}, or truth in general.
+  \kwd*{T}, or truth in general; and \kwd*{NIL} or \kwd{()}.
   }
   
-  \IT{\NIL\qquad\qquad\qquad}
-  {
-  \kwd*{NIL} or \kwd{()}.
-  }
-
 \end{LIST}

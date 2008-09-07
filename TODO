@@ -1,8 +1,5 @@
 * find bolder bold <, >, \, {, }
 
-* make a clean distinction between foo* being/not being implicit progn
-
-
 
 * lower stars, mainly in variable names
 

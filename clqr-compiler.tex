@@ -105,16 +105,16 @@
   \IT{(\SO*{EVAL-WHEN} (%
     \orGOO{\Goo{\kwd{:compile-toplevel}\XOR\kwd{compile}}\\
       \Goo{\kwd{:load-toplevel}\XOR\kwd{load}}\\
-      \Goo{\kwd{:execute}\XOR\kwd{eval}}}{\}}) \OPn{\VAR{form}})} 
+      \Goo{\kwd{:execute}\XOR\kwd{eval}}}{\}}) \PROGN{\VAR{form}})} 
   {
-  Evaluate \VAR{form}s returning \retval{values of last \VAR{form}} if
+  Return \retval{values of \VAR{form}s} if
   \SO{EVAL-WHEN} is in the top-level of a file being compiled, in the
   top-level of a compiled file being loaded, or anywhere,
   respectively. (\kwd{compile}, \kwd{load} and \kwd{eval} deprecated.)
   }
 
   \IT{(\MC*{WITH-COMPILATION-UNIT} (\Op{\kwd{:override}
-      \VAR{bool}\DF{\NIL}}) \OPn{\VAR{form}})}
+      \VAR{bool}\DF{\NIL}}) \PROGN{\VAR{form}})}
   {
   Return \retval{values of \VAR{form}s}. Warnings deferred by the
   compiler until end of compilation are deferred until the end of
@@ -253,7 +253,7 @@
   and \VAR{arg}s. 
   }
 
-  \IT{(\MC*{TIME} \OPn{\VAR{form}})}
+  \IT{(\MC*{TIME} \VAR{form})}
   {
   Evaluate \VAR{form}s and print timing information to
   \V{*trace-output*}. Return \retval{values of \VAR{form}s}. 

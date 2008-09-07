@@ -86,9 +86,9 @@
   option. Return \retval{\NIL}.
   }
 
-  \IT{(\MC*{IGNORE-ERRORS} \OPn{\VAR{form}})}
+  \IT{(\MC*{IGNORE-ERRORS} \PROGN{\VAR{form}})}
   {
-  Return \retval{values of \VAR{form}s} as in \SO{progn} or, in case of \kwd{error}s,
+  Return \retval{values of \VAR{form}s} or, in case of \kwd{error}s,
   \retval{\NIL} and the \retvalii{condition}.
   }
 
@@ -128,18 +128,18 @@
   }
 
   \IT{(\MC*{HANDLER-BIND} (\OPn{(\VAR{condition-type}
-      \VAR{handler-function})}) \OPn{\VAR{form}})}
+      \VAR{handler-function})}) \PROGN{\VAR{form}})}
   {
-  Evaluate \VAR{form}s with \VAR{condition-type}s dynamically bound to
-  their respective \VAR{handler-function}s of argument
-  condition. Return \retval{values of \VAR{form}s}. 
+   Return \retval{values of \VAR{form}s} after evaluating them with
+   \VAR{condition-type}s dynamically bound to their respective
+   \VAR{handler-function}s of argument condition. 
   }
 
   \IT{(\MC*{WITH-SIMPLE-RESTART} (\VAR{restart} \VAR{control}
-    \OPn{\VAR{arg}}) \OPn{\VAR{form}})}
+    \OPn{\VAR{arg}}) \PROGN{\VAR{form}})}
   {
-  If \VAR{restart} is not called from \VAR{form}s, return
-  \retval{values of last \VAR{form}}. Otherwise describe restart using
+  Unless \VAR{restart} is called from \VAR{form}s, return
+  \retval{their values}. Otherwise describe restart using
   \FU{format} \VAR{control} and \VAR{arg}s (see
   p.\ \pageref{section:Format}) and return \retval{\NIL}
   and \retvalii{\T}.
@@ -163,9 +163,9 @@
       \VAR{restart-function} \orGOO{\kwd{:interactive-function}
         \VAR{ function}\\ 
       \kwd{:report-function} \VAR{ function}\\
-      \kwd{:test-function} \VAR{ function}}{\}})}) \OPn{\VAR{form}})}
+      \kwd{:test-function} \VAR{ function}}{\}})}) \PROGN{\VAR{form}})}
   {
-  Return \retval{value of \VAR{form}s} evaluated with \VAR{restart}s 
+  Return \retval{values of \VAR{form}s} evaluated with \VAR{restart}s 
   dynamically bound to \VAR{restart-function}s.
   }
 
@@ -206,11 +206,11 @@
   }
 
   \IT{(\MC*{WITH-CONDITION-RESTARTS} \VAR{condition-form}
-    \VAR{restarts-form} \OPn{\VAR{form}})}
+    \VAR{restarts-form} \PROGN{\VAR{form}})}
   {
   Evaluate \VAR{form}s with restarts yielded from \VAR{restarts-form}
   dynamically associated with conditions yielded from
-  \VAR{condition-form}. Return values of \VAR{form}s.
+  \VAR{condition-form}. Return \retval{values of \VAR{form}s}.
   }
 
 \begin{figure}

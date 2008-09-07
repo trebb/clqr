@@ -189,13 +189,17 @@
 % Required Parts, +
 \newcommand{\RP}[1]{{{#1}\text{${}^{+}$}}}
 %
-%
+% Implicit PROGN, *^progn
+\newcommand{\PROGN}[1]{{{#1}\text{${}^{*^{\hspace{-1.3ex}\text{\sffamily\mdseries\upshape
+            i--p}}}$}}}
+
 % Group of Objects {}, three sizes
 \newcommand{\GOO}[1]{{\text{$\Big\{$}{#1}\text{$\Big\}$}}}
 \newcommand{\GOo}[1]{{\text{$\big\{$}{#1}\text{$\big\}$}}}
 \newcommand{\Goo}[1]{{\text{$\{$}{#1}\text{$\}$}}}
 % Optional Group of Objects, {}*, three sizes
-\newcommand{\GOOs}[1]{{$\Big\{${#1}$\Big\}^{\!\!*}$}}
+\newcommand{\GOOs}[1]{{$\Big\{${#1}$\Big\}^{\!\!*}$}} % this one can
+                                % have line breaks
 \newcommand{\GOos}[1]{\text{{$\big\{${#1}$\big\}^{\!\!*}$}}}
 \newcommand{\Goos}[1]{\text{{$\{${#1}$\}^{\!*}$}}}
 % Required Group of Objects, {}+, three sizes
@@ -459,7 +463,7 @@
 \vfill
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Content starts here %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  CONTENT STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \input{clqr-typographic-conventions}

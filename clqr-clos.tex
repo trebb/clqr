@@ -80,21 +80,16 @@
   Make \VAR{slot} in \retval{\VAR{instance}} unbound.
   }
 
-  \IT{(\MC*{WITH-SLOTS} (\Goos{\VAR{slot}\XOR(\VAR{var
-        slot})}) \VAR{instance} \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
-    \OPn{\VAR{form}})}
-  {
-  Evaluate \VAR{form}s with slots of \VAR{instance} locally visible as
-  \VAR{slot}s or \VAR{var}s. 
-  }
-
-  \IT{(\MC*{WITH-ACCESSORS} (\OPn{(\NEV{\VAR{var}} \NEV{\VAR{accessor}})})
+  \IT{(\xorGOO{%
+      \MC*{WITH-SLOTS } (\Goos{\NEV{\VAR{slot}}\XOR(\NEV{\VAR{var}} \NEV{\VAR{slot}})})\\
+      \MC*{WITH-ACCESSORS } (\OPn{(\NEV{\VAR{var}}\text{ } \NEV{\VAR{accessor}})})}{\}}
     \VAR{instance}  \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
-    \OPn{\VAR{form}})}
+    \PROGN{\VAR{form}})}
   {
-  Evaluate \VAR{form}s with variables \VAR{var} locally bound to
-  \VAR{accessor}s of \VAR{instance}. 
-  Return \retval{values of \VAR{form}s}.
+  Return \retval{values of \VAR{form}s} after evaluating them in a
+  lexical environment with slots of \VAR{instance} visible as
+  \kwd{setf}able \VAR{slot}s or \VAR{var}s/with \VAR{accessor}s of
+  \VAR{instance} visible as \kwd{setf}able \VAR{var}s. 
   }
 
   \IT{(\GFU*{CLASS-NAME} \VAR{class})}
@@ -369,9 +364,10 @@
       (\kwd{:generic-function} \VAR{ symbol})\\
       \OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\\
       \NEV{\VAR{doc}}}{\}}
-    \OPn{\VAR{body}})}
+    \PROGN{\VAR{body}})}
   {
-  Long form. A call to a generic function using \VAR{c-type} will be
+  Long form. Define new method combination type
+  \retval{\VAR{c-type}}. A call to a generic function using \VAR{c-type} will be
   equivalent to a call to the forms returned by \VAR{body}.  Lambda
   lists (\OPn{\VAR{ord-$\lambda$}}) and (\OPn{\VAR{method-combination-$\lambda$}})
   according to \VAR{ord-$\lambda$} on p.\ \pageref{section:Functions}, the

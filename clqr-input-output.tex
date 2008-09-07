@@ -268,8 +268,10 @@
   \IT{\KWD*{`}(\Op{\VAR{foo}} \Op{\KWD*{,}\VAR{bar}} \Op{\KWD{,@}\VAR{baz}}
     \Op{\KWD*{,.}\DES{\VAR{quux}}} \Op{\VAR{bing}})}
   {\index{,"@}
-  \SO{quote} \VAR{foo} and \VAR{bing}; evaluate \VAR{bar} and splice
-  the lists \VAR{baz} and \VAR{quux} into their elements. 
+  Backquote. \SO{quote} \VAR{foo} and \VAR{bing}; evaluate \VAR{bar}
+  and splice the lists \VAR{baz} and \VAR{quux} into their
+  elements. When nested, outermost commas inside the innermost
+  backquote expression belong to this backquote.
   }
 
   \IT{\KWD{\#\boldmath{$\backslash$}}\VAR{c}}
@@ -405,7 +407,7 @@
   \IT{(\MC*{PRINT-UNREADABLE-OBJECT} (\VAR{foo} \DES{\VAR{stream}}
     \orGOO{\kwd{:type } \VAR{bool}\\
       \kwd{:identity } \VAR{bool}}{\}})
-    \OPn{\VAR{form}})}
+    \PROGN{\VAR{form}})}
   {
   Enclosed in \kwd{\#\boldmath$<$} and \kwd{\boldmath$>$}, print
   \VAR{foo} by means of \VAR{form}s to \VAR{stream}. Return \retval{\NIL}. 
@@ -500,12 +502,13 @@
     \orGOO{\xorGOO{\kwd{:prefix} \VAR{ prefix}\\
         \kwd{:per-line-prefix} \VAR{ per-line-prefix}}{\}}\\
       \kwd{:suffix} \VAR{ suffix}\DF{\LIT{""}}}{\}})
-    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \OPn{\VAR{form}})}
+    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{form}})}
   {
   Evaluate \VAR{form}s, which should print \VAR{list}, with
   \VAR{stream} locally bound to a pretty 
   printing stream which outputs to the original \VAR{stream}. If
-  \VAR{list} is in fact not a list, it is printed by \FU{write}.
+  \VAR{list} is in fact not a list, it is printed by
+  \FU{write}. Return \retval{\NIL}.
   }
 
   \begin{LIST}{.5cm}
@@ -1047,7 +1050,7 @@
   }
 
   \IT{(\MC*{WITH-OPEN-STREAM} (\VAR{foo} \DES{\VAR{stream}})
-    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \OPn{\VAR{form}})}
+    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{form}})}
   {
   Evaluate \VAR{form}s with \VAR{foo} locally bound to
   \VAR{stream}. Return \retval{values of \VAR{form}s}. 
@@ -1057,7 +1060,7 @@
     \orGOO{\kwd{:index } \DES{\VAR{index}}\\
       \kwd{:start} \VAR{ start}\\
       \kwd{:end} \VAR{ end}}{\}}) \OPn{(\kwd{declare}
-      \OPn{\NEV{\VAR{decl}}})} \OPn{\VAR{form}})}
+      \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{form}})}
   {
   Evaluate \VAR{form}s with \VAR{foo} locally bound to input stream
   from \VAR{string}. \VAR{index} contains the reading position in
@@ -1067,7 +1070,7 @@
   \IT{(\MC*{WITH-OUTPUT-TO-STRING} (\VAR{foo} 
     \Op{\DES{\VAR{string}}\DF{\NIL}} \Op{\kwd{:element-type}
       \VAR{type}\DF{\kwd{character}}}) \OPn{(\kwd{declare}
-      \OPn{\NEV{\VAR{decl}}})} \OPn{\VAR{form}})}
+      \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{form}})}
   {
   Evaluate \VAR{form}s with \VAR{foo} locally bound to output
   stream. Append output to \VAR{string} and return \retval{values of
@@ -1267,7 +1270,7 @@
 
   \IT{(\MC*{WITH-OPEN-FILE} (\VAR{stream} \VAR{path}
     \OPn{\VAR{open-arg}}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
-    \OPn{\VAR{form}})}
+    \PROGN{\VAR{form}})}
   {
   Use \FU*{OPEN} with \VAR{open-arg}s to temporarily
   create \VAR{stream} to \VAR{path}; return \retval{values of \VAR{form}s}.

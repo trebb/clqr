@@ -206,7 +206,7 @@
 
   \IT{(\MC*{WITH-PACKAGE-ITERATOR} (\VAR{name} \VAR{packages}
     \Op{\kwd{:internal}\XOR\kwd{:external}\XOR\kwd{:inherited}})
-    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \OPn{\VAR{form}})}
+    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{form}})}
   {
   Return \retval{values of \VAR{form}s}. In \VAR{form}s, successive
   invocations of  (\VAR{name}) return: \T\ if a symbol is returned;
@@ -240,6 +240,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
+%FIXME:EXPLAIN CONTENTS OF A SYMBOL
   \IT{(\FU*{MAKE-SYMBOL} \VAR{name})}
   {
   Make fresh, uninterned \retval{symbol \VAR{name}}.
@@ -261,7 +262,7 @@
   \IT{(\FU*{COPY-SYMBOL} \VAR{symbol} \Op{\VAR{props}\DF{\NIL}})}
   {
   Return uninterned \retval{copy of \VAR{symbol}}. If \VAR{props} is
-  \T, the copy has the same value, function and property list.
+  \T, give copy the same value, function and property list.
   }
 
   \IT{\arrGOO{(\FU*{SYMBOL-FUNCTION} \VAR{ symbol})\\
