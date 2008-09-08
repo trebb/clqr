@@ -50,7 +50,8 @@
 	  </a>
 	  <p>
 	    This rather humble effort is by no means meant to rival
-	    the <a href="http://www.lisp.org/HyperSpec/FrontMatter/index.html">HyperSpec</a>
+	    the <a href="http://www.lispworks.com/documentation/HyperSpec/Front/index.htm">Common
+	    Lisp HyperSpec</a> 
 	    or any of the great introductory web resources and books. 
 	    Its purpose is to give those who like a piece of
 	    dead tree in their hands a quick overview on things they
