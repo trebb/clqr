@@ -43,11 +43,11 @@
 	  <p>&nbsp;
 	    <div class="here">
 	      <img class="left" src="sample-firstpage-consec.jpg"
-		   alt="Sample"/> 
+		   alt="[Sample]"/> 
 	      <a href="http://download.berlios.de/clqr/clqr-a4-consec.pdf"
-		 title="half A4 size, not for printing">clqr-a4-consec.pdf</a><br />
+		 title="Half A4 size; not for printing">clqr-a4-consec.pdf</a><br />
 	      <a href="http://download.berlios.de/clqr/clqr-letter-consec.pdf"
-		 title="half US letter size, not for printing">clqr-letter-consec.pdf</a><br />
+		 title="Half US letter size; not for printing">clqr-letter-consec.pdf</a><br />
 	      <ul>
 		<li>Pages in their natural order. 
 		<li>Suitable only for reading on the screen. Comes
@@ -61,7 +61,7 @@
 	    </div>
 	    <div class="here">
 	      <img class="left" src="sample-firstpage-all.jpg"
-		   alt="Sample"/> 
+		   alt="[Sample]"/> 
 	      <a href="http://download.berlios.de/clqr/clqr-a4-booklet-all.pdf"
 		 title="A4 size paper, nested folios">clqr-a4-booklet-all.pdf</a><br />
 	      <a href="http://download.berlios.de/clqr/clqr-letter-booklet-all.pdf"
@@ -69,8 +69,8 @@
 	      <ul>
 		<li>Suitable for printing, folding lengthwise and nesting the
 		  folios.
-		<li>With 48 pages total, first sheet has pages 48, 1, 2, 47.
-		<li>With 48 pages total, last sheet has pages 26, 23, 24, 25.
+		<li>With 52 pages total, first sheet has pages 52, 1, 2, 51.
+		<li>With 52 pages total, last sheet has pages 28, 25, 26, 27.
 	      </ul>
 	      <p>&nbsp;
 	      <p>&nbsp;
@@ -78,7 +78,7 @@
 	    </div>
 	    <div class="here">
 	      <img class="left" src="sample-firstpage-four.jpg"
-		   alt="Sample"/> 
+		   alt="[Sample]"/> 
 	      <a href="http://download.berlios.de/clqr/clqr-a4-booklet-four.pdf"
 		 title="A4 size paper, stacked folios">clqr-a4-booklet-four.pdf</a><br />
 	      <a href="http://download.berlios.de/clqr/clqr-letter-booklet-four.pdf"
@@ -87,7 +87,7 @@
 		<li>Suitable for printing, folding lengthwise and stacking up the
 		  folios.
 		<li>First sheet has pages 4, 1, 2, 3.
-		<li>With 48 pages total, last sheet has pages 48, 45, 46, 47.
+		<li>With 52 pages total, last sheet has pages 52, 49, 50, 51.
 	      </ul>
 	      <p>&nbsp;
 	      <p>&nbsp;
@@ -95,9 +95,9 @@
 	    </div>
 	    <div class="here">
 	      <img class="left" src="sample-source.jpg"
-		   alt="Sample"/> 
+		   alt="[Sample]"/> 
 	      <a href="http://download.berlios.de/clqr/clqr.tar.gz"
-	      title="download source code">clqr.tar.gz</a><br />
+	      title="Download source code">clqr.tar.gz</a><br />
 	      <ul>
 		<li>LaTeX source.
 		<li>Not of much use unless you want to make some changes.
@@ -110,9 +110,9 @@
 	  &nbsp;
 	</td>
       </tr>
-      <tr class="footer">
-	<td colspan="2">
-	  &copy; 2008
+      <tr>
+	<td class="footer" colspan="2">
+	  &copy; 2008 &nbsp;
 	  <a href="mailto:trebb@users.berlios.de?subject=CLQR ">
 	    Bert Burgemeister
 	  </a>

@@ -15,7 +15,7 @@
 body {
     font-family: sans-serif;
     font-size: small;
-    background-color: #FFFFFF;
+    background-color: white;
     color: black;
     max-width: 1000px;
     min-width: 600px;
@@ -65,13 +65,11 @@ h5 {
 }
 
 a {
-    background-color: #FFFFFF;
     color: black;
     text-decoration: none;
 }
 
 a:hover {
-    background-color: #FFFFFF;
     color: #0080C0;
     text-decoration: none;
 }
@@ -162,14 +160,12 @@ img {
 }
 
 .content a {
-    background-color: #FFFFFF;
-    color: black;
+    color: #404040;
     text-decoration: none;
     letter-spacing: .1em;
 }
 
 .content a:hover {
-    background-color: #FFFFFF;
     color: #0080C0;
     text-decoration: none;
 }
@@ -190,14 +186,12 @@ img {
 }
 
 .side-content a {
-    background-color: #FFFFFF;
-    color: black;
+    color: #404040;
     text-decoration: none;
     letter-spacing: .1em;
 }
 
 .side-content a:hover {
-    background-color: #FFFFFF;
     color: #0080C0;
     text-decoration: none;
 }
@@ -233,4 +227,17 @@ img {
 .footer {
     font-size: .8em;
     text-align: center;
+    padding: 0em;
 }
+
+.footer a {
+    color: #404040;
+    text-decoration: none;
+    letter-spacing: .1em;
+}
+
+.footer a:hover {
+    color: #0080C0;
+    text-decoration: none;
+}
+

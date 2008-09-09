@@ -35,23 +35,23 @@
 	  </ul>
 	</td>
 	<td class="content">
-	  <a href="clqr-a4-consec.pdf" title="preview">
+	  <a href="clqr-a4-consec.pdf" title="Preview">
 	    <img class="right" src="sample-doublepage.jpg" 
-		 alt="Doublepage Cover"/>
+		 alt="[Doublepage Sample]"/>
 	  </a>
 	  <h3>Introduction</h3>
 	  <p> Common Lisp Quick Reference is a free booklet with short
 	    descriptions of the thousand or so symbols defined in the ANSI standard. 
 	    It comes with a comprehensive index.
 	  </p>
-	  <a href="clqr-a4-consec.pdf" title="preview">
+	  <a href="clqr-a4-consec.pdf" title="Preview">
 	    <img class="left" src="sample-frontcover.jpg"
-		 alt="Front Cover Sample"/> 
+		 alt="[Front Cover Sample]"/> 
 	  </a>
 	  <p>
 	    This rather humble effort is by no means meant to rival
-	    the <a href="http://www.lispworks.com/documentation/HyperSpec/Front/index.htm">Common
-	    Lisp HyperSpec</a> 
+	    the <a href="http://www.lispworks.com/documentation/HyperSpec/Front/index.htm">
+	    Common Lisp HyperSpec</a> 
 	    or any of the great introductory web resources and books. 
 	    Its purpose is to give those who like a piece of
 	    dead tree in their hands a quick overview on things they
@@ -68,12 +68,14 @@
 	    would benefit from users sending in error reports or making
 	    suggestions. Please use
 	    the <a href="https://lists.berlios.de/mailman/listinfo/clqr-general">mailing
-	    list</a>
+	      list</a>
 	    or <a href="mailto:trebb@users.berlios.de?subject=CLQR ">
-	    send me an email</a>.
-
-	  <h3>Recent News</h3>
-	  <?php echo(file_get_contents("news-clqr.html"));?>	
+	      send me an email</a>.
+	  </p>
+	  <p>&nbsp;</p>
+	    
+	    <h3>Recent News</h3>
+	    <?php echo(file_get_contents("news-clqr.html"));?>	
 	</td>
       </tr>
       <tr>
@@ -81,9 +83,9 @@
 	  &nbsp;
 	</td>
       </tr>
-      <tr class="footer">
-	<td colspan="2">
-	  &copy; 2008
+      <tr>
+	<td class="footer" colspan="2">
+	  &copy; 2008 &nbsp;
 	  <a href="mailto:trebb@users.berlios.de?subject=CLQR ">
 	    Bert Burgemeister
 	  </a>
