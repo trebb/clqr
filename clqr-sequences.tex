@@ -58,7 +58,7 @@
 \begin{LIST}{1cm}
 
   \IT{(\FU*{MAKE-SEQUENCE} \VAR{sequence-type} \VAR{size}
-    \Op{\kwd{:initial-element} \VAR{foo}})}
+    \Op{\kwd{:initial-element} \VAR{foo}})} % default: implementation-dependent
   {
   Make \retval{sequence} of \VAR{sequence-type} with \VAR{size} elements.
   }
@@ -69,7 +69,7 @@
   }
 
   \IT{(\FU*{MERGE} \VAR{type} \DES{\VAR{sequence-a}} \DES{\VAR{sequence-b}}
-    \VAR{test} \Op{\kwd{:key} \VAR{function}})}
+    \VAR{test} \Op{\kwd{:key} \VAR{function}\DF{\NIL}})}
   {
   Return \retval{interleaved sequence} of \VAR{type}. Merged sequence
   will be sorted if both  \VAR{sequence-a} and \VAR{sequence-b} are
@@ -97,8 +97,8 @@
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {
-  Return \retval{number of \VAR{foo}s in \VAR{sequence}} between \VAR{start}
-  and \VAR{end} satisfying tests.
+  Return \retval{number of \VAR{foo}s} in \VAR{sequence} which satisfy
+  tests. 
   }
 
   \IT{(\xorGOO{\FU*{COUNT-IF}\\
@@ -108,8 +108,8 @@
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {
-  Return \retval{number of elements in \VAR{sequence}} between \VAR{start}
-  and \VAR{end} satisfying \VAR{test}.
+  Return \retval{number of elements} in \VAR{sequence} which satisfy
+  \VAR{test}.
   }
 
   \IT{(\FU*{ELT} \VAR{sequence} \VAR{index})}
@@ -147,20 +147,21 @@
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {
-  Return \retval{first element} found in \VAR{sequence}, or
-  its \retval{position} relative to \VAR{sequence}'s start, respectively,
-  between \VAR{start} and \VAR{end} satisfying tests. 
+  Return \retval{first element} in \VAR{sequence} which
+  satisfies tests, or its \retval{position} relative to
+  \VAR{sequence}'s start, respectively. 
   }
 
-  \IT{(\xorGOO{\FU*{FIND-IF}\\\FU*{FIND-IF-NOT}\\\FU*{POSITION-IF}\\\FU*{POSITION-IF-NOT}}{\}} \VAR{test} \VAR{sequence} 
+  \IT{(\xorGOO{\FU*{FIND-IF}\\
+      \FU*{FIND-IF-NOT}\\\FU*{POSITION-IF}\\
+      \FU*{POSITION-IF-NOT}}{\}} \VAR{test} \VAR{sequence} 
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {
-  Return \retval{first element in \VAR{sequence}}, or
-  \retval{its position} relative to \VAR{sequence}'s start, respectively, between \VAR{start}
-  and \VAR{end} satisfying \VAR{test}.
+  Return \retval{first element in \VAR{sequence}} which satisfies \VAR{test}, or
+  \retval{its position} relative to \VAR{sequence}'s start, respectively.
   }
 
   \IT{(\FU*{SEARCH} \VAR{sequence-a} \VAR{sequence-b} 

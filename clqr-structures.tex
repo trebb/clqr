@@ -18,22 +18,22 @@
   \retval{\T} if \VAR{foo} has a slot \VAR{bar}.
   }
 
-  \IT{(\MC*{DEFSTRUCT}
-    \GOO{\VAR{name}\XOR
-      (\VAR{name}
+  \IT{(\MC*{DEFSTRUCT}%FIXME:AUGMENT:print-object, constructor
+    \GOO{\VAR{foo}\XOR
+      (\VAR{foo}
       \orGOO{%
         \xorGOO{%
           \kwd{:conc-name}\\
-          (\kwd{:conc-name } \Op{\VAR{slot-prefix}\DF{\VAR{name}\LIT{-}}})}{.}\\
+          (\kwd{:conc-name } \Op{\VAR{slot-prefix}\DF{\VAR{foo}\LIT{-}}})}{.}\\
         \xorGOO{%
           \kwd{:constructor}\\
           (\kwd{:constructor }
-          \OP{\VAR{maker}\DF{\LIT{make-}\VAR{name}}\text{ }
+          \OP{\VAR{maker}\DF{\LIT{MAKE-}\VAR{foo}}\text{ }
             \Op{({\OPn{\VAR{arg}}})}})}{\}^{\!\!*}}\\
         \xorGOO{%
           \kwd{:copier}\\
           (\kwd{:copier }
-          \Op{\VAR{copier}\DF{\LIT{copy-}\VAR{name}}})}{.}\\
+          \Op{\VAR{copier}\DF{\LIT{COPY-}\VAR{foo}}})}{.}\\
         (\kwd{:include} \VAR{ struct}\text{ }
         \xorGOO{%
           \VAR{slot}\\
@@ -44,22 +44,25 @@
         }{\}^{\!\!*}})\\
         (\kwd{:type } \xorGOO{\kwd{list}\\
           \kwd{vector}\\
-          (\kwd{vector}\VAR{ size})}{\}})\text{ }\Op{\kwd{:named}}\\
-        (\kwd{:initial-offset} \VAR{ n})\\
+          (\kwd{vector}\VAR{ size})}{\}})\text{ }
+        \orGOO{%
+          \kwd{:named}\\
+          (\kwd{:initial-offset} \VAR{ n})\\
+          \xorGOO{
+            (\kwd{:print-object } \Op{\VAR{printer}})\\
+            (\kwd{:print-function } \Op{\VAR{printer}})
+          }{.}%
+        }{.}\\
         \xorGOO{%
           \kwd{:predicate}\\
-          (\kwd{:predicate } \Op{\VAR{p-name}\DF{\VAR{name}\LIT{-p}}})}{.}\\
-        \xorGOO{
-          (\kwd{:print-object } \Op{\VAR{printer}})\\
-          (\kwd{:print-function } \Op{\VAR{printer}})
-        }{.}%
+          (\kwd{:predicate } \Op{\VAR{p-name}\DF{\VAR{foo}\LIT{-P}}})}{.}
       }{\}}%
       )%
     }
     \Op{\NEV{\VAR{doc}}}
     \xorGOO{
-      \VAR{slot-name}\\
-      (\VAR{slot-name } \Op{\VAR{init}\text{ }
+      \VAR{slot}\\
+      (\VAR{slot } \Op{\VAR{init}\text{ }
         \orGOO{
           \kwd{:type } \NEV{\VAR{type}}\\
           \kwd{:read-only } \NEV{\VAR{bool}}
@@ -67,9 +70,9 @@
     }{\}^{\!\!*}}%
     )}
   {
-  Define structure \retval{\VAR{name}} together with functions
-  \LIT{make-}\VAR{name}, \LIT{copy-}\VAR{name} and
-  \VAR{name}\LIT{-p}; and accessors \VAR{name}\LIT{-}\VAR{slot-name}.
+  Define structure \retval{\VAR{foo}} together with functions
+  \LIT{MAKE-}\VAR{foo}, \LIT{COPY-}\VAR{foo} and
+  \VAR{foo}\LIT{-P}; and \kwd{setf}able accessors \VAR{foo}\LIT{-}\VAR{slot}.
   }
 
   \IT{(\FU*{COPY-STRUCTURE} \VAR{structure})}

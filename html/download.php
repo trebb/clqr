@@ -40,6 +40,10 @@
 	    This is revision
 	    <?php echo(file_get_contents("release-revision.txt"));?> of
 	    <?php echo(file_get_contents("release-date.txt"));?>.
+	  <p>
+	  <p>
+	    If unsure what to download, have a look at <a href="printing.html">printing &amp; bookbinding</a>.
+
 	  <p>&nbsp;
 	    <div class="here">
 	      <img class="left" src="sample-firstpage-consec.jpg"

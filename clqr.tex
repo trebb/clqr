@@ -189,10 +189,9 @@
 % Required Parts, +
 \newcommand{\RP}[1]{{{#1}\text{${}^{+}$}}}
 %
-% Implicit PROGN, *^progn
-\newcommand{\PROGN}[1]{{{#1}\text{${}^{*^{\hspace{-1.3ex}\text{\sffamily\mdseries\upshape
-            i--p}}}$}}}
-
+% Implicit PROGN, P*
+\newcommand{\PROGN}[1]{{{#1}\text{${}^{{\raisebox{.5ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{-.6ex}P}}*}}$}}}
+%
 % Group of Objects {}, three sizes
 \newcommand{\GOO}[1]{{\text{$\Big\{$}{#1}\text{$\Big\}$}}}
 \newcommand{\GOo}[1]{{\text{$\big\{$}{#1}\text{$\big\}$}}}
@@ -468,22 +467,22 @@
 
 \input{clqr-typographic-conventions}
 \clearpage
-\input{clqr-numbers}
-\input{clqr-characters}
-\input{clqr-strings}
-\input{clqr-conses}
-\input{clqr-arrays}
-\input{clqr-sequences}
-\input{clqr-hash-tables}
+%\input{clqr-numbers}
+%\input{clqr-characters}
+%\input{clqr-strings}
+%\input{clqr-conses}
+%\input{clqr-arrays}
+%\input{clqr-sequences}
+%\input{clqr-hash-tables}
 \input{clqr-structures}
 \input{clqr-control-structure}
 \input{clqr-clos}
-\input{clqr-conditions-and-errors}
+%\input{clqr-conditions-and-errors}
 \input{clqr-input-output}
-\input{clqr-types-and-classes}
-\input{clqr-packages-and-symbols}
-\input{clqr-compiler}
-\input{clqr-environment}
+%\input{clqr-types-and-classes}
+%\input{clqr-packages-and-symbols}
+%\input{clqr-compiler}
+%\input{clqr-environment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

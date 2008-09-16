@@ -40,7 +40,7 @@
   {
   Define, as a subclass of \VAR{superclass}es, \retval{class}
   \VAR{foo}. In new instances, a \VAR{slot}'s value defaults to 
-  \VAR{form} unless set by \kwd{:}\VAR{initarg-name} and is accessible
+  \VAR{form} unless set via \kwd{:}\VAR{initarg-name} and is accessible
   by \VAR{reader-function} and \VAR{writer-function}. With
   \kwd{:allocation :class}, \VAR{slot} is shared by all instances of
   class \VAR{foo}.
@@ -49,19 +49,13 @@
   \IT{(\FU*{FIND-CLASS} \VAR{symbol} \OP{\VAR{errorp}\DF{\T}
       \Op{\VAR{environment}}})}
   {
-  Return \retval{class object} named \VAR{symbol}. \kwd{setf}able.
+  Return \retval{class} named \VAR{symbol}. \kwd{setf}able.
   }
 
   \IT{(\GFU*{MAKE-INSTANCE} \VAR{class} \Goos{\kwd{:}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
   Make new \retval{instance of \VAR{class}}.
-  }
-
-  \IT{(\GFU*{INITIALIZE-INSTANCE} (\VAR{instance}))}
-  {
-  Its primary method sets slots on behalf of
-  \GFU*{MAKE-INSTANCE}. Return \retval{instance}.
   }
 
   \IT{(\GFU*{REINITIALIZE-INSTANCE} \VAR{instance} \Goos{\kwd{:}\VAR{initarg}
@@ -108,16 +102,19 @@
   Change class of \retval{\VAR{instance}} to \VAR{new-class}.
   }
 
-  \IT{(\GFU*{UPDATE-INSTANCE-FOR-DIFFERENT-CLASS} \VAR{previous}
-    \VAR{current} \Goos{\kwd{:}\VAR{initarg}
-      \VAR{value}} \OPn{\VAR{other-keyarg}})}
-  {
-  Called by \GFU{change-class}.
-  }
-
   \IT{(\GFU*{MAKE-INSTANCES-OBSOLETE} \VAR{class})}
   {
   Update instances of \VAR{class}.
+  }
+
+  \IT{(\xorGOO{\GFU*{INITIALIZE-INSTANCE } (\VAR{instance})\\
+      \GFU*{UPDATE-INSTANCE-FOR-DIFFERENT-CLASS} \VAR{
+        previous }\VAR{current}}{\}}
+      \Goos{\kwd{:}\VAR{initarg}
+      \VAR{value}} \OPn{\VAR{other-keyarg}})}
+  {
+  Its primary method sets slots on behalf of \GFU{make-instance}/of
+  \GFU{change-class} by means of \GFU{shared-initialize}. 
   }
 
   \IT{(\GFU*{UPDATE-INSTANCE-FOR-REDEFINED-CLASS} \VAR{instances}
@@ -125,7 +122,14 @@
      \Goos{\kwd{:}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
-  Called by \GFU{make-instances-obsolete}.
+  Its primary method sets slots on behalf of
+  \GFU{make-instances-obsolete} by means of \GFU{shared-initialize}. 
+  }
+
+  \IT{(\GFU*{ALLOCATE-INSTANCE} \VAR{class} \Goos{\kwd{:}\VAR{initarg}
+      \VAR{value}} \OPn{\VAR{other-keyarg}})}
+  {
+  Return uninitialized \retval{instance} of \VAR{class}.
   }
 
   \IT{(\GFU*{SHARED-INITIALIZE} \VAR{instance} \VAR{slots}
@@ -139,16 +143,17 @@
   \IT{(\GFU*{SLOT-MISSING} \VAR{class} \VAR{object} \VAR{slot}
     \xorGOO{\kwd{setf}\\
       \kwd{slot-boundp}\\
-      \kwd{slot-makunbound}}{\}}
+      \kwd{slot-makunbound}\\
+      \kwd{slot-value}}{\}}
     \Op{\VAR{value}})}
   {
-  Called in case of attempted access to missing \VAR{slot}. Default primary
+  Called in case of attempted access to missing \VAR{slot}. Its primary
   method signals \kwd{error}.
   }
 
   \IT{(\GFU*{SLOT-UNBOUND} \VAR{class} \VAR{instance} \VAR{slot})}
   {
-  Called by \FU{slot-value} in case of unbound \VAR{slot}. Default primary
+  Called by \FU{slot-value} in case of unbound \VAR{slot}. Its primary
   method signals \kwd{unbound-slot}.
   }
 
@@ -167,7 +172,7 @@
 
   \IT{(\MC*{DEFGENERIC}
     \xorGOO{\VAR{foo}\\ (\kwd{setf} \VAR{ foo})}{\}} 
-    (\OPn{\VAR{required-var}}%
+    (\OPn{\VAR{required-var}}
     \OP{\kwd*{\&optional} \xorGOO{\VAR{var}\\
         (\VAR{var})}{\}^{\!\!*}}}
     \OP{\kwd*{\&rest} \VAR{var}}
@@ -181,11 +186,10 @@
     (\kwd{:documentation } \NEV{\VAR{string}})\\
     (\kwd{:generic-function-class} \VAR{ class}\DF{\kwd{standard-generic-function}})\\
     (\kwd{:method-class} \VAR{ class}\DF{\kwd{standard-method}})\\
-    (\kwd{:method-combination} \VAR{ c-type} \OPn{\VAR{ arg}})\\
+    (\kwd{:method-combination} \VAR{ c-type}\DF{\kwd{standard}} \OPn{\VAR{ arg}})\\
     \OPn{(\kwd{:method} \VAR{ defmethod-args})}}{\}})}
   {
-  Define \retval{generic function} \VAR{foo} with \VAR{defmethod-args}
-  describing some methods. \VAR{defmethod-args} resemble those of
+  Define \retval{generic function} \VAR{foo}. \VAR{defmethod-args} resemble those of
   \MC{defmethod}. For \VAR{c-type} see section \ref{section:Method
     Combination Types}. 
   }
@@ -207,13 +211,15 @@
   }
 
   \IT{(\MC*{DEFMETHOD} 
-    \xorGOO{\VAR{bar}\\ (\kwd{setf} \VAR{ bar})}{\}} 
+    \xorGOO{\VAR{foo}\\ 
+      (\kwd{setf} \VAR{ foo})}{\}} 
     \Op{\xorGOO{\kwd{:before}\\
         \kwd{:after}\\
-        \kwd{:around}}{\}}}
+        \kwd{:around}\\
+        \VAR{c-type}}{\}}\DF{primary method}}
     (\xorGOO{\VAR{var}\\
       (\VAR{spec-var } \xorGOO{\VAR{class}\\
-        (\kwd{eql} \VAR{ foo})}{\}})}{\}^{\!\!*}}
+        (\kwd{eql} \VAR{ bar})}{\}})}{\}^{\!\!*}}
     \OP{\kwd*{\&optional} \xorGOO{\VAR{var}\\
         (\VAR{var } \OP{\VAR{init }
           \Op{\VAR{supplied-p}}})}{\}^{\!\!*}}}
@@ -231,16 +237,29 @@
     \OPn{\VAR{form}})}
   {
   Define \retval{new method} for generic function
-  \VAR{bar}. \VAR{spec-var}s specialize to either being of \VAR{class}
-  or being \kwd{eql} \VAR{foo}, respectively. On invocation, \VAR{var}s and
+  \VAR{foo}. \VAR{spec-var}s specialize to either being of \VAR{class}
+  or being \kwd{eql} \VAR{bar}, respectively. On invocation, \VAR{var}s and
   \VAR{spec-var}s of the \retval{new method}
-  act like parameters of a function with body \OPn{\VAR{form}}.
+  act like parameters of a function with body \OPn{\VAR{form}}. For \VAR{c-type} see
+  section \ref{section:Method Combination Types}.
   }
 
   \IT{(\xorGOO{\GFU*{ADD-METHOD}\\
       \GFU*{REMOVE-METHOD}}{\}} \VAR{generic-function} \VAR{method})}
   {
-  Add, or remove, respectively, \VAR{method} from \retval{\VAR{generic-function}}.
+  Add, or remove, respectively, \VAR{method} to/from \retval{\VAR{generic-function}}.
+  }
+
+  \IT{(\GFU*{FIND-METHOD} \VAR{generic-function} \VAR{qualifiers}
+    \VAR{specializers} \Op{\VAR{error}\DF{\T}})}
+  {
+  Return suitable \retval{method}, or signal \kwd{error}.
+  }
+
+  \IT{(\GFU*{COMPUTE-APPLICABLE-METHODS} \VAR{generic-function}
+    \VAR{args})}
+  {
+  \retval{List of methods} suitable for \VAR{args}, most specific first.
   }
 
   \IT{(\FU*{CALL-NEXT-METHOD} \OPn{\VAR{arg}}\DF{current args})}
@@ -261,7 +280,8 @@
   \IT{(\GFU*{NO-APPLICABLE-METHOD} \VAR{generic-function}
     \OPn{\VAR{arg}})}
   {
-  Called on invocation of \VAR{generic-function} if there is no applicable method.
+  Called on invocation of \VAR{generic-function} on \VAR{arg}s if
+  there is no applicable method. 
   }
 
   \IT{(\xorGOO{\FU*{INVALID-METHOD-ERROR} \VAR{ method}\\
@@ -282,30 +302,12 @@
   \IT{(\GFU*{FUNCTION-KEYWORDS} \VAR{method})}
   {
   Return list of \retval{keyword parameters} of \VAR{method} and
-  \retvalii{\T} of other keys are allowed.
-  }
-
-  \IT{(\GFU*{ALLOCATE-INSTANCE} \VAR{class} \Goos{\kwd{:}\VAR{initarg}
-      \VAR{value}} \OPn{\VAR{other-keyarg}})}
-  {
-  Return uninitialized \retval{instance} of \VAR{class}.
+  \retvalii{\T} if other keys are allowed.
   }
 
   \IT{(\GFU*{METHOD-QUALIFIERS} \VAR{method})}
   {
   List of qualifiers of \VAR{method}.
-  }
-
-  \IT{(\GFU*{FIND-METHOD} \VAR{generic-function} \VAR{qualifiers}
-    \VAR{specializers} \Op{\VAR{error}\DF{\T}})}
-  {
-  Return suitable \retval{method}, or signal \kwd{error}.
-  }
-
-  \IT{(\GFU*{COMPUTE-APPLICABLE-METHODS} \VAR{generic-function}
-    \VAR{args})}
-  {
-  \retval{List of methods} suitable for \VAR{args}, most specific first.
   }
 
 
@@ -317,6 +319,11 @@
 \label{section:Method Combination Types}
 \begin{LIST}{1cm}
 
+  \IT{\kwd*{STANDARD}} %FIXME:AUGMENT
+  {
+  Method combination type.
+  }
+
   \IT{\arrGOO{\kwd*{AND}\\
       \kwd*{OR}\\
       \kwd*{APPEND}\\
@@ -327,13 +334,8 @@
       \kwd*{MIN}\\
       \kwd*{+}}{.}}
   {
-  Built-in method combination types.
-  }
-
-  \IT{\kwd*{STANDARD}}
-  {
-  Standard method combination type, also used if no method combination
-  type is given. 
+  Simple built-in method combination types. Usable in \kwd{:around}
+  methods and primary methods.
   }
 
   \IT{(\MC*{DEFINE-METHOD-COMBINATION} \VAR{c-type} \orGOO{%
@@ -342,13 +344,12 @@
     \kwd{:operator} \VAR{ operator}\DF{\VAR{c-type}}}{\}})}
   {
   Short form. Define new method combination type
-  \retval{\VAR{c-type}}. A call to a generic function using
+  \retval{\VAR{c-type}}. The primary method of a generic function using
   \VAR{c-type} will be equivalent to (\VAR{c-type}
-  \OPn{\VAR{applicable-method}} \Op{\kwd{:order}
-    \xorGOO{\kwd{:most-specific-first}\\\kwd{:most-specific-last}}{\}}}). 
+  \OPn{\VAR{applicable-method}}). 
   }
 
-  \IT{(\MC*{DEFINE-METHOD-COMBINATION} \VAR{c-type}
+  \IT{(\MC*{DEFINE-METHOD-COMBINATION} \VAR{c-type} %FIXME:AUGMENT
     (\OPn{\VAR{ord-$\lambda$}}) 
     (\GOOs{\VAR{name} \xorGOO{%
       \GOOp{\VAR{list}\XOR\kwd{*}}\\
@@ -368,7 +369,7 @@
   {
   Long form. Define new method combination type
   \retval{\VAR{c-type}}. A call to a generic function using \VAR{c-type} will be
-  equivalent to a call to the forms returned by \VAR{body}.  Lambda
+  equivalent to a call to the forms returned by \OPn{\VAR{body}}.  Lambda
   lists (\OPn{\VAR{ord-$\lambda$}}) and (\OPn{\VAR{method-combination-$\lambda$}})
   according to \VAR{ord-$\lambda$} on p.\ \pageref{section:Functions}, the
   latter enhanced by an optional \kwd{\&whole} argument. 
