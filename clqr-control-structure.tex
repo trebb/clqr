@@ -603,7 +603,7 @@
   }
 
   \IT{(\xorGOO{\MC*{PROG}\\
-      \MC*{PROG*}}{\}}
+      \MC*{PROG\A}}{\}}
     (\orGOO{%
       \VAR{var}\\
       (\VAR{var } \Op{ \VAR{value}})}{\}^{\!\!*}})
@@ -654,7 +654,7 @@
   }
 
   \IT{(\xorGOO{\SO*{LET}\\ 
-      \SO*{LET*}}{\}}(%
+      \SO*{LET\A}}{\}}(%
     \orGOO{\VAR{name}\\
       (\VAR{name }\Op{\VAR{value}\DF{\NIL}})}{\}^{\!\!*}}) 
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} 
@@ -722,7 +722,7 @@
 \begin{LIST}{1cm}
   
   \IT{(\xorGOO{\MC*{DO}\\
-      \MC*{DO*}}{\}}
+      \MC*{DO\A}}{\}}
     (\orGOO{%
       \VAR{var}\\
       (\VAR{var } \OP{ \VAR{start } \Op{\VAR{step}}})}{\}^{\!\!*}})
@@ -904,7 +904,7 @@
                   \text{\LKWD{of}}\\
                   \text{\LKWD{in}}
                 \end{array}
-                \right\} \text{\VAR{package}\DF{\V{*package*}}}
+                \right\} \text{\VAR{package}\DF{\V{\A package\A}}}
               }
             \end{array}
             \right.
@@ -1117,7 +1117,7 @@
 
         \IT{\Goo{\LKWD*{symbol}\XOR\LKWD*{symbols}\XOR\LKWD*{present-symbol}\XOR\LKWD*{present-symbols}\XOR\LKWD*{external-symbol}\XOR\LKWD*{external-symbols}}
           \Op{\Goo{\LKWD*{of}\XOR\LKWD*{in}}
-            \VAR{package}\DF{\V{*package*}}}}
+            \VAR{package}\DF{\V{\A package\A}}}}
         {
         Bind \VAR{var} successively to the symbols, or the present
         symbols, or the external symbols respectively, of

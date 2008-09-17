@@ -42,6 +42,7 @@
 \usepackage{graphics}
 \usepackage{multicol}
 \usepackage{textcase}
+\usepackage{textcomp}
 \usepackage{ulem}
 \usepackage[usenames,dvips]{color}
 \usepackage{suffix}
@@ -385,10 +386,14 @@
 \newcommand{\NIL}{\text{\ttfamily NIL}}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ~
+% ~  (slightly lowered)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\newcommand{\TLD}{{\textasciitilde}}
 \newcommand{\TLD}{{\protect\raisebox{-.8ex}{\textasciitilde}}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% *  (lowered version)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\A}{\textasteriskcentered}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Starred versions send their argument into index:

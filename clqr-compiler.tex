@@ -49,8 +49,8 @@
 
   \IT{(\FU*{COMPILE-FILE} \VAR{file} 
     \orGOO{\kwd{:output-file}\VAR{ out-path}\\
-      \kwd{:verbose} \VAR{ bool}\DF{\V{*compile-verbose*}}\\
-      \kwd{:print}\VAR{ bool}\DF{\V{*compile-print*}}\\
+      \kwd{:verbose} \VAR{ bool}\DF{\V{\A compile-verbose\A}}\\
+      \kwd{:print}\VAR{ bool}\DF{\V{\A compile-print\A}}\\
       \kwd{:external-format} \VAR{
         file-format}\DF{\kwd{:default}}}{\}})}
   {
@@ -60,14 +60,14 @@
   or errors excluding style warnings.
   }
 
-  \IT{\arrGOO{\V*{*compile-file-pathname*}\DF{\NIL}\\
-      \V*{*compile-file-truename*}\DF{\NIL}}{.}}
+  \IT{\arrGOO{\V*{\A compile-file-pathname\A}\DF{\NIL}\\
+      \V*{\A compile-file-truename\A}\DF{\NIL}}{.}}
   {
   Input file used by \FU{compile-file}.
   }
 
-  \IT{\arrGOO{\V*{*compile-print*}\\
-      \V*{*compile-verbose*}}{.}}
+  \IT{\arrGOO{\V*{\A compile-print\A}\\
+      \V*{\A compile-verbose\A}}{.}}
   {
   Defaults used in \FU{compile-file}.
   }
@@ -80,8 +80,8 @@
   }
 
   \IT{(\FU*{LOAD} \VAR{path} 
-    \orGOO{\kwd{:verbose} \VAR{ bool}\DF{\V{*load-verbose*}}\\
-      \kwd{:print} \VAR{ bool}\DF{\V{*load-print*}}\\
+    \orGOO{\kwd{:verbose} \VAR{ bool}\DF{\V{\A load-verbose\A}}\\
+      \kwd{:print} \VAR{ bool}\DF{\V{\A load-print\A}}\\
       \kwd{:if-does-not-exist} \VAR{ bool}\DF{\T}\\
       \kwd{:external-format} \VAR{
         file-format}\DF{\kwd{:default}}}{\}})}
@@ -90,14 +90,14 @@
   \retval{\T} if successful. 
   }
 
-  \IT{\arrGOO{\V*{*load-pathname*}\DF{\NIL}\\
-      \V*{*load-truename*}\DF{\NIL}}{.}}
+  \IT{\arrGOO{\V*{\A load-pathname\A}\DF{\NIL}\\
+      \V*{\A load-truename\A}\DF{\NIL}}{.}}
   {
   Input file used by \FU{load}.
   }
 
-  \IT{\arrGOO{\V*{*load-print*}\DF{\NIL}\\
-      \V*{*load-verbose*}}{.}}
+  \IT{\arrGOO{\V*{\A load-print\A}\DF{\NIL}\\
+      \V*{\A load-verbose\A}}{.}}
   {
   Defaults used in \FU{load}.
   }
@@ -176,7 +176,7 @@
 \begin{LIST}{1cm}
   
   \IT{\arrGOO{\V*{+}\XOR\V*{++}\XOR\V*{+++}\\[1pt]
-      \V*{*}\text{ }\XOR\text{ }\V*{**}\text{ }\XOR\text{ }\V*{***}\\[1pt]
+      \V*{\A}\text{ }\XOR\text{ }\V*{\A\A}\text{ }\XOR\text{ }\V*{\A\A\A}\\[1pt]
       \V*{/}\text{ }\XOR\text{ }\V*{//}\text{ }\XOR\text{ }\V*{///}}{.}}
   {
   Last, penultimate, or antepenultimate \retval{form} evaluated in the REPL, or
@@ -218,7 +218,7 @@
   Return \retval{\VAR{form}} and \retvalii{\NIL} otherwise.
   }
 
-  \IT{\V*{*macroexpand-hook*}}
+  \IT{\V*{\A macroexpand-hook\A}}
   {
   Function called by \FU{macroexpand-1} to generate macro expansions.
   }
@@ -235,7 +235,7 @@
   traced. 
   }
 
-  \IT{\V*{*trace-output*}}
+  \IT{\V*{\A trace-output\A}}
   {
   Stream \MC{trace} and \MC{time} print their output on.
   }
@@ -256,7 +256,7 @@
   \IT{(\MC*{TIME} \VAR{form})}
   {
   Evaluate \VAR{form}s and print timing information to
-  \V{*trace-output*}. Return \retval{values of \VAR{form}s}. 
+  \V{\A trace-output\A}. Return \retval{values of \VAR{form}s}. 
   }
   \IT{(\FU*{INSPECT} \VAR{foo})}
   {
@@ -264,7 +264,7 @@
   }
 
   \IT{(\FU*{DESCRIBE} \VAR{foo}
-    \Op{\DES{\VAR{stream}}\DF{\V{*standard-output*}}})}
+    \Op{\DES{\VAR{stream}}\DF{\V{\A standard-output\A}}})}
   {
   Send information about \VAR{foo} to \VAR{stream}.
   }
@@ -278,7 +278,7 @@
   \IT{(\FU*{DISASSEMBLE} \VAR{function})}
   {
   Send disassembled representation of \VAR{function} to
-  \V{*standard-output*}. Return \retval{\NIL}.
+  \V{\A standard-output\A}. Return \retval{\NIL}.
   }
 
 \end{LIST}

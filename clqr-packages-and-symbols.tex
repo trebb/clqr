@@ -85,7 +85,7 @@
   \IT{(\xorGOO{\FU*{USE-PACKAGE}\\
     \FU*{UNUSE-PACKAGE}}{\}} 
     \VAR{other-packages}
-    \Op{\VAR{package}\DF{\V{*package*}}})}
+    \Op{\VAR{package}\DF{\V{\A package\A}}})}
   {
   Make exported symbols of \VAR{other-packages} available in \VAR{package}, or remove them
   from \VAR{package}, respectively. Return \retval{\T}. 
@@ -96,7 +96,7 @@
   Delete \VAR{package}. Return \retval{\T} if successful.
   }
 
-  \IT{\V*{*package*}}
+  \IT{\V*{\A package\A}}
   {The current package.
   }
 
@@ -157,7 +157,7 @@
 
   \IT{(\xorGOO{\FU*{IMPORT}\\
       \FU*{SHADOWING-IMPORT}}{\}} \VAR{symbols}
-    \Op{\VAR{package}\DF{\kwd{*package*}}})}
+    \Op{\VAR{package}\DF{\kwd{\A package\A}}})}
   {
   Make \VAR{symbols} internal  to \VAR{package}. Return \retval{\T}. In
   case of a name conflict, signal \kwd{package-error}, or shadow
@@ -165,7 +165,7 @@
   }
 
   \IT{(\FU*{SHADOW} \VAR{symbols}
-    \Op{\VAR{package}\DF{\kwd{*package*}}})}
+    \Op{\VAR{package}\DF{\kwd{\A package\A}}})}
   {
   Add \VAR{symbols} to shadowing list of \VAR{package} making equally
   named inherited symbols shadowed. Return
@@ -178,7 +178,7 @@
   }
 
   \IT{(\FU*{EXPORT} \VAR{symbols}
-    \Op{\VAR{package}\DF{\V{*package*}}})}
+    \Op{\VAR{package}\DF{\V{\A package\A}}})}
   {
   Make \VAR{symbols} external to \VAR{package}. Return \retval{\T}.
   }
@@ -192,7 +192,7 @@
       \arrGOO{%
         \MC*{DO-SYMBOLS}\\
         \MC*{DO-EXTERNAL-SYMBOLS}}{\}}\text{ }
-      (\NEV{\VAR{var}}\text{ } \OP{\VAR{package}\DF{\V{*package*}}\text{ } \Op{\VAR{result}\DF{\NIL}}})\\
+      (\NEV{\VAR{var}}\text{ } \OP{\VAR{package}\DF{\V{\A package\A}}\text{ } \Op{\VAR{result}\DF{\NIL}}})\\
       \MC*{DO-ALL-SYMBOLS } (\VAR{var } \Op{\VAR{result}\DF{\NIL}})}{\}}
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \OPn{\orGOO{\NEV{\VAR{tag}}\\
@@ -217,17 +217,17 @@
 
   \IT{(\FU*{REQUIRE} \VAR{module} \Op{\VAR{path-list}})}
   {
-  If not in \V{*modules*}, try paths in \VAR{path-list} to load
+  If not in \V{\A modules\A}, try paths in \VAR{path-list} to load
   module from. Signal \kwd{error} if unsuccessful. Deprecated.
   }
 
   \IT{(\FU*{PROVIDE} \VAR{module})}
   {
   If not already there, add \VAR{module} to
-  \V{*modules*}. Deprecated. 
+  \V{\A modules\A}. Deprecated. 
   }
 
-  \IT{\V*{*modules*}}
+  \IT{\V*{\A modules\A}}
   {
   List of names of modules loaded into Lisp image.
   }
@@ -249,12 +249,12 @@
   \IT{(\FU*{GENSYM} \Op{\VAR{x}\DF{\LIT{G}}})}
   {
   Return fresh symbol \retval{\kwd{\#:}\VAR{x}\VAR{n}}, with \VAR{n} from
-  \V*{*gensym-counter*} which is incremented only in case no \VAR{x}
+  \V*{\A gensym-counter\A} which is incremented only in case no \VAR{x}
   is given. 
   }
 
   \IT{(\FU*{GENTEMP} \OP{\VAR{prefix}\DF{\LIT{T}}
-      \Op{\VAR{package}\DF{\V{*package*}}}})}
+      \Op{\VAR{package}\DF{\V{\A package\A}}}})}
   {
   Intern fresh \retval{symbol} in \retval{package}. Deprecated.
   }
@@ -295,13 +295,13 @@
   \IT{\CNS*{T}}
   {
   Truth; the supertype of every type including \kwd{t}; the superclass of every
-  class except \kwd{t}; \V{*terminal-io*}.
+  class except \kwd{t}; \V{\A terminal-io\A}.
   }
 
   \IT{\CNS*{NIL}\XOR{\CNS*{()}}}
   {
-  Falsity; the empty list; the empty type, subtype of every type; \V{*standard-input*};
-  \V{*standard-output*}; the global environment.
+  Falsity; the empty list; the empty type, subtype of every type; \V{\A standard-input\A};
+  \V{\A standard-output\A}; the global environment.
   }
 
 \end{LIST}

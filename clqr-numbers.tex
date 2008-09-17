@@ -23,8 +23,8 @@
      {
        \index{=}%
        \index{/=}%
-       Return \retval{\T} if all \VAR{number}s, or
-       none, respectively,  are equal.
+       \retval{\T} if all \VAR{number}s, or
+       none, respectively,  are equal in value.
      }
 
   \IT{\arrGOO{(\FU{\boldmath$>$}\RP{\VAR{
@@ -88,7 +88,7 @@
   }
 
   \IT{\arrGOO{(\FU*{+} \OPn{\VAR{ a}\DF{\LIT{0}}})\\
-      (\FU*{*} \OPn{\VAR{ a}\DF{\LIT{1}}})}{.}}
+      (\FU*{\A} \OPn{\VAR{ a}\DF{\LIT{1}}})}{.}}
   {
   Return \retval{$\sum{a}$} or \retval{$\prod{a}$}, respectively.
   }
@@ -138,7 +138,8 @@
       (\FU*{GCD} \OPn{\VAR{ integer}})}{.}}
   {
   \retval{Least common multiple} or \retval{greatest common
-    de\-no\-mi\-na\-tor}, respectively, of \VAR{integer}s. 
+    de\-no\-mi\-na\-tor}, respectively, of \VAR{integer}s. (\kwd{gcd})
+  returns \retval{0}.
   }
 
   \IT{\CNS*{PI}}
@@ -189,7 +190,7 @@
   }
 
   \IT{(\FU*{CONJUGATE} \VAR{a})}
-  {Return \retval{conjugate of \VAR{a}}.
+  {Return complex \retval{conjugate of \VAR{a}}.
     }
 
   \IT{\arrGOO{(\FU*{NUMERATOR} \VAR{ rational})\\
@@ -228,18 +229,20 @@
   \FU{truncate}, respectively, but return \retval{re\-main\-der} only.
   }
 
-  \IT{(\FU*{RANDOM} \VAR{limit} \Op{\VAR{state}\DF{\V{*random-state}}})} 
+  \IT{(\FU*{RANDOM} \VAR{limit} \Op{\VAR{state}\DF{\V{\A random-state}}})} 
   {
     Return non-negative \retval{random number} less than \VAR{limit},
     and of the same type. 
   }
 
-  \IT{(\FU*{MAKE-RANDOM-STATE} \Op{\VAR{state}\DF{\NIL}})}
+  \IT{(\FU*{MAKE-RANDOM-STATE} \OP{\Goo{\VAR{state}\XOR\NIL\XOR\T}\DF{\NIL}})}
   {
-  Make \retval{random state}.
+    \retval{Copy} of \kwd{random-state} object \VAR{state} or of
+    the current random state; or a randomly initialized fresh \retval{random
+    state}. 
   }
 
-  \IT{\V*{*random-state*}}
+  \IT{\V*{\A random-state\A}}
   {
   Current random state.
   }
@@ -271,7 +274,7 @@
   \IT{(\FU*{FLOAT} \VAR{real}
     \Op{\VAR{prototype}\DF{\kwd{single-float}}})}
   {
-  Convert \VAR{real} into \VAR{prototype}-shaped \retval{float}.
+  Convert \VAR{real} into \retval{float} with type of \VAR{prototype}.
   }
 
 \end{LIST}
@@ -372,9 +375,10 @@ two's complement representation.
   in \VAR{integer}.
   }
 
-  \IT{(\FU*{ASH} \VAR{\VAR{integer}} \VAR{count})}
+  \IT{(\FU*{ASH} \VAR{integer} \VAR{count})}
   {
-  Return copy of \retval{\VAR{integer}} arithmetically shifted left with zeros added
+  Return copy of \retval{\VAR{integer}} arithmetically shifted left by
+  \VAR{count} adding zeros
   at the right, or, for $\VAR{count}<0$, shifted right discarding
   bits. 
   }
@@ -419,7 +423,7 @@ two's complement representation.
   \IT{\arrGOO{(\FU*{BYTE-SIZE} \VAR{ byte-spec})\\
       (\FU*{BYTE-POSITION} \VAR{ byte-spec})}{.}}
   {
-  \retval{Size} or \retval{position}, respective,  of \VAR{byte-spec}.
+  \retval{Size} or \retval{position}, respectively,  of \VAR{byte-spec}.
   }
 
   \IT{(\xorGOO{\FU*{DEPOSIT-FIELD}\\
@@ -492,10 +496,10 @@ two's complement representation.
       \CNS{MOST-POSITIVE}}{\}}%
     \kwd{-}%
     \xorGOO{%
-      \kwd{DOUBLE-FLOAT}\\
-      \kwd{LONG-FLOAT}\\
       \kwd{SHORT-FLOAT}\\
       \kwd{SINGLE-FLOAT}\\
+      \kwd{DOUBLE-FLOAT}\\
+      \kwd{LONG-FLOAT}\\
       \kwd{FIXNUM}}{.}}
   {
   \index{MOST-NEGATIVE-DOUBLE-FLOAT}%
@@ -533,8 +537,8 @@ two's complement representation.
   }
 
   \IT{(\FU*{UPGRADED-COMPLEX-PART-TYPE} \VAR{foo})}
-  {\retval{Type} of
-  most specialized complex number able to hold parts of type \VAR{foo}.
+  {\retval{Type} of most specialized \kwd{complex} number able to hold
+    parts of type \VAR{foo}. 
   }
 
 \end{LIST}
