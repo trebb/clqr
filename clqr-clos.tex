@@ -216,7 +216,7 @@
     \Op{\xorGOO{\kwd{:before}\\
         \kwd{:after}\\
         \kwd{:around}\\
-        \VAR{c-type}}{\}}\DF{primary method}}
+        \VAR{qualifier}}{\}}\DF{primary method}}
     (\xorGOO{\VAR{var}\\
       (\VAR{spec-var } \xorGOO{\VAR{class}\\
         (\kwd{eql} \VAR{ bar})}{\}})}{\}^{\!\!*}}
@@ -240,7 +240,9 @@
   \VAR{foo}. \VAR{spec-var}s specialize to either being of \VAR{class}
   or being \kwd{eql} \VAR{bar}, respectively. On invocation, \VAR{var}s and
   \VAR{spec-var}s of the \retval{new method}
-  act like parameters of a function with body \OPn{\VAR{form}}. For \VAR{c-type} see
+  act like parameters of a function with body
+  \OPn{\VAR{form}}. Applicable \VAR{qualifier}s depend on the
+  \kwd{method-combination} type; see
   section \ref{section:Method Combination Types}.
   }
 
@@ -319,23 +321,33 @@
 \label{section:Method Combination Types}
 \begin{LIST}{1cm}
 
-  \IT{\kwd*{STANDARD}} %FIXME:AUGMENT
+  \IT{\kwd*{STANDARD}}
   {
-  Method combination type.
+  Evaluate most specific \kwd{:around} method supplying the values of
+  the generic function. From within this method, \FU{call-next-method}
+  can call less specific \kwd{:around} methods if there are any. If
+  not, or if there are no \kwd{:around} methods at all, call all
+  \kwd{:before} methods, most specific first, and the most specific
+  primary method which supplies the values of the calling
+  \FU{call-next-method} if any, or of the generic function; and wich
+  can call less specific primary methods via
+  \FU{call-next-method}. After its return, call all \kwd{:after}
+  methods, least specific first.
   }
 
-  \IT{\arrGOO{\kwd*{AND}\\
-      \kwd*{OR}\\
-      \kwd*{APPEND}\\
-      \kwd*{LIST}\\
-      \kwd*{NCONC}\\
-      \kwd*{PROGN}\\
-      \kwd*{MAX}\\
-      \kwd*{MIN}\\
-      \kwd*{+}}{.}}
+  \IT{\Goo{\kwd*{AND}\XOR
+      \kwd*{OR}\XOR
+      \kwd*{APPEND}\XOR
+      \kwd*{LIST}\XOR
+      \kwd*{NCONC}\XOR
+      \kwd*{PROGN}\XOR
+      \kwd*{MAX}\XOR
+      \kwd*{MIN}\XOR
+      \kwd*{+}}}
   {
-  Simple built-in method combination types. Usable in \kwd{:around}
-  methods and primary methods.
+    Simple built-in \kwd{method-combination} types. Same usage as
+    \VAR{c-type} defined by the short form of
+    \MC{define-method-combination}. 
   }
 
   \IT{(\MC*{DEFINE-METHOD-COMBINATION} \VAR{c-type} \orGOO{%
@@ -343,11 +355,20 @@
     \kwd{:identity-with-one-argument} \VAR{ bool}\DF{\NIL}\\
     \kwd{:operator} \VAR{ operator}\DF{\VAR{c-type}}}{\}})}
   {
-  Short form. Define new method combination type
-  \retval{\VAR{c-type}}. The primary method of a generic function using
-  \VAR{c-type} will be equivalent to (\VAR{c-type}
-  \OPn{\VAR{applicable-method}}). 
-  }
+  Short form. Define new \kwd{method-combination}
+  \retval{\VAR{c-type}}. In a generic function using \VAR{c-type},
+  evaluate most specific \kwd{:around} method supplying the values of
+  the generic function. From within this method, \FU{call-next-method}
+  can call less specific \kwd{:around} methods if there are any. If
+  not, or if there are no \kwd{:around} methods at all, %FIXME:Value
+                                %of generic function from :around or
+                                %from combined primary method?
+  have generic function applied to \OPn{\VAR{arg}} return with the
+  values of (\VAR{c-type} \Goos{\VAR{primary-method}
+    \OPn{\VAR{arg}}}), leftmost \VAR{primary-method} being the most
+  specific. In \MC{defmethod}, primary methods are denoted by the
+  \VAR{qualifier} \VAR{c-type}. 
+    }
 
   \IT{(\MC*{DEFINE-METHOD-COMBINATION} \VAR{c-type} %FIXME:AUGMENT
     (\OPn{\VAR{ord-$\lambda$}}) 
