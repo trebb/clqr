@@ -18,44 +18,46 @@
   \retval{\T} if \VAR{foo} has a slot \VAR{bar}.
   }
 
-  \IT{(\MC*{DEFSTRUCT}%FIXME:AUGMENT:print-object, constructor
+  \IT{(\MC*{DEFSTRUCT}
     \GOO{\VAR{foo}\XOR
       (\VAR{foo}
       \orGOO{%
         \xorGOO{%
           \kwd{:conc-name}\\
-          (\kwd{:conc-name } \Op{\VAR{slot-prefix}\DF{\VAR{foo}\LIT{-}}})}{.}\\
+          (\kwd{:conc-name } \Op{\NEV{\VAR{slot-prefix}}\DF{\VAR{foo}\LIT{-}}})}{.}\\
         \xorGOO{%
           \kwd{:constructor}\\
           (\kwd{:constructor }
-          \OP{\VAR{maker}\DF{\LIT{MAKE-}\VAR{foo}}\text{ }
-            \Op{({\OPn{\VAR{arg}}})}})}{\}^{\!\!*}}\\
+          \OP{\NEV{\VAR{maker}}\DF{\LIT{MAKE-}\VAR{foo}}\text{ }
+            \Op{({\OPn{\NEV{\VAR{ord-$\lambda$}}}})}})}{\}^{\!\!*}}\\
         \xorGOO{%
           \kwd{:copier}\\
           (\kwd{:copier }
-          \Op{\VAR{copier}\DF{\LIT{COPY-}\VAR{foo}}})}{.}\\
-        (\kwd{:include} \VAR{ struct}\text{ }
+          \Op{\NEV{\VAR{copier}}\DF{\LIT{COPY-}\VAR{foo}}})}{.}\\
+        (\kwd{:include } \NEV{\VAR{struct}}\text{ }
         \xorGOO{%
-          \VAR{slot}\\
-          (\VAR{slot } \Op{\VAR{init}\text{ }
+          \NEV{\VAR{slot}}\\
+          (\NEV{\VAR{slot}}\text{ } \Op{\VAR{init}\text{ }
             \orGOO{
               \kwd{:type } \NEV{\VAR{type}}\\
               \kwd{:read-only } \NEV{\VAR{bool}}}{\}}})\\
         }{\}^{\!\!*}})\\
-        (\kwd{:type } \xorGOO{\kwd{list}\\
-          \kwd{vector}\\
-          (\kwd{vector}\VAR{ size})}{\}})\text{ }
-        \orGOO{%
-          \kwd{:named}\\
-          (\kwd{:initial-offset} \VAR{ n})\\
+        \xorGOO{
+          (\kwd{:type } \xorGOO{\kwd{list}\\
+            \kwd{vector}\\
+            (\kwd{vector }\NEV{\VAR{size}})}{\}})\text{ }
+          \orGOO{%
+            \kwd{:named}\\
+            (\kwd{:initial-offset } \NEV{\VAR{n}})\\
+          }{.}\\
           \xorGOO{
-            (\kwd{:print-object } \Op{\VAR{printer}})\\
-            (\kwd{:print-function } \Op{\VAR{printer}})
-          }{.}%
+            (\kwd{:print-object } \Op{\NEV{\VAR{o-printer}}})\\
+            (\kwd{:print-function } \Op{\NEV{\VAR{f-printer}}})
+          }{.}
         }{.}\\
         \xorGOO{%
           \kwd{:predicate}\\
-          (\kwd{:predicate } \Op{\VAR{p-name}\DF{\VAR{foo}\LIT{-P}}})}{.}
+          (\kwd{:predicate } \Op{\NEV{\VAR{p-name}}\DF{\VAR{foo}\LIT{-P}}})}{.}
       }{\}}%
       )%
     }
@@ -70,9 +72,22 @@
     }{\}^{\!\!*}}%
     )}
   {
-  Define structure \retval{\VAR{foo}} together with functions
-  \LIT{MAKE-}\VAR{foo}, \LIT{COPY-}\VAR{foo} and
-  \VAR{foo}\LIT{-P}; and \kwd{setf}able accessors \VAR{foo}\LIT{-}\VAR{slot}.
+  Define structure type \retval{\VAR{foo}} together with functions
+  \LIT{MAKE-}\VAR{foo}, \LIT{COPY-}\VAR{foo} and (unless \kwd{:type}
+  without \kwd{:named} is used)
+  \VAR{foo}\LIT{-P}; and \kwd{setf}able accessors
+  \VAR{foo}\LIT{-}\VAR{slot}. Instances of type \VAR{foo} can be
+  created by (\LIT{MAKE-}\VAR{foo} \Goos{\kwd{:}\VAR{slot}
+    \VAR{value}}) or, if \VAR{ord-$\lambda$} (see
+  p.\ \pageref{section:Functions}) is given, by (\VAR{maker}
+  \OPn{\VAR{arg}} \Goos{\kwd{:}\VAR{key} \VAR{value}}). In the latter
+  case, \VAR{arg}s and \kwd{:}\VAR{key}s correspond to the positional
+  and keyword parameters defined in \VAR{ord-$\lambda$} whose \VAR{var}s
+  in turn correspond to \VAR{slot}s.
+  \kwd{:print-object}/\kwd{:print-function} generate a
+  \GFU{print-object} method for an instance \VAR{bar} of \VAR{foo}
+  calling (\VAR{o-printer} \VAR{bar} \VAR{stream}) or (\VAR{f-printer}
+  \VAR{bar} \VAR{stream} \VAR{print-level}), respectively.
   }
 
   \IT{(\FU*{COPY-STRUCTURE} \VAR{structure})}

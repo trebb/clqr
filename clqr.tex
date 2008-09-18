@@ -282,7 +282,7 @@
 % Macro
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\MC}[1]{%
-  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}M}%
+  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}Mx}% x just for space
   \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
   \ifdim\TAGwidth > \KEYWORDwidth%
   \text{{\sffamily\bfseries\selectfont%
@@ -296,7 +296,7 @@
 % Special Operator
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\SO}[1]{%
-  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}SO}%
+  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}SOx}% x just for space
   \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
   \ifdim\TAGwidth > \KEYWORDwidth%
   \text{{\sffamily\bfseries\selectfont%
@@ -310,7 +310,7 @@
 % Function
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\FU}[1]{%
-  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}Fu}%
+  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}Fux}% x just for space
   \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
   \ifdim\TAGwidth > \KEYWORDwidth%
   \text{{\sffamily\bfseries\selectfont%
@@ -324,7 +324,7 @@
 % Generic Function
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\GFU}[1]{%
-  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}gF}%
+  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}gFx}% x just for space
   \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
   \ifdim\TAGwidth > \KEYWORDwidth%
   \text{{\sffamily\bfseries\selectfont%
@@ -338,7 +338,7 @@
 % Variable
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\V}[1]{%
-  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.8em}var}%
+  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.8em}varx}% x just for space
   \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
   \ifdim\TAGwidth > \KEYWORDwidth%
   \text{{\sffamily\bfseries\selectfont%
@@ -352,7 +352,7 @@
 % Constant
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\CNS}[1]{%
-  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}co}%
+  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}cox}% x just for space
   \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
   \ifdim\TAGwidth > \KEYWORDwidth%
   \text{{\sffamily\bfseries\selectfont%
@@ -487,7 +487,7 @@
 \input{clqr-types-and-classes}
 \input{clqr-packages-and-symbols}
 \input{clqr-compiler}
-\input{clqr-environment}
+\input{clqr-external-environment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -329,13 +329,13 @@
   not, or if there are no \kwd{:around} methods at all, call all
   \kwd{:before} methods, most specific first, and the most specific
   primary method which supplies the values of the calling
-  \FU{call-next-method} if any, or of the generic function; and wich
+  \FU{call-next-method} if any, or of the generic function; and which
   can call less specific primary methods via
   \FU{call-next-method}. After its return, call all \kwd{:after}
   methods, least specific first.
   }
 
-  \IT{\Goo{\kwd*{AND}\XOR
+  \IT{\kwd*{AND}\XOR
       \kwd*{OR}\XOR
       \kwd*{APPEND}\XOR
       \kwd*{LIST}\XOR
@@ -343,10 +343,11 @@
       \kwd*{PROGN}\XOR
       \kwd*{MAX}\XOR
       \kwd*{MIN}\XOR
-      \kwd*{+}}}
+      \kwd*{+}}
   {
-    Simple built-in \kwd{method-combination} types. Same usage as
-    \VAR{c-type} defined by the short form of
+    Simple built-in \kwd{method-combination} types; have the same
+    usage as the
+    \VAR{c-type}s defined by the short form of
     \MC{define-method-combination}. 
   }
 

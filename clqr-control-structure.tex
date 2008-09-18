@@ -180,6 +180,7 @@
 
 \begin{flushleft}
   Below, ordinary lambda list (\OPn{\VAR{ord-$\lambda$}}) has the form\\
+  % \VAR{var} referenced from DEFSTRUCT
   (\OPn{\VAR{var}}
   \OP{\kwd*{\&optional} \xorGOO{%
       \VAR{var}\\
@@ -1208,13 +1209,13 @@
 
     \IT{\Goo{\LKWD*{while}\XOR\LKWD*{until}} \VAR{test}}
     {
-    Continue iteration until \VAR{test} returns \NIL or \T, respectively.
+    Continue iteration until \VAR{test} returns \NIL\ or \T, respectively.
     }
 
     \IT{\Goo{\LKWD*{always}\XOR\LKWD{never}} \VAR{test}}
     {
     Terminate \MC{loop} returning \NIL\ and skipping any
-    \LKWD*{finally} parts as soon as \VAR{test} is \NIL or \T,
+    \LKWD*{finally} parts as soon as \VAR{test} is \NIL\ or \T,
     respectively. Otherwise continue \MC{loop} with its default return
     value set to \T. 
     }

@@ -67,7 +67,7 @@
 
   \IT{(\FU*{MAKE-PACKAGE} \VAR{foo}
     \orGOO{\kwd{:nicknames }(\OPn{\VAR{nick}})\DF{\NIL}\\
-      \kwd{:use }(\OPn{used-package})}{\}})}
+      \kwd{:use }(\OPn{\VAR{used-package}})}{\}})}
   {
   Create \retval{package \VAR{foo}}.
   }
@@ -238,9 +238,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Symbols}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+A \kwd*{symbol} has the attributes \VAR{name}, home \kwd{package}, property
+list, and optionally value (of global constant or variable \VAR{name}) and
+function (of \kwd{function}, macro, or special operator \VAR{name}).
+
 \begin{LIST}{1cm}
 
-%FIXME:EXPLAIN CONTENTS OF A SYMBOL
   \IT{(\FU*{MAKE-SYMBOL} \VAR{name})}
   {
   Make fresh, uninterned \retval{symbol \VAR{name}}.

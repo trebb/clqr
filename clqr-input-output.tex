@@ -39,9 +39,12 @@
   }
 
   \IT{(\FU*{WILD-PATHNAME-P} \VAR{path}
-    \OP{\Goo{\kwd{:host}\XOR\kwd{:device}\XOR
-        \kwd{:directory}\XOR\kwd{:name}\XOR\kwd{:type}
-        \XOR\kwd{:version}\XOR\NIL}})}
+    \OP{\Goo{\kwd{:host}\XOR
+        \kwd{:device}\XOR
+        \kwd{:directory}\XOR
+        \kwd{:name}\XOR
+        \kwd{:type}\XOR
+        \kwd{:version}\XOR\NIL}})}
   {
   Return \retval{\T} if indicated component in \VAR{path} is
   wildcard. (\NIL\ indicates any component.)
@@ -79,7 +82,8 @@
   }
 
   \IT{(\FU*{READ-FROM-STRING} \VAR{string} \OP{\VAR{eof-error}\DF{\T}
-      \Op{\VAR{eof-val}\DF{\NIL}}}\orGOO{%
+      \Op{\VAR{eof-val}\DF{\NIL}}}
+    \orGOO{%
       \kwd{:start}\VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end}\VAR{ end}\DF{\NIL}\\
       \kwd{:preserve-whitespace}\VAR{ bool}\DF{\NIL}}{\}})}
