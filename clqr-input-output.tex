@@ -950,73 +950,49 @@
       \kwd{:external-format } \VAR{format}\DF{\kwd{:default}}%
     }{\}})}
   {
-  Open \retval{stream to \VAR{path}}.
+  Open \retval{\kwd{file-stream} to \VAR{path}}.
   }
 
-  \IT{(\FU*{CLOSE} \DES{\VAR{stream}} \Op{\kwd{:abort}
-      \VAR{bool}\DF{\NIL}})}
+  \IT{\arrGOO{%
+      (\FU*{MAKE-CONCATENATED-STREAM } \OPn{\VAR{input-stream}})\\
+      (\FU*{MAKE-BROADCAST-STREAM } \OPn{\VAR{output-stream}})\\
+      (\FU*{MAKE-TWO-WAY-STREAM } \VAR{input-stream-part } \VAR{output-stream-part})\\
+      (\FU*{MAKE-ECHO-STREAM } \VAR{from-input-stream } \VAR{to-output-stream})\\
+      (\FU*{MAKE-SYNONYM-STREAM } \VAR{variable-bound-to-stream})}{.}}
   {
-  Close \VAR{stream}. Return \retval{\T} if \VAR{stream} had been
-  open. If \kwd{:abort} is \T, delete associated file. 
+    Return \retval{stream} of indicated type.
+  }
+
+  \IT{(\FU*{MAKE-STRING-INPUT-STREAM} \VAR{string}
+    \orGOO{\kwd{:start}\VAR{ start}\DF{\LIT{0}}\\
+      \kwd{:end} \VAR{ end}\DF{\NIL}}{\}})}
+  {
+  Return a \retval{\kwd{string-stream}} supplying the characters from \VAR{string}.
   }
 
   \IT{(\FU*{MAKE-STRING-OUTPUT-STREAM} \Op{\kwd{:element-type}
       \VAR{type}\DF{\kwd{character}}})}
   {
-  Return a \retval{\kwd{string-stream}} accepting characters.
+  Return a \retval{\kwd{string-stream}} accepting characters
+  (available via \FU{get-output-stream-string}).
   }
 
-  \IT{(\FU*{GET-OUTPUT-STREAM-STRING} \DES{\VAR{string-stream}})}
-  {
-  Clear and return as a \retval{string} characters on \VAR{string-stream}.
-  }
-
-  \IT{(\FU*{MAKE-CONCATENATED-STREAM} \OPn{\VAR{stream}})}
-  {
-  Return \retval{\kwd{concatenated-stream}}.
-  }
-
-  \IT{(\FU*{CONCATENATED-STREAM-STREAMS} \VAR{concatenated-stream})}
+  \IT{\arrGOO{(\FU*{CONCATENATED-STREAM-STREAMS } \VAR{concatenated-stream})\\
+      (\FU*{BROADCAST-STREAM-STREAMS } \VAR{broadcast-stream})}{.}}
   {
   Return \retval{list of streams} \VAR{concatenated-stream} still
-  has to read from. 
-  }
-
-  \IT{(\FU*{MAKE-BROADCAST-STREAM} \OPn{\VAR{stream}})}
-  {
-  Return \retval{\kwd{broadcast-stream}}.
-  }
-
-  \IT{(\FU*{BROADCAST-STREAM-STREAMS} \VAR{broadcast-stream})}
-  {
-  Return \retval{list of streams} \VAR{broadcast-stream} is
+  has to read from/\VAR{broadcast-stream} is
   broadcasting to. 
   }
 
-  \IT{(\FU*{MAKE-ECHO-STREAM} \VAR{input-stream} \VAR{output-stream})}
+  \IT{\arrGOO{%
+      (\FU*{TWO-WAY-STREAM-INPUT-STREAM} \VAR{ two-way-stream})\\ 
+      (\FU*{TWO-WAY-STREAM-OUTPUT-STREAM} \VAR{ two-way-stream})\\
+      (\FU*{ECHO-STREAM-INPUT-STREAM} \VAR{ echo-stream})\\
+      (\FU*{ECHO-STREAM-OUTPUT-STREAM} \VAR{ echo-stream})}{.}}
   {
-  Place \retval{\kwd{echo-stream}} between \VAR{input-stream} and
-  \VAR{output-stream}. 
-  }
-
-  \IT{\arrGOO{(\FU*{ECHO-STREAM-INPUT-STREAM}\VAR{ echo-stream})\\
-      (\FU*{ECHO-STREAM-OUTPUT-STREAM}\VAR{ echo-stream})}{.}}
-  {
-  Return \retval{stream} \VAR{echo-stream} receives from or sends
-  to, respectively.
-  }
-
-  \IT{(\FU*{MAKE-STRING-INPUT-STREAM} \VAR{string}
-    \orGOO{\kwd{:start}\VAR{ start}\\
-      \kwd{:end} \VAR{ end}}{\}})}
-  {
-  Return \retval{stream} supplying the characters from \VAR{string}.
-  }
-
-  \IT{(\FU*{MAKE-SYNONYM-STREAM} \VAR{symbol})}
-  {
-  Return \retval{\kwd{synonym-stream}}. \VAR{symbol} should be bound
-  to some stream.
+  Return \retval{source stream} or  \retval{sink stream}
+  of \VAR{two-way-stream}/\VAR{echo-stream}, respectively.
   }
 
   \IT{(\FU*{SYNONYM-STREAM-SYMBOL} \VAR{synonym-stream})}
@@ -1024,17 +1000,9 @@
   Return \retval{symbol} of \VAR{synonym-stream}.
   }
 
-  \IT{(\FU*{MAKE-TWO-WAY-STREAM} \VAR{input-stream}
-    \VAR{output-stream})}
-  {Return \retval{\kwd{two-way-stream}}.
-  }
-
-  \IT{\arrGOO{(\FU*{TWO-WAY-STREAM-INPUT-STREAM} \VAR{
-        two-way-stream})\\ 
-      (\FU*{TWO-WAY-STREAM-OUTPUT-STREAM} \VAR{ two-way-stream})}{.}}
+  \IT{(\FU*{GET-OUTPUT-STREAM-STRING} \DES{\VAR{string-stream}})}
   {
-  Return \retval{stream} \VAR{two-way-stream} receives from or sends
-  to, respectively.
+  Clear and return as a \retval{string} characters on \VAR{string-stream}.
   }
 
   \IT{(\FU*{LISTEN} \Op{\VAR{stream}\DF{\V{\A standard-input\A}}})}
@@ -1056,6 +1024,13 @@
   End output to \VAR{stream} and return \retval{\NIL} immediately,
   after initiating flushing of buffers, or after flushing of buffers,
   respectively. 
+  }
+
+  \IT{(\FU*{CLOSE} \DES{\VAR{stream}} \Op{\kwd{:abort}
+      \VAR{bool}\DF{\NIL}})}
+  {
+  Close \VAR{stream}. Return \retval{\T} if \VAR{stream} had been
+  open. If \kwd{:abort} is \T, delete associated file. 
   }
 
   \IT{(\MC*{WITH-OPEN-STREAM} (\VAR{foo} \DES{\VAR{stream}})
