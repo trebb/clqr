@@ -138,17 +138,25 @@
   and \retvalii{\T}.
   }
 
-  \IT{(\MC*{RESTART-CASE} \VAR{test} \OPn{(\VAR{foo} %FIXME:AUGMENT
+  \IT{(\MC*{RESTART-CASE} \VAR{form} \OPn{(\VAR{foo}
       (\OPn{\VAR{ord-$\lambda$}}) 
-      \orGOO{\kwd{:interactive}
-        \VAR{ form}\\ 
-      \kwd{:report} \VAR{ form}\\
-      \kwd{:test} \VAR{ form}}{\}} \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
-      \PROGN{\VAR{form}})})}
+      \orGOO{\kwd{:interactive} \VAR{ arg-function}\\ 
+        \kwd{:report } \xorGOO{%
+          \VAR{report-function}\\
+          \VAR{string}\DF{\LIT{"}\VAR{foo}\LIT{"}}}{.}\\
+        \kwd{:test} \VAR{ test-function}\DF{\T}}{\}}
+      \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
+      \PROGN{\VAR{restart-form}})})}
   {
-  Evaluate \VAR{test} with new restarts \VAR{foo}. Return
-  \retval{values of \VAR{test}} or, if any of the restarts is invoked,
-  return \retval{values of \VAR{form}s}.
+  Evaluate \VAR{form} with new restarts \VAR{foo}. Return
+  \retval{values of \VAR{form}} or, if by (\kwd{invoke-restarts}
+  \VAR{foo} \OPn{\VAR{arg}}) one restart \VAR{foo} is called, use
+  \VAR{string} or \VAR{report-function} (of a stream) to print a
+  description of restart \VAR{foo} and
+  return the \retval{values of its \VAR{restart-form}s}.
+  \VAR{arg-function} supplies appropriate \VAR{arg}s if \VAR{foo} is
+  called by \kwd{invoke-restart-interactively}. If (\VAR{test-function} \VAR{condition})
+  returns \NIL, \VAR{foo} is to be visible under \VAR{condition}.
   For (\OPn{\VAR{ord-$\lambda$}}) see p.\ \pageref{section:Functions}.
   }
 

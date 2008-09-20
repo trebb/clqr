@@ -351,9 +351,7 @@
   evaluate most specific \kwd{:around} method supplying the values of
   the generic function. From within this method, \FU{call-next-method}
   can call less specific \kwd{:around} methods if there are any. If
-  not, or if there are no \kwd{:around} methods at all, %FIXME:Value
-                                %of generic function from :around or
-                                %from combined primary method?
+  not, or if there are no \kwd{:around} methods at all,
   have generic function applied to \OPn{\VAR{gen-arg}} return with the
   values of (\VAR{c-type} \Goos{\VAR{primary-method}
     \OPn{\VAR{gen-arg}}}), leftmost \VAR{primary-method} being the most
