@@ -69,7 +69,6 @@
 	      </ul>
 	      <p>&nbsp;
 	      <p>&nbsp;
-	      <p>&nbsp;
 	    </div>
 	    <div class="here">
 	      <img class="left" src="sample-firstpage-all.jpg"
@@ -94,7 +93,6 @@
 	      </ul>
 	      <p>&nbsp;
 	      <p>&nbsp;
-	      <p>&nbsp;
 	    </div>
 	    <div class="here">
 	      <img class="left" src="sample-firstpage-four.jpg"
@@ -117,7 +115,6 @@
 		<li>First sheet has pages 4, 1, 2, 3.
 		<li>With 52 pages total, last sheet has pages 52, 49, 50, 51.
 	      </ul>
-	      <p>&nbsp;
 	      <p>&nbsp;
 	      <p>&nbsp;
 	    </div>
