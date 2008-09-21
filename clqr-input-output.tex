@@ -159,7 +159,9 @@
 
   \IT{(\FU*{READTABLE-CASE} \VAR{readtable})\DF{\kwd{:upcase}}}
   {
-  \retval{Case sensitivity attribute} (one of \kwd{:upcase}, \kwd{:downcase}, \kwd{:preserve}, \kwd{:invert}) of \VAR{readtable}. \kwd{setf}able.
+  \retval{Case sensitivity attribute} (one of \kwd{:upcase},
+  \kwd{:downcase}, \kwd{:preserve}, \kwd{:invert}) of
+  \VAR{readtable}. \kwd{setf}able. 
   }
 
   \IT{(\FU*{COPY-READTABLE} \OP{\VAR{from-readtable}\DF{\V{\A readtable\A}}
@@ -1179,7 +1181,7 @@
 
   \IT{(\FU*{LOGICAL-PATHNAME-TRANSLATIONS} \VAR{host})}
   {
-  \retval{\VAR{host}'s list of translations}.
+  \retval{\VAR{host}'s list of translations}. \kwd{setf}able.
   }
 
   \IT{(\FU*{LOAD-LOGICAL-PATHNAME-TRANSLATIONS} \VAR{host})}

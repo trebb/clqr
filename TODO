@@ -2,25 +2,15 @@
 
 
 
-* always mention implicit block/tagbody
+* always mention implicit block
 
 * FINAL TESTS
 
-- multiple return values mentioned and usage of the three \retvals
-
-- setfability
-
-- defaults
-
 - arg* vs. args (list)
-
-- talking metavariables
 
 - lexical vs. dynamic binding
 
 - errors/conditions always mentioned as \kwd{}
-
-- applicability of declare
 
 - unevaluated args
 
