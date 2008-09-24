@@ -207,7 +207,7 @@
 
 \begin{LIST}{1cm}
 
-  \IT{(\xorGOO{\MC*{DEFUN }\xorGOO{\VAR{foo}\\
+  \IT{(\xorGOO{\MC*{DEFUN }\xorGOO{\VAR{foo}\\%FIXME:BLOCK
       (\kwd{setf} \VAR{ foo})}{.}\\ 
       \MC*{LAMBDA}}{\}}
     (\VAR{\OPn{ord-$\lambda$}}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
@@ -220,7 +220,7 @@
   }
 
   \IT{(\xorGOO{\SO*{FLET}\\
-      \SO*{LABELS}}{\}}
+      \SO*{LABELS}}{\}} %FIXME:BLOCK
     (\OPn{(\VAR{foo}
       (\OPn{\VAR{ord-$\lambda$}}) 
       \OPn{(\kwd{declare} \OPn{\NEV{\VAR{local-decl}}})}%
@@ -418,7 +418,7 @@
 
 \begin{LIST}{1cm}
 
-  \IT{(\xorGOO{\MC*{DEFMACRO}\\
+  \IT{(\xorGOO{\MC*{DEFMACRO}\\%FIXME:BLOCK
       \FU*{DEFINE-COMPILER-MACRO}}{\}}
     \VAR{foo} (\OPn{\VAR{macro-$\lambda$}})
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \Op{\NEV{\VAR{doc}}}
@@ -436,7 +436,7 @@
   expanded \VAR{form}. 
   }
 
-  \IT{(\SO*{MACROLET} (\OPn{(\VAR{foo} (\OPn{\VAR{macro-$\lambda$}})
+  \IT{(\SO*{MACROLET} (\OPn{(\VAR{foo} (\OPn{\VAR{macro-$\lambda$}}) %FIXME:BLOCK
       \OPn{(\kwd{declare} \OPn{\NEV{\VAR{local-decl}}})} 
       \Op{\NEV{\VAR{doc}}} \PROGN{\VAR{macro-form}})}) \OPn{(\kwd{declare}
       \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{form}})}
@@ -453,7 +453,7 @@
   \VAR{foo}. 
   }
 
-  \IT{(\MC*{DEFSETF} \NEV{\VAR{function}} \xorGOO{%
+  \IT{(\MC*{DEFSETF} \NEV{\VAR{function}} \xorGOO{%  %FIXME:BLOCK
       \NEV{\VAR{updater}} \text{ } \Op{\NEV{\VAR{doc}}}\\
       (\OPn{\VAR{setf-$\lambda$}}) \text{ } (\OPn{\VAR{s-var}}) \text{ } 
         \OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\text{ }
@@ -493,7 +493,8 @@
     the value(s) of \OPn{\VAR{s-var}}.
   }
 
-  \IT{(\MC*{DEFINE-SETF-EXPANDER} \VAR{function} (\OPn{\VAR{macro-$\lambda$}})
+  \IT{(\MC*{DEFINE-SETF-EXPANDER} \VAR{function}
+    (\OPn{\VAR{macro-$\lambda$}}) %FIXME:BLOCK
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \Op{\NEV{\VAR{doc}}}
     \PROGN{\VAR{form}})}
   {
@@ -603,7 +604,7 @@
     \retval{values of last \VAR{form}}.
   }
 
-  \IT{(\xorGOO{\MC*{PROG}\\
+  \IT{(\xorGOO{\MC*{PROG}\\%FIXME:BLOCK
       \MC*{PROG\A}}{\}}
     (\orGOO{%
       \VAR{var}\\
@@ -722,7 +723,7 @@
 
 \begin{LIST}{1cm}
   
-  \IT{(\xorGOO{\MC*{DO}\\
+  \IT{(\xorGOO{\MC*{DO}\\%FIXME:BLOCK
       \MC*{DO\A}}{\}}
     (\orGOO{%
       \VAR{var}\\
@@ -738,7 +739,7 @@
     \OPn{\VAR{result}}}.
   }
 
-  \IT{(\MC*{DOTIMES} (\VAR{var} \VAR{integer} \Op{\VAR{result}})
+  \IT{(\MC*{DOTIMES} (\VAR{var} \VAR{integer} \Op{\VAR{result}}) %FIXME:BLOCK
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \Goos{\NEV{\VAR{tag}}\XOR\VAR{form}})}
   {
@@ -1025,13 +1026,13 @@
 
 \begin{LIST}{1cm}
 
-  \IT{(\MC*{LOOP} \OPn{\VAR{form}})}
+  \IT{(\MC*{LOOP} \OPn{\VAR{form}})} %FIXME:BLOCK
   {
   Simple Loop. If \VAR{form}s do not contain any Loop Facility
   keywords, evaluate them forever. 
   }
 
-  \IT{(\MC*{LOOP} \OPn{\VAR{form}})}
+  \IT{(\MC*{LOOP} \OPn{\VAR{form}})} %FIXME:BLOCK;TAGBODY
   {
   Loop Facility. For Loop Facility keywords
   see below and Figure \ref{loop-overview}.
