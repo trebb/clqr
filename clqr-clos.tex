@@ -86,14 +86,15 @@
   \VAR{instance} visible as \kwd{setf}able \VAR{var}s. 
   }
 
-  \IT{(\GFU*{CLASS-NAME} \VAR{class})}
+  \IT{\arrGOO{(\GFU*{CLASS-NAME } \VAR{class})\\
+      ((\kwd{setf } \GFU*{CLASS-NAME}) \VAR{ new-name } \VAR{class})}{.}}
   {
-  \retval{Name of \VAR{class}}. \kwd{setf}able.
+  Get/set \retval{name of \VAR{class}}.
   }
 
   \IT{(\FU*{CLASS-OF} \VAR{foo})}
   {
-  \retval{Class} \VAR{foo} is an instance of.
+  \retval{Class} \VAR{foo} is a direct instance of.
   }
 
   \IT{(\GFU*{CHANGE-CLASS} \DES{\VAR{instance}} \VAR{new-class}
@@ -129,7 +130,8 @@
   \IT{(\GFU*{ALLOCATE-INSTANCE} \VAR{class} \Goos{\kwd{:}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
-  Return uninitialized \retval{instance} of \VAR{class}.
+  Return uninitialized \retval{instance} of \VAR{class}. Called by
+  \GFU{make-instance}. 
   }
 
   \IT{(\GFU*{SHARED-INITIALIZE} \VAR{instance} \VAR{slots}
@@ -170,13 +172,13 @@
   \retval{\T} if enclosing method has a next method.
   }
 
-  \IT{(\MC*{DEFGENERIC} %FIXME:BLOCK
+  \IT{(\MC*{DEFGENERIC}
     \xorGOO{\VAR{foo}\\ (\kwd{setf} \VAR{ foo})}{\}} 
     (\OPn{\VAR{required-var}}
     \OP{\kwd*{\&optional} \xorGOO{\VAR{var}\\
         (\VAR{var})}{\}^{\!\!*}}}
     \OP{\kwd*{\&rest} \VAR{var}}
-    \OP{\kwd*{\&key} \orGOO{%
+    \OP{\kwd*{\&key} \xorGOO{%
       \VAR{var}\\
       (\VAR{var}\XOR(\kwd{:}\VAR{key }
           \VAR{var}))}{\}^{\!\!*}} \Op{\kwd*{\&allow-other-keys}}})
@@ -194,7 +196,7 @@
     Combination Types}. 
   }
 
-  \IT{(\FU*{ENSURE-GENERIC-FUNCTION}
+  \IT{(\FU*{ENSURE-GENERIC-FUNCTION} % FIXME:AUGMENT
     \xorGOO{\VAR{foo}\\ (\kwd{setf} \VAR{ foo})}{\}}
     \orGOO{%
       \kwd{:argument-precedence-order}\RP{\VAR{ required-var}}\\
@@ -241,7 +243,8 @@
   or being \kwd{eql} \VAR{bar}, respectively. On invocation, \VAR{var}s and
   \VAR{spec-var}s of the \retval{new method}
   act like parameters of a function with body
-  \OPn{\VAR{form}}. Applicable \VAR{qualifier}s depend on the
+  \OPn{\VAR{form}}. \VAR{form}s are enclosed in an implicit \SO{block}
+  \VAR{foo}. Applicable \VAR{qualifier}s depend on the
   \kwd{method-combination} type; see
   section \ref{section:Method Combination Types}.
   }
@@ -249,7 +252,8 @@
   \IT{(\xorGOO{\GFU*{ADD-METHOD}\\
       \GFU*{REMOVE-METHOD}}{\}} \VAR{generic-function} \VAR{method})}
   {
-  Add, or remove, respectively, \VAR{method} to/from \retval{\VAR{generic-function}}.
+  Add (if necessary) or remove (if any) \VAR{method} to/from
+  \retval{\VAR{generic-function}}. 
   }
 
   \IT{(\GFU*{FIND-METHOD} \VAR{generic-function} \VAR{qualifiers}
@@ -372,7 +376,7 @@
           \kwd{:most-specific-last}}{\}}\DF{\kwd{:most-specific-first}}\\ 
         \kwd{:required} \VAR{ bool}}{\}})})
     \orGOO{%
-      (\kwd{:arguments } (\OPn{\VAR{method-combination-$\lambda$}}))\\
+      (\kwd{:arguments } \OPn{\VAR{method-combination-$\lambda$}})\\
       (\kwd{:generic-function} \VAR{ symbol})\\
       \OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\\
       \NEV{\VAR{doc}}}{\}}
@@ -394,13 +398,15 @@
   enhanced by an optional \kwd{\&whole} argument.
   }
 
-  \IT{(\MC*{CALL-METHOD} \orGOO{\NEV{\VAR{method}}\\
-      (\MC*{MAKE-METHOD}\text{ } \NEV{\VAR{form}})}{\}}
-    \Op{\NEV{\VAR{next-methods}}})}
+  \IT{(\MC*{CALL-METHOD} \xorGOO{\NEV{\VAR{method}}\\
+      (\MC*{MAKE-METHOD}\text{ } \NEV{\VAR{form}})}{\}}%
+    \OP{(\xorGOO{%
+      \NEV{\VAR{next-method}}\\
+      (\MC*{MAKE-METHOD}\text{ } \NEV{\VAR{form}})}{\}^{\!\!*}})})}
   {
   From within an effective method form, call \VAR{method} with the
   arguments of the generic function and
-  with information about its \VAR{next-methods}; return \retval{its
+  with information about its \VAR{next-method}s; return \retval{its
     values}. 
   }
 

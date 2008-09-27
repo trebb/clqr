@@ -201,7 +201,8 @@
   Evaluate \SO{tagbody}-like body with \VAR{var} successively bound to every
   symbol from \VAR{package}, to every external symbol from
   \VAR{package}, or to every symbol from all registered packages, 
-  respectively. Return \retval{values of \VAR{result}}. 
+  respectively. Return \retval{values of \VAR{result}}.  Implicitly,
+  the whole form is a \SO{block} named \NIL. 
   }
 
   \IT{(\MC*{WITH-PACKAGE-ITERATOR} (\VAR{name} \VAR{packages}
@@ -276,7 +277,10 @@ function (of \kwd{function}, macro, or special operator \VAR{name}).
   of \VAR{symbol}. \kwd{setf}able. 
   }
 
-  \IT{(\GFU*{DOCUMENTATION} \VAR{foo}
+  \IT{(\xorGOO{%
+      \GFU*{DOCUMENTATION}\\
+      (\kwd{SETF } \GFU{DOCUMENTATION})}{\}}
+    \VAR{foo}
     \Goo{\kwd{'variable}%
       \XOR\kwd{'function}%
       \XOR\kwd{'compiler-macro}%
@@ -285,9 +289,9 @@ function (of \kwd{function}, macro, or special operator \VAR{name}).
       \XOR\kwd{'type}%
       \XOR\kwd{'setf}%
       \XOR\T})}
-  {
-  Return \retval{documentation string} of \VAR{foo} of given
-  type. \kwd{setf}\-able. 
+  {\index{VARIABLE}\index{FUNCTION}\index{COMPILER-MACRO}\index{METHOD-COMBINATION}\index{STRUCTURE}\index{TYPE}\index{SETF}
+  Get/set \retval{documentation string} of \VAR{foo} of given
+  type.
   }
 
   \IT{(\FU*{SYMBOL-NAME} \VAR{ symbol})}
@@ -317,7 +321,7 @@ function (of \kwd{function}, macro, or special operator \VAR{name}).
 
   \IT{\kwd*{COMMON-LISP}\XOR\kwd*{CL}}
   {
-  Contains the defined names of Common Lisp except for those in the
+  Exports the defined names of Common Lisp except for those in the
   \kwd{keyword} package.
   }
 

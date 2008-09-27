@@ -56,10 +56,10 @@
   }
 
   \IT{\arrGOO{(\FU*{NUMBERP} \VAR{ foo})\\
-      (\FU*{INTEGERP} \VAR{ foo})\\
+      (\FU*{REALP} \VAR{ foo})\\
       (\FU*{RATIONALP} \VAR{ foo})\\
       (\FU*{FLOATP} \VAR{ foo})\\
-      (\FU*{REALP} \VAR{ foo})\\
+      (\FU*{INTEGERP} \VAR{ foo})\\
       (\FU*{COMPLEXP} \VAR{ foo})\\
       (\FU*{RANDOM-STATE-P} \VAR{ foo})
       }{.}}
@@ -81,11 +81,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{LIST}{1cm}
-
-  \IT{(\FU*{ABS} \VAR{n})}
-  {
-    Return \retval{$|n|$}.
-  }
 
   \IT{\arrGOO{(\FU*{+} \OPn{\VAR{ a}\DF{\LIT{0}}})\\
       (\FU*{\A} \OPn{\VAR{ a}\DF{\LIT{1}}})}{.}}
@@ -114,13 +109,17 @@
   decrement \VAR{place} by \VAR{delta} returning \retval{new value}.
   }
 
-  \IT{(\FU*{EXP} \VAR{p})}
-  {Return \retval{$\mbox{e}^p$}.
-    }
+  \IT{(\FU*{ABS} \VAR{n})}
+  {
+    Return \retval{$|n|$}.
+  }
 
-  \IT{(\FU*{EXPT} \VAR{b} \VAR{p})}
-  {Return \retval{$b^p$}.
-    }
+  \IT{\arrGOO{%
+      (\FU*{EXP } \VAR{p})\\
+      (\FU*{EXPT } \VAR{b } \VAR{p})}{.}}
+     {
+       Return \retval{$\mbox{e}^p$} or \retval{$b^p$}, respectively.
+     }
 
   \IT{(\FU*{LOG} \VAR{a} \Op{\VAR{b}})}
   {
@@ -196,7 +195,7 @@
   \IT{\arrGOO{(\FU*{NUMERATOR} \VAR{ rational})\\
       (\FU*{DENOMINATOR} \VAR{ rational})}{.}}
   {
-  \retval{Numerator} or  \retval{denominator}, respectively, of
+  \retval{Numerator} or \retval{denominator}, respectively, of
   \VAR{rational}'s canonical form.
   }
 
@@ -297,10 +296,10 @@ two's complement representation.
   }
   
   \begin{LIST}{.5cm}
-    \IT{\CNS*{BOOLE-1}} {\retval{\VAR{int-a}}.}
-    \IT{\CNS*{BOOLE-2}} {\retval{\VAR{int-b}}.}
-    \IT{\CNS*{BOOLE-C1}} {\retval{$\lnot\text{\VAR{int-a}}$}.}
-    \IT{\CNS*{BOOLE-C2}} {\retval{$\lnot\text{\VAR{int-b}}$}.}
+    \IT{\CNS*{BOOLE-1}\qquad\qquad} {\retval{\VAR{int-a}}.}
+    \IT{\CNS*{BOOLE-2}\qquad\qquad} {\retval{\VAR{int-b}}.}
+    \IT{\CNS*{BOOLE-C1}\qquad\qquad} {\retval{$\lnot\text{\VAR{int-a}}$}.}
+    \IT{\CNS*{BOOLE-C2}\qquad\qquad} {\retval{$\lnot\text{\VAR{int-b}}$}.}
     \IT{\CNS*{BOOLE-SET}} {\retval{All bits set}.}
     \IT{\CNS*{BOOLE-CLR}} {\retval{All bits zero}.}
     \IT{\CNS*{BOOLE-EQV}} {\retval{$\text{\VAR{int-a}} \equiv \text{\VAR{int-b}}$}.}

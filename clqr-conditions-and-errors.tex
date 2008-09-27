@@ -26,7 +26,7 @@
         \kwd{:initform} \VAR{ form}\\
         \kwd{:type} \VAR{ type}\\
         \kwd{:documentation} \VAR{ slot-doc}%
-      }{\}})}{\}})
+      }{\}})}{\}^{\!\!*}})
     \orGOO{(\kwd{:default-initargs } \Goos{\VAR{name} \VAR{value}})\\
       ({\kwd{:documentation} \VAR{ condition-doc}})\\
       (\kwd{:report } \xorGOO{\VAR{string}\\
@@ -101,8 +101,8 @@
   signal as correctable \kwd{error} \VAR{condition} or a new condition
   of \VAR{type} or, with \FU{format} \VAR{control} and \VAR{arg}s (see
   p.\ \pageref{section:Format}), \kwd{error}. When using the
-  debugger's continue option, \VAR{place}s can be altered. Return
-  \retval{\NIL}. 
+  debugger's continue option, \VAR{place}s can be altered before
+  re-evaluation of \VAR{test}. Return \retval{\NIL}. 
   }
 
   \IT{(\MC*{HANDLER-CASE} \VAR{test} 
@@ -275,7 +275,7 @@
   \IT{\arrGOO{(\FU*{ARITHMETIC-ERROR-OPERATION} \VAR{ condition})\\
       (\FU*{ARITHMETIC-ERROR-OPERANDS} \VAR{ condition})}{.}}
   {
-  \retval{Function} or \retval{list of its operands}, respectively,
+  \retval{List of function} or \retval{of its operands} respectively,
   used in the operation which caused \VAR{condition}.
   }
 

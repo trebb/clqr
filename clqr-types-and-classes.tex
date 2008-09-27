@@ -25,11 +25,12 @@
             \boxGOO{%
               \kwd*{INTEGER } \OP{\VAR{lower-limit}\DF{\kwd{\A}}\text{ }\Op{\VAR{upper-limit}\DF{\kwd{\A}}}}\\
               \boxGOO{%
-                \kwd*{FIXNUM} \\
-                \kwd*{BIGNUM} \\
                 \kwd*{SIGNED-BYTE } \Op{\VAR{size}\DF{\kwd{\A}}}\\
                 \boxGOO{\kwd*{UNSIGNED-BYTE } \Op{\VAR{size}\DF{\kwd{\A}}}
-                  \boxGOO{\kwd*{BIT} }}}\boxGOOcr
+                  \boxGOO{\kwd*{BIT} }}\boxGOOcr
+                \kwd*{FIXNUM} ,\>
+                \kwd*{BIGNUM}
+              }\boxGOOcr
               \kwd*{RATIO}}\boxGOOcr
             \kwd*{FLOAT } \OP{\VAR{lower-limit}\DF{\kwd{\A}}\text{ }\Op{\VAR{upper-limit}\DF{\kwd{\A}}}}\\
             \boxGOO{%
@@ -46,9 +47,9 @@
           \kwd*{SYMBOL}\footnotemark[2]
           \boxGOO{
             \kwd*{NULL}}}\boxGOOcr
-          \kwd*{ARRAY}\footnotemark[2] \OP{\VAR{type}\DF{\kwd{\A}}\text{ }\Op{\VAR{dimension}\DF{\kwd{\A}}}}\\
+          \kwd*{ARRAY}\footnotemark[2] \OP{\VAR{type}\DF{\kwd{\A}}\text{ }\Op{\VAR{rank}\DF{\kwd{\A}}\XOR(\OPn{\VAR{dimension}})}}\\
           \boxGOO{%
-            \kwd*{SIMPLE-ARRAY}\footnotemark[2] \OP{\VAR{type}\DF{\kwd{\A}}\text{ }\Op{\VAR{dimension}\DF{\kwd{\A}}}}\\
+            \kwd*{SIMPLE-ARRAY}\footnotemark[2] \OP{\VAR{type}\DF{\kwd{\A}}\text{ }\Op{\VAR{rank}\DF{\kwd{\A}}\XOR(\OPn{\VAR{dimension}})}}\\
             \boxGOO{%
               \kwd*{VECTOR}\footnotemark[2] \OP{\VAR{type}\DF{\kwd{\A}}\text{ }\Op{\VAR{size}\DF{\kwd{\A}}}}\\
               \boxGOO{%
@@ -69,9 +70,10 @@
               \boxGOO{%
                 \kwd*{BASE-STRING} \Op{\VAR{size}\DF{\kwd{\A}}}}\boxGOOcr
               \kwd*{BIT-VECTOR} \Op{\VAR{size}\DF{\kwd{\A}}}}}}\boxGOOcr
-        \kwd*{ARRAY} \OP{\VAR{type}\DF{\kwd{\A}}\text{ }\Op{\VAR{dimension}\DF{\kwd{\A}}}}\\
+        \kwd*{ARRAY} \OP{\VAR{type}\DF{\kwd{\A}}\text{ }\Op{\VAR{rank}\DF{\kwd{\A}}\XOR(\OPn{\VAR{dimension}})}}\\
         \boxGOO{%
-          \kwd*{SIMPLE-ARRAY} \OP{\VAR{type}\DF{\kwd{\A}}\text{ }\Op{\VAR{dimension}\DF{\kwd{\A}}}}}\boxGOOcr
+          \kwd*{SIMPLE-ARRAY} \OP{\VAR{type}\DF{\kwd{\A}}\text{ }\Op{\VAR{rank}\DF{\kwd{\A}}\XOR(\OPn{\VAR{dimension}})}}
+        }\boxGOOcr
         \kwd*{CHARACTER}
         \boxGOO{%
           \kwd*{BASE-CHAR}
@@ -85,7 +87,7 @@
           \kwd*{SYNONYM-STREAM},\\
           \kwd*{STRING-STREAM},\>
           \kwd*{BROADCAST-STREAM},\>
-          \kwd*{ECHO-STREAM}\\
+          \kwd*{ECHO-STREAM},\\
           \kwd*{CONCATENATED-STREAM}}\boxGOOcr
         \kwd*{PATHNAME}
         \boxGOO{%
@@ -124,6 +126,7 @@
   \caption{Data Types.}%
 \end{figure}
 
+For any class, there is always a corresponding type of the same name.
 
 \begin{LIST}{1cm}
 
@@ -176,7 +179,7 @@
 
   \IT{(\kwd*{CHECK-TYPE} \VAR{place} \VAR{type} \Op{\VAR{string}})}
   {
-  Return \retval{\NIL} and signal correctable error if \VAR{place} is
+  Return \retval{\NIL} and signal correctable \kwd{type-error} if \VAR{place} is
   not of \VAR{type}. 
   }
 
@@ -187,7 +190,7 @@
 
   \IT{(\FU*{ARRAY-ELEMENT-TYPE} \VAR{array})}
   {
-  Element \retval{type} \VAR{array} holds.
+  Element \retval{type} \VAR{array} can hold.
   }
 
   \IT{(\FU*{UPGRADED-ARRAY-ELEMENT-TYPE} \VAR{type}
@@ -197,19 +200,19 @@
   elements of \VAR{type}. 
   }
 
-  \IT{(\MC*{DEFTYPE} \VAR{foo} (\OPn{\VAR{macro-$\lambda$}}) %FIXME:BLOCK
+  \IT{(\MC*{DEFTYPE} \VAR{foo} (\OPn{\VAR{macro-$\lambda$}})
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \Op{\NEV{\VAR{doc}}} 
     \PROGN{\VAR{form}})}
   {
-  Define type \retval{\VAR{foo}} which when referenced by (\VAR{foo}
+  Define type \retval{\VAR{foo}} which when referenced as (\VAR{foo}
   \OPn{\NEV{\VAR{arg}}}) applies expanded \VAR{form}s to \VAR{arg}s
   returning the new type. For (\OPn{\VAR{macro-$\lambda$}}) see
-  p.~\pageref{section:Macros} but with the default value of \VAR{init}
-  being \kwd{\A} instead of \NIL.
+  p.~\pageref{section:Macros} but with default value of \kwd{\A}
+  instead of \NIL. \VAR{form}s are enclosed in an implicit \SO{block} \VAR{foo}.
   }
 
-  \IT{\arrGOO{(\kwd{EQL } \VAR{foo})\\
-      (\kwd{MEMBER } \OPn{\VAR{foo}})}{.}}
+  \IT{\arrGOO{(\kwd*{EQL } \VAR{foo})\\
+      (\kwd*{MEMBER } \OPn{\VAR{foo}})}{.}}
   {
   Specifier for a type comprising \VAR{foo} or \VAR{foo}s.
   }
@@ -224,7 +227,7 @@
   Type specifier for all integers $<n$.
   }
 
-  \IT{(\kwd{NOT} \VAR{type})}
+  \IT{(\kwd*{NOT} \VAR{type})}
   {
   Complement of type.
   }

@@ -48,11 +48,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
-  \IT{(\xorGOO{\FU*{MAKE-ARRAY}\\
-      \FU*{ADJUST-ARRAY } \DES{\VAR{array}}}{\}}
-    \VAR{dimensions}
+  \IT{(\xorGOO{\FU*{MAKE-ARRAY}\VAR{ dimensions }
+      \OP{\kwd{:adjustable} \VAR{ bool}\DF{\NIL}}\\
+      \FU*{ADJUST-ARRAY } \DES{\VAR{array}}
+    \VAR{ dimensions}}{\}}
     \orGOO{\kwd{:element-type} \VAR{ type}\DF{\T}\\
-      \kwd{:adjustable} \VAR{ bool}\DF{\NIL}\\
       \kwd{:fill-pointer } \Goo{\VAR{num}\XOR\VAR{bool}}\DF{\NIL}\\
       \xorGOO{\kwd{:initial-element} \VAR{ obj}\\
         \kwd{:initial-contents} \VAR{ sequence}\\
@@ -96,14 +96,14 @@
   \retval{Number of elements} in \VAR{array}.
   }
 
-  \IT{(\FU*{ARRAY-DISPLACEMENT} \VAR{array})}
-  {
-  \retval{Target array} and \retvalii{offset}.
-  }
-
    \IT{(\FU*{ARRAY-RANK} \VAR{array})}
    {
   \retval{Number of dimensions} of \VAR{array}.
+  }
+
+  \IT{(\FU*{ARRAY-DISPLACEMENT} \VAR{array})}
+  {
+  \retval{Target array} and \retvalii{offset}.
   }
 
   \IT{\arrGOO{(\FU*{BIT} \VAR{ bit-array } \Op{\VAR{subscripts}})\\

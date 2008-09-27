@@ -22,14 +22,11 @@
     Return \retval{\T} if \VAR{foo} is of indicated type.
     }
 
-  \IT{(\FU*{ENDP} \VAR{list})}
+  \IT{\arrGOO{(\FU*{ENDP} \VAR{ list})\\
+      (\FU*{NULL} \VAR{ foo})}{.}}
   {
-  Return \retval{\T} if \VAR{list} is \NIL.
+  Return \retval{\T} if \VAR{list}/\VAR{foo} is \NIL.
   }
-
-  \IT{(\FU*{NULL} \VAR{foo})}
-  {Return \retval{\T} if \VAR{foo} is \NIL.
-    }
 
   \IT{(\FU*{ATOM} \VAR{foo})}
   {Return \retval{\T} if \VAR{foo} is not a
@@ -42,8 +39,9 @@
   }
 
   \IT{(\FU*{MEMBER} \VAR{foo} \VAR{list}
-    \orGOO{\kwd{:test} \VAR{ function}\\
-      \kwd{:test-not} \VAR{ function}\\
+    \orGOO{\xorGOO{%
+        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
+        \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {
   Return \retval{tail of \VAR{list}} starting with
@@ -62,8 +60,9 @@
   }
 
   \IT{(\FU*{SUBSETP} \VAR{list-a} \VAR{list-b} 
-    \orGOO{\kwd{:test} \VAR{ function}\\
-      \kwd{:test-not} \VAR{ function}\\
+    \orGOO{\xorGOO{%
+        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
+        \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {
   Return \retval{\T} if \VAR{list-a} is a subset of
@@ -173,9 +172,10 @@
     part of \VAR{list}}. Otherwise return \retval{\VAR{list}}.
   }
 
-  \IT{(\FU*{ADJOIN} \VAR{foo} \VAR{list} \orGOO{\kwd{:test}
-      \VAR{ function}\\
-      \kwd{:test-not} \VAR{ function}\\
+  \IT{(\FU*{ADJOIN} \VAR{foo} \VAR{list} 
+    \orGOO{\xorGOO{%
+        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
+        \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {Return \retval{\VAR{list}} if \VAR{foo} is
   already member of \VAR{list}. If not, return \retval{(\FU{CONS}
@@ -193,9 +193,10 @@
   \retval{(\FU{cons} \VAR{foo} \VAR{place})}.
   }
 
-  \IT{(\FU*{PUSHNEW} \VAR{foo} \DES{\VAR{place}}  \orGOO{\kwd{:test}
-      \VAR{ function}\\
-      \kwd{:test-not} \VAR{ function}\\
+  \IT{(\FU*{PUSHNEW} \VAR{foo} \DES{\VAR{place}}  
+    \orGOO{\xorGOO{%
+        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
+        \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {Set \VAR{place} to
   \retval{(\FU{adjoin} \VAR{foo} \VAR{place})}.
@@ -244,7 +245,7 @@
 
   \IT{(\FU*{COPY-LIST} \VAR{list})}
   {
-  Return \retval{copy} of \VAR{list}.
+  Return \retval{copy} of \VAR{list} with shared elements.
   }
 
 \end{LIST}
@@ -269,9 +270,10 @@
   \IT{\arrGOO{(\xorGOO{\FU*{ASSOC}\\
         \FU*{RASSOC}}{\}}
       \VAR{ foo} \VAR{ alist }
-      \xorGOO{\kwd{:key} \VAR{ function}\\
-        \kwd{:test} \VAR{ test}\\
-        \kwd{:test-not} \VAR{ test}
+      \xorGOO{\xorGOO{%
+          \kwd{:test} \VAR{ test}\DF{\kwd{eql}}\\
+          \kwd{:test-not} \VAR{ test}}{.}\\
+        \kwd{:key} \VAR{ function}
       }{\}})\\
     (\xorGOO{\FU*{ASSOC-IF}\Op{\kwd{-NOT}}\\
       \FU*{RASSOC-IF}\Op{\kwd{-NOT}}}{\}} \VAR{ test} \VAR{ alist }
@@ -295,18 +297,20 @@
 \begin{LIST}{1cm}
 
   \IT{(\FU*{TREE-EQUAL} \VAR{foo} \VAR{bar} 
-    \orGOO{\kwd{:test} \VAR{ function}\\
-      \kwd{:test-not} \VAR{ function}}{\}})}
+    \xorGOO{\kwd{:test} \VAR{ test}\DF{\kwd{eql}}\\
+      \kwd{:test-not} \VAR{ test}}{\}})}
   {
   Return \retval{\T} if trees \VAR{foo} and \VAR{bar} have same
-  shape and \kwd{eql} leaves.
+  shape and leaves satisfying \VAR{test}.
   }
 
   \IT{(\xorGOO{\FU*{SUBST} \VAR{ new} \VAR{ old } \VAR{tree}\\
       \FU*{NSUBST} \VAR{ new} \VAR{ old } \DES{\VAR{tree}}}{\}}
-    \orGOO{\kwd{:key} \VAR{ function}\\
-      \kwd{:test} \VAR{ function}\\
-      \kwd{:test-not} \VAR{ function}}{\}})}
+    \orGOO{\xorGOO{%
+        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
+        \kwd{:test-not} \VAR{ function}}{.}\\
+      \kwd{:key} \VAR{ function}%
+    }{\}})}
   {
   Make \retval{copy of
     \VAR{tree}} with each subtree or leaf matching \VAR{old} replaced by
@@ -327,10 +331,11 @@
 
   \IT{(\xorGOO{\FU*{SUBLIS} \VAR{ association-list } \VAR{tree} \\
       \FU*{NSUBLIS} \VAR{ association-list } \DES{\VAR{tree}} }{\}}
-    \orGOO{%
-      \kwd{:key} \VAR{ function}\\
-      \kwd{:test} \VAR{ function}\\
-      \kwd{:test-not} \VAR{ function}}{\}})}
+    \orGOO{\xorGOO{%
+        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
+        \kwd{:test-not} \VAR{ function}}{.}\\
+      \kwd{:key} \VAR{ function}%
+    }{\}})}
   {
   Make \retval{copy of \VAR{tree}} with each subtree or leaf matching
   a key in \VAR{association-list} replaced by that key's value.
@@ -363,8 +368,9 @@
         \FU*{NSET-EXCLUSIVE-OR}%
       }{\}} \text{ }\DES{\VAR{a}}\text{ } \DES{\VAR{b}}\text{ }
     }{\}}
-    \orGOO{\kwd{:test} \VAR{ function}\\
-      \kwd{:test-not} \VAR{ function}\\
+    \orGOO{\xorGOO{%
+        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
+        \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {
   Return \retval{$a\cup b$}, \retval{$a\cap b$}, \retval{$a\setminus b$}, or

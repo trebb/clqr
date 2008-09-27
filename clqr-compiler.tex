@@ -37,9 +37,9 @@
 \begin{LIST}{1cm}
 
   \IT{(\FU*{COMPILE} 
-    \xorGOO{\NIL\\
-      \VAR{name}}{\}}
-    \Op{\VAR{definition}})}
+    \xorGOO{\NIL\VAR{ definition}\\
+      \VAR{name }\Op{\VAR{definition}}}{\}}
+    )}
   {
   Return \retval{compiled function} or replace \retval{\VAR{name}}'s
   function definition with the compiled function. Return \retvalii{\T} in case
@@ -110,7 +110,8 @@
   Return \retval{values of \VAR{form}s} if
   \SO{EVAL-WHEN} is in the top-level of a file being compiled, in the
   top-level of a compiled file being loaded, or anywhere,
-  respectively. (\kwd{compile}, \kwd{load} and \kwd{eval} deprecated.)
+  respectively. Return \retval{\NIL} if \VAR{form}s are not
+  evaluated. (\kwd{compile}, \kwd{load} and \kwd{eval} deprecated.) 
   }
 
   \IT{(\MC*{WITH-COMPILATION-UNIT} (\Op{\kwd{:override}
@@ -161,9 +162,9 @@
   otherwise. \kwd{setf}able. 
   }
   
-  \IT{(\FU*{EVAL} \VAR{form})}
+  \IT{(\FU*{EVAL} \VAR{arg})}
   {
-  Return \retval{values of \VAR{form}}.
+  Return \retval{values of value of \VAR{arg}} evaluated in global environment.
   }
 
 \end{LIST}
@@ -189,12 +190,12 @@
   \retval{Form} currently being evaluated by the REPL.
   }
 
-  \IT{(\FU*{APROPOS} \VAR{string} \OPn{\VAR{package}})}
+  \IT{(\FU*{APROPOS} \VAR{string} \Op{\VAR{package}\DF{\NIL}})}
   {
   Print interned symbols containing \VAR{string}.
   }
 
-  \IT{(\FU*{APROPOS-LIST} \VAR{string} \OPn{\VAR{package}})}
+  \IT{(\FU*{APROPOS-LIST} \VAR{string} \Op{\VAR{package}\DF{\NIL}})}
   {
   \retval{List of interned symbols} containing \VAR{string}.
   }
@@ -290,7 +291,7 @@
 \begin{LIST}{1cm}
 
   \IT{\arrGOO{(\FU*{PROCLAIM} \VAR{ decl})\\
-      (\MC*{DECLAIM } \OPn{\NEV{\VAR{decl}}})}{.}}
+      (\MC*{DECLAIM } \OPn{\NEV{\VAR{decl}}})}{.}} % FIXME:DECLARATION-ID-LIST
   {
   Globally make declaration(s) \VAR{decl}. \VAR{decl} can be:
   \kwd{declaration},      
@@ -305,7 +306,7 @@
 
   \IT{(\kwd*{DECLARE} \OPn{\NEV{\VAR{decl}}})}
   {
-  Inside certain forms, locally make declarations \VAR{decl}. \VAR{decl} can be:
+  Inside certain forms, locally make declarations \OPn{\VAR{decl}}. \VAR{decl} can be:
   \kwd{dynamic-extent},
   \kwd{type},
   \kwd{ftype},           
@@ -356,11 +357,11 @@
   }
 
     \IT{(\kwd*{OPTIMIZE} \orGOO{%
-        \kwd*{COMPILATION-SPEED}\XOR(\kwd*{COMPILATION-SPEED}\VAR{ n})\\
-        \kwd*{DEBUG}\XOR(\kwd*{DEBUG}\VAR{ n})\\
-        \kwd*{SAFETY}\XOR(\kwd*{SAFETY}\VAR{ n})\\
-        \kwd*{SPACE}\XOR(\kwd*{SPACE}\VAR{ n})\\
-        \kwd*{SPEED}\XOR(\kwd*{SPEED}\VAR{ n})}{\}})}
+        \kwd*{COMPILATION-SPEED}\XOR(\kwd*{COMPILATION-SPEED}\VAR{ n}\DF{\LIT{3}})\\
+        \kwd*{DEBUG}\XOR(\kwd*{DEBUG}\VAR{ n}\DF{\LIT{3}})\\
+        \kwd*{SAFETY}\XOR(\kwd*{SAFETY}\VAR{ n}\DF{\LIT{3}})\\
+        \kwd*{SPACE}\XOR(\kwd*{SPACE}\VAR{ n}\DF{\LIT{3}})\\
+        \kwd*{SPEED}\XOR(\kwd*{SPEED}\VAR{ n}\DF{\LIT{3}})}{\}})}
     {
     Tell compiler how to optimize. $n=0$ means unimportant, $n=1$ is
     neutral, $n=3$ means important.

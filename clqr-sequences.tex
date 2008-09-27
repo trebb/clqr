@@ -30,13 +30,15 @@
     \RP{\VAR{sequence}})}
   {
   Return \retval{value of \VAR{test}} or \retval{\NIL}, respectively, as soon
-  as \VAR{test} on any set of elements of \VAR{sequence}s returns non-\NIL. 
+  as \VAR{test} on any set of corresponding elements of
+  \VAR{sequence}s returns non-\NIL. 
   }
 
   \IT{(\FU*{MISMATCH} \VAR{sequence-a} \VAR{sequence-b} 
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
-      \kwd{:test} \VAR{ function}\\
-      \kwd{:test-not} \VAR{ function}\\
+      \xorGOO{%
+        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
+        \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:start1} \VAR{ start-a}\DF{\LIT{0}}\\
       \kwd{:start2} \VAR{ start-b}\DF{\LIT{0}}\\
       \kwd{:end1}  \VAR{ end-a}\DF{\NIL}\\
@@ -91,8 +93,9 @@
 
   \IT{(\FU*{COUNT} \VAR{foo} \VAR{sequence} 
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
-      \kwd{:test} \VAR{ function}\\
-      \kwd{:test-not} \VAR{ function}\\
+      \xorGOO{%
+        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
+        \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})}
@@ -142,8 +145,9 @@
   \IT{(\xorGOO{\FU*{FIND}\\
       \FU*{POSITION}}{\}} \VAR{foo} \VAR{sequence} 
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
-      \kwd{:test} \VAR{ function}\\
-      \kwd{:test-not} \VAR{ function}\\
+      \xorGOO{%
+        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
+        \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})}
@@ -167,8 +171,9 @@
 
   \IT{(\FU*{SEARCH} \VAR{sequence-a} \VAR{sequence-b} 
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
-      \kwd{:test} \VAR{ function}\\
-      \kwd{:test-not} \VAR{ function}\\
+      \xorGOO{%
+        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
+        \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:start1} \VAR{ start-a}\DF{\LIT{0}}\\
       \kwd{:start2} \VAR{ start-b}\DF{\LIT{0}}\\
       \kwd{:end1} \VAR{ end-a}\DF{\NIL}\\
@@ -183,8 +188,9 @@
   \IT{(\xorGOO{\FU*{REMOVE} \VAR{ foo } \VAR{sequence}\\
       \FU*{DELETE} \VAR{ foo } \DES{\VAR{sequence}}}{\}}
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
-      \kwd{:test} \VAR{ function}\\
-      \kwd{:test-not} \VAR{ function}\\
+      \xorGOO{%
+        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
+        \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}\\
@@ -215,8 +221,9 @@
   \IT{(\xorGOO{\FU*{REMOVE-DUPLICATES} \VAR{ sequence }\\
       \FU*{DELETE-DUPLICATES } \DES{\VAR{sequence}}}{\}}
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
-      \kwd{:test} \VAR{ function}\\ 
-      \kwd{:test-not} \VAR{ function}\\
+      \xorGOO{%
+        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\ 
+        \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})}
@@ -228,8 +235,9 @@
       \FU*{SUBSTITUTE} \VAR{ new} \VAR{ old } \VAR{sequence} \\
       \FU*{NSUBSTITUTE} \VAR{ new} \VAR{ old } \DES{\VAR{sequence}} }{\}} 
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
-      \kwd{:test} \VAR{ function}\\
-      \kwd{:test-not} \VAR{ function}\\
+      \xorGOO{%
+        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
+        \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}\\
@@ -298,7 +306,7 @@
 
   \IT{(\FU*{COPY-SEQ} \VAR{sequence})}
   {
-  Return \retval{copy of \VAR{sequence}} with the same elements.
+  Return \retval{copy of \VAR{sequence}} with shared elements.
   }
 
 

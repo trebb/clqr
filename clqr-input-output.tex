@@ -493,8 +493,8 @@
   {
   Print and return \retval{\VAR{foo}}, or print \VAR{foo} into
   \retval{string}, respectively, after dynamically setting printer variables
-  corresponding to keyword parameters (\kwd{:}\VAR{bar} becoming
-  \kwd{\A print-}\VAR{bar}\kwd{\A}). (\kwd{:stream} keyword with \FU{write} only.)
+  corresponding to keyword parameters (\kwd{\A print-}\VAR{bar}\kwd{\A} becoming
+  \kwd{:}\VAR{bar}). (\kwd{:stream} keyword with \FU{write} only.)
   }
 
   \IT{(\xorGOO{\FU*{PPRINT-FILL}\\
@@ -608,14 +608,11 @@
   If \T, print \kwd{:\#} before uninterned symbols.
   }
 
-  \IT{\V*{\A print-length\A}\DF{\NIL}}
+  \IT{\arrGOO{\V*{\A print-length\A}\DF{\NIL}\\
+      \V*{\A print-level\A}\DF{\NIL}}{.}}
   {
-  If integer, restrict printing of objects to that number per level.
-  }
-
-  \IT{\V*{\A print-level\A}\DF{\NIL}}
-  {
-  If integer, restrict printing of nested objects to that depth.
+  If integer, restrict printing of objects to that number per
+  level/to that depth.
   }
 
   \IT{\V*{\A print-lines\A}\DF{\NIL}}
@@ -669,7 +666,8 @@
   \IT{(\FU*{COPY-PPRINT-DISPATCH}
     \Op{\VAR{table}\DF{\V{\A print-pprint-dispatch\A}}})}
   {
-  Return \retval{copy of \VAR{table}}.
+  Return \retval{copy of \VAR{table}} or, if \VAR{table} is \NIL,
+  initial value of \V{\A print-pprint-dispatch\A}.
   }
 
   \IT{\V*{\A print-pprint-dispatch\A}}
@@ -1131,7 +1129,8 @@
   \IT{(\FU*{ENOUGH-NAMESTRING} \VAR{path}
     \Op{\VAR{root-path}\DF{\V{\A default-pathname-defaults\A}}})}
   {
-  Return \retval{minimal path string} to sufficiently describe path relative to \VAR{root-path.}
+  Return \retval{minimal path string} to sufficiently describe
+  \VAR{path} relative to \VAR{root-path.} 
   }
 
   \IT{\arrGOO{(\FU*{NAMESTRING}\VAR{ path})\\
