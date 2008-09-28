@@ -308,7 +308,7 @@
 
   \IT{(\FU*{FDEFINITION} \VAR{foo})}
   {
-  \retval{Definition} of function \VAR{foo}. \kwd{setf}able.
+  \retval{Definition} of global function \VAR{foo}. \kwd{setf}able.
   }
 
   \IT{(\FU*{FMAKUNBOUND} \VAR{foo})}
@@ -785,7 +785,7 @@
       \(
       \text{\kwd{loop}}\text{ }
       \Op{
-        \text{\LKWD{named} \VAR{n}}
+        \text{\LKWD{named} \VAR{n}\DF{\NIL}}
       }
       \left\{
       \begin{array}{l}
@@ -886,7 +886,7 @@
                 \right\}
                 \text{\VAR{hash }} 
                 \Op{
-                  \text{\LKWD{using} (\LKWD{hash-value} \VAR{v})}
+                  \text{\LKWD{using} (\LKWD{hash-value} \VAR{v})}%
                 }\\
                 \left.\!
                 \begin{array}{l}
@@ -902,7 +902,7 @@
                 \right\}
                 \text{\VAR{hash }}
                 \Op{
-                  \text{\LKWD{using} (\LKWD{hash-key} \VAR{k})}
+                  \text{\LKWD{using} (\LKWD{hash-key} \VAR{k})}%
                 }\\
               \end{array}
               \right.\\
@@ -919,11 +919,11 @@
                   \text{\LKWD{of}}\\
                   \text{\LKWD{in}}
                 \end{array}
-                \right\} \text{\VAR{package}\DF{\V{\A package\A}}}
-              }
-            \end{array}
-            \right.
-          \end{array}
+                \right\} \text{\VAR{package}\DF{\V{\A package\A}}}%
+              }%
+            \end{array}\!\!%
+            \right.%
+          \end{array}%
           \right\}_{\displaystyle{\mathbb{F}_0}}
                 }%boxed
                 \left\{
@@ -1010,9 +1010,9 @@
                 \end{array}
                 \right\}%
                 \text{\VAR{test }}
-                \boxed{\mathbb{C}_i\!}\{\text{\LKWD{and}}
-                \boxed{\mathbb{C}_j\!}\}^{*}\Op{\text{\LKWD{else}}
-                  \boxed{\mathbb{C}_k\!}\{\text{\LKWD{and}}
+                \boxed{\mathbb{C}_i\!}\{\text{\LKWD{and}}\,
+                \boxed{\mathbb{C}_j\!}\}^{*}\Op{\text{\LKWD{else}}\,
+                  \boxed{\mathbb{C}_k\!}\{\text{\LKWD{and}}\,
                   \boxed{\mathbb{C}_l\!}\}^{*}}
                       \Op{\text{\LKWD{end}}}
           \end{array}
@@ -1032,20 +1032,20 @@
       \)%
       \!)%
     \end{sideways}%
-  \end{center}\vspace{-1em}
-  \caption{Loop Facility, Overview.\label{loop-overview}}%
+  \end{center}\vspace{-2em}
+  \raisebox{0em}[0em][0em]{\parbox[b]{4cm}{\caption{\protect\raggedright Loop Facility, Overview.\label{loop-overview}}}}
 \end{figure}
 
 
 \begin{LIST}{1cm}
 
-  \IT{(\MC*{LOOP} \OPn{\VAR{form}})} %FIXME:BLOCK
+  \IT{(\MC*{LOOP} \OPn{\VAR{form}})} 
   {
-  Simple Loop. If \VAR{form}s do not contain any Loop Facility
-  keywords, evaluate them forever. 
+  Simple Loop. If \VAR{form}s do not contain any atomic Loop Facility
+  keywords, evaluate them forever in an implicit \SO{block} named \NIL.
   }
 
-  \IT{(\MC*{LOOP} \OPn{\VAR{form}})} %FIXME:BLOCK;TAGBODY
+  \IT{(\MC*{LOOP} \OPn{\VAR{form}})}
   {
   Loop Facility. For Loop Facility keywords
   see below and Figure \ref{loop-overview}.
@@ -1053,9 +1053,9 @@
 
   \begin{LIST}{.5cm}
     
-    \IT{\LKWD*{named} \VAR{n}}
+    \IT{\LKWD*{named} \VAR{n}\DF{\NIL}}
     {
-    Give implicit \kwd{block} of loop a name.
+    Give \MC{loop}'s implicit \SO{block} a name.
     }
 
     \IT{\Goop{\LKWD*{with} \VAR{var-s} \Op{\VAR{type}} \LKWD*{=} \VAR{foo}} \Goos{\LKWD*{and}
@@ -1229,7 +1229,7 @@
     \IT{\Goo{\LKWD*{always}\XOR\LKWD*{never}} \VAR{test}}
     {
     Terminate \MC{loop} returning \NIL\ and skipping any
-    \LKWD*{finally} parts as soon as \VAR{test} is \NIL\ or \T,
+    \LKWD{finally} parts as soon as \VAR{test} is \NIL\ or \T,
     respectively. Otherwise continue \MC{loop} with its default return
     value set to \T. 
     }
@@ -1237,7 +1237,7 @@
     \IT{\LKWD*{thereis} \VAR{test}}
     {
     Terminate \MC{loop} when \VAR{test} is \T\ and return value of
-    \VAR{test}, skipping any \LKWD*{finally} parts. Otherwise continue
+    \VAR{test}, skipping any \LKWD{finally} parts. Otherwise continue
     \MC{loop} with its default return value set to \NIL. 
     }
 

@@ -146,15 +146,15 @@
       \FU*{POSITION}}{\}} \VAR{foo} \VAR{sequence} 
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \xorGOO{%
-        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
-        \kwd{:test-not} \VAR{ function}}{.}\\
+        \kwd{:test} \VAR{ test}\DF{\kwd{eql}}\\
+        \kwd{:test-not} \VAR{ test}}{.}\\
       \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {
   Return \retval{first element} in \VAR{sequence} which
-  satisfies tests, or its \retval{position} relative to
-  \VAR{sequence}'s start, respectively. 
+  satisfies \VAR{test}, or its \retval{position} relative to the begin
+  of \VAR{sequence}, respectively.
   }
 
   \IT{(\xorGOO{\FU*{FIND-IF}\\
@@ -166,7 +166,7 @@
       \kwd{:key} \VAR{ function}}{\}})}
   {
   Return \retval{first element in \VAR{sequence}} which satisfies \VAR{test}, or
-  \retval{its position} relative to \VAR{sequence}'s start, respectively.
+  \retval{its position} relative to the begin of \VAR{sequence}, respectively.
   }
 
   \IT{(\FU*{SEARCH} \VAR{sequence-a} \VAR{sequence-b} 

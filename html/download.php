@@ -110,7 +110,7 @@
 		 title="US letter size paper, stacked folios">clqr-letter-booklet-four.pdf</a>&nbsp;&nbsp;(Server B)<br>
 	      </p>
 	      <ul>
-		<li>Suitable for printing, folding lengthwise and stacking up the
+		<li>Suitable for printing, folding lengthwise and stacking the
 		  folios.
 		<li>First sheet has pages 4, 1, 2, 3.
 		<li>With 52 pages total, last sheet has pages 52, 49, 50, 51.

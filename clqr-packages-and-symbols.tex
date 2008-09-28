@@ -142,12 +142,13 @@
   }
 
   \IT{(\xorGOO{\FU*{INTERN}\\
-      \FU*{FIND-SYMBOL}}{\}} \VAR{symbol} \Op{\VAR{package}})}
+      \FU*{FIND-SYMBOL}}{\}} \VAR{foo} \Op{\VAR{package}})}
   {
-  Intern or find, respectively, \retval{\VAR{symbol}} in
+  Intern or find, respectively, symbol \retval{\VAR{foo}} in
   \VAR{package}. Second return value is one of
   \retvalii{\kwd{:internal}}, \retvalii{\kwd{:external}}, or
-  \retvalii{\kwd{:inherited}}.
+  \retvalii{\kwd{:inherited}} (or \retvalii{\NIL} if \FU{intern}
+  created a fresh symbol).
   }
 
   \IT{(\FU*{UNINTERN} \VAR{symbol} \Op{\VAR{package}})}
