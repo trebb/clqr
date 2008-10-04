@@ -242,13 +242,13 @@
   Comments. There are conventions:
   }
   \begin{LIST}{.5cm}
-    \IT{\KWD{;;;;} \VAR{title}}
+    \IT{\KWD{;;;;} \VAR{title}\qquad\qquad}
     {Short title for a block of code.}
 
-    \IT{\KWD{;;;} \VAR{intro}}
+    \IT{\KWD{;;;} \VAR{intro}\qquad\qquad}
     {Description before a block of code.}
 
-    \IT{\KWD{;;} \VAR{state}}
+    \IT{\KWD{;;} \VAR{state}\qquad\qquad}
     {State of program or of following code.}
 
     \IT{\KWD{;} \VAR{explanation}}
@@ -256,17 +256,17 @@
 
   \end{LIST}
 
-  \IT{\KWD*{(}}
+  \IT{\KWD*{(}\qquad\qquad\qquad\qquad}
   {
   Initiate reading of a list.
   }
 
-  \IT{\KWD{"}}\index{""}
-  {
+  \IT{\KWD{"}\qquad\qquad\qquad\qquad}
+  {\index{""}
   Begin and end of a string.
   }
 
-  \IT{\KWD*{'}\VAR{foo}}
+  \IT{\KWD*{'}\VAR{foo}\qquad\qquad\qquad}
   {
   (\SO{quote} \VAR{foo}); \VAR{foo} unevaluated
   }
@@ -280,7 +280,7 @@
   backquote expression belong to this backquote.
   }
 
-  \IT{\KWD{\#\boldmath{$\backslash$}}\VAR{c}}
+  \IT{\KWD{\#\boldmath{$\backslash$}}\VAR{c}\qquad\qquad\qquad}
   {
   (\FU{character} \LIT{"}\VAR{c}\LIT{"}), the character \VAR{c}.
   }
@@ -292,12 +292,12 @@
   Binary, octal or hexadecimal number, or number of radix \VAR{n}. 
   }
 
-  \IT{\KWD*{\#C(}\VAR{a b}\kwd{)}}
+  \IT{\KWD*{\#C(}\VAR{a b}\kwd{)}\qquad\qquad}
   {
     (\FU{complex} \VAR{a} \VAR{b}), the complex number $\VAR{a}+\VAR{b}\text{i}$.
   }
 
-  \IT{\KWD*{\#'}\VAR{foo}}
+  \IT{\KWD*{\#'}\VAR{foo}\qquad\qquad}
   {
   (\SO{function} \VAR{foo}); the function named \VAR{foo}.
   }
@@ -327,12 +327,12 @@
   Structure of \VAR{type}.
   }
 
-  \IT{\KWD*{\#:}\VAR{foo}}
+  \IT{\KWD*{\#:}\VAR{foo}\qquad\qquad}
   {
   Uninterned Symbol \VAR{foo}.
   }
 
-  \IT{\KWD*{\#.}\VAR{form}}
+  \IT{\KWD*{\#.}\VAR{form}\qquad\qquad}
   {
   Read-time value of \VAR{form}.
   }
@@ -348,39 +348,32 @@
   Give value of \VAR{foo} a \VAR{label}.
   }
 
-  \IT{\KWD{\#}\VAR{label}\kwd{\#}}
+  \IT{\KWD{\#}\VAR{label}\kwd{\#}\qquad\qquad}
   {
   \index{\#\#}%
   Object labelled \VAR{label}.
   }
 
-  \IT{\KWD*{\#P}\VAR{foo}}
+  \IT{\KWD*{\#P}\VAR{foo}\qquad\qquad}
   {
   A pathname.
   }
 
-  \IT{\KWD{\#\boldmath$<$}}
+  \IT{\KWD{\#\boldmath$<$}\qquad\qquad\qquad}
   {
   \index{\#<@\#$<$}%
   Have the reader signal an error.
   }
 
-  \IT{\KWD*{\#+}\VAR{feature-expression} \VAR{form}}
+  \IT{\arrGOO{\KWD*{\#+}\VAR{features } \VAR{when-features}\\
+      \KWD*{\#--}\VAR{features } \VAR{unless-features}}{.}} %FIXME:FEATURE-EXPRESSIONS
   {
-  Means \VAR{form} if \VAR{feature-expression} returns \T, means whitespace
-  otherwise. 
+  Means \VAR{when-features} if \VAR{features} is \T, means
+  \VAR{unless-features} if \VAR{features} is \NIL.
   }
 
-  \IT{\KWD*{\#--}\VAR{feature-expression} \VAR{form}}
-  {
-  Means whitespace if \VAR{feature-expression} returns \T, means \VAR{form} 
-  otherwise. 
-  }
-
-  \IT{\arrGOO{%
-      \kwd{\boldmath$|$}\OPn{\VAR{c}}\kwd{\boldmath$|$}\\
-      \kwd{\boldmath$\backslash$}\VAR{c}%
-    }{.}}
+  \IT{\kwd{\boldmath$|$}\OPn{\VAR{c}}\kwd{\boldmath$|$};
+      \kwd{\boldmath$\backslash$}\VAR{c}}
   {
     Treat arbitrary character(s) \VAR{c} as alphabetic preserving case.
   }
@@ -964,8 +957,8 @@
   }
 
   \IT{(\FU*{MAKE-STRING-INPUT-STREAM} \VAR{string}
-    \orGOO{\kwd{:start}\VAR{ start}\DF{\LIT{0}}\\
-      \kwd{:end} \VAR{ end}\DF{\NIL}}{\}})}
+    \OP{\VAR{start}\DF{\LIT{0}}
+      \Op{\VAR{end}\DF{\NIL}}})}
   {
   Return a \retval{\kwd{string-stream}} supplying the characters from \VAR{string}.
   }
@@ -1111,7 +1104,7 @@
 
   \IT{(\FU*{MERGE-PATHNAMES} \VAR{pathname}
     \OP{\VAR{default-pathname}\DF{\V{\A default-pathname-defaults\A}}
-      \Op{\VAR{version}\DF{\kwd{:newest}}}})}
+      \Op{\VAR{default-version}\DF{\kwd{:newest}}}})}
   {
   Return \retval{\VAR{pathname}} after filling in missing parts from defaults.
   }
@@ -1257,7 +1250,7 @@
     \OPn{\VAR{open-arg}}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \PROGN{\VAR{form}})}
   {
-  Use \FU*{OPEN} with \VAR{open-arg}s to temporarily
+  Use \FU{OPEN} with \VAR{open-arg}s to temporarily
   create \VAR{stream} to \VAR{path}; return \retval{values of \VAR{form}s}.
   }
 

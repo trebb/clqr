@@ -38,8 +38,8 @@
 
   \IT{(\FU*{COMPILE} 
     \xorGOO{\NIL\VAR{ definition}\\
-      \VAR{name }\Op{\VAR{definition}}}{\}}
-    )}
+      \xorGOO{\VAR{name}\\
+      (\kwd{setf } \VAR{name})}{\}}\text{ }\Op{\VAR{definition}}}{\}})}
   {
   Return \retval{compiled function} or replace \retval{\VAR{name}}'s
   function definition with the compiled function. Return \retvalii{\T} in case
@@ -123,7 +123,7 @@
   }
 
   \IT{(\SO*{LOAD-TIME-VALUE} \VAR{form}
-    \Op{\VAR{read-only}\DF{\NIL}})}
+    \Op{\NEV{\VAR{read-only}}\DF{\NIL}})}
   {
   Evaluate \VAR{form} at compile time and treat \retval{its value} as
   literal at run time. 
@@ -154,7 +154,9 @@
 
   \IT{\arrGOO{(\FU*{MACRO-FUNCTION} \VAR{ symbol }
       \Op{\VAR{environment}})\\
-      (\FU*{COMPILER-MACRO-FUNCTION} \VAR{ name }
+      (\FU*{COMPILER-MACRO-FUNCTION}\text{ } 
+      \xorGOO{\VAR{name}\\
+        (\kwd{setf } \VAR{name})}{\}}\text{ }
       \Op{\VAR{environment}})}{.}}
   {
   Return specified \retval{macro function}, or \retval{compiler mac\-ro
@@ -212,25 +214,29 @@
   }
 
   \IT{(\xorGOO{\FU*{MACROEXPAND-1}\\
-      \FU*{MACROEXPAND}}{\}} \VAR{form} \Op{\VAR{environment}})}
+      \FU*{MACROEXPAND}}{\}} \VAR{form} \Op{\VAR{environment}\DF{\NIL}})}
   {
   Return \retval{macro expansion}, once or entirely, respectively, of
-  \VAR{form} and \retvalii{\T} if \VAR{form} is a macro form. 
+  \VAR{form} and \retvalii{\T} if \VAR{form} was a macro form. 
   Return \retval{\VAR{form}} and \retvalii{\NIL} otherwise.
   }
 
   \IT{\V*{\A macroexpand-hook\A}}
   {
-  Function called by \FU{macroexpand-1} to generate macro expansions.
+  Function of arguments expansion function, macro form, and
+  environment called by \FU{macroexpand-1} to generate macro
+  expansions. 
   }
 
-  \IT{(\MC*{TRACE} \OPn{\VAR{function}})}
+  \IT{(\MC*{TRACE} \xorGOO{\VAR{function}\\
+    (\kwd{setf } \VAR{function})}{\}^{\!\!*}})}
   {
   Cause \VAR{function}s to be traced. With no arguments,
   return \retval{list of traced functions}.
   }
 
-  \IT{(\MC*{UNTRACE} \OPn{\VAR{function}})}
+  \IT{(\MC*{UNTRACE} \xorGOO{\VAR{function}\\
+    (\kwd{setf } \VAR{function})}{\}^{\!\!*}})}
   {
   Stop \VAR{function}s, or each currently traced function, from being
   traced. 

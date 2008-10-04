@@ -23,18 +23,13 @@ pages \pageref{section:Association Lists} and \pageref{:property_lists}.
   }
 
   \IT{(\FU*{MAKE-HASH-TABLE} 
-    \orGOO{\kwd{:test}\Goo{\FU{eq}\XOR \FU{eql}\XOR
-        \FU{equal}}\DF{\kwd{eql}}\\ 
+    \orGOO{\kwd{:test }\Goo{\FU{eq}\XOR \FU{eql}\XOR
+        \FU{equal} \XOR \FU{equalp}}\DF{\kwd{eql}}\\ 
       \kwd{:size} \VAR{ int}\\
-      \kwd{:rehash-size} \VAR{ int}\\
-      \kwd{:rehash-threshold} \VAR{ int}}{\}})}
+      \kwd{:rehash-size} \VAR{ num}\\
+      \kwd{:rehash-threshold} \VAR{ num}}{\}})}
   {
   Make a \retval{hash table}. 
-  }
-
-  \IT{(\FU*{HASH-TABLE-TEST} \VAR{hash-table})}
-  {
-  \retval{Test function} used in \VAR{hash-table}.
   }
 
   \IT{(\FU*{GETHASH} \VAR{key} \VAR{hash-table} \Op{\VAR{default}\DF{\NIL}})}
@@ -72,6 +67,11 @@ pages \pageref{section:Association Lists} and \pageref{:property_lists}.
   Return \retval{values of \VAR{form}s}. In \VAR{form}s,
   invocations of  (\VAR{foo}) return: \T\ if an entry is returned;
   its key; its value.
+  }
+
+  \IT{(\FU*{HASH-TABLE-TEST} \VAR{hash-table})}
+  {
+  \retval{Test function} used in \VAR{hash-table}.
   }
 
   \IT{\arrGOO{(\FU*{HASH-TABLE-SIZE} \VAR{ hash-table})\\

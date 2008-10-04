@@ -28,7 +28,7 @@
                 \kwd*{SIGNED-BYTE } \Op{\VAR{size}\DF{\kwd{\A}}}\\
                 \boxGOO{\kwd*{UNSIGNED-BYTE } \Op{\VAR{size}\DF{\kwd{\A}}}
                   \boxGOO{\kwd*{BIT} }}\boxGOOcr
-                \kwd*{FIXNUM} ,\>
+                \kwd*{FIXNUM} ;\>
                 \kwd*{BIGNUM}
               }\boxGOOcr
               \kwd*{RATIO}}\boxGOOcr
@@ -82,19 +82,19 @@
           \kwd*{EXTENDED-CHAR}}\boxGOOcr
         \kwd*{STREAM}
         \boxGOO{%
-          \kwd*{FILE-STREAM},\>
-          \kwd*{TWO-WAY-STREAM},\>
-          \kwd*{SYNONYM-STREAM},\\
-          \kwd*{STRING-STREAM},\>
-          \kwd*{BROADCAST-STREAM},\>
-          \kwd*{ECHO-STREAM},\\
+          \kwd*{FILE-STREAM};\>
+          \kwd*{TWO-WAY-STREAM};\>
+          \kwd*{SYNONYM-STREAM};\\
+          \kwd*{STRING-STREAM};\>
+          \kwd*{BROADCAST-STREAM};\>
+          \kwd*{ECHO-STREAM};\\
           \kwd*{CONCATENATED-STREAM}}\boxGOOcr
         \kwd*{PATHNAME}
         \boxGOO{%
           \kwd*{LOGICAL-PATHNAME}}\boxGOOcr
         \kwd*{SYMBOL}
         \boxGOO{%
-          \kwd*{KEYWORD},\>
+          \kwd*{KEYWORD};\>
           \kwd*{BOOLEAN}}\boxGOOcr
         \kwd*{FUNCTION } \OP{\VAR{arg-types }\Op{\VAR{value-types}}}\\
         \boxGOO{%
@@ -105,18 +105,18 @@
         \boxGOO{%
           \kwd*{CLASS}
           \boxGOO{%
-            \kwd*{STANDARD-CLASS},\>
-            \kwd*{BUILT-IN-CLASS},\\
+            \kwd*{STANDARD-CLASS};\>
+            \kwd*{BUILT-IN-CLASS};\\
             \kwd*{STRUCTURE-CLASS}}\boxGOOcr
           \kwd*{STANDARD-METHOD}}\boxGOOcr
-        \kwd*{ATOM},\>
-        \kwd*{HASH-TABLE},\>
-        \kwd*{STRUCTURE-OBJECT},\>
-        \kwd*{PACKAGE},\>
-        \kwd*{READTABLE},\\
-        \kwd*{RANDOM-STATE},\>
-        \kwd*{RESTART},\>
-        \kwd*{METHOD},\>
+        \kwd*{ATOM};\>
+        \kwd*{HASH-TABLE};\>
+        \kwd*{STRUCTURE-OBJECT};\>
+        \kwd*{PACKAGE};\>
+        \kwd*{READTABLE};\\
+        \kwd*{RANDOM-STATE};\>
+        \kwd*{RESTART};\>
+        \kwd*{METHOD};\>
         \kwd*{METHOD-COMBINATION}}}
   \end{center}\vspace{-1em}
               {\footnotesize\footnotemark[2]For supertypes of this
@@ -224,7 +224,7 @@ For any class, there is always a corresponding type of the same name.
 
   \IT{(\kwd*{MOD} \VAR{n})}
   {
-  Type specifier for all integers $<n$.
+  Type specifier for all non-negative integers $<n$.
   }
 
   \IT{(\kwd*{NOT} \VAR{type})}
@@ -251,3 +251,8 @@ For any class, there is always a corresponding type of the same name.
   \end{LIST}
 
 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "clqr"
+%%% End: 

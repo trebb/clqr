@@ -278,22 +278,23 @@
     \OPn{\VAR{arg}})}
   {
   Called on invocation of \VAR{generic-function} on \VAR{arg}s if
-  there is no applicable method. 
+  there is no applicable method. Default method signals \kwd{error}.
   }
 
   \IT{(\xorGOO{\FU*{INVALID-METHOD-ERROR} \VAR{ method}\\
       \FU*{METHOD-COMBINATION-ERROR}}{\}}
     \VAR{control} \OPn{\VAR{arg}})}
   {
-  Signal \kwd{error} on applicable method, or on method combination,
-  with invalid qualifiers. For \VAR{control} and \VAR{arg}s see
-  \kwd{format}, p.\ \pageref{section:Format}.  
+  Signal \kwd{error} on applicable method with invalid qualifiers, or
+  on method combination. For \VAR{control} and \VAR{arg}s see
+  \kwd{format}, p.\ \pageref{section:Format}.
   }
 
   \IT{(\GFU*{NO-NEXT-METHOD} \VAR{generic-function}
     \VAR{method} \OPn{\VAR{arg}})}
   {
-  Called on invocation of \kwd{call-next-method} if there is no next method.
+  Called on invocation of \kwd{call-next-method} when there is no next
+  method. Default method signals \kwd{error}.
   }
 
   \IT{(\GFU*{FUNCTION-KEYWORDS} \VAR{method})}
@@ -304,7 +305,7 @@
 
   \IT{(\GFU*{METHOD-QUALIFIERS} \VAR{method})}
   {
-  List of qualifiers of \VAR{method}.
+  \retval{List of qualifiers} of \VAR{method}.
   }
 
 

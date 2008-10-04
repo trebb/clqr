@@ -174,7 +174,7 @@
       (\FU*{INVOKE-RESTART-INTERACTIVELY} \VAR{ restart})}{.}}
   {
   Call function associated with \VAR{restart} with arguments given or
-  prompted for, respectively. If restart function returns, return \retval{its values}.
+  prompted for, respectively. If \VAR{restart} function returns, return \retval{its values}.
   }
 
   \IT{(\xorGOO{\FU*{COMPUTE-RESTARTS}\\
@@ -235,8 +235,8 @@
                 \kwd*{SIMPLE-CONDITION}\footnotemark[2]
                 \boxGOO{%
                   \kwd*{SIMPLE-ERROR}}\boxGOOcr
-                \kwd*{PARSE-ERROR},\>
-                \kwd*{PROGRAM-ERROR},\>
+                \kwd*{PARSE-ERROR};\>
+                \kwd*{PROGRAM-ERROR};\>
                 \kwd*{CONTROL-ERROR}\boxGOOcr
                 \kwd*{TYPE-ERROR}
                 \boxGOO{%
@@ -245,23 +245,23 @@
                     \kwd*{SIMPLE-TYPE-ERROR}}}\boxGOOcr
                 \kwd*{CELL-ERROR}
                 \boxGOO{%
-                  \kwd*{UNBOUND-VARIABLE},\>
-                  \kwd*{UNBOUND-SLOT},\\
+                  \kwd*{UNBOUND-VARIABLE};\>
+                  \kwd*{UNBOUND-SLOT};\\
                   \kwd*{UNDEFINED-FUNCTION}}\boxGOOcr
                 \kwd*{STREAM-ERROR}
                 \boxGOO{%
                   \kwd*{END-OF-FILE}\\
                   \kwd*{PARSE-ERROR}\footnotemark[2]
                   \boxGOO{\kwd*{READER-ERROR}}}\boxGOOcr
-                \kwd*{PACKAGE-ERROR},\>
-                \kwd*{FILE-ERROR},\>
+                \kwd*{PACKAGE-ERROR};\>
+                \kwd*{FILE-ERROR};\>
                 \kwd*{PRINT-NOT-READABLE}\boxGOOcr
                 \kwd*{ARITHMETIC-ERROR}\\
                 \boxGOO{%
-                  \kwd*{DIVISION-BY-ZERO},\>
-                  \kwd*{FLOATING-POINT-INEXACT},\\
-                  \kwd*{FLOATING-POINT-INVALID-OPERATION},\\
-                  \kwd*{FLOATING-POINT-OVERFLOW},\>
+                  \kwd*{DIVISION-BY-ZERO};\>
+                  \kwd*{FLOATING-POINT-INEXACT};\\
+                  \kwd*{FLOATING-POINT-INVALID-OPERATION};\\
+                  \kwd*{FLOATING-POINT-OVERFLOW};\>
                   \kwd*{FLOATING-POINT-UNDERFLOW}}
               }\boxGOOcr
               \kwd*{STORAGE-CONDITION}}
@@ -319,7 +319,7 @@
 
   \IT{\V*{\A break-on-signals\A}\DF{\NIL}}
   {
-  Condition debugger is to be invoked on.
+  Condition type debugger is to be invoked on.
   }
 
   \IT{\V*{\A debugger-hook\A}\DF{\NIL}}

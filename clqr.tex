@@ -15,7 +15,13 @@
 \newcommand{\SUBJECT}{Common\ Lisp}
 \newcommand{\KEYWORDS}{clqr}
 %
+%%%%%%%%%%%%%%%%%%
+% To be reset in paper-*.tex if there is plenty of room
+\newcommand{\clearpagebeforeindex}{}
+%
+%
 \documentclass[8pt,pagesize,twoside,footexclude,headexclude]{scrartcl}
+%
 %
 %%%%%%%%%%%%%%%%%%
 % outsourced page dimensions
@@ -24,6 +30,7 @@
 %\setlength{\paperheight}{29.7cm}
 %%\areaset[3mm]{9cm}{28.3cm}
 %\typearea[2mm]{20}
+%\renewcommand{\clearpagebeforeindex}{\clearpage}
 %%%%%%%%%%%%%%%%%%
 %
 %%%%%%%%%%%%%%%%%%
@@ -419,6 +426,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{titlepage}
   \renewcommand{\rmdefault}{ptm} %% Always times fonts on title
+  \advance\oddsidemargin by 1.5mm
   \vspace*{15mm}
   \begin{center}
     \begin{minipage}{\titlepagewidth}
@@ -442,7 +450,7 @@
       \rule[3mm]{\textwidth}{1.5mm}\\
       lisp\\[-10mm]
       \rule[15mm]{5.5cm}{1.5mm}\hfill\rule[15mm]{1.77cm}{1.5mm}
-    \end{minipage}
+    \end{minipage}\\
     \begin{minipage}{\titlepagewidth}
       \rmfamily\mdseries\upshape\fontsize{14}{0}\selectfont
       \AUTHOR
@@ -493,7 +501,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-\clearpage % Uncomment/comment this line to waste/save some space
+\clearpagebeforeindex % \clearpage dependent on paper size
 %
 \renewcommand{\indexpagestyle}{lispref}
 \renewenvironment{theindex}%
@@ -571,3 +579,8 @@
 % -*-latex-*-
 
 % LocalWords:  ptm lightgray cl lispref theindex pt
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

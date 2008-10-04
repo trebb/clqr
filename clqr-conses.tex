@@ -130,7 +130,7 @@
   }
 
   \IT{(\FU*{NTH} \VAR{n list})}
-  {Return zero-indexed \VAR{n}th element of \VAR{list}. \kwd{setf}able.
+  {Return zero-indexed \retval{\VAR{n}th element} of \VAR{list}. \kwd{setf}able.
     }
 
   \IT{(\FU{C}\VAR{X}\kwd{R} \VAR{list})}
@@ -356,15 +356,17 @@
 
   \IT{(\xorGOO{%
       \arrGOO{%
-        \FU*{UNION}\\
         \FU*{INTERSECTION}\\
         \FU*{SET-DIFFERENCE}\\
+        \FU*{UNION}\\
         \FU*{SET-EXCLUSIVE-OR}%
       }{\}} \VAR{ a} \VAR{ b}\\
       \arrGOO{%
-        \FU*{NUNION}\\
         \FU*{NINTERSECTION}\\
-        \FU*{NSET-DIFFERENCE}\\
+        \FU*{NSET-DIFFERENCE}%
+      }{\}} \text{ }\DES{\VAR{a}}\text{ } \VAR{b}\\
+      \arrGOO{%
+        \FU*{NUNION}\\
         \FU*{NSET-EXCLUSIVE-OR}%
       }{\}} \text{ }\DES{\VAR{a}}\text{ } \DES{\VAR{b}}\text{ }
     }{\}}
@@ -373,7 +375,7 @@
         \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {
-  Return \retval{$a\cup b$}, \retval{$a\cap b$}, \retval{$a\setminus b$}, or
+  Return \retval{$a\cap b$}, \retval{$a\setminus b$}, \retval{$a\cup b$}, or
   \retval{$a\,\triangle\, b$}, respectively, of lists \VAR{a} and \VAR{b}.
   }
 

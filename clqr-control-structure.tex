@@ -48,14 +48,14 @@
   \kwd{:test} function, and \kwd{equalp} elements.
   }
 
-  \IT{(\FU*{NOT} \VAR{bool})}
+  \IT{(\FU*{NOT} \VAR{foo})}
   {
-  \retval{\NIL} if \VAR{bool} is \T; \retval{\T} if \VAR{bool} is \NIL.
+  \retval{\T} if \VAR{foo} is \NIL, \retval{\NIL} otherwise.
   }
 
   \IT{(\FU*{BOUNDP} \VAR{symbol})}
   {
-  \retval{\T} if \VAR{symbol} is a special variable.
+    \retval{\T} if \VAR{symbol} is a special variable.
   }
 
   \IT{(\FU*{CONSTANTP} \VAR{foo} \Op{\VAR{environment}\DF{\NIL}})}
@@ -68,7 +68,8 @@
   \retval{\T} if \VAR{foo} is of type \kwd{function}.
   }
 
-  \IT{(\FU*{FBOUNDP} \VAR{foo})}
+  \IT{(\FU*{FBOUNDP} \xorGOO{\VAR{foo}\\
+      (\kwd{setf } \VAR{foo})}{\}})}
   {
   \retval{\T} if \VAR{foo} is a global function or macro.
   }
@@ -150,7 +151,7 @@
   {
   \retval{First entry \VAR{key}} from property list stored in
   \VAR{symbol}/in \VAR{place}, respectively, or \retval{\VAR{default}} if
-  there was no \VAR{key}. \kwd{setf}able.
+  there is no \VAR{key}. \kwd{setf}able.
   }
 
   \IT{(\FU*{GET-PROPERTIES} \VAR{property-list} \VAR{keys})}
@@ -222,7 +223,8 @@
 
   \IT{(\xorGOO{\SO*{FLET}\\
       \SO*{LABELS}}{\}}
-    (\OPn{(\VAR{foo}
+    (\OPn{(\xorGOO{\VAR{foo}\\
+        (\kwd{setf} \VAR{ foo})}{\}}
       (\OPn{\VAR{ord-$\lambda$}}) 
       \OPn{(\kwd{declare} \OPn{\NEV{\VAR{local-decl}}})}
       \Op{\NEV{\VAR{doc}}}
@@ -244,7 +246,8 @@
     lexical closure of the \retval{\MC{lambda} expression}.
   }
 
-  \IT{(\FU*{APPLY} \VAR{function} \RP{\VAR{arg}})}
+  \IT{(\FU*{APPLY} \xorGOO{\VAR{function}\\
+      (\kwd{setf } \VAR{function})}{\}} \RP{\VAR{arg}})}
   {
   Return \retval{values of \VAR{function}} called on
   \VAR{arg}s. Last \VAR{arg} must be a list. \kwd{setf}able if
@@ -278,7 +281,7 @@
   Return in a \retval{list} values of \VAR{form}.
   }
 
-  \IT{(\FU*{NTH-VALUE} \VAR{n} \VAR{form})}
+  \IT{(\MC*{NTH-VALUE} \VAR{n} \VAR{form})}
   {
   Zero-indexed \retval{\VAR{n}th return value} of \VAR{form}.
   }
@@ -306,7 +309,8 @@
   without bindings, and \retvaliii{name} of \VAR{function}. 
   }
 
-  \IT{(\FU*{FDEFINITION} \VAR{foo})}
+  \IT{(\FU*{FDEFINITION} \xorGOO{\VAR{foo}\\
+      (\kwd{setf } \VAR{foo})}{\}})}
   {
   \retval{Definition} of global function \VAR{foo}. \kwd{setf}able.
   }
@@ -325,7 +329,8 @@
 
   \IT{\CNS*{MULTIPLE-VALUES-LIMIT}}
   {
-  Upper bound of the number of values a function can return; $\geq20$.
+  Upper bound of the number of values a multiple value can have;
+  $\geq20$. 
   }
 
 \end{LIST}
@@ -423,7 +428,9 @@
 
   \IT{(\xorGOO{\MC*{DEFMACRO}\\
       \FU*{DEFINE-COMPILER-MACRO}}{\}}
-    \VAR{foo} (\OPn{\VAR{macro-$\lambda$}})
+    \xorGOO{\VAR{foo}\\
+    (\kwd{setf } \VAR{foo})}{\}}
+    (\OPn{\VAR{macro-$\lambda$}})
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \Op{\NEV{\VAR{doc}}}
     \PROGN{\VAR{form}})}
   {
@@ -514,13 +521,13 @@
     \VAR{arg}s. \VAR{form}s are enclosed in an implicit \SO{block} \VAR{function}.
   }
 
-  \IT{(\FU*{GET-SETF-EXPANSION} \VAR{place} \Op{\VAR{environment}})}
+  \IT{(\FU*{GET-SETF-EXPANSION} \VAR{place} \Op{\VAR{environment}\DF{\NIL}})}
   {
     Return lists of temporary variables \retval{\VAR{arg-vars}} and of
     corresponding \retvalii{\VAR{args}} as given with \VAR{place},
     list \retvaliii{\VAR{\VAR{newval-vars}}} with temporary variables
     corresponding to the new values, and \retvaln{4}{\VAR{set-form}}
-    and \retvaln{5}{get-form} specifying in terms of \VAR{arg-vars}
+    and \retvaln{5}{\VAR{get-form}} specifying in terms of \VAR{arg-vars}
     and \VAR{newval-vars} how to \kwd{setf} and how to read
     \VAR{place}. 
   }
@@ -552,9 +559,9 @@
 \begin{LIST}{1cm}
 
   \IT{(\SO*{IF} \VAR{test} \VAR{then} \Op{\VAR{else}\DF{\NIL}})}
-  {Return value of
-  \retval{\VAR{then}} if \VAR{test} returns \T; return value of
-  \retval{\VAR{else}} otherwise.
+  {
+    Return values of \retval{\VAR{then}} if \VAR{test} returns \T;
+    return values of \retval{\VAR{else}} otherwise. 
   }
 
   \IT{(\MC*{COND} \OPn{(\VAR{test} \PROGN{\VAR{then}}\DF{\VAR{test}})})}
@@ -573,7 +580,8 @@
   }
 
   \IT{(\MC*{CASE} \VAR{test} \OPn{(\NEV{\VAR{keys}} \PROGN{\VAR{foo}})}
-    \Op{(\Goo{\T\XOR\kwd*{OTHERWISE}} \PROGN{\VAR{bar}})\DF{\NIL}})}
+    \OP{(\xorGOO{\kwd*{OTHERWISE}\\
+      \T}{\}} \PROGN{\VAR{bar}})\DF{\NIL}})}
   {
   Return the \retval{values} of the first \OPn{\VAR{foo}} one of whose \VAR{keys} is
   \kwd{eql} \VAR{test}.
@@ -659,7 +667,7 @@
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{body-form}})}
   {
   Evaluate
-  \VAR{body-form}s with \VAR{var}s bound to the return values of
+  \VAR{body-form}s with \VAR{var}s lexically bound to the return values of
   \VAR{values-form}. Return \retval{values of \VAR{body-form}s}.
   }
 
@@ -670,7 +678,7 @@
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} 
     \PROGN{\VAR{form}})}
   {
-  Evaluate \VAR{form}s with \VAR{name}s bound (in parallel or
+  Evaluate \VAR{form}s with \VAR{name}s lexically bound (in parallel or
   sequentially, respectively) to \VAR{value}s. Return
   \retval{values of \VAR{form}s}. 
   }
@@ -678,8 +686,8 @@
   \IT{(\SO*{LOCALLY} \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \PROGN{\VAR{form}})}
   {
-  Evaluate \VAR{form}s with declarations \VAR{decl} in
-  effect. Return \retval{values of \VAR{form}s}. 
+  Evaluate \VAR{form}s in a lexical invironment with declarations
+  \VAR{decl} in effect. Return \retval{values of \VAR{form}s}. 
   }
 
   \IT{(\SO*{BLOCK} \VAR{name} \PROGN{\VAR{form}})}
@@ -703,8 +711,8 @@
   }
 
   \IT{(\SO*{GO} \VAR{tag})}
-  {Jump within a \SO{tagbody} to nearest
-  lexically enclosing \kwd{eql} \VAR{tag}.
+  {
+    Within the innermost enclosing \SO{tagbody}, jump to a tag \kwd{eql} \VAR{tag}.
   }
 
   \IT{(\SO*{CATCH} \VAR{tag} \PROGN{\VAR{form}})}
@@ -776,7 +784,142 @@
 \subsection{Loop Facility}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%FIXME:DESTRUCTURING
+
+\begin{LIST}{1cm}
+
+  \IT{(\MC*{LOOP} \OPn{\VAR{form}})} 
+  {
+  Simple Loop. If \VAR{form}s do not contain any atomic Loop Facility
+  keywords, evaluate them forever in an implicit \SO{block} named \NIL.
+  }
+
+  \IT{(\MC*{LOOP} \OPn{\VAR{form}})}
+  {
+  Loop Facility. For Loop Facility keywords
+  see below and Figure \ref{loop-overview}.
+  }
+
+  \begin{LIST}{.5cm}
+    
+    \IT{\LKWD*{named} \VAR{n}\DF{\NIL}}
+    {
+    Give \MC{loop}'s implicit \SO{block} a name.
+    }
+
+    \IT{\Goop{\LKWD*{with}
+        \xorGOO{%
+          \VAR{var-s}\\
+          (\OPn{\VAR{var-s}})}{\}}
+        \Op{\VAR{d-type}} \LKWD*{=} \VAR{foo}} \Goos{\LKWD*{and}
+        \xorGOO{%
+          \VAR{var-p}\\
+          (\OPn{\VAR{var-p}})}{\}}
+        \Op{\VAR{d-type}} \LKWD*{=} \VAR{bar}}
+      \penalty-10
+      where destructuring type specifier \VAR{d-type} has the form
+      \penalty-5
+      \GOO{\kwd{fixnum}\XOR
+      \kwd{float}\XOR
+      \T\XOR
+      \NIL\XOR
+      \GOo{%
+      \LKWD*{of-type}
+      \xorGOO{\VAR{type}\\
+      (\OPn{\VAR{type}})}{\}}}}
+    }
+    {
+    Initialize (possibly trees of) local variables \VAR{var-s}
+    sequentially and \VAR{var-p} in parallel. 
+    }
+
+    \IT{\Goo{\LKWD*{initially}\XOR\LKWD*{finally}} \RP{\VAR{form}}}
+    {
+    Evaluate \VAR{form}s before begin, or after end, respectively, of iterations.
+    }
+
+    \IT{\GOop{\Goo{\LKWD*{for}\XOR\LKWD*{as}}
+        \xorGOO{%
+          \VAR{var-s}\\
+          (\OPn{\VAR{var-s}})}{\}}
+        \Op{\VAR{d-type}}} 
+      \GOos{\LKWD*{and}
+        \xorGOO{%
+          \VAR{var-p}\\
+          (\OPn{\VAR{var-p}})}{\}}
+        \Op{\VAR{d-type}}}}
+    {
+    Begin of iteration control clauses. Initialize and step (possibly
+    trees of) local variables \VAR{var-s} sequentially and \VAR{var-p}
+    in parallel. Destructuring type specifier \VAR{d-type} as with \LKWD{with}.
+    }
+
+    \begin{LIST}{.5cm}
+
+      \IT{\Goo{\LKWD*{upfrom}\XOR\LKWD*{from}\XOR\LKWD*{downfrom}}
+        \VAR{start}}
+      {
+      Start stepping with \VAR{start}
+      }
+
+      \IT{\Goo{\LKWD*{upto}\XOR\LKWD*{downto}\XOR\LKWD*{to}\XOR\LKWD*{below}\XOR\LKWD*{above}}
+        \VAR{form}}
+      {
+      Specify \VAR{form} as the end value for stepping.
+      }
+
+      \IT{\Goo{\LKWD*{in}\XOR\LKWD*{on}} \VAR{list}}
+      {
+      Bind \VAR{var} to successive elements/tails, respectively, of \VAR{list}.
+      }
+
+      \IT{\LKWD*{by} \Goo{\VAR{step}\DF{\LIT{1}}\XOR\VAR{function}\DF{\FU{cdr}}}}
+      {
+      Specify the (positive) decrement or increment or the
+      \VAR{function} of one argument returning the next part of the list.
+      }
+
+      \IT{\LKWD*{=} \VAR{foo} \Op{\LKWD*{then}
+          \VAR{bar}\DF{\VAR{foo}}}}
+      {
+      Bind \VAR{var} in the first iteration to  \VAR{foo} and later to \VAR{bar}.
+      }
+
+      \IT{\LKWD*{across} \VAR{vector}}
+      {
+      Bind \VAR{var} to successive elements of \VAR{vector}.
+      }
+
+      \IT{\LKWD*{being} \Goo{\LKWD*{the}\XOR\LKWD*{each}}}
+      {
+      Iterate over a hash table or a package.
+      }
+
+      \begin{LIST}{.5cm}
+
+        \IT{\Goo{\LKWD*{hash-key}\XOR\LKWD*{hash-keys}} \Goo{\LKWD*{of}\XOR\LKWD*{in}} \VAR{hash-table}
+          \Op{\LKWD*{using} (\LKWD*{hash-value} \VAR{value})}}
+        {
+        Bind \VAR{var} successively to the keys of \VAR{hash-table}; bind \VAR{value} to corresponding values.
+        }
+
+        \IT{\Goo{\LKWD*{hash-value}\XOR\LKWD*{hash-values}} \Goo{\LKWD*{of}\XOR\LKWD*{in}} \VAR{hash-table}
+          \Op{\LKWD*{using} (\LKWD*{hash-key} \VAR{key})}}
+        {
+        Bind \VAR{var} successively to the values of \VAR{hash-table}; bind \VAR{key} to corresponding keys.
+        }
+
+        \IT{\Goo{\LKWD*{symbol}\XOR\LKWD*{symbols}\XOR\LKWD*{present-symbol}\XOR\LKWD*{present-symbols}\XOR\LKWD*{external-symbol}\XOR\LKWD*{external-symbols}}
+          \Op{\Goo{\LKWD*{of}\XOR\LKWD*{in}}
+            \VAR{package}\DF{\V{\A package\A}}}}
+        {
+        Bind \VAR{var} successively to the symbols, or the present
+        symbols, or the external symbols respectively, of
+        \VAR{package}. 
+        }
+
+      \end{LIST}
+    \end{LIST}
+    
 \begin{figure}%
   \begin{center}%
     \begin{sideways}%
@@ -789,16 +932,27 @@
       }
       \left\{
       \begin{array}{l}
-        \text{\LKWD{with} \VAR{var-s} \Op{\VAR{type}} \LKWD{=} \VAR{foo }} 
-        \{\text{\LKWD{and} \VAR{var-p} \Op{\VAR{type}} \LKWD{=}
-          \VAR{bar}\}}^{*} \\[.1ex]
+        \text{\LKWD{with}
+          \xorGOO{%
+              \VAR{var}\\
+              (\OPn{\VAR{var}})}{\}}
+          \Op{\VAR{d-type}} \LKWD{=} \VAR{foo }}
+        \{\text{\LKWD{and}
+          \xorGOO{%
+            \VAR{var}\\
+            (\OPn{\VAR{var}})}{\}}
+          \Op{\VAR{d-type}} \LKWD{=}
+          \VAR{bar}}\}^{*} \\ \\[-2.4ex]
         \left.\!
         \begin{array}{l}
           \text{\LKWD{for}}  \\
           \text{\LKWD{as}} 
         \end{array}\right\}
         \boxed{
-          \text{\VAR{var} [\VAR{type}]}
+          \text{\xorGOO{%
+              \VAR{var}\\
+              (\OPn{\VAR{var}})}{\}}}%
+          \Op{\VAR{d-type}}
           \left\{
           \begin{array}{l}
             \left.\!
@@ -1014,7 +1168,7 @@
                 \boxed{\mathbb{C}_j\!}\}^{*}\Op{\text{\LKWD{else}}\,
                   \boxed{\mathbb{C}_k\!}\{\text{\LKWD{and}}\,
                   \boxed{\mathbb{C}_l\!}\}^{*}}
-                      \Op{\text{\LKWD{end}}}
+                \Op{\text{\LKWD{end}}}\!\!\!\!\!\!
           \end{array}
           \right._{\!\!\!\!\displaystyle{\mathbb{C}_0}}
         }%boxed
@@ -1032,116 +1186,11 @@
       \)%
       \!)%
     \end{sideways}%
-  \end{center}\vspace{-2em}
+  \end{center}%
+  \vspace{-3em}
   \raisebox{0em}[0em][0em]{\parbox[b]{4cm}{\caption{\protect\raggedright Loop Facility, Overview.\label{loop-overview}}}}
 \end{figure}
 
-
-\begin{LIST}{1cm}
-
-  \IT{(\MC*{LOOP} \OPn{\VAR{form}})} 
-  {
-  Simple Loop. If \VAR{form}s do not contain any atomic Loop Facility
-  keywords, evaluate them forever in an implicit \SO{block} named \NIL.
-  }
-
-  \IT{(\MC*{LOOP} \OPn{\VAR{form}})}
-  {
-  Loop Facility. For Loop Facility keywords
-  see below and Figure \ref{loop-overview}.
-  }
-
-  \begin{LIST}{.5cm}
-    
-    \IT{\LKWD*{named} \VAR{n}\DF{\NIL}}
-    {
-    Give \MC{loop}'s implicit \SO{block} a name.
-    }
-
-    \IT{\Goop{\LKWD*{with} \VAR{var-s} \Op{\VAR{type}} \LKWD*{=} \VAR{foo}} \Goos{\LKWD*{and}
-        \VAR{var-p} \Op{\VAR{type}} \LKWD*{=} \VAR{bar}}}
-    {
-    Initialize local variables \VAR{var-s} sequentially and \VAR{var-p} in parallel.
-    }
-
-    \IT{\Goo{\LKWD*{initially}\XOR\LKWD*{finally}} \RP{\VAR{form}}}
-    {
-    Evaluate \VAR{form}s before begin, or after end, respectively, of iterations.
-    }
-
-    \IT{\GOo{\Goo{\LKWD*{for}\XOR\LKWD*{as}} \XOR\ \LKWD*{and}} \VAR{var} \Op{\VAR{type}}}
-    {
-    Begin of iteration control clauses; \VAR{var}s are initialized and
-    stepped sequentially/in parallel, respectively.
-    }
-
-    \begin{LIST}{.5cm}
-
-      \IT{\Goo{\LKWD*{upfrom}\XOR\LKWD*{from}\XOR\LKWD*{downfrom}}
-        \VAR{start}}
-      {
-      Start stepping with \VAR{start}
-      }
-
-      \IT{\Goo{\LKWD*{upto}\XOR\LKWD*{downto}\XOR\LKWD*{to}\XOR\LKWD*{below}\XOR\LKWD*{above}}
-        \VAR{form}}
-      {
-      Specify \VAR{form} as the end value for stepping.
-      }
-
-      \IT{\Goo{\LKWD*{in}\XOR\LKWD*{on}} \VAR{list}}
-      {
-      Bind \VAR{var} to successive elements/tails, respectively, of \VAR{list}.
-      }
-
-      \IT{\LKWD*{by} \Goo{\VAR{step}\DF{\LIT{1}}\XOR\VAR{function}\DF{\FU{cdr}}}}
-      {
-      Specify the (positive) decrement or increment or the
-      \VAR{function} of one argument returning the next part of the list.
-      }
-
-      \IT{\LKWD*{=} \VAR{foo} \Op{\LKWD*{then}
-          \VAR{bar}\DF{\VAR{foo}}}}
-      {
-      Bind \VAR{var} in the first iteration to  \VAR{foo} and later to \VAR{bar}.
-      }
-
-      \IT{\LKWD*{across} \VAR{vector}}
-      {
-      Bind \VAR{var} to successive elements of \VAR{vector}.
-      }
-
-      \IT{\LKWD*{being} \Goo{\LKWD*{the}\XOR\LKWD*{each}}}
-      {
-      Iterate over a hash table or a package.
-      }
-
-      \begin{LIST}{.5cm}
-
-        \IT{\Goo{\LKWD*{hash-key}\XOR\LKWD*{hash-keys}} \Goo{\LKWD*{of}\XOR\LKWD*{in}} \VAR{hash-table}
-          \Op{\LKWD*{using} (\LKWD*{hash-value} \VAR{value})}}
-        {
-        Bind \VAR{var} successively to the keys of \VAR{hash-table}; bind \VAR{value} to corresponding values.
-        }
-
-        \IT{\Goo{\LKWD*{hash-value}\XOR\LKWD*{hash-values}} \Goo{\LKWD*{of}\XOR\LKWD*{in}} \VAR{hash-table}
-          \Op{\LKWD*{using} (\LKWD*{hash-key} \VAR{key})}}
-        {
-        Bind \VAR{var} successively to the values of \VAR{hash-table}; bind \VAR{key} to corresponding keys.
-        }
-
-        \IT{\Goo{\LKWD*{symbol}\XOR\LKWD*{symbols}\XOR\LKWD*{present-symbol}\XOR\LKWD*{present-symbols}\XOR\LKWD*{external-symbol}\XOR\LKWD*{external-symbols}}
-          \Op{\Goo{\LKWD*{of}\XOR\LKWD*{in}}
-            \VAR{package}\DF{\V{\A package\A}}}}
-        {
-        Bind \VAR{var} successively to the symbols, or the present
-        symbols, or the external symbols respectively, of
-        \VAR{package}. 
-        }
-
-      \end{LIST}
-    \end{LIST}
-    
     \IT{\Goo{\LKWD*{do}\XOR\LKWD*{doing}} \RP{\VAR{form}}}
     {
     Evaluate \VAR{form}s in every iteration.
@@ -1150,7 +1199,7 @@
     \IT{\LKWD*{it}}
     {
       Value of \VAR{test} form of an enclosing \LKWD{if},
-      \LKWD{when}, \LKWD{unless}, or \LKWD{else} clause.
+      \LKWD{when}, or \LKWD{unless} clause.
     }
 
     \IT{\LKWD*{return} \Goo{\VAR{form}\XOR\LKWD*{it}}}
@@ -1243,7 +1292,8 @@
 
     \IT{\LKWD*{loop-finish}}
     {
-    Terminate \MC{loop} immediately returning any accumulated results.
+    Terminate \MC{loop} immediately executing any \LKWD{finally}
+    clauses and returning any accumulated results.
     }
   \end{LIST}
 \end{LIST}
@@ -1252,3 +1302,8 @@
 
 
 % LocalWords:  pt
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "clqr"
+%%% End: 

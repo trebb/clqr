@@ -68,12 +68,6 @@
   indicated type.
   }
 
-  \IT{(\FU*{LOGBITP} \VAR{i} \VAR{integer})}
-  {
-  \retval{\T} if zero-indexed \VAR{i}th bit of \VAR{integer} is set.
-  }
-
-
 \end{LIST}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -202,7 +196,7 @@
   \IT{\arrGOO{(\FU*{REALPART} \VAR{ number})\\
       (\FU*{IMAGPART} \VAR{ number})}{.}}
   {
-  Return \retval{real part} or \retval{imaginary part}, respectively, of \VAR{number}.
+  \retval{Real part} or \retval{imaginary part}, respectively, of \VAR{number}.
   }
 
   \IT{\arrGOO{(\FU*{MAX } \RP{\VAR{num}})\\
@@ -361,6 +355,11 @@ two's complement representation.
   \IT{(\FU*{LOGNOR} \VAR{ int-a} \VAR{ int-b})}
   {
   \retval{$\lnot(\text{\VAR{int-a}} \lor \text{\VAR{int-b}})$}.
+  }
+
+  \IT{(\FU*{LOGBITP} \VAR{i} \VAR{integer})}
+  {
+  \retval{\T} if zero-indexed \VAR{i}th bit of \VAR{integer} is set.
   }
 
   \IT{(\FU*{LOGTEST} \VAR{int-a} \VAR{int-b})}

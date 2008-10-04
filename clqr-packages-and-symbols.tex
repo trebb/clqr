@@ -142,7 +142,7 @@
   }
 
   \IT{(\xorGOO{\FU*{INTERN}\\
-      \FU*{FIND-SYMBOL}}{\}} \VAR{foo} \Op{\VAR{package}})}
+      \FU*{FIND-SYMBOL}}{\}} \VAR{foo} \Op{\VAR{package}\DF{\V{\A package\A}}})}
   {
   Intern or find, respectively, symbol \retval{\VAR{foo}} in
   \VAR{package}. Second return value is one of
@@ -161,7 +161,7 @@
     \Op{\VAR{package}\DF{\kwd{\A package\A}}})}
   {
   Make \VAR{symbols} internal  to \VAR{package}. Return \retval{\T}. In
-  case of a name conflict, signal \kwd{package-error}, or shadow
+  case of a name conflict signal correctable \kwd{package-error} or shadow
   the old symbol, respectively.
   }
 
@@ -251,11 +251,10 @@ function (of \kwd{function}, macro, or special operator \VAR{name}).
   Make fresh, uninterned \retval{symbol \VAR{name}}.
   }
 
-  \IT{(\FU*{GENSYM} \Op{\VAR{x}\DF{\LIT{G}}})}
+  \IT{(\FU*{GENSYM} \Op{\VAR{s}\DF{\LIT{G}}})}
   {
-  Return fresh symbol \retval{\kwd{\#:}\VAR{x}\VAR{n}}, with \VAR{n} from
-  \V*{\A gensym-counter\A} which is incremented only in case no \VAR{x}
-  is given. 
+  Return fresh, uninterned symbol \retval{\kwd{\#:}\VAR{s}\VAR{n}} with \VAR{n} from
+  \V*{\A gensym-counter\A}. Increment \V*{\A gensym-counter\A}.
   }
 
   \IT{(\FU*{GENTEMP} \OP{\VAR{prefix}\DF{\LIT{T}}

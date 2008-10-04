@@ -130,7 +130,7 @@ html/sample-frontcover.jpg:	$(CLQR)-a4-consec.pdf
 	$(RM) temp.jpg
 
 html/sample-doublepage.jpg:	$(CLQR)-a4-booklet-four.pdf
-	$(CONVERT) $<'[10]' -verbose -resize 30% temp.jpg $(SEND-TO-LOG)
+	$(CONVERT) $<'[11]' -verbose -resize 30% temp.jpg $(SEND-TO-LOG)
 	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 	$(RM) temp.jpg
 
