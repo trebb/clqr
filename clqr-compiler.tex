@@ -60,18 +60,6 @@
   or errors excluding style warnings.
   }
 
-  \IT{\arrGOO{\V*{\A compile-file-pathname\A}\DF{\NIL}\\
-      \V*{\A compile-file-truename\A}\DF{\NIL}}{.}}
-  {
-  Input file used by \FU{compile-file}.
-  }
-
-  \IT{\arrGOO{\V*{\A compile-print\A}\\
-      \V*{\A compile-verbose\A}}{.}}
-  {
-  Defaults used in \FU{compile-file}.
-  }
-
   \IT{(\FU*{COMPILE-FILE-PATHNAME} \VAR{file} \Op{\kwd{:output-file}
       \VAR{path}} \Op{\VAR{other-keyargs}})}
   {
@@ -90,16 +78,20 @@
   \retval{\T} if successful. 
   }
 
-  \IT{\arrGOO{\V*{\A load-pathname\A}\DF{\NIL}\\
-      \V*{\A load-truename\A}\DF{\NIL}}{.}}
-  {
-  Input file used by \FU{load}.
+  \IT{\arrGOO{\V{\A compile-file}\\
+      \V{\A load}}{\}}\kwd{-}%
+    \xorGOO{\kwd{pathname\A}\DF{\NIL}\\
+      \kwd{truename\A}\DF{\NIL}}{.}}
+  {\index{*COMPILE-FILE-PATHNAME*@\A COMPILE-FILE-PATHNAME\A}\index{*COMPILE-FILE-TRUENAME*@\A COMPILE-FILE-TRUENAME\A}\index{*LOAD-PATHNAME*@\A LOAD-PATHNAME\A}\index{*LOAD-TRUENAME*@\A LOAD-TRUENAME\A}
+  Input file used by \FU{compile-file}/by \FU{load}.
   }
 
-  \IT{\arrGOO{\V*{\A load-print\A}\DF{\NIL}\\
-      \V*{\A load-verbose\A}}{.}}
-  {
-  Defaults used in \FU{load}.
+  \IT{\arrGOO{\V{\A compile}\\
+      \V{\A load}}{\}}\kwd{-}%
+    \xorGOO{\kwd{print\A}\\
+      \kwd{verbose\A}}{.}}  
+  {\index{*COMPILE-PRINT*@\A COMPILE-PRINT\A}\index{*COMPILE-VERBOSE*@\A COMPILE-VERBOSE\A}\index{*LOAD-PRINT*@\A LOAD-PRINT\A}\index{*LOAD-VERBOSE*@\A LOAD-VERBOSE\A}
+  Defaults used by \FU{compile-file}/by \FU{load}.
   }
 
   \IT{(\SO*{EVAL-WHEN} (%
@@ -129,7 +121,7 @@
   literal at run time. 
   }
 
-  \IT{(\SO*{QUOTE} \VAR{foo})}
+  \IT{(\SO*{QUOTE} \NEV{\VAR{foo}})}
   {
   Return \retval{unevaluated \VAR{foo}}.
   }
@@ -179,9 +171,9 @@
 \begin{LIST}{1cm}
   
   \IT{\arrGOO{\V*{+}\XOR\V*{++}\XOR\V*{+++}\\[1pt]
-      \V*{\A}\text{ }\XOR\text{ }\V*{\A\A}\text{ }\XOR\text{ }\V*{\A\A\A}\\[1pt]
+      \V{\A}\text{ }\XOR\text{ }\V{\A\A}\text{ }\XOR\text{ }\V{\A\A\A}\\[1pt]
       \V*{/}\text{ }\XOR\text{ }\V*{//}\text{ }\XOR\text{ }\V*{///}}{.}}
-  {
+  {\index{*@\A}\index{**@\A\A}\index{***@\A\A\A}
   Last, penultimate, or antepenultimate \retval{form} evaluated in the REPL, or
   their respective \retval{primary value}, or a \retval{list} of their respective
   values. 
@@ -221,8 +213,8 @@
   Return \retval{\VAR{form}} and \retvalii{\NIL} otherwise.
   }
 
-  \IT{\V*{\A macroexpand-hook\A}}
-  {
+  \IT{\V{\A macroexpand-hook\A}}
+  {\V{*MACROEXPAND-HOOK*@\A MACROEXPAND-HOOK\A}
   Function of arguments expansion function, macro form, and
   environment called by \FU{macroexpand-1} to generate macro
   expansions. 
@@ -242,8 +234,8 @@
   traced. 
   }
 
-  \IT{\V*{\A trace-output\A}}
-  {
+  \IT{\V{\A trace-output\A}}
+  {\index{*TRACE-OUTPUT*@\A TRACE-OUTPUT\A}
   Stream \MC{trace} and \MC{time} print their output on.
   }
 
@@ -385,3 +377,8 @@
 
 
 % LocalWords:  mac ro func tion
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "clqr"
+%%% End: 

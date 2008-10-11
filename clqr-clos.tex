@@ -134,7 +134,9 @@
   \GFU{make-instance}. 
   }
 
-  \IT{(\GFU*{SHARED-INITIALIZE} \VAR{instance} \VAR{slots}
+  \IT{(\GFU*{SHARED-INITIALIZE} \VAR{instance} 
+    \xorGOO{\VAR{slots}\\
+      \T}{\}}
      \Goos{\kwd{:}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
@@ -414,3 +416,8 @@
 \end{LIST}
 
 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "clqr"
+%%% End: 

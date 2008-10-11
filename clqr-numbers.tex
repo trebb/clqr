@@ -77,8 +77,8 @@
 \begin{LIST}{1cm}
 
   \IT{\arrGOO{(\FU*{+} \OPn{\VAR{ a}\DF{\LIT{0}}})\\
-      (\FU*{\A} \OPn{\VAR{ a}\DF{\LIT{1}}})}{.}}
-  {
+      (\FU{\A} \OPn{\VAR{ a}\DF{\LIT{1}}})}{.}}
+  {\index{*@\A}
   Return \retval{$\sum{a}$} or \retval{$\prod{a}$}, respectively.
   }
 
@@ -101,11 +101,6 @@
   {
   Increment or
   decrement \VAR{place} by \VAR{delta} returning \retval{new value}.
-  }
-
-  \IT{(\FU*{ABS} \VAR{n})}
-  {
-    Return \retval{$|n|$}.
   }
 
   \IT{\arrGOO{%
@@ -186,19 +181,6 @@
   {Return complex \retval{conjugate of \VAR{a}}.
     }
 
-  \IT{\arrGOO{(\FU*{NUMERATOR} \VAR{ rational})\\
-      (\FU*{DENOMINATOR} \VAR{ rational})}{.}}
-  {
-  \retval{Numerator} or \retval{denominator}, respectively, of
-  \VAR{rational}'s canonical form.
-  }
-
-  \IT{\arrGOO{(\FU*{REALPART} \VAR{ number})\\
-      (\FU*{IMAGPART} \VAR{ number})}{.}}
-  {
-  \retval{Real part} or \retval{imaginary part}, respectively, of \VAR{number}.
-  }
-
   \IT{\arrGOO{(\FU*{MAX } \RP{\VAR{num}})\\
       (\FU*{MIN } \RP{\VAR{num}})}{.}}
   {
@@ -217,7 +199,7 @@
   }
 
   \IT{(\xorGOO{\FU*{MOD}\\
-      \FU*{REM}}{\}} \VAR{n} \Op{\VAR{d}\DF{\LIT{1}}})}
+      \FU*{REM}}{\}} \VAR{n} \VAR{d})}
   {Same as \FU{floor} or
   \FU{truncate}, respectively, but return \retval{re\-main\-der} only.
   }
@@ -235,8 +217,8 @@
     state}. 
   }
 
-  \IT{\V*{\A random-state\A}}
-  {
+  \IT{\V{\A random-state\A}}
+  {\index{*RANDOM-STATE*@\A RANDOM-STATE\A}
   Current random state.
   }
 
@@ -250,6 +232,19 @@
   representing sign or phase of \VAR{n}.
   }
 
+  \IT{\arrGOO{(\FU*{NUMERATOR} \VAR{ rational})\\
+      (\FU*{DENOMINATOR} \VAR{ rational})}{.}}
+  {
+  \retval{Numerator} or \retval{denominator}, respectively, of
+  \VAR{rational}'s canonical form.
+  }
+
+  \IT{\arrGOO{(\FU*{REALPART} \VAR{ number})\\
+      (\FU*{IMAGPART} \VAR{ number})}{.}}
+  {
+  \retval{Real part} or \retval{imaginary part}, respectively, of \VAR{number}.
+  }
+
   \IT{(\FU*{COMPLEX} \VAR{real} \Op{\VAR{imag}\DF{\LIT{0}}})}
   {Make a \retval{complex number}.
     }
@@ -257,6 +252,11 @@
   \IT{(\FU*{PHASE} \VAR{number})}
   {\retval{Angle} of \VAR{number}'s polar representation.
     }
+
+  \IT{(\FU*{ABS} \VAR{n})}
+  {
+    Return \retval{$|n|$}.
+  }
 
   \IT{\arrGOO{(\FU*{RATIONAL} \VAR{ real})\\
       (\FU*{RATIONALIZE} \VAR{ real})}{.}}
@@ -330,7 +330,7 @@ two's complement representation.
     \retval{$\text{\VAR{int-a}} \land \lnot\text{\VAR{int-b}}$}.
   }
 
-  \IT{(\FU*{LOGNAND} \VAR{ int-a} \VAR{ int-b})}
+  \IT{(\FU*{LOGNAND} \VAR{ int-a} \VAR{ int-b})\qquad\qquad}
   {
   \retval{$\lnot(\text{\VAR{int-a}} \land \text{\VAR{int-b}})$}.
   }
@@ -543,3 +543,8 @@ two's complement representation.
 
 
 % LocalWords:  de na der nored ored
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "clqr"
+%%% End: 

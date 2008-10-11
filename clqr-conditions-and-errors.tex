@@ -146,9 +146,9 @@
           \VAR{string}\DF{\LIT{"}\VAR{foo}\LIT{"}}}{.}\\
         \kwd{:test} \VAR{ test-function}\DF{\T}}{\}}
       \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
-      \PROGN{\VAR{restart-form}})})}
+      \PROGN{\VAR{restart-form}}\DF{\NIL})})}
   {
-  Evaluate \VAR{form} with new restarts \VAR{foo}. Return
+  Evaluate \VAR{form} with dynamically established restarts \VAR{foo}. Return
   \retval{values of \VAR{form}} or, if by (\kwd{invoke-restarts}
   \VAR{foo} \OPn{\VAR{arg}}) one restart \VAR{foo} is called, use
   \VAR{string} or \VAR{report-function} (of a stream) to print a
@@ -156,7 +156,7 @@
   return the \retval{values of its \VAR{restart-form}s}.
   \VAR{arg-function} supplies appropriate \VAR{arg}s if \VAR{foo} is
   called by \kwd{invoke-restart-interactively}. If (\VAR{test-function} \VAR{condition})
-  returns \NIL, \VAR{foo} is to be visible under \VAR{condition}.
+  returns \T, \VAR{foo} is made visible under \VAR{condition}.
   For (\OPn{\VAR{ord-$\lambda$}}) see p.\ \pageref{section:Functions}.
   }
 
@@ -317,15 +317,21 @@
     arguments}, respectively, of \VAR{condition}.
   }
 
-  \IT{\V*{\A break-on-signals\A}\DF{\NIL}}
-  {
+  \IT{\V{\A break-on-signals\A}\DF{\NIL}}
+  {\index{*BREAK-ON-SIGNALS*@\A BREAK-ON-SIGNALS\A}
   Condition type debugger is to be invoked on.
   }
 
-  \IT{\V*{\A debugger-hook\A}\DF{\NIL}}
-  {Function of condition and
-  function itself.
+  \IT{\V{\A debugger-hook\A}\DF{\NIL}}
+  {\index{*DEBUGGER-HOOK*@\A DEBUGGER-HOOK\A}
+    Function of condition and
+  function itself. Called before debugger.
   }
 
 \end{LIST}
 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "clqr"
+%%% End: 

@@ -96,11 +96,12 @@
   Delete \VAR{package}. Return \retval{\T} if successful.
   }
 
-  \IT{\V*{\A package\A}}
-  {The current package.
+  \IT{\V{\A package\A}\DF{\kwd{common-lisp-user}}}
+  {\index{*PACKAGE*@\A PACKAGE\A}
+    The current package.
   }
 
-  \IT{(\FU*{LIST-ALL-PACKAGES})}
+  \IT{(\FU*{LIST-ALL-PACKAGES})\qquad\qquad\qquad}
   {
   \retval{List of registered packages}.
   }
@@ -217,7 +218,7 @@
   package the symbol belongs to.
   }
 
-  \IT{(\FU*{REQUIRE} \VAR{module} \Op{\VAR{path-list}})}
+  \IT{(\FU*{REQUIRE} \VAR{module} \Op{\VAR{path-list}\DF{\NIL}})}
   {
   If not in \V{\A modules\A}, try paths in \VAR{path-list} to load
   module from. Signal \kwd{error} if unsuccessful. Deprecated.
@@ -229,9 +230,9 @@
   \V{\A modules\A}. Deprecated. 
   }
 
-  \IT{\V*{\A modules\A}}
-  {
-  List of names of modules loaded into Lisp image.
+  \IT{\V{\A modules\A}}
+  {\index{*MODULES*@\A MODULES\A}
+  List of names of loaded modules.
   }
 
 \end{LIST}
@@ -254,7 +255,7 @@ function (of \kwd{function}, macro, or special operator \VAR{name}).
   \IT{(\FU*{GENSYM} \Op{\VAR{s}\DF{\LIT{G}}})}
   {
   Return fresh, uninterned symbol \retval{\kwd{\#:}\VAR{s}\VAR{n}} with \VAR{n} from
-  \V*{\A gensym-counter\A}. Increment \V*{\A gensym-counter\A}.
+  \V{\A gensym-counter\A}. Increment \V{\A gensym-counter\A}. \index{*GENSYM-COUNTER*@\A GENSYM-COUNTER\A}
   }
 
   \IT{(\FU*{GENTEMP} \OP{\VAR{prefix}\DF{\LIT{T}}
@@ -336,3 +337,8 @@ function (of \kwd{function}, macro, or special operator \VAR{name}).
   }
 
 \end{LIST}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "clqr"
+%%% End: 

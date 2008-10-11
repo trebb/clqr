@@ -103,16 +103,16 @@
       \MC*{PSETF}}{\}} \Goos{\VAR{place}
       \VAR{form}})}
   {
-  Set \VAR{place}s to values of \VAR{form}s. Return \retval{value
-    of last \VAR{form}}. Work sequentially/in parallel, respectively. 
+  Set \VAR{place}s to primary values of \VAR{form}s. Return \retval{values
+    of last \VAR{form}}/\retval{\NIL}; work sequentially/in parallel, respectively. 
   }
 
   \IT{(\xorGOO{\SO*{SETQ}\\
       \MC*{PSETQ}}{\}} \Goos{\VAR{symbol}
       \VAR{form}})}
   {
-  Set \VAR{symbol}s to values of \VAR{form}s. Return \retval{value
-    of last \VAR{form}}. Work sequentially/in parallel, respectively. 
+  Set \VAR{symbol}s to primary values of \VAR{form}s. Return \retval{value
+    of last \VAR{form}}/\retval{\NIL}; work sequentially/in parallel, respectively. 
   }
 
   \IT{(\FU*{SET} \DES{\VAR{symbol}} \VAR{foo})}
@@ -621,13 +621,13 @@
       \MC*{PROG\A}}{\}}
     (\orGOO{%
       \VAR{var}\\
-      (\VAR{var } \Op{ \VAR{value}})}{\}^{\!\!*}})
+      (\VAR{var } \Op{\VAR{value}\DF{\NIL}})}{\}^{\!\!*}})
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} 
     \xorGOO{\NEV{\VAR{tag}}\\\VAR{form}}{\}^{\!\!*}})}
   {
   Evaluate \SO{TAGBODY}-like body with \VAR{var}s locally bound (in
   parallel or sequentially, respectively) to \VAR{value}s. Return
-  \retval{\NIL} or explicitly \retval{\MC{return}ed value}.
+  \retval{\NIL} or explicitly \retval{\MC{return}ed values}.
   Implicitly, the whole form is a \SO{block} named \NIL. 
   }
 
@@ -912,7 +912,7 @@
           \Op{\Goo{\LKWD*{of}\XOR\LKWD*{in}}
             \VAR{package}\DF{\V{\A package\A}}}}
         {
-        Bind \VAR{var} successively to the symbols, or the present
+        Bind \VAR{var} successively to the accessible symbols, or the present
         symbols, or the external symbols respectively, of
         \VAR{package}. 
         }
@@ -1204,7 +1204,7 @@
 
     \IT{\LKWD*{return} \Goo{\VAR{form}\XOR\LKWD*{it}}}
     {
-    Return immediately, skipping any \LKWD{finally} parts, with value of \VAR{form} or \LKWD{it}.
+    Return immediately, skipping any \LKWD{finally} parts, with values of \VAR{form} or \LKWD{it}.
     }
 
     \IT{\Goo{\LKWD*{collect}\XOR\LKWD*{collecting}}
@@ -1267,7 +1267,7 @@
 
     \IT{\LKWD*{repeat} \VAR{num}}
     {
-    Terminate \MC{loop} after \VAR{num} times; \VAR{num} is evaluated once.
+    Terminate \MC{loop} after \VAR{num} iterations; \VAR{num} is evaluated once.
     }
 
     \IT{\Goo{\LKWD*{while}\XOR\LKWD*{until}} \VAR{test}}

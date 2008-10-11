@@ -100,7 +100,7 @@ color-black.flag:
 	$(TOUCH) $@
 
 REVISION.tex:	DATE.tex
-	if $(BZR_REVISION); then $(BZR_REVISION) > $@; else $(TOUCH) $@; fi $(SEND-TO-LOG)
+	$(BZR_REVISION) > $@
 
 DATE.tex:	$(CLQR).tex $(CLQR)-*.tex 
 	$(DATE) > $@
