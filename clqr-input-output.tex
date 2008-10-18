@@ -67,7 +67,7 @@
   \FU{format}, for \VAR{control} and \VAR{arg}s. 
   }
 
-  \IT{(\MC*{WITH-STANDARD-IO-SYNTAX} \OPn{\VAR{form}})}
+  \IT{(\MC*{WITH-STANDARD-IO-SYNTAX} \PROGN{\VAR{form}})}
   {
   Evaluate \VAR{form}s with standard behaviour of reader and
   printer. Return \retval{values of \VAR{form}s}.
@@ -257,17 +257,17 @@
 
   \end{LIST}
 
-  \IT{\KWD*{(}\qquad\qquad\qquad\qquad}
+  \IT{\KWD*{(}\qquad\quad}
   {
   Initiate reading of a list.
   }
 
-  \IT{\KWD{"}\qquad\qquad\qquad\qquad}
+  \IT{\KWD{"}\qquad\quad}
   {\index{""}
   Begin and end of a string.
   }
 
-  \IT{\KWD*{'}\VAR{foo}\qquad\qquad\qquad}
+  \IT{\KWD*{'}\VAR{foo}\qquad\quad}
   {
   (\SO{quote} \VAR{foo}); \VAR{foo} unevaluated
   }
@@ -333,7 +333,7 @@
   A pathname.
   }
 
-  \IT{\KWD*{\#:}\VAR{foo}\qquad\qquad}
+  \IT{\KWD*{\#:}\VAR{foo}\qquad\qquad\qquad}
   {
   Uninterned Symbol \VAR{foo}.
   }
@@ -348,7 +348,7 @@
   If \NIL, a \kwd{reader-error} is signalled by \kwd{\#.}.
   }
 
-  \IT{\KWD{\#}\VAR{int}\kwd{=} \VAR{foo}}
+  \IT{\KWD{\#}\VAR{int}\kwd{=} \VAR{foo}\qquad\quad}
   {
   \index{\#=}%
   Give \VAR{foo} the label \VAR{int}.
@@ -366,11 +366,18 @@
   Have the reader signal \kwd{reader-error}.
   }
 
-  \IT{\arrGOO{\KWD*{\#+}\VAR{features } \VAR{when-features}\\
-      \KWD*{\#--}\VAR{features } \VAR{unless-features}}{.}} %FIXME:FEATURE-EXPRESSIONS
+  \IT{\arrGOO{\KWD*{\#+}\VAR{feature } \VAR{when-feature}\\
+      \KWD*{\#--}\VAR{feature } \VAR{unless-feature}}{.}}
   {
-  Means \VAR{when-features} if \VAR{features} is \T, means
-  \VAR{unless-features} if \VAR{features} is \NIL.
+  Means \VAR{when-feature} if \VAR{feature} is \T, means
+  \VAR{unless-feature} if \VAR{feature} is \NIL. \VAR{feature} is a
+  symbol from \V{\A features\A}, or (\Goo{\kwd{AND}\XOR\kwd{OR}}
+  \OPn{\VAR{feature}}), or (\kwd{NOT} \VAR{feature}).
+  }
+
+  \IT{\V{\A features\A}}
+  {\index{*FEATURES*@\A FEATURES\A}
+  List of symbols denoting implementation-dependent features.
   }
 
   \IT{\kwd{\boldmath$|$}\OPn{\VAR{c}}\kwd{\boldmath$|$};
@@ -469,25 +476,25 @@
       \FU*{WRITE-TO-STRING}}{\}} \VAR{foo} \orGOO{%
       \kwd{:array} \VAR{ bool}\\
       \kwd{:base} \VAR{ radix}\\
-      \kwd{:case} \xorGOO{\kwd{:upcase}\\
+      \kwd{:case } \xorGOO{\kwd{:upcase}\\
         \kwd{:downcase}\\
         \kwd{:capitalize}}{.}\\
       \kwd{:circle} \VAR{ bool}\\
       \kwd{:escape} \VAR{ bool}\\
       \kwd{:gensym} \VAR{ bool}\\
-      \kwd{:length} \VAR{ int}\\
-      \kwd{:level} \VAR{ int}\\
-      \kwd{:lines} \VAR{ int}\\
-      \kwd{:miser-width} \VAR{ int}\\
+      \kwd{:length }      \Goo{\VAR{int}\XOR\NIL}\\
+      \kwd{:level }       \Goo{\VAR{int}\XOR\NIL}\\
+      \kwd{:lines }       \Goo{\VAR{int}\XOR\NIL}\\
+      \kwd{:miser-width } \Goo{\VAR{int}\XOR\NIL}\\
       \kwd{:pprint-dispatch} \VAR{ dispatch-table}\\
       \kwd{:pretty} \VAR{ bool}\\
       \kwd{:radix} \VAR{ bool}\\
       \kwd{:readably} \VAR{ bool}\\
-      \kwd{:right-margin} \VAR{ int}\\
+      \kwd{:right-margin } \Goo{\VAR{int}\XOR\NIL}\\
       \kwd{:stream } \DES{\VAR{stream}}\DF{\V{\A standard-output\A}}%
     }{\}})}
   {
-  Print and return \retval{\VAR{foo}}, or print \VAR{foo} into
+  Print \VAR{foo} to \VAR{stream} and return \retval{\VAR{foo}}, or print \VAR{foo} into
   \retval{string}, respectively, after dynamically setting printer variables
   corresponding to keyword parameters (\kwd{\A print-}\VAR{bar}\kwd{\A} becoming
   \kwd{:}\VAR{bar}). (\kwd{:stream} keyword with \FU{write} only.)
@@ -992,7 +999,9 @@
       (\FU*{ECHO-STREAM-OUTPUT-STREAM} \VAR{ echo-stream})}{.}}
   {
   Return \retval{source stream} or  \retval{sink stream}
-  of \VAR{two-way-stream}/\VAR{echo-stream}, respectively.
+  of
+  \VAR{two-way-stream}/\VAR{echo-stream},
+  respectively. 
   }
 
   \IT{(\FU*{SYNONYM-STREAM-SYMBOL} \VAR{synonym-stream})}
@@ -1042,13 +1051,13 @@
 
   \IT{(\MC*{WITH-INPUT-FROM-STRING} (\VAR{foo} \VAR{string} 
     \orGOO{\kwd{:index } \DES{\VAR{index}}\\
-      \kwd{:start} \VAR{ start}\\
-      \kwd{:end} \VAR{ end}}{\}}) \OPn{(\kwd{declare}
+      \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
+      \kwd{:end} \VAR{ end}\DF{\NIL}}{\}}) \OPn{(\kwd{declare}
       \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{form}})}
   {
-  Evaluate \VAR{form}s with \VAR{foo} locally bound to input stream
-  from \VAR{string}. \VAR{index} contains the reading position in
-  \VAR{string} after leaving. Return \retval{values of \VAR{form}s}. 
+  Evaluate \VAR{form}s with \VAR{foo} locally bound to input \kwd{string-stream}
+  from \VAR{string}. Return \retval{values of \VAR{form}s}; store next
+  reading position into \VAR{index}.
   }
 
   \IT{(\MC*{WITH-OUTPUT-TO-STRING} (\VAR{foo} 
@@ -1056,10 +1065,10 @@
       \VAR{type}\DF{\kwd{character}}}) \OPn{(\kwd{declare}
       \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{form}})}
   {
-  Evaluate \VAR{form}s with \VAR{foo} locally bound to output
-  stream. Append output to \VAR{string} and return \retval{values of
-    \VAR{form}s} if \VAR{string} is given. Return \retval{string
-    containing output} otherwise. 
+  Evaluate \VAR{form}s with \VAR{foo} locally bound to an output
+  \kwd{string-stream}. Append output to \VAR{string} and return
+  \retval{values of \VAR{form}s} if \VAR{string} is given. Return
+  \retval{string containing output} otherwise. 
   }
 
   \IT{(\FU*{STREAM-EXTERNAL-FORMAT} \VAR{stream})}

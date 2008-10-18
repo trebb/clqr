@@ -67,8 +67,6 @@
 		<li>Not meant for printing because of the odd
 		  paper format and the coloured hyperlinks. 
 	      </ul>
-	      <p>&nbsp;
-	      <p>&nbsp;
 	    </div>
 	    <div class="here">
 	      <img class="left" src="sample-firstpage-all.jpg"
@@ -91,8 +89,6 @@
 		<li>With 52 pages total, first sheet has pages 52, 1, 2, 51.
 		<li>With 52 pages total, last sheet has pages 28, 25, 26, 27.
 	      </ul>
-	      <p>&nbsp;
-	      <p>&nbsp;
 	    </div>
 	    <div class="here">
 	      <img class="left" src="sample-firstpage-four.jpg"
@@ -115,8 +111,6 @@
 		<li>First sheet has pages 4, 1, 2, 3.
 		<li>With 52 pages total, last sheet has pages 52, 49, 50, 51.
 	      </ul>
-	      <p>&nbsp;
-	      <p>&nbsp;
 	    </div>
 	    <div class="here">
 	      <img class="left" src="sample-source.jpg"

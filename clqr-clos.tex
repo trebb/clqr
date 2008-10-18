@@ -17,6 +17,11 @@
 
 \begin{LIST}{1cm}
 
+  \IT{(\FU*{SLOT-EXISTS-P} \VAR{foo} \VAR{bar})}
+  {
+  \retval{\T} if \VAR{foo} has a slot \VAR{bar}.
+  }
+
   \IT{(\FU*{SLOT-BOUNDP} \VAR{instance} \VAR{slot})}
   {
   \retval{\T} if \VAR{slot} in \VAR{instance} is bound.
@@ -64,9 +69,9 @@
   Change local slots of \retval{\VAR{instance}} according to \VAR{initarg}s.
   }
 
-  \IT{(\FU*{SLOT-VALUE} \VAR{instance} \VAR{slot})}
+  \IT{(\FU*{SLOT-VALUE} \VAR{foo} \VAR{slot})}
   {Return \retval{value
-    of \VAR{slot} in \VAR{instance}}.  \kwd{SETF}able.
+    of \VAR{slot} in \VAR{foo}}.  \kwd{SETF}able.
   }
 
   \IT{(\FU*{SLOT-MAKUNBOUND} \VAR{instance} \VAR{slot})}
@@ -198,7 +203,7 @@
     Combination Types}. 
   }
 
-  \IT{(\FU*{ENSURE-GENERIC-FUNCTION} % FIXME:AUGMENT
+  \IT{(\FU*{ENSURE-GENERIC-FUNCTION}
     \xorGOO{\VAR{foo}\\ (\kwd{setf} \VAR{ foo})}{\}}
     \orGOO{%
       \kwd{:argument-precedence-order}\RP{\VAR{ required-var}}\\
@@ -210,8 +215,12 @@
       \kwd{:lambda-list} \VAR{ lambda-list}\\
       \kwd{:environment} \VAR{ environment}}{\}})}
   {
-  Define or modify \retval{generic function} \VAR{foo}. For \VAR{c-type} see
-  section \ref{section:Method Combination Types}.
+  Define or modify \retval{generic function}
+  \VAR{foo}. \kwd{:generic-function-class} and \kwd{:lambda-list} have
+  to be compatible with a pre-existing generic function or with
+  existing methods, respectively. Changes to \kwd{:method-class} do
+  not propagate to existing methods. For \VAR{c-type} see section
+  \ref{section:Method Combination Types}. 
   }
 
   \IT{(\MC*{DEFMETHOD} 

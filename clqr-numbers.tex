@@ -17,25 +17,23 @@
 
 \begin{LIST}{1cm}
 
-  \IT{\arrGOO{(\FU{\boldmath$=$}\RP{\VAR{
+  \IT{\arrGOO{(\FU*{=}\RP{\VAR{
           number}})\\
-      (\FU{\boldmath$/=$}\RP{\VAR{ number}})}{.}}
+      (\FU*{/=}\RP{\VAR{ number}})}{.}}
      {
-       \index{=}%
-       \index{/=}%
        \retval{\T} if all \VAR{number}s, or
        none, respectively,  are equal in value.
      }
 
   \IT{\arrGOO{(\FU{\boldmath$>$}\RP{\VAR{
-          number}})\\(\FU{\boldmath$>=$}\RP{\VAR{
+          number}})\\(\FU{\boldmath$>$=}\RP{\VAR{
           number}})\\(\FU{\boldmath$<$}\RP{\VAR{
-          number}})\\(\FU{\boldmath$<=$}\RP{\VAR{ number}})}{.}}
+          number}})\\(\FU{\boldmath$<$=}\RP{\VAR{ number}})}{.}}
   {
   \index{>@$>$}%
-  \index{>=@$>=$}%
+  \index{>=@$>$=}%
   \index{<@$<$}%
-  \index{<=@$<=$}%
+  \index{<=@$<$=}%
   Return \retval{\T} if \VAR{number}s are
   monotonically decreasing, monotonically non-increasing,
   monotonically increasing, or monotonically non-decreasing, respectively. 
@@ -294,18 +292,18 @@ two's complement representation.
     \IT{\CNS*{BOOLE-2}\qquad\qquad} {\retval{\VAR{int-b}}.}
     \IT{\CNS*{BOOLE-C1}\qquad\qquad} {\retval{$\lnot\text{\VAR{int-a}}$}.}
     \IT{\CNS*{BOOLE-C2}\qquad\qquad} {\retval{$\lnot\text{\VAR{int-b}}$}.}
-    \IT{\CNS*{BOOLE-SET}} {\retval{All bits set}.}
-    \IT{\CNS*{BOOLE-CLR}} {\retval{All bits zero}.}
-    \IT{\CNS*{BOOLE-EQV}} {\retval{$\text{\VAR{int-a}} \equiv \text{\VAR{int-b}}$}.}
-    \IT{\CNS*{BOOLE-AND}} {\retval{$\text{\VAR{int-a}}\land\text{\VAR{int-b}}$}.}
+    \IT{\CNS*{BOOLE-SET}\qquad\qquad} {\retval{All bits set}.}
+    \IT{\CNS*{BOOLE-CLR}\qquad\qquad} {\retval{All bits zero}.}
+    \IT{\CNS*{BOOLE-EQV}\qquad\qquad} {\retval{$\text{\VAR{int-a}} \equiv \text{\VAR{int-b}}$}.}
+    \IT{\CNS*{BOOLE-AND}\qquad\qquad} {\retval{$\text{\VAR{int-a}}\land\text{\VAR{int-b}}$}.}
     \IT{\CNS*{BOOLE-ANDC1}} {\retval{$\lnot \text{\VAR{int-a}} \land \text{\VAR{int-b}}$}.}
     \IT{\CNS*{BOOLE-ANDC2}} {\retval{$\text{\VAR{int-a}} \land \lnot\text{\VAR{int-b}}$}.}
     \IT{\CNS*{BOOLE-NAND}} {\retval{$\lnot(\text{\VAR{int-a}} \land \text{\VAR{int-b}})$}.}
-    \IT{\CNS*{BOOLE-IOR}} {\retval{$\text{\VAR{int-a}} \lor \text{\VAR{int-b}}$}.}
-    \IT{\CNS*{BOOLE-ORC1}} {\retval{$\lnot \text{\VAR{int-a}} \lor \text{\VAR{int-b}}$}.}
-    \IT{\CNS*{BOOLE-ORC2}} {\retval{$\text{\VAR{int-a}} \lor \lnot\text{\VAR{int-b}}$}.}
-    \IT{\CNS*{BOOLE-XOR}} {\retval{$\lnot(\text{\VAR{int-a}} \equiv \text{\VAR{int-b}})$}.}
-    \IT{\CNS*{BOOLE-NOR}} {\retval{$\lnot(\text{\VAR{int-a}} \lor \text{\VAR{int-b}})$}.}
+    \IT{\CNS*{BOOLE-IOR}\qquad\qquad} {\retval{$\text{\VAR{int-a}} \lor \text{\VAR{int-b}}$}.}
+    \IT{\CNS*{BOOLE-ORC1}\qquad\qquad} {\retval{$\lnot \text{\VAR{int-a}} \lor \text{\VAR{int-b}}$}.}
+    \IT{\CNS*{BOOLE-ORC2}\qquad\qquad} {\retval{$\text{\VAR{int-a}} \lor \lnot\text{\VAR{int-b}}$}.}
+    \IT{\CNS*{BOOLE-XOR}\qquad\qquad} {\retval{$\lnot(\text{\VAR{int-a}} \equiv \text{\VAR{int-b}})$}.}
+    \IT{\CNS*{BOOLE-NOR}\qquad\qquad} {\retval{$\lnot(\text{\VAR{int-a}} \lor \text{\VAR{int-b}})$}.}
   \end{LIST}
 
   \IT{(\FU*{LOGNOT}\VAR{ integer})}
@@ -320,17 +318,17 @@ two's complement representation.
   respectively. Without any \VAR{integer}, return \retval{$-1$}.
   }
 
-  \IT{(\FU*{LOGANDC1} \VAR{ int-a} \VAR{ int-b})}
+  \IT{(\FU*{LOGANDC1} \VAR{int-a} \VAR{int-b})}
   {
     \retval{$\lnot \text{\VAR{int-a}} \land \text{\VAR{int-b}}$}.
    }
 
-  \IT{(\FU*{LOGANDC2} \VAR{ int-a} \VAR{ int-b})}
+  \IT{(\FU*{LOGANDC2} \VAR{int-a} \VAR{int-b})}
   {
     \retval{$\text{\VAR{int-a}} \land \lnot\text{\VAR{int-b}}$}.
   }
 
-  \IT{(\FU*{LOGNAND} \VAR{ int-a} \VAR{ int-b})\qquad\qquad}
+  \IT{(\FU*{LOGNAND} \VAR{int-a} \VAR{int-b})\qquad}
   {
   \retval{$\lnot(\text{\VAR{int-a}} \land \text{\VAR{int-b}})$}.
   }
@@ -342,17 +340,17 @@ two's complement representation.
   respectively. Without any \VAR{integer}, return \retval{0}.
   }
 
-  \IT{(\FU*{LOGORC1} \VAR{ int-a} \VAR{ int-b})}
+  \IT{(\FU*{LOGORC1} \VAR{int-a} \VAR{int-b})}
   {
     \retval{$\lnot \text{\VAR{int-a}} \lor \text{\VAR{int-b}}$}.
  }
 
-  \IT{(\FU*{LOGORC2} \VAR{ int-a} \VAR{ int-b})}
+  \IT{(\FU*{LOGORC2} \VAR{int-a} \VAR{int-b})}
   {
     \retval{$\text{\VAR{int-a}} \lor \lnot\text{\VAR{int-b}}$}.
   }
 
-  \IT{(\FU*{LOGNOR} \VAR{ int-a} \VAR{ int-b})}
+  \IT{(\FU*{LOGNOR} \VAR{int-a} \VAR{int-b})}
   {
   \retval{$\lnot(\text{\VAR{int-a}} \lor \text{\VAR{int-b}})$}.
   }
@@ -534,7 +532,7 @@ two's complement representation.
   \retval{precision} in that radix, respectively, of float \VAR{n}.
   }
 
-  \IT{(\FU*{UPGRADED-COMPLEX-PART-TYPE} \VAR{foo})}
+  \IT{(\FU*{UPGRADED-COMPLEX-PART-TYPE} \VAR{foo} \Op{\VAR{environment}\DF{\NIL}})}
   {\retval{Type} of most specialized \kwd{complex} number able to hold
     parts of type \VAR{foo}. 
   }

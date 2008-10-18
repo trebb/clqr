@@ -94,18 +94,21 @@ img {
     float: left;
     clear: left;
     margin-right: 2ex;
+    margin-bottom: 2ex;
 }
 
 .right {
     float: right;
     clear: both;
     margin-left: 2ex;
+    margin-bottom: 2ex;
 }
 
 .here {
     float: none;
     clear: both;
     margin-left: 2ex;
+    margin-bottom: 2ex;
 }
 
 .title {

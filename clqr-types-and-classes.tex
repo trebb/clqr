@@ -108,7 +108,9 @@
             \kwd*{STANDARD-CLASS};\>
             \kwd*{BUILT-IN-CLASS};\\
             \kwd*{STRUCTURE-CLASS}}\boxGOOcr
-          \kwd*{STANDARD-METHOD}}\boxGOOcr
+          \kwd*{METHOD}\footnotemark[2]
+          \boxGOO{%
+            \kwd*{STANDARD-METHOD}}}\boxGOOcr
         \kwd*{ATOM};\>
         \kwd*{HASH-TABLE};\>
         \kwd*{STRUCTURE-OBJECT};\>
@@ -130,7 +132,7 @@ For any class, there is always a corresponding type of the same name.
 
 \begin{LIST}{1cm}
 
-  \IT{(\FU*{TYPEP} \VAR{foo} \VAR{type} \Op{\VAR{environment}})}
+  \IT{(\FU*{TYPEP} \VAR{foo} \VAR{type} \Op{\VAR{environment}\DF{\NIL}})}
   {
   Return \retval{\T} if \VAR{foo} is of \VAR{type}.
   }
@@ -194,7 +196,7 @@ For any class, there is always a corresponding type of the same name.
   }
 
   \IT{(\FU*{UPGRADED-ARRAY-ELEMENT-TYPE} \VAR{type}
-    \Op{\VAR{environment}})}
+    \Op{\VAR{environment}\DF{\NIL}})}
   {
   \retval{Element type} of most specialized array capable of holding
   elements of \VAR{type}. 
@@ -242,8 +244,8 @@ For any class, there is always a corresponding type of the same name.
   Type specifier for union of \VAR{type}s.
   }
 
-  \IT{(\kwd*{VALUES} \OPn{\VAR{type}} \OP{\OPn{\VAR{type}}
-      \Op{\VAR{other-args}}})}
+  \IT{(\kwd*{VALUES} \OPn{\VAR{type}} \OP{\OPn{\kwd{\&optional} \VAR{type}}
+      \Op{\kwd{\&rest} \VAR{other-args}}})}
   {
   Type specifier for multiple values.
   }

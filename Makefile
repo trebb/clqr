@@ -71,7 +71,7 @@ $(CLQR)-%-signature-four.ps:	$(CLQR)-%-consec.ps
 $(CLQR)-%-consec.ps:	$(CLQR)-%.dvi
 	$(DVIPS) -o $@ $< $(SEND-TO-LOG)
 
-$(CLQR)-%.dvi:	$(CLQR).tex $(CLQR)-*.tex paper-%.flag color-current.tex REVISION.tex
+$(CLQR)-%.dvi:	$(CLQR).tex $(CLQR)-*.tex paper-%.flag color-current.tex DATE.tex revision-number
 	$(TOUCH) $(CLQR).ind $(SEND-TO-LOG)
 	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
 	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
@@ -99,8 +99,8 @@ color-black.flag:
 	$(RM) color-colorful.flag $(SEND-TO-LOG)
 	$(TOUCH) $@
 
-REVISION.tex:	DATE.tex
-	$(BZR_REVISION) > $@
+revision-number:
+	$(BZR_REVISION) > REVISION.tex
 
 DATE.tex:	$(CLQR).tex $(CLQR)-*.tex 
 	$(DATE) > $@
@@ -113,7 +113,7 @@ clean:
 
 maintainance:	release publish
 
-publish:	html/sample-frontcover.jpg html/sample-doublepage.jpg \
+publish:	html/sample-frontcover.jpg \
 		html/sample-firstpage-all.jpg html/sample-firstpage-four.jpg \
 		html/sample-firstpage-consec.jpg html/sample-source.jpg $(CLQR)-a4-consec.pdf
 	$(MAKE) publishclean
@@ -125,12 +125,7 @@ release:	emergency-commit letter a4 $(CLQR).tar.gz
 	./upload.sh
 
 html/sample-frontcover.jpg:	$(CLQR)-a4-consec.pdf
-	$(CONVERT) $<'[0]' -verbose -resize 30% temp.jpg $(SEND-TO-LOG)
-	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
-	$(RM) temp.jpg
-
-html/sample-doublepage.jpg:	$(CLQR)-a4-booklet-four.pdf
-	$(CONVERT) $<'[11]' -verbose -resize 30% temp.jpg $(SEND-TO-LOG)
+	$(CONVERT) $<'[0]' -verbose -resize 40% temp.jpg $(SEND-TO-LOG)
 	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 	$(RM) temp.jpg
 

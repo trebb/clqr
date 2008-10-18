@@ -35,17 +35,17 @@ see pages \pageref{section:Arrays} and \pageref{section:Sequences}.
   }
 
   \IT{(\xorGOO{\FU*{STRING/=}\\\FU{STRING\boldmath$>$}\\
-      \FU{STRING\boldmath$>=$}\\\FU{STRING\boldmath$<$}\\
-      \FU{STRING\boldmath$<=$}}{\}} \VAR{foo} \VAR{bar}
+      \FU{STRING\boldmath$>$=}\\\FU{STRING\boldmath$<$}\\
+      \FU{STRING\boldmath$<$=}}{\}} \VAR{foo} \VAR{bar}
     \orGOO{\kwd{:start1} \VAR{ start-foo}\DF{\LIT{0}}\\
       \kwd{:start2} \VAR{ start-bar}\DF{\LIT{0}}\\
       \kwd{:end1} \VAR{ end-foo}\DF{\NIL}\\
       \kwd{:end2} \VAR{ end-bar}\DF{\NIL}}{\}})}
   {
-  \index{string>@STRING$>$}%
-  \index{string>=@STRING$>=$}%
-  \index{string<@STRING$<$}%
-  \index{string<=@STRING$<=$}%
+  \index{STRING>@STRING$>$}%
+  \index{STRING>=@STRING$>$=}%
+  \index{STRING<@STRING$<$}%
+  \index{STRING<=@STRING$<$=}%
   If \VAR{foo} is
   lexicographically not equal, greater, not less, less, or not greater,
   respectively, then return \retval{character number} from beginning of \VAR{foo}

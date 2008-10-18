@@ -10,6 +10,12 @@ $ make
 
 and be patient.
 
+If you end up with three blank pages at the end you can try to blank a 
+fourth page by changing
+\renewcommand{\clearpagebeforeindex}{\clearpage}
+to
+\renewcommand{\clearpagebeforeindex}{}
+in file paper-<your-papersize>.tex.
 
 Visit http://clqr.berlios.de/ for the latest revision including
 ready-made pdfs.

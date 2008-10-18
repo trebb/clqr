@@ -206,12 +206,12 @@
   or return \retval{\NIL} for the rest.
   }
 
-  \IT{(\MC*{WITH-CONDITION-RESTARTS} \VAR{condition-form}
-    \VAR{restarts-form} \PROGN{\VAR{form}})}
+  \IT{(\MC*{WITH-CONDITION-RESTARTS} \VAR{condition}
+    \VAR{restarts} \PROGN{\VAR{form}})}
   {
-  Evaluate \VAR{form}s with restarts yielded from \VAR{restarts-form}
-  dynamically associated with conditions yielded from
-  \VAR{condition-form}. Return \retval{values of \VAR{form}s}.
+  Evaluate \VAR{form}s with \VAR{restarts}
+  dynamically associated with \VAR{condition}. Return \retval{values
+    of \VAR{form}s}. 
   }
 
   \begin{figure}
@@ -300,14 +300,14 @@
       (\FU*{STREAM-ERROR-STREAM } \VAR{condition})}{.}}
   {
   \retval{Package}, \retval{path}, or \retval{stream}, respectively,
-  which caused \VAR{condition}. 
+  which caused the \VAR{condition} of indicated type. 
   }
 
   \IT{\arrGOO{(\FU*{TYPE-ERROR-DATUM} \VAR{ condition})\\
       (\FU*{TYPE-ERROR-EXPECTED-TYPE} \VAR{ condition})}{.}}
   {
-  \retval{Object} which caused \VAR{condition}, or its expected type,
-  respectively. 
+  \retval{Object} which caused \VAR{condition} of type \kwd{type-error}, or its
+  \retval{expected type}, respectively.
   }
 
   \IT{\arrGOO{(\FU*{SIMPLE-CONDITION-FORMAT-CONTROL} \VAR{ condition})\\

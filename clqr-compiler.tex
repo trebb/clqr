@@ -255,7 +255,7 @@
   \IT{(\MC*{TIME} \VAR{form})}
   {
   Evaluate \VAR{form}s and print timing information to
-  \V{\A trace-output\A}. Return \retval{values of \VAR{form}s}. 
+  \V{\A trace-output\A}. Return \retval{values of \VAR{form}}. 
   }
   \IT{(\FU*{INSPECT} \VAR{foo})}
   {
@@ -289,7 +289,7 @@
 \begin{LIST}{1cm}
 
   \IT{\arrGOO{(\FU*{PROCLAIM} \VAR{ decl})\\
-      (\MC*{DECLAIM } \OPn{\NEV{\VAR{decl}}})}{.}} % FIXME:DECLARATION-ID-LIST
+      (\MC*{DECLAIM } \OPn{\NEV{\VAR{decl}}})}{.}}
   {
   Globally make declaration(s) \VAR{decl}. \VAR{decl} can be:
   \kwd{declaration},      
@@ -332,7 +332,7 @@
   }
 
 
-    \IT{\arrGOO{(\kwd*{TYPE} \VAR{ type} \OPn{\VAR{ variable}})\\
+    \IT{\arrGOO{(\Op{\kwd*{TYPE}} \VAR{ type} \OPn{\VAR{ variable}})\\
         (\kwd*{FTYPE} \VAR{ type} \OPn{\VAR{ function}})}{.}}
     {
     Declare \VAR{variable}s or \VAR{function}s to be of \VAR{type}.

@@ -91,12 +91,19 @@
   from \VAR{package}, respectively. Return \retval{\T}. 
   }
 
+  \IT{\arrGOO{%
+      (\FU*{PACKAGE-USE-LIST } \VAR{package})\\
+      (\FU*{PACKAGE-USED-BY-LIST } \VAR{package})}{.}}
+  {
+  \retval{List of other packages} used by/using \VAR{package}.
+  }
+
   \IT{(\FU*{DELETE-PACKAGE} \DES{\VAR{package}})}
   {
   Delete \VAR{package}. Return \retval{\T} if successful.
   }
 
-  \IT{\V{\A package\A}\DF{\kwd{common-lisp-user}}}
+  \IT{\V{\A package\A}\DF{\kwd{common-lisp-user}}\qquad\quad}
   {\index{*PACKAGE*@\A PACKAGE\A}
     The current package.
   }
@@ -106,7 +113,7 @@
   \retval{List of registered packages}.
   }
 
-  \IT{(\FU*{PACKAGE-NAME} \VAR{package})}
+  \IT{(\FU*{PACKAGE-NAME} \VAR{package})\qquad\quad}
   {
   \retval{Name of \VAR{package}}.
   }
@@ -121,25 +128,10 @@
   \retval{Package object} with \VAR{name} (case-sensitive). 
   }
 
-  \IT{(\FU*{PACKAGE-USE-LIST} \VAR{package})}
-  {
-  \retval{List of other packages} used by \VAR{package}.
-  }
-
-  \IT{(\FU*{PACKAGE-USED-BY-LIST} \VAR{package})}
-  {
-  \retval{List of other packages} using \VAR{package}.
-  }
-
   \IT{(\FU*{FIND-ALL-SYMBOLS} \VAR{name})}
   {
   Return \retval{list of symbols} with \VAR{name} from all
   registered packages.
-  }
-
-  \IT{(\FU*{SYMBOL-PACKAGE} \VAR{symbol})}
-  {
-  Return the \retval{package \VAR{symbol} came from}.
   }
 
   \IT{(\xorGOO{\FU*{INTERN}\\
@@ -152,14 +144,14 @@
   created a fresh symbol).
   }
 
-  \IT{(\FU*{UNINTERN} \VAR{symbol} \Op{\VAR{package}})}
+  \IT{(\FU*{UNINTERN} \VAR{symbol} \Op{\VAR{package}\DF{\V{\A package\A}}})}
   {
   Remove \VAR{symbol} from \VAR{package}, return \retval{\T} on success.
   }
 
   \IT{(\xorGOO{\FU*{IMPORT}\\
       \FU*{SHADOWING-IMPORT}}{\}} \VAR{symbols}
-    \Op{\VAR{package}\DF{\kwd{\A package\A}}})}
+    \Op{\VAR{package}\DF{\V{\A package\A}}})}
   {
   Make \VAR{symbols} internal  to \VAR{package}. Return \retval{\T}. In
   case of a name conflict signal correctable \kwd{package-error} or shadow
@@ -167,7 +159,7 @@
   }
 
   \IT{(\FU*{SHADOW} \VAR{symbols}
-    \Op{\VAR{package}\DF{\kwd{\A package\A}}})}
+    \Op{\VAR{package}\DF{\V{\A package\A}}})}
   {
   Add \VAR{symbols} to shadowing list of \VAR{package} making equally
   named inherited symbols shadowed. Return
@@ -185,7 +177,7 @@
   Make \VAR{symbols} external to \VAR{package}. Return \retval{\T}.
   }
 
-  \IT{(\FU*{UNEXPORT} \VAR{symbols} \VAR{package})}
+  \IT{(\FU*{UNEXPORT} \VAR{symbols} \Op{\VAR{package}\DF{\V{\A package\A}}})}
   {
   Revert \VAR{symbols} to internal status. Return \retval{\T}.
   }
@@ -207,12 +199,12 @@
   the whole form is a \SO{block} named \NIL. 
   }
 
-  \IT{(\MC*{WITH-PACKAGE-ITERATOR} (\VAR{name} \VAR{packages}
+  \IT{(\MC*{WITH-PACKAGE-ITERATOR} (\VAR{foo} \VAR{packages}
     \Op{\kwd{:internal}\XOR\kwd{:external}\XOR\kwd{:inherited}})
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{form}})}
   {
   Return \retval{values of \VAR{form}s}. In \VAR{form}s, successive
-  invocations of  (\VAR{name}) return: \T\ if a symbol is returned;
+  invocations of  (\VAR{foo}) return: \T\ if a symbol is returned;
   a symbol from \VAR{packages}; accessibility
   (\kwd{:internal}, \kwd{:external}, or \kwd{:inherited}); and the
   package the symbol belongs to.
@@ -270,11 +262,15 @@ function (of \kwd{function}, macro, or special operator \VAR{name}).
   \T, give copy the same value, function and property list.
   }
 
-  \IT{\arrGOO{(\FU*{SYMBOL-FUNCTION} \VAR{ symbol})\\
+  \IT{\arrGOO{%
+      (\FU*{SYMBOL-NAME} \VAR{ symbol})\\
+      (\FU*{SYMBOL-PACKAGE} \VAR{ symbol})\\
+      (\FU*{SYMBOL-PLIST} \VAR{ symbol})\\
       (\FU*{SYMBOL-VALUE} \VAR{ symbol})\\
-      (\FU*{SYMBOL-PLIST} \VAR{ symbol})}{.}}
+      (\FU*{SYMBOL-FUNCTION} \VAR{ symbol})}{.}}
   {
-  \retval{Function}, \retval{value}, or \retval{property list}, respectively,
+  \retval{Name}, \retval{package}, \retval{property list},
+  \retval{value}, or \retval{function}, respectively,
   of \VAR{symbol}. \kwd{setf}able. 
   }
 
@@ -293,11 +289,6 @@ function (of \kwd{function}, macro, or special operator \VAR{name}).
   {\index{VARIABLE}\index{FUNCTION}\index{COMPILER-MACRO}\index{METHOD-COMBINATION}\index{STRUCTURE}\index{TYPE}\index{SETF}
   Get/set \retval{documentation string} of \VAR{foo} of given
   type.
-  }
-
-  \IT{(\FU*{SYMBOL-NAME} \VAR{ symbol})}
-  {
-  \retval{Name} of \VAR{symbol}.
   }
 
   \IT{\CNS*{T}}

@@ -419,10 +419,11 @@
   \kwd{.}
   \VAR{var}).
   \penalty-5
-  One toplevel \Op{\VAR{E}} may be replaced by \kwd*{\&environment}
-  \VAR{var}. \VAR{supplied-p} is \T\ if there is a corresponding
-  argument. 
 \end{flushleft}
+  One toplevel \Op{\VAR{E}} may be replaced by \kwd*{\&environment}
+  \VAR{var} where \VAR{var} carries the lexical compilation
+  environment. \VAR{supplied-p} is \T\ if there is a corresponding
+  argument. 
 
 \begin{LIST}{1cm}
 
@@ -706,8 +707,9 @@
 
   \IT{(\SO*{TAGBODY} \Goos{\NEV{\VAR{tag}}\XOR\VAR{form}})}
   {
-  Evaluate \VAR{form}s. \VAR{tag}s (symbols or integers) are targets
-  for \SO{GO}. Return \retval{\NIL}. 
+  Evaluate \VAR{form}s. \VAR{tag}s (symbols or integers) have lexical
+  scope and dynamic extent, and are targets for \SO{GO}. Return
+  \retval{\NIL}. 
   }
 
   \IT{(\SO*{GO} \VAR{tag})}
@@ -1012,7 +1014,7 @@
             }\\
             \text{\LKWD{=} \VAR{foo }} 
             \Op{
-              \text{\LKWD{then} \VAR{bar}}
+              \text{\LKWD{then} \VAR{bar}\DF{\VAR{foo}}}
             }\\
             \text{\LKWD{across} \VAR{vector}}\\
             \text{\LKWD{being}}
@@ -1238,7 +1240,7 @@
       \Goo{\VAR{form}\XOR\LKWD*{it}} \Op{\LKWD*{into}
         \VAR{sum}} \Op{\VAR{type}}} 
     {
-    Calculate the sum of the values of \VAR{form} or of \LKWD{it}.
+    Calculate the sum of the primary values of \VAR{form} or of \LKWD{it}.
     If no \VAR{sum} is given, sum into an anonymous variable
     which is returned after termination.
     }
@@ -1248,7 +1250,7 @@
         \LKWD*{minimizing}} \Goo{\VAR{form}\XOR\LKWD*{it}} \Op{\LKWD*{into}
         \VAR{max-min}} \Op{\VAR{type}}} 
     {
-    Determine the maximum or minimum, respectively, of the values of
+    Determine the maximum or minimum, respectively, of the primary values of
     \VAR{form} or of \LKWD{it}. 
     If no \VAR{max-min} is given, use an anonymous variable
     which is returned after termination.
