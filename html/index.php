@@ -51,7 +51,7 @@
 	    or any of the great introductory web resources and books. 
 	    Its purpose is to give those who like a piece of
 	    dead tree in their hands a quick overview on things they
-	    know already, or some clue on what to look up elsewere.
+	    know already, or some clue on what to look up elsewhere.
 	  </p>
 	  
 	  <p>It is written in LaTeX and formatted for printing on both

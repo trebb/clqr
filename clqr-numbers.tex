@@ -365,10 +365,10 @@ two's complement representation.
   there is any bit set in \VAR{int-a} which is set in \VAR{int-b} as well.
   }
 
-  \IT{(\FU*{LOGCOUNT} \VAR{integer})}
+  \IT{(\FU*{LOGCOUNT} \VAR{int})}
   {
-    \retval{Number of bits} set
-  in \VAR{integer}.
+    \retval{Number of 1 bits} in $\text{\VAR{int}}\ge 0$,
+    \retval{number of 0 bits} in $\text{\VAR{int}}< 0$. 
   }
 
   \IT{(\FU*{ASH} \VAR{integer} \VAR{count})}

@@ -40,7 +40,7 @@
   {
   \retval{\T} if \VAR{foo} and \VAR{bar} are identical; or are the
   same \kwd{character} ignoring case; or are \kwd{number}s of the same
-  value ignoring type; or are equivalant \kwd{pathname}s; or are
+  value ignoring type; or are equivalent \kwd{pathname}s; or are
   \kwd{cons}es or \kwd{array}s of the same shape with \FU{equalp}
   elements; or are structures of the same \kwd{class} with
   \kwd{equalp} elements; or are \kwd{hash-table}s of the same size
@@ -504,7 +504,7 @@
     and \OPn{\VAR{s-var}} describe the arguments of \VAR{function} and
     the value(s) to be stored, respectively; and that returns
     the value(s) of \OPn{\VAR{s-var}}. \VAR{form}s are enclosed in an
-    implicit \SO{block} \VAR{foo}.
+    implicit \SO{block} named \VAR{function}.
   }
 
   \IT{(\MC*{DEFINE-SETF-EXPANDER} \VAR{function}
@@ -574,7 +574,7 @@
 
   \IT{(\xorGOO{\MC*{WHEN}\\
       \MC*{UNLESS}}{\}} \VAR{test}
-    \PROGN{\VAR{foo}}\DF{\NIL})}
+    \PROGN{\VAR{foo}})}
   {
   Evaluate \VAR{foo}s and return \retval{their values} if \VAR{test}
   returns \T\ or \NIL, respectively. Return \retval{\NIL} otherwise. 
@@ -687,7 +687,7 @@
   \IT{(\SO*{LOCALLY} \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \PROGN{\VAR{form}})}
   {
-  Evaluate \VAR{form}s in a lexical invironment with declarations
+  Evaluate \VAR{form}s in a lexical environment with declarations
   \VAR{decl} in effect. Return \retval{values of \VAR{form}s}. 
   }
 
@@ -702,7 +702,7 @@
       (\MC*{RETURN } \Op{\VAR{result}\DF{\NIL}})}{.}}
   {
   Have nearest enclosing \SO{block} named \VAR{foo}/named \NIL,
-  repectively, return with values of \VAR{result}.  
+  respectively, return with values of \VAR{result}.  
   }
 
   \IT{(\SO*{TAGBODY} \Goos{\NEV{\VAR{tag}}\XOR\VAR{form}})}
@@ -839,89 +839,6 @@
     Evaluate \VAR{form}s before begin, or after end, respectively, of iterations.
     }
 
-    \IT{\GOop{\Goo{\LKWD*{for}\XOR\LKWD*{as}}
-        \xorGOO{%
-          \VAR{var-s}\\
-          (\OPn{\VAR{var-s}})}{\}}
-        \Op{\VAR{d-type}}} 
-      \GOos{\LKWD*{and}
-        \xorGOO{%
-          \VAR{var-p}\\
-          (\OPn{\VAR{var-p}})}{\}}
-        \Op{\VAR{d-type}}}}
-    {
-    Begin of iteration control clauses. Initialize and step (possibly
-    trees of) local variables \VAR{var-s} sequentially and \VAR{var-p}
-    in parallel. Destructuring type specifier \VAR{d-type} as with \LKWD{with}.
-    }
-
-    \begin{LIST}{.5cm}
-
-      \IT{\Goo{\LKWD*{upfrom}\XOR\LKWD*{from}\XOR\LKWD*{downfrom}}
-        \VAR{start}}
-      {
-      Start stepping with \VAR{start}
-      }
-
-      \IT{\Goo{\LKWD*{upto}\XOR\LKWD*{downto}\XOR\LKWD*{to}\XOR\LKWD*{below}\XOR\LKWD*{above}}
-        \VAR{form}}
-      {
-      Specify \VAR{form} as the end value for stepping.
-      }
-
-      \IT{\Goo{\LKWD*{in}\XOR\LKWD*{on}} \VAR{list}}
-      {
-      Bind \VAR{var} to successive elements/tails, respectively, of \VAR{list}.
-      }
-
-      \IT{\LKWD*{by} \Goo{\VAR{step}\DF{\LIT{1}}\XOR\VAR{function}\DF{\FU{cdr}}}}
-      {
-      Specify the (positive) decrement or increment or the
-      \VAR{function} of one argument returning the next part of the list.
-      }
-
-      \IT{\LKWD*{=} \VAR{foo} \Op{\LKWD*{then}
-          \VAR{bar}\DF{\VAR{foo}}}}
-      {
-      Bind \VAR{var} in the first iteration to  \VAR{foo} and later to \VAR{bar}.
-      }
-
-      \IT{\LKWD*{across} \VAR{vector}}
-      {
-      Bind \VAR{var} to successive elements of \VAR{vector}.
-      }
-
-      \IT{\LKWD*{being} \Goo{\LKWD*{the}\XOR\LKWD*{each}}}
-      {
-      Iterate over a hash table or a package.
-      }
-
-      \begin{LIST}{.5cm}
-
-        \IT{\Goo{\LKWD*{hash-key}\XOR\LKWD*{hash-keys}} \Goo{\LKWD*{of}\XOR\LKWD*{in}} \VAR{hash-table}
-          \Op{\LKWD*{using} (\LKWD*{hash-value} \VAR{value})}}
-        {
-        Bind \VAR{var} successively to the keys of \VAR{hash-table}; bind \VAR{value} to corresponding values.
-        }
-
-        \IT{\Goo{\LKWD*{hash-value}\XOR\LKWD*{hash-values}} \Goo{\LKWD*{of}\XOR\LKWD*{in}} \VAR{hash-table}
-          \Op{\LKWD*{using} (\LKWD*{hash-key} \VAR{key})}}
-        {
-        Bind \VAR{var} successively to the values of \VAR{hash-table}; bind \VAR{key} to corresponding keys.
-        }
-
-        \IT{\Goo{\LKWD*{symbol}\XOR\LKWD*{symbols}\XOR\LKWD*{present-symbol}\XOR\LKWD*{present-symbols}\XOR\LKWD*{external-symbol}\XOR\LKWD*{external-symbols}}
-          \Op{\Goo{\LKWD*{of}\XOR\LKWD*{in}}
-            \VAR{package}\DF{\V{\A package\A}}}}
-        {
-        Bind \VAR{var} successively to the accessible symbols, or the present
-        symbols, or the external symbols respectively, of
-        \VAR{package}. 
-        }
-
-      \end{LIST}
-    \end{LIST}
-    
 \begin{figure}%
   \begin{center}%
     \begin{sideways}%
@@ -1193,6 +1110,89 @@
   \raisebox{0em}[0em][0em]{\parbox[b]{4cm}{\caption{\protect\raggedright Loop Facility, Overview.\label{loop-overview}}}}
 \end{figure}
 
+    \IT{\GOop{\Goo{\LKWD*{for}\XOR\LKWD*{as}}
+        \xorGOO{%
+          \VAR{var-s}\\
+          (\OPn{\VAR{var-s}})}{\}}
+        \Op{\VAR{d-type}}} 
+      \GOos{\LKWD*{and}
+        \xorGOO{%
+          \VAR{var-p}\\
+          (\OPn{\VAR{var-p}})}{\}}
+        \Op{\VAR{d-type}}}}
+    {
+    Begin of iteration control clauses. Initialize and step (possibly
+    trees of) local variables \VAR{var-s} sequentially and \VAR{var-p}
+    in parallel. Destructuring type specifier \VAR{d-type} as with \LKWD{with}.
+    }
+
+    \begin{LIST}{.5cm}
+
+      \IT{\Goo{\LKWD*{upfrom}\XOR\LKWD*{from}\XOR\LKWD*{downfrom}}
+        \VAR{start}}
+      {
+      Start stepping with \VAR{start}
+      }
+
+      \IT{\Goo{\LKWD*{upto}\XOR\LKWD*{downto}\XOR\LKWD*{to}\XOR\LKWD*{below}\XOR\LKWD*{above}}
+        \VAR{form}}
+      {
+      Specify \VAR{form} as the end value for stepping.
+      }
+
+      \IT{\Goo{\LKWD*{in}\XOR\LKWD*{on}} \VAR{list}}
+      {
+      Bind \VAR{var} to successive elements/tails, respectively, of \VAR{list}.
+      }
+
+      \IT{\LKWD*{by} \Goo{\VAR{step}\DF{\LIT{1}}\XOR\VAR{function}\DF{\FU{cdr}}}}
+      {
+      Specify the (positive) decrement or increment or the
+      \VAR{function} of one argument returning the next part of the list.
+      }
+
+      \IT{\LKWD*{=} \VAR{foo} \Op{\LKWD*{then}
+          \VAR{bar}\DF{\VAR{foo}}}}
+      {
+      Bind \VAR{var} in the first iteration to  \VAR{foo} and later to \VAR{bar}.
+      }
+
+      \IT{\LKWD*{across} \VAR{vector}}
+      {
+      Bind \VAR{var} to successive elements of \VAR{vector}.
+      }
+
+      \IT{\LKWD*{being} \Goo{\LKWD*{the}\XOR\LKWD*{each}}}
+      {
+      Iterate over a hash table or a package.
+      }
+
+      \begin{LIST}{.5cm}
+
+        \IT{\Goo{\LKWD*{hash-key}\XOR\LKWD*{hash-keys}} \Goo{\LKWD*{of}\XOR\LKWD*{in}} \VAR{hash-table}
+          \Op{\LKWD*{using} (\LKWD*{hash-value} \VAR{value})}}
+        {
+        Bind \VAR{var} successively to the keys of \VAR{hash-table}; bind \VAR{value} to corresponding values.
+        }
+
+        \IT{\Goo{\LKWD*{hash-value}\XOR\LKWD*{hash-values}} \Goo{\LKWD*{of}\XOR\LKWD*{in}} \VAR{hash-table}
+          \Op{\LKWD*{using} (\LKWD*{hash-key} \VAR{key})}}
+        {
+        Bind \VAR{var} successively to the values of \VAR{hash-table}; bind \VAR{key} to corresponding keys.
+        }
+
+        \IT{\Goo{\LKWD*{symbol}\XOR\LKWD*{symbols}\XOR\LKWD*{present-symbol}\XOR\LKWD*{present-symbols}\XOR\LKWD*{external-symbol}\XOR\LKWD*{external-symbols}}
+          \Op{\Goo{\LKWD*{of}\XOR\LKWD*{in}}
+            \VAR{package}\DF{\V{\A package\A}}}}
+        {
+        Bind \VAR{var} successively to the accessible symbols, or the present
+        symbols, or the external symbols respectively, of
+        \VAR{package}. 
+        }
+
+      \end{LIST}
+    \end{LIST}
+    
     \IT{\Goo{\LKWD*{do}\XOR\LKWD*{doing}} \RP{\VAR{form}}}
     {
     Evaluate \VAR{form}s in every iteration.
