@@ -336,7 +336,7 @@
 
   \IT{\KWD*{\#:}\VAR{foo}\qquad\qquad\qquad}
   {
-  Uninterned Symbol \VAR{foo}.
+  Uninterned symbol \VAR{foo}.
   }
 
   \IT{\KWD*{\#.}\VAR{form}\qquad\qquad}
@@ -586,7 +586,7 @@
 
   \IT{\V{\A print-base\A}\DF{\LIT{10}}}
   {\index{*PRINT-BASE*@\A PRINT-BASE\A}
-  Radix for printing rationals, between 2 and 36.
+  Radix for printing rationals, from 2 to 36.
   }
 
   \IT{\V{\A print-case\A}\DF{\kwd{:upcase}}}
@@ -772,7 +772,7 @@
     {\index{\~E@$\sim$E}\index{\~G@$\sim$G}
       Print argument as floating-point number with \VAR{int-digits}
       before decimal point and \VAR{exp-digits} in the signed
-      exponent. With \KWD{\TLD G}, chose either \KWD{\TLD E} or
+      exponent. With \KWD{\TLD G}, choose either \KWD{\TLD E} or
       \KWD{\TLD F}. With \KWD{@}, always prepend a sign. 
   }
 
@@ -789,7 +789,7 @@
           \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}}
     \Op{\KWD{:}}\Op{\kwd{@}}\KWD{\$}}
   {\index{\~\$@$\sim$\$}
-  Print argument as fixes-format floating-point number. With \KWD{:},
+  Print argument as fixed-format floating-point number. With \KWD{:},
   put sign before any padding; with \KWD{@}, always prepend a sign.}
 
     \IT{\Goo{%
@@ -830,8 +830,8 @@
   }
 
   \IT{\KWD{\TLD}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{\boldmath{$<$}}
-    \OP{\Goo{\VAR{prefix}\DF{\NIL}\KWD{\TLD;}}\XOR\Goo{\VAR{per-line-prefix}\KWD{\TLD@;}}}
-    \VAR{body}\OP{\KWD{\TLD;}\VAR{suffix}\DF{\NIL}}\KWD{\TLD:}\Op{\KWD{@}}\KWD{\boldmath{$>$}}}
+    \OP{\Goo{\VAR{prefix}\DF{\LIT{""}}\KWD{\TLD;}}\XOR\Goo{\VAR{per-line-prefix}\KWD{\TLD@;}}}
+    \VAR{body}\OP{\KWD{\TLD;}\VAR{suffix}\DF{\LIT{""}}}\KWD{\TLD:}\Op{\KWD{@}}\KWD{\boldmath{$>$}}}
   {\index{\~<\~:>@$\sim$$<$ $\sim$:$>$}
   Act like \kwd{pprint-logical-block} using \VAR{body} as \MC{format}
   control string on the elements of the list argument or, with \KWD{@},
@@ -890,8 +890,7 @@
     \IT{\Goo{%
       \KWD{\TLD}\Op{\VAR{m}\DF{\LIT{1}}}\KWD{\A}\XOR
       \KWD{\TLD}\Op{\VAR{m}\DF{\LIT{1}}}\KWD{:}\KWD{\A}\XOR
-      \KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\KWD{@}\KWD{\A}
-    }}
+      \KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\KWD{@}\KWD{\A}}}
   {\index{\~*@$\sim$\A}
     Jump \VAR{m} arguments forward, or backward, or to argument \VAR{n}.
   }
@@ -906,12 +905,13 @@
     lists of which a new one is used at each iteration step.
   }
 
-    \IT{\KWD{\TLD\^{}}}
+    \IT{\KWD{\TLD}\OP{\VAR{x} \OP{\kwd{,}\Op{\VAR{y}} \Op{\kwd{,}\VAR{z}}}}\KWD{\^{}}}
     {\index{\~\^{}@$\sim$\^{}}
     Leave immediately \kwd{\TLD\boldmath{$<$} \TLD\boldmath{$>$}},
     \kwd{\TLD\boldmath{$<$} \TLD:\boldmath{$>$}}, 
-    \kwd{\TLD\boldmath{$\{$} \TLD\boldmath{$\}$}}, or the entire
-    \FU{format} operation.
+    \kwd{\TLD\boldmath{$\{$} \TLD\boldmath{$\}$}}, \kwd{\TLD?}, or the
+    entire \FU{format} operation. With one to three prefixes, act only
+    if $x=0$, $x=y$, or $x\leq y \leq z$, respectively.
   }
 
     \IT{\KWD{\TLD}\Op{\VAR{i}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{[}\Op{\Goos{\VAR{text}\KWD{\TLD;}}\VAR{text}}\Op{\kwd{\TLD:;}\VAR{default}}\KWD{\TLD]}}
@@ -1022,10 +1022,8 @@
       (\FU*{ECHO-STREAM-INPUT-STREAM} \VAR{ echo-stream})\\
       (\FU*{ECHO-STREAM-OUTPUT-STREAM} \VAR{ echo-stream})}{.}}
   {
-  Return \retval{source stream} or  \retval{sink stream}
-  of
-  \VAR{two-way-stream}/\VAR{echo-stream},
-  respectively. 
+  Return \retval{source stream} or \retval{sink stream} of
+  \VAR{two-way-stream}\slash\VAR{echo-stream}, respectively. 
   }
 
   \IT{(\FU*{SYNONYM-STREAM-SYMBOL} \VAR{synonym-stream})}

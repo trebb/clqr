@@ -28,7 +28,7 @@
   }
 
   \IT{(\MC*{DEFCLASS} \VAR{foo} (\OPn{\VAR{superclass}}\DF{\kwd{standard-object}})
-    (\OPn{\xorGOO{\VAR{slot}\\
+    (\xorGOO{\VAR{slot}\\
       (\VAR{slot} 
       \orGOO{\Goos{\kwd{:reader} \VAR{reader-function}}\\
         \Goos{\kwd{:writer} \VAR{writer-function}} \\
@@ -38,7 +38,7 @@
         \Goos{\kwd{:initarg} \kwd{:}\VAR{initarg-name}} \\
         \kwd{:initform} \VAR{ form}\\
         \kwd{:type} \VAR{ type}\\
-        \kwd{:documentation} \VAR{ slot-doc}}{\}})}{\}}})
+        \kwd{:documentation} \VAR{ slot-doc}}{\}})}{\}^{\!\!\!*}})
     \orGOO{(\kwd{:default-initargs } \Goos{\VAR{name}\VAR{ value}})\\
       (\kwd{:documentation} \VAR{ class-doc})\\
       (\kwd{:metaclass} \VAR{ name}\DF{\kwd{standard-class}})}{\}})}
@@ -247,7 +247,7 @@
         (\VAR{var } \Op{\VAR{init}})}{\}^{\!\!*}}})
     \orGOO{\OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\\
       \NEV{\VAR{doc}}}{\}}
-    \OPn{\VAR{form}})}
+    \PROGN{\VAR{form}})}
   {
   Define \retval{new method} for generic function
   \VAR{foo}. \VAR{spec-var}s specialize to either being of \VAR{class}
@@ -394,7 +394,7 @@
       \NEV{\VAR{doc}}}{\}}
     \PROGN{\VAR{body}})}
   {
-  Long form. Define new method combination type
+  Long form. Define new \kwd{method-combination}
   \retval{\VAR{c-type}}. A call to a generic function using
   \VAR{c-type} will be equivalent to a call to the forms returned by
   \OPn{\VAR{body}} with \OPn{\VAR{ord-$\lambda$}} bound to

@@ -42,7 +42,7 @@
   same \kwd{character} ignoring case; or are \kwd{number}s of the same
   value ignoring type; or are equivalent \kwd{pathname}s; or are
   \kwd{cons}es or \kwd{array}s of the same shape with \FU{equalp}
-  elements; or are structures of the same \kwd{class} with
+  elements; or are structures of the same type with
   \kwd{equalp} elements; or are \kwd{hash-table}s of the same size
   with the same \kwd{:test} function, the same keys in terms of
   \kwd{:test} function, and \kwd{equalp} elements.
@@ -712,7 +712,7 @@
   \retval{\NIL}. 
   }
 
-  \IT{(\SO*{GO} \VAR{tag})}
+  \IT{(\SO*{GO} \NEV{\VAR{tag}})}
   {
     Within the innermost enclosing \SO{tagbody}, jump to a tag \kwd{eql} \VAR{tag}.
   }

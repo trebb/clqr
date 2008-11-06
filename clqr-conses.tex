@@ -103,13 +103,13 @@
   \retval{\NIL} for circular \VAR{list}.
   }
 
-  \IT{(\FU*{CAR} \VAR{list})}
+  \IT{(\FU*{CAR} \VAR{list})\qquad\qquad}
   {
   \retval{car of \VAR{list}} or \retval{\NIL} if \VAR{list} is
   \NIL. \kwd{SETF}able. 
   }
 
-  \IT{\arrGOO{(\FU*{CDR} \VAR{ list})\\
+  \IT{\arrGOO{(\FU*{CDR} \VAR{ list}\qquad)\\
       (\FU*{REST} \VAR{ list})}{.}}
   {
   \retval{cdr of \VAR{list}} or \retval{\NIL} if \VAR{list}
@@ -270,7 +270,7 @@
   \IT{\arrGOO{(\xorGOO{\FU*{ASSOC}\\
         \FU*{RASSOC}}{\}}
       \VAR{ foo} \VAR{ alist }
-      \xorGOO{\xorGOO{%
+      \orGOO{\xorGOO{%
           \kwd{:test} \VAR{ test}\DF{\kwd{eql}}\\
           \kwd{:test-not} \VAR{ test}}{.}\\
         \kwd{:key} \VAR{ function}
