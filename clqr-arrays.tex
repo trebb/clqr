@@ -110,12 +110,12 @@
       (\FU*{SBIT} \VAR{ simple-bit-array } \Op{\VAR{subscripts}})}{.}}
   {
   Return \retval{element} of \VAR{bit-array} or of
-  \VAR{simple-bit-array}. \kwd{setf}able. 
+  \VAR{simple-bit-array}. \kwd{setf}\-able. 
   }
 
   \IT{(\FU*{BIT-NOT} \DES{\VAR{bit-array}} \Op{\DES{\VAR{result-bit-array}}\DF{\NIL}})}
   {
-  Return \retval{result} of bit-wise negation of \VAR{bit-array}. If \VAR{result-bit-array} is \T, put
+  Return \retval{result} of bitwise negation of \VAR{bit-array}. If \VAR{result-bit-array} is \T, put
   result in \VAR{bit-array}; if it is \NIL, make a new array for
   result. 
   }
@@ -133,7 +133,7 @@
       \FU*{BIT-NOR}}{\}} \DES{\VAR{bit-array-a}} \VAR{bit-array-b}
     \Op{\DES{\VAR{result-bit-array}}\DF{\NIL}})}
   {
-  Return \retval{result} of bit-wise logical operations
+  Return \retval{result} of bitwise logical operations
   (cf.\ operations of \FU{boole}, p.\ \pageref{section:Logic Functions}) on
   \VAR{bit-array-a} and  \VAR{bit-array-b}.  If \VAR{result-bit-array} is \T, put result in
   \VAR{bit-array-a}; if it is \NIL, make a new array for
@@ -162,7 +162,7 @@
 \subsection{Vector Functions} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Vectors can as well be manipulated by sequence functions, see
+Vectors can as well be manipulated by sequence functions; see
 section~\ref{section:Sequences}. 
 
 \begin{LIST}{1cm}

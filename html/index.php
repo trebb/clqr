@@ -58,15 +58,12 @@
 	    A4 and letter paper. After folding the sheets lengthwise,
 	    they can easily be turned into a handy booklet. 
 	  </p>
-	  
 	  <p>
-	    Although far from perfect, it should be usable now and
-	    would benefit from users sending in error reports or making
-	    suggestions. Please use
+	    Please report any errors. You can use
 	    the <a href="https://lists.berlios.de/mailman/listinfo/clqr-general">mailing
-	      list</a>
+	    list</a>
 	    or <a href="mailto:trebb@users.berlios.de?subject=CLQR ">
-	      send me an email</a>.
+	    send an email to trebb@users.berlios.de</a>. 
 	  </p>
 	  <p>&nbsp;</p>
 	    
