@@ -713,9 +713,9 @@
 
   \begin{LIST}{.5cm}
 
-    \IT{\KWD{\TLD}\OP{\VAR{min-col}\DF{\LIT{0}} \OP{\KWD{,}\Op{\VAR{col-inc}\DF{\LIT{1}}}
+    \IT{\KWD{\TLD}\Op{\VAR{min-col}\DF{\LIT{0}}} \OP{\KWD{,}\Op{\VAR{col-inc}\DF{\LIT{1}}}
           \OP{\KWD{,}\Op{\VAR{min-pad}\DF{\LIT{0}}}
-            \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}}
+            \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}
       \KWD{\Op{:}\Op{@}\Goo{A\XOR S}}}
     {\index{\~S@$\sim$S}\index{\~A@$\sim$A}
     Print argument of any type for consumption by humans/by the
@@ -724,14 +724,15 @@
     rather than on the right.
   }
 
-    \IT{\KWD{\TLD}\OP{\VAR{radix}\DF{\LIT{10}} \OP{\KWD{,}\Op{\VAR{width}}
+    \IT{\KWD{\TLD}\Op{\VAR{radix}\DF{\LIT{10}}} \OP{\KWD{,}\Op{\VAR{width}}
           \OP{\KWD{,}\Op{\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}
             \OP{\KWD{,}\Op{\VAR{comma-char}\DF{\kwd{'}\LIT{,}}}
-              \OP{\KWD{,}\VAR{comma-interval}\DF{\LIT{3}}}}}}}
+              \OP{\KWD{,}\VAR{comma-interval}\DF{\LIT{3}}}}}}
       \KWD{\Op{:}\Op{@}R}}
     {\index{\~R@$\sim$R}
-    Print argument as number; with \KWD{:}, group digits 
-    \VAR{comma-interval} each; with \kwd{@}, always prepend a sign.
+    (One or more prefix arguments.) Print argument as number; with
+    \KWD{:}, group digits \VAR{comma-interval} each; with \kwd{@},
+    always prepend a sign. 
   }
 
     \IT{\Goo{\KWD{\TLD R}\XOR\KWD{\TLD :R}\XOR\KWD{\TLD
@@ -742,10 +743,10 @@
     numeral, respectively.
   }
 
-    \IT{\KWD{\TLD}\OP{\VAR{width}
+    \IT{\KWD{\TLD}\Op{\VAR{width}}
         \OP{\KWD{,}\Op{\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}
           \OP{\KWD{,}\Op{\VAR{comma-char}\DF{\kwd{'}\LIT{,}}}
-            \OP{\KWD{,}\VAR{comma-interval}\DF{\LIT{3}}}}}}
+            \OP{\KWD{,}\VAR{comma-interval}\DF{\LIT{3}}}}}
       \KWD{\Op{:}\Op{@}\Goo{D\XOR B\XOR O\XOR X}}}
     {\index{\~D@$\sim$D}\index{\~B@$\sim$B}\index{\~O@$\sim$O}\index{\~X@$\sim$X}
     Print integer argument as number (decimal, binary, octal, or
@@ -753,21 +754,22 @@
     \VAR{comma-interval} each; with \kwd{@}, always prepend a sign.
   }
 
-    \IT{\KWD{\TLD}\OP{\VAR{width} \OP{\KWD{,}\Op{\VAR{dec-digits}} \OP{\KWD{,}\Op{\VAR{shift}\DF{\LIT{0}}}
+    \IT{\KWD{\TLD}\Op{\VAR{width}} \OP{\KWD{,}\Op{\VAR{dec-digits}}
+          \OP{\KWD{,}\Op{\VAR{shift}\DF{\LIT{0}}} 
             \OP{\KWD{,}\Op{\VAR{overflow-char}}
-              \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}}}
+              \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}}
       \KWD{\Op{@}F}}
     {\index{\~F@$\sim$F}
     Print argument as fixed-format floating-point number. With
     \kwd{@}, always prepend a sign. 
   }
 
-    \IT{\KWD{\TLD}\OP{\VAR{width} \OP{\KWD{,}\Op{\VAR{int-digits}}
+    \IT{\KWD{\TLD}\Op{\VAR{width}} \OP{\KWD{,}\Op{\VAR{int-digits}}
           \OP{\KWD{,}\Op{\VAR{exp-digits}}
             \OP{\KWD{,}\Op{\VAR{scale-factor}\DF{\LIT{1}}}
               \OP{\KWD{,}\Op{\VAR{overflow-char}}
                 \OP{\KWD{,}\Op{\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}
-                  \OP{\KWD{,}\VAR{exp-char}}}}}}}}
+                  \OP{\KWD{,}\VAR{exp-char}}}}}}}
       \KWD{\Op{@}\Goo{E\XOR  G}}}
     {\index{\~E@$\sim$E}\index{\~G@$\sim$G}
       Print argument as floating-point number with \VAR{int-digits}
@@ -779,14 +781,15 @@
     \IT{\Goo{\KWD{\TLD C}\XOR\KWD{\TLD :C}\XOR\KWD{\TLD
           @C}\XOR\KWD{\TLD @:C}}}
     {\index{\~C@$\sim$C}
-    Print, spell out, print in \kwd{\#$\backslash$} syntax, or tell how to type, respectively, argument as
-    (possibly non-printing) character.
+    Print, spell out, print in \kwd{\#$\backslash$} syntax, or tell
+    how to type, respectively, argument as (possibly non-printing)
+    character. 
   }
 
-  \IT{\KWD{\TLD}\OP{\VAR{dec-digits}\DF{\LIT{2}}
+  \IT{\KWD{\TLD}\Op{\VAR{dec-digits}\DF{\LIT{2}}}
       \OP{\KWD{,}\Op{\VAR{int-digits}\DF{\LIT{1}}}
         \OP{\KWD{,}\Op{\VAR{width}\DF{\LIT{0}}}
-          \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}}
+          \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}
     \Op{\KWD{:}}\Op{\kwd{@}}\KWD{\$}}
   {\index{\~\$@$\sim$\$}
   Print argument as fixed-format floating-point number. With \KWD{:},
@@ -844,7 +847,7 @@
 
     \IT{\KWD{\TLD}\Op{\KWD{:}}\Op{\KWD{@}}$\hookleftarrow$}
     {
-    (Tilde-newline) Ignore newline and following
+    (Tilde-newline.) Ignore newline and following
     whitespace. With \kwd{:}, ignore only newline; with \kwd{@},
     ignore only following whitespace.
   }
@@ -859,10 +862,10 @@
     Print \VAR{n} tildes.
   }
 
-    \IT{\KWD{\TLD}\OP{\VAR{min-col}\DF{\LIT{0}}
+    \IT{\KWD{\TLD}\Op{\VAR{min-col}\DF{\LIT{0}}}
         \OP{\KWD{,}\Op{\VAR{col-inc}\DF{\LIT{1}}}
           \OP{\KWD{,}\Op{\VAR{min-pad}\DF{\LIT{0}}}
-            \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}}
+            \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}
       \KWD{\Op{:}\Op{@}\boldmath{$<$}} 
       \OP{\VAR{nl-text}\KWD{\TLD}\Op{\VAR{spare}\DF{\LIT{0}}\Op{,\VAR{width}}}\kwd{:;}}
       \Goos{\VAR{text}\KWD{\TLD;}}\VAR{text} \KWD{\TLD\boldmath{$>$}}}
@@ -873,7 +876,8 @@
     on the current line, output \VAR{nl-text} first.
   }
 
-    \IT{\KWD{\TLD}\OP{\VAR{c}\DF{\LIT{1}}\OP{\KWD{,}\VAR{i}\DF{\LIT{1}}}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{T}}
+    \IT{\KWD{\TLD}\Op{\VAR{c}\DF{\LIT{1}}}
+      \Op{\KWD{,}\VAR{i}\DF{\LIT{1}}} \Op{\KWD{:}}\Op{\KWD{@}}\KWD{T}}
     {\index{\~T@$\sim$T}
     Move cursor forward to column number $c + ki$, $k \geq 0$ being as small
     as possible. With \kwd{:}, calculate column numbers relative to
@@ -931,7 +935,8 @@
     rest oft the original arguments.
   }
 
-    \IT{\KWD{\TLD}\OP{\VAR{prefix}\Goos{\kwd{,} \VAR{prefix}}}\Op{\kwd{:}}\Op{\kwd{@}}\KWD{/}\VAR{function}\KWD{/}}
+    \IT{\KWD{\TLD}\OP{\VAR{prefix}\Goos{\kwd{,}
+          \VAR{prefix}}}\Op{\kwd{:}}\Op{\kwd{@}}\KWD{/}\VAR{function}\KWD{/}}
     {\index{\~//@$\sim$//}
     Call \VAR{function} with the arguments stream, format-ar\-gu\-ment,
     colon-p, at-sign-p and \VAR{prefix}es for printing format-argument.
