@@ -1,4 +1,4 @@
-% Copyright (C) 2008 Bert Burgemeister
+% Copyright (C) 2008, 2009 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -194,6 +194,11 @@
   Floating point format to use when not indicated in the number read. 
   }
 
+  \IT{\V{\A read-suppress\A}\DF{\NIL}}
+  {\index{*READ-SUPPRESS*@\A READ-SUPPRESS\A}
+  If \T, reader is syntactically more tolerant.
+  }
+
   \IT{(\FU*{SET-MACRO-CHARACTER} \VAR{char} \VAR{function}
     \OP{\VAR{non-term-p}\DF{\NIL}
       \Op{\DES{\VAR{rt}}\DF{\V{\A readtable\A}}}})}
@@ -240,7 +245,7 @@
   \IT{\arrGOO{%
       \KWD{\#\boldmath$|$ }\OPn{\VAR{multi-line-comment}}\KWD{ \boldmath$|$\#}\\
       \KWD*{; }\OPn{\VAR{one-line-comment}}}{.}}
-  {\index{\#{$"|$}{$"|$}\#}
+  {\index{\#{$"|$} {$"|$}\#}
   Comments. There are conventions:
   }
   \begin{LIST}{.5cm}
@@ -387,7 +392,7 @@
     Treat arbitrary character(s) \VAR{c} as alphabetic preserving case.
   }
     \index{\@{$\backslash$}}%
-    \index{\textbar\textbar@{$"|$}{$"|$}}%
+    \index{{$"|$} {$"|$}}%
 
 \end{LIST}
 
@@ -676,11 +681,6 @@
   Current pretty print dispatch table.
   }
 
-  \IT{\V{\A read-suppress\A}\DF{\NIL}}
-  {\index{*READ-SUPPRESS*@\A READ-SUPPRESS\A}
-  If \T, reader is syntactically more tolerant.
-  }
-
 \end{LIST}
 
 
@@ -841,7 +841,7 @@
   on the remaining arguments, which are extracted by
   \kwd{pprint-pop}. With \KWD{:}, \VAR{prefix} and \VAR{suffix}
   default to \LIT{(} and \LIT{)}. When closed by
-  \KWD{\TLD:@\boldmath{$>$}}, spaces in body are replaced with
+  \KWD{\TLD:@\boldmath{$>$}}, spaces in \VAR{body} are replaced with
   conditional newlines. 
   }
 
@@ -937,7 +937,7 @@
 
     \IT{\KWD{\TLD}\OP{\VAR{prefix}\Goos{\kwd{,}
           \VAR{prefix}}}\Op{\kwd{:}}\Op{\kwd{@}}\KWD{/}\VAR{function}\KWD{/}}
-    {\index{\~//@$\sim$//}
+    {\index{\~/ /@$\sim$/ /}
     Call \VAR{function} with the arguments stream, format-ar\-gu\-ment,
     colon-p, at-sign-p and \VAR{prefix}es for printing format-argument.
   }

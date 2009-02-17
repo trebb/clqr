@@ -44,13 +44,13 @@
       (\FU*{PLUSP}
       \VAR{ a})}{.}}
   {
-  Return \retval{\T} if $a < 0$, $a = 0$, or $a > 0$, respectively.
+  \retval{\T} if $a < 0$, $a = 0$, or $a > 0$, respectively.
   }
 
   \IT{\arrGOO{(\FU*{EVENP } \VAR{integer})\\
       (\FU*{ODDP } \VAR{integer})}{.}}
   {
-    Return \retval{\T} if \VAR{integer} is even or odd, respectively.
+    \retval{\T} if \VAR{integer} is even or odd, respectively.
   }
 
   \IT{\arrGOO{(\FU*{NUMBERP} \VAR{ foo})\\
@@ -97,8 +97,7 @@
       \MC*{DECF}}{\}} \DES{\VAR{place}}
     \Op{\VAR{delta}\DF{\LIT{1}}})}
   {
-  Increment or
-  decrement \VAR{place} by \VAR{delta} returning \retval{new value}.
+  Increment or decrement the value of \VAR{place} by \VAR{delta}. Return \retval{new value}.
   }
 
   \IT{\arrGOO{%
@@ -410,6 +409,15 @@ two's complement representation.
   \VAR{integer}. \kwd{setf}able. 
   }
 
+  \IT{(\xorGOO{\FU*{DEPOSIT-FIELD}\\
+      \FU*{DPB}}{\}}
+    \VAR{int-a} \VAR{byte-spec} \VAR{int-b})}
+  {
+  Return \retval{\VAR{int-b}} with bits denoted by \VAR{byte-spec} replaced
+  by corresponding bits of \VAR{int-a}, or by the low (\FU{byte-size}
+  \VAR{byte-spec}) bits of \VAR{int-a}, respectively. 
+  }
+
   \IT{(\FU*{BYTE} \VAR{size} \VAR{position})}
   {
   \retval{Byte specifier} for a byte of \VAR{size} bits starting at a
@@ -420,15 +428,6 @@ two's complement representation.
       (\FU*{BYTE-POSITION} \VAR{ byte-spec})}{.}}
   {
   \retval{Size} or \retval{position}, respectively,  of \VAR{byte-spec}.
-  }
-
-  \IT{(\xorGOO{\FU*{DEPOSIT-FIELD}\\
-      \FU*{DPB}}{\}}
-    \VAR{int-a} \VAR{byte-spec} \VAR{int-b})}
-  {
-  Return \retval{\VAR{int-b}} with bits denoted by \VAR{byte-spec} replaced
-  by corresponding bits of \VAR{int-a}, or by the low (\FU{byte-size}
-  \VAR{byte-spec}) bits of \VAR{int-a}, respectively. 
   }
 
 \end{LIST}

@@ -1,4 +1,4 @@
-% Copyright (C) 2008 Bert Burgemeister
+% Copyright (C) 2008, 2009 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -135,7 +135,7 @@
   }
 
   \IT{(\FU*{MAKE-LOAD-FORM-SAVING-SLOTS} \VAR{foo}
-    \orGOO{\kwd{:slot-names} \VAR{ slots}\\
+    \orGOO{\kwd{:slot-names} \VAR{ slots}\DF{all local slots}\\
       \kwd{:environment}  \VAR{ environment}}{\}})}
   {
   Return a \retval{creation form} and an \retvalii{initialization
@@ -324,7 +324,7 @@
     Make \VAR{foo}s names of declarations.
    }
  
-    \IT{(\kwd*{DYNAMIC-EXTENT} \OPn{\VAR{variable}} \OPn{(\kwd{function}
+    \IT{(\kwd*{DYNAMIC-EXTENT} \OPn{\VAR{variable}} \OPn{(\SO{function}
         \VAR{function})})}
     {
     Declare lifetime of \VAR{variable}s and/or \VAR{function}s to end
@@ -342,7 +342,7 @@
         \kwd*{IGNORE}}{\}}
       \xorGOO{%
         \VAR{var}\\
-        (\kwd{function} \VAR{ function})}{\}^{\!\!*}})}
+        (\SO{function} \VAR{ function})}{\}^{\!\!*}})}
     {
     Suppress warnings about used/unused bindings.
   }
@@ -367,7 +367,7 @@
 
     \IT{(\kwd*{SPECIAL} \OPn{\VAR{var}})}
     {
-    Declare \VAR{var}s being dynamic.
+    Declare \VAR{var}s to be dynamic.
   }
 
   \end{LIST}
