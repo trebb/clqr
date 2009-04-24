@@ -1,4 +1,4 @@
-# Copyright (C) 2008 Bert Burgemeister
+# Copyright (C) 2008, 2009 Bert Burgemeister
 #
 # Permission is granted to copy, distribute and/or modify this
 # document under the terms of the GNU Free Documentation License,
@@ -26,9 +26,10 @@ CP		= cp --verbose
 RM		= rm --force --verbose
 MV		= mv --force --verbose
 MAKE		= make
-BZR_REVISION	= bzr revno | tr -d '\n\\' 
-BZR_EXPORT	= bzr export
-BZR_COMMIT	= bzr commit
+GZIP		= gzip
+GIT_REVISION	= git-log --pretty=oneline | wc -l
+GIT_ARCHIVE	= git-archive --format=tar --prefix=$(CLQR)/ HEAD | $(GZIP)
+GIT_COMMIT	= git-commit -a
 DATE		= date -I | tr -d '\n\\' 
 RSYNC		= rsync -va
 SSH		= ssh
@@ -100,7 +101,7 @@ color-black.flag:
 	$(TOUCH) $@
 
 revision-number:
-	$(BZR_REVISION) > REVISION.tex
+	$(GIT_REVISION) > REVISION.tex
 
 DATE.tex:	$(CLQR).tex $(CLQR)-*.tex 
 	$(DATE) > $@
@@ -145,8 +146,7 @@ html/sample-source.jpg:	$(CLQR)-numbers.tex
 	$(RM) temp.jpg
 
 emergency-commit $(CLQR).tar.gz:	
-	if $(BZR_COMMIT) -m "committed automatically by Makefile"; then true; else true; fi $(SEND-TO-LOG)
-	if $(BZR_EXPORT) $(CLQR).tar.gz; then true; else true; fi $(SEND-TO-LOG)
-
+	if $(GIT_COMMIT) -m "committed automatically"; then true; else true; fi $(SEND-TO-LOG)
+	if $(GIT_ARCHIVE) > $(CLQR).tar.gz; then true; else true; fi $(SEND-TO-LOG)
 publishclean:
 	$(RM) *.ps *~ html/*~

@@ -1,4 +1,4 @@
-% Copyright (C) 2008 Bert Burgemeister
+% Copyright (C) 2008, 2009 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -362,7 +362,7 @@
     \kwd{:identity-with-one-argument} \VAR{ bool}\DF{\NIL}\\
     \kwd{:operator} \VAR{ operator}\DF{\VAR{c-type}}}{\}})}
   {
-  Short form. Define new \kwd{method-combination}
+  \EM{Short Form. } Define new \kwd{method-combination}
   \retval{\VAR{c-type}}. In a generic function using \VAR{c-type},
   evaluate most specific \kwd{:around} method supplying the values of
   the generic function. From within this method, \FU{call-next-method}
@@ -394,7 +394,7 @@
       \NEV{\VAR{doc}}}{\}}
     \PROGN{\VAR{body}})}
   {
-  Long form. Define new \kwd{method-combination}
+  \EM{Long Form. } Define new \kwd{method-combination}
   \retval{\VAR{c-type}}. A call to a generic function using
   \VAR{c-type} will be equivalent to a call to the forms returned by
   \OPn{\VAR{body}} with \OPn{\VAR{ord-$\lambda$}} bound to

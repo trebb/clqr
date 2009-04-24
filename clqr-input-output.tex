@@ -512,7 +512,7 @@
       (\FU*{PPRINT-TABULAR } \DES{\VAR{stream}} \VAR{ foo }
       \OP{\VAR{parenthesis}\DF{\T} \text{ } \Op{\VAR{noop} \text{ }
           \Op{\VAR{n}\DF{\LIT{16}}}}})\\
-      (\FU*{PPRINT-LINEAR} \DES{\VAR{stream}} \VAR{ foo }
+      (\FU*{PPRINT-LINEAR } \DES{\VAR{stream}} \VAR{ foo }
       \OP{\VAR{parenthesis}\DF{\T} \text{ } \Op{\VAR{noop}}})\\
     }{.}}
   {
@@ -541,7 +541,7 @@
     \IT{(\MC*{PPRINT-POP})}
     {
     Take \retval{next element} off \VAR{list}. If there is no remaining
-    list in \VAR{list}, or \V{\A print-length\A} or \V{\A print-circle\A} indicate
+    tail of \VAR{list}, or \V{\A print-length\A} or \V{\A print-circle\A} indicate
     printing should end, send element together with an appropriate
     indicator to \VAR{stream}. 
   }
@@ -843,20 +843,6 @@
       \kwd{:linear}, \kwd{:fill}, \kwd{:miser}, or \kwd{:mandatory}, respectively.
     }
 
-    \IT{\KWD{\TLD}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{\boldmath{$<$}}
-      \OP{\Goo{\VAR{prefix}\DF{\LIT{""}}\KWD{\TLD;}}\XOR\Goo{\VAR{per-line-prefix}\KWD{\TLD@;}}}
-      \VAR{body}\OP{\KWD{\TLD;}\VAR{suffix}\DF{\LIT{""}}}\KWD{\TLD:}\Op{\KWD{@}}\KWD{\boldmath{$>$}}}
-    {\index{\~<\~:>@$\sim$$<$ $\sim$:$>$}%
-      \EM{Logical Block. }
-      Act like \kwd{pprint-logical-block} using \VAR{body} as \MC{format}
-      control string on the elements of the list argument or, with \KWD{@},
-      on the remaining arguments, which are extracted by
-      \kwd{pprint-pop}. With \KWD{:}, \VAR{prefix} and \VAR{suffix}
-      default to \LIT{(} and \LIT{)}. When closed by
-      \KWD{\TLD:@\boldmath{$>$}}, spaces in \VAR{body} are replaced with
-      conditional newlines. 
-    }
-
     \IT{\KWD{\TLD}\Op{\KWD{:}}\Op{\KWD{@}}$\hookleftarrow$}
     {
       \EM{Ignored Newline. } Ignore newline and following
@@ -891,6 +877,27 @@
       on the current line, output \VAR{nl-text} first.
     }
 
+    \IT{\KWD{\TLD}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{\boldmath{$<$}}
+      \OP{\Goo{\VAR{prefix}\DF{\LIT{""}}\KWD{\TLD;}}\XOR\Goo{\VAR{per-line-prefix}\KWD{\TLD@;}}}
+      \VAR{body}\OP{\KWD{\TLD;}\VAR{suffix}\DF{\LIT{""}}}\KWD{\TLD:}\Op{\KWD{@}}\KWD{\boldmath{$>$}}}
+    {\index{\~<\~:>@$\sim$$<$ $\sim$:$>$}%
+      \EM{Logical Block. }
+      Act like \kwd{pprint-logical-block} using \VAR{body} as \MC{format}
+      control string on the elements of the list argument or, with \KWD{@},
+      on the remaining arguments, which are extracted by
+      \kwd{pprint-pop}. With \KWD{:}, \VAR{prefix} and \VAR{suffix}
+      default to \LIT{(} and \LIT{)}. When closed by
+      \KWD{\TLD:@\boldmath{$>$}}, spaces in \VAR{body} are replaced with
+      conditional newlines. 
+    }
+
+    \IT{\Goo{\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\kwd{I}\XOR\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\kwd{:I}}}
+    {\index{\~I@$\sim$I}%
+      \EM{Indent. }
+      Set indentation to \VAR{n} relative to leftmost/to current
+      position. 
+    }
+
     \IT{\KWD{\TLD}\Op{\VAR{c}\DF{\LIT{1}}}
       \Op{\KWD{,}\VAR{i}\DF{\LIT{1}}} \Op{\KWD{:}}\Op{\KWD{@}}\KWD{T}}
     {\index{\~T@$\sim$T}%
@@ -899,13 +906,6 @@
       as possible. With \kwd{:}, calculate column numbers relative to
       the immediately enclosing section. With \kwd{@}, move to column
       number $c_0 + c + ki$ where $c_0$ is the current position.
-    }
-
-    \IT{\Goo{\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\kwd{I}\XOR\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\kwd{:I}}}
-    {\index{\~I@$\sim$I}%
-      \EM{Indent. }
-      Set indentation to \VAR{n} relative to leftmost/to current
-      position. 
     }
 
     \IT{\Goo{%
@@ -1205,9 +1205,9 @@
   \IT{(\FU*{PARSE-NAMESTRING} \VAR{foo} 
     \OP{\VAR{host}
       \OP{\VAR{default-pathname}\DF{\V{\A default-pathname-defaults\A}}
-        \OP{\orGOO{\kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
+        \orGOO{\kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
-      \kwd{:junk-allowed} \VAR{ bool}\DF{\NIL}}{\}}}}})}
+      \kwd{:junk-allowed} \VAR{ bool}\DF{\NIL}}{\}}}})}
   {
   Return \retval{pathname} converted from
   string, pathname, or stream \VAR{foo};  and \retvalii{position}
@@ -1268,7 +1268,7 @@
   \retval{Time} at which \VAR{file} was last written.
   }
 
-  \IT{(\FU*{FILE-AUTHOR} \VAR{file})}
+  \IT{(\FU*{FILE-AUTHOR} \VAR{file})\qquad\qquad}
   {
   Return \retval{name of \VAR{file} owner}.
   }
