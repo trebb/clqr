@@ -232,10 +232,11 @@
     \PROGN{\VAR{form}})}
   {
   Evaluate \VAR{form}s with
-  locally defined functions \VAR{foo}. Each \VAR{foo} is also the name
-  of an implicit \SO{block} around its corresponding
-  \OPn{\VAR{local-form}}.  Only for \SO{LABELS}, functions \VAR{foo} are visible inside \VAR{local-forms}. Return
-  \retval{values of \VAR{form}s}.
+  locally defined functions \VAR{foo}. Globally defined functions of
+  the same name are shadowed. Each \VAR{foo} is also the name of an
+  implicit \SO{block} around its corresponding \OPn{\VAR{local-form}}.
+  Only for \SO{LABELS}, functions \VAR{foo} are visible inside
+  \VAR{local-forms}. Return \retval{values of \VAR{form}s}. 
   }
 
   \IT{(\SO*{FUNCTION} \xorGOO{%
@@ -437,7 +438,7 @@
   {
   Define macro \retval{\VAR{foo}} which on evaluation as (\VAR{foo}
   \VAR{tree}) applies expanded \VAR{form}s to arguments from
-  \VAR{tree} which corresponds to \VAR{tree}-shaped
+  \VAR{tree}, which corresponds to \VAR{tree}-shaped
   \VAR{macro-$\lambda$}s. \VAR{form}s are enclosed in an implicit
   \SO{block} \VAR{foo}.
   }
@@ -618,6 +619,27 @@
     \retval{values of last \VAR{form}}.
   }
 
+  \IT{\arrGOO{%
+      (\SO*{MULTIPLE-VALUE-PROG1} \VAR{ form-r} \OPn{\VAR{ form}})\\
+      (\MC*{PROG1} \VAR{ form-r} \OPn{\VAR{ form}})\\
+      (\MC*{PROG2} \VAR{ form-a} \VAR{ form-r} \OPn{\VAR{ form}})}{.}}
+  {
+  Evaluate forms in order. Return \retval{values/1st value},
+  respectively, of \VAR{form-r}. 
+  }
+
+  \IT{(\xorGOO{\SO*{LET}\\ 
+      \SO*{LET\A}}{\}}(%
+    \orGOO{\VAR{name}\\
+      (\VAR{name }\Op{\VAR{value}\DF{\NIL}})}{\}^{\!\!*}}) 
+    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} 
+    \PROGN{\VAR{form}})}
+  {
+  Evaluate \VAR{form}s with \VAR{name}s lexically bound (in parallel or
+  sequentially, respectively) to \VAR{value}s. Return
+  \retval{values of \VAR{form}s}. 
+  }
+
   \IT{(\xorGOO{\MC*{PROG}\\
       \MC*{PROG\A}}{\}}
     (\orGOO{%
@@ -632,19 +654,11 @@
   Implicitly, the whole form is a \SO{block} named \NIL. 
   }
 
-  \IT{\arrGOO{%
-      (\SO*{MULTIPLE-VALUE-PROG1} \VAR{ form-r} \OPn{\VAR{ form}})\\
-      (\MC*{PROG1} \VAR{ form-r} \OPn{\VAR{ form}})\\
-      (\MC*{PROG2} \VAR{ form-a} \VAR{ form-r} \OPn{\VAR{ form}})}{.}}
-  {
-  Evaluate forms in order. Return \retval{values/1st value},
-  respectively, of \VAR{form-r}. 
-  }
-
   \IT{(\SO*{PROGV} \VAR{symbols} \VAR{values} \PROGN{\VAR{form}})}
   {
-  Evaluate \VAR{form}s with \VAR{symbols} dynamically bound to \VAR{values} or
-  \NIL. Return \retval{values of \VAR{form}s}.
+  Evaluate \VAR{form}s with locally established dynamic bindings of
+  \VAR{symbols} to \VAR{values} or \NIL. Return \retval{values of
+    \VAR{form}s}. 
   }
 
   \IT{(\SO*{UNWIND-PROTECT} \VAR{protected} \OPn{\VAR{cleanup}})}
@@ -672,28 +686,9 @@
   \VAR{values-form}. Return \retval{values of \VAR{body-form}s}.
   }
 
-  \IT{(\xorGOO{\SO*{LET}\\ 
-      \SO*{LET\A}}{\}}(%
-    \orGOO{\VAR{name}\\
-      (\VAR{name }\Op{\VAR{value}\DF{\NIL}})}{\}^{\!\!*}}) 
-    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} 
-    \PROGN{\VAR{form}})}
-  {
-  Evaluate \VAR{form}s with \VAR{name}s lexically bound (in parallel or
-  sequentially, respectively) to \VAR{value}s. Return
-  \retval{values of \VAR{form}s}. 
-  }
-
-  \IT{(\SO*{LOCALLY} \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
-    \PROGN{\VAR{form}})}
-  {
-  Evaluate \VAR{form}s in a lexical environment with declarations
-  \VAR{decl} in effect. Return \retval{values of \VAR{form}s}. 
-  }
-
   \IT{(\SO*{BLOCK} \VAR{name} \PROGN{\VAR{form}})}
   { 
-    Evaluate \VAR{form}s with lexical scope and dynamic extent, and
+    Evaluate \VAR{form}s in a lexical environment, and
     return \retval{their values} unless interrupted by
     \SO{RETURN-FROM}. 
   }
@@ -707,7 +702,7 @@
 
   \IT{(\SO*{TAGBODY} \Goos{\NEV{\VAR{tag}}\XOR\VAR{form}})}
   {
-  Evaluate \VAR{form}s. \VAR{tag}s (symbols or integers) have lexical
+  Evaluate \VAR{form}s in al lexical environment. \VAR{tag}s (symbols or integers) have lexical
   scope and dynamic extent, and are targets for \SO{GO}. Return
   \retval{\NIL}. 
   }

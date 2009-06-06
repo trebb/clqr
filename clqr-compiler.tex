@@ -106,6 +106,13 @@
   evaluated. (\kwd{compile}, \kwd{load} and \kwd{eval} deprecated.) 
   }
 
+  \IT{(\SO*{LOCALLY} \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
+    \PROGN{\VAR{form}})}
+  {
+  Evaluate \VAR{form}s in a lexical environment with declarations
+  \VAR{decl} in effect. Return \retval{values of \VAR{form}s}. 
+  }
+
   \IT{(\MC*{WITH-COMPILATION-UNIT} (\Op{\kwd{:override}
       \VAR{bool}\DF{\NIL}}) \PROGN{\VAR{form}})}
   {

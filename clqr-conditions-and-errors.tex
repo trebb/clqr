@@ -1,4 +1,4 @@
-% Copyright (C) 2008 Bert Burgemeister
+% Copyright (C) 2008, 2009 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -19,7 +19,7 @@
         \Goos{\kwd{:writer} \xorGOO{%
             \VAR{writer}\\
             (\kwd{setf } \VAR{writer})}{\}}}\\
-        \Goos{\kwd{:accessor} \VAR{reader}} \\
+        \Goos{\kwd{:accessor} \VAR{accessor}} \\
         \kwd{:allocation } \xorGOO{\kwd{:instance}\\
           \kwd{:class}}{\}}\DF{\kwd{:instance}}\\
         \Goos{\kwd{:initarg} \kwd{:}\VAR{initarg-name}}\\
@@ -33,17 +33,19 @@
         \VAR{report-function}}{\}})}{\}})}
   {
   Define, as a subtype of \VAR{parent-type}s, condition type
-  \retval{\VAR{foo}}. In new conditions, a \VAR{slot}'s value defaults
-  to \VAR{form} unless set via \kwd{:}\VAR{initarg-name}, and is
-  accessible by function \VAR{reader} and by generic function \VAR{writer}. With
+  \retval{\VAR{foo}}. In a new condition, a \VAR{slot}'s value defaults
+  to \VAR{form} unless set via \kwd{:}\VAR{initarg-name}; it is readable
+  via (\VAR{reader} \VAR{i}) or (\VAR{accessor} \VAR{i}), and
+  writeable via (\VAR{writer} \VAR{i} \VAR{value}) or (\kwd{setf}
+  (\VAR{accessor} \VAR{i}) \VAR{value}). With
   \kwd{:allocation :class}, \VAR{slot} is shared by all conditions of
   type \VAR{foo}. A condition is reported by \VAR{string} or by
   \VAR{report-function} of arguments condition and stream.
   }
 
-  \IT{(\FU*{MAKE-CONDITION} \VAR{type} \Goos{\kwd{:}\VAR{initarg-name} \VAR{value}})}
+  \IT{(\FU*{MAKE-CONDITION} \VAR{type} \Goos{\kwd{:}\VAR{initarg} \VAR{value}})}
   {
-  Return \retval{new condition of \VAR{type}}.
+  Return new \retval{condition of \VAR{type}}.
   }
 
   \IT{(\xorGOO{%
@@ -113,7 +115,7 @@
   {
   If, on evaluation of \VAR{test}, a condition of \VAR{type} is
   signalled, evaluate matching \VAR{condition-form}s
-  with \VAR{var} bound to the condition and return \retval{their
+  with \VAR{var} bound to the condition, and return \retval{their
     values}. Without a condition, bind \VAR{ord-$\lambda$}s to values
   of \VAR{test} and return \retval{values of  \VAR{form}s} or, without
   a \kwd{:no-error} clause, return \retval{values of \VAR{test}}. See
@@ -128,7 +130,8 @@
    \VAR{handler-function}s of argument condition. 
   }
 
-  \IT{(\MC*{WITH-SIMPLE-RESTART} (\VAR{restart} \VAR{control}
+  \IT{(\MC*{WITH-SIMPLE-RESTART} (\xorGOO{\VAR{restart}\\
+      \NIL}{\}} \VAR{control}
     \OPn{\VAR{arg}}) \PROGN{\VAR{form}})}
   {
   Return \retval{values of \VAR{form}s} unless \VAR{restart} is called
@@ -160,7 +163,8 @@
   For (\OPn{\VAR{ord-$\lambda$}}) see p.\ \pageref{section:Functions}.
   }
 
-  \IT{(\MC*{RESTART-BIND} (\OPn{(\VAR{restart}
+  \IT{(\MC*{RESTART-BIND} (\OPn{(\xorGOO{\NEV{\VAR{restart}}\\
+        \NIL}{\}}
       \VAR{restart-function} \orGOO{\kwd{:interactive-function}
         \VAR{ function}\\ 
       \kwd{:report-function} \VAR{ function}\\

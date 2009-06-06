@@ -1,4 +1,4 @@
-% Copyright (C) 2008 Bert Burgemeister
+% Copyright (C) 2008, 2009 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -186,14 +186,15 @@
   }
 
   \IT{(\xorGOO{%
+      \Goo{\FU*{ROUND}\XOR\FU*{FROUND}}\\
       \Goo{\FU*{FLOOR}\XOR\FU*{FFLOOR}}\\
       \Goo{\FU*{CEILING}\XOR\FU*{FCEILING}}\\
-      \Goo{\FU*{TRUNCATE}\XOR\FU*{FTRUNCATE}}\\
-      \Goo{\FU*{ROUND}\XOR\FU*{FROUND}}}{\}}
+      \Goo{\FU*{TRUNCATE}\XOR\FU*{FTRUNCATE}}}{\}}
     \VAR{n} \Op{\VAR{d}\DF{\LIT{1}}})}
   {
-  Return \retval{$n/d$} (\kwd{integer} or \kwd{float}, respectively) truncated
-  towards $-\infty$, $+\infty$, $0$, or rounded, respectively; and \retvalii{re\-main\-der}.
+  Return as \kwd{integer} or \kwd{float}, respectively, \retval{$n/d$}
+  rounded, or rounded towards $-\infty$, $+\infty$, or $0$,
+  respectively; and \retvalii{re\-main\-der}. 
   }
 
   \IT{(\xorGOO{\FU*{MOD}\\

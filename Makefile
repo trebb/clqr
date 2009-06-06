@@ -31,7 +31,8 @@ GIT_REVISION	= git-describe | sed 's/\(.*-.*\)-.*/\1/'
 #GIT_REVISION	= git-log --pretty=oneline | wc -l
 GIT_ARCHIVE	= git-archive --format=tar --prefix=$(CLQR)/ HEAD | $(GZIP)
 GIT_COMMIT	= git-commit -a
-DATE		= date -I | tr -d '\n\\' 
+DATE		= git-log HEAD^..HEAD --date=short | awk '/Date:/{print $$2}' | tr -d '\n\\' 
+#DATE		= date -I | tr -d '\n\\' 
 RSYNC		= rsync -va
 SSH		= ssh
 

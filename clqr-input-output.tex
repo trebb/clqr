@@ -1009,7 +1009,7 @@
         \NIL}{.}\\
       \kwd{:external-format } \VAR{format}\DF{\kwd{:default}}%
     }{\}})}
-  {
+  {\label{open}
   Open \retval{\kwd{file-stream} to \VAR{path}}.
   }
 
@@ -1319,7 +1319,7 @@
     \OPn{\VAR{open-arg}}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \PROGN{\VAR{form}})}
   {
-  Use \FU{OPEN} with \VAR{open-arg}s to temporarily
+  Use \FU{OPEN} with \VAR{open-arg}s (cf.\ page \pageref{open}) to temporarily
   create \VAR{stream} to \VAR{path}; return \retval{values of \VAR{form}s}.
   }
 
