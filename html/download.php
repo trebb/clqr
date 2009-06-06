@@ -123,7 +123,7 @@
 	      </p>
 	      <ul>
 		<li>LaTeX source.
-		<li>Not of much use unless you want to make some changes.
+		<li>Not of much use unless you want to change it.
 	      </ul>
 	    </div>
 	</td>

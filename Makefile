@@ -27,7 +27,8 @@ RM		= rm --force --verbose
 MV		= mv --force --verbose
 MAKE		= make
 GZIP		= gzip
-GIT_REVISION	= git-log --pretty=oneline | wc -l
+GIT_REVISION	= git-describe | sed 's/\(.*-.*\)-.*/\1/'
+#GIT_REVISION	= git-log --pretty=oneline | wc -l
 GIT_ARCHIVE	= git-archive --format=tar --prefix=$(CLQR)/ HEAD | $(GZIP)
 GIT_COMMIT	= git-commit -a
 DATE		= date -I | tr -d '\n\\' 
@@ -146,7 +147,7 @@ html/sample-source.jpg:	$(CLQR)-numbers.tex
 	$(RM) temp.jpg
 
 emergency-commit $(CLQR).tar.gz:	
-	if $(GIT_COMMIT) -m "committed automatically"; then true; else true; fi $(SEND-TO-LOG)
+	if $(GIT_COMMIT) -aF commit-message; then true; else true; fi $(SEND-TO-LOG)
 	if $(GIT_ARCHIVE) > $(CLQR).tar.gz; then true; else true; fi $(SEND-TO-LOG)
 publishclean:
 	$(RM) *.ps *~ html/*~
