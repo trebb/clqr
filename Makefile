@@ -50,8 +50,12 @@ letter-booklets:	$(CLQR)-letter-booklet-all.pdf $(CLQR)-letter-booklet-four.pdf
 
 a4-booklets:	 $(CLQR)-a4-booklet-all.pdf  $(CLQR)-a4-booklet-four.pdf 
 
-$(CLQR)-%-consec.pdf:	$(CLQR)-%-consec.ps color-colorful.flag
+
+
+$(CLQR)-%-consec.pdf:	$(CLQR)-%-consec.ps
 	$(PS2PDF) $< $@ $(SEND-TO-LOG)
+
+
 
 $(CLQR)-letter-booklet-%.pdf:	$(CLQR)-letter-booklet-%.ps
 	$(PS2PDF) -sPAPERSIZE=letter $< $@ $(SEND-TO-LOG)
@@ -71,10 +75,14 @@ $(CLQR)-%-signature-all.ps:	$(CLQR)-%-consec.ps
 $(CLQR)-%-signature-four.ps:	$(CLQR)-%-consec.ps
 	$(PSBOOK-FOUR) $< $@ $(SEND-TO-LOG)
 
-$(CLQR)-%-consec.ps:	$(CLQR)-%.dvi
+
+
+$(CLQR)-%-consec.ps:	$(CLQR)-%.dvi color-colorful.flag
 	$(DVIPS) -o $@ $< $(SEND-TO-LOG)
 
-$(CLQR)-%.dvi:	$(CLQR).tex $(CLQR)-*.tex paper-%.flag color-current.tex DATE.tex revision-number
+
+
+$(CLQR)-%.dvi:	$(CLQR).tex $(CLQR)-*.tex paper-%.flag DATE.tex revision-number
 	$(TOUCH) $(CLQR).ind $(SEND-TO-LOG)
 	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
 	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
@@ -109,7 +117,9 @@ DATE.tex:	$(CLQR).tex $(CLQR)-*.tex
 	$(DATE) > $@
 
 clean:
-	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.out *.ps *.pdf *~ html/*~ *.flag *.jpg html/*.jpg *.tar.gz
+	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.out *.ps *.pdf *~ html/*~ \
+              *.flag *.jpg html/*.jpg *.tar.gz REVISION.tex DATE.tex \
+              paper-current.tex color-current.tex
 
 
 # Project hosting

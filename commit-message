@@ -1,5 +1,3 @@
-Minor changes
+Bugfix
 
-Minor edits and re-arrangements.
-
-Html: links to mailing list deleted.
+Makefile changed--didn't build properly
