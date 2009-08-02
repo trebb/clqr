@@ -1,4 +1,4 @@
-% Copyright (C) 2008 Bert Burgemeister
+% Copyright (C) 2008, 2009 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -40,7 +40,7 @@
 
   \IT{(\FU*{MEMBER} \VAR{foo} \VAR{list}
     \orGOO{\xorGOO{%
-        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
+        \kwd{:test} \VAR{ function}\DF{\kwd{\#'eql}}\\
         \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {
@@ -61,7 +61,7 @@
 
   \IT{(\FU*{SUBSETP} \VAR{list-a} \VAR{list-b} 
     \orGOO{\xorGOO{%
-        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
+        \kwd{:test} \VAR{ function}\DF{\kwd{\#'eql}}\\
         \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {
@@ -174,7 +174,7 @@
 
   \IT{(\FU*{ADJOIN} \VAR{foo} \VAR{list} 
     \orGOO{\xorGOO{%
-        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
+        \kwd{:test} \VAR{ function}\DF{\kwd{\#'eql}}\\
         \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {Return \retval{\VAR{list}} if \VAR{foo} is
@@ -195,7 +195,7 @@
 
   \IT{(\MC*{PUSHNEW} \VAR{foo} \DES{\VAR{place}}  
     \orGOO{\xorGOO{%
-        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
+        \kwd{:test} \VAR{ function}\DF{\kwd{\#'eql}}\\
         \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {Set \VAR{place} to
@@ -271,7 +271,7 @@
         \FU*{RASSOC}}{\}}
       \VAR{ foo} \VAR{ alist }
       \orGOO{\xorGOO{%
-          \kwd{:test} \VAR{ test}\DF{\kwd{eql}}\\
+          \kwd{:test} \VAR{ test}\DF{\kwd{\#'eql}}\\
           \kwd{:test-not} \VAR{ test}}{.}\\
         \kwd{:key} \VAR{ function}
       }{\}})\\
@@ -297,7 +297,7 @@
 \begin{LIST}{1cm}
 
   \IT{(\FU*{TREE-EQUAL} \VAR{foo} \VAR{bar} 
-    \xorGOO{\kwd{:test} \VAR{ test}\DF{\kwd{eql}}\\
+    \xorGOO{\kwd{:test} \VAR{ test}\DF{\kwd{\#'eql}}\\
       \kwd{:test-not} \VAR{ test}}{\}})}
   {
   Return \retval{\T} if trees \VAR{foo} and \VAR{bar} have same
@@ -307,7 +307,7 @@
   \IT{(\xorGOO{\FU*{SUBST} \VAR{ new} \VAR{ old } \VAR{tree}\\
       \FU*{NSUBST} \VAR{ new} \VAR{ old } \DES{\VAR{tree}}}{\}}
     \orGOO{\xorGOO{%
-        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
+        \kwd{:test} \VAR{ function}\DF{\kwd{\#'eql}}\\
         \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:key} \VAR{ function}%
     }{\}})}
@@ -332,7 +332,7 @@
   \IT{(\xorGOO{\FU*{SUBLIS} \VAR{ association-list } \VAR{tree} \\
       \FU*{NSUBLIS} \VAR{ association-list } \DES{\VAR{tree}} }{\}}
     \orGOO{\xorGOO{%
-        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
+        \kwd{:test} \VAR{ function}\DF{\kwd{\#'eql}}\\
         \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:key} \VAR{ function}%
     }{\}})}
@@ -371,7 +371,7 @@
       }{\}} \text{ }\DES{\VAR{a}}\text{ } \DES{\VAR{b}}\text{ }
     }{\}}
     \orGOO{\xorGOO{%
-        \kwd{:test} \VAR{ function}\DF{\kwd{eql}}\\
+        \kwd{:test} \VAR{ function}\DF{\kwd{\#'eql}}\\
         \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {

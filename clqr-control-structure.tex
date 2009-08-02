@@ -922,7 +922,7 @@
             \right\}
             \text{\VAR{list}}\text{ }
             \Op{
-              \text{\LKWD{by} \VAR{function}\DF{\kwd{cdr}}}
+              \text{\LKWD{by} \VAR{function}\DF{\kwd{\#'cdr}}}
             }\\
             \text{\LKWD{=} \VAR{foo }} 
             \Op{
@@ -1140,7 +1140,7 @@
       Bind \VAR{var} to successive elements/tails, respectively, of \VAR{list}.
       }
 
-      \IT{\LKWD*{by} \Goo{\VAR{step}\DF{\LIT{1}}\XOR\VAR{function}\DF{\FU{cdr}}}}
+      \IT{\LKWD*{by} \Goo{\VAR{step}\DF{\LIT{1}}\XOR\VAR{function}\DF{\kwd{\#'cdr}}}}
       {
       Specify the (positive) decrement or increment or the
       \VAR{function} of one argument returning the next part of the list.
