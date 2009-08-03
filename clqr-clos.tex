@@ -185,13 +185,13 @@
   \IT{(\MC*{DEFGENERIC}
     \xorGOO{\VAR{foo}\\ (\kwd{setf} \VAR{ foo})}{\}} 
     (\OPn{\VAR{required-var}}
-    \OP{\kwd*{\&optional} \xorGOO{\VAR{var}\\
+    \OP{\kwd{\&optional} \xorGOO{\VAR{var}\\
         (\VAR{var})}{\}^{\!\!*}}}
-    \OP{\kwd*{\&rest} \VAR{var}}
-    \OP{\kwd*{\&key} \xorGOO{%
+    \OP{\kwd{\&rest} \VAR{var}}
+    \OP{\kwd{\&key} \xorGOO{%
       \VAR{var}\\
       (\VAR{var}\XOR(\kwd{:}\VAR{key }
-          \VAR{var}))}{\}^{\!\!*}} \Op{\kwd*{\&allow-other-keys}}})
+          \VAR{var}))}{\}^{\!\!*}} \Op{\kwd{\&allow-other-keys}}})
      \orGOO{%
     (\kwd{:argument-precedence-order}\RP{\VAR{ required-var}})\\
     (\kwd{declare }\RP{(\kwd{optimize}\OPn{\VAR{ arg}})})\\
@@ -236,17 +236,17 @@
     (\xorGOO{\VAR{var}\\
       (\VAR{spec-var } \xorGOO{\VAR{class}\\
         (\kwd{eql} \VAR{ bar})}{\}})}{\}^{\!\!*}}
-    \OP{\kwd*{\&optional} \xorGOO{\VAR{var}\\
+    \OP{\kwd{\&optional} \xorGOO{\VAR{var}\\
         (\VAR{var } \OP{\VAR{init }
           \Op{\VAR{supplied-p}}})}{\}^{\!\!*}}}
-    \Op{\kwd*{\&rest} \VAR{var}}
-    \OP{\kwd*{\&key} \xorGOO{\VAR{var}\\
+    \Op{\kwd{\&rest} \VAR{var}}
+    \OP{\kwd{\&key} \xorGOO{\VAR{var}\\
         (\xorGOO{\VAR{var}\\
           (\kwd{:}\VAR{key }
           \VAR{var})}{\}}
         \OP{\VAR{init }\Op{\VAR{supplied-p}}})}{\}^{\!\!*}}
-      \Op{\kwd*{\&allow-other-keys}}}
-    \OP{\kwd*{\&aux }\xorGOO{\VAR{var}\\
+      \Op{\kwd{\&allow-other-keys}}}
+    \OP{\kwd{\&aux }\xorGOO{\VAR{var}\\
         (\VAR{var } \Op{\VAR{init}})}{\}^{\!\!*}}})
     \orGOO{\OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\\
       \NEV{\VAR{doc}}}{\}}

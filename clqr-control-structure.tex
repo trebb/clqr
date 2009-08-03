@@ -183,28 +183,28 @@
   Below, ordinary lambda list (\OPn{\VAR{ord-$\lambda$}}) has the form\\
   % \VAR{var} referenced from DEFSTRUCT
   (\OPn{\VAR{var}}
-  \OP{\kwd*{\&optional} \xorGOO{%
+  \OP{\kwd{\&optional} \xorGOO{%
       \VAR{var}\\
-      (\VAR{var } \OP{\VAR{init}\DF{\NIL}\text{ } \Op{\VAR{supplied-p}}})}{\}}}
+      (\VAR{var } \OP{\VAR{init}\DF{\NIL}\text{ } \Op{\VAR{supplied-p}}})}{\}^{\!\!*}}}
   \penalty-5
-  \Op{\kwd*{\&rest} \VAR{var}}
+  \Op{\kwd{\&rest} \VAR{var}}
   \penalty-5
-  \OP{\kwd*{\&key} \xorGOO{%
+  \OP{\kwd{\&key} \xorGOO{%
         \VAR{var}\\
         (\xorGOO{%
           \VAR{var}\\
           (\kwd{:}\VAR{key } \VAR{var})}{\}}
       \text{ }\OP{\VAR{init}\DF{\NIL}\text{ }\Op{\VAR{supplied-p}}})}{\}^{\!\!*}}
   \penalty-5
-    \Op{\kwd*{\&allow-other-keys}}}
+    \Op{\kwd{\&allow-other-keys}}}
   \penalty-5
-  \OP{\kwd*{\&aux} \xorGOO{%
+  \OP{\kwd{\&aux} \xorGOO{%
       \VAR{var}\\
-      (\VAR{var } \Op{\VAR{init}\DF{\NIL}})}{\}}}).\\
+      (\VAR{var } \Op{\VAR{init}\DF{\NIL}})}{\}^{\!\!*}}}).
+\end{flushleft}
   \VAR{supplied-p} is \T\ if there is a corresponding
   argument. \VAR{init} forms can refer to any \VAR{init} and
   \VAR{supplied-p} to their left.
-\end{flushleft}
 
 \begin{LIST}{1cm}
 
@@ -346,7 +346,7 @@
   Below, macro lambda list (\OPn{\VAR{macro-$\lambda$}}) has the form of
   either
   \penalty-5
-  (\Op{\kwd*{\&whole} \VAR{var}}
+  (\Op{\kwd{\&whole} \VAR{var}}
   \penalty-5
   \Op{\VAR{E}}
   \penalty-5
@@ -356,7 +356,7 @@
   \penalty-5
   \Op{\VAR{E}}
   \penalty-5
-  \Op{\kwd*{\&optional} 
+  \Op{\kwd{\&optional} 
     \xorGOO{%
       \VAR{var}\\
       (\xorGOO{%
@@ -368,15 +368,15 @@
   \penalty-5
   \Op{%
     \xorGOO{%
-      \kwd*{\&rest}\\
-      \kwd*{\&body}}{\}}
+      \kwd{\&rest}\\
+      \kwd{\&body}}{\}}
     \xorGOO{%
       \VAR{var}\\
       (\OPn{\VAR{macro-$\lambda$}})}{\}}}
   \penalty-5
   \Op{\VAR{E}}
   \penalty-5
-  \OP{\kwd*{\&key} 
+  \OP{\kwd{\&key} 
     \xorGOO{%
       \VAR{var}\\
       (\xorGOO{%
@@ -386,9 +386,9 @@
           (\OPn{\VAR{macro-$\lambda$}})}{\}})}{\}}
       \text{ }\OP{\VAR{init}\DF{\NIL}\text{ } \Op{\VAR{supplied-p}}})}{\}^{\!\!*}}
     \Op{\VAR{E}}
-    \Op{\kwd*{\&allow-other-keys}}}
+    \Op{\kwd{\&allow-other-keys}}}
   \penalty-5
-  \Op{\kwd*{\&aux} 
+  \Op{\kwd{\&aux} 
     \xorGOO{%
       \VAR{var}\\
       (\VAR{var } \Op{\VAR{init}\DF{\NIL}})}{\}^{\!\!*}}}
@@ -397,7 +397,7 @@
   \\
   or
   \penalty-5
-  (\Op{\kwd*{\&whole}
+  (\Op{\kwd{\&whole}
       \VAR{var}}
   \penalty-5
   \Op{\VAR{E}}
@@ -408,7 +408,7 @@
   \penalty-5
   \Op{\VAR{E}}
   \penalty-5
-  \Op{\kwd*{\&optional} 
+  \Op{\kwd{\&optional} 
     \xorGOO{%
       \VAR{var}\\
       (\xorGOO{%
@@ -421,10 +421,10 @@
   \VAR{var}).
   \penalty-5
 \end{flushleft}
-  One toplevel \Op{\VAR{E}} may be replaced by \kwd*{\&environment}
-  \VAR{var} where \VAR{var} carries the lexical compilation
-  environment. \VAR{supplied-p} is \T\ if there is a corresponding
-  argument. 
+  One toplevel \Op{\VAR{E}} may be replaced by \kwd{\&environment}
+  \VAR{var}. \VAR{supplied-p} is \T\ if there is a corresponding
+  argument.  \VAR{init} forms can refer to any \VAR{init} and
+  \VAR{supplied-p} to their left.
 
 \begin{LIST}{1cm}
 
@@ -476,22 +476,22 @@
   where defsetf lambda list (\OPn{\VAR{setf-$\lambda$}}) has the form
   \penalty-5
   (\OPn{\VAR{var}}
-  \OP{\kwd*{\&optional} \xorGOO{%
+  \OP{\kwd{\&optional} \xorGOO{%
       \VAR{var}\\
-      (\VAR{var } \OP{\VAR{init}\DF{\NIL}\text{ } \Op{\VAR{supplied-p}}})}{\}}}
+      (\VAR{var } \OP{\VAR{init}\DF{\NIL}\text{ } \Op{\VAR{supplied-p}}})}{\}^{\!\!*}}}
   \penalty-5
-  \Op{\kwd*{\&rest} \VAR{var}}
+  \Op{\kwd{\&rest} \VAR{var}}
   \penalty-5
-  \OP{\kwd*{\&key} \xorGOO{%
+  \OP{\kwd{\&key} \xorGOO{%
       \VAR{var}\\
       (\xorGOO{%
         \VAR{var}\\
         (\kwd{:}\VAR{key } \VAR{var})}{\}}
       \text{ }\OP{\VAR{init}\DF{\NIL}\text{ }\Op{\VAR{supplied-p}}})}{\}^{\!\!*}}
     \penalty-5
-    \Op{\kwd*{\&allow-other-keys}}}
+    \Op{\kwd{\&allow-other-keys}}}
   \penalty-5
-  \OP{\kwd*{\&environment} \VAR{var}}%
+  \OP{\kwd{\&environment} \VAR{var}}%
   )
   }
   {
@@ -535,11 +535,11 @@
   }
 
   \IT{(\MC*{DEFINE-MODIFY-MACRO} \VAR{foo} 
-    (\OP{\kwd*{\&optional} \xorGOO{%
+    (\OP{\kwd{\&optional} \xorGOO{%
         \VAR{var}\\
         (\VAR{var } \OP{\VAR{init}\DF{\NIL}\text{ }
-          \Op{\VAR{supplied-p}}})}{\}}}
-    \Op{\kwd*{\&rest} \VAR{var}}) 
+          \Op{\VAR{supplied-p}}})}{\}^{\!\!*}}}
+    \Op{\kwd{\&rest} \VAR{var}}) 
     \VAR{function} \Op{\NEV{\VAR{doc}}})}
   {
   Define macro \retval{\VAR{foo}} able to modify a place. On
@@ -549,9 +549,37 @@
   } 
 
   \IT{\CNS*{LAMBDA-LIST-KEYWORDS}}
-  {List of macro lambda list keywords.
+  {List of macro lambda list keywords. These are at least:
     }
+    \begin{LIST}{.5cm}
 
+      \IT{\kwd*{\&whole} \VAR{var}}
+      {Bind \VAR{var} to the entire macro call form.}
+
+      \IT{\kwd*{\&optional} \OPn{\VAR{var}}}
+      {Bind \VAR{var}s to corresponding arguments if any.}
+
+      \IT{\Goo{%
+          \kwd*{\&rest}\XOR
+          \kwd*{\&body}} \VAR{var}}
+      {Bind \VAR{var} to a list of remaining arguments.}
+
+      \IT{\kwd*{\&key} \OPn{\VAR{var}}}
+      {Bind \VAR{var}s to corresponding keyword arguments.}
+
+      \IT{\kwd*{\&allow-other-keys}}
+      {
+      Suppress keyword argument checking. Callers can do so using
+      \kwd*{:allow-other-keys}~\T.
+      }
+      
+      \IT{\kwd*{\&environment} \VAR{var}}
+      {Bind \VAR{var} to the lexical compilation environment.}
+
+      \IT{\kwd*{\&aux} \VAR{var}}
+      {Bind \VAR{var}s as in \SO{let\A}.}
+          
+    \end{LIST}
 \end{LIST}
 
 

@@ -28,11 +28,9 @@ MV		= mv --force --verbose
 MAKE		= make
 GZIP		= gzip
 GIT_REVISION	= git-describe | sed 's/\(.*-.*\)-.*/\1/'
-#GIT_REVISION	= git-log --pretty=oneline | wc -l
 GIT_ARCHIVE	= git-archive --format=tar --prefix=$(CLQR)/ HEAD | $(GZIP)
 GIT_COMMIT	= git-commit -a
 DATE		= git-log HEAD^..HEAD --date=short | awk '/Date:/{print $$2}' | tr -d '\n\\' 
-#DATE		= date -I | tr -d '\n\\' 
 RSYNC		= rsync -va
 SSH		= ssh
 
@@ -50,12 +48,8 @@ letter-booklets:	$(CLQR)-letter-booklet-all.pdf $(CLQR)-letter-booklet-four.pdf
 
 a4-booklets:	 $(CLQR)-a4-booklet-all.pdf  $(CLQR)-a4-booklet-four.pdf 
 
-
-
 $(CLQR)-%-consec.pdf:	$(CLQR)-%-consec.ps
 	$(PS2PDF) $< $@ $(SEND-TO-LOG)
-
-
 
 $(CLQR)-letter-booklet-%.pdf:	$(CLQR)-letter-booklet-%.ps
 	$(PS2PDF) -sPAPERSIZE=letter $< $@ $(SEND-TO-LOG)
@@ -75,12 +69,8 @@ $(CLQR)-%-signature-all.ps:	$(CLQR)-%-consec.ps
 $(CLQR)-%-signature-four.ps:	$(CLQR)-%-consec.ps
 	$(PSBOOK-FOUR) $< $@ $(SEND-TO-LOG)
 
-
-
 $(CLQR)-%-consec.ps:	$(CLQR)-%.dvi color-colorful.flag
 	$(DVIPS) -o $@ $< $(SEND-TO-LOG)
-
-
 
 $(CLQR)-%.dvi:	$(CLQR).tex $(CLQR)-*.tex paper-%.flag DATE.tex revision-number
 	$(TOUCH) $(CLQR).ind $(SEND-TO-LOG)
