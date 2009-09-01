@@ -865,276 +865,276 @@
     Evaluate \VAR{form}s before begin, or after end, respectively, of iterations.
     }
 
-\begin{figure}%
-  \begin{center}%
-    \begin{sideways}%
-      (%  
-      \arraycolsep0pt
-      \(
-      \text{\kwd{loop}}\text{ }
-      \Op{
-        \text{\LKWD{named} \VAR{n}\DF{\NIL}}
-      }
-      \left\{
-      \begin{array}{l}
-        \text{\LKWD{with}
-          \xorGOO{%
-              \VAR{var}\\
-              (\OPn{\VAR{var}})}{\}}
-          \Op{\VAR{d-type}} \LKWD{=} \VAR{foo }}
-        \{\text{\LKWD{and}
-          \xorGOO{%
-            \VAR{var}\\
-            (\OPn{\VAR{var}})}{\}}
-          \Op{\VAR{d-type}} \LKWD{=}
-          \VAR{bar}}\}^{*} \\ \\[-2.4ex]
-        \left.\!
-        \begin{array}{l}
-          \text{\LKWD{for}}  \\
-          \text{\LKWD{as}} 
-        \end{array}\right\}
-        \boxed{
-          \text{\xorGOO{%
-              \VAR{var}\\
-              (\OPn{\VAR{var}})}{\}}}%
-          \Op{\VAR{d-type}}
+    \begin{figure}%
+      \begin{center}%
+        \begin{sideways}%
+          (%  
+          \arraycolsep0pt
+          \(
+          \text{\kwd{loop}}\text{ }
+          \Op{
+            \text{\LKWD{named} \VAR{n}\DF{\NIL}}
+          }
           \left\{
-          \begin{array}{l}
-            \left.\!
             \begin{array}{l}
-              \OP{
-                \left\{
+              \text{\LKWD{with}
+                \xorGOO{%
+                  \VAR{var}\\
+                  (\OPn{\VAR{var}})}{\}}
+                \Op{\VAR{d-type}} \LKWD{=} \VAR{foo }}
+              \{\text{\LKWD{and}
+                \xorGOO{%
+                  \VAR{var}\\
+                  (\OPn{\VAR{var}})}{\}}
+                \Op{\VAR{d-type}} \LKWD{=}
+                \VAR{bar}}\}^{*} \\ \\[-2.4ex]
+              \left.\!
                 \begin{array}{l}
-                  \text{\LKWD{upfrom}}\\
-                  \text{\LKWD{from}}
-                \end{array}
-                \right\}
-                \text{\VAR{start}\DF{\LIT{0}}}
-              }\text{ }
-              \OP{
+                  \text{\LKWD{for}}  \\
+                  \text{\LKWD{as}} 
+                \end{array}\right\}
+              \boxed{
+                \text{\xorGOO{%
+                    \VAR{var}\\
+                    (\OPn{\VAR{var}})}{\}}}%
+                \Op{\VAR{d-type}}
                 \left\{
-                \begin{array}{l}
-                  \text{\LKWD{upto}}\\
-                  \text{\LKWD{to}}\\
-                  \text{\LKWD{below}}
-                \end{array}
-                \right\}
-                \text{\VAR{form}}
-              }\\
-              \text{\LKWD{from} \VAR{start}}
+                  \begin{array}{l}
+                    \left.\!
+                      \begin{array}{l}
+                        \OP{
+                          \left\{
+                            \begin{array}{l}
+                              \text{\LKWD{upfrom}}\\
+                              \text{\LKWD{from}}
+                            \end{array}
+                          \right\}
+                          \text{\VAR{start}\DF{\LIT{0}}}
+                        }\text{ }
+                        \OP{
+                          \left\{
+                            \begin{array}{l}
+                              \text{\LKWD{upto}}\\
+                              \text{\LKWD{to}}\\
+                              \text{\LKWD{below}}
+                            \end{array}
+                          \right\}
+                          \text{\VAR{form}}
+                        }\\
+                        \text{\LKWD{from} \VAR{start}}
+                        \left\{
+                          \begin{array}{l}
+                            \text{\LKWD{downto}}\\
+                            \text{\LKWD{above}}
+                          \end{array}
+                        \right\}              
+                        \text{\VAR{form }}\\
+                        \text{\LKWD{downfrom} \VAR{start}}\text{ }
+                        \OP{
+                          \left\{
+                            \begin{array}{l}
+                              \text{\LKWD{downto}}\\
+                              \text{\LKWD{to}}\\
+                              \text{\LKWD{above}}
+                            \end{array}
+                          \right\}            
+                          \text{\VAR{form}}
+                        }
+                      \end{array}
+                    \right\}
+                    \Op{   
+                      \text{\LKWD{by} \VAR{step}\DF{\LIT{1}}}
+                    }\\
+                    \left.\!
+                      \begin{array}{l}
+                        \text{\LKWD{in}} \\
+                        \text{\LKWD{on}}
+                      \end{array}
+                    \right\}
+                    \text{\VAR{list}}\text{ }
+                    \Op{
+                      \text{\LKWD{by} \VAR{function}\DF{\kwd{\#'cdr}}}
+                    }\\
+                    \text{\LKWD{=} \VAR{foo }} 
+                    \Op{
+                      \text{\LKWD{then} \VAR{bar}\DF{\VAR{foo}}}
+                    }\\
+                    \text{\LKWD{across} \VAR{vector}}\\
+                    \text{\LKWD{being}}
+                    \left\{
+                      \begin{array}{l}
+                        \text{\LKWD{the}}\\          
+                        \text{\LKWD{each}}
+                      \end{array}
+                    \right\}%
+                    \left\{
+                      \begin{array}{{l}}
+                        \left.\!
+                          \begin{array}{l}
+                            \left.\!
+                              \begin{array}{l}
+                                \text{\LKWD{hash-key}}\\
+                                \text{\LKWD{hash-keys}}
+                              \end{array}
+                            \right\}%
+                            \left\{
+                              \begin{array}{l}
+                                \text{\LKWD{of}}\\
+                                \text{\LKWD{in}}
+                              \end{array}
+                            \right\}
+                            \text{\VAR{hash }} 
+                            \Op{
+                              \text{\LKWD{using} (\LKWD{hash-value} \VAR{v})}%
+                            }\\
+                            \left.\!
+                              \begin{array}{l}
+                                \text{\LKWD{hash-value}}\\
+                                \text{\LKWD{hash-values}}
+                              \end{array}
+                            \right\}%
+                            \left\{
+                              \begin{array}{l}
+                                \text{\LKWD{of}}\\
+                                \text{\LKWD{in}}
+                              \end{array}
+                            \right\}
+                            \text{\VAR{hash }}
+                            \Op{
+                              \text{\LKWD{using} (\LKWD{hash-key} \VAR{k})}%
+                            }\\
+                          \end{array}
+                        \right.\\
+                        \left.\!
+                          \begin{array}{l}
+                            \text{\LKWD{symbol\Op{s}}}\\
+                            \text{\LKWD{present-symbol\Op{s}}}\\
+                            \text{\LKWD{external-symbol\Op{s}}}
+                          \end{array}
+                        \right\}%
+                        \OP{
+                          \left\{
+                            \begin{array}{l}
+                              \text{\LKWD{of}}\\
+                              \text{\LKWD{in}}
+                            \end{array}
+                          \right\} \text{\VAR{package}\DF{\V{\A package\A}}}%
+                        }%
+                      \end{array}\!\!%
+                    \right.%
+                  \end{array}%
+                \right\}_{{}^{{}^{\displaystyle{\mathbb{F}_0}}}}
+              }%boxed
               \left\{
-              \begin{array}{l}
-                \text{\LKWD{downto}}\\
-                \text{\LKWD{above}}
-              \end{array}
-              \right\}              
-              \text{\VAR{form }}\\
-              \text{\LKWD{downfrom} \VAR{start}}\text{ }
-              \OP{
-                \left\{
-                \begin{array}{l}
-                  \text{\LKWD{downto}}\\
-                  \text{\LKWD{to}}\\
-                  \text{\LKWD{above}}
-                \end{array}
-                \right\}            
-                \text{\VAR{form}}
-              }
-            \end{array}
-            \right\}
-            \Op{   
-              \text{\LKWD{by} \VAR{step}\DF{\LIT{1}}}
-            }\\
-            \left.\!
-            \begin{array}{l}
-              \text{\LKWD{in}} \\
-              \text{\LKWD{on}}
-            \end{array}
-            \right\}
-            \text{\VAR{list}}\text{ }
-            \Op{
-              \text{\LKWD{by} \VAR{function}\DF{\kwd{\#'cdr}}}
-            }\\
-            \text{\LKWD{=} \VAR{foo }} 
-            \Op{
-              \text{\LKWD{then} \VAR{bar}\DF{\VAR{foo}}}
-            }\\
-            \text{\LKWD{across} \VAR{vector}}\\
-            \text{\LKWD{being}}
-            \left\{
-            \begin{array}{l}
-              \text{\LKWD{the}}\\          
-              \text{\LKWD{each}}
-            \end{array}
-            \right\}%
-            \left\{
-            \begin{array}{{l}}
-              \left.\!
-              \begin{array}{l}
-                \left.\!
-                \begin{array}{l}
-                  \text{\LKWD{hash-key}}\\
-                  \text{\LKWD{hash-keys}}
-                \end{array}
-                \right\}%
-                \left\{
-                \begin{array}{l}
-                  \text{\LKWD{of}}\\
-                  \text{\LKWD{in}}
-                \end{array}
-                \right\}
-                \text{\VAR{hash }} 
-                \Op{
-                  \text{\LKWD{using} (\LKWD{hash-value} \VAR{v})}%
-                }\\
-                \left.\!
-                \begin{array}{l}
-                  \text{\LKWD{hash-value}}\\
-                  \text{\LKWD{hash-values}}
-                \end{array}
-                \right\}%
-                \left\{
-                \begin{array}{l}
-                  \text{\LKWD{of}}\\
-                  \text{\LKWD{in}}
-                \end{array}
-                \right\}
-                \text{\VAR{hash }}
-                \Op{
-                  \text{\LKWD{using} (\LKWD{hash-key} \VAR{k})}%
-                }\\
-              \end{array}
-              \right.\\
-              \left.\!
-              \begin{array}{l}
-                \text{\LKWD{symbol\Op{s}}}\\
-                \text{\LKWD{present-symbol\Op{s}}}\\
-                \text{\LKWD{external-symbol\Op{s}}}
-              \end{array}
-              \right\}%
-              \OP{
-                \left\{
-                \begin{array}{l}
-                  \text{\LKWD{of}}\\
-                  \text{\LKWD{in}}
-                \end{array}
-                \right\} \text{\VAR{package}\DF{\V{\A package\A}}}%
-              }%
-            \end{array}\!\!%
-            \right.%
-          \end{array}%
-          \right\}_{\displaystyle{\mathbb{F}_0}}
-                }%boxed
-                \left\{
                 \text{\LKWD{and} }\boxed{\mathbb{F}_i\!}
-                \right\}^{\!*}\\
-                \\[-2.4ex]
-                \left.\!%
-                \begin{array}{l}
-                  \text{\LKWD{initially}} \\
-                  \text{\LKWD{finally}} 
-                \end{array} 
-                \right\} 
-                \text{\VAR{form}}^{+} \\
-                
-      \end{array}
-      \right\}^{\!\!\displaystyle{*}}
-      %Bottleneck
-      \left\{
-      \begin{array}{l}
-        \text{\LKWD{repeat} \VAR{num}}\\
-        \left.\!
-        \begin{array}{l}
-          \text{\LKWD{while}}\\
-          \text{\LKWD{until}}\\
-          \text{\LKWD{always}}\\
-          \text{\LKWD{never}}\\
-          \text{\LKWD{thereis}}
-        \end{array}
-        \right\} 
-        \text{\VAR{test}}\\
-        \boxed{
-          \left.\!
-          \begin{array}{l}
-            \left.\!
-            \begin{array}{l}
-              \text{\LKWD{do}}\\
-              \text{\LKWD{doing}}
+              \right\}^{\!*}\\
+              \\[-2.4ex]
+              \boxed{\;\mathbb{T}_1\,}
+              
             \end{array}
-            \right\}
-            \text{\VAR{form}}^{+}\\
-            \text{\LKWD{return}}
-            \left\{
+          \right\}^{\!\!\displaystyle{*}}
+          % Bottleneck
+          \left\{
             \begin{array}{l}
-              \text{\VAR{form}}\\
-              \text{\LKWD{it}}
-            \end{array}
-            \right.\\
-            \left.\!
-            \begin{array}{l}
-              \text{\LKWD{collect\Op{ing}}}\\
-              \text{\LKWD{append\Op{ing}}}\\
-              \text{\LKWD{nconc\Op{ing}}}
-            \end{array}
-            \right\}
-            \left\{
-            \begin{array}{l}
-              \text{\VAR{form}}\\
-              \text{\LKWD{it}}
-            \end{array}
-            \right\} \Op{\text{\LKWD{into }\VAR{list}}}\\
-            \left.\!
-            \begin{array}{l}
-              \text{\LKWD{count\Op{ing}}}\\
-              \text{\LKWD{sum\Op{ming}}}\\
-              \text{\LKWD{maximize}}\\
-              \text{\LKWD{maximizing}}\\
-              \text{\LKWD{minimize}}\\
-              \text{\LKWD{minimizing}}
-            \end{array}
-            \right\}
-            \left\{
-            \begin{array}{l}
-              \text{\VAR{form}}\\
-              \text{\LKWD{it}}
-            \end{array}
-            \right\} 
-                \Op{\text{\LKWD{into }\VAR{num}}}\text{ }
-                \Op{\text{\VAR{type}}}\\
+              \boxed{
                 \left.\!
-                \begin{array}{l}
-                  \text{\LKWD{if}}\\
-                  \text{\LKWD{when}}\\
-                  \text{\LKWD{unless}}
-                \end{array}
-                \right\}%
-                \text{\VAR{test }}
-                \boxed{\mathbb{C}_i\!}\{\text{\LKWD{and}}\,
-                \boxed{\mathbb{C}_j\!}\}^{*}\Op{\text{\LKWD{else}}\,
-                  \boxed{\mathbb{C}_k\!}\{\text{\LKWD{and}}\,
-                  \boxed{\mathbb{C}_l\!}\}^{*}}
-                \Op{\text{\LKWD{end}}}\!\!\!\!\!\!
-          \end{array}
-          \right._{\!\!\!\!\displaystyle{\mathbb{C}_0}}
-        }%boxed
-        \\
-        \\[-2.4ex]
-        \left.\!
-        \begin{array}{l}
-          \text{\LKWD{initially}} \\
-          \text{\LKWD{finally}} 
-        \end{array} 
-        \right\}
-        \text{\VAR{form}}^{+}
-      \end{array}
-      \right\}^{\displaystyle{\!\!*}}
-      \)%
-      \!)%
-    \end{sideways}%
-  \end{center}%
-  \vspace{-3em}
-  \raisebox{0em}[0em][0em]{\parbox[b]{4cm}{\caption{\protect\raggedright Loop Facility, Overview.\label{loop-overview}}}}
-\end{figure}
+                  \begin{array}{l}
+                    \left.\!
+                      \begin{array}{l}
+                        \text{\LKWD{do}}\\
+                        \text{\LKWD{doing}}
+                      \end{array}
+                    \right\}
+                    \text{\VAR{form}}^{+}\\
+                    \left.\!
+                      \begin{array}{l}
+                        \text{\LKWD{if}}\\
+                        \text{\LKWD{when}}\\
+                        \text{\LKWD{unless}}
+                      \end{array}
+                    \right\}%
+                    \text{\VAR{test }}
+                    \boxed{\mathbb{C}_i\!}\{\text{\LKWD{and}}\,
+                    \boxed{\mathbb{C}_j\!}\}^{*}\Op{\text{\LKWD{else}}\,
+                      \boxed{\mathbb{C}_k\!}\{\text{\LKWD{and}}\,
+                      \boxed{\mathbb{C}_l\!}\}^{*}}
+                    \Op{\text{\LKWD{end}}}\!\!\!\!\!\!\!\\
+                    \text{\LKWD{return}}
+                    \left\{
+                      \begin{array}{l}
+                        \text{\VAR{form}}\\
+                        \text{\LKWD{it}}
+                      \end{array}
+                    \right.\\
+                    \left.\!
+                      \begin{array}{l}
+                        \text{\LKWD{collect\Op{ing}}}\\
+                        \text{\LKWD{append\Op{ing}}}\\
+                        \text{\LKWD{nconc\Op{ing}}}
+                      \end{array}
+                    \right\}
+                    \left\{
+                      \begin{array}{l}
+                        \text{\VAR{form}}\\
+                        \text{\LKWD{it}}
+                      \end{array}
+                    \right\} \Op{\text{\LKWD{into }\VAR{list}}}\\
+                    \left.\!
+                      \begin{array}{l}
+                        \text{\LKWD{count\Op{ing}}}\\
+                        \text{\LKWD{sum\Op{ming}}}\\
+                        \text{\LKWD{maximize}}\\
+                        \text{\LKWD{maximizing}}\\
+                        \text{\LKWD{minimize}}\\
+                        \text{\LKWD{minimizing}}
+                      \end{array}
+                    \right\}
+                    \left\{
+                      \begin{array}{l}
+                        \text{\VAR{form}}\\
+                        \text{\LKWD{it}}
+                      \end{array}
+                    \right\} 
+                    \Op{\text{\LKWD{into }\VAR{num}}}\text{ }
+                    \Op{\text{\VAR{type}}}
+                  \end{array}
+                \right._{{}^{{}^{\!\!\!\!\displaystyle{\mathbb{C}_0}}}}
+              }%boxed
+              \\
+              \\[-2.4ex]
+              \boxed{
+                \left.\!
+                  \begin{array}{l}
+                    \left.\!
+                      \begin{array}{l}
+                        \text{\LKWD{initially}} \\
+                        \text{\LKWD{finally}} 
+                      \end{array} 
+                    \right\}
+                    \text{\VAR{form}}^{+}\\
+                    \text{\LKWD{repeat} \VAR{num}}\\
+                    \left.\!
+                      \begin{array}{l}
+                        \text{\LKWD{while}}\\
+                        \text{\LKWD{until}}\\
+                        \text{\LKWD{always}}\\
+                        \text{\LKWD{never}}\\
+                        \text{\LKWD{thereis}}
+                      \end{array}
+                    \right\} 
+                    \text{\VAR{test}}
+                  \end{array}
+                \right._{{}^{{}^{\displaystyle{\mathbb{T}_2}}}}
+              }%boxed
+            \end{array}
+          \right\}^{\displaystyle{\!\!*}}
+          \)%
+          \!)%
+        \end{sideways}%
+      \end{center}%
+      \vspace{-3em}
+      \raisebox{0em}[0em][0em]{\parbox[b]{4cm}{\caption{\protect\raggedright Loop Facility, Overview.\label{loop-overview}}}}
+    \end{figure}
 
     \IT{\GOop{\Goo{\LKWD*{for}\XOR\LKWD*{as}}
         \xorGOO{%
@@ -1318,7 +1318,7 @@
     \MC{loop} with its default return value set to \NIL. 
     }
 
-    \IT{\LKWD*{loop-finish}}
+    \IT{(\MC*{loop-finish})}
     {
     Terminate \MC{loop} immediately executing any \LKWD{finally}
     clauses and returning any accumulated results.
