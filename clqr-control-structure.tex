@@ -609,21 +609,24 @@
   returns \T\ or \NIL, respectively. Return \retval{\NIL} otherwise. 
   }
 
-  \IT{(\MC*{CASE} \VAR{test} \OPn{(\NEV{\VAR{keys}} \PROGN{\VAR{foo}})}
+  \IT{(\MC*{CASE} \VAR{test} \OPn{(\xorGOO{(\OPn{\NEV{\VAR{key}}})\\
+        \NEV{\VAR{key}}}{\}} \PROGN{\VAR{foo}})}
     \OP{(\xorGOO{\kwd*{OTHERWISE}\\
       \T}{\}} \PROGN{\VAR{bar}})\DF{\NIL}})}
   {
-  Return the \retval{values} of the first \OPn{\VAR{foo}} one of whose \VAR{keys} is
+  Return the \retval{values} of the first \OPn{\VAR{foo}} one of whose \VAR{key}s is
   \kwd{eql} \VAR{test}.
-  Return \retval{values of \VAR{bar}s} if no element of \VAR{keys} matches. 
+  Return \retval{values of \VAR{bar}s} if there is no matching \VAR{key}. 
   }
 
-  \IT{(\Goo{\MC*{ECASE}\XOR\MC*{CCASE}} \VAR{test}
-    \OPn{(\NEV{\VAR{keys}} \PROGN{\VAR{foo}})})}
+  \IT{(\xorGOO{\MC*{ECASE}\\
+      \MC*{CCASE}}{\}} \VAR{test}
+    \OPn{(\xorGOO{(\OPn{\NEV{\VAR{key}}})\\
+        \NEV{\VAR{key}}}{\}} \PROGN{\VAR{foo}})})}
   {
-  Return the \retval{values} of the first \OPn{\VAR{foo}} one of whose \VAR{keys} is \kwd{eql}
+  Return the \retval{values} of the first \OPn{\VAR{foo}} one of whose \VAR{key}s is \kwd{eql}
   \VAR{test}. Signal non-correctable/correctable \kwd{type-error} and
-  return \retval{\NIL} if no element of \VAR{keys} matches. 
+  return \retval{\NIL} if there is no matching \VAR{key}. 
   }
 
   \IT{(\MC*{AND} \OPn{\VAR{form}}\DF{\T})}
