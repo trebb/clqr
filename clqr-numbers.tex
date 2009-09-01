@@ -372,20 +372,6 @@ two's complement representation.
     \retval{number of 0 bits} in $\text{\VAR{int}}< 0$. 
   }
 
-  \IT{(\FU*{ASH} \VAR{integer} \VAR{count})}
-  {
-  Return copy of \retval{\VAR{integer}} arithmetically shifted left by
-  \VAR{count} adding zeros
-  at the right, or, for $\VAR{count}<0$, shifted right discarding
-  bits. 
-  }
-
-  \IT{(\FU*{MASK-FIELD} \VAR{byte-spec} \VAR{integer})}
-  {
-  Return copy of \retval{\VAR{integer}} with all bits unset but those denoted by
-  \VAR{byte-spec}. \kwd{setf}able.
-  }
-
 
 \end{LIST}
 
@@ -397,6 +383,14 @@ two's complement representation.
   \IT{(\FU*{INTEGER-LENGTH} \VAR{integer})}
   {
   \retval{Number of bits} necessary to represent \VAR{integer}. 
+  }
+
+  \IT{(\FU*{ASH} \VAR{integer} \VAR{count})}
+  {
+  Return copy of \retval{\VAR{integer}} arithmetically shifted left by
+  \VAR{count} adding zeros
+  at the right, or, for $\VAR{count}<0$, shifted right discarding
+  bits. 
   }
 
   \IT{(\FU*{LDB-TEST} \VAR{byte-spec} \VAR{integer})}
@@ -418,6 +412,12 @@ two's complement representation.
   Return \retval{\VAR{int-b}} with bits denoted by \VAR{byte-spec} replaced
   by corresponding bits of \VAR{int-a}, or by the low (\FU{byte-size}
   \VAR{byte-spec}) bits of \VAR{int-a}, respectively. 
+  }
+
+  \IT{(\FU*{MASK-FIELD} \VAR{byte-spec} \VAR{integer})}
+  {
+  Return copy of \retval{\VAR{integer}} with all bits unset but those denoted by
+  \VAR{byte-spec}. \kwd{setf}able.
   }
 
   \IT{(\FU*{BYTE} \VAR{size} \VAR{position})}
