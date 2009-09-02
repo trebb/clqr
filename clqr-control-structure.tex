@@ -817,13 +817,13 @@
 
   \IT{(\MC*{LOOP} \OPn{\VAR{form}})} 
   {
-  Simple Loop. If \VAR{form}s do not contain any atomic Loop Facility
+  \EM{Simple Loop. } If \VAR{form}s do not contain any atomic Loop Facility
   keywords, evaluate them forever in an implicit \SO{block} named \NIL.
   }
 
-  \IT{(\MC*{LOOP} \OPn{\VAR{form}})}
+  \IT{(\MC*{LOOP} \OPn{\VAR{clause}})}
   {
-  Loop Facility. For Loop Facility keywords
+  \EM{Loop Facility. } For Loop Facility keywords
   see below and Figure \ref{loop-overview}.
   }
 
@@ -858,11 +858,6 @@
     {
     Initialize (possibly trees of) local variables \VAR{var-s}
     sequentially and \VAR{var-p} in parallel. 
-    }
-
-    \IT{\Goo{\LKWD*{initially}\XOR\LKWD*{finally}} \RP{\VAR{form}}}
-    {
-    Evaluate \VAR{form}s before begin, or after end, respectively, of iterations.
     }
 
     \begin{figure}%
@@ -1224,11 +1219,23 @@
     Evaluate \VAR{form}s in every iteration.
     }
 
-    \IT{\LKWD*{it}}
+    \IT{\Goo{\LKWD*{if}\XOR\LKWD*{when}\XOR\LKWD*{unless}} \VAR{ test}
+      \VAR{i-clause} \Goos{\LKWD*{and} 
+        \VAR{j-clause}} \Op{\LKWD*{else} \VAR{k-clause} \Goos{\LKWD*{and} 
+          \VAR{l-clause}}} \Op{\LKWD*{end}}} 
     {
-      Value of \VAR{test} form of an enclosing \LKWD{if},
-      \LKWD{when}, or \LKWD{unless} clause.
+    If \VAR{test} returns \T, \T, or \NIL, respectively, evaluate
+    \VAR{i-clause} and \VAR{j-clause}s; otherwise, evaluate \VAR{k-clause}
+    and \VAR{l-clause}s.
     }
+
+    \begin{LIST}{.5cm}
+      \IT{\LKWD*{it}}
+      {
+        Inside \VAR{i-clause} or \VAR{k-clause}:
+        \retval{value of \VAR{test}}.
+      }
+    \end{LIST}
 
     \IT{\LKWD*{return} \Goo{\VAR{form}\XOR\LKWD*{it}}}
     {
@@ -1282,15 +1289,9 @@
     which is returned after termination.
     }
 
-    \IT{\Goo{\LKWD*{if}\XOR\LKWD*{when}\XOR\LKWD*{unless}} \VAR{ test}
-      \VAR{i-form} \Goos{\LKWD*{and} 
-        \VAR{j-form}} \Op{\LKWD*{else} \VAR{k-form} \Goos{\LKWD*{and} 
-          \VAR{l-form}}} \Op{\LKWD*{end}}} 
+    \IT{\Goo{\LKWD*{initially}\XOR\LKWD*{finally}} \RP{\VAR{form}}}
     {
-    If \VAR{test} returns \T, \T, or \NIL, respectively, evaluate
-    \VAR{i-form} and \VAR{j-form}s; otherwise, evaluate \VAR{k-form}
-    and \VAR{l-form}s. Inside \VAR{i-form} and \VAR{k-form}, the value
-    of \VAR{test} is accessible by \LKWD*{it}. 
+    Evaluate \VAR{form}s before begin, or after end, respectively, of iterations.
     }
 
     \IT{\LKWD*{repeat} \VAR{num}}

@@ -385,18 +385,18 @@ two's complement representation.
   \retval{Number of bits} necessary to represent \VAR{integer}. 
   }
 
+  \IT{(\FU*{LDB-TEST} \VAR{byte-spec} \VAR{integer})}
+  {
+  Return \retval{\T} if any bit specified by \VAR{byte-spec} in
+  \VAR{integer} is set.
+  }
+
   \IT{(\FU*{ASH} \VAR{integer} \VAR{count})}
   {
   Return copy of \retval{\VAR{integer}} arithmetically shifted left by
   \VAR{count} adding zeros
   at the right, or, for $\VAR{count}<0$, shifted right discarding
   bits. 
-  }
-
-  \IT{(\FU*{LDB-TEST} \VAR{byte-spec} \VAR{integer})}
-  {
-  Return \retval{\T} if any bit specified by \VAR{byte-spec} in
-  \VAR{integer} is set.
   }
 
   \IT{(\FU*{LDB} \VAR{byte-spec} \VAR{integer})}
