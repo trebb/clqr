@@ -208,10 +208,10 @@
 
 \begin{LIST}{1cm}
 
-  \IT{(\xorGOO{\MC*{DEFUN }\xorGOO{\VAR{foo}\\
-      (\kwd{setf} \VAR{ foo})}{.}\\ 
-      \MC*{LAMBDA}}{\}}
-    (\VAR{\OPn{ord-$\lambda$}}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
+  \IT{(\xorGOO{\MC*{DEFUN }\xorGOO{\VAR{foo }(\VAR{\OPn{ord-$\lambda$}})\\
+      (\kwd{setf} \VAR{ foo})\text{ }(\VAR{new-value } \VAR{\OPn{ord-$\lambda$}})}{.}\\ 
+      \MC*{LAMBDA }(\VAR{\OPn{ord-$\lambda$}})}{\}}%
+    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \Op{\NEV{\VAR{doc}}} 
     \PROGN{\VAR{form}})}
   {
@@ -223,9 +223,8 @@
 
   \IT{(\xorGOO{\SO*{FLET}\\
       \SO*{LABELS}}{\}}
-    (\OPn{(\xorGOO{\VAR{foo}\\
-        (\kwd{setf} \VAR{ foo})}{\}}
-      (\OPn{\VAR{ord-$\lambda$}}) 
+    (\OPn{(\xorGOO{\VAR{foo }(\OPn{\VAR{ord-$\lambda$}})\\
+        (\kwd{setf} \VAR{ foo})\text{ }(\VAR{new-value }\OPn{\VAR{ord-$\lambda$}})}{\}}%
       \OPn{(\kwd{declare} \OPn{\NEV{\VAR{local-decl}}})}
       \Op{\NEV{\VAR{doc}}}
       \PROGN{\VAR{local-form}})}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
