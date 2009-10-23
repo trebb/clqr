@@ -48,10 +48,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
-  \IT{(\xorGOO{\FU*{MAKE-ARRAY}\VAR{ dimensions }
+  \IT{(\xorGOO{\FU*{MAKE-ARRAY}\VAR{ dimension-sizes }
       \OP{\kwd{:adjustable} \VAR{ bool}\DF{\NIL}}\\
       \FU*{ADJUST-ARRAY } \DES{\VAR{array}}
-    \VAR{ dimensions}}{\}}
+    \VAR{ dimension-sizes}}{\}}
     \orGOO{\kwd{:element-type} \VAR{ type}\DF{\T}\\
       \kwd{:fill-pointer } \Goo{\VAR{num}\XOR\VAR{bool}}\DF{\NIL}\\
       \xorGOO{\kwd{:initial-element} \VAR{ obj}\\
@@ -59,8 +59,7 @@
         \kwd{:displaced-to } \VAR{array}\DF{\NIL}\text{ }
         \Op{\kwd{:displaced-index-offset } \VAR{i}\DF{\LIT{0}}}}{.}}{\}})}
   { 
-  Return fresh, or readjust, respectively, \retval{vector} or \retval{array} of
-    \VAR{dimensions}. 
+  Return fresh, or readjust, respectively, \retval{vector} or \retval{array}. 
   }
 
   \IT{(\FU*{AREF} \VAR{array} \OP{\VAR{subscripts}})}
@@ -142,17 +141,17 @@
 
   \IT{\CNS*{ARRAY-RANK-LIMIT}}
   {
-  Upper bound of array rank, $\geq 8$.
+  Upper bound of array rank; $\geq 8$.
   }
 
   \IT{\CNS*{ARRAY-DIMENSION-LIMIT}}
   {
-  Upper bound of an array dimension, $\geq 1024$.
+  Upper bound of an array dimension; $\geq 1024$.
   }
 
   \IT{\CNS*{ARRAY-TOTAL-SIZE-LIMIT}}
   {
-  Upper bound of array size, $\geq 1024$.
+  Upper bound of array size; $\geq 1024$.
   }
 
 \end{LIST}
