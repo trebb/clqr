@@ -59,7 +59,7 @@
 	  </p>
 	  <p>
 	    Please report any errors to <a href="mailto:trebb@users.berlios.de?subject=CLQR ">
-	    trebb@users.berlios.de</a>. 
+	    trebb@users.berlios.de</a>. Nitpickers welcome!
 	  </p>
 	  <p>&nbsp;</p>
 	    
