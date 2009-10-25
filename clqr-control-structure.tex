@@ -497,7 +497,8 @@
     Specify how to \kwd{setf} a place accessed by
     \retval{\VAR{function}}.
     \EM{Short form:} (\kwd{setf} (\VAR{function} \OPn{\VAR{arg}}) \VAR{value-form}) is
-    replaced by (\VAR{updater} \OPn{\VAR{arg}} \VAR{value-form}).
+    replaced by (\VAR{updater} \OPn{\VAR{arg}} \VAR{value-form}); the
+    latter must return \VAR{value-form}.
     \EM{Long form:} on invocation of (\kwd{setf} (\VAR{function}
     \OPn{\VAR{arg}}) \VAR{value-form}), \VAR{form}s must expand
     into code that sets the place accessed where \VAR{setf-$\lambda$}
@@ -732,7 +733,7 @@
 
   \IT{(\SO*{TAGBODY} \Goos{\NEV{\VAR{tag}}\XOR\VAR{form}})}
   {
-  Evaluate \VAR{form}s in al lexical environment. \VAR{tag}s (symbols or integers) have lexical
+  Evaluate \VAR{form}s in a lexical environment. \VAR{tag}s (symbols or integers) have lexical
   scope and dynamic extent, and are targets for \SO{GO}. Return
   \retval{\NIL}. 
   }
