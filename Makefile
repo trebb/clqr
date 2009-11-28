@@ -29,7 +29,7 @@ MAKE		= make
 GZIP		= gzip
 GIT_REVISION	= git-describe | sed 's/\(.*-.*\)-.*/\1/'
 GIT_ARCHIVE	= git-archive --format=tar --prefix=$(CLQR)/ HEAD | $(GZIP)
-GIT_COMMIT	= git-commit -a
+GIT_LOG		= git-log
 DATE		= git-log HEAD^..HEAD --date=short | awk '/Date:/{print $$2}' | tr -d '\n\\' 
 RSYNC		= rsync -va
 SSH		= ssh
@@ -101,31 +101,29 @@ color-black.flag:
 	$(TOUCH) $@
 
 revision-number:
-	$(GIT_REVISION) > REVISION.tex
+	$(GIT_REVISION) | tee REVISION.tex > html/release-revision.txt
 
 DATE.tex:	$(CLQR).tex $(CLQR)-*.tex 
-	$(DATE) > $@
+	$(DATE) | tee $@ > html/release-date.txt
 
 clean:
 	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.out *.ps *.pdf *~ html/*~ \
               *.flag *.jpg html/*.jpg *.tar.gz REVISION.tex DATE.tex \
+	      html/latest-changes.html html/release-revision.txt html/release-date.txt \
               paper-current.tex color-current.tex
 
 
 # Project hosting
 
-maintainance:	release publish
-
-publish:	html/sample-frontcover.jpg \
+publish:	letter a4 \
+		html/sample-frontcover.jpg \
 		html/sample-firstpage-all.jpg html/sample-firstpage-four.jpg \
-		html/sample-firstpage-consec.jpg html/sample-source.jpg $(CLQR)-a4-consec.pdf
+		html/sample-firstpage-consec.jpg html/sample-source.jpg \
+		html/latest-changes.html \
+		$(CLQR).tar.gz
 	$(MAKE) publishclean
 	$(RSYNC) --delete ./ trebb@shell.berlios.de:/home/groups/ftp/pub/clqr/clqr/ $(SEND-TO-LOG)
 	$(RSYNC) ./html/ trebb@shell.berlios.de:/home/groups/clqr/htdocs/ $(SEND-TO-LOG)
-	$(SSH) trebb@shell.berlios.de /home/groups/ftp/pub/clqr/clqr/fetch-news.sh $(SEND-TO-LOG)
-
-release:	emergency-commit letter a4 $(CLQR).tar.gz
-	./upload.sh
 
 html/sample-frontcover.jpg:	$(CLQR)-a4-consec.pdf
 	$(CONVERT) $<'[0]' -verbose -resize 40% temp.jpg $(SEND-TO-LOG)
@@ -147,8 +145,11 @@ html/sample-source.jpg:	$(CLQR)-numbers.tex
 	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 	$(RM) temp.jpg
 
-emergency-commit $(CLQR).tar.gz:	
-	if $(GIT_COMMIT) -aF commit-message; then true; else true; fi $(SEND-TO-LOG)
+html/latest-changes.html:	$(CLQR).tex $(CLQR)-*.tex 
+	if $(GIT_LOG) -5 --pretty=format:"<p><i>%ci</i>%n<br />%s%n<br />%b</p>" > $@; then true; else true; fi $(SEND-TO-LOG)
+
+$(CLQR).tar.gz:	$(CLQR).tex $(CLQR)-*.tex 
 	if $(GIT_ARCHIVE) > $(CLQR).tar.gz; then true; else true; fi $(SEND-TO-LOG)
+
 publishclean:
 	$(RM) *.ps *~ html/*~

@@ -48,16 +48,12 @@
 	      <img class="left" src="sample-firstpage-consec.jpg"
 		   alt="[Sample]"/> 
 	      <p>
-	      <a href="http://download.berlios.de/clqr/clqr-a4-consec.pdf"
-		 title="Half A4 size; not for printing">clqr-a4-consec.pdf</a>&nbsp;&nbsp;(Server A)<br>
-	      <a href="http://download2.berlios.de/clqr/clqr-a4-consec.pdf" 
-		 title="Half A4 size; not for printing">clqr-a4-consec.pdf</a>&nbsp;&nbsp;(Server B)<br>
+	      <a href="clqr-a4-consec.pdf"
+		 title="Half A4 size; not for printing">clqr-a4-consec.pdf</a><br />
 	      </p>
 	      <p>
-	      <a href="http://download.berlios.de/clqr/clqr-letter-consec.pdf"
-		 title="Half US letter size; not for printing">clqr-letter-consec.pdf</a>&nbsp;&nbsp;(Server A)<br>
-	      <a href="http://download2.berlios.de/clqr/clqr-letter-consec.pdf"
-		 title="Half US letter size; not for printing">clqr-letter-consec.pdf</a>&nbsp;&nbsp;(Server B)<br>
+	      <a href="clqr-letter-consec.pdf"
+		 title="Half US letter size; not for printing">clqr-letter-consec.pdf</a><br />
 	      </p>
 	      <ul>
 		<li>Pages in their natural order. 
@@ -71,16 +67,12 @@
 	      <img class="left" src="sample-firstpage-all.jpg"
 		   alt="[Sample]"/> 
 	      <p>
-	      <a href="http://download.berlios.de/clqr/clqr-a4-booklet-all.pdf"
-		 title="A4 size paper, nested folios">clqr-a4-booklet-all.pdf</a>&nbsp;&nbsp;(Server A)<br>
-	      <a href="http://download2.berlios.de/clqr/clqr-a4-booklet-all.pdf"
-		 title="A4 size paper, nested folios">clqr-a4-booklet-all.pdf</a>&nbsp;&nbsp;(Server B)<br>
+	      <a href="clqr-a4-booklet-all.pdf"
+		 title="A4 size paper, nested folios">clqr-a4-booklet-all.pdf</a><br />
 	      </p>
 	      <p>
-	      <a href="http://download.berlios.de/clqr/clqr-letter-booklet-all.pdf"
-		 title="US letter size paper, nested folios">clqr-letter-booklet-all.pdf</a>&nbsp;&nbsp;(Server A)<br>
-	      <a href="http://download2.berlios.de/clqr/clqr-letter-booklet-all.pdf"
-		 title="US letter size paper, nested folios">clqr-letter-booklet-all.pdf</a>&nbsp;&nbsp;(Server B)<br>
+	      <a href="clqr-letter-booklet-all.pdf"
+		 title="US letter size paper, nested folios">clqr-letter-booklet-all.pdf</a><br />
 	      </p>
 	      <ul>
 		<li>Suitable for printing, folding lengthwise and nesting the
@@ -93,16 +85,12 @@
 	      <img class="left" src="sample-firstpage-four.jpg"
 		   alt="[Sample]"/> 
 	      <p>
-	      <a href="http://download.berlios.de/clqr/clqr-a4-booklet-four.pdf"
-		 title="A4 size paper, stacked folios">clqr-a4-booklet-four.pdf</a>&nbsp;&nbsp;(Server A)<br>
-	      <a href="http://download2.berlios.de/clqr/clqr-a4-booklet-four.pdf"
-		 title="A4 size paper, stacked folios">clqr-a4-booklet-four.pdf</a>&nbsp;&nbsp;(Server B)<br>
+	      <a href="clqr-a4-booklet-four.pdf"
+		 title="A4 size paper, stacked folios">clqr-a4-booklet-four.pdf</a><br />
 	      </p>
 	      <p>
-	      <a href="http://download.berlios.de/clqr/clqr-letter-booklet-four.pdf"
-		 title="US letter size paper, stacked folios">clqr-letter-booklet-four.pdf</a>&nbsp;&nbsp;(Server A)<br>
-	      <a href="http://download2.berlios.de/clqr/clqr-letter-booklet-four.pdf"
-		 title="US letter size paper, stacked folios">clqr-letter-booklet-four.pdf</a>&nbsp;&nbsp;(Server B)<br>
+	      <a href="clqr-letter-booklet-four.pdf"
+		 title="US letter size paper, stacked folios">clqr-letter-booklet-four.pdf</a><br />
 	      </p>
 	      <ul>
 		<li>Suitable for printing, folding lengthwise and stacking the
@@ -115,10 +103,8 @@
 	      <img class="left" src="sample-source.jpg"
 		   alt="[Sample]"/> 
 	      <p>
-	      <a href="http://download.berlios.de/clqr/clqr.tar.gz"
-	      title="Download source code">clqr.tar.gz</a>&nbsp;&nbsp;(Server A)<br>
-	      <a href="http://download2.berlios.de/clqr/clqr.tar.gz"
-	      title="Download source code">clqr.tar.gz</a>&nbsp;&nbsp;(Server B)<br>
+	      <a href="clqr.tar.gz"
+	      title="Download source code">clqr.tar.gz</a><br />
 	      </p>
 	      <ul>
 		<li>LaTeX source.

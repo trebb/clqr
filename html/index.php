@@ -63,8 +63,8 @@
 	  </p>
 	  <p>&nbsp;</p>
 	    
-	    <h3>Recent News</h3>
-	    <?php echo(file_get_contents("news-clqr.html"));?>	
+	    <h3>Latest Changes</h3>
+	    <?php echo(file_get_contents("latest-changes.html"));?>	
 	</td>
       </tr>
       <tr>
