@@ -304,7 +304,7 @@
     (\FU{complex} \VAR{a} \VAR{b}), the complex number $\VAR{a}+\VAR{b}\text{i}$.
   }
 
-  \IT{\KWD*{\#'}\VAR{foo}\qquad\qquad}
+  \IT{\KWD*{\#'}\VAR{foo}\qquad\qquad\qquad}
   {
   (\SO{function} \VAR{foo}); the function named \VAR{foo}.
   }
@@ -627,7 +627,8 @@
 
   \IT{\V{\A print-miser-width\A}}
   {\index{*PRINT-MISER-WIDTH*@\A PRINT-MISER-WIDTH\A}
-  Width below which a compact pretty-printing style is used.
+    If integer and greater than the width available for printing a
+    substructure, switch to the more compact miser style.
   }
 
   \IT{\V{\A print-pretty\A}}
@@ -878,11 +879,11 @@
     }
 
     \IT{\KWD{\TLD}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{\boldmath{$<$}}
-      \OP{\Goo{\VAR{prefix}\DF{\LIT{""}}\KWD{\TLD;}}\XOR\Goo{\VAR{per-line-prefix}\KWD{\TLD@;}}}
+      \GOo{\Op{\VAR{prefix}\DF{\LIT{""}}\KWD{\TLD;}}\XOR\Op{\VAR{per-line-prefix}\KWD{\TLD@;}}}
       \VAR{body}\OP{\KWD{\TLD;}\VAR{suffix}\DF{\LIT{""}}}\KWD{\TLD:}\Op{\KWD{@}}\KWD{\boldmath{$>$}}}
     {\index{\~<\~:>@$\sim$$<$ $\sim$:$>$}%
       \EM{Logical Block. }
-      Act like \kwd{pprint-logical-block} using \VAR{body} as \MC{format}
+      Act like \kwd{pprint-logical-block} using \VAR{body} as \FU{format}
       control string on the elements of the list argument or, with \KWD{@},
       on the remaining arguments, which are extracted by
       \kwd{pprint-pop}. With \KWD{:}, \VAR{prefix} and \VAR{suffix}
@@ -1135,7 +1136,9 @@
   \IT{\arrGOO{\V{\A standard-input\A}\\
       \V{\A standard-output\A}\\
       \V{\A error-output\A}}{.}}
-  {\index{*STANDARD-INPUT*@\A STANDARD-INPUT\A}\index{*STANDARD-OUTPUT*@\A STANDARD-OUTPUT\A}\index{*ERROR-OUTPUT*@\A ERROR-OUTPUT\A}
+  {\index{*STANDARD-INPUT*@\A STANDARD-INPUT\A}%
+    \index{*STANDARD-OUTPUT*@\A STANDARD-OUTPUT\A}%
+    \index{*ERROR-OUTPUT*@\A ERROR-OUTPUT\A}
   Standard input stream, standard output stream, 
   or standard error output stream, respectively.
   }
@@ -1159,8 +1162,8 @@
     \orGOO{\kwd{:host} \VAR{ host}\\
       \kwd{:device} \VAR{ dev}\\
       \kwd{:directory} \VAR{ dir}\\
-      \kwd{:name} \VAR{ name}\\
-      \kwd{:type} \VAR{ type}\\
+      \kwd{:name} \VAR{ file-name}\\
+      \kwd{:type} \VAR{ file-type}\\
       \kwd{:version} \VAR{ ver}\\
       \kwd{:defaults} \VAR{ path}\\
       \kwd{:case
@@ -1198,8 +1201,9 @@
       (\FU*{DIRECTORY-NAMESTRING}\VAR{ path})\\
       (\FU*{HOST-NAMESTRING}\VAR{ path})}{.}}
   {
-  Return string representing \retval{full pathname}; \retval{name, type, and version};
-  \retval{directory name}; or \retval{host name}, respectively, of \VAR{path}.
+    Return string representing \retval{full pathname}; \retval{name,
+    type, and version}; \retval{directory name}; or \retval{host
+    name}, respectively, of \VAR{path}.
   }
 
   \IT{(\FU*{PARSE-NAMESTRING} \VAR{foo} 
@@ -1220,7 +1224,7 @@
         \FU*{PATHNAME-DIRECTORY}\\
         \FU*{PATHNAME-NAME}\\
         \FU*{PATHNAME-TYPE}}{\}}
-      \VAR{path }
+      \VAR{ path }
       \Op{\kwd{:case } \xorGOO{\kwd{:local}\\
           \kwd{:common}}{\}}\DF{\kwd{:local}}})\\
       (\FU*{PATHNAME-VERSION } \VAR{path})}{.}}

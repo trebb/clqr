@@ -1,4 +1,4 @@
-% Copyright (C) 2008 Bert Burgemeister
+% Copyright (C) 2008, 2009 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -40,7 +40,7 @@
         \xorGOO{
           (\kwd{:type } \xorGOO{\kwd{list}\\
             \kwd{vector}\\
-            (\kwd{vector }\NEV{\VAR{size}})}{\}})\text{ }
+            (\kwd{vector }\NEV{\VAR{element-type}})}{\}})\text{ }
           \orGOO{%
             \kwd{:named}\\
             (\kwd{:initial-offset } \NEV{\VAR{n}})\\
@@ -61,17 +61,18 @@
       \VAR{slot}\\
       (\VAR{slot } \Op{\VAR{init}\text{ }
         \orGOO{
-          \kwd{:type } \NEV{\VAR{type}}\\
+          \kwd{:type } \NEV{\VAR{slot-type}}\\
           \kwd{:read-only } \NEV{\VAR{bool}}
         }{\}}})
     }{\}^{\!\!*}}%
     )}
   {
-  Define structure type \retval{\VAR{foo}} together with functions
-  \LIT{MAKE-}\VAR{foo}, \LIT{COPY-}\VAR{foo} and (unless \kwd{:type}
-  without \kwd{:named} is used)
+    Define structure \retval{\VAR{foo}} together with functions
+  \LIT{MAKE-}\VAR{foo}, \LIT{COPY-}\VAR{foo} and
   \VAR{foo}\LIT{-P}; and \kwd{setf}able accessors
-  \VAR{foo}\LIT{-}\VAR{slot}. Instances of type \VAR{foo} can be
+  \VAR{foo}\LIT{-}\VAR{slot}. Instances are of class \VAR{foo} or, if 
+  \kwd{defstruct} option \kwd{:type} is given, of the specified type.
+  They can be
   created by (\LIT{MAKE-}\VAR{foo} \Goos{\kwd{:}\VAR{slot}
     \VAR{value}}) or, if \VAR{ord-$\lambda$} (see
   p.\ \pageref{section:Functions}) is given, by (\VAR{maker}
@@ -83,7 +84,9 @@
   \GFU{print-object} method for an instance \VAR{bar} of \VAR{foo}
   calling (\VAR{o-printer} \VAR{bar} \VAR{stream}) or (\VAR{f-printer}
   \VAR{bar} \VAR{stream} \VAR{print-level}), respectively.
-  }
+  If \kwd{:type} without \kwd{:named} is given, no \VAR{foo}\LIT{-P}
+  is created.
+}
 
   \IT{(\FU*{COPY-STRUCTURE} \VAR{structure})}
   {

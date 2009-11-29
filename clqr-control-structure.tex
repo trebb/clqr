@@ -247,10 +247,10 @@
   }
 
   \IT{(\FU*{APPLY} \xorGOO{\VAR{function}\\
-      (\kwd{setf } \VAR{function})}{\}} \RP{\VAR{arg}})}
+      (\kwd{setf } \VAR{function})}{\}} \OPn{\VAR{arg}} \VAR{args})}
   {
-  Return \retval{values of \VAR{function}} called on
-  \VAR{arg}s. Last \VAR{arg} must be a list. \kwd{setf}able if
+  Return \retval{values of \VAR{function}} called with
+  \VAR{arg}s and the list elements of \VAR{args}. \kwd{setf}able if
   \VAR{function} is one of \FU{aref}, \FU{bit}, and \FU{sbit}.
   }
 
@@ -259,10 +259,9 @@
   Return \retval{values of \VAR{function}} called with \VAR{arg}s.
   }
 
-  \IT{(\SO*{MULTIPLE-VALUE-CALL} \VAR{foo} \OPn{\VAR{form}})}
-  {Call function
-  \VAR{foo} with all the values of each \VAR{form} as its arguments.  Return
-  \retval{values returned by \VAR{foo}}.
+  \IT{(\SO*{MULTIPLE-VALUE-CALL} \VAR{function} \OPn{\VAR{form}})}
+  {Call \VAR{function} with all the values of each \VAR{form} as its
+    arguments. Return \retval{values returned by \VAR{function}}.
   }
 
   \IT{(\FU*{VALUES-LIST} \VAR{list})}
@@ -278,7 +277,7 @@
 
   \IT{(\FU*{MULTIPLE-VALUE-LIST} \VAR{form})}
   {
-  Return in a \retval{list} values of \VAR{form}.
+    \retval{List of the values of \VAR{form}}.
   }
 
   \IT{(\MC*{NTH-VALUE} \VAR{n} \VAR{form})}
@@ -370,7 +369,7 @@
       \kwd{\&rest}\\
       \kwd{\&body}}{\}}
     \xorGOO{%
-      \VAR{var}\\
+      \VAR{rest-var}\\
       (\OPn{\VAR{macro-$\lambda$}})}{\}}}
   \penalty-5
   \Op{\VAR{E}}
@@ -395,6 +394,7 @@
   \Op{\VAR{E}})
   \\
   or
+  \\
   \penalty-5
   (\Op{\kwd{\&whole}
       \VAR{var}}
@@ -417,7 +417,7 @@
   \penalty-5
   \Op{\VAR{E}}
   \kwd{.}
-  \VAR{var}).
+  \VAR{rest-var}).
   \penalty-5
 \end{flushleft}
   One toplevel \Op{\VAR{E}} may be replaced by \kwd{\&environment}
