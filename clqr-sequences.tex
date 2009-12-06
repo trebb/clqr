@@ -100,8 +100,8 @@
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {
-  Return \retval{number of \VAR{foo}s} in \VAR{sequence} which satisfy
-  tests. 
+  Return \retval{number of elements} in \VAR{sequence} which match
+  \VAR{foo}.
   }
 
   \IT{(\xorGOO{\FU*{COUNT-IF}\\
@@ -146,14 +146,14 @@
       \FU*{POSITION}}{\}} \VAR{foo} \VAR{sequence} 
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \xorGOO{%
-        \kwd{:test} \VAR{ test}\DF{\kwd{\#'eql}}\\
+        \kwd{:test} \VAR{ function}\DF{\kwd{\#'eql}}\\
         \kwd{:test-not} \VAR{ test}}{.}\\
       \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {
   Return \retval{first element} in \VAR{sequence} which
-  satisfies \VAR{test}, or its \retval{position} relative to the begin
+  matches \VAR{foo}, or its \retval{position} relative to the begin
   of \VAR{sequence}, respectively.
   }
 
@@ -165,8 +165,8 @@
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {
-  Return \retval{first element in \VAR{sequence}} which satisfies \VAR{test}, or
-  \retval{its position} relative to the begin of \VAR{sequence}, respectively.
+  Return \retval{first element} in \VAR{sequence} which satisfies \VAR{test}, or
+  its \retval{position} relative to the begin of \VAR{sequence}, respectively.
   }
 
   \IT{(\FU*{SEARCH} \VAR{sequence-a} \VAR{sequence-b} 
