@@ -7,9 +7,9 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="new-pure.css" type="text/css">
   </head>
-
+  
   <body>
-
+    
     <table class="main-table">
       <tr>
 	<td class="title" colspan="2">
@@ -42,38 +42,32 @@
 	  <p>
 	  <p>
 	    If unsure what to download, have a look at <a href="printing.html">printing &amp; bookbinding</a>.
-
 	  <p>&nbsp;
-	    <div class="here">
-	      <img class="left" src="sample-firstpage-consec.jpg"
-		   alt="[Sample]"/> 
-	      <p>
-	      <a href="clqr-a4-consec.pdf"
-		 title="Half A4 size; not for printing">clqr-a4-consec.pdf</a><br />
-	      </p>
-	      <p>
-	      <a href="clqr-letter-consec.pdf"
-		 title="Half US letter size; not for printing">clqr-letter-consec.pdf</a><br />
-	      </p>
-	      <ul>
-		<li>Pages in their natural order. 
-		<li>Suitable only for reading on the screen. Comes
-		with bookmarks and hyperlinks.
-		<li>Not meant for printing because of the odd
-		  paper format and the coloured hyperlinks. 
-	      </ul>
-	    </div>
 	    <div class="here">
 	      <img class="left" src="sample-firstpage-all.jpg"
 		   alt="[Sample]"/> 
-	      <p>
-	      <a href="clqr-a4-booklet-all.pdf"
-		 title="A4 size paper, nested folios">clqr-a4-booklet-all.pdf</a><br />
-	      </p>
-	      <p>
-	      <a href="clqr-letter-booklet-all.pdf"
-		 title="US letter size paper, nested folios">clqr-letter-booklet-all.pdf</a><br />
-	      </p>
+	      <table width="70%">
+	        <tr>
+	          <td>
+	            <a href="clqr-a4-booklet-all.pdf"
+		       title="A4 size paper, nested folios">clqr-a4-booklet-all.pdf</a>
+		  </td>
+		  <td>
+	            [ <?php include("counters/clqr-a4-booklet-all.pdf.week-counter");?>/
+	            <?php include("counters/clqr-a4-booklet-all.pdf.current-counter");?>]*
+	          </td>
+                </tr>
+	        <tr>
+	          <td>
+	            <a href="clqr-letter-booklet-all.pdf"
+		       title="US letter size paper, nested folios">clqr-letter-booklet-all.pdf</a>
+		  </td>
+		  <td>
+	            [ <?php include("counters/clqr-letter-booklet-all.pdf.week-counter");?>/
+	            <?php include("counters/clqr-letter-booklet-all.pdf.current-counter");?>]*
+	          </td>
+	        </tr>
+	      </table>		 
 	      <ul>
 		<li>Suitable for printing, folding lengthwise and nesting the
 		  folios.
@@ -81,17 +75,32 @@
 		<li>With 52 pages total, last sheet has pages 28, 25, 26, 27.
 	      </ul>
 	    </div>
+	    <br />
 	    <div class="here">
 	      <img class="left" src="sample-firstpage-four.jpg"
 		   alt="[Sample]"/> 
-	      <p>
-	      <a href="clqr-a4-booklet-four.pdf"
-		 title="A4 size paper, stacked folios">clqr-a4-booklet-four.pdf</a><br />
-	      </p>
-	      <p>
-	      <a href="clqr-letter-booklet-four.pdf"
-		 title="US letter size paper, stacked folios">clqr-letter-booklet-four.pdf</a><br />
-	      </p>
+	      <table width="70%">
+	        <tr>
+	          <td>
+	            <a href="clqr-a4-booklet-four.pdf"
+		       title="A4 size paper, stacked folios">clqr-a4-booklet-four.pdf</a>
+		  </td>
+		  <td>
+	            [ <?php include("counters/clqr-a4-booklet-four.pdf.week-counter");?>/
+	            <?php include("counters/clqr-a4-booklet-four.pdf.current-counter");?>]*
+	          </td>
+                </tr>
+	        <tr>
+	          <td>
+	            <a href="clqr-letter-booklet-four.pdf"
+		       title="US letter size paper, stacked folios">clqr-letter-booklet-four.pdf</a>
+		  </td>
+		  <td>
+	            [ <?php include("counters/clqr-letter-booklet-four.pdf.week-counter");?>/
+	            <?php include("counters/clqr-letter-booklet-four.pdf.current-counter");?>]*
+	          </td>
+	        </tr>
+	      </table>		 
 	      <ul>
 		<li>Suitable for printing, folding lengthwise and stacking the
 		  folios.
@@ -99,17 +108,65 @@
 		<li>With 52 pages total, last sheet has pages 52, 49, 50, 51.
 	      </ul>
 	    </div>
+	    <br />
+	    <div class="here">
+	      <img class="left" src="sample-firstpage-consec.jpg"
+		   alt="[Sample]"/> 
+	      <table width="70%">
+	        <tr>
+	          <td>
+	            <a href="clqr-a4-consec.pdf"
+		       title="Half A4 size; not for printing">clqr-a4-consec.pdf</a>
+		  </td>
+		  <td>
+	            [ <?php include("counters/clqr-a4-consec.pdf.week-counter");?>/
+	            <?php include("counters/clqr-a4-consec.pdf.current-counter");?>]*
+	          </td>
+                </tr>
+	        <tr>
+	          <td>
+	            <a href="clqr-letter-consec.pdf"
+		       title="Half US letter size; not for printing">clqr-letter-consec.pdf</a>
+		  </td>
+		  <td>
+	            [ <?php include("counters/clqr-letter-consec.pdf.week-counter");?>/
+	            <?php include("counters/clqr-letter-consec.pdf.current-counter");?>]*
+	          </td>
+	        </tr>
+	      </table>		 
+	      <ul>
+		<li>Pages in their natural order. 
+		<li>Suitable only for reading on the screen. Comes
+		  with bookmarks and hyperlinks.
+		<li>Not meant for printing because of the odd
+		  paper format and the coloured hyperlinks. 
+	      </ul>
+	    </div>
+	    <br />
 	    <div class="here">
 	      <img class="left" src="sample-source.jpg"
 		   alt="[Sample]"/> 
-	      <p>
-	      <a href="clqr.tar.gz"
-	      title="Download source code">clqr.tar.gz</a><br />
-	      </p>
+	      <table width="70%">
+	        <tr>
+	          <td>
+	            <a href="clqr.tar.gz"
+	               title="Download source code">clqr.tar.gz</a>
+		  </td>
+		  <td>
+	            [ <?php include("counters/clqr.tar.gz.week-counter");?>/
+	            <?php include("counters/clqr.tar.gz.current-counter");?>]*
+	          </td>
+	        </tr>
+	      </table>		 
 	      <ul>
 		<li>LaTeX source.
 		<li>Not of much use unless you want to change it.
 	      </ul>
+	      <p>
+	        <br />	      
+	        ________<br />
+	        * downloads: [ this week / since 2009-12-01 ]
+	      </p>
 	    </div>
 	</td>
       </tr>

@@ -15,8 +15,11 @@ do
 	    /home/groups/clqr/log/combined.prev.log` )) \
 	    > /home/groups/clqr/htdocs/counters/${FILE}.all-time-counter
     fi
+    echo `grep --count -e "GET /${FILE} .* 200 " \
+        /home/groups/clqr/log/combined.curr.log` \
+        > /home/groups/clqr/htdocs/counters/${FILE}.week-counter
+
     echo $(( `cat /home/groups/clqr/htdocs/counters/${FILE}.all-time-counter` + \
-        `grep --count -e "GET /${FILE} .* 200 " \
-        /home/groups/clqr/log/combined.curr.log` )) \
+	`cat /home/groups/clqr/htdocs/counters/${FILE}.week-counter` )) \
         > /home/groups/clqr/htdocs/counters/${FILE}.current-counter
 done
