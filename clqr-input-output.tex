@@ -275,7 +275,7 @@
 
   \IT{\KWD*{'}\VAR{foo}\qquad\quad}
   {
-  (\SO{quote} \VAR{foo}); \VAR{foo} unevaluated
+  (\SO{quote} \VAR{foo}); \VAR{foo} unevaluated.
   }
 
   \IT{\KWD{\char18}(\Op{\VAR{foo}} \Op{\KWD*{,}\VAR{bar}} \Op{\KWD{,@}\VAR{baz}}
@@ -714,10 +714,10 @@
 
   \begin{LIST}{.5cm}
 
-    \IT{\KWD{\TLD}\Op{\VAR{min-col}\DF{\LIT{0}}} \OP{\KWD{,}\Op{\VAR{col-inc}\DF{\LIT{1}}}
+    \IT{\KWD{\TLD} \Op{\VAR{min-col}\DF{\LIT{0}}} \OP{\KWD{,}\Op{\VAR{col-inc}\DF{\LIT{1}}}
         \OP{\KWD{,}\Op{\VAR{min-pad}\DF{\LIT{0}}}
           \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}
-      \KWD{\Op{:}\Op{@}\Goo{A\XOR S}}}
+      \KWD{\Op{:} \Op{@} \Goo{A\XOR S}}}
     {\index{\~S@$\sim$S}\index{\~A@$\sim$A}%
       \EM{Aesthetic/Standard. }
       Print argument of any type for consumption by humans/by the
@@ -726,11 +726,11 @@
       rather than on the right.
     }
 
-    \IT{\KWD{\TLD}\Op{\VAR{radix}\DF{\LIT{10}}} \OP{\KWD{,}\Op{\VAR{width}}
+    \IT{\KWD{\TLD} \Op{\VAR{radix}\DF{\LIT{10}}} \OP{\KWD{,}\Op{\VAR{width}}
         \OP{\KWD{,}\Op{\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}
           \OP{\KWD{,}\Op{\VAR{comma-char}\DF{\kwd{'}\LIT{,}}}
             \OP{\KWD{,}\VAR{comma-interval}\DF{\LIT{3}}}}}}
-      \KWD{\Op{:}\Op{@}R}}
+      \KWD{\Op{:} \Op{@} R}}
     {\index{\~R@$\sim$R}%
       \EM{Radix. }
       (With one or more prefix arguments.) Print argument as number; with
@@ -747,34 +747,34 @@
       numeral, respectively.
     }
 
-    \IT{\KWD{\TLD}\Op{\VAR{width}}
+    \IT{\KWD{\TLD} \Op{\VAR{width}}
       \OP{\KWD{,}\Op{\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}
         \OP{\KWD{,}\Op{\VAR{comma-char}\DF{\kwd{'}\LIT{,}}}
           \OP{\KWD{,}\VAR{comma-interval}\DF{\LIT{3}}}}}
-      \KWD{\Op{:}\Op{@}\Goo{D\XOR B\XOR O\XOR X}}}
+      \KWD{\Op{:} \Op{@} \Goo{D\XOR B\XOR O\XOR X}}}
     {\index{\~D@$\sim$D}\index{\~B@$\sim$B}\index{\~O@$\sim$O}\index{\~X@$\sim$X}%
       \EM{Decimal/Binary/Octal/Hexadecimal. }
-      Print integer argument as number. With \kwd{:} group digits 
+      Print integer argument as number. With \kwd{:}, group digits 
       \VAR{comma-interval} each; with \kwd{@}, always prepend a sign.
     }
 
-    \IT{\KWD{\TLD}\Op{\VAR{width}} \OP{\KWD{,}\Op{\VAR{dec-digits}}
+    \IT{\KWD{\TLD} \Op{\VAR{width}} \OP{\KWD{,}\Op{\VAR{dec-digits}}
         \OP{\KWD{,}\Op{\VAR{shift}\DF{\LIT{0}}} 
           \OP{\KWD{,}\Op{\VAR{overflow-char}}
             \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}}
-      \KWD{\Op{@}F}}
+      \KWD{\Op{@} F}}
     {\index{\~F@$\sim$F}%
       \EM{Fixed-Format Floating-Point. } With
       \kwd{@}, always pre\-pend a sign. 
     }
 
-    \IT{\KWD{\TLD}\Op{\VAR{width}} \OP{\KWD{,}\Op{\VAR{int-digits}}
+    \IT{\KWD{\TLD} \Op{\VAR{width}} \OP{\KWD{,}\Op{\VAR{int-digits}}
         \OP{\KWD{,}\Op{\VAR{exp-digits}}
           \OP{\KWD{,}\Op{\VAR{scale-factor}\DF{\LIT{1}}}
             \OP{\KWD{,}\Op{\VAR{overflow-char}}
               \OP{\KWD{,}\Op{\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}
                 \OP{\KWD{,}\VAR{exp-char}}}}}}}
-      \KWD{\Op{@}\Goo{E\XOR  G}}}
+      \KWD{\Op{@} \Goo{E\XOR  G}}}
     {\index{\~E@$\sim$E}\index{\~G@$\sim$G}%
       \EM{Exponential/General Floating-Point. }
       Print argument as floating-point number with \VAR{int-digits}
@@ -783,11 +783,11 @@
       \KWD{\TLD F}. With \KWD{@}, always prepend a sign. 
     }
 
-    \IT{\KWD{\TLD}\Op{\VAR{dec-digits}\DF{\LIT{2}}}
+    \IT{\KWD{\TLD} \Op{\VAR{dec-digits}\DF{\LIT{2}}}
       \OP{\KWD{,}\Op{\VAR{int-digits}\DF{\LIT{1}}}
         \OP{\KWD{,}\Op{\VAR{width}\DF{\LIT{0}}}
           \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}
-      \Op{\KWD{:}}\Op{\kwd{@}}\KWD{\$}}
+      \Op{\KWD{:}} \Op{\kwd{@}} \KWD{\$}}
     {\index{\~\$@$\sim$\$}%
       \EM{Monetary Floating-Point. }
       Print argument as fixed-format floating-point number. With \KWD{:},
@@ -803,10 +803,10 @@
     }
 
     \IT{\Goo{%
-        \KWD{\TLD(}\VAR{text}\KWD{\TLD)}\XOR
-        \KWD{\TLD:(}\VAR{text}\KWD{\TLD)}\XOR
-        \KWD{\TLD @(}\VAR{text}\KWD{\TLD)}\XOR
-        \KWD{\TLD:@(}\VAR{text}\KWD{\TLD)}}}
+        \KWD{\TLD(} \VAR{text} \KWD{\TLD)}\XOR
+        \KWD{\TLD:(} \VAR{text} \KWD{\TLD)}\XOR
+        \KWD{\TLD @(} \VAR{text} \KWD{\TLD)}\XOR
+        \KWD{\TLD:@(} \VAR{text} \KWD{\TLD)}}}
     {\index{\~(\~)@$\sim$( $\sim$)}%
       \EM{Case-Conversion. }
       Convert \VAR{text} to lowercase, convert first letter of each word
@@ -824,13 +824,13 @@
       previous argument, respectively.  
     }
 
-    \IT{\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{1}}}\KWD{\%}}
+    \IT{\KWD{\TLD} \Op{\VAR{n}\DF{\LIT{1}}} \KWD{\%}}
     {\index{\~\%@$\sim$\%}%
       \EM{Newline. }
       Print \VAR{n} newlines.
     }
 
-    \IT{\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{1}}}\KWD{\&}}
+    \IT{\KWD{\TLD} \Op{\VAR{n}\DF{\LIT{1}}} \KWD{\&}}
     {\index{\~\&@$\sim$\&}%
       \EM{Fresh-Line. }
       Print $n-1$ newlines if output stream is at the
@@ -844,32 +844,32 @@
       \kwd{:linear}, \kwd{:fill}, \kwd{:miser}, or \kwd{:mandatory}, respectively.
     }
 
-    \IT{\KWD{\TLD}\Op{\KWD{:}}\Op{\KWD{@}}$\hookleftarrow$}
+    \IT{\KWD{\TLD} \Op{\KWD{:}} \Op{\KWD{@}} $\hookleftarrow$}
     {
       \EM{Ignored Newline. } Ignore newline and following
       whitespace. With \kwd{:}, ignore only newline; with \kwd{@},
       ignore only following whitespace.
     }
 
-    \IT{\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{1}}}\KWD{\boldmath$|$}}
+    \IT{\KWD{\TLD} \Op{\VAR{n}\DF{\LIT{1}}} \KWD{\boldmath$|$}}
     {\index{\~\textbar@$\sim${$"|$}}%
       \EM{Page. }
       Print \VAR{n} page separators.
     }
 
-    \IT{\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{1}}}\KWD{\TLD}}
+    \IT{\KWD{\TLD} \Op{\VAR{n}\DF{\LIT{1}}} \KWD{\TLD}}
     {\index{\~\~@$\sim$$\sim$}%
       \EM{Tilde. }
       Print \VAR{n} tildes.
     }
 
-    \IT{\KWD{\TLD}\Op{\VAR{min-col}\DF{\LIT{0}}}
+    \IT{\KWD{\TLD} \Op{\VAR{min-col}\DF{\LIT{0}}}
       \OP{\KWD{,}\Op{\VAR{col-inc}\DF{\LIT{1}}}
         \OP{\KWD{,}\Op{\VAR{min-pad}\DF{\LIT{0}}}
           \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}
-      \KWD{\Op{:}\Op{@}\boldmath{$<$}} 
-      \OP{\VAR{nl-text}\KWD{\TLD}\Op{\VAR{spare}\DF{\LIT{0}}\Op{,\VAR{width}}}\kwd{:;}}
-      \Goos{\VAR{text}\KWD{\TLD;}}\VAR{text} \KWD{\TLD\boldmath{$>$}}}
+      \KWD{\Op{:} \Op{@} \boldmath{$<$}} 
+      \OP{\VAR{nl-text} \KWD{\TLD}\Op{\VAR{spare}\DF{\LIT{0}} \Op{,\VAR{width}}}\kwd{:;}}
+      \Goos{\VAR{text}\KWD{\TLD;}} \VAR{text} \KWD{\TLD\boldmath{$>$}}}
     {\index{\~<\~>@$\sim$$<$ $\sim$$>$}%
       \EM{Justification. }
       Justify text produced by \VAR{text}s in a field of at least
@@ -878,9 +878,12 @@
       on the current line, output \VAR{nl-text} first.
     }
 
-    \IT{\KWD{\TLD}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{\boldmath{$<$}}
-      \GOo{\Op{\VAR{prefix}\DF{\LIT{""}}\KWD{\TLD;}}\XOR\Op{\VAR{per-line-prefix}\KWD{\TLD@;}}}
-      \VAR{body}\OP{\KWD{\TLD;}\VAR{suffix}\DF{\LIT{""}}}\KWD{\TLD:}\Op{\KWD{@}}\KWD{\boldmath{$>$}}}
+    \IT{\KWD{\TLD} \Op{\KWD{:}} \Op{\KWD{@}} \KWD{\boldmath{$<$}}
+      \GOo{\Op{\VAR{prefix}\DF{\LIT{""}}
+          \KWD{\TLD;}}\XOR\Op{\VAR{per-line-prefix}
+          \KWD{\TLD@;}}}
+      \VAR{body} \OP{\KWD{\TLD;} \VAR{suffix}\DF{\LIT{""}}}
+      \KWD{\TLD:} \Op{\KWD{@}} \KWD{\boldmath{$>$}}}
     {\index{\~<\~:>@$\sim$$<$ $\sim$:$>$}%
       \EM{Logical Block. }
       Act like \kwd{pprint-logical-block} using \VAR{body} as \FU{format}
@@ -892,15 +895,16 @@
       conditional newlines. 
     }
 
-    \IT{\Goo{\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\kwd{I}\XOR\KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\kwd{:I}}}
+    \IT{\Goo{\KWD{\TLD} \Op{\VAR{n}\DF{\LIT{0}}}
+        \kwd{I}\XOR\KWD{\TLD} \Op{\VAR{n}\DF{\LIT{0}}} \kwd{:I}}}
     {\index{\~I@$\sim$I}%
       \EM{Indent. }
       Set indentation to \VAR{n} relative to leftmost/to current
       position. 
     }
 
-    \IT{\KWD{\TLD}\Op{\VAR{c}\DF{\LIT{1}}}
-      \Op{\KWD{,}\VAR{i}\DF{\LIT{1}}} \Op{\KWD{:}}\Op{\KWD{@}}\KWD{T}}
+    \IT{\KWD{\TLD} \Op{\VAR{c}\DF{\LIT{1}}}
+      \Op{\KWD{,}\VAR{i}\DF{\LIT{1}}} \Op{\KWD{:}} \Op{\KWD{@}} \KWD{T}}
     {\index{\~T@$\sim$T}%
       \EM{Tabulate. }
       Move cursor forward to column number $c + ki$, $k \geq 0$ being as small
@@ -910,16 +914,16 @@
     }
 
     \IT{\Goo{%
-        \KWD{\TLD}\Op{\VAR{m}\DF{\LIT{1}}}\KWD{\A}\XOR
-        \KWD{\TLD}\Op{\VAR{m}\DF{\LIT{1}}}\KWD{:}\KWD{\A}\XOR
-        \KWD{\TLD}\Op{\VAR{n}\DF{\LIT{0}}}\KWD{@}\KWD{\A}}}
+        \KWD{\TLD} \Op{\VAR{m}\DF{\LIT{1}}} \KWD{\A}\XOR
+        \KWD{\TLD} \Op{\VAR{m}\DF{\LIT{1}}} \KWD{:}\KWD{\A}\XOR
+        \KWD{\TLD} \Op{\VAR{n}\DF{\LIT{0}}} \KWD{@}\KWD{\A}}}
     {\index{\~*@$\sim$\A}%
       \EM{Go-To. }
       Jump \VAR{m} arguments forward, or backward, or to argument \VAR{n}.
     }
 
-    \IT{\KWD{\TLD}\Op{\VAR{limit}}\Op{\KWD{{:}}}\Op{\kwd{@}}%
-      \KWD{\boldmath{$\{$}}\VAR{text}\KWD{\TLD\boldmath{$\}$}}}
+    \IT{\KWD{\TLD} \Op{\VAR{limit}} \Op{\KWD{{:}}} \Op{\kwd{@}}
+      \KWD{\boldmath{$\{$}} \VAR{text} \KWD{\TLD\boldmath{$\}$}}}
     {\index{\~\{\~\}@$\sim$$\{$ $\sim\}$}%
       \EM{Iteration. }
       \VAR{text} is used repeatedly, up to \VAR{limit}, as control
@@ -929,7 +933,8 @@
       lists of which a new one is used at each iteration step.
     }
 
-    \IT{\KWD{\TLD}\OP{\VAR{x} \OP{\kwd{,}\VAR{y} \Op{\kwd{,}\VAR{z}}}}\KWD{\^{}}}
+    \IT{\KWD{\TLD} \OP{\VAR{x} \OP{\kwd{,} \VAR{y} \Op{\kwd{,} \VAR{z}}}}
+      \KWD{\^{}}}
     {\index{\~\^{}@$\sim$\^{}}%
       \EM{Escape Upward. }
       Leave immediately \kwd{\TLD\boldmath{$<$} \TLD\boldmath{$>$}},
@@ -939,7 +944,9 @@
       if $x=0$, $x=y$, or $x\leq y \leq z$, respectively.
     }
 
-    \IT{\KWD{\TLD}\Op{\VAR{i}}\Op{\KWD{:}}\Op{\KWD{@}}\KWD{[}\Op{\Goos{\VAR{text}\KWD{\TLD;}}\VAR{text}}\Op{\kwd{\TLD:;}\VAR{default}}\KWD{\TLD]}}
+    \IT{\KWD{\TLD} \Op{\VAR{i}} \Op{\KWD{:}} \Op{\KWD{@}}
+      \KWD{[} \Op{\Goos{\VAR{text} \KWD{\TLD;}} \VAR{text}}
+      \Op{\kwd{\TLD:;} \VAR{default}} \KWD{\TLD]}}
     {\index{\~[\~]@$\sim$[ $\sim$]}%
       \EM{Conditional Expression. }
       The \VAR{text}s are format control subclauses the zero-indexed argumenth (or the
@@ -950,7 +957,7 @@
       chosen and the argument is used up if it is \NIL.
     }
 
-    \IT{\KWD{\TLD\Op{@}?}}
+    \IT{\KWD{\TLD} \Op{\KWD{@}} \KWD{?}}
     {\index{\~?@$\sim$?}%
       \EM{Recursive Processing. }
       Process two arguments as \FU{format} string and argument list. With
@@ -958,15 +965,15 @@
       rest of the original arguments.
     }
 
-    \IT{\KWD{\TLD}\OP{\VAR{prefix}\Goos{\kwd{,}
-          \VAR{prefix}}}\Op{\kwd{:}}\Op{\kwd{@}}\KWD{/}\VAR{function}\KWD{/}}
+    \IT{\KWD{\TLD} \OP{\VAR{prefix}\Goos{\kwd{,}
+          \VAR{prefix}}} \Op{\kwd{:}} \Op{\kwd{@}} \KWD{/}\VAR{function}\KWD{/}}
     {\index{\~/ /@$\sim$/ /}%
       \EM{Call Function. }
       Call \VAR{function} with the arguments stream, format-ar\-gu\-ment,
       colon-p, at-sign-p and \VAR{prefix}es for printing format-argument.
     }
 
-    \IT{\KWD{\TLD\Op{:}\Op{@}W}}
+    \IT{\KWD{\TLD} \Op{\KWD{:}} \Op{\KWD{@}} \KWD{W}}
     {\index{\~W@$\sim$W}%
       \EM{Write. }
       Print argument of any type obeying every printer control variable. With \kwd{:},

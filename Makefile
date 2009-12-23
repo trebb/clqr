@@ -72,7 +72,7 @@ $(CLQR)-%-signature-four.ps:	$(CLQR)-%-consec.ps
 $(CLQR)-%-consec.ps:	$(CLQR)-%.dvi color-colorful.flag
 	$(DVIPS) -o $@ $< $(SEND-TO-LOG)
 
-$(CLQR)-%.dvi:	$(CLQR).tex $(CLQR)-*.tex paper-%.flag DATE.tex revision-number
+$(CLQR)-%.dvi:	$(CLQR).tex $(CLQR)-*.tex paper-%.flag revision-number
 	$(TOUCH) $(CLQR).ind $(SEND-TO-LOG)
 	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
 	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
@@ -102,9 +102,10 @@ color-black.flag:
 
 revision-number:
 	$(GIT_REVISION) | tee REVISION.tex > html/release-revision.txt
+	$(DATE) | tee DATE.tex > html/release-date.txt
 
-DATE.tex:	$(CLQR).tex $(CLQR)-*.tex 
-	$(DATE) | tee $@ > html/release-date.txt
+#DATE.tex:	$(CLQR).tex $(CLQR)-*.tex 
+#	$(DATE) | tee $@ > html/release-date.txt
 
 clean:
 	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.out *.ps *.pdf *~ html/*~ \

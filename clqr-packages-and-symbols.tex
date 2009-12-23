@@ -210,10 +210,10 @@
   package the symbol belongs to.
   }
 
-  \IT{(\FU*{REQUIRE} \VAR{module} \Op{\VAR{path-list}\DF{\NIL}})}
+  \IT{(\FU*{REQUIRE} \VAR{module} \Op{\VAR{paths}\DF{\NIL}})}
   {
-  If not in \V{\A modules\A}, try paths in \VAR{path-list} to load
-  module from. Signal \kwd{error} if unsuccessful. Deprecated.
+  If not in \V{\A modules\A}, try \VAR{paths} to load
+  \VAR{module} from. Signal \kwd{error} if unsuccessful. Deprecated.
   }
 
   \IT{(\FU*{PROVIDE} \VAR{module})}
