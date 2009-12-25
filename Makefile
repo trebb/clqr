@@ -16,8 +16,8 @@ PSNUP-A4	= psnup -W10.5cm -H29.7cm -pa4 -2
 PSNUP-LETTER	= psnup -W4.25in -H11in -pletter -2
 PSBOOK-ALL	= psbook
 PSBOOK-FOUR	= psbook -s4
-PS2PDF		= ps2pdf
-CONVERT		= convert
+PS2PDF		= ps2pdf -dPDFSETTINGS=/prepress 
+Convert		= convert
 MONTAGE		= montage
 HEAD		= head
 TAIL		= tail
