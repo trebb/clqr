@@ -1,0 +1,308 @@
+\newlength{\LISTlinewidth}
+\newenvironment{LIST}[1]%
+               {%
+                 \LISTlinewidth=\linewidth%
+                 \begin{flushleft}%
+                 \begin{list}{}%
+                   {\setlength{\itemindent}{-#1}\setlength{\leftmargin}{#1}}%
+                   %\parskip0pt\itemsep0pt%
+               }%
+               {\end{list}%
+                 \end{flushleft}%
+               }%
+%
+%\renewcommand{\topfraction}{1}
+\renewcommand{\bottomfraction}{1}
+%\renewcommand*{\figureformat}{}
+%\renewcommand*{\captionformat}{}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+%
+\setlength{\parfillskip}{5cm plus1cm minus3cm}
+\setlength{\arraycolsep}{0pt}
+%
+%
+\def\startexplanation{$\triangleright$\hskip1.4ex}
+\newlength{\ITwidth}
+\newlength{\ITrest}
+\newlength{\ITtab}\ITtab=3em
+%
+\def\IT#1 #2 {%
+  \settowidth{\ITwidth}{#1\unskip\hskip1em\hskip\ITtab}%
+  \ITrest=\LISTlinewidth\advance\ITrest by -\ITwidth%
+  \loop\ifdim\ITrest > \ITtab%
+  \advance\ITrest by -\ITtab%
+  \repeat%
+%
+  \settowidth{\ITwidth}{%
+      #1\unskip\hskip1em\hskip\ITrest%
+      \startexplanation#2%
+  }%
+  \item{}%
+  \ifdim\ITwidth < \LISTlinewidth% Entry fits into a single line
+  #1\unskip\hskip1em\hskip\ITrest%
+  \startexplanation#2%
+  \else%
+  #1%
+  \unskip\penalty-10000%
+  \parbox[t]{\linewidth}{\startexplanation#2}%
+  \fi%
+}
+%
+%
+\newpagestyle{lispref}[\sffamily\mdseries\slshape]{
+  \headrule\footrule
+  \sethead*{}{}{\maintitle\/}
+  \setfoot*{}{}{\thepage\/}}
+\pagestyle{lispref}
+
+% Emphasize
+\newcommand{\EM}[1]{\text{{\fontfamily{cmr}\fontseries{b}\fontshape{n}\selectfont#1}}}
+%
+%
+% Literal Text
+\newcommand{\LIT}[1]{\text{{\fontfamily{cmtt}\selectfont#1}}}
+%
+% Variable Text
+\newcommand{\VAR}[1]{\text{{\fontfamily{cmr}\fontshape{it}\selectfont#1\/}}}
+%
+% Not Evaluated
+\newcommand{\NEV}[1]{\text{{$\widehat{#1}$}}}
+%
+% Subjected to Destruction
+\newcommand{\DES}[1]{\text{{$\widetilde{#1}$}}}
+%
+% Default Value
+\newcommand{\DF}[1]{\text{\textsubscript{\setlength{\fboxsep}{.5pt}\setlength{\fboxrule}{.1pt}\fbox{#1}}}}
+%
+% Optional Part, [], two sizes
+\newcommand{\OP}[1]{{\text{$\big[$}{#1}\text{$\big]$}}}
+\newcommand{\Op}[1]{{\text{$[$}{#1}\text{$]$}}}
+%
+% Or, |
+\newcommand{\XOR}{\hspace{1pt}\text{\rule[-.9ex]{.25pt}{3ex}}\hspace{1pt}}
+%\newcommand{\XOR}{\text{$\mid$}\hspace{0pt}}
+%
+% Optional Parts, *
+\newcommand{\OPn}[1]{{{#1}\text{${}^{*}$}}}
+%
+% Required Parts, +
+\newcommand{\RP}[1]{{{#1}\text{${}^{+}$}}}
+%
+% Implicit PROGN, P*
+\newcommand{\PROGN}[1]{{{#1}\text{${}^{{\raisebox{.5ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{-.6ex}P}}*}}$}}}
+%
+% Group of Objects {}, three sizes
+\newcommand{\GOO}[1]{{\text{$\Big\{$}{#1}\text{$\Big\}$}}}
+\newcommand{\GOo}[1]{{\text{$\big\{$}{#1}\text{$\big\}$}}}
+\newcommand{\Goo}[1]{{\text{$\{$}{#1}\text{$\}$}}}
+% Optional Group of Objects, {}*, three sizes
+\newcommand{\GOOs}[1]{{$\Big\{${#1}$\Big\}^{\!\!*}$}} % this one can
+                                % have line breaks
+\newcommand{\GOos}[1]{\text{{$\big\{${#1}$\big\}^{\!\!*}$}}}
+\newcommand{\Goos}[1]{\text{{$\{${#1}$\}^{\!*}$}}}
+% Required Group of Objects, {}+, three sizes
+\newcommand{\GOOp}[1]{{\text{$\Big\{$}{#1}\text{$\Big\}^{\!\!+}$}}}
+\newcommand{\GOop}[1]{{\text{$\big\{$}{#1}\text{$\big\}^{\!\!+}$}}}
+\newcommand{\Goop}[1]{{\text{$\{$}{#1}\text{$\}^{\!+}$}}}
+%
+% Vertically Arranged Group of Alternatives, {
+% usage: \xorGOO{line1\\ line2...}{closing delimiter}
+\newcommand{\xorGOO}[2]{\text{\(%
+    \left\{\!%
+    \begin{array}{l}%
+      #1%
+    \end{array}\!%
+    \right#2%
+    \)}}
+%
+% Vertically Arranged Group of Optional Objects, {|
+% usage: \orGOO{line1\\line2}{closing delimiter}
+\newcommand{\orGOO}[2]{\text{\(%
+    \left\{\!\left|%
+    \begin{array}{l}%
+      #1%
+    \end{array}\!%
+    \right.\right#2%
+    \)}}
+%
+% Vertically Arranged Group of Objects, No Opening {
+% usage: \arrGOO{line1\\line2}{closing delimiter}
+\newcommand{\arrGOO}[2]{\text{\(\!%
+    \left.%
+    \begin{array}{l}%
+      #1%
+    \end{array}\!%
+    \right#2%
+    \)}}
+%
+% Boxed Group of Alternatives
+% usage: \boxGOO{line1\\ line2...}
+\newcommand{\boxGOO}[1]{\text{\hspace{1ex}\(%
+    \setlength{\fboxsep}{1pt}\setlength{\fboxrule}{0pt}
+    \boxed{
+      \setlength{\fboxsep}{1pt}\setlength{\fboxrule}{.1pt}
+      \boxed{\;%
+        \begin{array}[t]{l}%
+          #1%
+        \end{array}%
+      }%
+    }%
+    \)}}
+%
+% In a Boxed Group of Alternatives: Replacement for \\ with additional
+% vspace 
+\newcommand{\boxGOOcr}{\vspace{1ex}\\}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% All sorts of tags attached to lisp keywords
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\newlength{\TAGwidth}
+\newlength{\KEYWORDwidth}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Generic Keyword, Lowercase
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\kwd}[1]{\text{{\sffamily\bfseries\selectfont%
+      \lowercase{#1}}}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Generic Keyword, Uppercase
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\KWD}[1]{\text{{\sffamily\bfseries\selectfont%
+      \uppercase{#1}}}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Macro
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\MC}[1]{%
+  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}Mx}% x just for space
+  \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
+  \ifdim\TAGwidth > \KEYWORDwidth%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{0em}M}}\lowercase{#1}}}}%
+  \else%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}M}}\lowercase{#1}}}}%
+  \fi}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Special Operator
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\SO}[1]{%
+  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}SOx}% x just for space
+  \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
+  \ifdim\TAGwidth > \KEYWORDwidth%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{0em}sO}}\lowercase{#1}}}}%
+  \else%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}sO}}\lowercase{#1}}}}%
+  \fi}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Function
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\FU}[1]{%
+  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}Fux}% x just for space
+  \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
+  \ifdim\TAGwidth > \KEYWORDwidth%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{0em}Fu}}\lowercase{#1}}}}%
+  \else%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}Fu}}\lowercase{#1}}}}%
+  \fi}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Generic Function
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\GFU}[1]{%
+  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}gFx}% x just for space
+  \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
+  \ifdim\TAGwidth > \KEYWORDwidth%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{0em}gF}}\lowercase{#1}}}}%
+  \else%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}gF}}\lowercase{#1}}}}%
+  \fi}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Variable
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\V}[1]{%
+  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.8em}varx}% x just for space
+  \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
+  \ifdim\TAGwidth > \KEYWORDwidth%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{0em}var}}\lowercase{#1}}}}%
+  \else%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.8em}var}}\lowercase{#1}}}}%
+  \fi}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Constant
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\CNS}[1]{%
+  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}cox}% x just for space
+  \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
+  \ifdim\TAGwidth > \KEYWORDwidth%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{0em}co}}\lowercase{#1}}}}%
+  \else%
+  \text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}co}}\lowercase{#1}}}}%
+  \fi}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Loop Keyword
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\LKWD}[1]{\text{{\sffamily\bfseries\selectfont%
+      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}}}\lowercase{#1}}}}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Return Values, First, Second, nth, Third
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\ULthickness}{.2pt}
+\newcommand{\retval}[1]{\uline{#1}}
+%\newcommand{\retvalii}[1]{\uuline{#1}}
+\newcommand{\retvaln}[2]{{%
+      {\raisebox{-1.7ex}[0pt][1.4ex]{\tiny\sffamily\upshape\mdseries\makebox[0pt][l]{\hspace{-.1em}#1}}\uline{#2}}}}
+\newcommand{\retvalii}[1]{\retvaln{2}{#1}}
+\newcommand{\retvaliii}[1]{\retvaln{3}{#1}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% T and NIL
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\T}{\text{\ttfamily T}}
+\newcommand{\NIL}{\text{\ttfamily NIL}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ~  (slightly lowered)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\TLD}{{\protect\raisebox{-.8ex}{\textasciitilde}}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% *  (lowered version)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\A}{\textasteriskcentered}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Starred commands send their argument into index:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\WithSuffix\newcommand\kwd*[1]{\kwd{#1}\uppercase{\index{#1}}}
+\WithSuffix\newcommand\KWD*[1]{\KWD{#1}\uppercase{\index{#1}}}
+\WithSuffix\newcommand\MC*[1]{\MC{#1}\uppercase{\index{#1}}}
+\WithSuffix\newcommand\SO*[1]{\SO{#1}\uppercase{\index{#1}}}
+\WithSuffix\newcommand\FU*[1]{\FU{#1}\uppercase{\index{#1}}}
+\WithSuffix\newcommand\GFU*[1]{\GFU{#1}\uppercase{\index{#1}}}
+\WithSuffix\newcommand\V*[1]{\V{#1}\uppercase{\index{#1}}}
+\WithSuffix\newcommand\CNS*[1]{\CNS{#1}\uppercase{\index{#1}}}
+\WithSuffix\newcommand\LKWD*[1]{\LKWD{#1}\uppercase{\index{#1}}}
+
+\hyphenation{white-space pa-ra-me-ters}

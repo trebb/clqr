@@ -1,0 +1,41 @@
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{rotating}
+\usepackage{graphics}
+\usepackage{multicol}
+\usepackage{textcase}
+\usepackage{textcomp}
+\usepackage{ulem}
+\usepackage[usenames,dvips]{color}
+\usepackage{suffix}
+\usepackage{makeidx}
+\definecolor{frontcovergray}{gray}{.85}
+\definecolor{backcovergray}{gray}{.9}
+\usepackage[pagestyles]{titlesec}
+\usepackage{titletoc}
+%
+%%%%%%%%%%%%%%%%%%
+% Two font alternatives:
+% (A) All (except cover pages) Computer Modern --
+%     everything comes from the same sound root; gets about 5% longer
+%     than alternative (B) 
+\usepackage{type1cm}
+\usepackage{exscale}
+%%%%%%%%%%%%%%%%%%
+% (B) Times mixed with Helvetica --
+%     different sources; need scaling as they don't even agree in
+%     their concept of height
+%\usepackage{mathptmx}
+%\usepackage[scaled]{helvet}
+%%%%%%%%%%%%%%%%%%
+%
+% should remain last usepackage:
+\usepackage%
+    [breaklinks,linktocpage,colorlinks,%
+      bookmarksnumbered,bookmarks=\bookmarks,%
+      linkcolor=\linkcolor,urlcolor=\urlcolor,%
+      pdfpagelayout=\pdfpagelayout,%
+      pdftitle=\maintitle,pdfauthor=\AUTHOR,%
+      pdfsubject=\SUBJECT,pdfkeywords=\KEYWORDS]%
+    {hyperref}
