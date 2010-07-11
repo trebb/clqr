@@ -43,6 +43,15 @@
 %%%%%%%%%%%%%%%%%%
 %
 \input{clqr.packages}
+% should remain last usepackage:
+\usepackage%
+    [breaklinks,linktocpage,colorlinks,%
+      bookmarksnumbered,bookmarks=\bookmarks,%
+      linkcolor=\linkcolor,urlcolor=\urlcolor,%
+      pdfpagelayout=\pdfpagelayout,%
+      pdftitle=\maintitle,pdfauthor=\AUTHOR,%
+      pdfsubject=\SUBJECT,pdfkeywords=\KEYWORDS]%
+    {hyperref}
 %
 \makeindex
 \titleformat{\section}{\sffamily\mdseries\slshape}
