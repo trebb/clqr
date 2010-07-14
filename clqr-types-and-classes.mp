@@ -11,6 +11,7 @@ etex
 beginfig(49);
   
   boxit.t(btex \T etex);
+  t.nw = (0, 0);
   drawboxed(t);
 
   boxjoin(a.sw + (0, -3) = b.nw);
@@ -38,17 +39,16 @@ beginfig(49);
   atom.ne + (50, 0) = sequence.nw;
   drawboxed(sequence);
   
-  boxjoin(a.ne + (10, 0) = b.nw);
+  boxjoin(a.ne + (80, -13) = b.nw);
   boxit.function(btex \kwd*{FUNCTION} \OP{\VAR{arg-types }\Op{\VAR{value-types}}} etex);
   boxit.character(btex \kwd*{CHARACTER} etex);
-  boxit.number(btex \kwd*{NUMBER} etex);
-  sequence.ne + (70, 0) = function.nw;
-  drawboxed(function,character,number);
+  atom.ne + (160, 0) = function.nw;
+  drawboxed(function,character);
   
   boxjoin(a.ne + (10, 0) = b.nw);
   boxit.pathname(btex \kwd*{PATHNAME} etex);
   boxit.logical_pathname(btex \kwd*{LOGICAL-PATHNAME} etex);
-  number.ne + (45, 2) = pathname.sw;
+  logical_pathname.ne = (590,0);
   drawboxed(pathname,logical_pathname);
 
   boxjoin()
@@ -57,44 +57,50 @@ beginfig(49);
   drawboxed(stream);
 
 
-  boxjoin(a.sw + (0, -3) = b.nw);
-  boxit.complex(btex \kwd*{COMPLEX}\Op{\VAR{type}\DF{\kwd{\A}}} etex);
-  boxit.real(btex \kwd*{REAL}\OP{\VAR{lower-limit}\DF{\kwd{\A}}\Op{\VAR{upper-limit}\DF{\kwd{\A}}}} etex);
-  number.s + (30, -100) = real.n;
-  drawboxed(complex,real);
-  
-  boxjoin(a.se + (0, -3) = b.ne);
-  boxit.rational(btex \kwd*{RATIONAL}\OP{\VAR{lower-limit}\DF{\kwd{\A}}\Op{\VAR{upper-limit}\DF{\kwd{\A}}}} etex);
-  boxit.ratio(btex \kwd*{RATIO} etex);
-  real.s + (-30, -10) = rational.ne;
-  drawboxed(rational,ratio);
-  
-  boxjoin(a.se + (0, -3) = b.ne);
-  boxit.integer(btex \kwd*{INTEGER}\OP{\VAR{lower-limit}\DF{\kwd{\A}}\Op{\VAR{upper-limit}\DF{\kwd{\A}}}} etex);
-  ratio.nw + (-30, 0) = integer.ne;
-  drawboxed(integer);
-
-  boxjoin(a.ne + (3, 0) = b.nw);
-  boxit.signed_byte(btex \kwd*{SIGNED-BYTE}\Op{\VAR{size}\DF{\kwd{\A}}} etex);
-  boxit.fixnum(btex \kwd*{FIXNUM} etex);
-  boxit.bignum(btex \kwd*{BIGNUM} etex);
-  integer.se + (0, -15) = fixnum.n;
-  drawboxed(signed_byte,fixnum,bignum);
-
-  boxjoin(a.e + (10, 0) = b.w);
-  boxit.unsigned_byte(btex \kwd*{UNSIGNED-BYTE}\Op{\VAR{size}\DF{\kwd{\A}}} etex);
-  boxit.bit(btex \kwd*{BIT} etex);
-  bignum.se + (0, -5) = bit.ne;
-  drawboxed(unsigned_byte,bit);
-
   boxjoin(a.se + (0, -3) = b.ne);
   boxit.float(btex \kwd*{FLOAT} \OP{\VAR{lower-limit}\DF{\kwd{\A}}\Op{\VAR{upper-limit}\DF{\kwd{\A}}}} etex);
   boxit.short_float(btex \kwd*{SHORT-FLOAT}\OP{\VAR{lower-limit}\DF{\kwd{\A}}\Op{\VAR{upper-limit}\DF{\kwd{\A}}}} etex);
   boxit.single_float(btex \kwd*{SINGLE-FLOAT}\OP{\VAR{lower-limit}\DF{\kwd{\A}}\Op{\VAR{upper-limit}\DF{\kwd{\A}}}} etex);
   boxit.double_float(btex \kwd*{DOUBLE-FLOAT}\OP{\VAR{lower-limit}\DF{\kwd{\A}}\Op{\VAR{upper-limit}\DF{\kwd{\A}}}} etex);
   boxit.long_float(btex \kwd*{LONG-FLOAT}\OP{\VAR{lower-limit}\DF{\kwd{\A}}\Op{\VAR{upper-limit}\DF{\kwd{\A}}}} etex);
-  real.s + (25, -5) = float.nw;
+%  real.s + (25, -5) = float.nw;
+
+  boxjoin(a.se + (0, -3) = b.ne);
+  boxit.rational(btex \kwd*{RATIONAL}\OP{\VAR{lower-limit}\DF{\kwd{\A}}\Op{\VAR{upper-limit}\DF{\kwd{\A}}}} etex);
+  boxit.ratio(btex \kwd*{RATIO} etex);
+  
+  boxjoin(a.se + (25, -3) = b.ne);
+  boxit.number(btex \kwd*{NUMBER} etex);
+  boxit.complex(btex \kwd*{COMPLEX}\Op{\VAR{type}\DF{\kwd{\A}}} etex);
+  boxit.real(btex \kwd*{REAL}\OP{\VAR{lower-limit}\DF{\kwd{\A}}\Op{\VAR{upper-limit}\DF{\kwd{\A}}}} etex);
+%  number.s + (30, -100) = real.n;
+  
+  boxjoin(a.se + (0, -3) = b.ne);
+  boxit.integer(btex \kwd*{INTEGER}\OP{\VAR{lower-limit}\DF{\kwd{\A}}\Op{\VAR{upper-limit}\DF{\kwd{\A}}}} etex);
+
+  boxjoin(a.ne + (3, 0) = b.nw);
+  boxit.signed_byte(btex \kwd*{SIGNED-BYTE}\Op{\VAR{size}\DF{\kwd{\A}}} etex);
+  boxit.fixnum(btex \kwd*{FIXNUM} etex);
+  boxit.bignum(btex \kwd*{BIGNUM} etex);
+
+  boxjoin(a.se + (10, 0) = b.sw);
+  boxit.unsigned_byte(btex \kwd*{UNSIGNED-BYTE}\Op{\VAR{size}\DF{\kwd{\A}}} etex);
+  boxit.bit(btex \kwd*{BIT} etex);
+  
+  long_float.se = (590, -240);
+  real.se + (10, -5) = float.n;
+%  real.s + (-30, -10) = rational.ne;
+  bit.se = (420, -240);
+  bignum.se + (0, -23) = bit.se;
+  integer.se + (0, -20) = fixnum.n;
+  ratio.nw + (-30, 0) = integer.ne;
+  
+  drawboxed(signed_byte,fixnum,bignum);
+  drawboxed(integer);
+  drawboxed(rational,ratio);
   drawboxed(float,short_float,single_float,double_float,long_float);
+  drawboxed(number,complex,real);
+  drawboxed(unsigned_byte,bit);
 
   
   boxjoin(a.sw + (0, -3) = b.nw);
@@ -147,21 +153,18 @@ beginfig(49);
   function.s + (30, -50) = compiled_function.nw;
   drawboxed(compiled_function,generic_function,standard_generic_function);
 
-  boxjoin(a.ne + (3, 0) = b.nw);
-  boxit.base_char(btex \kwd*{BASE-CHAR} etex);
+  boxjoin(a.se + (0, -3) = b.ne);
   boxit.extended_char(btex \kwd*{EXTENDED-CHAR} etex);
-  character.s + (-20, -20) = extended_char.nw;
-  drawboxed(base_char,extended_char);
-  
-  boxjoin()
+  boxit.base_char(btex \kwd*{BASE-CHAR} etex);
   boxit.standard_char(btex \kwd*{STANDARD-CHAR} etex);
-  extended_char.se + (0, -5) = standard_char.ne;
-  drawboxed(standard_char);
+  character.sw + (0, -5) = extended_char.nw;
+  drawboxed(extended_char,base_char,standard_char);
+  
   
   drawarrow t.e{right} .. sequence.w{right};
   drawarrow t.e{right} .. function.w{right};
-  drawarrow t.e{right} ... character.n{down};
-  drawarrow t.e{right} ... number.n{down};
+  drawarrow t.e{right} ... character.w{right};
+  drawarrow t.e{right} ... number.w{right};
   drawarrow t.e{right} ... stream.w{right};
   drawarrow t.e{right} ... pathname.w{right};
 
@@ -202,16 +205,16 @@ beginfig(49);
 
   drawarrow array.w{left} .. simple_array.w{right};
 
-  drawarrow character.s{down} .. base_char.n{down};
-  drawarrow character.s{down} .. extended_char.n{down};
-  drawarrow base_char.s{down} .. standard_char.w{right};
+  drawarrow character.w{left} .. base_char.w{right};
+  drawarrow character.w{left} .. extended_char.w{right};
+  drawarrow base_char.w{left} .. standard_char.w{right};
 
   drawarrow function.s{down} .. compiled_function.w{right};
   drawarrow function.s{down} .. generic_function.w{right};
   drawarrow generic_function.w{left} .. standard_generic_function.nw + (10, 0){down};
 
-  drawarrow number.s{down} .. complex.n{down};
-  drawarrow number.s{down} .. real.n + (20, 0){down};
+  drawarrow number.w{left} .. complex.w{right};
+  drawarrow number.w{left} .. real.n + (-40, 0){down};
 
   drawarrow real.w{left} .. rational.n{down};
   drawarrow real.e{right} .. float.n{down};
