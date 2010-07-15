@@ -18,8 +18,16 @@ beginfig(49);
   boxit.atom(btex \kwd*{ATOM} etex);
   boxit.hash_table(btex \kwd*{HASH-TABLE} etex);
   boxit.structure_object(btex \kwd*{STRUCTURE-OBJECT} etex);
+  t.se + (20, 0) = atom.nw;
+  drawboxed(atom,hash_table,structure_object);
+  
+  boxjoin(a.sw + (0, -3) = b.nw);
   boxit.package(btex \kwd*{PACKAGE} etex);
   boxit.readtable(btex \kwd*{READTABLE} etex);
+  structure_object.sw + (0,-6) = package.nw;
+  drawboxed(package,readtable);
+  
+  boxjoin(a.sw + (0, -3) = b.nw);
   boxit.random_state(btex \kwd*{RANDOM-STATE} etex);
   boxit.restart(btex \kwd*{RESTART} etex);
   boxit.standard_object(btex \kwd*{STANDARD-OBJECT} etex);
@@ -27,16 +35,15 @@ beginfig(49);
   boxit.standard_class(btex \kwd*{STANDARD-CLASS} etex);
   boxit.built_in_class(btex \kwd*{BUILT-IN-CLASS} etex);
   boxit.structure_class(btex \kwd*{STRUCTURE-CLASS} etex);
-
   boxit.method(btex \kwd*{METHOD} etex);
   boxit.standard_method(btex \kwd*{STANDARD-METHOD} etex);
   boxit.method_combination(btex \kwd*{METHOD-COMBINATION} etex);
-  t.se + (20, -5) = atom.nw;
-  drawboxed(atom,hash_table,structure_object,package,readtable,random_state,restart,standard_object,class,standard_class,built_in_class,structure_class,method,standard_method,method_combination);
+  readtable.sw + (0,-6) = random_state.nw;
+  drawboxed(random_state,restart,standard_object,class,standard_class,built_in_class,structure_class,method,standard_method,method_combination);
   
   boxjoin();
   boxit.sequence(btex \kwd*{SEQUENCE} etex);
-  atom.ne + (50, 0) = sequence.nw;
+  atom.ne + (30, -9) = sequence.nw;
   drawboxed(sequence);
   
   boxjoin(a.ne + (80, -13) = b.nw);
@@ -107,21 +114,25 @@ beginfig(49);
   boxit.list(btex \kwd*{LIST} etex);
   boxit.symbol(btex \kwd*{SYMBOL} etex);
   boxit.null(btex \kwd*{NULL} etex);
+  sequence.sw + (30, -3) = list.nw;
+  drawboxed(list,symbol,null);
+  
+  boxjoin(a.sw + (0, -3) = b.nw);
   boxit.array(btex \kwd*{ARRAY}\OP{\VAR{type}\DF{\kwd{\A}}\Op{\VAR{rank}\DF{\kwd{\A}}\XOR(\OPn{\VAR{dimension}})}} etex);
   boxit.simple_array(btex \kwd*{SIMPLE-ARRAY} \OP{\VAR{type}\DF{\kwd{\A}}\Op{\VAR{rank}\DF{\kwd{\A}}\XOR(\OPn{\VAR{dimension}})}} etex);
   boxit.vector(btex \kwd*{VECTOR}\OP{\VAR{type}\DF{\kwd{\A}}\Op{\VAR{size}\DF{\kwd{\A}}}} etex);
   boxit.string_(btex \kwd*{STRING}\Op{\VAR{size}\DF{\kwd{\A}}} etex);
   boxit.simple_string(btex \kwd*{SIMPLE-STRING}\Op{\VAR{size}\DF{\kwd{\A}}} etex);
   boxit.base_string(btex \kwd*{BASE-STRING}\Op{\VAR{size}\DF{\kwd{\A}}} etex);
-  boxit.simple_vector(btex \kwd*{SIMPLE-VECTOR}\Op{\VAR{size}\DF{\kwd{\A}}} etex);
   boxit.simple_base_string(btex \kwd*{SIMPLE-BASE-STRING}\Op{\VAR{size}\DF{\kwd{\A}}} etex);
+  boxit.simple_vector(btex \kwd*{SIMPLE-VECTOR}\Op{\VAR{size}\DF{\kwd{\A}}} etex);
   boxit.bit_vector(btex \kwd*{BIT-VECTOR}\Op{\VAR{size}\DF{\kwd{\A}}} etex);
-  sequence.sw + (10, -10) = list.nw;
-  drawboxed(list,symbol,null,array,vector,simple_array,string_,simple_string,base_string,simple_vector,simple_base_string,bit_vector);
+  null.sw + (10, -6) = array.nw;
+  drawboxed(array,vector,simple_array,string_,simple_string,base_string,simple_base_string,simple_vector,bit_vector);
   
   boxjoin();
   boxit.simple_bit_vector(btex \kwd*{SIMPLE-BIT-VECTOR}\Op{\VAR{size}\DF{\kwd{\A}}} etex);
-  bit_vector.ne + (10, 0) = simple_bit_vector.nw;
+  bit_vector.se + (10, -2) = simple_bit_vector.sw;
   drawboxed(simple_bit_vector);
   
   boxjoin();
@@ -140,10 +151,10 @@ beginfig(49);
   logical_pathname.se + (0, -5) = file_stream.ne;
   drawboxed(file_stream,two_way_stream,synonym_stream,string_stream,echo_stream,broadcast_stream,concatenated_stream);
   
-  boxjoin(a.sw + (-5, 5) = b.ne);
+  boxjoin(a.sw + (-13, 3) = b.ne);
   boxit.keyword(btex \kwd*{KEYWORD} etex);
   boxit.boolean_(btex \kwd*{BOOLEAN} etex);
-  symbol.se + (40, 3) = boolean_.nw;
+  symbol.se + (32,0) = boolean_.nw;
   drawboxed(keyword,boolean_);
 
   boxjoin(a.se + (0, -3) = b.ne);
@@ -161,7 +172,7 @@ beginfig(49);
   drawboxed(extended_char,base_char,standard_char);
   
   
-  drawarrow t.e{right} .. sequence.w{right};
+  drawarrow t.e{right} .. sequence.n{down};
   drawarrow t.e{right} .. function.w{right};
   drawarrow t.e{right} ... character.w{right};
   drawarrow t.e{right} ... number.w{right};
@@ -174,7 +185,7 @@ beginfig(49);
   drawarrow t.s{down} ... symbol.w{right};
   drawarrow t.s{down} ... package.w{right};
   drawarrow t.s{down} ... readtable.w{right};
-  drawarrow t.s{down} ... array.w{right};
+  drawarrow t.s{down} ... array.w+(0,3){right};
   drawarrow t.s{down} ... random_state.w{right};
   drawarrow t.s{down} ... restart.w{right};
   drawarrow t.s{down} ... standard_object.w{right};
@@ -187,9 +198,9 @@ beginfig(49);
   drawarrow class.w{left} .. structure_class.w{right};
   drawarrow standard_object.s + (20, 0){down} .. method.e{down} .. standard_method.e{left} dashed evenly;
 
-  drawarrow vector.w{left} .. string_.w;
-  drawarrow string_.w{left} .. base_string.w;
-  drawarrow vector.w{left} .. bit_vector.w;
+  drawarrow vector.w{left} .. string_.w+(0,3){right};
+  drawarrow string_.w+(0,-3){left} .. simple_string.w+(-10,0) ... base_string.w{right};
+  drawarrow vector.w{left} ... base_string.w+(-17,0) ... bit_vector.w{right};
   drawarrow sequence.s{down} .. list.w{right};
   drawarrow list.e .. cons.w;
 
@@ -198,12 +209,13 @@ beginfig(49);
 
   drawarrow cons.sw + (20,0){down} .. symbol.se{left} .. null.e{left} dashed evenly;
 
-  drawarrow sequence.s{down} .. array.n{right} .. vector.e{left} dashed evenly;
-  drawarrow sequence.s{down} .. array.n{right} .. simple_array.e{down} .. vector.e{down} .. simple_vector.e{left} dashed evenly;
-  drawarrow sequence.s{down} .. array.n{right} .. simple_array.e{down} .. vector.e{down} .. bit_vector.e{down} .. simple_bit_vector.w{right} dashed evenly;
-  drawarrow sequence.s{down} .. array.n{right} .. simple_array.e{down} .. vector.e{down} .. string_.e{down} .. simple_string.e{down} .. base_string.e{down} .. simple_base_string.e{left} dashed evenly;
+  
+  drawarrow sequence.s{down} .. array.nw+(-5,3){right} ... array.ne+(-30,5) .. array.ne+(-10,10) .. array.ne+(2,1){down} .. array.e{down} .. simple_array.ne+(0,6) .. simple_array.se+(0,-15) .. vector.e + (0, 3) {left} dashed evenly;
+  drawarrow sequence.s{down} .. array.nw+(-5,3){right} ... array.ne+(-30,5) .. array.ne+(-10,10) .. array.ne+(2,1){down} .. array.e{down} .. simple_array.ne+(0,6) .. simple_array.ne+(2,1){down} .. simple_array.e{down} .. simple_array.se+(2,-1){down}.. vector.ne+(30,0) .. vector.ne+(10,0) .. vector.e + (0, -3){down}  .. vector.se + (2,-1){down} .. simple_base_string.se+(5,0) .. simple_vector.e{left} dashed evenly;
+  drawarrow sequence.s{down} .. array.nw+(-5,3){right} ... array.ne+(-30,5) .. array.ne+(-10,10) .. array.ne+(2,1){down} .. array.e{down} .. simple_array.ne+(0,6) .. simple_array.ne+(2,1){down} .. simple_array.e{down} .. simple_array.se+(2,-1){down}.. vector.ne+(30,0) .. vector.ne+(10,0) .. vector.e + (0, -3){down}  .. vector.se + (2,-1){down} .. simple_base_string.se+(10,0) .. simple_vector.se+(0, -3) .. bit_vector.e{down} ... simple_bit_vector.w{right} dashed evenly;
+  drawarrow sequence.s{down} .. array.nw+(-5,3){right} ... array.ne+(-30,5) .. array.ne+(-10,10) .. array.ne+(2,1){down} .. array.e{down} .. simple_array.ne+(0,6) .. simple_array.ne+(2,1){down} .. simple_array.e{down} .. simple_array.se+(2,-1){down}.. vector.ne+(30,0) .. vector.ne+(10,0) .. vector.e + (0, -3){down}  .. vector.se + (2,-1){down} .. string_.e{down} .. simple_string.ne+(2,1){down}  .. simple_string.e{down}  .. simple_string.se+(2,1){down} .. base_string.e+(0,3){down} .. simple_base_string.ne+(-10,0){down} dashed evenly;
 
-  drawarrow array.w{left} .. simple_array.w{right};
+  drawarrow array.w+(0,-3){left} .. simple_array.w{right};
 
   drawarrow character.w{left} .. base_char.w{right};
   drawarrow character.w{left} .. extended_char.w{right};
