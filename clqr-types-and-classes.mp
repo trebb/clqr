@@ -17,18 +17,14 @@ beginfig(49);
   boxjoin(a.sw + (0, -3) = b.nw);
   boxit.atom(btex \kwd*{ATOM} etex);
   boxit.hash_table(btex \kwd*{HASH-TABLE} etex);
-  t.se + (20, 0) = atom.nw;
-  drawboxed(atom,hash_table);
-  
-  boxjoin();
   boxit.structure_object(btex \kwd*{STRUCTURE-OBJECT} etex);
-  hash_table.sw + (0, -6) = structure_object.nw;
+  t.se + (20, 0) = atom.nw;
   drawboxed(atom,hash_table,structure_object);
   
   boxjoin(a.sw + (0, -3) = b.nw);
   boxit.package(btex \kwd*{PACKAGE} etex);
   boxit.readtable(btex \kwd*{READTABLE} etex);
-  structure_object.sw + (0,-6) = package.nw;
+  structure_object.sw + (0,-8) = package.nw;
   drawboxed(package,readtable);
   
   boxjoin(a.sw + (0, -3) = b.nw);
@@ -40,7 +36,7 @@ beginfig(49);
   boxit.built_in_class(btex \kwd*{BUILT-IN-CLASS} etex);
   boxit.structure_class(btex \kwd*{STRUCTURE-CLASS} etex);
   boxit.method(btex \kwd*{METHOD} etex);
-  readtable.sw + (0, -6) = random_state.nw;
+  readtable.sw + (0, -8) = random_state.nw;
   drawboxed(random_state,restart,standard_object,class,standard_class,built_in_class,structure_class,method);
   
   boxjoin(a.se + (0, -3) = b.ne);
@@ -93,14 +89,14 @@ beginfig(49);
   boxit.fixnum(btex \kwd*{FIXNUM} etex);
   boxit.bignum(btex \kwd*{BIGNUM} etex);
 
-  boxjoin(a.se + (10, 0) = b.sw);
+  boxjoin(a.e + (10, 0) = b.w);
   boxit.unsigned_byte(btex \kwd*{UNSIGNED-BYTE}\Op{\VAR{size}\DF{\kwd{\A}}} etex);
   boxit.bit(btex \kwd*{BIT} etex);
   
   long_float.se = (555, -240);
   real.se + (20, -5) = float.ne;
-  bit.se = (400, -240);
-  bignum.se + (10, -23) = bit.se;
+  unsigned_byte.se = (373, -240);
+  bignum.s + (0, -23) = unsigned_byte.se;
   integer.se + (0, -20) = bignum.ne;
   
   drawboxed(signed_byte,fixnum,bignum);
@@ -137,7 +133,7 @@ beginfig(49);
   
   boxjoin();
   boxit.simple_bit_vector(btex \kwd*{SIMPLE-BIT-VECTOR}\Op{\VAR{size}\DF{\kwd{\A}}} etex);
-  bit_vector.se + (10, -2) = simple_bit_vector.sw;
+  bit_vector.se + (10, -5) = simple_bit_vector.sw;
   drawboxed(simple_bit_vector);
   
   boxjoin(a.se + (0, -3) = b.ne);
@@ -172,20 +168,20 @@ beginfig(49);
   drawboxed(extended_char,base_char,standard_char);
   
   
-  drawarrow t.s{down} .. sequence.w{right};
-  drawarrow t.e{right} .. function.w{right};
-  drawarrow t.e{right} ... character.w{right};
-  drawarrow t.e{right} ... number.w{right};
-  drawarrow t.e{right} ... stream.w{right};
-  drawarrow t.e{right} ... pathname.w{right};
+  drawarrow t.e{right} .. {right}t.e+(40,0) .. sequence.n{down};
+  drawarrow t.e{right} .. {right}t.e+(150,0) .. cons.ne+(2,3) .. function.n{down};
+  drawarrow t.e{right} .. {right}t.e+(150,0) .. cons.ne+(2,8) .. function.ne+(2,2) .. standard_char.sw+(-2,-2) .. number.nw+(5,0){down};
+  drawarrow t.e{right} .. {right}t.e+(150,0) .. character.w+(-45,8) .. character.w{right};
+  drawarrow t.e{right} .. {right}t.e+(150,0) .. character.n+(0,10) .. stream.w{right};
+  drawarrow t.e{right} .. {right}t.e+(250,0) .. pathname.w{right};
 
   drawarrow t.s{down} ... atom.w{right};
   drawarrow t.s{down} ... hash_table.w{right};
   drawarrow t.s{down} ... structure_object.w{right};
-  drawarrow t.s{down} ... symbol.w{right};
+  drawarrow t.s{down} ... structure_object.sw+(0,-4){right} .. structure_object.se+(0,-4) .. symbol.w{right};
   drawarrow t.s{down} ... package.w{right};
   drawarrow t.s{down} ... readtable.w{right};
-  drawarrow t.s{down} ... array.w+(0,3){right};
+  drawarrow t.s{down} ... readtable.sw+(0,-4){right} .. readtable.se+(0,-4) .. array.w+(0,3){right};
   drawarrow t.s{down} ... random_state.w{right};
   drawarrow t.s{down} ... restart.w{right};
   drawarrow t.s{down} ... standard_object.w{right};
@@ -211,16 +207,16 @@ beginfig(49);
   drawarrow cons.sw + (20,0){down} .. symbol.se{left} .. null.e{left} dashed evenly;
 
   
-  drawarrow sequence.s{down} .. null.sw+(-2,-3){right} ... array.ne+(-10,6) .. array.ne+(0,6) .. array.ne+(2,1){down} .. array.e{down} .. simple_array.ne+(0,6) .. simple_array.se+(0,-15) .. vector.e + (0, 3) {left} dashed evenly;
-  drawarrow sequence.s{down} .. null.sw+(-2,-3){right} ... array.ne+(-10,6) .. array.ne+(0,6) .. array.ne+(2,1){down} .. array.e{down} .. simple_array.ne+(0,6) .. simple_array.ne+(2,1){down} .. simple_array.e{down} .. simple_array.se+(2,-1){down}.. vector.ne+(30,0) .. vector.ne+(10,0) .. vector.e + (0, -3){down}  .. vector.se + (2,-1){down} .. simple_base_string.se+(5,0) .. simple_vector.e{left} dashed evenly;
-  drawarrow sequence.s{down} .. null.sw+(-2,-3){right} ... array.ne+(-10,6) .. array.ne+(0,6) .. array.ne+(2,1){down} .. array.e{down} .. simple_array.ne+(0,6) .. simple_array.ne+(2,1){down} .. simple_array.e{down} .. simple_array.se+(2,-1){down}.. vector.ne+(30,0) .. vector.ne+(10,0) .. vector.e + (0, -3){down}  .. vector.se + (2,-1){down} .. simple_base_string.se+(10,0) .. simple_vector.se+(0, -3) .. bit_vector.e{down} ... simple_bit_vector.w{right} dashed evenly;
-  drawarrow sequence.s{down} .. null.sw+(-2,-3){right} ... array.ne+(-10,6) .. array.ne+(0,6) .. array.ne+(2,1){down} .. array.e{down} .. simple_array.ne+(0,6) .. simple_array.ne+(2,1){down} .. simple_array.e{down} .. simple_array.se+(2,-1){down}.. vector.ne+(30,0) .. vector.ne+(10,0) .. vector.e + (0, -3){down}  .. vector.se + (2,-1){down} .. string_.e{down} .. simple_string.ne+(2,1){down}  .. simple_string.e{down}  .. simple_string.se+(2,1){down} .. base_string.e+(0,3){down} .. simple_base_string.ne+(-10,0){down} dashed evenly;
+  drawarrow sequence.s{down} .. null.sw+(-2,-3){right} ... array.ne+(-10,6) .. array.ne+(0,6) .. array.ne+(2,1) .. array.e{down} .. simple_array.ne+(0,6){right} .. simple_array.se+(0,-18) .. vector.e + (0, 3) {left} dashed evenly;
+  drawarrow sequence.s{down} .. null.sw+(-2,-3){right} ... array.ne+(-10,6) .. array.ne+(0,6) .. array.ne+(2,1) .. array.e{down} .. simple_array.ne+(0,6){right} .. simple_array.ne+(2,1){down} .. simple_array.e{down} .. simple_array.se+(2,-1){down}.. vector.ne+(30,0) .. vector.ne+(10,0) .. vector.e + (0, -3){down}  .. vector.se + (2,-1){down} .. simple_base_string.se+(5,0) .. simple_vector.e{left} dashed evenly;
+  drawarrow sequence.s{down} .. null.sw+(-2,-3){right} ... array.ne+(-10,6) .. array.ne+(0,6) .. array.ne+(2,1) .. array.e{down} .. simple_array.ne+(0,6){right} .. simple_array.ne+(2,1){down} .. simple_array.e{down} .. simple_array.se+(2,-1){down}.. vector.ne+(30,0) .. vector.ne+(10,0) .. vector.e + (0, -3){down}  .. vector.se + (2,-1){down} .. simple_base_string.se+(10,0) .. simple_vector.se+(0, -3) .. bit_vector.e{down} ... simple_bit_vector.w{right} dashed evenly;
+  drawarrow sequence.s{down} .. null.sw+(-2,-3){right} ... array.ne+(-10,6) .. array.ne+(0,6) .. array.ne+(2,1) .. array.e{down} .. simple_array.ne+(0,6){right} .. simple_array.ne+(2,1){down} .. simple_array.e{down} .. simple_array.se+(2,-1){down}.. vector.ne+(30,0) .. vector.ne+(10,0) .. vector.e + (0, -3){down}  .. vector.se + (2,-1){down} .. string_.e{down} .. simple_string.ne+(2,1){down}  .. simple_string.e{down}  .. simple_string.se+(2,1){down} .. base_string.e+(0,3){down} .. simple_base_string.ne+(-10,0){down} dashed evenly;
 
   drawarrow array.w+(0,-3){left} .. simple_array.w{right};
 
-  drawarrow character.w{left} .. base_char.w{right};
-  drawarrow character.w{left} .. extended_char.w{right};
-  drawarrow base_char.w{left} .. standard_char.w{right};
+  drawarrow character.s{down} .. base_char.w+(0,3){right};
+  drawarrow character.s{down} .. extended_char.w{right};
+  drawarrow base_char.w+(0,-3){left} .. standard_char.nw+(5,0){down};
 
   drawarrow function.s+(-20,0){down} .. compiled_function.w{right};
   drawarrow function.s+(-20,0){down} .. generic_function.w{right};
@@ -232,7 +228,7 @@ beginfig(49);
   drawarrow real.sw+(5,0){down} .. rational.e{left};
   drawarrow real.sw+(5,0){down} .. float.w{right};
 
-  drawarrow float.e{right}  ... short_float.ne+(6,-3) ... short_float.e{left};
+  drawarrow float.e{right} ... short_float.ne+(6,-3) ... short_float.e{left};
   drawarrow float.e{right} ... short_float.e+(10,0) ... single_float.e{left};
   drawarrow float.e{right} ... short_float.se+(13,-3) ... double_float.e{left};
   drawarrow float.e{right} ... single_float.e+(16,0) ... long_float.e{left};
@@ -240,20 +236,20 @@ beginfig(49);
   drawarrow rational.w{left} .. integer.w{right};
   drawarrow rational.w{left} .. ratio.w{right};
 
-  drawarrow integer.s{down} .. signed_byte.n{down};
-  drawarrow integer.s{down} .. fixnum.n{down};
-  drawarrow integer.s{down} .. bignum.n{down};
+  drawarrow integer.s+(15,0){down} .. signed_byte.ne+(-5,0){down};
+  drawarrow integer.s+(15,0){down} .. fixnum.n{down};
+  drawarrow integer.s+(15,0){down} .. bignum.nw+(5,0){down};
 
-  drawarrow signed_byte.s + (10, 0){down} .. unsigned_byte.n{down};
+  drawarrow signed_byte.se+(-5,0){down} .. unsigned_byte.n{down};
   drawarrow unsigned_byte.e .. bit.w;
 
-  drawarrow stream.s{down} .. file_stream.w{right};
+  drawarrow stream.s{down} .. stream.s+(10,-6) .. file_stream.w{right};
   drawarrow stream.s{down} .. two_way_stream.w{right};
-  drawarrow stream.s{down} .. synonym_stream.w{right};
-  drawarrow stream.s{down} .. string_stream.w{right};
-  drawarrow stream.s{down} .. echo_stream.w{right};
-  drawarrow stream.s{down} .. broadcast_stream.w{right};
-  drawarrow stream.s{down} .. concatenated_stream.w{right};
+  drawarrow stream.s{down} ... synonym_stream.w{right};
+  drawarrow stream.s{down} ... string_stream.w{right};
+  drawarrow stream.s{down} ... echo_stream.w{right};
+  drawarrow stream.s{down} ... broadcast_stream.w{right};
+  drawarrow stream.s{down} ... concatenated_stream.w{right};
 
   drawarrow pathname.e{right} .. logical_pathname.w{right};
 endfig;
