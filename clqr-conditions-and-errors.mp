@@ -18,35 +18,34 @@ etex
 beginfig(1);
   
   boxit.t(btex \T etex);
-  t.nw = (0, 0);
   drawboxed(t);
   
   boxit.condition(btex \kwd*{CONDITION} etex);
-  t.w = condition.e;
+  t.sw = condition.nw;
   drawboxed(condition);
 
-  boxjoin(a.sw + (0, -3) = b.nw);
+  boxjoin(a.sw + (0, -30) = b.nw);
   boxit.warning(btex \kwd*{WARNING} etex);
   boxit.simple_condition(btex \kwd*{SIMPLE-CONDITION} etex);
   boxit.serious_condition(btex \kwd*{SERIOUS-CONDITION} etex);
-  condition.se = warning.ne;
+  warning.nw = (100,0);
   drawboxed(warning, simple_condition, serious_condition);
 
   boxjoin(a.sw + (0, -3) = b.nw);
   boxit.style_warning(btex \kwd*{STYLE-WARNING} etex);
-  serious_condition.sw = style_warning.nw;
+  warning.e + (20,0) = style_warning.w;
   drawboxed(style_warning);
 
   boxjoin(a.sw + (0, -3) = b.nw);
   boxit.simple_warning(btex \kwd*{SIMPLE-WARNING} etex);
-  style_warning.sw = simple_warning.nw;
+  warning.sw = simple_warning.nw;
   drawboxed(simple_warning);
 
   boxjoin(a.sw + (0, -3) = b.nw);
   boxit.storage_condition(btex \kwd*{STORAGE-CONDITION} etex);
   boxit.error(btex \kwd*{ERROR}\\ etex);
-  simple_warning.sw = storage_condition.nw;
-  drawboxed(storage_condition);
+  warning.e + (50,0) = storage_condition.w;
+  drawboxed(storage_condition,error);
 
   boxjoin(a.sw + (0, -3) = b.nw);
   boxit.simple_error(btex \kwd*{SIMPLE-ERROR} etex);
@@ -76,7 +75,7 @@ beginfig(1);
   boxit.unbound_variable(btex  \kwd*{UNBOUND-VARIABLE} etex);
   boxit.unbound_slot(btex  \kwd*{UNBOUND-SLOT} etex);
   boxit.undefined_function(btex  \kwd*{UNDEFINED-FUNCTION} etex);
-  simple_type_error.sw = unbound_variable.nw;
+  cell_error.e + (30,0) = unbound_variable.w;
   drawboxed(unbound_variable, unbound_slot, undefined_function);                
   
   boxjoin(a.sw + (0, -3) = b.nw);
@@ -86,7 +85,7 @@ beginfig(1);
   
   boxjoin(a.sw + (0, -3) = b.nw);
   boxit.reader_error(btex \kwd*{READER-ERROR} etex);
-  end_of_file.sw = reader_error.nw;
+  stream_error.e + (0,30) = reader_error.nw;
   drawboxed(reader_error);
 
   boxjoin(a.sw + (0, -3) = b.nw);
@@ -95,8 +94,8 @@ beginfig(1);
   boxit.floating_point_invalid_operation(btex  \kwd*{FLOATING-POINT-INVALID-OPERATION} etex);
   boxit.floating_point_overflow(btex  \kwd*{FLOATING-POINT-OVERFLOW} etex);
   boxit.floating_point_underflow(btex  \kwd*{FLOATING-POINT-UNDERFLOW} etex);
-  reader_error.sw = floating_point_inexact.nw;
-  drawboxed(floating_point_inexact, floating_point_invalid_operation, floating_point_overflow, floating_point_underflow);
+  arithmetic_error.e + (50,0) = division_by_zero.w;
+  drawboxed(division_by_zero,floating_point_inexact, floating_point_invalid_operation, floating_point_overflow, floating_point_underflow);
 
   drawarrow t.e{right} .. {right}t.e+(40,0) .. warning.n{down};
   
