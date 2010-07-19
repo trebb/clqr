@@ -23,7 +23,7 @@ beginfig(1);
   boxjoin(a.s + (0,-3) = b.n);
   boxit.condition(btex \kwd*{CONDITION} etex);
   boxit.serious_condition(btex \kwd*{SERIOUS-CONDITION} etex);
-  t.sw = condition.nw;
+  t.se + (10,0) = condition.sw;
   drawboxed(condition,serious_condition);
 
   boxjoin(a.e + (30,0) = b.w);
@@ -57,15 +57,15 @@ beginfig(1);
   boxit.type_error(btex \kwd*{TYPE-ERROR} etex);
   boxit.program_error(btex \kwd*{PROGRAM-ERROR} etex);
   boxit.control_error(btex \kwd*{CONTROL-ERROR} etex);
-  boxit.cell_error(btex \kwd*{CELL-ERROR} etex);
   boxit.package_error(btex \kwd*{PACKAGE-ERROR} etex);
   boxit.file_error(btex \kwd*{FILE-ERROR} etex);
   boxit.stream_error(btex \kwd*{STREAM-ERROR} etex);
   boxit.parse_error(btex \kwd*{PARSE-ERROR} etex);
+  boxit.cell_error(btex \kwd*{CELL-ERROR} etex);
   boxit.print_not_readable(btex \kwd*{PRINT-NOT-READABLE} etex);
   boxit.arithmetic_error(btex \kwd*{ARITHMETIC-ERROR} etex);
   error.sw + (0, -5) = type_error.nw;
-  drawboxed(type_error,program_error,control_error,cell_error,package_error,file_error,stream_error,parse_error,print_not_readable,arithmetic_error);
+  drawboxed(type_error,program_error,control_error,package_error,file_error,stream_error,parse_error,cell_error,print_not_readable,arithmetic_error);
 
   boxjoin(a.sw + (0,-3) = b.nw);
   boxit.simple_type_error(btex \kwd*{SIMPLE-TYPE-ERROR} etex);
@@ -94,10 +94,10 @@ beginfig(1);
   arithmetic_error.sw + (0,-3) = division_by_zero.nw;
   drawboxed(division_by_zero,floating_point_inexact,floating_point_invalid_operation,floating_point_overflow,floating_point_underflow);
 
-  drawarrow t.e{right} .. condition.n{down};
+  drawarrow t.e{right} .. condition.w{right};
   
-  drawarrow condition.n{up} .. warning.n{down};
-  drawarrow condition.n{up} .. simple_condition.n{down};
+  drawarrow condition.e{right} .. warning.n{down};
+  drawarrow condition.e{right} .. simple_condition.n{down};
   drawarrow condition.w{left} .. serious_condition.w{right};
 
   drawarrow warning.w{left} .. style_warning.w{right};
