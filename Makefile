@@ -1,4 +1,4 @@
-# Copyright (C) 2008, 2009 Bert Burgemeister
+# Copyright (C) 2008, 2009, 2010 Bert Burgemeister
 #
 # Permission is granted to copy, distribute and/or modify this
 # document under the terms of the GNU Free Documentation License,
@@ -11,13 +11,14 @@ SEND-TO-LOG	= | tee -a lastbuild.log
 
 LATEX		= latex 
 MAKEINDEX	= makeindex -c
+MPOST		= TEX=latex mpost
 DVIPS		= dvips
 PSNUP-A4	= psnup -W10.5cm -H29.7cm -pa4 -2
 PSNUP-LETTER	= psnup -W4.25in -H11in -pletter -2
 PSBOOK-ALL	= psbook
 PSBOOK-FOUR	= psbook -s4
 PS2PDF		= ps2pdf -dPDFSETTINGS=/prepress 
-Convert		= convert
+CONVERT		= convert
 MONTAGE		= montage
 HEAD		= head
 TAIL		= tail
@@ -72,13 +73,16 @@ $(CLQR)-%-signature-four.ps:	$(CLQR)-%-consec.ps
 $(CLQR)-%-consec.ps:	$(CLQR)-%.dvi color-colorful.flag
 	$(DVIPS) -o $@ $< $(SEND-TO-LOG)
 
-$(CLQR)-%.dvi:	$(CLQR).tex $(CLQR)-*.tex paper-%.flag revision-number
+$(CLQR)-%.dvi:	$(CLQR).tex $(CLQR)-*.tex $(CLQR).*.tex $(CLQR)-types-and-classes.1 paper-%.flag revision-number
 	$(TOUCH) $(CLQR).ind $(SEND-TO-LOG)
 	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
 	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
 	$(MAKEINDEX) -s $(CLQR).ist $(CLQR).idx $(SEND-TO-LOG)
 	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
 	$(MV) $(CLQR).dvi $@ $(SEND-TO-LOG)
+
+clqr-types-and-classes.1:	$(CLQR)-types-and-classes.mp $(CLQR).macros.tex clqr.packages.tex
+	$(MPOST) $< $(SEND-TO-LOG)
 
 paper-a4.flag:	
 	$(CP) paper-a4.tex paper-current.tex $(SEND-TO-LOG)
@@ -111,7 +115,7 @@ clean:
 	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.out *.ps *.pdf *~ html/*~ \
               *.flag *.jpg html/*.jpg *.tar.gz REVISION.tex DATE.tex \
 	      html/latest-changes.html html/release-revision.txt html/release-date.txt \
-              paper-current.tex color-current.tex
+ 	      *.1 paper-current.tex color-current.tex
 
 
 # Project hosting
@@ -153,4 +157,4 @@ $(CLQR).tar.gz:	$(CLQR).tex $(CLQR)-*.tex
 	if $(GIT_ARCHIVE) > $(CLQR).tar.gz; then true; else true; fi $(SEND-TO-LOG)
 
 publishclean:
-	$(RM) *.ps *~ html/*~
+	$(RM) *.ps *.1 *~ html/*~

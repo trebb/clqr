@@ -6,17 +6,27 @@
 % Foundation; with no Invariant Sections, no Front-Cover Texts and
 % no Back-Cover Texts. For details see file COPYING.
 %
-prologues := 3;
-input boxes
+
+% prologues := 3 makes clqr-types-and-classes.1 viewable but uses the
+% wrong font for \A.
+%prologues := 3;
+input boxes;
 verbatimtex
+
 \documentclass[8pt,pagesize,twoside,footexclude,headexclude]{scrartcl}
 \input{clqr.packages}
 \input{clqr.macros}
 \begin{document}
 etex
 
-def halfdisc(expr point) =
+def halfdisc_e(expr point) =
   fill halfcircle scaled 4 rotated -90 shifted point --cycle enddef;
+
+def halfdisc_n(expr point) =
+  fill halfcircle scaled 4 shifted point --cycle enddef;
+
+def halfdisc_s(expr point) =
+  fill halfcircle scaled 4 rotated 180 shifted point --cycle enddef;
 
 defaultdx := 2;
 defaultdy := 2;
@@ -309,7 +319,7 @@ beginfig(1);
   drawarrow t.s{down} -- (xpart t.s, ypart method_combination.nw);
   
   drawarrow standard_object.s+(3,0){down} .. built_in_class.ne+(2,2)  ... standard_class.e+(7,0) ... structure_class.se+(2,-2) .. method.e{down} .. standard_method.ne+(5,2) .. standard_method.e{left} dashed evenly;
-  halfdisc (method.e);
+  halfdisc_e (method.e);
 
   drawarrow vector.w{left} ... vector.sw+(-6,0) ... string_.w+(0,3){right};
   drawarrow string_.w+(0,-3){left} ... simple_string.w+(-8,0) ... base_string.w{right};
@@ -321,20 +331,20 @@ beginfig(1);
   drawarrow symbol.s{down} ... boolean_.w{right};
 
   drawarrow list.w{left} .. null.ne+(3,3) .. tension 1.5 .. symbol.e{down} .. null.w{right} dashed evenly;
-  halfdisc(symbol.e);
+  halfdisc_e(symbol.e);
 
   
   drawarrow sequence.e{right} .. array.ne+(2,1) .. array.e{down} .. simple_array.ne+(3,7){dir -60}.. simple_array.se+(10,-5) .. vector.e+(0,5){left} dashed evenly;
   drawarrow sequence.e{right} .. array.ne+(2,1) .. array.e{down} .. simple_array.ne+(3,7){dir -60} .. simple_array.ne+(2,1) .. simple_array.e{down} .. simple_array.se+(2,-1) .. tension 2 .. vector.e + (0, -3){down}  .. vector.se + (2,-1){down} .. simple_base_string.se+(5,0) .. simple_vector.e{left} dashed evenly;
   drawarrow sequence.e{right} .. array.ne+(2,1) .. array.e{down} .. simple_array.ne+(3,7){dir -60} .. simple_array.ne+(2,1) .. simple_array.e{down} .. simple_array.se+(2,-1) .. tension 2 .. vector.e + (0, -3){down}  .. vector.se + (2,-1){down} .. simple_base_string.se+(10,0) .. simple_vector.se+(0, -3) .. bit_vector.e{down} ... simple_bit_vector.ne+(-10,0){down} dashed evenly;
   drawarrow sequence.e{right} .. array.ne+(2,1) .. array.e{down} .. simple_array.ne+(3,7){dir -60} .. simple_array.ne+(2,1) .. simple_array.e{down} .. simple_array.se+(2,-1) .. tension 2 .. vector.e + (0, -3){down}  .. vector.se + (2,-1){down} .. string_.e{down} .. simple_string.ne+(2,1){down}  .. simple_string.e{down}  .. simple_string.se+(2,1){down} .. base_string.e+(0,3){down} .. simple_base_string.ne+(-10,0){down} dashed evenly;
-  halfdisc(array.e);
-  halfdisc(simple_array.e);
-  halfdisc(vector.e+(0,-3));
-  halfdisc(string_.e);
-  halfdisc(simple_string.e);
-  halfdisc(base_string.e+(0,3));
-  halfdisc(bit_vector.e);
+  halfdisc_e(array.e);
+  halfdisc_e(simple_array.e);
+  halfdisc_e(vector.e+(0,-3));
+  halfdisc_e(string_.e);
+  halfdisc_e(simple_string.e);
+  halfdisc_e(base_string.e+(0,3));
+  halfdisc_e(bit_vector.e);
 
   drawarrow array.w+(0,-3){left} ... array.sw+(-7,-3).. simple_array.w{right};
 
@@ -347,7 +357,7 @@ beginfig(1);
   drawarrow generic_function.w+(0,-3){left} .. standard_generic_function.nw+(10,0){down};
 
   drawarrow number.w{left} ... complex.n+(-10,0){down};
-  drawarrow number.w{left} ... real.n+(-15,0){down};
+  drawarrow number.w{left} ... real.n+(-12,0){down};
 
   drawarrow real.w{left} ... double_float.nw+(-3,3) ... rational.w+(0,3){right};
   drawarrow real.e{right} .. float.ne+(-5,0){down};
@@ -377,10 +387,10 @@ beginfig(1);
 
   drawarrow pathname.e{right} .. logical_pathname.ne+(-15,0){down};
   
-  drawarrow condition.e{right} .. condition.e+(95,0){right} .. warning.w{right};
+  drawarrow condition.e{right} .. condition.e+(95,0){right} .. (xpart warning.w, ypart condition.e){right};
   drawarrow condition.e{right} .. condition.e+(95,0){right} .. simple_condition.n+(-15,0){down};
   drawarrow condition.e{right} ... serious_condition.ne+(-10,0){down};
-
+  
   drawarrow warning.e{right} .. style_warning.ne+(-10,0){down};
 
   drawarrow serious_condition.e{right} .. storage_condition.w{right};
@@ -411,9 +421,16 @@ beginfig(1);
 
   drawarrow stream_error.e{right} .. stream_error.se+(3,-2) .. parse_error.e{down} .. tension 1.5 .. reader_error.w{right} dashed evenly;
 
-  drawarrow warning.e{right} .. style_warning.ne+(3,0) .. simple_condition.ne+(2,1) .. simple_condition.e{down} .. simple_condition.se+(2,-1) .. simple_warning.e{left} dashed evenly;
-  drawarrow error.e{right} .. tension 1.5 .. simple_condition.sw+(-1,-2) .. simple_condition.sw+(5,0){right} ... simple_error.n{down} dashed evenly;
+  halfdisc_e(parse_error.e);
+
+  drawarrow warning.e{right} .. style_warning.ne+(3,0) .. tension 1.3 .. simple_condition.ne+(2,1) .. simple_condition.e{down} .. simple_condition.se+(2,-1) .. simple_warning.e{left} dashed evenly;
+  drawarrow error.e{right} .. tension 1.5 .. simple_condition.sw+(-1,-2) .. simple_condition.sw+(5,0){right} .. simple_condition.sw+(12,-2){right} ... simple_error.n{down} dashed evenly;
   drawarrow type_error.e{right} .. simple_condition.nw+(-1,2) .. simple_condition.nw+(5,0){right} .. simple_type_error.e{left} dashed evenly;
+
+  halfdisc_e(simple_condition.e);
+  halfdisc_s(simple_condition.sw+(5,0));
+  halfdisc_n(simple_condition.nw+(5,0));
+
   
 endfig;
 
