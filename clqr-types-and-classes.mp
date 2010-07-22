@@ -30,11 +30,11 @@ beginfig(1);
 
   boxjoin(a.sw + (0, -3) = b.nw);
   boxit.atom(btex \kwd*{ATOM} etex);
-  boxit.package(btex \kwd*{PACKAGE} etex);
   boxit.readtable(btex \kwd*{READTABLE} etex);
+  boxit.package(btex \kwd*{PACKAGE} etex);
   boxit.symbol(btex \kwd*{SYMBOL} etex);
   t.se + (12, 0) = atom.nw;
-  drawboxed(atom,package,readtable,symbol);
+  drawboxed(atom,readtable,package,symbol);
   
   boxjoin(a.sw + (0, -3) = b.nw);
   boxit.keyword(btex \kwd*{KEYWORD} etex);
@@ -43,17 +43,17 @@ beginfig(1);
   drawboxed(keyword,boolean_);
 
   boxjoin(a.sw + (0, -3) = b.nw);
-  boxit.hash_table(btex \kwd*{HASH-TABLE} etex);
-  boxit.random_state(btex \kwd*{RANDOM-STATE} etex);
-  boxit.structure_object(btex \kwd*{STRUCTURE-OBJECT} etex);
   boxit.restart(btex \kwd*{RESTART} etex);
+  boxit.random_state(btex \kwd*{RANDOM-STATE} etex);
+  boxit.hash_table(btex \kwd*{HASH-TABLE} etex);
+  boxit.structure_object(btex \kwd*{STRUCTURE-OBJECT} etex);
   boxit.standard_object(btex \kwd*{STANDARD-OBJECT} etex);
-  boolean_.sw + (-35,-5) = hash_table.nw;
-  drawboxed(hash_table,random_state,structure_object,restart,standard_object);
+  boolean_.sw + (-35,-5) = restart.nw;
+  drawboxed(restart,random_state,hash_table,structure_object,standard_object);
   
   boxjoin()
   boxit.null(btex \kwd*{NULL} etex);
-  symbol.e+(15,0) = null.w;
+  symbol.se+(15,0) = null.sw;
   drawboxed(null);
 
   boxjoin();
@@ -65,7 +65,7 @@ beginfig(1);
   boxit.built_in_class(btex \kwd*{BUILT-IN-CLASS} etex);
   boxit.standard_class(btex \kwd*{STANDARD-CLASS} etex);
   boxit.structure_class(btex \kwd*{STRUCTURE-CLASS} etex);
-  class.sw + (10,-3) = built_in_class.nw;
+  class.sw + (15,-3) = built_in_class.nw;
   drawboxed(built_in_class,standard_class,structure_class);
   
   boxjoin();
@@ -73,15 +73,15 @@ beginfig(1);
   structure_class.sw+(0, -5) = method.nw;
   drawboxed(method)
   
-  boxjoin(a.se + (0, -3) = b.ne);
+  boxjoin(a.se + (2, -3) = b.ne);
   boxit.standard_method(btex \kwd*{STANDARD-METHOD} etex);
   boxit.method_combination(btex \kwd*{METHOD-COMBINATION} etex);
-  method.sw + (-9,-5) = standard_method.nw;
+  method.sw + (-14,-5) = standard_method.nw;
   drawboxed(standard_method,method_combination);
   
   boxjoin();
   boxit.character(btex \kwd*{CHARACTER} etex);
-  atom.ne + (30, -15) = character.nw;
+  atom.ne + (23, -10) = character.nw;
   drawboxed(character);
   
   boxjoin(a.se + (0, -3) = b.ne);
@@ -106,7 +106,7 @@ beginfig(1);
   boxit.number(btex \kwd*{NUMBER} etex);
   boxit.complex(btex \kwd*{COMPLEX} \Op{\VAR{type}\DF{\kwd{\A}}} etex);
   boxit.real(btex \kwd*{REAL} \OP{\VAR{lower-limit}\DF{\kwd{\A}} \Op{\VAR{upper-limit}\DF{\kwd{\A}}}} etex);
-  number.nw = (420,-44);
+  number.nw = (433,-44);
   drawboxed(number,complex,real);
   
   boxjoin()
@@ -139,18 +139,18 @@ beginfig(1);
   boxjoin(a.e + (10,0) = b.w);
   boxit.unsigned_byte(btex \kwd*{UNSIGNED-BYTE} \Op{\VAR{size}\DF{\kwd{\A}}} etex);
   boxit.bit(btex \kwd*{BIT} etex);
-  signed_byte.sw+(30,-3) = unsigned_byte.nw;
+  signed_byte.sw+(25,-3) = unsigned_byte.nw;
   drawboxed(unsigned_byte,bit);
   
-  boxjoin(a.se + (10,0) = b.sw);
+  boxjoin(a.se + (20,0) = b.sw);
   boxit.list(btex \kwd*{LIST} etex);
   boxit.sequence(btex \kwd*{SEQUENCE} etex);
-  list.sw = (165,-71);
+  list.sw = (142,-71);
   drawboxed(list,sequence);
   
   boxjoin();
   boxit.cons(btex \kwd*{CONS} \OP{\VAR{car-type}\DF{\kwd{\A}} \Op{\VAR{cdr-type}\DF{\kwd{\A}}}} etex);
-  sequence.se+(0,-3) = cons.ne;
+  sequence.se+(7,-3) = cons.ne;
   drawboxed(cons);
   
   boxjoin(a.sw + (0, -3) = b.nw);
@@ -164,12 +164,12 @@ beginfig(1);
   boxit.simple_vector(btex \kwd*{SIMPLE-VECTOR} \Op{\VAR{size}\DF{\kwd{\A}}} etex);
   boxit.bit_vector(btex \kwd*{BIT-VECTOR} \Op{\VAR{size}\DF{\kwd{\A}}} etex);
   boxit.simple_bit_vector(btex \kwd*{SIMPLE-BIT-VECTOR} \Op{\VAR{size}\DF{\kwd{\A}}} etex);
-  cons.se + (5, -3) = array.ne;
+  cons.se + (18, -3) = array.ne;
   drawboxed(array,vector,simple_array,string_,simple_string,base_string,simple_base_string,simple_vector,bit_vector,simple_bit_vector);
 
   boxjoin();
   boxit.stream(btex \kwd*{STREAM} etex);
-  stream.ne = (305,-75);
+  stream.ne = (315,-75);
   drawboxed(stream);
 
   boxjoin(a.se + (0, -3) = b.ne);
@@ -180,7 +180,7 @@ beginfig(1);
   boxit.broadcast_stream(btex \kwd*{BROADCAST-STREAM} etex);
   boxit.concatenated_stream(btex \kwd*{CONCATENATED-STREAM} etex);
   boxit.echo_stream(btex \kwd*{ECHO-STREAM} etex);
-  stream.se + (-28,-69) = file_stream.ne;
+  stream.se + (-33,-69) = file_stream.ne;
   drawboxed(file_stream,two_way_stream,synonym_stream,string_stream,broadcast_stream,concatenated_stream,echo_stream);
   
   boxjoin(a.se + (0, -3) = b.ne);
@@ -206,9 +206,13 @@ beginfig(1);
   boxjoin(a.sw + (0,-3) = b.nw);
   boxit.storage_condition(btex \kwd*{STORAGE-CONDITION} etex);
   boxit.simple_type_error(btex \kwd*{SIMPLE-TYPE-ERROR} etex);
-  boxit.type_error(btex \kwd*{TYPE-ERROR} etex);
   serious_condition.e + (10,2) = storage_condition.w;
-  drawboxed(storage_condition,simple_type_error,type_error);
+  drawboxed(storage_condition,simple_type_error);
+
+  boxjoin()
+  boxit.type_error(btex \kwd*{TYPE-ERROR} etex);
+  simple_type_error.sw + (15,-3) = type_error.nw;
+  drawboxed(type_error);
 
   boxjoin();
   boxit.error(btex \kwd*{ERROR}\\ etex);
@@ -234,12 +238,12 @@ beginfig(1);
 
   boxjoin();
   boxit.simple_condition(btex \kwd*{SIMPLE-CONDITION} etex);
-  type_error.se+(25,0) = simple_condition.w;
+  type_error.se+(10,-2) = simple_condition.w;
   drawboxed(simple_condition);
 
   boxjoin();
   boxit.warning(btex \kwd*{WARNING} etex);
-  condition.e + (120,-2) = warning.w;
+  condition.ne + (120,0) = warning.nw;
   drawboxed(warning);
 
   boxjoin(a.sw + (0,-3) = b.nw);
@@ -250,20 +254,20 @@ beginfig(1);
   boxjoin(a.sw + (0,-3) = b.nw);
   boxit.simple_error(btex \kwd*{SIMPLE-ERROR} etex);
   boxit.simple_warning(btex \kwd*{SIMPLE-WARNING} etex);
-  simple_condition.sw + (0, -10) = simple_error.nw;
+  simple_condition.s + (0, -10) = simple_error.n;
   drawboxed(simple_error,simple_warning);
 
   boxjoin(a.se + (0,-3) = b.ne);
   boxit.undefined_function(btex  \kwd*{UNDEFINED-FUNCTION} etex);
   boxit.unbound_variable(btex  \kwd*{UNBOUND-VARIABLE} etex);
   boxit.unbound_slot(btex  \kwd*{UNBOUND-SLOT} etex);
-  cell_error.e + (25,0) = undefined_function.w;
+  cell_error.e + (15,0) = undefined_function.w;
   drawboxed(unbound_variable,undefined_function,unbound_slot);                
   
   boxjoin(a.se + (0,-3) = b.ne);
   boxit.end_of_file(btex  \kwd*{END-OF-FILE} etex);
   boxit.reader_error(btex \kwd*{READER-ERROR} etex);
-  stream_error.e + (38,6) = end_of_file.w;
+  stream_error.e + (33,6) = end_of_file.w;
   drawboxed(end_of_file,reader_error);
 
   boxjoin(a.sw + (0,-3) = b.nw);
@@ -276,39 +280,33 @@ beginfig(1);
   drawboxed(division_by_zero,floating_point_inexact,floating_point_overflow,floating_point_underflow,floating_point_invalid_operation);
 
 
-
-
-
-
-
-  drawarrow t.s{down} ... symbol.w{right};
-  drawarrow t.e{right} .. {right}t.e+(40,0) .. sequence.n{down};
-  drawarrow t.e{right} .. {right}t.e+(150,0) ... function.n{down};
-  drawarrow t.e{right} .. {right}t.e+(150,0) ... number.n{down};
   drawarrow t.e{right} ... character.n{down};
-  drawarrow t.e{right} .. stream.w{right};
-  drawarrow t.e{right} ... pathname.n{down};
+  drawarrow t.e{right} .. t.e+(120,0){right} ... sequence.n{down};
+  drawarrow t.e{right} .. t.e+(123,0){right} .. stream.w{right};
+  drawarrow t.e{right} .. t.e+(126,0){right} .. function.w{right};
+  drawarrow t.e{right} .. t.e+(270,0){right} ... pathname.n{down};
+  drawarrow t.e{right} .. t.e+(280,0){right} ... pathname.ne+(3,3) .. serious_condition.sw+(-3,-3) .. number.n{down};
+  drawarrow t.e{right} .. condition.w{right};
 
   drawarrow t.s{down} ... atom.w{right};
-  drawarrow t.s{down} ... package.w{right};
   drawarrow t.s{down} ... readtable.w{right};
+  drawarrow t.s{down} ... package.w{right};
+  drawarrow t.s{down} ... symbol.w{right};
   
-  drawarrow t.s{down} ... array.w+(0,3){right};
-  
-  drawarrow t.s{down} ... hash_table.w{right};
-  drawarrow t.s{down} ... structure_object.w{right};
-  drawarrow t.s{down} ... random_state.w{right};
-  drawarrow t.s{down} ... restart.w{right};
-  drawarrow t.s{down} ... standard_object.w{right};
-  drawarrow t.s{down} ... standard_class.w+(-15,-15) .. method.w{right};
-  drawarrow t.e{right} .. condition.w{right};
+  drawarrow t.s{down} .. t.s+(0,-25){down} ... array.w+(0,3){right};
+  drawarrow t.s{down} .. t.s+(0,-25){down} ... restart.w{right};
+  drawarrow t.s{down} .. t.s+(0,-25){down} ... random_state.w{right};
+  drawarrow t.s{down} .. t.s+(0,-25){down} ... hash_table.w{right};
+  drawarrow t.s{down} .. t.s+(0,-25){down} ... structure_object.w{right};
+  drawarrow t.s{down} .. t.s+(0,-25){down} ... standard_object.w{right};
+  drawarrow t.s{down} .. t.s+(0,-25){down} ... method.w{right};
   
 
   drawarrow standard_object.s+(3,0){down} .. class.e{left};
-  drawarrow class.sw+(5,0){down} .. standard_class.w{right};
-  drawarrow class.sw+(5,0){down} .. built_in_class.w{right};
-  drawarrow class.sw+(5,0){down} .. structure_class.w{right};
-  drawarrow t.s{down} .. method_combination.nw+(5,0){down};
+  drawarrow class.sw+(5,0){down} ... standard_class.w{right};
+  drawarrow class.sw+(5,0){down} ... built_in_class.w{right};
+  drawarrow class.sw+(5,0){down} ... structure_class.w{right};
+  drawarrow t.s{down} -- (xpart t.s, ypart method_combination.nw);
   
   drawarrow standard_object.s+(3,0){down} .. built_in_class.ne+(2,2)  ... standard_class.e+(7,0) ... structure_class.se+(2,-2) .. method.e{down} .. standard_method.ne+(5,2) .. standard_method.e{left} dashed evenly;
   halfdisc (method.e);
@@ -317,12 +315,12 @@ beginfig(1);
   drawarrow string_.w+(0,-3){left} ... simple_string.w+(-8,0) ... base_string.w{right};
   drawarrow vector.w{left} ... base_string.w+(-12,0) ... bit_vector.w{right};
   drawarrow sequence.w{left} .. list.e{left};
-  drawarrow list.w{left} ... cons.nw+(10,0){down};
+  drawarrow list.w{left} ... cons.nw+(15,0){down};
 
   drawarrow symbol.s{down} ... keyword.w{right};
   drawarrow symbol.s{down} ... boolean_.w{right};
 
-  drawarrow list.w{left} .. tension 2.5 .. symbol.ne+(5,2) .. symbol.e{down} .. null.w{right} dashed evenly;
+  drawarrow list.w{left} .. null.ne+(3,3) .. tension 1.5 .. symbol.e{down} .. null.w{right} dashed evenly;
   halfdisc(symbol.e);
 
   
@@ -340,8 +338,8 @@ beginfig(1);
 
   drawarrow array.w+(0,-3){left} ... array.sw+(-7,-3).. simple_array.w{right};
 
-  drawarrow character.e{right} ... base_char.w{right};
   drawarrow character.e{right} .. extended_char.w{right};
+  drawarrow character.e{right} .. extended_char.sw+(-1,-3) .. base_char.w{right};
   drawarrow base_char.e{right} .. standard_char.ne+(-7,0){down};
 
   drawarrow function.s+(-20,0){down} .. compiled_function.w{right};
@@ -349,7 +347,7 @@ beginfig(1);
   drawarrow generic_function.w+(0,-3){left} .. standard_generic_function.nw+(10,0){down};
 
   drawarrow number.w{left} ... complex.n+(-10,0){down};
-  drawarrow number.w{left} ... real.n+(-20,0){down};
+  drawarrow number.w{left} ... real.n+(-15,0){down};
 
   drawarrow real.w{left} ... double_float.nw+(-3,3) ... rational.w+(0,3){right};
   drawarrow real.e{right} .. float.ne+(-5,0){down};
@@ -359,12 +357,12 @@ beginfig(1);
   drawarrow float.se+(-5,0){down} ... double_float.e{left};
   drawarrow float.se+(-5,0){down} ... long_float.e{left};
 
-  drawarrow rational.w+(0,-3){left} ... rational.sw+(-7,0) ... integer.w{right};
+  drawarrow rational.w+(0,-3){left} ... rational.sw+(-5,0) ... integer.w{right};
   drawarrow rational.w+(0,-3){left} ... integer.w+(-10,0) ... ratio.w{right};
 
-  drawarrow integer.s+(12,0){down} .. signed_byte.ne+(-5,0){down};
-  drawarrow integer.s+(12,0){down} .. fixnum.n{down};
-  drawarrow integer.s+(12,0){down} .. bignum.nw+(5,0){down};
+  drawarrow (xpart fixnum.n, ypart.integer.s){down} .. signed_byte.ne+(-5,0){down};
+  drawarrow (xpart fixnum.n, ypart.integer.s){down} .. fixnum.n{down};
+  drawarrow (xpart fixnum.n, ypart integer.s){down} .. bignum.nw+(5,0){down};
 
   drawarrow signed_byte.sw+(10,0){down} ... unsigned_byte.w{right};
   drawarrow unsigned_byte.e{right} ... bit.w{right};
@@ -377,16 +375,16 @@ beginfig(1);
   drawarrow stream.s{down} ... broadcast_stream.e{left};
   drawarrow stream.s{down} ... echo_stream.e{left};
 
-  drawarrow pathname.e{right} .. logical_pathname.ne+(-10,0){down};
+  drawarrow pathname.e{right} .. logical_pathname.ne+(-15,0){down};
   
-  drawarrow condition.e{right} .. warning.w{right};
-  drawarrow condition.e{right} .. simple_condition.n{down};
-  drawarrow condition.w{left} .. serious_condition.w{right};
+  drawarrow condition.e{right} .. condition.e+(95,0){right} .. warning.w{right};
+  drawarrow condition.e{right} .. condition.e+(95,0){right} .. simple_condition.n+(-15,0){down};
+  drawarrow condition.e{right} ... serious_condition.ne+(-10,0){down};
 
   drawarrow warning.e{right} .. style_warning.ne+(-10,0){down};
 
   drawarrow serious_condition.e{right} .. storage_condition.w{right};
-  drawarrow serious_condition.se+(-10,0){down} .. error.w{right};
+  drawarrow serious_condition.se+(-10,0){down} .. tension 1.3 .. error.w{right};
 
   drawarrow error.sw+(5,0){down} ... parse_error.w{right};
   drawarrow error.sw+(5,0){down} ... program_error.w{right};
@@ -401,21 +399,21 @@ beginfig(1);
 
   drawarrow stream_error.e{right} .. end_of_file.w{right};
 
-  drawarrow cell_error.e{right} .. unbound_variable.w{right};
-  drawarrow cell_error.e{right} .. unbound_slot.w{right};
   drawarrow cell_error.e{right} .. undefined_function.w{right};
+  drawarrow cell_error.e{right} .. unbound_variable.w{right};
+  drawarrow cell_error.e{right} .. tension 1.3 .. unbound_variable.sw+(-3,-3) .. unbound_slot.w{right};
 
-  drawarrow arithmetic_error.sw+(5,0){down} .. division_by_zero.w{right};
-  drawarrow arithmetic_error.sw+(5,0){down} .. floating_point_inexact.w{right};
-  drawarrow arithmetic_error.sw+(5,0){down} .. floating_point_invalid_operation.w{right};
-  drawarrow arithmetic_error.sw+(5,0){down} .. floating_point_overflow.w{right};
-  drawarrow arithmetic_error.sw+(5,0){down} .. floating_point_underflow.w{right};
+  drawarrow arithmetic_error.sw+(5,0){down} ... division_by_zero.w{right};
+  drawarrow arithmetic_error.sw+(5,0){down} ... floating_point_inexact.w{right};
+  drawarrow arithmetic_error.sw+(5,0){down} ... floating_point_invalid_operation.w{right};
+  drawarrow arithmetic_error.sw+(5,0){down} ... floating_point_overflow.w{right};
+  drawarrow arithmetic_error.sw+(5,0){down} ... floating_point_underflow.w{right};
 
-  drawarrow stream_error.e{right} .. parse_error.e{down} .. reader_error.w{right} dashed evenly;
+  drawarrow stream_error.e{right} .. stream_error.se+(3,-2) .. parse_error.e{down} .. tension 1.5 .. reader_error.w{right} dashed evenly;
 
-  drawarrow warning.e{right} .. style_warning.e+(3,0) .. simple_condition.e{down} .. simple_warning.e{left} dashed evenly;
-  drawarrow error.e{right} .. simple_condition.s{right} .. simple_error.e{left} dashed evenly;
-  drawarrow type_error.e{right} .. simple_condition.nw+(5,0){right} .. simple_type_error.e{left} dashed evenly;
+  drawarrow warning.e{right} .. style_warning.ne+(3,0) .. simple_condition.ne+(2,1) .. simple_condition.e{down} .. simple_condition.se+(2,-1) .. simple_warning.e{left} dashed evenly;
+  drawarrow error.e{right} .. tension 1.5 .. simple_condition.sw+(-1,-2) .. simple_condition.sw+(5,0){right} ... simple_error.n{down} dashed evenly;
+  drawarrow type_error.e{right} .. simple_condition.nw+(-1,2) .. simple_condition.nw+(5,0){right} .. simple_type_error.e{left} dashed evenly;
   
 endfig;
 
