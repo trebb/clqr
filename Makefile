@@ -115,7 +115,7 @@ clean:
 	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.out *.ps *.pdf *~ html/*~ \
               *.flag *.jpg html/*.jpg *.tar.gz REVISION.tex DATE.tex \
 	      html/latest-changes.html html/release-revision.txt html/release-date.txt \
- 	      *.1 paper-current.tex color-current.tex
+ 	      *.1 mpxerr.tex paper-current.tex color-current.tex
 
 
 # Project hosting
