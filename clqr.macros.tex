@@ -143,24 +143,6 @@
     \right#2%
     \)}}
 %
-% Boxed Group of Alternatives
-% usage: \boxGOO{line1\\ line2...}
-\newcommand{\boxGOO}[1]{\text{\hspace{1ex}\(%
-    \setlength{\fboxsep}{1pt}\setlength{\fboxrule}{0pt}
-    \boxed{
-      \setlength{\fboxsep}{1pt}\setlength{\fboxrule}{.1pt}
-      \boxed{\;%
-        \begin{array}[t]{l}%
-          #1%
-        \end{array}%
-      }%
-    }%
-    \)}}
-%
-% In a Boxed Group of Alternatives: Replacement for \\ with additional
-% vspace 
-\newcommand{\boxGOOcr}{\vspace{1ex}\\}
-%
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

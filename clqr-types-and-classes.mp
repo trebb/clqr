@@ -94,17 +94,17 @@ beginfig(1);
   atom.ne + (23, -10) = character.nw;
   drawboxed(character);
   
-  boxjoin(a.se + (0, -3) = b.ne);
+  boxjoin()
   boxit.function(btex \kwd*{FUNCTION} \OP{\VAR{arg-types} \Op{\VAR{value-types}}} etex);
+  function.nw = (205, -10);
+  drawboxed(function);
+  
+  boxjoin(a.sw + (0, -3) = b.nw);
   boxit.compiled_function(btex \kwd*{COMPILED-FUNCTION} etex);
   boxit.generic_function(btex \kwd*{GENERIC-FUNCTION} etex);
-  function.nw = (210, -10);
-  drawboxed(function,compiled_function,generic_function);
-  
-  boxjoin();
   boxit.standard_generic_function(btex \kwd*{STANDARD-GENERIC-FUNCTION} etex);
-  generic_function.s + (0,-3) = standard_generic_function.n;
-  drawboxed(standard_generic_function);
+  function.se + (0,-3) = compiled_function.ne;
+  drawboxed(compiled_function,generic_function,standard_generic_function);
   
   boxjoin(a.sw + (0,-3) = b.nw);
   boxit.pathname(btex \kwd*{PATHNAME} etex);
@@ -152,7 +152,7 @@ beginfig(1);
   signed_byte.sw+(25,-3) = unsigned_byte.nw;
   drawboxed(unsigned_byte,bit);
   
-  boxjoin(a.se + (20,0) = b.sw);
+  boxjoin(a.e + (20,0) = b.w);
   boxit.list(btex \kwd*{LIST} etex);
   boxit.sequence(btex \kwd*{SEQUENCE} etex);
   list.sw = (142,-71);
@@ -291,8 +291,8 @@ beginfig(1);
 
 
   drawarrow t.e{right} ... character.n{down};
-  drawarrow t.e{right} .. t.e+(120,0){right} ... sequence.n{down};
-  drawarrow t.e{right} .. t.e+(123,0){right} .. stream.w{right};
+  drawarrow t.e{right} .. t.e+(121,0){right} ... sequence.n{down};
+  drawarrow t.e{right} .. t.e+(124,0){right} .. stream.w{right};
   drawarrow t.e{right} .. t.e+(126,0){right} .. function.w{right};
   drawarrow t.e{right} .. t.e+(270,0){right} ... pathname.n{down};
   drawarrow t.e{right} .. t.e+(280,0){right} ... pathname.ne+(3,3) .. serious_condition.sw+(-3,-3) .. number.n{down};
@@ -312,13 +312,13 @@ beginfig(1);
   drawarrow t.s{down} .. t.s+(0,-25){down} ... method.w{right};
   
 
-  drawarrow standard_object.s+(3,0){down} .. class.e{left};
+  drawarrow standard_object.s{down} .. class.e{left};
   drawarrow class.sw+(5,0){down} ... standard_class.w{right};
   drawarrow class.sw+(5,0){down} ... built_in_class.w{right};
   drawarrow class.sw+(5,0){down} ... structure_class.w{right};
   drawarrow t.s{down} -- (xpart t.s, ypart method_combination.nw);
   
-  drawarrow standard_object.s+(3,0){down} .. built_in_class.ne+(2,2)  ... standard_class.e+(7,0) ... structure_class.se+(2,-2) .. method.e{down} .. standard_method.ne+(5,2) .. standard_method.e{left} dashed evenly;
+  drawarrow standard_object.s{down} .. built_in_class.ne+(2,2)  ... standard_class.e+(7,0) ... structure_class.se+(2,-2) .. method.e{down} .. standard_method.ne+(5,2) .. standard_method.e{left} dashed evenly;
   halfdisc_e (method.e);
 
   drawarrow vector.w{left} ... vector.sw+(-6,0) ... string_.w+(0,3){right};
@@ -333,11 +333,16 @@ beginfig(1);
   drawarrow list.w{left} .. null.ne+(3,3) .. tension 1.5 .. symbol.e{down} .. null.w{right} dashed evenly;
   halfdisc_e(symbol.e);
 
-  
-  drawarrow sequence.e{right} .. array.ne+(2,1) .. array.e{down} .. simple_array.ne+(3,7){dir -60}.. simple_array.se+(10,-5) .. vector.e+(0,5){left} dashed evenly;
-  drawarrow sequence.e{right} .. array.ne+(2,1) .. array.e{down} .. simple_array.ne+(3,7){dir -60} .. simple_array.ne+(2,1) .. simple_array.e{down} .. simple_array.se+(2,-1) .. tension 2 .. vector.e + (0, -3){down}  .. vector.se + (2,-1){down} .. simple_base_string.se+(5,0) .. simple_vector.e{left} dashed evenly;
-  drawarrow sequence.e{right} .. array.ne+(2,1) .. array.e{down} .. simple_array.ne+(3,7){dir -60} .. simple_array.ne+(2,1) .. simple_array.e{down} .. simple_array.se+(2,-1) .. tension 2 .. vector.e + (0, -3){down}  .. vector.se + (2,-1){down} .. simple_base_string.se+(10,0) .. simple_vector.se+(0, -3) .. bit_vector.e{down} ... simple_bit_vector.ne+(-10,0){down} dashed evenly;
-  drawarrow sequence.e{right} .. array.ne+(2,1) .. array.e{down} .. simple_array.ne+(3,7){dir -60} .. simple_array.ne+(2,1) .. simple_array.e{down} .. simple_array.se+(2,-1) .. tension 2 .. vector.e + (0, -3){down}  .. vector.se + (2,-1){down} .. string_.e{down} .. simple_string.ne+(2,1){down}  .. simple_string.e{down}  .. simple_string.se+(2,1){down} .. base_string.e+(0,3){down} .. simple_base_string.ne+(-10,0){down} dashed evenly;
+  path array_simple_array_dashed;
+  pair array_simple_array_bifurcation, array_simple_array_common;
+  array_simple_array_dashed = array.e{down} .. simple_array.ne+(2,1) .. simple_array.e{down};
+  array_simple_array_bifurcation = directionpoint(10,1) of array_simple_array_dashed;
+  array_simple_array_common = directionpoint(1,-1) of array_simple_array_dashed;
+
+  drawarrow sequence.e{right} .. array.ne+(2,1) .. array.e{down} .. array_simple_array_common{dir angle(1,-1)} .. array_simple_array_bifurcation{dir angle(10,1)} .. simple_array.ne+(15,5) .. simple_array.se+(15,0) .. vector.e+(0,5){left} dashed evenly;
+  drawarrow sequence.e{right} .. array.ne+(2,1) .. array.e{down} .. simple_array.ne+(2,1) .. simple_array.e{down} .. simple_array.se+(2,-1) .. tension 2 .. vector.e + (0, -3){down}  .. vector.se + (2,-1){down} .. simple_base_string.se+(5,0) .. simple_vector.e{left} dashed evenly;
+  drawarrow sequence.e{right} .. array.ne+(2,1) .. array.e{down} .. simple_array.ne+(2,1) .. simple_array.e{down} .. simple_array.se+(2,-1) .. tension 2 .. vector.e + (0, -3){down}  .. vector.se + (2,-1){down} .. simple_base_string.se+(10,0) .. simple_vector.se+(0, -3) .. bit_vector.e{down} ... simple_bit_vector.ne+(-10,0){down} dashed evenly;
+  drawarrow sequence.e{right} .. array.ne+(2,1) .. array.e{down} .. simple_array.ne+(2,1) .. simple_array.e{down} .. simple_array.se+(2,-1) .. tension 2 .. vector.e + (0, -3){down}  .. vector.se + (2,-1){down} .. string_.e{down} .. simple_string.ne+(2,1){down}  .. simple_string.e{down}  .. simple_string.se+(2,1){down} .. base_string.e+(0,3){down} .. simple_base_string.ne+(-10,0){down} dashed evenly;
   halfdisc_e(array.e);
   halfdisc_e(simple_array.e);
   halfdisc_e(vector.e+(0,-3));
@@ -352,9 +357,9 @@ beginfig(1);
   drawarrow character.e{right} .. extended_char.sw+(-1,-3) .. base_char.w{right};
   drawarrow base_char.e{right} .. standard_char.ne+(-7,0){down};
 
-  drawarrow function.s+(-20,0){down} .. compiled_function.w{right};
-  drawarrow function.s+(-20,0){down} .. generic_function.w+(0,3){right};
-  drawarrow generic_function.w+(0,-3){left} .. standard_generic_function.nw+(10,0){down};
+  drawarrow function.s+(-20,0){down} ... compiled_function.w{right};
+  drawarrow function.s+(-20,0){down} ... generic_function.w{right};
+  drawarrow generic_function.e{right} ... standard_generic_function.ne+(-25,0){down};
 
   drawarrow number.w{left} ... complex.n+(-10,0){down};
   drawarrow number.w{left} ... real.n+(-12,0){down};
@@ -391,7 +396,7 @@ beginfig(1);
   drawarrow condition.e{right} .. condition.e+(95,0){right} .. simple_condition.n+(-15,0){down};
   drawarrow condition.e{right} ... serious_condition.ne+(-10,0){down};
   
-  drawarrow warning.e{right} .. style_warning.ne+(-10,0){down};
+  drawarrow (xpart warning.e, ypart condition.e){right} .. style_warning.ne+(-10,0){down};
 
   drawarrow serious_condition.e{right} .. storage_condition.w{right};
   drawarrow serious_condition.se+(-10,0){down} .. tension 1.3 .. error.w{right};
@@ -423,7 +428,7 @@ beginfig(1);
 
   halfdisc_e(parse_error.e);
 
-  drawarrow warning.e{right} .. style_warning.ne+(3,0) .. tension 1.3 .. simple_condition.ne+(2,1) .. simple_condition.e{down} .. simple_condition.se+(2,-1) .. simple_warning.e{left} dashed evenly;
+  drawarrow (xpart warning.e, ypart condition.e){right} .. style_warning.ne+(3,0) .. tension 1.3 .. simple_condition.ne+(2,1) .. simple_condition.e{down} .. simple_condition.se+(2,-1) .. simple_warning.e{left} dashed evenly;
   drawarrow error.e{right} .. tension 1.5 .. simple_condition.sw+(-1,-2) .. simple_condition.sw+(5,0){right} .. simple_condition.sw+(12,-2){right} ... simple_error.n{down} dashed evenly;
   drawarrow type_error.e{right} .. simple_condition.nw+(-1,2) .. simple_condition.nw+(5,0){right} .. simple_type_error.e{left} dashed evenly;
 
