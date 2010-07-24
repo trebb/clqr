@@ -47,7 +47,7 @@ a4:
 
 letter-booklets:	$(CLQR)-letter-booklet-all.pdf $(CLQR)-letter-booklet-four.pdf
 
-a4-booklets:	 $(CLQR)-a4-booklet-all.pdf  $(CLQR)-a4-booklet-four.pdf 
+a4-booklets:	 $(CLQR)-a4-booklet-all.pdf $(CLQR)-a4-booklet-four.pdf 
 
 $(CLQR)-%-consec.pdf:	$(CLQR)-%-consec.ps
 	$(PS2PDF) $< $@ $(SEND-TO-LOG)
@@ -81,7 +81,9 @@ $(CLQR)-%.dvi:	$(CLQR).tex $(CLQR)-*.tex $(CLQR).*.tex $(CLQR)-types-and-classes
 	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
 	$(MV) $(CLQR).dvi $@ $(SEND-TO-LOG)
 
-clqr-types-and-classes.1:	$(CLQR)-types-and-classes.mp $(CLQR).macros.tex clqr.packages.tex
+$(CLQR)-types-and-classes.1 $(CLQR)-types-and-classes.2 \
+$(CLQR)-types-and-classes.3 $(CLQR)-types-and-classes.4 \
+$(CLQR)-types-and-classes.5:	$(CLQR)-types-and-classes.mp $(CLQR).macros.tex clqr.packages.tex
 	$(MPOST) $< $(SEND-TO-LOG)
 
 paper-a4.flag:	
@@ -108,14 +110,11 @@ revision-number:
 	$(GIT_REVISION) | tee REVISION.tex > html/release-revision.txt
 	$(DATE) | tee DATE.tex > html/release-date.txt
 
-#DATE.tex:	$(CLQR).tex $(CLQR)-*.tex 
-#	$(DATE) | tee $@ > html/release-date.txt
-
 clean:
 	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.out *.ps *.pdf *~ html/*~ \
               *.flag *.jpg html/*.jpg *.tar.gz REVISION.tex DATE.tex \
 	      html/latest-changes.html html/release-revision.txt html/release-date.txt \
- 	      *.1 mpxerr.tex paper-current.tex color-current.tex
+ 	      *.[12345] mpxerr.tex paper-current.tex color-current.tex
 
 
 # Project hosting
@@ -157,4 +156,4 @@ $(CLQR).tar.gz:	$(CLQR).tex $(CLQR)-*.tex
 	if $(GIT_ARCHIVE) > $(CLQR).tar.gz; then true; else true; fi $(SEND-TO-LOG)
 
 publishclean:
-	$(RM) *.ps *.1 *~ html/*~
+	$(RM) *.ps *.[12345] *~ html/*~

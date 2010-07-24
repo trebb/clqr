@@ -11,112 +11,119 @@
 \section{Types and Classes} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 \begin{figure}
   \begin{center}
     \begin{sideways}
       \includegraphics{clqr-types-and-classes.1}
     \end{sideways}
   \end{center}
-  \index{\A}
-  \index{T}%
-  \index{ATOM}%
-  \index{READTABLE}%
-  \index{PACKAGE}%
-  \index{SYMBOL}%
-  \index{KEYWORD}%
-  \index{BOOLEAN}%
-  \index{RESTART}%
-  \index{RANDOM-STATE}%
-  \index{HASH-TABLE}%
-  \index{STRUCTURE-OBJECT}%
-  \index{STANDARD-OBJECT}%
-  \index{NULL}%
-  \index{CLASS}%
-  \index{BUILT-IN-CLASS}%
-  \index{STANDARD-CLASS}%
-  \index{STRUCTURE-CLASS}%
-  \index{METHOD}%
-  \index{STANDARD-METHOD}%
-  \index{METHOD-COMBINATION}%
-  \index{CHARACTER}%
-  \index{FUNCTION}%
-  \index{COMPILED-FUNCTION}%
-  \index{GENERIC-FUNCTION}%
-  \index{STANDARD-GENERIC-FUNCTION}%
-  \index{PATHNAME}%
-  \index{LOGICAL-PATHNAME}%
-  \index{NUMBER}%
-  \index{COMPLEX}%
-  \index{REAL}%
-  \index{FLOAT}%
-  \index{SHORT-FLOAT}%
-  \index{SINGLE-FLOAT}%
-  \index{DOUBLE-FLOAT}%
-  \index{LONG-FLOAT}%
-  \index{RATIONAL}%
-  \index{INTEGER}%
-  \index{RATIO}%
-  \index{SIGNED-BYTE}%
-  \index{FIXNUM}%
-  \index{BIGNUM}%
-  \index{UNSIGNED-BYTE}%
-  \index{BIT}%
-  \index{LIST}%
-  \index{SEQUENCE}%
-  \index{CONS}%
-  \index{ARRAY}%
-  \index{SIMPLE-ARRAY}%
-  \index{VECTOR}%
-  \index{STRING}%
-  \index{SIMPLE-STRING}%
-  \index{BASE-STRING}%
-  \index{SIMPLE-BASE-STRING}%
-  \index{SIMPLE-VECTOR}%
-  \index{BIT-VECTOR}%
-  \index{SIMPLE-BIT-VECTOR}%
-  \index{STREAM}%
-  \index{FILE-STREAM}%
-  \index{TWO-WAY-STREAM}%
-  \index{SYNONYM-STREAM}%
-  \index{STRING-STREAM}%
-  \index{BROADCAST-STREAM}%
-  \index{CONCATENATED-STREAM}%
-  \index{ECHO-STREAM}%
-  \index{EXTENDED-CHAR}%
-  \index{BASE-CHAR}%
-  \index{STANDARD-CHAR}%
-  \index{CONDITION}%
-  \index{SERIOUS-CONDITION}%
-  \index{STORAGE-CONDITION}%
-  \index{SIMPLE-TYPE-ERROR}%
-  \index{TYPE-ERROR}%
-  \index{ERROR}%
-  \index{PROGRAM-ERROR}%
-  \index{CONTROL-ERROR}%
-  \index{PACKAGE-ERROR}%
-  \index{PRINT-NOT-READABLE}%
-  \index{STREAM-ERROR}%
-  \index{PARSE-ERROR}%
-  \index{CELL-ERROR}%
-  \index{FILE-ERROR}%
-  \index{ARITHMETIC-ERROR}%
-  \index{SIMPLE-CONDITION}%
-  \index{WARNING}%
-  \index{STYLE-WARNING}%
-  \index{SIMPLE-ERROR}%
-  \index{SIMPLE-WARNING}%
-  \index{UNDEFINED-FUNCTION}%
-  \index{UNBOUND-VARIABLE}%
-  \index{UNBOUND-SLOT}%
-  \index{END-OF-FILE}%
-  \index{READER-ERROR}%
-  \index{DIVISION-BY-ZERO}%
-  \index{FLOATING-POINT-INEXACT}%
-  \index{FLOATING-POINT-OVERFLOW}%
-  \index{FLOATING-POINT-UNDERFLOW}%
-  \index{FLOATING-POINT-INVALID-OPERATION}%
-  \caption{Data Types.}%
+  \caption[]{Precedence Order of System Classes
+    (\includegraphics{clqr-types-and-classes.3}),
+    Classes (\includegraphics{clqr-types-and-classes.4}),
+    Types (\includegraphics{clqr-types-and-classes.2}), and
+    Condition Types
+    (\includegraphics{clqr-types-and-classes.5}).
+    \label{data-types}%
+    %
+    \index{*@\A}%
+    \index{T}%
+    \index{ATOM}%
+    \index{READTABLE}%
+    \index{PACKAGE}%
+    \index{SYMBOL}%
+    \index{KEYWORD}%
+    \index{BOOLEAN}%
+    \index{RESTART}%
+    \index{RANDOM-STATE}%
+    \index{HASH-TABLE}%
+    \index{STRUCTURE-OBJECT}%
+    \index{STANDARD-OBJECT}%
+    \index{NULL}%
+    \index{CLASS}%
+    \index{BUILT-IN-CLASS}%
+    \index{STANDARD-CLASS}%
+    \index{STRUCTURE-CLASS}%
+    \index{METHOD}%
+    \index{STANDARD-METHOD}%
+    \index{METHOD-COMBINATION}%
+    \index{CHARACTER}%
+    \index{FUNCTION}%
+    \index{COMPILED-FUNCTION}%
+    \index{GENERIC-FUNCTION}%
+    \index{STANDARD-GENERIC-FUNCTION}%
+    \index{PATHNAME}%
+    \index{LOGICAL-PATHNAME}%
+    \index{NUMBER}%
+    \index{COMPLEX}%
+    \index{REAL}%
+    \index{FLOAT}%
+    \index{SHORT-FLOAT}%
+    \index{SINGLE-FLOAT}%
+    \index{DOUBLE-FLOAT}%
+    \index{LONG-FLOAT}%
+    \index{RATIONAL}%
+    \index{INTEGER}%
+    \index{RATIO}%
+    \index{SIGNED-BYTE}%
+    \index{FIXNUM}%
+    \index{BIGNUM}%
+    \index{UNSIGNED-BYTE}%
+    \index{BIT}%
+    \index{LIST}%
+    \index{SEQUENCE}%
+    \index{CONS}%
+    \index{ARRAY}%
+    \index{SIMPLE-ARRAY}%
+    \index{VECTOR}%
+    \index{STRING}%
+    \index{SIMPLE-STRING}%
+    \index{BASE-STRING}%
+    \index{SIMPLE-BASE-STRING}%
+    \index{SIMPLE-VECTOR}%
+    \index{BIT-VECTOR}%
+    \index{SIMPLE-BIT-VECTOR}%
+    \index{STREAM}%
+    \index{FILE-STREAM}%
+    \index{TWO-WAY-STREAM}%
+    \index{SYNONYM-STREAM}%
+    \index{STRING-STREAM}%
+    \index{BROADCAST-STREAM}%
+    \index{CONCATENATED-STREAM}%
+    \index{ECHO-STREAM}%
+    \index{EXTENDED-CHAR}%
+    \index{BASE-CHAR}%
+    \index{STANDARD-CHAR}%
+    \index{CONDITION}%
+    \index{SERIOUS-CONDITION}%
+    \index{STORAGE-CONDITION}%
+    \index{SIMPLE-TYPE-ERROR}%
+    \index{TYPE-ERROR}%
+    \index{ERROR}%
+    \index{PROGRAM-ERROR}%
+    \index{CONTROL-ERROR}%
+    \index{PACKAGE-ERROR}%
+    \index{PRINT-NOT-READABLE}%
+    \index{STREAM-ERROR}%
+    \index{PARSE-ERROR}%
+    \index{CELL-ERROR}%
+    \index{FILE-ERROR}%
+    \index{ARITHMETIC-ERROR}%
+    \index{SIMPLE-CONDITION}%
+    \index{WARNING}%
+    \index{STYLE-WARNING}%
+    \index{SIMPLE-ERROR}%
+    \index{SIMPLE-WARNING}%
+    \index{UNDEFINED-FUNCTION}%
+    \index{UNBOUND-VARIABLE}%
+    \index{UNBOUND-SLOT}%
+    \index{END-OF-FILE}%
+    \index{READER-ERROR}%
+    \index{DIVISION-BY-ZERO}%
+    \index{FLOATING-POINT-INEXACT}%
+    \index{FLOATING-POINT-OVERFLOW}%
+    \index{FLOATING-POINT-UNDERFLOW}%
+    \index{FLOATING-POINT-INVALID-OPERATION}%
+  }
 \end{figure}
 
 For any class, there is always a corresponding type of the same name.
@@ -241,6 +248,11 @@ For any class, there is always a corresponding type of the same name.
   Type specifier for multiple values.
   }
 
+  \IT{\kwd{\A}}
+  {
+    \index{*@\A}
+    As subsidiary type information: no restriction.
+  }
   \end{LIST}
 
 
