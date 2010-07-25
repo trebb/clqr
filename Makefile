@@ -114,7 +114,7 @@ clean:
 	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.out *.ps *.pdf *~ html/*~ \
               *.flag *.jpg html/*.jpg *.tar.gz REVISION.tex DATE.tex \
 	      html/latest-changes.html html/release-revision.txt html/release-date.txt \
- 	      *.[12345] mpxerr.tex paper-current.tex color-current.tex
+ 	      *.[12345] *.mpx mpxerr.tex paper-current.tex color-current.tex
 
 
 # Project hosting
@@ -156,4 +156,4 @@ $(CLQR).tar.gz:	$(CLQR).tex $(CLQR)-*.tex
 	if $(GIT_ARCHIVE) > $(CLQR).tar.gz; then true; else true; fi $(SEND-TO-LOG)
 
 publishclean:
-	$(RM) *.ps *.[12345] *~ html/*~
+	$(RM) $(CLQR).{aux,idx,ilg,ind,log,out,toc} *.ps *.dvi $(CLQR)-types-and-classes.{log,mpx,1,2,3,4,5} *~ html/*~
