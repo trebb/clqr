@@ -177,10 +177,11 @@ For any class, there is always a corresponding type of the same name.
   \retval{Type of \VAR{foo}}.
   }
 
-  \IT{(\kwd*{CHECK-TYPE} \VAR{place} \VAR{type} \Op{\VAR{string}})}
+  \IT{(\MC*{CHECK-TYPE} \VAR{place} \VAR{type}
+    \Op{\VAR{string}\DF{\Goo{\LIT{a}\XOR\LIT{an}} \VAR{type}}})}
   {
-  Return \retval{\NIL} and signal correctable \kwd{type-error} if \VAR{place} is
-  not of \VAR{type}. 
+    Signal correctable \kwd{type-error} if \VAR{place} is
+    not of \VAR{type}. Return \retval{\NIL}.
   }
 
   \IT{(\FU*{STREAM-ELEMENT-TYPE} \VAR{stream})}
