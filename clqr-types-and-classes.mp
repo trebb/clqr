@@ -37,14 +37,14 @@ enddef;
 
 def drawboxed_condition_type (text items ) =
   begingroup
-    pickup pencircle xscaled 1 yscaled .2;
+    pickup pencircle xscaled 1.5 yscaled .2;
     drawboxed(items);
   endgroup
 enddef;
 
 def drawboxed_class (text items ) =
   begingroup
-    pickup pencircle xscaled .2 yscaled 1;
+    pickup pencircle xscaled .2 yscaled 1.5;
     drawboxed(items);
   endgroup
 enddef;
