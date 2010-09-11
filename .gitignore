@@ -11,4 +11,15 @@
 *.mpx
 *.tar
 *.gz
-*.bz2
+DATE.tex
+REVISION.tex
+clqr-types-and-classes.1
+clqr-types-and-classes.2
+clqr-types-and-classes.3
+clqr-types-and-classes.4
+clqr-types-and-classes.5
+*.flag
+color-current.tex
+paper-current.tex
+html/release-date.txt
+html/release-revision.txt

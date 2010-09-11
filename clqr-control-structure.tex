@@ -1,4 +1,4 @@
-% Copyright (C) 2008, 2009 Bert Burgemeister
+% Copyright (C) 2008, 2009, 2010 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -218,7 +218,7 @@
   Define a function named \retval{\VAR{foo}} or \retval{(\kwd{setf}
   \VAR{foo})}, or an anonymous \retval{function}, respectively, which applies
   \VAR{form}s to \VAR{ord-$\lambda$}s. For \MC{defun}, \VAR{form}s are
-  enclosed in an implicit \SO{block} \VAR{foo}.
+  enclosed in an implicit \SO{block} named \VAR{foo}.
   }
 
   \IT{(\xorGOO{\SO*{FLET}\\
@@ -439,7 +439,7 @@
   \VAR{tree}) applies expanded \VAR{form}s to arguments from
   \VAR{tree}, which corresponds to \VAR{tree}-shaped
   \VAR{macro-$\lambda$}s. \VAR{form}s are enclosed in an implicit
-  \SO{block} \VAR{foo}.
+  \SO{block} named \VAR{foo}.
   }
 
   \IT{(\MC*{DEFINE-SYMBOL-MACRO} \VAR{foo} \VAR{form})}
@@ -520,7 +520,8 @@
     \VAR{set-form}, and \VAR{get-form} as described with
     \FU{GET-SETF-EXPANSION} where the elements of macro
     lambda list \OPn{\VAR{macro-$\lambda$}} are bound to corresponding
-    \VAR{arg}s. \VAR{form}s are enclosed in an implicit \SO{block} \VAR{function}.
+    \VAR{arg}s. \VAR{form}s are enclosed in an implicit \SO{block}
+    named \VAR{function}.
   }
 
   \IT{(\FU*{GET-SETF-EXPANSION} \VAR{place} \Op{\VAR{environment}\DF{\NIL}})}
