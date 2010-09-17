@@ -155,13 +155,13 @@ page \pageref{data-types}.
       \PROGN{\VAR{restart-form}})})}
   {
   Evaluate \VAR{form} with dynamically established restarts \VAR{foo}. Return
-  \retval{values of \VAR{form}} or, if by (\kwd{invoke-restarts}
+  \retval{values of \VAR{form}} or, if by (\FU{invoke-restart}
   \VAR{foo} \OPn{\VAR{arg}}) one restart \VAR{foo} is called, use
   \VAR{string} or \VAR{report-function} (of a stream) to print a
   description of restart \VAR{foo} and
   return the \retval{values of its \VAR{restart-form}s}.
   \VAR{arg-function} supplies appropriate \VAR{arg}s if \VAR{foo} is
-  called by \kwd{invoke-restart-interactively}. If (\VAR{test-function} \VAR{condition})
+  called by \FU{invoke-restart-interactively}. If (\VAR{test-function} \VAR{condition})
   returns \T, \VAR{foo} is made visible under \VAR{condition}.
   For (\OPn{\VAR{ord-$\lambda$}}) see p.\ \pageref{section:Functions}.
   }
@@ -181,7 +181,8 @@ page \pageref{data-types}.
       (\FU*{INVOKE-RESTART-INTERACTIVELY} \VAR{ restart})}{.}}
   {
   Call function associated with \VAR{restart} with arguments given or
-  prompted for, respectively. If \VAR{restart} function returns, return \retval{its values}.
+  prompted for, respectively. If \VAR{restart} function returns,
+  return \retval{its values}.
   }
 
   \IT{(\xorGOO{\FU*{COMPUTE-RESTARTS}\\
