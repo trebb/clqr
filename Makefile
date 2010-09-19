@@ -28,10 +28,10 @@ RM		= rm --force --verbose
 MV		= mv --force --verbose
 MAKE		= make
 GZIP		= gzip
-GIT_REVISION	= git-describe | sed 's/\(.*-.*\)-.*/\1/'
-GIT_ARCHIVE	= git-archive --format=tar --prefix=$(CLQR)/ HEAD | $(GZIP)
-GIT_LOG		= git-log
-DATE		= git-log HEAD^..HEAD --date=short | awk '/Date:/{print $$2}' | tr -d '\n\\' 
+GIT_REVISION	= git describe | sed 's/\(.*-.*\)-.*/\1/'
+GIT_ARCHIVE	= git archive --format=tar --prefix=$(CLQR)/ HEAD | $(GZIP)
+GIT_LOG		= git log
+DATE		= git log HEAD^..HEAD --date=short | awk '/Date:/{print $$2}' | tr -d '\n\\' 
 RSYNC		= rsync -va
 SSH		= ssh
 
