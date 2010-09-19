@@ -1166,24 +1166,69 @@
 \begin{LIST}{1cm}
 
   \IT{(\FU*{MAKE-PATHNAME} 
-    \orGOO{\kwd{:host} \VAR{ host}\\
-      \kwd{:device} \VAR{ dev}\\
-      \kwd{:directory} \VAR{ dir}\\
-      \kwd{:name} \VAR{ file-name}\\
-      \kwd{:type} \VAR{ file-type}\\
-      \kwd{:version} \VAR{ ver}\\
-      \kwd{:defaults} \VAR{ path}\\
+    \orGOO{\kwd{:host } \Goo{\VAR{host}\XOR\NIL\XOR\kwd{:unspecific}}\\
+      \kwd{:device } \Goo{\VAR{device}\XOR\NIL\XOR\kwd{:unspecific}}\\
+      \kwd{:directory } \xorGOO{%
+        \Goo{\VAR{directory}\XOR\kwd{:wild}\XOR\NIL\XOR\kwd{:unspecific}}\\
+        (\xorGOO{%
+          \kwd{:absolute}\\
+          \kwd{:relative}
+        }{\}}\text{ }%
+        \xorGOO{%
+          \VAR{directory}\\
+          \kwd{:wild}\\
+          \kwd{:wild-inferiors}\\
+          \kwd{:up}\\
+          \kwd{:back}
+        }{\}^{\!\!*}})
+      }{.}\\
+      \kwd{:name } \Goo{\VAR{file-name}\XOR\kwd{:wild}\XOR\NIL\XOR\kwd{:unspecific}}\\
+      \kwd{:type } \Goo{\VAR{file-type}\XOR\kwd{:wild}\XOR\NIL\XOR\kwd{:unspecific}}\\
+      \kwd{:version } \Goo{\kwd{:newest}\XOR\VAR{version}\XOR\kwd{:wild}\XOR\NIL\XOR\kwd{:unspecific}}\\
+      \kwd{:defaults } \VAR{path}\DF{host from \V{\A default-pathname-defaults\A}}\\
       \kwd{:case
         \Goo{\kwd{:local}\XOR\kwd{:common}}\DF{\kwd{:local}}}}{\}})}
   {
-  Construct \retval{pathname}.
+    Construct \retval{pathname}.
+    For \kwd{:case :local}, leave case of components unchanged.
+    For \kwd{:case :common}, leave mixed-case components unchanged;
+    convert all-uppercase components into
+    local customary case; do the opposite with all-lowercase
+    components.
+  }
+
+  \IT{\arrGOO{%
+      (\xorGOO{\FU*{PATHNAME-HOST}\\
+        \FU*{PATHNAME-DEVICE}\\
+        \FU*{PATHNAME-DIRECTORY}\\
+        \FU*{PATHNAME-NAME}\\
+        \FU*{PATHNAME-TYPE}}{\}}
+      \VAR{ path }
+      \Op{\kwd{:case } \xorGOO{\kwd{:local}\\
+          \kwd{:common}}{\}}\DF{\kwd{:local}}})\\
+      (\FU*{PATHNAME-VERSION } \VAR{path})}{.}}
+  {
+  Return \retval{pathname component}.
+  }
+
+  \IT{(\FU*{PARSE-NAMESTRING} \VAR{foo} 
+    \OP{\VAR{host}
+      \OP{\VAR{default-pathname}\DF{\V{\A default-pathname-defaults\A}}
+        \orGOO{\kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
+      \kwd{:end} \VAR{ end}\DF{\NIL}\\
+      \kwd{:junk-allowed} \VAR{ bool}\DF{\NIL}}{\}}}})}
+  {
+  Return \retval{pathname} converted from
+  string, pathname, or stream \VAR{foo};  and \retvalii{position}
+  where parsing stopped.
   }
 
   \IT{(\FU*{MERGE-PATHNAMES} \VAR{pathname}
     \OP{\VAR{default-pathname}\DF{\V{\A default-pathname-defaults\A}}
       \Op{\VAR{default-version}\DF{\kwd{:newest}}}})}
   {
-  Return \retval{\VAR{pathname}} after filling in missing parts from \VAR{default-pathname}.
+  Return \retval{\VAR{pathname}} after filling in missing components
+  from \VAR{default-pathname}.
   }
 
   \IT{\V{\A default-pathname-defaults\A}}
@@ -1191,9 +1236,9 @@
   Pathname to use if one is needed and none supplied.
   }
 
-  \IT{(\FU*{PATHNAME} \VAR{path})}
+  \IT{(\FU*{USER-HOMEDIR-PATHNAME} \Op{\VAR{host}})}
   {
-  \retval{Pathname} of \VAR{path}.
+  User's \retval{home directory}.
   }
 
   \IT{(\FU*{ENOUGH-NAMESTRING} \VAR{path}
@@ -1213,58 +1258,53 @@
     name}, respectively, of \VAR{path}.
   }
 
-  \IT{(\FU*{PARSE-NAMESTRING} \VAR{foo} 
-    \OP{\VAR{host}
-      \OP{\VAR{default-pathname}\DF{\V{\A default-pathname-defaults\A}}
-        \orGOO{\kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
-      \kwd{:end} \VAR{ end}\DF{\NIL}\\
-      \kwd{:junk-allowed} \VAR{ bool}\DF{\NIL}}{\}}}})}
+  \IT{(\FU*{TRANSLATE-PATHNAME} \VAR{path} \VAR{wildcard-path-a}
+    \VAR{wildcard-path-b})}
   {
-  Return \retval{pathname} converted from
-  string, pathname, or stream \VAR{foo};  and \retvalii{position}
-  where parsing stopped.
+  Translate \VAR{path} from \VAR{wildcard-path-a} into 
+  \VAR{wildcard-path-b}. Return \retval{new path}.
   }
 
-  \IT{\arrGOO{%
-      (\xorGOO{\FU*{PATHNAME-HOST}\\
-        \FU*{PATHNAME-DEVICE}\\
-        \FU*{PATHNAME-DIRECTORY}\\
-        \FU*{PATHNAME-NAME}\\
-        \FU*{PATHNAME-TYPE}}{\}}
-      \VAR{ path }
-      \Op{\kwd{:case } \xorGOO{\kwd{:local}\\
-          \kwd{:common}}{\}}\DF{\kwd{:local}}})\\
-      (\FU*{PATHNAME-VERSION } \VAR{path})}{.}}
+  \IT{(\FU*{PATHNAME} \VAR{path})}
   {
-  Return \retval{pathname component}.
+  \retval{Pathname} of \VAR{path}.
   }
 
-  \IT{(\FU*{LOGICAL-PATHNAME} \VAR{path})}
+  \IT{(\FU*{LOGICAL-PATHNAME} \VAR{logical-path})}
   {
-  \retval{Logical name} of \VAR{path}.
+    \retval{Logical pathname} of \VAR{logical-path}.
+    Logical pathnames are represented as all-uppercase
+    \LIT{\#P"}%
+    \Op{\VAR{host}\LIT{:}}\Op{\LIT{:}}%
+    \Goos{\xorGOO{%
+        \Goop{\VAR{dir}\XOR\LIT{*}}\\
+        \LIT{**}}{\}}\LIT{;}}%
+    \penalty-5
+    \Goos{\VAR{name}\XOR\LIT{*}}%
+    \OP{\LIT{.}%
+      \xorGOO{%
+        \Goop{\VAR{type}\XOR\LIT{*}}\\
+        \LIT{LISP}}{\}}%
+      \Op{\LIT{.}%
+        \Goo{%
+          \VAR{version}\XOR\LIT{*}\XOR\LIT{newest}\XOR\LIT{NEWEST}}}}%
+    \LIT{"}.
   }
 
-  \IT{(\FU*{TRANSLATE-PATHNAME} \VAR{path-a} \VAR{path-b}
-    \VAR{path-c})}
+  \IT{(\FU*{LOGICAL-PATHNAME-TRANSLATIONS} \VAR{logical-host})}
   {
-  Translate \VAR{path-a} from wildcard \VAR{path-b} into wildcard
-  \VAR{path-c}. Return \retval{new path}.
+  \retval{List of (\VAR{from-wildcard to-wildcard}) translations} for \VAR{logical-host}. \kwd{setf}able.
   }
 
-  \IT{(\FU*{LOGICAL-PATHNAME-TRANSLATIONS} \VAR{host})}
+  \IT{(\FU*{LOAD-LOGICAL-PATHNAME-TRANSLATIONS} \VAR{logical-host})}
   {
-  \retval{\VAR{host}'s list of translations}. \kwd{setf}able.
+  Load \VAR{logical-host}'s translations. Return \retval{\NIL} if already
+  loaded; return \retval{\T} if successful.
   }
 
-  \IT{(\FU*{LOAD-LOGICAL-PATHNAME-TRANSLATIONS} \VAR{host})}
+  \IT{(\FU*{TRANSLATE-LOGICAL-PATHNAME} \VAR{pathname})}
   {
-  Load \VAR{host}'s translations. Return \retval{\NIL} if already
-  loaded, return \retval{\T} if successful.
-  }
-
-  \IT{(\FU*{TRANSLATE-LOGICAL-PATHNAME} \VAR{path})}
-  {
-  Physical \retval{pathname} of \VAR{path}. 
+  \retval{Physical pathname} corresponding to (possibly logical) \VAR{pathname}. 
   }
 
   \IT{\arrGOO{(\FU*{PROBE-FILE} \VAR{ file})\\
@@ -1304,26 +1344,27 @@
 
   \IT{(\FU*{RENAME-FILE} \VAR{foo} \VAR{bar})}
   {
-  Rename file  \VAR{foo} to \VAR{bar}. Unspecified parts of path
-  \VAR{bar} default to those of \VAR{foo}. Return \retval{new
-    pathname}, \retvalii{old file name}, and \retvaliii{new file name}.
+    Rename file  \VAR{foo} to \VAR{bar}. Unspecified components of path
+    \VAR{bar} default to those of \VAR{foo}. Return \retval{new
+      pathname}, \retvalii{old physical file name}, and \retvaliii{new
+      physical file name}.
   }
 
   \IT{(\FU*{DELETE-FILE} \VAR{file})}
   {
-  Delete \VAR{file}, return \retval{\T}.
+    Delete \VAR{file}. Return \retval{\T}.
   }
 
   \IT{(\FU*{DIRECTORY} \VAR{path})}
   {
-  Return \retval{list of pathnames}.
+    \retval{List of pathnames} matching \VAR{path}.
   }
 
   \IT{(\FU*{ENSURE-DIRECTORIES-EXIST} \VAR{path} \Op{\kwd{:verbose}
       \VAR{bool}})}
   {
-  Create parts of \retval{\VAR{path}} if necessary. Second return value is
-  \retvalii{\T} if something has been created.
+    Create parts of \retval{\VAR{path}} if necessary. Second return value is
+    \retvalii{\T} if something has been created.
   }
 
   \IT{(\MC*{WITH-OPEN-FILE} (\VAR{stream} \VAR{path}
@@ -1332,11 +1373,6 @@
   {
   Use \FU{OPEN} with \VAR{open-arg}s (cf.\ page \pageref{open}) to temporarily
   create \VAR{stream} to \VAR{path}; return \retval{values of \VAR{form}s}.
-  }
-
-  \IT{(\FU*{USER-HOMEDIR-PATHNAME} \Op{\VAR{host}})}
-  {
-  User's \retval{home directory}.
   }
 
 
