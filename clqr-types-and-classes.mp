@@ -469,7 +469,7 @@ beginfig(1);
 
   halfdisc_e(parse_error.e);
 
-  drawarrow (xpart warning.e,ypart condition.e){right} .. style_warning.ne+(3,0) .. tension 1.3 .. simple_condition.ne+(2,1) .. simple_condition.e{down} .. simple_condition.se+(2,-1) .. simple_warning.e{left} dashed evenly;
+  drawarrow (xpart warning.e,ypart condition.e){right} .. style_warning.e+(6,0) .. tension 1.3 .. simple_condition.ne+(2,1) .. simple_condition.e{down} .. simple_condition.se+(2,-1) .. simple_warning.e{left} dashed evenly;
   drawarrow error.e{right} .. tension 1.5 .. simple_condition.sw+(-1,-2) .. simple_condition.sw+(5,0){right} .. simple_condition.sw+(12,-2){right} ... simple_error.n{down} dashed evenly;
   drawarrow type_error.e{right} .. simple_condition.nw+(-1,2) .. simple_condition.nw+(5,0){right} .. simple_type_error.e{left} dashed evenly;
 
