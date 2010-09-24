@@ -237,7 +237,7 @@
 \end{LIST}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection[Macro Chars]{Macro Characters and Escapes}
+\subsection{Character Syntax}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{LIST}{1cm}
@@ -265,17 +265,17 @@
 
   \IT{\KWD*{(}\OPn{\VAR{foo}}\Op{ \KWD*{.} \VAR{bar}\DF{\NIL}}\KWD*{)}}
   {
-  Read a list of \VAR{foo}s with the terminating cdr \VAR{bar}.
+  List of \VAR{foo}s with the terminating cdr \VAR{bar}.
   }
 
-  \IT{\KWD{"}\qquad\quad}
+  \IT{\KWD{"}\qquad\qquad}
   {\index{""}
   Begin and end of a string.
   }
 
-  \IT{\KWD*{'}\VAR{foo}\qquad\quad}
+  \IT{\KWD*{'}\VAR{foo}\quad\qquad}
   {
-  (\SO{quote} \VAR{foo}); \VAR{foo} unevaluated.
+  (\SO*{quote} \VAR{foo}); \VAR{foo} unevaluated.
   }
 
   \IT{\KWD{\char18}(\Op{\VAR{foo}} \Op{\KWD*{,}\VAR{bar}} \Op{\KWD{,@}\VAR{baz}}
@@ -287,26 +287,43 @@
   backquote expression belong to this backquote.
   }
 
-  \IT{\KWD{\#\boldmath{$\backslash$}}\VAR{c}\qquad\qquad\qquad}
+  \IT{\KWD{\#\boldmath{$\backslash$}}\VAR{c}}
   {
-  (\FU{character} \LIT{"}\VAR{c}\LIT{"}), the character \VAR{c}.
+  (\FU*{character} \LIT{"}\VAR{c}\LIT{"}), the character \VAR{c}.
   }
   \index{\#@\#$\backslash$}%
 
-  \IT{\KWD*{\#b}; \KWD*{\#o}; \KWD*{\#x}; \KWD{\#}\VAR{n}\KWD{R}}
+  \IT{\KWD*{\#b}\VAR{n}; \KWD*{\#o}\VAR{n}; \VAR{n}\kwd{.}; \KWD*{\#x}\VAR{n}; \KWD{\#}\VAR{r}\KWD{R}\VAR{n}}
   {
-  \index{\#R}%
-  Number of radix 2, 8, 16, or \VAR{n}. 
+    \index{\#R}%
+    Integer of radix 2, 8, 10, 16, or \VAR{r}; $2\le r \le 36$.
+  }
+
+  \IT{\VAR{n}\kwd*{/}\VAR{d}\quad\qquad}
+  {
+    The \kwd*{ratio} $\frac{n}{d}$.
+  }
+
+  \IT{\GOO{\Op{\VAR{m}}\kwd{.}\VAR{n}%
+      \OP{\Goo{\KWD{S}\XOR\KWD{F}\XOR\KWD{D}\XOR\KWD{L}\XOR\KWD{E}}%
+        \VAR{x}\DF{\kwd{E}\LIT{0}}}%
+      \XOR%
+      \VAR{m}\OP{\kwd{.}\Op{\VAR{n}}}%
+      \Goo{\KWD{S}\XOR\KWD{F}\XOR\KWD{D}\XOR\KWD{L}\XOR\KWD{E}}\VAR{x}}}
+  {
+    $m.n\cdot10^x$ as \kwd*{short-float}, \kwd*{single-float},
+    \kwd*{double-float}, \kwd*{long-float}, or the type from \kwd{\A
+      read-default-float-format\A}.
   }
 
   \IT{\KWD*{\#C(}\VAR{a b}\kwd{)}\qquad\qquad}
   {
-    (\FU{complex} \VAR{a} \VAR{b}), the complex number $\VAR{a}+\VAR{b}\text{i}$.
+    (\FU*{complex} \VAR{a} \VAR{b}), the complex number $\VAR{a}+\VAR{b}\text{i}$.
   }
 
   \IT{\KWD*{\#'}\VAR{foo}\qquad\qquad\qquad}
   {
-  (\SO{function} \VAR{foo}); the function named \VAR{foo}.
+  (\SO*{function} \VAR{foo}); the function named \VAR{foo}.
   }
 
   \IT{\KWD{\#}\VAR{n}\KWD{A}\VAR{sequence}}
@@ -377,8 +394,8 @@
   {
   Means \VAR{when-feature} if \VAR{feature} is \T, means
   \VAR{unless-feature} if \VAR{feature} is \NIL. \VAR{feature} is a
-  symbol from \V{\A features\A}, or (\Goo{\kwd{AND}\XOR\kwd{OR}}
-  \OPn{\VAR{feature}}), or (\kwd{NOT} \VAR{feature}).
+  symbol from \V{\A features\A}, or (\Goo{\kwd*{AND}\XOR\kwd*{OR}}
+  \OPn{\VAR{feature}}), or (\kwd*{NOT} \VAR{feature}).
   }
 
   \IT{\V{\A features\A}}
