@@ -1,4 +1,4 @@
-% Copyright (C) 2008 Bert Burgemeister
+% Copyright (C) 2008, 2010 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -96,14 +96,14 @@
 
   \IT{(\FU*{CHAR-NAME} \VAR{character})}
   {
-    \retval{Name} of \VAR{character} if there is one, or
-  \retval{\NIL}. 
+    \VAR{character}'s \retval{name} if any, or
+    \retval{\NIL}. 
   }
 
-  \IT{(\FU*{NAME-CHAR} \VAR{name})}
+  \IT{(\FU*{NAME-CHAR} \VAR{foo})}
   {
-  \retval{Character} with \VAR{name} if there is one, or
-  \retval{\NIL}. 
+    \retval{Character} named \VAR{foo} if any, or
+    \retval{\NIL}. 
   }
 
   \IT{\arrGOO{(\FU*{CHAR-INT} \VAR{ character})\\

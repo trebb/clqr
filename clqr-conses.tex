@@ -1,4 +1,4 @@
-% Copyright (C) 2008, 2009 Bert Burgemeister
+% Copyright (C) 2008, 2009, 2010 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -130,8 +130,9 @@
   }
 
   \IT{(\FU*{NTH} \VAR{n list})}
-  {Return zero-indexed \retval{\VAR{n}th element} of \VAR{list}. \kwd{setf}able.
-    }
+  {
+    Zero-indexed \retval{\VAR{n}th element} of \VAR{list}. \kwd{setf}able.
+  }
 
   \IT{(\FU{C}\VAR{X}\kwd{R} \VAR{list})}
   {
@@ -156,7 +157,7 @@
       \FU*{NBUTLAST }  \DES{\VAR{list}}}{\}}
     \Op{\VAR{num}\DF{\LIT{1}}})}
   {
-  Return \retval{\VAR{list}} excluding last \VAR{num}
+    \retval{\VAR{list}} excluding last \VAR{num}
     conses.
   }
 

@@ -249,24 +249,25 @@
   \IT{(\FU*{APPLY} \xorGOO{\VAR{function}\\
       (\kwd{setf } \VAR{function})}{\}} \OPn{\VAR{arg}} \VAR{args})}
   {
-  Return \retval{values of \VAR{function}} called with
-  \VAR{arg}s and the list elements of \VAR{args}. \kwd{setf}able if
-  \VAR{function} is one of \FU{aref}, \FU{bit}, and \FU{sbit}.
+    \retval{Values of \VAR{function}} called with
+    \VAR{arg}s and the list elements of \VAR{args}. \kwd{setf}able if
+    \VAR{function} is one of \FU{aref}, \FU{bit}, and \FU{sbit}.
   }
 
   \IT{(\FU*{FUNCALL} \VAR{function} \OPn{arg})}
   {
-  Return \retval{values of \VAR{function}} called with \VAR{arg}s.
+    \retval{Values of \VAR{function}} called with \VAR{arg}s.
   }
 
   \IT{(\SO*{MULTIPLE-VALUE-CALL} \VAR{function} \OPn{\VAR{form}})}
-  {Call \VAR{function} with all the values of each \VAR{form} as its
+  {
+    Call \VAR{function} with all the values of each \VAR{form} as its
     arguments. Return \retval{values returned by \VAR{function}}.
   }
 
   \IT{(\FU*{VALUES-LIST} \VAR{list})}
   {
-  Return \retval{elements of \VAR{list}}.
+    Return \retval{elements of \VAR{list}}.
   }
 
   \IT{(\FU*{VALUES} \OPn{\VAR{foo}})}

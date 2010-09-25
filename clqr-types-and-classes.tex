@@ -132,26 +132,26 @@ For any class, there is always a corresponding type of the same name.
 
   \IT{(\FU*{TYPEP} \VAR{foo} \VAR{type} \Op{\VAR{environment}\DF{\NIL}})}
   {
-  Return \retval{\T} if \VAR{foo} is of \VAR{type}.
+    \retval{\T} if \VAR{foo} is of \VAR{type}.
   }
 
   \IT{(\FU*{SUBTYPEP} \VAR{type-a} \VAR{type-b}
     \Op{\VAR{environment}})}
   {
-  Return \retval{\T} if \VAR{type-a} is a recognizable subtype of
-  \VAR{type-b}, and \retvalii{\NIL} if the relationship could not be
-  determined. 
+    Return \retval{\T} if \VAR{type-a} is a recognizable subtype of
+    \VAR{type-b}, and \retvalii{\NIL} if the relationship could not be
+    determined. 
   }
 
   \IT{(\SO*{THE} \NEV{\VAR{type}} \VAR{form})}
   {
-  Return \retval{values} of \VAR{form} which are declared to be of
-  \VAR{type}. 
+    Declare \retval{values of \VAR{form}} to be of
+    \VAR{type}. 
   }
 
   \IT{(\FU*{COERCE} \VAR{object} \VAR{type})}
   {
-  Coerce \VAR{object} into \VAR{type}.
+    Coerce \retval{\VAR{object}} into \VAR{type}.
   }
 
   \IT{(\MC*{TYPECASE} \VAR{foo} \OPn{(\NEV{\VAR{type}} \PROGN{\VAR{a-form}})} 

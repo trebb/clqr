@@ -1,4 +1,4 @@
-% Copyright (C) 2008, 2009 Bert Burgemeister
+% Copyright (C) 2008, 2009, 2010 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -223,7 +223,7 @@
 
   \IT{(\FU*{FLOAT-SIGN} \VAR{num-a} \Op{\VAR{num-b}\DF{\LIT{1}}})}
   {
-  \retval{\VAR{num-b}} with the sign of \VAR{num-a}.
+  \retval{\VAR{num-b}} with \VAR{num-a}'s sign.
   }
 
   \IT{(\FU*{SIGNUM} \VAR{n})}
@@ -264,7 +264,7 @@
   }
 
   \IT{(\FU*{FLOAT} \VAR{real}
-    \Op{\VAR{prototype}\DF{\kwd{single-float}}})}
+    \Op{\VAR{prototype}\DF{\LIT{0.0F0}}})}
   {
   Convert \VAR{real} into \retval{float} with type of \VAR{prototype}.
   }
