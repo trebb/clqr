@@ -19,7 +19,7 @@ see pages \pageref{section:Arrays} and \pageref{section:Sequences}.
   \IT{\arrGOO{(\FU*{STRINGP} \VAR{ foo})\\
       (\FU*{SIMPLE-STRING-P} \VAR{ foo})}{.}}
   {
-  \retval{\T} if \VAR{foo} is of indicated type.
+    \retval{\T} if \VAR{foo} is of indicated type.
   }
 
   \IT{(\xorGOO{\FU*{STRING=}\\\FU*{STRING-EQUAL}}{\}} \VAR{foo}
@@ -29,51 +29,36 @@ see pages \pageref{section:Arrays} and \pageref{section:Sequences}.
       \kwd{:end1} \VAR{ end-foo}\DF{\NIL}\\
       \kwd{:end2} \VAR{ end-bar}\DF{\NIL}}{\}})}
   {
-  Return \retval{\T} if
-  subsequences of \VAR{foo} and \VAR{bar} are equal. Obey/ignore,
-  respectively, case. 
+    Return \retval{\T} if subsequences of \VAR{foo} and \VAR{bar} are
+    equal.  Obey/ignore, respectively, case.
   }
 
-  \IT{(\xorGOO{\FU*{STRING/=}\\\FU{STRING\boldmath$>$}\\
-      \FU{STRING\boldmath$>$=}\\\FU{STRING\boldmath$<$}\\
-      \FU{STRING\boldmath$<$=}}{\}} \VAR{foo} \VAR{bar}
+  \IT{(\xorGOO{%
+      \FU{STRING}\Goo{\kwd{/= }\XOR\kwd{-NOT-EQUAL}}\\
+      \FU{STRING}\Goo{\kwd{\boldmath$>$ }\XOR\kwd{-GREATERP}}\\
+      \FU{STRING}\Goo{\kwd{\boldmath$>$= }\XOR\kwd{-NOT-LESSP}}\\
+      \FU{STRING}\Goo{\kwd{\boldmath$<$ }\XOR\kwd{-LESSP}}\\
+      \FU{STRING}\Goo{\kwd{\boldmath$<$= }\XOR\kwd{-NOT-GREATERP}}}{\}}
+    \VAR{foo} \VAR{bar}
     \orGOO{\kwd{:start1} \VAR{ start-foo}\DF{\LIT{0}}\\
       \kwd{:start2} \VAR{ start-bar}\DF{\LIT{0}}\\
       \kwd{:end1} \VAR{ end-foo}\DF{\NIL}\\
       \kwd{:end2} \VAR{ end-bar}\DF{\NIL}}{\}})}
-  {
-  \index{STRING>@STRING$>$}%
-  \index{STRING>=@STRING$>$=}%
-  \index{STRING<@STRING$<$}%
-  \index{STRING<=@STRING$<$=}%
-  If \VAR{foo} is
-  lexicographically not equal, greater, not less, less, or not greater,
-  respectively, then return \retval{character number} from beginning of \VAR{foo}
-  where they begin to differ.  Otherwise return \retval{\NIL}.
-  }
-
-  \IT{(\xorGOO{\FU*{STRING-NOT-EQUAL}\\
-      \FU*{STRING-GREATERP}\\
-      \FU*{STRING-NOT-LESSP}\\
-      \FU*{STRING-LESSP}\\
-      \FU*{STRING-NOT-GREATERP}}{\}} 
-    \VAR{foo} \VAR{bar}
-    \orGOO{%
-      \kwd{:start1} \VAR{ start-foo}\DF{\LIT{0}}\\
-      \kwd{:start2} \VAR{ start-bar}\DF{\LIT{0}}\\
-      \kwd{:end1} \VAR{ end-foo}\DF{\NIL}\\
-      \kwd{:end2} \VAR{ end-bar}\DF{\NIL}}{\}})}
-  {
-  If \VAR{foo} is
-  lexicographically not equal, greater, not less, less, or not greater,
-  respectively, ignoring case, then return \retval{character number} from beginning of \VAR{foo}
-  where they begin to differ. Otherwise return \retval{\NIL}.
+  {\index{STRING/=}\index{STRING-NOT-EQUAL}%
+    \index{STRING>@STRING$>$}\index{STRING-GREATERP}%
+    \index{STRING>=@STRING$>$=}\index{STRING-NOT-LESSP}%
+    \index{STRING<@STRING$<$}\index{STRING-LESSP}%
+    \index{STRING<=@STRING$<$=}\index{STRING-NOT-GREATERP}%
+    If \VAR{foo} is lexicographically not equal, greater, not less,
+    less, or not greater, respectively, then return \retval{position}
+    of first mismatching character in \VAR{foo}.  Otherwise return
+    \retval{\NIL}.  Obey/ignore, respectively, case.
   }
 
   \IT{(\FU*{STRING} \VAR{x})}
   {
-  Convert \VAR{x} (\kwd{symbol}, \kwd{string}, or \kwd{character})
-  into a \retval{string}. 
+    Convert \VAR{x} (\kwd{symbol}, \kwd{string}, or \kwd{character})
+    into a \retval{string}. 
   }
 
   \IT{(\FU*{MAKE-STRING} \VAR{size} \orGOO{\kwd{:initial-element} \VAR{ char}\\
@@ -89,31 +74,31 @@ see pages \pageref{section:Arrays} and \pageref{section:Sequences}.
     \VAR{string}  
     \orGOO{\kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}}{\}})}
-  {
-  \index{STRING-CAPITALIZE}%
-  \index{STRING-UPCASE}%
-  \index{STRING-DOWNCASE}%
-  \index{NSTRING-CAPITALIZE}%
-  \index{NSTRING-UPCASE}%
-  \index{NSTRING-DOWNCASE}%
-  Return \retval{\VAR{string}} (not modified or modified, respectively) with
-  first letter of every word turned into uppercase, letters all
-  uppercase, or letters all lowercase, respectively. 
+  {\index{STRING-CAPITALIZE}%
+    \index{STRING-UPCASE}%
+    \index{STRING-DOWNCASE}%
+    \index{NSTRING-CAPITALIZE}%
+    \index{NSTRING-UPCASE}%
+    \index{NSTRING-DOWNCASE}%
+    Return \retval{\VAR{string}} (not modified or modified,
+    respectively) with first letter of every word turned into uppercase,
+    letters all uppercase, or letters all lowercase, respectively.
   }
 
   \IT{(\xorGOO{\FU*{STRING-TRIM}\\
       \FU*{STRING-LEFT-TRIM}\\
       \FU*{STRING-RIGHT-TRIM}}{\}} \VAR{char-bag} \VAR{string})}
   {
-  Return \retval{\VAR{string}} with all characters in sequence \VAR{char-bag} removed
-  from both ends, from the beginning, or from the end, respectively.
+    Return \retval{\VAR{string}} with all characters in sequence
+    \VAR{char-bag} removed from both ends, from the beginning, or from
+    the end, respectively. 
   }
 
   \IT{\arrGOO{(\FU*{CHAR} \VAR{ string} \VAR{ i})\\
       (\FU*{SCHAR} \VAR{ string} \VAR{ i})}{.}}
   {
-  Return zero-indexed \retval{\VAR{i}th character} of string ignoring/obeying,
-  respectively, fill pointer. \kwd{setf}able. 
+    Return zero-indexed \retval{\VAR{i}th character} of string
+    ignoring/obeying, respectively, fill pointer. \kwd{setf}able.
   }
 
   \IT{(\FU*{PARSE-INTEGER} \VAR{string}
@@ -122,10 +107,9 @@ see pages \pageref{section:Arrays} and \pageref{section:Sequences}.
       \kwd{:radix} \VAR{ int}\DF{\LIT{10}}\\
       \kwd{:junk-allowed} \VAR{ bool}\DF{\NIL}}{\}})}
   {
-  Return \retval{integer} parsed from \VAR{string} and \retvalii{index} of parse end.
+    Return \retval{integer} parsed from \VAR{string} and
+    \retvalii{index} of parse end.
   }
-
-
 
 \end{LIST}
 
