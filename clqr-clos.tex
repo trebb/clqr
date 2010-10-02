@@ -1,4 +1,4 @@
-% Copyright (C) 2008, 2009 Bert Burgemeister
+% Copyright (C) 2008, 2009, 2010 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -19,17 +19,17 @@
 
   \IT{(\FU*{SLOT-EXISTS-P} \VAR{foo} \VAR{bar})}
   {
-  \retval{\T} if \VAR{foo} has a slot \VAR{bar}.
+    \retval{\T} if \VAR{foo} has a slot \VAR{bar}.
   }
 
   \IT{(\FU*{SLOT-BOUNDP} \VAR{instance} \VAR{slot})}
   {
-  \retval{\T} if \VAR{slot} in \VAR{instance} is bound.
+    \retval{\T} if \VAR{slot} in \VAR{instance} is bound.
   }
 
   \IT{(\MC*{DEFCLASS} \VAR{foo} (\OPn{\VAR{superclass}}\DF{\kwd{standard-object}})
     (\xorGOO{\VAR{slot}\\
-      (\VAR{slot} 
+      (\VAR{slot }
       \orGOO{\Goos{\kwd{:reader} \VAR{reader}}\\
         \Goos{\kwd{:writer} \xorGOO{\VAR{writer}\\
             ({\kwd{setf}\VAR{ writer}})}{\}}} \\
@@ -44,42 +44,44 @@
       (\kwd{:documentation} \VAR{ class-doc})\\
       (\kwd{:metaclass} \VAR{ name}\DF{\kwd{standard-class}})}{\}})}
   {
-  Define, as a subclass of \VAR{superclass}es, \retval{class
-    \VAR{foo}}. In a new instance \VAR{i}, a \VAR{slot}'s value defaults to 
-  \VAR{form} unless set via \kwd{:}\VAR{initarg-name}; it is readable
-  via (\VAR{reader} \VAR{i}) or (\VAR{accessor} \VAR{i}), and
-  writeable via (\VAR{writer} \VAR{i} \VAR{value}) or (\kwd{setf}
-  (\VAR{accessor} \VAR{i}) \VAR{value}). With
-  \kwd{:allocation :class}, \VAR{slot} is shared by all instances of
-  class \VAR{foo}.
+    Define, as a subclass of \VAR{superclass}es, \retval{class
+      \VAR{foo}}. In a new instance \VAR{i}, a \VAR{slot}'s value defaults to 
+    \VAR{form} unless set via \kwd{:}\VAR{initarg-name}; it is readable
+    via (\VAR{reader} \VAR{i}) or (\VAR{accessor} \VAR{i}), and
+    writeable via (\VAR{writer} \VAR{i} \VAR{value}) or (\kwd{setf}
+    (\VAR{accessor} \VAR{i}) \VAR{value}). With
+    \kwd{:allocation :class}, \VAR{slot} is shared by all instances of
+    class \VAR{foo}.
   }
 
   \IT{(\FU*{FIND-CLASS} \VAR{symbol} \OP{\VAR{errorp}\DF{\T}
       \Op{\VAR{environment}}})}
   {
-  Return \retval{class} named \VAR{symbol}. \kwd{setf}able.
+    Return \retval{class} named \VAR{symbol}. \kwd{setf}able.
   }
 
   \IT{(\GFU*{MAKE-INSTANCE} \VAR{class} \Goos{\kwd{:}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
-  Make new \retval{instance of \VAR{class}}.
+    Make new \retval{instance of \VAR{class}}.
   }
 
   \IT{(\GFU*{REINITIALIZE-INSTANCE} \VAR{instance} \Goos{\kwd{:}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
-  Change local slots of \retval{\VAR{instance}} according to \VAR{initarg}s.
+    Change local slots of \retval{\VAR{instance}} according to
+    \VAR{initarg}s.
   }
 
   \IT{(\FU*{SLOT-VALUE} \VAR{foo} \VAR{slot})}
-  {Return \retval{value
-    of \VAR{slot} in \VAR{foo}}.  \kwd{SETF}able.
+  {
+    Return \retval{value
+      of \VAR{slot} in \VAR{foo}}.  \kwd{SETF}able.
   }
 
   \IT{(\FU*{SLOT-MAKUNBOUND} \VAR{instance} \VAR{slot})}
   {
-  Make \VAR{slot} in \retval{\VAR{instance}} unbound.
+    Make \VAR{slot} in \retval{\VAR{instance}} unbound.
   }
 
   \IT{(\xorGOO{%
@@ -88,32 +90,32 @@
     \VAR{instance}  \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \PROGN{\VAR{form}})}
   {
-  Return \retval{values of \VAR{form}s} after evaluating them in a
-  lexical environment with slots of \VAR{instance} visible as
-  \kwd{setf}able \VAR{slot}s or \VAR{var}s/with \VAR{accessor}s of
-  \VAR{instance} visible as \kwd{setf}able \VAR{var}s. 
+    Return \retval{values of \VAR{form}s} after evaluating them in a
+    lexical environment with slots of \VAR{instance} visible as
+    \kwd{setf}able \VAR{slot}s or \VAR{var}s/with \VAR{accessor}s of
+    \VAR{instance} visible as \kwd{setf}able \VAR{var}s. 
   }
 
   \IT{\arrGOO{(\GFU*{CLASS-NAME } \VAR{class})\\
       ((\kwd{setf } \GFU*{CLASS-NAME}) \VAR{ new-name } \VAR{class})}{.}}
   {
-  Get/set \retval{name of \VAR{class}}.
+    Get/set \retval{name of \VAR{class}}.
   }
 
   \IT{(\FU*{CLASS-OF} \VAR{foo})}
   {
-  \retval{Class} \VAR{foo} is a direct instance of.
+    \retval{Class} \VAR{foo} is a direct instance of.
   }
 
   \IT{(\GFU*{CHANGE-CLASS} \DES{\VAR{instance}} \VAR{new-class}
     \Goos{\kwd{:}\VAR{initarg} \VAR{value}} \OPn{\VAR{other-keyarg}})} 
   {
-  Change class of \retval{\VAR{instance}} to \VAR{new-class}.
+    Change class of \retval{\VAR{instance}} to \VAR{new-class}.
   }
 
   \IT{(\GFU*{MAKE-INSTANCES-OBSOLETE} \VAR{class})}
   {
-  Update instances of \VAR{class}.
+    Update instances of \VAR{class}.
   }
 
   \IT{(\xorGOO{\GFU*{INITIALIZE-INSTANCE } (\VAR{instance})\\
@@ -122,8 +124,8 @@
       \Goos{\kwd{:}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
-  Its primary method sets slots on behalf of \GFU{make-instance}/of
-  \GFU{change-class} by means of \GFU{shared-initialize}. 
+    Its primary method sets slots on behalf of \GFU{make-instance}/of
+    \GFU{change-class} by means of \GFU{shared-initialize}. 
   }
 
   \IT{(\GFU*{UPDATE-INSTANCE-FOR-REDEFINED-CLASS} \VAR{instances}
@@ -131,15 +133,15 @@
      \Goos{\kwd{:}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
-  Its primary method sets slots on behalf of
-  \GFU{make-instances-obsolete} by means of \GFU{shared-initialize}. 
+    Its primary method sets slots on behalf of
+    \GFU{make-instances-obsolete} by means of \GFU{shared-initialize}. 
   }
 
   \IT{(\GFU*{ALLOCATE-INSTANCE} \VAR{class} \Goos{\kwd{:}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
-  Return uninitialized \retval{instance} of \VAR{class}. Called by
-  \GFU{make-instance}. 
+    Return uninitialized \retval{instance} of \VAR{class}. Called by
+    \GFU{make-instance}. 
   }
 
   \IT{(\GFU*{SHARED-INITIALIZE} \VAR{instance} 
@@ -148,8 +150,8 @@
      \Goos{\kwd{:}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
-  Fill \VAR{instance}'s \VAR{slots} using \VAR{initarg}s and
-  \kwd{:initform} forms.
+    Fill \VAR{instance}'s \VAR{slots} using \VAR{initarg}s and
+    \kwd{:initform} forms.
   }
 
   \IT{(\GFU*{SLOT-MISSING} \VAR{class} \VAR{object} \VAR{slot}
@@ -159,14 +161,14 @@
       \kwd{slot-value}}{\}}
     \Op{\VAR{value}})}
   {
-  Called in case of attempted access to missing \VAR{slot}. Its primary
-  method signals \kwd{error}.
+    Called in case of attempted access to missing \VAR{slot}. Its primary
+    method signals \kwd{error}.
   }
 
   \IT{(\GFU*{SLOT-UNBOUND} \VAR{class} \VAR{instance} \VAR{slot})}
   {
-  Called by \FU{slot-value} in case of unbound \VAR{slot}. Its primary
-  method signals \kwd{unbound-slot}.
+    Called by \FU{slot-value} in case of unbound \VAR{slot}. Its primary
+    method signals \kwd{unbound-slot}.
   }
 
 \end{LIST}
@@ -179,7 +181,7 @@
 \begin{LIST}{1cm}
   \IT{(\FU*{NEXT-METHOD-P})}
   {
-  \retval{\T} if enclosing method has a next method.
+    \retval{\T} if enclosing method has a next method.
   }
 
   \IT{(\MC*{DEFGENERIC}
@@ -201,9 +203,9 @@
     (\kwd{:method-combination} \VAR{ c-type}\DF{\kwd{standard}} \OPn{\VAR{ c-arg}})\\
     \OPn{(\kwd{:method} \VAR{ defmethod-args})}}{\}})}
   {
-  Define \retval{generic function} \VAR{foo}. \VAR{defmethod-args} resemble those of
-  \MC{defmethod}. For \VAR{c-type} see section \ref{section:Method
-    Combination Types}. 
+    Define \retval{generic function} \VAR{foo}. \VAR{defmethod-args}
+    resemble those of \MC{defmethod}. For \VAR{c-type} see section
+    \ref{section:Method Combination Types}.
   }
 
   \IT{(\FU*{ENSURE-GENERIC-FUNCTION}
@@ -218,12 +220,12 @@
       \kwd{:lambda-list} \VAR{ lambda-list}\\
       \kwd{:environment} \VAR{ environment}}{\}})}
   {
-  Define or modify \retval{generic function}
-  \VAR{foo}. \kwd{:generic-function-class} and \kwd{:lambda-list} have
-  to be compatible with a pre-existing generic function or with
-  existing methods, respectively. Changes to \kwd{:method-class} do
-  not propagate to existing methods. For \VAR{c-type} see section
-  \ref{section:Method Combination Types}. 
+    Define or modify \retval{generic function}
+    \VAR{foo}. \kwd{:generic-function-class} and \kwd{:lambda-list} have
+    to be compatible with a pre-existing generic function or with
+    existing methods, respectively. Changes to \kwd{:method-class} do
+    not propagate to existing methods. For \VAR{c-type} see section
+    \ref{section:Method Combination Types}. 
   }
 
   \IT{(\MC*{DEFMETHOD} 
@@ -252,74 +254,74 @@
       \NEV{\VAR{doc}}}{\}}
     \PROGN{\VAR{form}})}
   {
-  Define \retval{new method} for generic function
-  \VAR{foo}. \VAR{spec-var}s specialize to either being of \VAR{class}
-  or being \kwd{eql} \VAR{bar}, respectively. On invocation, \VAR{var}s and
-  \VAR{spec-var}s of the \retval{new method}
-  act like parameters of a function with body
-  \OPn{\VAR{form}}. \VAR{form}s are enclosed in an implicit \SO{block}
-  \VAR{foo}. Applicable \VAR{qualifier}s depend on the
-  \kwd{method-combination} type; see
-  section \ref{section:Method Combination Types}.
+    Define \retval{new method} for generic function
+    \VAR{foo}. \VAR{spec-var}s specialize to either being of \VAR{class}
+    or being \kwd{eql} \VAR{bar}, respectively. On invocation, \VAR{var}s and
+    \VAR{spec-var}s of the \retval{new method}
+    act like parameters of a function with body
+    \OPn{\VAR{form}}. \VAR{form}s are enclosed in an implicit \SO{block}
+    \VAR{foo}. Applicable \VAR{qualifier}s depend on the
+    \kwd{method-combination} type; see
+    section \ref{section:Method Combination Types}.
   }
 
   \IT{(\xorGOO{\GFU*{ADD-METHOD}\\
       \GFU*{REMOVE-METHOD}}{\}} \VAR{generic-function} \VAR{method})}
   {
-  Add (if necessary) or remove (if any) \VAR{method} to/from
-  \retval{\VAR{generic-function}}. 
+    Add (if necessary) or remove (if any) \VAR{method} to/from
+    \retval{\VAR{generic-function}}. 
   }
 
   \IT{(\GFU*{FIND-METHOD} \VAR{generic-function} \VAR{qualifiers}
     \VAR{specializers} \Op{\VAR{error}\DF{\T}})}
   {
-  Return suitable \retval{method}, or signal \kwd{error}.
+    Return suitable \retval{method}, or signal \kwd{error}.
   }
 
   \IT{(\GFU*{COMPUTE-APPLICABLE-METHODS} \VAR{generic-function}
     \VAR{args})}
   {
-  \retval{List of methods} suitable for \VAR{args}, most specific first.
+    \retval{List of methods} suitable for \VAR{args}, most specific first.
   }
 
   \IT{(\FU*{CALL-NEXT-METHOD} \OPn{\VAR{arg}}\DF{current args})}
   {
-  From within a method, call next method with \VAR{arg}s; return
-  \retval{its values}.
+    From within a method, call next method with \VAR{arg}s; return
+    \retval{its values}.
   }
 
   \IT{(\GFU*{NO-APPLICABLE-METHOD} \VAR{generic-function}
     \OPn{\VAR{arg}})}
   {
-  Called on invocation of \VAR{generic-function} on \VAR{arg}s if
-  there is no applicable method. Default method signals \kwd{error}.
+    Called on invocation of \VAR{generic-function} on \VAR{arg}s if
+    there is no applicable method. Default method signals \kwd{error}.
   }
 
   \IT{(\xorGOO{\FU*{INVALID-METHOD-ERROR} \VAR{ method}\\
       \FU*{METHOD-COMBINATION-ERROR}}{\}}
     \VAR{control} \OPn{\VAR{arg}})}
   {
-  Signal \kwd{error} on applicable method with invalid qualifiers, or
-  on method combination. For \VAR{control} and \VAR{arg}s see
-  \kwd{format}, p.\ \pageref{section:Format}.
+    Signal \kwd{error} on applicable method with invalid qualifiers, or
+    on method combination. For \VAR{control} and \VAR{arg}s see
+    \kwd{format}, p.\ \pageref{section:Format}.
   }
 
   \IT{(\GFU*{NO-NEXT-METHOD} \VAR{generic-function}
     \VAR{method} \OPn{\VAR{arg}})}
   {
-  Called on invocation of \kwd{call-next-method} when there is no next
-  method. Default method signals \kwd{error}.
+    Called on invocation of \kwd{call-next-method} when there is no next
+    method. Default method signals \kwd{error}.
   }
 
   \IT{(\GFU*{FUNCTION-KEYWORDS} \VAR{method})}
   {
-  Return list of \retval{keyword parameters} of \VAR{method} and
-  \retvalii{\T} if other keys are allowed.
+    Return list of \retval{keyword parameters} of \VAR{method} and
+    \retvalii{\T} if other keys are allowed.
   }
 
   \IT{(\GFU*{METHOD-QUALIFIERS} \VAR{method})}
   {
-  \retval{List of qualifiers} of \VAR{method}.
+    \retval{List of qualifiers} of \VAR{method}.
   }
 
 

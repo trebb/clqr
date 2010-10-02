@@ -306,7 +306,7 @@
 
   \IT{\GOO{\Op{\VAR{m}}\kwd{.}\VAR{n}%
       \OP{\Goo{\KWD{S}\XOR\KWD{F}\XOR\KWD{D}\XOR\KWD{L}\XOR\KWD{E}}%
-        \VAR{x}\DF{\kwd{E}\LIT{0}}}%
+        \VAR{x}\DF{\KWD{E}\LIT{0}}}%
       \XOR%
       \VAR{m}\OP{\kwd{.}\Op{\VAR{n}}}%
       \Goo{\KWD{S}\XOR\KWD{F}\XOR\KWD{D}\XOR\KWD{L}\XOR\KWD{E}}\VAR{x}}}
@@ -387,7 +387,7 @@
   \IT{\arrGOO{\KWD*{\#+}\VAR{feature } \VAR{when-feature}\\
       \KWD*{\#--}\VAR{feature } \VAR{unless-feature}}{.}}
   {
-    Means \VAR{when-feature} if \VAR{feature} is \T, means
+    Means \VAR{when-feature} if \VAR{feature} is \T; means
     \VAR{unless-feature} if \VAR{feature} is \NIL. \VAR{feature} is a
     symbol from \V{\A features\A}, or (\Goo{\kwd*{AND}\XOR\kwd*{OR}}
     \OPn{\VAR{feature}}), or (\kwd*{NOT} \VAR{feature}).
@@ -1009,12 +1009,12 @@
 \begin{LIST}{1cm}
 
   \IT{(\FU*{OPEN} \VAR{path}
-    \orGOO{\kwd{:direction} \xorGOO{\kwd{:input}\\
+    \orGOO{\kwd{:direction } \xorGOO{\kwd{:input}\\
         \kwd{:output}\\
         \kwd{:io}\\
         \kwd{:probe}}{\}}\DF{\kwd{:input}}\\
       \kwd{:element-type} \VAR{ type}\DF{\kwd{character}}\\
-      \kwd{:if-exists}
+      \kwd{:if-exists }
       \xorGOO{\kwd{:new-version}\\
         \kwd{:error}\\
         \kwd{:rename}\\
@@ -1023,7 +1023,7 @@
         \kwd{:append}\\
         \kwd{:supersede}\\
         \NIL}{.}\\
-      \kwd{:if-does-not exist} \xorGOO{\kwd{:error}\\
+      \kwd{:if-does-not-exist } \xorGOO{\kwd{:error}\\
         \kwd{:create}\\
         \NIL}{.}\\
       \kwd{:external-format } \VAR{format}\DF{\kwd{:default}}%
