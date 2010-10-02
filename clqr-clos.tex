@@ -362,23 +362,32 @@
     \MC{define-method-combination}. 
   }
 
-  \IT{(\MC*{DEFINE-METHOD-COMBINATION} \VAR{c-type} \orGOO{%
-    \kwd{:documentation } \NEV{\VAR{string}}\\
-    \kwd{:identity-with-one-argument} \VAR{ bool}\DF{\NIL}\\
-    \kwd{:operator} \VAR{ operator}\DF{\VAR{c-type}}}{\}})}
+  \IT{(\MC*{DEFINE-METHOD-COMBINATION} \VAR{c-type}
+    \orGOO{%
+      \kwd{:documentation } \NEV{\VAR{string}}\\
+      \kwd{:identity-with-one-argument} \VAR{ bool}\DF{\NIL}\\
+      \kwd{:operator} \VAR{ operator}\DF{\VAR{c-type}}}{\}})}
   {
-  \EM{Short Form. } Define new \kwd{method-combination}
-  \retval{\VAR{c-type}}. In a generic function using \VAR{c-type},
-  evaluate most specific \kwd{:around} method supplying the values of
-  the generic function. From within this method, \FU{call-next-method}
-  can call less specific \kwd{:around} methods if there are any. If
-  not, or if there are no \kwd{:around} methods at all,
-  have generic function applied to \OPn{\VAR{gen-arg}} return with the
-  values of (\VAR{c-type} \Goos{\VAR{primary-method}
-    \OPn{\VAR{gen-arg}}}), leftmost \VAR{primary-method} being the most
-  specific. In \MC{defmethod}, primary methods are denoted by the
-  \VAR{qualifier} \VAR{c-type}. 
-    }
+    \EM{Short Form. } Define new \kwd{method-combination}
+    \retval{\VAR{c-type}}. In a generic function using \VAR{c-type},
+    evaluate most specific \kwd{:around} method supplying the values of
+    the generic function. From within this method, \FU{call-next-method}
+    can call less specific \kwd{:around} methods if there are any.  If
+    not, or if there are no \kwd{:around} methods at all,
+    return from the calling \kwd{call-next-method} or from the
+    generic function, respectively, the
+    values of (\VAR{operator} \OPn{(\VAR{primary-method}
+      \OPn{\VAR{gen-arg}})}), \OPn{\VAR{gen-arg}} being the arguments of the
+    generic function.
+    The \VAR{primary-method}s are ordered
+    \OP{\xorGOO{%
+        \kwd{:most-specific-first}\\
+        \kwd{:most-specific-last}%
+      }{\}}\DF{\kwd{:most-specific-first}}}
+    (specified as \VAR{c-arg} in \MC{defgeneric}).
+    Using \VAR{c-type} as the \VAR{qualifier} in \MC{defmethod}
+    makes the method primary.
+  }
 
   \IT{(\MC*{DEFINE-METHOD-COMBINATION} \VAR{c-type}
     (\OPn{\VAR{ord-$\lambda$}}) 
@@ -399,20 +408,20 @@
       \NEV{\VAR{doc}}}{\}}
     \PROGN{\VAR{body}})}
   {
-  \EM{Long Form. } Define new \kwd{method-combination}
-  \retval{\VAR{c-type}}. A call to a generic function using
-  \VAR{c-type} will be equivalent to a call to the forms returned by
-  \OPn{\VAR{body}} with \OPn{\VAR{ord-$\lambda$}} bound to
-  \OPn{\VAR{c-arg}} (cf.\ \MC{DEFGENERIC}), with \VAR{symbol} bound to
-  the generic function, with \OPn{\VAR{method-combination-$\lambda$}}
-  bound to the arguments of the generic function, and with
-  \VAR{group}s bound to lists of methods. An applicable method becomes
-  a member of the leftmost \VAR{group} whose \VAR{predicate} or
-  \VAR{qualifier}s match. Methods can be called via
-  \MC{CALL-METHOD}. Lambda lists (\OPn{\VAR{ord-$\lambda$}}) and
-  (\OPn{\VAR{method-combination-$\lambda$}}) according to
-  \VAR{ord-$\lambda$} on p.\ \pageref{section:Functions}, the latter
-  enhanced by an optional \kwd{\&whole} argument.
+    \EM{Long Form. } Define new \kwd{method-combination}
+    \retval{\VAR{c-type}}. A call to a generic function using
+    \VAR{c-type} will be equivalent to a call to the forms returned by
+    \OPn{\VAR{body}} with \OPn{\VAR{ord-$\lambda$}} bound to
+    \OPn{\VAR{c-arg}} (cf.\ \MC{DEFGENERIC}), with \VAR{symbol} bound to
+    the generic function, with \OPn{\VAR{method-combination-$\lambda$}}
+    bound to the arguments of the generic function, and with
+    \VAR{group}s bound to lists of methods. An applicable method becomes
+    a member of the leftmost \VAR{group} whose \VAR{predicate} or
+    \VAR{qualifier}s match. Methods can be called via
+    \MC{CALL-METHOD}. Lambda lists (\OPn{\VAR{ord-$\lambda$}}) and
+    (\OPn{\VAR{method-combination-$\lambda$}}) according to
+    \VAR{ord-$\lambda$} on p.\ \pageref{section:Functions}, the latter
+    enhanced by an optional \kwd{\&whole} argument.
   }
 
   \IT{(\MC*{CALL-METHOD} \xorGOO{\NEV{\VAR{method}}\\
@@ -421,10 +430,10 @@
       \NEV{\VAR{next-method}}\\
       (\MC*{MAKE-METHOD}\text{ } \NEV{\VAR{form}})}{\}^{\!\!*}})})}
   {
-  From within an effective method form, call \VAR{method} with the
-  arguments of the generic function and
-  with information about its \VAR{next-method}s; return \retval{its
-    values}. 
+    From within an effective method form, call \VAR{method} with the
+    arguments of the generic function and
+    with information about its \VAR{next-method}s; return \retval{its
+      values}. 
   }
 
 \end{LIST}
