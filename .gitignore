@@ -9,6 +9,7 @@
 *.log
 *.out
 *.mpx
+mpxerr.tex
 *.tar
 *.gz
 DATE.tex
