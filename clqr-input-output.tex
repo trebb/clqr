@@ -154,9 +154,8 @@
       \VAR{end}\DF{\NIL}})}
   {
     Replace elements of \VAR{sequence} between \VAR{start} and \VAR{end}
-    with elements from \VAR{stream}. Return \retval{index} of
-    \VAR{sequence}'s first unmodified
-    element. 
+    with elements from binary or character \VAR{stream}. Return
+    \retval{index} of \VAR{sequence}'s first unmodified element.
   }
 
   \IT{(\FU*{READTABLE-CASE} \VAR{readtable})\DF{\kwd{:upcase}}}
@@ -458,8 +457,8 @@
   \IT{(\FU*{FRESH-LINE})
     \Op{\DES{\VAR{stream}}\DF{\V{\A standard-output\A}}}}
   {
-    Output a newline to \VAR{stream} and return \retval{\T} unless \VAR{stream}
-    is already at the start of a line. 
+    Output a newline to \VAR{stream} and return \retval{\T} unless
+    \VAR{stream} is already at the start of a line.
   }
 
   \IT{(\FU*{WRITE-CHAR} \VAR{char}
@@ -474,7 +473,8 @@
     \OP{\orGOO{\kwd{:start} \VAR{ start}\DF{\LIT{0}}\\\kwd{:end} \VAR{
         end}\DF{\NIL}}{\}}}})}
   {
-    Write \retval{\VAR{string}} to \VAR{stream} without/with a trailing newline.
+    Write \retval{\VAR{string}} to \VAR{stream} without/with a
+    trailing newline.
   }
 
   \IT{(\FU*{WRITE-BYTE} \VAR{byte} \DES{\VAR{stream}})}
@@ -486,7 +486,8 @@
    \DES{\VAR{stream}} \orGOO{\kwd{:start}\VAR{ start}\DF{\LIT{0}}\\ 
       \kwd{:end} \VAR{ end}\DF{\NIL}}{\}})}
   {
-    Write elements of \retval{\VAR{sequence}} to \VAR{stream}.
+    Write elements of \retval{\VAR{sequence}} to binary or character
+    \VAR{stream}.
   }
 
   \IT{(\xorGOO{\FU*{WRITE}\\
@@ -1010,11 +1011,14 @@
 \begin{LIST}{1cm}
 
   \IT{(\FU*{OPEN} \VAR{path}
-    \orGOO{\kwd{:direction } \xorGOO{\kwd{:input}\\
+    \orGOO{\kwd{:direction }
+      \xorGOO{\kwd{:input}\\
         \kwd{:output}\\
         \kwd{:io}\\
         \kwd{:probe}}{\}}\DF{\kwd{:input}}\\
-      \kwd{:element-type} \VAR{ type}\DF{\kwd{character}}\\
+      \kwd{:element-type }
+      \xorGOO{\VAR{type}\\
+        \kwd{:default}}{\}}\DF{\kwd{character}}\\
       \kwd{:if-exists }
       \xorGOO{\kwd{:new-version}\\
         \kwd{:error}\\
@@ -1023,10 +1027,15 @@
         \kwd{:overwrite}\\
         \kwd{:append}\\
         \kwd{:supersede}\\
-        \NIL}{.}\\
-      \kwd{:if-does-not-exist } \xorGOO{\kwd{:error}\\
+        \NIL}{\}}\DF{\parbox{20mm}{%
+          \kwd{:new-version} if \VAR{path} specifies \kwd{:newest};\\
+          \NIL\ otherwise}}\\
+      \kwd{:if-does-not-exist }
+      \xorGOO{\kwd{:error}\\
         \kwd{:create}\\
-        \NIL}{.}\\
+        \NIL}{\}}\DF{\parbox{27mm}{%
+          \NIL\ for \kwd{:direction :probe};\\
+          \mbox{\Goo{\kwd{:create}\XOR\kwd{:error}} otherwise}}}\\
       \kwd{:external-format } \VAR{format}\DF{\kwd{:default}}%
     }{\}})}
   {\label{open}
@@ -1082,7 +1091,21 @@
 
   \IT{(\FU*{GET-OUTPUT-STREAM-STRING} \DES{\VAR{string-stream}})}
   {
-    Clear and return as a \retval{string} characters on \VAR{string-stream}.
+    Clear and return as a \retval{string} characters on
+    \VAR{string-stream}.
+  }
+
+  \IT{(\FU*{FILE-POSITION} \VAR{stream} \Op{\xorGOO{\kwd{:start}\\
+        \kwd{:end}\\
+        \VAR{position}}{\}}})}
+  {
+    Return \retval{position within stream}, or set it to
+    \retval{\VAR{position}} and return \retval{\T} on success. 
+  }
+
+  \IT{(\FU*{FILE-STRING-LENGTH} \VAR{stream} \VAR{foo})}
+  {
+    \retval{Length} \VAR{foo} would have in \VAR{stream}.
   }
 
   \IT{(\FU*{LISTEN} \Op{\VAR{stream}\DF{\V{\A standard-input\A}}})}
@@ -1102,8 +1125,8 @@
     \Op{\DES{\VAR{stream}}\DF{\V{\A standard-output\A}}})}
   {
     End output to \VAR{stream} and return \retval{\NIL} immediately,
-    after initiating flushing of buffers, or after flushing of buffers,
-    respectively. 
+    after initiating flushing of buffers, or after flushing of
+    buffers, respectively.
   }
 
   \IT{(\FU*{CLOSE} \DES{\VAR{stream}} \Op{\kwd{:abort}
@@ -1111,6 +1134,15 @@
   {
     Close \VAR{stream}. Return \retval{\T} if \VAR{stream} had been
     open. If \kwd{:abort} is \T, delete associated file. 
+  }
+
+  \IT{(\MC*{WITH-OPEN-FILE} (\VAR{stream} \VAR{path}
+    \OPn{\VAR{open-arg}}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
+    \PROGN{\VAR{form}})}
+  {
+    Use \FU{OPEN} with \VAR{open-arg}s to temporarily create
+    \VAR{stream} to \VAR{path}; return \retval{values of
+      \VAR{form}s}.
   }
 
   \IT{(\MC*{WITH-OPEN-STREAM} (\VAR{foo} \DES{\VAR{stream}})
@@ -1126,9 +1158,9 @@
       \kwd{:end} \VAR{ end}\DF{\NIL}}{\}}) \OPn{(\kwd{declare}
       \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{form}})}
   {
-    Evaluate \VAR{form}s with \VAR{foo} locally bound to input \kwd{string-stream}
-    from \VAR{string}. Return \retval{values of \VAR{form}s}; store next
-    reading position into \VAR{index}.
+    Evaluate \VAR{form}s with \VAR{foo} locally bound to input
+    \kwd{string-stream} from \VAR{string}. Return \retval{values of
+      \VAR{form}s}; store next reading position into \VAR{index}.
   }
 
   \IT{(\MC*{WITH-OUTPUT-TO-STRING} (\VAR{foo} 
@@ -1172,7 +1204,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Files} 
+\subsection[Paths and Files]{Pathnames and Files} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{LIST}{1cm}
@@ -1301,6 +1333,7 @@
         \Goo{%
           \VAR{version}\XOR\LIT{*}\XOR\LIT{newest}\XOR\LIT{NEWEST}}}}%
     \LIT{"}.
+    \index{*@\A}\index{**@\A\A}%
   }
 
   \IT{(\FU*{LOGICAL-PATHNAME-TRANSLATIONS} \VAR{logical-host})}
@@ -1343,19 +1376,6 @@
     Return \retval{length of \VAR{stream}}.
   }
 
-  \IT{(\FU*{FILE-POSITION} \VAR{stream} \Op{\xorGOO{\kwd{:start}\\
-        \kwd{:end}\\
-        \VAR{position}}{\}}})}
-  {
-    Return \retval{position within stream}, or set it to
-    \retval{\VAR{position}} and return \retval{\T} on success. 
-  }
-
-  \IT{(\FU*{FILE-STRING-LENGTH} \VAR{stream} \VAR{foo})}
-  {
-    \retval{Length} \VAR{foo} would have in \VAR{stream}.
-  }
-
   \IT{(\FU*{RENAME-FILE} \VAR{foo} \VAR{bar})}
   {
     Rename file  \VAR{foo} to \VAR{bar}. Unspecified components of path
@@ -1379,15 +1399,6 @@
   {
     Create parts of \retval{\VAR{path}} if necessary. Second return value is
     \retvalii{\T} if something has been created.
-  }
-
-  \IT{(\MC*{WITH-OPEN-FILE} (\VAR{stream} \VAR{path}
-    \OPn{\VAR{open-arg}}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
-    \PROGN{\VAR{form}})}
-  {
-    Use \FU{OPEN} with \VAR{open-arg}s (cf.\ page \pageref{open}) to
-    temporarily create \VAR{stream} to \VAR{path}; return
-    \retval{values of \VAR{form}s}.
   }
 
 \end{LIST}
