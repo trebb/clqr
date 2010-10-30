@@ -102,46 +102,48 @@ page \pageref{data-types}.
           \VAR{type}\text{ } \Goos{\kwd{:}\VAR{initarg-name} \VAR{value}}\\
           \VAR{control}\text{ } \OPn{\VAR{arg}}}{\}}}})}
   {
-  If \VAR{test}, which may depend on \VAR{place}s, returns \NIL,
-  signal as correctable \kwd{error} \VAR{condition} or a new condition
-  of \VAR{type} or, with \FU{format} \VAR{control} and \VAR{arg}s (see
-  p.\ \pageref{section:Format}), \kwd{error}. When using the
-  debugger's continue option, \VAR{place}s can be altered before
-  re-evaluation of \VAR{test}. Return \retval{\NIL}. 
+    If \VAR{test}, which may depend on \VAR{place}s, returns \NIL,
+    signal as correctable \kwd{error} \VAR{condition} or a new condition
+    of \VAR{type} or, with \FU{format} \VAR{control} and \VAR{arg}s (see
+    p.\ \pageref{section:Format}), \kwd{error}. When using the
+    debugger's continue option, \VAR{place}s can be altered before
+    re-evaluation of \VAR{test}. Return \retval{\NIL}. 
   }
 
-  \IT{(\MC*{HANDLER-CASE} \VAR{test} 
+  \IT{(\MC*{HANDLER-CASE} \VAR{foo} 
     \OPn{(\VAR{type} (\Op{\VAR{var}})
-      \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{condition-form}})} 
-    \Op{(\kwd{:no-error} (\OPn{\VAR{ord-$\lambda$}}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
+      \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
+      \PROGN{\VAR{condition-form}})} 
+    \Op{(\kwd{:no-error} (\OPn{\VAR{ord-$\lambda$}})
+      \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
       \PROGN{\VAR{form}})})}
   {
-  If, on evaluation of \VAR{test}, a condition of \VAR{type} is
-  signalled, evaluate matching \VAR{condition-form}s
-  with \VAR{var} bound to the condition, and return \retval{their
-    values}. Without a condition, bind \VAR{ord-$\lambda$}s to values
-  of \VAR{test} and return \retval{values of  \VAR{form}s} or, without
-  a \kwd{:no-error} clause, return \retval{values of \VAR{test}}. See
-  p.\ \pageref{section:Functions} for (\OPn{\VAR{ord-$\lambda$}}). 
+    If, on evaluation of \VAR{foo}, a condition of \VAR{type} is
+    signalled, evaluate matching \VAR{condition-form}s with \VAR{var}
+    bound to the condition, and return \retval{their values}. Without
+    a condition, bind \VAR{ord-$\lambda$}s to values of \VAR{foo} and
+    return \retval{values of  \VAR{form}s} or, without a
+    \kwd{:no-error} clause, return \retval{values of \VAR{foo}}. See
+    p.\ \pageref{section:Functions} for (\OPn{\VAR{ord-$\lambda$}}).
   }
 
   \IT{(\MC*{HANDLER-BIND} (\OPn{(\VAR{condition-type}
       \VAR{handler-function})}) \PROGN{\VAR{form}})}
   {
-   Return \retval{values of \VAR{form}s} after evaluating them with
-   \VAR{condition-type}s dynamically bound to their respective
-   \VAR{handler-function}s of argument condition. 
+    Return \retval{values of \VAR{form}s} after evaluating them with
+    \VAR{condition-type}s dynamically bound to their respective
+    \VAR{handler-function}s of argument condition. 
   }
 
   \IT{(\MC*{WITH-SIMPLE-RESTART} (\xorGOO{\VAR{restart}\\
       \NIL}{\}} \VAR{control}
     \OPn{\VAR{arg}}) \PROGN{\VAR{form}})}
   {
-  Return \retval{values of \VAR{form}s} unless \VAR{restart} is called
-  during their evaluation. In this case, describe restart using
-  \FU{format} \VAR{control} and \VAR{arg}s (see
-  p.\ \pageref{section:Format}) and return \retval{\NIL}
-  and \retvalii{\T}.
+    Return \retval{values of \VAR{form}s} unless \VAR{restart} is called
+    during their evaluation. In this case, describe restart using
+    \FU{format} \VAR{control} and \VAR{arg}s (see
+    p.\ \pageref{section:Format}) and return \retval{\NIL}
+    and \retvalii{\T}.
   }
 
   \IT{(\MC*{RESTART-CASE} \VAR{form} \OPn{(\VAR{foo}
@@ -154,16 +156,18 @@ page \pageref{data-types}.
       \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
       \PROGN{\VAR{restart-form}})})}
   {
-  Evaluate \VAR{form} with dynamically established restarts \VAR{foo}. Return
-  \retval{values of \VAR{form}} or, if by (\FU{invoke-restart}
-  \VAR{foo} \OPn{\VAR{arg}}) one restart \VAR{foo} is called, use
-  \VAR{string} or \VAR{report-function} (of a stream) to print a
-  description of restart \VAR{foo} and
-  return the \retval{values of its \VAR{restart-form}s}.
-  \VAR{arg-function} supplies appropriate \VAR{arg}s if \VAR{foo} is
-  called by \FU{invoke-restart-interactively}. If (\VAR{test-function} \VAR{condition})
-  returns \T, \VAR{foo} is made visible under \VAR{condition}.
-  For (\OPn{\VAR{ord-$\lambda$}}) see p.\ \pageref{section:Functions}.
+    Evaluate \VAR{form} with dynamically established restarts
+    \VAR{foo}. Return \retval{values of \VAR{form}} or, if by
+    (\FU{invoke-restart} \VAR{foo} \OPn{\VAR{arg}}) one restart
+    \VAR{foo} is called, use \VAR{string} or \VAR{report-function} (of
+    a stream) to print a description of restart \VAR{foo} and return
+    the \retval{values of its \VAR{restart-form}s}. \VAR{arg-function}
+    supplies appropriate \VAR{arg}s if \VAR{foo} is called by
+    \FU{invoke-restart-interactively}. If (\VAR{test-function}
+    \VAR{condition}) returns \T, \VAR{foo} is made visible under
+    \VAR{condition}. \OPn{\VAR{arg}} matches
+    (\OPn{\VAR{ord-$\lambda$}}); see p.\ \pageref{section:Functions}
+    for the latter.
   }
 
   \IT{(\MC*{RESTART-BIND} (\OPn{(\xorGOO{\NEV{\VAR{restart}}\\
@@ -173,8 +177,8 @@ page \pageref{data-types}.
       \kwd{:report-function} \VAR{ function}\\
       \kwd{:test-function} \VAR{ function}}{\}})}) \PROGN{\VAR{form}})}
   {
-  Return \retval{values of \VAR{form}s} evaluated with \VAR{restart}s 
-  dynamically bound to \VAR{restart-function}s.
+    Return \retval{values of \VAR{form}s} evaluated with
+    \VAR{restart}s dynamically bound to \VAR{restart-function}s. 
   }
 
   \IT{\arrGOO{(\FU*{INVOKE-RESTART} \VAR{ restart} \OPn{\VAR{ arg}})\\

@@ -125,7 +125,7 @@
   {
     Next, or if \VAR{mode} is \T, next non-whitespace
     \retval{character}, or if \VAR{mode} is a character, \retval{next instance}
-    of it, from stream without removing it there.
+    of it, from \VAR{stream} without removing it there.
   }
 
   \IT{(\FU*{UNREAD-CHAR} \VAR{character}
@@ -246,28 +246,28 @@
       \KWD{\#\boldmath$|$ }\OPn{\VAR{multi-line-comment}}\KWD{ \boldmath$|$\#}\\
       \KWD*{; }\OPn{\VAR{one-line-comment}}}{.}}
   {\index{\#{$"|$} {$"|$}\#}
-  Comments. There are conventions:
+    Comments. There are conventions:
   }
   \begin{LIST}{.5cm}
     \IT{\KWD{;;;;} \VAR{title}\qquad\qquad}
     {Short title for a block of code.}
-
+    
     \IT{\KWD{;;;} \VAR{intro}\qquad\qquad}
     {Description before a block of code.}
-
+    
     \IT{\KWD{;;} \VAR{state}\qquad\qquad}
     {State of program or of following code.}
-
+    
     \IT{\KWD{;} \VAR{explanation}}
     {Regarding line on which it appears.}
-
+    
   \end{LIST}
-
+  
   \IT{\KWD*{(}\OPn{\VAR{foo}}\Op{ \KWD*{.} \VAR{bar}\DF{\NIL}}\KWD*{)}}
   {
     List of \VAR{foo}s with the terminating cdr \VAR{bar}.
   }
-
+  
   \IT{\KWD{"}\qquad\qquad}
   {\index{""}
     Begin and end of a string.
@@ -289,7 +289,7 @@
 
   \IT{\KWD{\#\boldmath{$\backslash$}}\VAR{c}}
   {
-  (\FU*{character} \LIT{"}\VAR{c}\LIT{"}), the character \VAR{c}.
+    (\FU*{character} \LIT{"}\VAR{c}\LIT{"}), the character \VAR{c}.
   }
   \index{\#@\#$\backslash$}%
 
@@ -383,7 +383,7 @@
   {\index{\#<@\#$<$}%
     Have the reader signal \kwd{reader-error}.
   }
-
+  
   \IT{\arrGOO{\KWD*{\#+}\VAR{feature } \VAR{when-feature}\\
       \KWD*{\#--}\VAR{feature } \VAR{unless-feature}}{.}}
   {
@@ -399,11 +399,12 @@
   }
 
   \IT{\kwd{\boldmath$|$}\OPn{\VAR{c}}\kwd{\boldmath$|$};
-      \kwd{\boldmath$\backslash$}\VAR{c}}
-  {\index{\@{$\backslash$}}\index{{$"|$} {$"|$}}%
+    \kwd{\boldmath$\backslash$}\VAR{c}}
+  {
+    \index{{$"|$} {$"|$}}%
     Treat arbitrary character(s) \VAR{c} as alphabetic preserving case.
   }
-
+  \index{\@{$\backslash$}}%
 \end{LIST}
 
 
@@ -879,8 +880,8 @@
         \OP{\KWD{,}\Op{\VAR{min-pad}\DF{\LIT{0}}}
           \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}
       \KWD{\Op{:} \Op{@} \boldmath{$<$}} 
-      \OP{\VAR{nl-text} \KWD{\TLD}\Op{\VAR{spare}\DF{\LIT{0}} \Op{,\VAR{width}}}\kwd{:;}}
-      \Goos{\VAR{text}\KWD{\TLD;}} \VAR{text} \KWD{\TLD\boldmath{$>$}}}
+      \OP{\VAR{nl-text} \KWD{\TLD}\Op{\VAR{spare}\DF{\LIT{0}} \Op{\KWD{,}\VAR{width}}}\kwd{:;}}
+      \Goos{\VAR{text} \KWD{\TLD;}} \VAR{text} \KWD{\TLD\boldmath{$>$}}}
     {\index{\~<\~>@$\sim$$<$ $\sim$$>$}%
       \EM{Justification. }
       Justify text produced by \VAR{text}s in a field of at least
@@ -944,7 +945,7 @@
       lists of which a new one is used at each iteration step.
     }
 
-    \IT{\KWD{\TLD} \OP{\VAR{x} \OP{\kwd{,} \VAR{y} \Op{\kwd{,} \VAR{z}}}}
+    \IT{\KWD{\TLD} \OP{\VAR{x} \OP{\kwd{,}\VAR{y} \Op{\kwd{,}\VAR{z}}}}
       \KWD{\^{}}}
     {\index{\~\^{}@$\sim$\^{}}%
       \EM{Escape Upward. }
@@ -976,7 +977,7 @@
       rest of the original arguments.
     }
 
-    \IT{\KWD{\TLD} \OP{\VAR{prefix}\Goos{\kwd{,}
+    \IT{\KWD{\TLD} \OP{\VAR{prefix} \Goos{\kwd{,}%
           \VAR{prefix}}} \Op{\kwd{:}} \Op{\kwd{@}} \KWD{/}\VAR{function}\KWD{/}}
     {\index{\~/ /@$\sim$/ /}%
       \EM{Call Function. }

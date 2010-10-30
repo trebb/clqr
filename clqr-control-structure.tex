@@ -50,7 +50,7 @@
 
   \IT{(\FU*{NOT} \VAR{foo})}
   {
-  \retval{\T} if \VAR{foo} is \NIL, \retval{\NIL} otherwise.
+  \retval{\T} if \VAR{foo} is \NIL; \retval{\NIL} otherwise.
   }
 
   \IT{(\FU*{BOUNDP} \VAR{symbol})}
@@ -677,12 +677,12 @@
   \IT{(\xorGOO{\MC*{PROG}\\
       \MC*{PROG\A}}{\}}
     (\orGOO{%
-      \VAR{var}\\
-      (\VAR{var } \Op{\VAR{value}\DF{\NIL}})}{\}^{\!\!*}})
+      \VAR{name}\\
+      (\VAR{name } \Op{\VAR{value}\DF{\NIL}})}{\}^{\!\!*}})
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} 
     \xorGOO{\NEV{\VAR{tag}}\\\VAR{form}}{\}^{\!\!*}})}
   {
-    Evaluate \SO{TAGBODY}-like body with \VAR{var}s locally bound (in
+    Evaluate \SO{TAGBODY}-like body with \VAR{name}s lexically bound (in
     parallel or sequentially, respectively) to \VAR{value}s. Return
     \retval{\NIL} or explicitly \retval{\MC{return}ed values}.
     Implicitly, the whole form is a \SO{block} named \NIL. 
@@ -1172,7 +1172,7 @@
       \IT{\LKWD*{=} \VAR{foo} \Op{\LKWD*{then}
           \VAR{bar}\DF{\VAR{foo}}}}
       {
-        Bind \VAR{var} in first iteration to \VAR{foo} and later to
+        Bind \VAR{var} initially to \VAR{foo} and later to
         \VAR{bar}.
       }
 

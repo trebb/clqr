@@ -1,4 +1,4 @@
-% Copyright (C) 2008 Bert Burgemeister
+% Copyright (C) 2008, 2010 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -15,13 +15,13 @@
   \IT{\arrGOO{(\FU*{GET-INTERNAL-REAL-TIME})\\
       (\FU*{GET-INTERNAL-RUN-TIME})}{.}}
   {
-  \retval{Current time}, or \retval{computing time},
-  respectively, in clock ticks.
+    \retval{Current time}, or \retval{computing time},
+    respectively, in clock ticks.
   }
 
   \IT{\CNS*{INTERNAL-TIME-UNITS-PER-SECOND}}
   {
-  Number of clock ticks per second.
+    Number of clock ticks per second.
   }
 
   \IT{\arrGOO{(\FU*{ENCODE-UNIVERSAL-TIME} \VAR{ sec} \VAR{ min} 
@@ -29,27 +29,27 @@
       \Op{\VAR{zone}\DF{curr}})\\ 
       (\FU*{GET-UNIVERSAL-TIME})}{.}}
   {
-  \retval{Seconds from 1900-01-01, 00:00}.
+    \retval{Seconds from 1900-01-01, 00:00}, ignoring leap seconds.
   }
 
   \IT{\arrGOO{(\FU*{DECODE-UNIVERSAL-TIME} \VAR{ universal-time } 
       \Op{\VAR{time-zone}\DF{current}})\\
     (\FU*{GET-DECODED-TIME})}{.}}
   {
-  Return \retval{second}, \retvalii{minute}, \retvaliii{hour}, 
-  \retvaln{4}{date}, \retvaln{5}{month}, \retvaln{6}{year}, \retvaln{7}{day}, 
-  \retvaln{8}{daylight-p}, and \retvaln{9}{zone}.
+    Return \retval{second}, \retvalii{minute}, \retvaliii{hour},
+    \retvaln{4}{date}, \retvaln{5}{month}, \retvaln{6}{year},
+    \retvaln{7}{day}, \retvaln{8}{daylight-p}, and \retvaln{9}{zone}.
   }
 
   \IT{(\FU*{ROOM} \Op{\Goo{\NIL\XOR\kwd{:default}\XOR\T}})}
   {
-  Print information about internal storage management.
+    Print information about internal storage management.
   }
 
   \IT{\arrGOO{(\FU*{SHORT-SITE-NAME})\\
       (\FU*{LONG-SITE-NAME})}{.}}
   {
-  \retval{String} representing physical location of computer.
+    \retval{String} representing physical location of computer.
   }
 
   \IT{(\xorGOO{\FU{LISP-IMPLEMENTATION}\\
@@ -58,19 +58,19 @@
     \xorGOO{\kwd{TYPE}\\
       \kwd{VERSION}}{\}})}
   {
-  \index{LISP-IMPLEMENTATION-TYPE}%
-  \index{LISP-IMPLEMENTATION-VERSION}%
-  \index{SOFTWARE-TYPE}%
-  \index{SOFTWARE-VERSION}%
-  \index{MACHINE-TYPE}%
-  \index{MACHINE-VERSION}%
-  \retval{Name} or \retval{version} of implementation, operating
-  system, or hardware, respectively.
+    \index{LISP-IMPLEMENTATION-TYPE}%
+    \index{LISP-IMPLEMENTATION-VERSION}%
+    \index{SOFTWARE-TYPE}%
+    \index{SOFTWARE-VERSION}%
+    \index{MACHINE-TYPE}%
+    \index{MACHINE-VERSION}%
+    \retval{Name} or \retval{version} of implementation, operating
+    system, or hardware, respectively.
   }
 
   \IT{(\FU*{MACHINE-INSTANCE})}
   {
-  \retval{Computer name}.
+    \retval{Computer name}.
   }
 
 \end{LIST}
