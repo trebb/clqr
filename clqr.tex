@@ -224,12 +224,17 @@
       \hrule
       \vspace{1.5mm}
       \rmfamily\small
-      \makebox[\textwidth][l]{\maintitle\ \hfill Revision \input{REVISION}
+      \makebox[\textwidth][l]{\maintitle\
+        \hfill
+        Revision \input{REVISION}
         [\input{DATE}\hspace{-.65ex}]}
       \makebox[\textwidth][l]{Copyright \copyright\ 2008, 2009, 2010
         \AUTHOR\hfill}
       \makebox[\textwidth][l]{\LaTeX\ source:
-        \href{http://clqr.berlios.de}{http://clqr.berlios.de}\hfill}\\[1mm] 
+        \href{http://clqr.berlios.de}{http://clqr.berlios.de}
+        \hfill
+        \raisebox{-1mm}[0mm][0mm]{\includegraphics[origin=c,height=5mm,keepaspectratio,angle=-40]{housefly.eps}}
+      }\\[1mm] 
       Permission is granted to copy, distribute and/or modify this
       document under the terms of the GNU Free Documentation License,
       Version 1.2 or any later version published by the Free Software
