@@ -11,20 +11,25 @@
 \section{Characters} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+The \kwd*{standard-char} type comprises \LIT{a}-\LIT{z},
+\LIT{A}-\LIT{Z}, \LIT{0}-\LIT{9}, \LIT{Newline}, \LIT{Space}, and
+\LIT{!?\$"'`.:,;*+-/|{\tt\char`\\}\TLD\_\^{}<=>\#\%@\&()[]\{\}}.
+\index{NEWLINE}\index{SPACE}
+
 \begin{LIST}{1cm}
 
   \IT{\arrGOO{(\FU*{CHARACTERP} \VAR{ foo})\\
       (\FU*{STANDARD-CHAR-P} \VAR{ char})}{.}}
   {
-  \retval{\T} if argument is of indicated type.
+    \retval{\T} if argument is of indicated type.
   }
 
   \IT{\arrGOO{(\FU*{GRAPHIC-CHAR-P} \VAR{ character})\\
       (\FU*{ALPHA-CHAR-P} \VAR{ character})\\
       (\FU*{ALPHANUMERICP} \VAR{ character})}{.}}
   {
-  \retval{\T} if \VAR{character} is visible, alphabetic, or
-  alphanumeric, respectively.
+    \retval{\T} if \VAR{character} is visible, alphabetic, or
+    alphanumeric, respectively.
   }
 
   \IT{\arrGOO{(\FU*{UPPER-CASE-P} \VAR{ character})\\
@@ -35,26 +40,27 @@
   able to be in another case, respectively.
   }
 
-  \IT{(\FU*{DIGIT-CHAR-P} \VAR{character} \Op{\VAR{radix}\DF{\LIT{10}}})}
+  \IT{(\FU*{DIGIT-CHAR-P} \VAR{character}
+    \Op{\VAR{radix}\DF{\LIT{10}}})}
   {
-  Return \retval{its weight} if \VAR{character} is a digit, or
-  \retval{\NIL} otherwise.
+    Return \retval{its weight} if \VAR{character} is a digit, or
+    \retval{\NIL} otherwise.
   }
 
   \IT{\arrGOO{(\FU*{CHAR=}\RP{\VAR{
           character}})\\(\FU*{CHAR/=}\RP{\VAR{
           character}})}{.}}
   {
-  Return \retval{\T} if all \VAR{character}s, or
-  none, respectively,  are equal.
+    Return \retval{\T} if all \VAR{character}s, or
+    none, respectively,  are equal.
   }
 
   \IT{\arrGOO{(\FU*{CHAR-EQUAL}\RP{\VAR{
           character}})\\(\FU*{CHAR-NOT-EQUAL}\RP{\VAR{
           character}})}{.}}
   {
-  Return \retval{\T} if all \VAR{character}s, or
-  none, respectively,  are equal ignoring case.
+    Return \retval{\T} if all \VAR{character}s, or
+    none, respectively,  are equal ignoring case.
   }
 
   \IT{\arrGOO{(\FU{CHAR\boldmath$>$}\RP{\VAR{
@@ -78,20 +84,22 @@
       (\FU*{CHAR-LESSP}\RP{\VAR{ character}})\\ 
       (\FU*{CHAR-NOT-GREATERP}\RP{\VAR{ character}})}{.}}
   {
-  Return \retval{\T} if \VAR{character}s are
-  monotonically decreasing, monotonically non-increasing, monotonically
-  increasing, or monotonically non-decreasing, respectively, ignoring case.
+    Return \retval{\T} if \VAR{character}s are monotonically
+    decreasing, monotonically non-increasing, monotonically
+    increasing, or monotonically non-decreasing, respectively,
+    ignoring case.
   }
 
   \IT{\arrGOO{(\FU*{CHAR-UPCASE} \VAR{ character})\\
       (\FU*{CHAR-DOWNCASE} \VAR{ character})}{.}}
   {
-  Return corresponding uppercase/lowercase \retval{character}, respectively.
+    Return corresponding uppercase/lowercase \retval{character},
+    respectively.
   }
 
   \IT{(\FU*{DIGIT-CHAR} \VAR{i} \Op{\VAR{radix}\DF{\LIT{10}}})}
   {
-  \retval{Character} representing digit \VAR{i}.
+    \retval{Character} representing digit \VAR{i}.
   }
 
   \IT{(\FU*{CHAR-NAME} \VAR{character})}
@@ -103,28 +111,28 @@
   \IT{(\FU*{NAME-CHAR} \VAR{foo})}
   {
     \retval{Character} named \VAR{foo} if any, or
-    \retval{\NIL}. 
+    \retval{\NIL}.
   }
 
   \IT{\arrGOO{(\FU*{CHAR-INT} \VAR{ character})\\
       (\FU*{CHAR-CODE} \VAR{ character})}{.}}
   {
-  \retval{Code} of \VAR{character}.
+    \retval{Code} of \VAR{character}.
   }
 
   \IT{(\FU*{CODE-CHAR} \VAR{code})}
   {
-  \retval{Character} with \VAR{code}.
+    \retval{Character} with \VAR{code}.
   }
 
   \IT{\CNS*{CHAR-CODE-LIMIT}}
   {
-  Upper bound of (\FU{CHAR-CODE} \VAR{char}); $\geq 96$.
+    Upper bound of (\FU{CHAR-CODE} \VAR{char}); $\geq 96$.
   }
 
   \IT{(\FU*{CHARACTER} \VAR{c})}
   {
-  Return \retval{\kwd{\#$\backslash$}\VAR{c}}.
+    Return \retval{\kwd{\#$\backslash$}\VAR{c}}.
   }
 
 \end{LIST}

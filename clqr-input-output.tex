@@ -203,7 +203,7 @@
       \Op{\DES{\VAR{rt}}\DF{\V{\A readtable\A}}}})}
   {
     Make \VAR{char} a macro character associated with
-    \VAR{function}. Return \retval{\T}.
+    \VAR{function} of stream and \VAR{char}. Return \retval{\T}.
   }
 
   \IT{(\FU*{GET-MACRO-CHARACTER} \VAR{char}
@@ -220,17 +220,20 @@
     Make \VAR{char} a dispatching macro character. Return \retval{\T}.
   }
 
-  \IT{(\FU*{SET-DISPATCH-MACRO-CHARACTER} \VAR{char} \VAR{sub-char} \VAR{function}
+  \IT{(\FU*{SET-DISPATCH-MACRO-CHARACTER} \VAR{char} \VAR{sub-char}
+    \VAR{function} 
     \Op{\DES{\VAR{rt}}\DF{\V{\A readtable\A}}})}
   {
-    Make \VAR{function} a dispatch function of \VAR{char} followed by
+    Make \VAR{function} of stream, \VAR{n}, \VAR{sub-char} a dispatch
+    function of \VAR{char} followed by \VAR{n}, followed by
     \VAR{sub-char}. Return \retval{\T}.
   }
 
   \IT{(\FU*{GET-DISPATCH-MACRO-CHARACTER} \VAR{char} \VAR{sub-char}
     \Op{\VAR{rt}\DF{\V{\A readtable\A}}})}
   {
-    \retval{Dispatch function} associated with \VAR{char} followed by \VAR{sub-char}.
+    \retval{Dispatch function} associated with \VAR{char} followed by
+    \VAR{sub-char}.
   }
 
 \end{LIST}

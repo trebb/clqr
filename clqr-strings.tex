@@ -55,34 +55,39 @@ see pages \pageref{section:Arrays} and \pageref{section:Sequences}.
     \retval{\NIL}.  Obey/ignore, respectively, case.
   }
 
-  \IT{(\FU*{STRING} \VAR{x})}
-  {
-    Convert \VAR{x} (\kwd{symbol}, \kwd{string}, or \kwd{character})
-    into a \retval{string}. 
-  }
-
   \IT{(\FU*{MAKE-STRING} \VAR{size} \orGOO{\kwd{:initial-element} \VAR{ char}\\
       \kwd{:element-type} \VAR{ type}\DF{\kwd{character}}}{\}})}
   {
   Return \retval{string} of length \VAR{size}.
   }
 
-  \IT{(\xorGOO{\FU{STRING}\\
-      \FU{NSTRING}}{\}}\kwd{-}\xorGOO{\kwd{CAPITALIZE}\\
-      \kwd{UPCASE}\\
-      \kwd{DOWNCASE}}{\}}
-    \VAR{string}  
+  \IT{\arrGOO{%
+      (\FU*{STRING} \VAR{ x})\\
+      (\xorGOO{%
+        \FU*{STRING-CAPITALIZE}\\
+        \FU*{STRING-UPCASE}\\
+        \FU*{STRING-DOWNCASE}}{\}}
+      \VAR{ x }  
+      \orGOO{\kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
+        \kwd{:end} \VAR{ end}\DF{\NIL}}{\}})}{.}}
+  {
+    Convert \VAR{x} (\kwd{symbol}, \kwd{string}, or \kwd{character})
+    into a \retval{string}, a \retval{string with capitalized words},
+    an \retval{all-uppercase string}, or an \retval{all-lowercase
+      string}, respectively.
+  }
+
+  \IT{(\xorGOO{%
+      \FU*{NSTRING-CAPITALIZE}\\
+      \FU*{NSTRING-UPCASE}\\
+      \FU*{NSTRING-DOWNCASE}}{\}}
+    \VAR{\DES{string}}  
     \orGOO{\kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}}{\}})}
-  {\index{STRING-CAPITALIZE}%
-    \index{STRING-UPCASE}%
-    \index{STRING-DOWNCASE}%
-    \index{NSTRING-CAPITALIZE}%
-    \index{NSTRING-UPCASE}%
-    \index{NSTRING-DOWNCASE}%
-    Return \retval{\VAR{string}} (not modified or modified,
-    respectively) with first letter of every word turned into uppercase,
-    letters all uppercase, or letters all lowercase, respectively.
+  {
+    Convert \VAR{string} into a \retval{string with capitalized
+      words}, an \retval{all-uppercase string}, or an
+    \retval{all-lowercase string}, respectively. 
   }
 
   \IT{(\xorGOO{\FU*{STRING-TRIM}\\
