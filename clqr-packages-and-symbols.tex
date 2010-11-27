@@ -163,14 +163,15 @@
   \IT{(\FU*{SHADOW} \VAR{symbols}
     \Op{\VAR{package}\DF{\V{\A package\A}}})}
   {
-    Add \VAR{symbols} to shadowing list of \VAR{package} making equally
-    named inherited symbols shadowed. Return
-    \retval{\T}. 
+    Make \VAR{symbols} of \VAR{package} shadow any otherwise
+    accessible, equally named symbols from other
+    packages. Return \retval{\T}.
   }
 
   \IT{(\FU*{PACKAGE-SHADOWING-SYMBOLS} \VAR{package})} 
   {
-    \retval{List of shadowing symbols} of \VAR{package}.
+    \retval{List of symbols} of \VAR{package} that shadow any
+    otherwise accessible, equally named symbols from other packages.
   }
 
   \IT{(\FU*{EXPORT} \VAR{symbols}
@@ -188,8 +189,10 @@
       \arrGOO{%
         \MC*{DO-SYMBOLS}\\
         \MC*{DO-EXTERNAL-SYMBOLS}}{\}}\text{ }
-      (\NEV{\VAR{var}}\text{ } \OP{\VAR{package}\DF{\V{\A package\A}}\text{ } \Op{\VAR{result}\DF{\NIL}}})\\
-      \MC*{DO-ALL-SYMBOLS } (\VAR{var } \Op{\VAR{result}\DF{\NIL}})}{\}}
+      (\NEV{\VAR{var}}\text{ } \OP{\VAR{package}\DF{\V{\A
+            package\A}}\text{ } \Op{\VAR{result}\DF{\NIL}}})\\
+      \MC*{DO-ALL-SYMBOLS } (\VAR{var }
+      \Op{\VAR{result}\DF{\NIL}})}{\}}
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \OPn{\orGOO{\NEV{\VAR{tag}}\\
       \VAR{form}}{\}}})}
@@ -215,7 +218,8 @@
   \IT{(\FU*{REQUIRE} \VAR{module} \Op{\VAR{paths}\DF{\NIL}})}
   {
     If not in \V{\A modules\A}, try \VAR{paths} to load
-    \VAR{module} from. Signal \kwd{error} if unsuccessful. Deprecated.
+    \VAR{module} from. Signal \kwd{error} if
+    unsuccessful. Deprecated. 
   }
 
   \IT{(\FU*{PROVIDE} \VAR{module})}
@@ -282,14 +286,15 @@ function (\kwd{function}, macro, or special operator \VAR{name}).
       \GFU*{DOCUMENTATION}\\
       (\kwd{SETF } \GFU{DOCUMENTATION})\VAR{ new-doc}}{\}}
     \VAR{foo}
-    \Goo{\kwd{'variable}%
-      \XOR\kwd{'function}%
-      \XOR\kwd{'compiler-macro}%
-      \XOR\kwd{'method-combination}%
-      \XOR\kwd{'structure}%
-      \XOR\kwd{'type}%
-      \XOR\kwd{'setf}%
-      \XOR\T})}
+    \xorGOO{%
+      \kwd{'variable}\XOR
+      \kwd{'function}\\
+      \kwd{'compiler-macro}\\
+      \kwd{'method-combination}\\
+      \kwd{'structure}\XOR
+      \kwd{'type}\XOR
+      \kwd{'setf}\XOR
+      \T}{\}})}
   {\index{VARIABLE}\index{FUNCTION}\index{COMPILER-MACRO}\index{METHOD-COMBINATION}\index{STRUCTURE}\index{TYPE}\index{SETF}
     Get/set \retval{documentation string} of \VAR{foo} of given
     type.
