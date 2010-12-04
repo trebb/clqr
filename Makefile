@@ -119,12 +119,13 @@ clean:
 
 # Project hosting
 
-publish:	letter a4 \
-		html/sample-frontcover.jpg \
+publish:
+	$(MAKE) html/sample-frontcover.jpg \
 		html/sample-firstpage-all.jpg html/sample-firstpage-four.jpg \
 		html/sample-firstpage-consec.jpg html/sample-source.jpg \
 		html/latest-changes.html \
 		$(CLQR).tar.gz
+	$(MAKE) letter a4
 	$(MAKE) publishclean
 	$(RSYNC) --delete ./ trebb@shell.berlios.de:/home/groups/ftp/pub/clqr/clqr/ $(SEND-TO-LOG)
 	$(RSYNC) ./html/ trebb@shell.berlios.de:/home/groups/clqr/htdocs/ $(SEND-TO-LOG)
