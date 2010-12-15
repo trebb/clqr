@@ -807,7 +807,9 @@
     {\index{\~\$@$\sim$\$}%
       \EM{Monetary Floating-Point. }
       Print argument as fixed-format floating-point number. With \KWD{:},
-      put sign before any padding; with \KWD{@}, always prepend a sign.}
+      put sign before any padding; with \KWD{@}, always prepend a
+      sign.
+    }
     
     \IT{\Goo{\KWD{\TLD C}\XOR\KWD{\TLD :C}\XOR\KWD{\TLD
           @C}\XOR\KWD{\TLD @:C}}}
@@ -860,11 +862,10 @@
       \kwd{:linear}, \kwd{:fill}, \kwd{:miser}, or \kwd{:mandatory}, respectively.
     }
 
-    \IT{\KWD{\TLD} \Op{\KWD{:}} \Op{\KWD{@}} $\hookleftarrow$}
-    {
-      \EM{Ignored Newline. } Ignore newline and following
-      whitespace. With \kwd{:}, ignore only newline; with \kwd{@},
-      ignore only following whitespace.
+    \IT{\Goo{\KWD{\TLD:$\hookleftarrow$}\XOR\KWD{\TLD@$\hookleftarrow$}\XOR\KWD{\TLD$\hookleftarrow$}}}
+    {\index{\~\~bogus-ordering{}@$\sim\hookleftarrow$}%
+      \EM{Ignored Newline. } Ignore newline, or whitespace following
+      newline, or both, respectively.
     }
 
     \IT{\KWD{\TLD} \Op{\VAR{n}\DF{\LIT{1}}} \KWD{\boldmath$|$}}
