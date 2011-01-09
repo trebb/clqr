@@ -74,7 +74,7 @@
       </tr>
       <tr>
 	<td class="footer" colspan="2">
-	  &copy; 2008, 2009, 2010 &nbsp;
+	  &copy; 2008, 2009, 2010, 2011 &nbsp;
 	  <a href="mailto:trebb@users.berlios.de?subject=CLQR ">
 	    Bert Burgemeister
 	  </a>
