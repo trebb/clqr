@@ -61,9 +61,7 @@
             {\Large\thesubsection}{.7em}{\Large}[{\titlerule[0.25pt]}]
 
 % Kill toc header as we want it to span columns
-\makeatletter
-\renewcommand{\toc@heading}{}
-\makeatother
+\deftocheading{toc}{}
 
 \titlecontents{section}%
               [1.5em]%
