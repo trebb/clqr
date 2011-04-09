@@ -185,13 +185,13 @@
 
   \IT{(\MC*{POP} \DES{\VAR{place}})}
   {
-  Set \VAR{place} to (\FU{CDR} \VAR{place}), return
-  \retval{(\FU{CAR} \VAR{place})}.
+    Set \VAR{place} to (\FU{CDR} \VAR{place}), return
+    \retval{(\FU{CAR} \VAR{place})}.
   }
 
   \IT{(\MC*{PUSH} \VAR{foo} \DES{\VAR{place}})}
-  {Set \VAR{place} to
-  \retval{(\FU{cons} \VAR{foo} \VAR{place})}.
+  {
+    Set \VAR{place} to \retval{(\FU{cons} \VAR{foo} \VAR{place})}.
   }
 
   \IT{(\MC*{PUSHNEW} \VAR{foo} \DES{\VAR{place}}  
@@ -199,54 +199,56 @@
         \kwd{:test} \VAR{ function}\DF{\kwd{\#'eql}}\\
         \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:key} \VAR{ function}}{\}})}
-  {Set \VAR{place} to
-  \retval{(\FU{adjoin} \VAR{foo} \VAR{place})}.
+  {
+    Set \VAR{place} to \retval{(\FU{adjoin} \VAR{foo} \VAR{place})}.
   }
 
-  \IT{\arrGOO{(\FU*{APPEND } \Op{\OPn{\VAR{list}} \VAR{ foo}})\\
-      (\FU*{NCONC } \Op{\OPn{\DES{\VAR{list}}} \VAR{ foo}})}{.}}
+  \IT{\arrGOO{(\FU*{APPEND } \Op{\OPn{\VAR{proper-list}} 
+        \VAR{ foo}\DF{\NIL}})\\
+      (\FU*{NCONC } \Op{\OPn{\DES{\VAR{non-circular-list}}} 
+        \VAR{ foo}\DF{\NIL}})}{.}}
   {
-  Return \retval{concatenated list}. \VAR{foo} can be of any type.
+    Return \retval{concatenated list} or, with only one argument,
+    \retval{\VAR{foo}}. \VAR{foo} can be of any type.
   }
 
   \IT{\arrGOO{(\FU*{REVAPPEND} \VAR{ list} \VAR{ foo})\\
       (\FU*{NRECONC }
       \DES{\VAR{list}} \VAR{ foo})}{.}}
   {
-  Return \retval{concatenated list} after reversing order in
-  \VAR{list}.
+    Return \retval{concatenated list} after reversing order in
+    \VAR{list}.
   }
 
   \IT{(\xorGOO{\FU*{MAPCAR}\\
       \FU*{MAPLIST}}{\}} \VAR{function} \RP{\VAR{list}})}
   {
-  Return \retval{list of return values} of \VAR{function} successively
-  invoked with corresponding arguments, either cars or cdrs, respectively,
-  from each \VAR{list}. 
+    Return \retval{list of return values} of \VAR{function}
+    successively invoked with corresponding arguments, either cars or
+    cdrs, respectively, from each \VAR{list}.
   }
 
   \IT{(\xorGOO{\FU*{MAPCAN}\\
       \FU*{MAPCON}}{\}} \VAR{function} \RP{\VAR{list}})}
   {
-  Return list of 
-  \retval{concatenated return values} of
-  \VAR{function} successively invoked with corresponding arguments,
-  either cars or cdrs, respectively,
-  from each \VAR{list}. \VAR{function} should return a list.
+    Return list of \retval{concatenated return values} of
+    \VAR{function} successively invoked with corresponding arguments,
+    either cars or cdrs, respectively, from each
+    \VAR{list}. \VAR{function} should return a list.
   }
 
   \IT{(\xorGOO{\FU*{MAPC}\\
       \FU*{MAPL}}{\}} \VAR{function} \RP{\VAR{list}})}
   {
-  Return \retval{first \VAR{list}} after successively applying
-  \VAR{function} to corresponding arguments, either cars or cdrs,
-  respectively, from each \VAR{list}. \VAR{function} should have some side
-  effects. 
+    Return \retval{first \VAR{list}} after successively applying
+    \VAR{function} to corresponding arguments, either cars or cdrs,
+    respectively, from each \VAR{list}. \VAR{function} should have
+    some side effects.
   }
 
   \IT{(\FU*{COPY-LIST} \VAR{list})}
   {
-  Return \retval{copy} of \VAR{list} with shared elements.
+    Return \retval{copy} of \VAR{list} with shared elements.
   }
 
 \end{LIST}
@@ -260,12 +262,14 @@
 
   \IT{(\FU*{PAIRLIS} \VAR{keys} \VAR{values} \Op{\VAR{alist}\DF{\NIL}})}
   {
-    Prepend to \retval{\VAR{alist}} an association list made from lists \VAR{keys} and \VAR{values}.
+    Prepend to \retval{\VAR{alist}} an association list made from
+    lists \VAR{keys} and \VAR{values}.
   }
 
   \IT{(\FU*{ACONS} \VAR{key} \VAR{value} \VAR{alist})}
   {
-  Return \retval{\VAR{alist}} with a (\VAR{key} \kwd{.} \VAR{value}) pair added.
+    Return \retval{\VAR{alist}} with a (\VAR{key} \kwd{.} \VAR{value})
+    pair added.
   }
 
   \IT{\arrGOO{(\xorGOO{\FU*{ASSOC}\\
@@ -279,14 +283,14 @@
     (\xorGOO{\FU*{ASSOC-IF}\Op{\kwd{-NOT}}\\
       \FU*{RASSOC-IF}\Op{\kwd{-NOT}}}{\}} \VAR{ test} \VAR{ alist }
       \Op{\kwd{:key} \VAR{ function}})}{.}}
-  {
-\index{ASSOC-IF-NOT}\index{RASSOC-IF-NOT}%
-  First \retval{cons} whose car, or cdr, respectively, satisfies \VAR{test}.
+  {\index{ASSOC-IF-NOT}\index{RASSOC-IF-NOT}%
+    First \retval{cons} whose car, or cdr, respectively, satisfies
+    \VAR{test}.
   }
 
   \IT{(\FU*{COPY-ALIST} \VAR{alist})}
   {
-  Return \retval{copy} of \VAR{alist}.
+    Return \retval{copy} of \VAR{alist}.
   }
 
 \end{LIST}
@@ -301,8 +305,8 @@
     \xorGOO{\kwd{:test} \VAR{ test}\DF{\kwd{\#'eql}}\\
       \kwd{:test-not} \VAR{ test}}{\}})}
   {
-  Return \retval{\T} if trees \VAR{foo} and \VAR{bar} have same
-  shape and leaves satisfying \VAR{test}.
+    Return \retval{\T} if trees \VAR{foo} and \VAR{bar} have same
+    shape and leaves satisfying \VAR{test}.
   }
 
   \IT{(\xorGOO{\FU*{SUBST} \VAR{ new} \VAR{ old } \VAR{tree}\\
@@ -313,9 +317,8 @@
       \kwd{:key} \VAR{ function}%
     }{\}})}
   {
-  Make \retval{copy of
-    \VAR{tree}} with each subtree or leaf matching \VAR{old} replaced by
-  \VAR{new}.
+    Make \retval{copy of \VAR{tree}} with each subtree or leaf
+    matching \VAR{old} replaced by \VAR{new}.
   }
 
   \IT{(\xorGOO{\FU{SUBST-IF\Op{-NOT}} \VAR{ new} \VAR{ test } \VAR{tree}\\
