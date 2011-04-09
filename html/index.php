@@ -58,8 +58,8 @@
 	    they can easily be turned into a handy booklet. 
 	  </p>
 	  <p>
-	    Please report any errors to <a href="mailto:trebb@users.berlios.de?subject=CLQR ">
-	    trebb@users.berlios.de</a>. Nitpickers welcome!
+	    Please report any errors to <a href="mailto:trebbu@googlemail.com?subject=CLQR ">
+	    trebbu@googlemail.com</a>. Nitpickers welcome!
 	  </p>
 	  <p>&nbsp;</p>
 	    
@@ -75,7 +75,7 @@
       <tr>
 	<td class="footer" colspan="2">
 	  &copy; 2008, 2009, 2010, 2011 &nbsp;
-	  <a href="mailto:trebb@users.berlios.de?subject=CLQR ">
+	  <a href="mailto:trebbu@googlemail.com?subject=CLQR ">
 	    Bert Burgemeister
 	  </a>
 	</td>

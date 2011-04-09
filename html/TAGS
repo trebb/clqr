@@ -5,22 +5,32 @@ Common Lisp Quick Reference13,524
 
 license.html,168
 Common Lisp Quick Reference4,119
-project page976534,1157
-License38,1276
-GNU Free Documentation License55,1767
-How to use this License for your documents509,23545
+project page976533,1066
+License37,1184
+GNU Free Documentation License54,1693
+How to use this License for your documents508,23471
 
 printing.html,97
 Common Lisp Quick Reference4,119
-project page976534,1158
-Printing38,1277
-Bookbinding54,2008
+project page976533,1067
+Printing37,1185
+Bookbinding53,1916
 
 source.html,81
 Common Lisp Quick Reference4,119
-project page976534,1157
-LaTeX Source38,1276
+project page976533,1066
+LaTeX Source37,1184
+
+robots.txt,0
+
+release-revision.txt,0
+
+release-date.txt,0
+
+new-pure.css,0
 
 index.php,0
+
+favicon.ico,0
 
 download.php,0
