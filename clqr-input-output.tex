@@ -1175,8 +1175,10 @@
   }
 
   \IT{(\MC*{WITH-OUTPUT-TO-STRING} (\VAR{foo} 
-    \Op{\DES{\VAR{string}}\DF{\NIL}} \Op{\kwd{:element-type}
-      \VAR{type}\DF{\kwd{character}}}) \OPn{(\kwd{declare}
+    \OP{\DES{\VAR{string}}\DF{\NIL}
+      \Op{\kwd{:element-type}
+        \VAR{type}\DF{\kwd{character}}}}) 
+    \OPn{(\kwd{declare}
       \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{form}})}
   {
     Evaluate \VAR{form}s with \VAR{foo} locally bound to an output
