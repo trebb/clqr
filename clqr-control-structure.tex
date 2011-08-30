@@ -847,11 +847,14 @@
         \xorGOO{%
           \VAR{var-s}\\
           (\OPn{\VAR{var-s}})}{\}}
-        \Op{\VAR{d-type}} \LKWD*{=} \VAR{foo}} \Goos{\LKWD*{and}
+        \Op{\VAR{d-type}}
+        \Op{\LKWD*{=} \VAR{foo}}}
+      \Goos{\LKWD*{and}
         \xorGOO{%
           \VAR{var-p}\\
           (\OPn{\VAR{var-p}})}{\}}
-        \Op{\VAR{d-type}} \LKWD*{=} \VAR{bar}}
+        \Op{\VAR{d-type}}
+        \Op{\LKWD*{=} \VAR{bar}}}
       \penalty-10
       where destructuring type specifier \VAR{d-type} has the form
       \penalty-5
@@ -885,13 +888,15 @@
                 \xorGOO{%
                   \VAR{var}\\
                   (\OPn{\VAR{var}})}{\}}
-                \Op{\VAR{d-type}} \LKWD{=} \VAR{foo }}
+                \Op{\VAR{d-type}}
+                \Op{\LKWD{=} \VAR{foo}}}
+              \text{ }
               \{\text{\LKWD{and}
                 \xorGOO{%
                   \VAR{var}\\
                   (\OPn{\VAR{var}})}{\}}
-                \Op{\VAR{d-type}} \LKWD{=}
-                \VAR{bar}}\}^{*} \\ \\[-2.4ex]
+                \Op{\VAR{d-type}}
+                \Op{\LKWD{=} \VAR{bar}}}\}^{*} \\ \\[-2.4ex]
               \left.\!
                 \begin{array}{l}
                   \text{\LKWD{for}}  \\
