@@ -1,4 +1,4 @@
-% Copyright (C) 2008, 2009, 2010 Bert Burgemeister
+% Copyright (C) 2008, 2009, 2010, 2011 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -44,12 +44,13 @@
       (\kwd{:documentation} \VAR{ class-doc})\\
       (\kwd{:metaclass} \VAR{ name}\DF{\kwd{standard-class}})}{\}})}
   {
-    Define, as a subclass of \VAR{superclass}es, \retval{class
-      \VAR{foo}}. In a new instance \VAR{i}, a \VAR{slot}'s value defaults to 
+    Define, as a subclass of \VAR{superclass}es,
+    \retval{class \VAR{foo}}.
+    In a new instance \VAR{i}, a \VAR{slot}'s value defaults to 
     \VAR{form} unless set via \kwd{:}\VAR{initarg-name}; it is readable
     via (\VAR{reader} \VAR{i}) or (\VAR{accessor} \VAR{i}), and
-    writeable via (\VAR{writer} \VAR{i} \VAR{value}) or (\kwd{setf}
-    (\VAR{accessor} \VAR{i}) \VAR{value}). With
+    writeable via (\VAR{writer} \VAR{value} \VAR{i}) or (\kwd{setf}
+    (\VAR{accessor} \VAR{i}) \VAR{value}).  With
     \kwd{:allocation :class}, \VAR{slot} is shared by all instances of
     class \VAR{foo}.
   }
