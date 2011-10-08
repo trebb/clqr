@@ -112,12 +112,13 @@ revision-number:
 
 clean:
 	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.out *.ps *.pdf *~ html/*~ \
-              *.flag *.jpg html/*.jpg *.tar.gz REVISION.tex DATE.tex \
+	*.flag *.jpg html/*.jpg *.tar.gz REVISION.tex DATE.tex \
 	      html/latest-changes.html html/release-revision.txt html/release-date.txt \
- 	      *.[12345] *.mpx mpxerr.tex paper-current.tex color-current.tex
+	      *.[12345] *.mpx mpxerr.tex paper-current.tex color-current.tex
+	$(RM) -r gh-pages
 
 
-# Project hosting
+# Project hosting, Berlios
 
 publish:
 	$(MAKE) html/sample-frontcover.jpg \
@@ -152,6 +153,51 @@ html/sample-source.jpg:	$(CLQR)-numbers.tex
 
 html/latest-changes.html:	$(CLQR).tex $(CLQR)-*.tex 
 	if $(GIT_LOG) -5 --pretty=format:"<p><i>%ci</i>%n<br />%s%n<br />%b</p>" > $@; then true; else true; fi $(SEND-TO-LOG)
+
+# Github
+
+gh-publish:
+	$(RM) -r gh-pages
+	mkdir gh-pages
+	$(MAKE) gh-pages/$(CLQR)-a4-booklet-all.pdf \
+		gh-pages/$(CLQR)-a4-booklet-four.pdf \
+		gh-pages/$(CLQR)-a4-consec.pdf \
+		gh-pages/$(CLQR)-letter-booklet-all.pdf \
+		gh-pages/$(CLQR)-letter-booklet-four.pdf \
+		gh-pages/$(CLQR)-letter-consec.pdf \
+		gh-pages/sample-frontcover.jpg \
+		gh-pages/sample-firstpage-all.jpg \
+		gh-pages/sample-firstpage-four.jpg \
+		gh-pages/sample-firstpage-consec.jpg \
+		gh-pages/sample-source.jpg \
+		gh-pages/$(CLQR).tar.gz \
+		gh-pages/download.html \
+		gh-pages/favicon.ico \
+		gh-pages/index.html \
+		gh-pages/license.html \
+		gh-pages/new-pure.css \
+		gh-pages/printing.html \
+		gh-pages/robots.txt \
+		gh-pages/source.html
+	cd gh-pages; git init; git add ./; git commit -a -m "gh-pages pseudo commit"; git push git@github.com:trebb/clqr.git +master:gh-pages
+
+gh-pages/sample-%.jpg: html/sample-%.jpg
+	$(CP) $< $@
+
+gh-pages/index.html: html-template/index.html html/latest-changes.html
+	sed -e "/<h3>Latest Changes<\/h3>/ r html/latest-changes.html" html-template/index.html > $@
+
+gh-pages/download.html: html-template/download.html revision-number
+	sed -e "/This is revision/ r REVISION.tex" -e "/<!- date of commit \/>/ r DATE.tex" html-template/download.html > $@
+
+gh-pages/%.pdf: %.pdf
+	$(CP) $< $@
+
+gh-pages/%.tar.gz: %.tar.gz
+	$(CP) $< $@
+
+gh-pages/%: html-template/%
+	$(CP) $< $@
 
 $(CLQR).tar.gz:	$(CLQR).tex $(CLQR)-*.tex 
 	if $(GIT_ARCHIVE) > $(CLQR).tar.gz; then true; else true; fi $(SEND-TO-LOG)
