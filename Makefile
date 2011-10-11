@@ -171,6 +171,8 @@ gh-publish:
 		gh-pages/sample-firstpage-consec.jpg \
 		gh-pages/sample-source.jpg \
 		gh-pages/$(CLQR).tar.gz \
+		gh-pages/404.html \
+		gh-pages/CNAME \
 		gh-pages/download.html \
 		gh-pages/favicon.ico \
 		gh-pages/index.html \

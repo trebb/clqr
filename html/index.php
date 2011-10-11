@@ -38,6 +38,15 @@
 	    <img class="right" src="sample-frontcover.jpg"
 		 alt="[Front Cover Sample]"/> 
 	  </a>
+          <br>
+          <em>OUR HOST <a href="http://berlios.de">BERLIOS</a> IS GOING
+            TO <a href="http://developer.berlios.de/forum/forum.php?forum_id=37450">SHUT
+              DOWN</a> AT THE END OF THE YEAR.
+            <br>
+            <a href="http://clqr.boundp.org">Common Lisp Quick Reference</a> has moved to its new home at
+            <b><a href="http://clqr.boundp.org">http://clqr.boundp.org</a>
+            </b>
+          </em>
 	  <h3>Introduction</h3>
 	  <p> Common Lisp Quick Reference is a free booklet with short
 	    descriptions of the thousand or so symbols defined in the ANSI standard. 
