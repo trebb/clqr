@@ -102,15 +102,15 @@
 
   \IT{\arrGOO{%
       (\FU*{EXP } \VAR{p})\\
-      (\FU*{EXPT } \VAR{b } \VAR{p})}{.}}
+      (\FU*{EXPT } \VAR{b } \VAR{p})}{.}\qquad\qquad}
      {
        Return \retval{$\mbox{e}^p$} or \retval{$b^p$}, respectively.
      }
 
-  \IT{(\FU*{LOG} \VAR{a} \Op{\VAR{b}})}
+  \IT{(\FU*{LOG} \VAR{a} \Op{\VAR{b}\DF{e}})}
   {
-  Return \retval{$\log_b a$} or,
-  without \VAR{b}, \retval{$\ln a$}.
+    Return \retval{$\log_b a$} or,
+    without \VAR{b}, \retval{$\ln a$}.
   }
 
   \IT{\arrGOO{(\FU*{SQRT} \VAR{ n})\\
