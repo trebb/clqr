@@ -1,0 +1,9 @@
+If you are reading this on github.com/trebb/clqr you probably want to
+switch to the master branch.  This branch (gh-pages) only exists to
+populate the project homepage, http://clqr.boundp.org.
+
+Common Lisp Quick Reference is a free booklet with short descriptions
+of the thousand or so symbols defined in the ANSI standard.
+
+Visit http://clqr.boundp.org/ for the latest revision including
+ready-made pdfs.

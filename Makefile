@@ -173,6 +173,7 @@ gh-publish:
 		gh-pages/$(CLQR).tar.gz \
 		gh-pages/404.html \
 		gh-pages/CNAME \
+		gh-pages/README \
 		gh-pages/download.html \
 		gh-pages/favicon.ico \
 		gh-pages/index.html \
