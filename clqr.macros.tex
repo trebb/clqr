@@ -1,4 +1,4 @@
-% Copyright (C) 2008, 2009, 2010 Bert Burgemeister
+% Copyright (C) 2008, 2009, 2010, 2011 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -64,7 +64,8 @@
 \pagestyle{lispref}
 
 % Emphasize
-\newcommand{\EM}[1]{\text{{\fontfamily{cmr}\fontseries{b}\fontshape{n}\selectfont#1}}}
+\newcommand{\EM}[1]{%
+  \text{{\fontfamily{cmr}\fontseries{b}\fontshape{n}\selectfont#1}}}
 %
 %
 % Literal Text
@@ -80,7 +81,9 @@
 \newcommand{\DES}[1]{\text{{$\widetilde{#1}$}}}
 %
 % Default Value
-\newcommand{\DF}[1]{\text{\textsubscript{\setlength{\fboxsep}{.5pt}\setlength{\fboxrule}{.2bp}\fbox{#1}}}}
+\newcommand{\DF}[1]{%
+  \text{\textsubscript{%
+      \setlength{\fboxsep}{.5pt}\setlength{\fboxrule}{.2bp}\fbox{#1}}}}
 %
 % Optional Part, [], two sizes
 \newcommand{\OP}[1]{{\text{$\big[$}{#1}\text{$\big]$}}}
@@ -97,7 +100,9 @@
 \newcommand{\RP}[1]{{{#1}\text{${}^{+}$}}}
 %
 % Implicit PROGN, P*
-\newcommand{\PROGN}[1]{{{#1}\text{${}^{{\raisebox{.5ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{-.6ex}P}}*}}$}}}
+\newcommand{\PROGN}[1]{%
+  {{#1}\text{${}^{%
+        {\raisebox{.5ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{-.6ex}P}}*}}$}}}
 %
 % Group of Objects {}, three sizes
 \newcommand{\GOO}[1]{{\text{$\Big\{$}{#1}\text{$\Big\}$}}}
@@ -150,8 +155,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-\newlength{\TAGwidth}
-\newlength{\KEYWORDwidth}
+\newcommand{\MARKNAME}[2]{%
+  \text{\textsubscript{\sffamily\slshape\mdseries\lowercase{#2}}%
+    {\sffamily\bfseries\selectfont\lowercase{#1}}}}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Generic Keyword, Lowercase
@@ -169,100 +175,50 @@
 % Macro
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\MC}[1]{%
-  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}Mx}% x just for space
-  \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
-  \ifdim\TAGwidth > \KEYWORDwidth%
-  \text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{0em}M}}\lowercase{#1}}}}%
-  \else%
-  \text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}M}}\lowercase{#1}}}}%
-  \fi}
+  \MARKNAME{#1}{m}}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Special Operator
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\SO}[1]{%
-  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}SOx}% x just for space
-  \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
-  \ifdim\TAGwidth > \KEYWORDwidth%
-  \text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{0em}sO}}\lowercase{#1}}}}%
-  \else%
-  \text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}sO}}\lowercase{#1}}}}%
-  \fi}
+  \MARKNAME{#1}{s}}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Function
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\FU}[1]{%
-  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}Fux}% x just for space
-  \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
-  \ifdim\TAGwidth > \KEYWORDwidth%
-  \text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{0em}Fu}}\lowercase{#1}}}}%
-  \else%
-  \text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}Fu}}\lowercase{#1}}}}%
-  \fi}
+  \MARKNAME{#1}{f\/}}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Generic Function
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\GFU}[1]{%
-  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}gFx}% x just for space
-  \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
-  \ifdim\TAGwidth > \KEYWORDwidth%
-  \text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{0em}gF}}\lowercase{#1}}}}%
-  \else%
-  \text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}gF}}\lowercase{#1}}}}%
-  \fi}
+  \MARKNAME{#1}{g}}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Variable
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\V}[1]{%
-  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.8em}varx}% x just for space
-  \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
-  \ifdim\TAGwidth > \KEYWORDwidth%
-  \text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{0em}var}}\lowercase{#1}}}}%
-  \else%
-  \text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.8em}var}}\lowercase{#1}}}}%
-  \fi}
+  \MARKNAME{#1}{v}}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Constant
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\CNS}[1]{%
-  \settowidth{\TAGwidth}{\tiny\sffamily\mdseries\hspace*{.5em}cox}% x just for space
-  \settowidth{\KEYWORDwidth}{\lowercase{#1}}%
-  \ifdim\TAGwidth > \KEYWORDwidth%
-  \text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{0em}co}}\lowercase{#1}}}}%
-  \else%
-  \text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[0pt][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}co}}\lowercase{#1}}}}%
-  \fi}
+  \MARKNAME{#1}{c}}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Loop Keyword
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\LKWD}[1]{\text{{\sffamily\bfseries\selectfont%
-      {\raisebox{1.4ex}[1ex][0pt]{\tiny\sffamily\mdseries\makebox[0pt][l]{\hspace{.5em}}}\lowercase{#1}}}}}
+\newcommand{\LKWD}[1]{\text{{\sffamily\bfseries\selectfont\lowercase{#1}}}}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Return Values, First, Second, nth, Third
+% Return Values, First, nth, Second, Third
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\ULthickness}{.2pt}
 \newcommand{\retval}[1]{\uline{#1}}
-%\newcommand{\retvalii}[1]{\uuline{#1}}
 \newcommand{\retvaln}[2]{{%
-      {\raisebox{-1.7ex}[0pt][1.4ex]{\tiny\sffamily\upshape\mdseries\makebox[0pt][l]{\hspace{-.1em}#1}}\uline{#2}}}}
+    {\raisebox{-1.7ex}[0pt][1.4ex]{\tiny\sffamily\upshape\mdseries\makebox[0pt][l]{\hspace{-.1em}#1}}\uline{#2}}}}
 \newcommand{\retvalii}[1]{\retvaln{2}{#1}}
 \newcommand{\retvaliii}[1]{\retvaln{3}{#1}}
 %
@@ -296,3 +252,8 @@
 \WithSuffix\newcommand\LKWD*[1]{\LKWD{#1}\uppercase{\index{#1}}}
 
 \hyphenation{white-space pa-ra-me-ters}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "clqr"
+%%% End: 

@@ -1,4 +1,4 @@
-% Copyright (C) 2008, 2009, 2010 Bert Burgemeister
+% Copyright (C) 2008, 2009, 2010, 2011 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -105,7 +105,7 @@
     Delete \VAR{package}. Return \retval{\T} if successful.
   }
 
-  \IT{\V{\A package\A}\DF{\kwd{common-lisp-user}}\qquad\quad}
+  \IT{\V{\A package\A}\DF{\kwd{common-lisp-user}}\qquad\qquad}
   {\index{*PACKAGE*@\A PACKAGE\A}
     The current package.
   }
@@ -115,14 +115,14 @@
     \retval{List of registered packages}.
   }
 
-  \IT{(\FU*{PACKAGE-NAME} \VAR{package})\qquad\quad}
+  \IT{(\FU*{PACKAGE-NAME} \VAR{package})}
   {
     \retval{Name of \VAR{package}}.
   }
 
   \IT{(\FU*{PACKAGE-NICKNAMES} \VAR{package})}
   {
-    \retval{List of nicknames} of \VAR{package}.
+    \retval{Nicknames} of \VAR{package}.
   }
 
   \IT{(\FU*{FIND-PACKAGE} \VAR{name})}

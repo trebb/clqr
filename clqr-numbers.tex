@@ -42,15 +42,15 @@
   \IT{\arrGOO{(\FU*{MINUSP} \VAR{ a})\\
       (\FU*{ZEROP} \VAR{ a})\\
       (\FU*{PLUSP}
-      \VAR{ a})}{.}\qquad\qquad}
+      \VAR{ a})}{.}}
   {
   \retval{\T} if $a < 0$, $a = 0$, or $a > 0$, respectively.
   }
 
-  \IT{\arrGOO{(\FU*{EVENP } \VAR{integer})\\
-      (\FU*{ODDP } \VAR{integer})}{.}}
+  \IT{\arrGOO{(\FU*{EVENP } \VAR{int})\\
+      (\FU*{ODDP } \VAR{int})}{.}}
   {
-    \retval{\T} if \VAR{integer} is even or odd, respectively.
+    \retval{\T} if \VAR{int} is even or odd, respectively.
   }
 
   \IT{\arrGOO{(\FU*{NUMBERP} \VAR{ foo})\\
@@ -114,9 +114,9 @@
   }
 
   \IT{\arrGOO{(\FU*{SQRT} \VAR{ n})\\
-      (\FU*{ISQRT} \VAR{ n})}{.}}
+      (\FU*{ISQRT} \VAR{ n})}{.}\qquad\qquad}
   {
-    \retval{$\sqrt{n}$} in complex or natural numbers, respectively.
+    \retval{$\sqrt{n}$} in complex numbers/natural numbers.
   }
 
   \IT{\arrGOO{(\FU*{LCM} \OPn{\VAR{ integer}}\DF{\LIT{1}})\\
@@ -127,7 +127,7 @@
   returns \retval{0}.
   }
 
-  \IT{\CNS*{PI}}
+  \IT{\CNS*{PI}\qquad\qquad}
   {
   \kwd{long-float} approximation of $\pi$, Ludolph's number.
   }
@@ -245,14 +245,16 @@
   }
 
   \IT{(\FU*{COMPLEX} \VAR{real} \Op{\VAR{imag}\DF{\LIT{0}}})}
-  {Make a \retval{complex number}.
-    }
+  {
+    Make a \retval{complex number}.
+  }
 
-  \IT{(\FU*{PHASE} \VAR{number})}
-  {\retval{Angle} of \VAR{number}'s polar representation.
-    }
+  \IT{(\FU*{PHASE} \VAR{num})}
+  {
+    \retval{Angle} of \VAR{num}'s polar representation.
+  }
 
-  \IT{(\FU*{ABS} \VAR{n})}
+  \IT{(\FU*{ABS} \VAR{n})\qquad\qquad}
   {
     Return \retval{$|n|$}.
   }
@@ -301,13 +303,13 @@ two's complement representation.
     \IT{\CNS*{BOOLE-ANDC2}} {\retval{$\text{\VAR{int-a}} \land \lnot\text{\VAR{int-b}}$}.}
     \IT{\CNS*{BOOLE-NAND}} {\retval{$\lnot(\text{\VAR{int-a}} \land \text{\VAR{int-b}})$}.}
     \IT{\CNS*{BOOLE-IOR}\qquad\qquad} {\retval{$\text{\VAR{int-a}} \lor \text{\VAR{int-b}}$}.}
-    \IT{\CNS*{BOOLE-ORC1}\qquad\qquad} {\retval{$\lnot \text{\VAR{int-a}} \lor \text{\VAR{int-b}}$}.}
-    \IT{\CNS*{BOOLE-ORC2}\qquad\qquad} {\retval{$\text{\VAR{int-a}} \lor \lnot\text{\VAR{int-b}}$}.}
+    \IT{\CNS*{BOOLE-ORC1}\qquad} {\retval{$\lnot \text{\VAR{int-a}} \lor \text{\VAR{int-b}}$}.}
+    \IT{\CNS*{BOOLE-ORC2}\qquad} {\retval{$\text{\VAR{int-a}} \lor \lnot\text{\VAR{int-b}}$}.}
     \IT{\CNS*{BOOLE-XOR}\qquad\qquad} {\retval{$\lnot(\text{\VAR{int-a}} \equiv \text{\VAR{int-b}})$}.}
     \IT{\CNS*{BOOLE-NOR}\qquad\qquad} {\retval{$\lnot(\text{\VAR{int-a}} \lor \text{\VAR{int-b}})$}.}
   \end{LIST}
 
-  \IT{(\FU*{LOGNOT}\VAR{ integer})}
+  \IT{(\FU*{LOGNOT}\VAR{ integer})\qquad\qquad}
   {
     \retval{$\lnot\text{\VAR{integer}}$}.
   }
@@ -353,12 +355,12 @@ two's complement representation.
 
   \IT{(\FU*{LOGNOR} \VAR{int-a} \VAR{int-b})}
   {
-  \retval{$\lnot(\text{\VAR{int-a}} \lor \text{\VAR{int-b}})$}.
+    \retval{$\lnot(\text{\VAR{int-a}} \lor \text{\VAR{int-b}})$}.
   }
 
-  \IT{(\FU*{LOGBITP} \VAR{i} \VAR{integer})}
+  \IT{(\FU*{LOGBITP} \VAR{i} \VAR{int})}
   {
-  \retval{\T} if zero-indexed \VAR{i}th bit of \VAR{integer} is set.
+    \retval{\T} if zero-indexed \VAR{i}th bit of \VAR{int} is set.
   }
 
   \IT{(\FU*{LOGTEST} \VAR{int-a} \VAR{int-b})}
