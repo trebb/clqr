@@ -1,4 +1,4 @@
-% Copyright (C) 2008, 2009, 2010, 2011 Bert Burgemeister
+% Copyright (C) 2008, 2009, 2010, 2011, 2012 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -137,13 +137,14 @@
   }
 
   \IT{(\xorGOO{\FU*{INTERN}\\
-      \FU*{FIND-SYMBOL}}{\}} \VAR{foo} \Op{\VAR{package}\DF{\V{\A package\A}}})}
+      \FU*{FIND-SYMBOL}}{\}}
+    \VAR{foo} \Op{\VAR{package}\DF{\V{\A package\A}}})}
   {
     Intern or find, respectively, symbol \retval{\VAR{foo}} in
     \VAR{package}. Second return value is one of
     \retvalii{\kwd{:internal}}, \retvalii{\kwd{:external}}, or
     \retvalii{\kwd{:inherited}} (or \retvalii{\NIL} if \FU{intern}
-    created a fresh symbol).
+    has created a fresh symbol).
   }
 
   \IT{(\FU*{UNINTERN} \VAR{symbol} \Op{\VAR{package}\DF{\V{\A package\A}}})}

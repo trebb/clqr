@@ -1,4 +1,4 @@
-# Copyright (C) 2008, 2009, 2010 Bert Burgemeister
+# Copyright (C) 2008, 2009, 2010, 2011 Bert Burgemeister
 #
 # Permission is granted to copy, distribute and/or modify this
 # document under the terms of the GNU Free Documentation License,
