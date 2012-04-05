@@ -166,9 +166,49 @@
   \IT{\arrGOO{(\FU*{REMPROP } \DES{\VAR{symbol}} \VAR{ key})\\
       (\MC*{REMF } \DES{\VAR{place}} \VAR{ key})}{.}}
   {
-  Remove first entry \VAR{key} from property list stored in
-  \VAR{symbol}/in \VAR{place}, respectively. Return \retval{\T} if \VAR{key}
-  was there, or \retval{\NIL} otherwise.
+    Remove first entry \VAR{key} from property list stored in
+    \VAR{symbol}/in \VAR{place}, respectively. Return \retval{\T} if \VAR{key}
+    was there, or \retval{\NIL} otherwise.
+  }
+
+  \IT{(\SO*{PROGV} \VAR{symbols} \VAR{values} \PROGN{\VAR{form}})}
+  {
+    Evaluate \VAR{form}s with locally established dynamic bindings of
+    \VAR{symbols} to \VAR{values} or \NIL. Return \retval{values of
+      \VAR{form}s}. 
+  }
+
+  \IT{(\xorGOO{%
+      \SO*{LET}\\ 
+      \SO*{LET\A}}{\}} (%
+    \orGOO{\VAR{name}\\
+      (\VAR{name }\Op{\VAR{value}\DF{\NIL}})}{\}^{\!\!*}}) 
+    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} 
+    \PROGN{\VAR{form}})}
+  {
+    Evaluate \VAR{form}s with \VAR{name}s lexically bound (in parallel or
+    sequentially, respectively) to \VAR{value}s. Return
+    \retval{values of \VAR{form}s}. 
+  }
+
+  \IT{(\MC*{MULTIPLE-VALUE-BIND} (\OPn{\NEV{\VAR{var}}}) \VAR{values-form}
+    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{body-form}})}
+  {
+    Evaluate \VAR{body-form}s with \VAR{var}s lexically bound to the
+    return values of \VAR{values-form}. Return \retval{values of
+      \VAR{body-form}s}.
+  }
+
+  \IT{(\MC*{DESTRUCTURING-BIND} \VAR{destruct-$\lambda$} \VAR{bar}
+    \OPn{(\kwd{declare}
+      \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{form}})}
+  {
+    Evaluate \VAR{form}s with variables from tree
+    \VAR{destruct-$\lambda$} bound to corresponding elements of tree
+    \VAR{bar}, and return \retval{their
+      values}. \VAR{destruct-$\lambda$} resembles \VAR{macro-$\lambda$}
+    (section \ref{section:Macros}), but without any \kwd{\&environment}
+    clause. 
   }
 
 \end{LIST}
@@ -662,18 +702,6 @@
   respectively, of \VAR{form-r}. 
   }
 
-  \IT{(\xorGOO{\SO*{LET}\\ 
-      \SO*{LET\A}}{\}} (%
-    \orGOO{\VAR{name}\\
-      (\VAR{name }\Op{\VAR{value}\DF{\NIL}})}{\}^{\!\!*}}) 
-    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} 
-    \PROGN{\VAR{form}})}
-  {
-    Evaluate \VAR{form}s with \VAR{name}s lexically bound (in parallel or
-    sequentially, respectively) to \VAR{value}s. Return
-    \retval{values of \VAR{form}s}. 
-  }
-
   \IT{(\xorGOO{\MC*{PROG}\\
       \MC*{PROG\A}}{\}}
     (\orGOO{%
@@ -688,38 +716,11 @@
     Implicitly, the whole form is a \SO{block} named \NIL. 
   }
 
-  \IT{(\SO*{PROGV} \VAR{symbols} \VAR{values} \PROGN{\VAR{form}})}
-  {
-    Evaluate \VAR{form}s with locally established dynamic bindings of
-    \VAR{symbols} to \VAR{values} or \NIL. Return \retval{values of
-      \VAR{form}s}. 
-  }
-
   \IT{(\SO*{UNWIND-PROTECT} \VAR{protected} \OPn{\VAR{cleanup}})}
   {
     Evaluate \VAR{protected} and then, no matter how control leaves
     \VAR{protected}, \VAR{cleanup}s. Return \retval{values of
       \VAR{protected}}. 
-  }
-
-  \IT{(\MC*{DESTRUCTURING-BIND} \VAR{destruct-$\lambda$} \VAR{bar}
-    \OPn{(\kwd{declare}
-      \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{form}})}
-  {
-  Evaluate \VAR{form}s with variables from tree
-  \VAR{destruct-$\lambda$} bound to corresponding elements of tree
-  \VAR{bar}, and return \retval{their
-    values}. \VAR{destruct-$\lambda$} resembles \VAR{macro-$\lambda$}
-  (section \ref{section:Macros}), but without any \kwd{\&environment}
-  clause. 
-  }
-
-  \IT{(\MC*{MULTIPLE-VALUE-BIND} (\OPn{\NEV{\VAR{var}}}) \VAR{values-form}
-    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{body-form}})}
-  {
-    Evaluate \VAR{body-form}s with \VAR{var}s lexically bound to the
-    return values of \VAR{values-form}. Return \retval{values of
-      \VAR{body-form}s}.
   }
 
   \IT{(\SO*{BLOCK} \VAR{name} \PROGN{\VAR{form}})}
