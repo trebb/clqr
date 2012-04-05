@@ -1,4 +1,4 @@
-% Copyright (C) 2008, 2009, 2010, 2011 Bert Burgemeister
+% Copyright (C) 2008, 2009, 2010, 2011, 2012 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -158,23 +158,25 @@ For any class, there is always a corresponding type of the same name.
     \OP{(\xorGOO{\kwd*{OTHERWISE}\\
         \T}{\}} \PROGN{\VAR{b-form}\DF{\NIL}})})}
   {
-  Return \retval{values of the \VAR{a-form}s} whose \VAR{type} is
-  \VAR{foo} of. Return \retval{values of \VAR{b-form}s} if no
-  \VAR{type} matches.
+    Return \retval{values of the \VAR{a-form}s} whose \VAR{type} is
+    \VAR{foo} of. Return \retval{values of \VAR{b-form}s} if no
+    \VAR{type} matches.
   }
 
-  \IT{(\xorGOO{\MC*{CTYPECASE}\\
-      \MC*{ETYPECASE}}{\}} \VAR{foo} \OPn{(\NEV{\VAR{type}}
-      \PROGN{\VAR{form}})})}
+  \IT{(\xorGOO{%
+      \MC*{ETYPECASE}\\
+      \MC*{CTYPECASE}}{\}}
+    \VAR{foo}
+    \OPn{(\NEV{\VAR{type}} \PROGN{\VAR{form}})})}
   {
-  Return \retval{values of the \VAR{form}s} whose \VAR{type} is
-  \VAR{foo} of. Signal correctable/non-correctable error, respectively
-  if no \VAR{type} matches.
+    Return \retval{values} of the first \OPn{\VAR{form}} whose \VAR{type} is
+    \VAR{foo} of.  Signal non-correctable/correctable \kwd{type-error}
+    if no \VAR{type} matches.
   }
 
   \IT{(\FU*{TYPE-OF} \VAR{foo})}
   {
-  \retval{Type of \VAR{foo}}.
+    \retval{Type of \VAR{foo}}.
   }
 
   \IT{(\MC*{CHECK-TYPE} \VAR{place} \VAR{type}
