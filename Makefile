@@ -1,4 +1,4 @@
-# Copyright (C) 2008, 2009, 2010, 2011 Bert Burgemeister
+# Copyright (C) 2008, 2009, 2010, 2011, 2012 Bert Burgemeister
 #
 # Permission is granted to copy, distribute and/or modify this
 # document under the terms of the GNU Free Documentation License,
@@ -6,7 +6,6 @@
 # Foundation; with no Invariant Sections, no Front-Cover Texts and
 # no Back-Cover Texts. For details see file COPYING.
 
-CLQR		= clqr
 SEND-TO-LOG	= | tee -a lastbuild.log
 
 LATEX		= latex 
@@ -29,61 +28,59 @@ MV		= mv --force --verbose
 MAKE		= make
 GZIP		= gzip
 GIT_REVISION	= git describe | sed 's/\(.*-.*\)-.*/\1/'
-GIT_ARCHIVE	= git archive --format=tar --prefix=$(CLQR)/ HEAD | $(GZIP)
+GIT_ARCHIVE	= git archive --format=tar --prefix=clqr/ HEAD | $(GZIP)
 GIT_LOG		= git log
 DATE		= git log HEAD^..HEAD --date=short | awk '/Date:/{print $$2}' | tr -d '\n\\' 
-RSYNC		= rsync -va
-SSH		= ssh
 
 all:	letter a4
 
 letter:	 
 	$(MAKE) letter-booklets
-	$(MAKE) $(CLQR)-letter-consec.pdf
+	$(MAKE) clqr-letter-consec.pdf
 
 a4:	
 	$(MAKE) a4-booklets
-	$(MAKE) $(CLQR)-a4-consec.pdf 
+	$(MAKE) clqr-a4-consec.pdf 
 
-letter-booklets:	$(CLQR)-letter-booklet-all.pdf $(CLQR)-letter-booklet-four.pdf
+letter-booklets:	clqr-letter-booklet-all.pdf clqr-letter-booklet-four.pdf
 
-a4-booklets:	 $(CLQR)-a4-booklet-all.pdf $(CLQR)-a4-booklet-four.pdf 
+a4-booklets:	 clqr-a4-booklet-all.pdf clqr-a4-booklet-four.pdf 
 
-$(CLQR)-%-consec.pdf:	$(CLQR)-%-consec.ps
+clqr-%-consec.pdf:	clqr-%-consec.ps
 	$(PS2PDF) $< $@ $(SEND-TO-LOG)
 
-$(CLQR)-letter-booklet-%.pdf:	$(CLQR)-letter-booklet-%.ps
+clqr-letter-booklet-%.pdf:	clqr-letter-booklet-%.ps
 	$(PS2PDF) -sPAPERSIZE=letter $< $@ $(SEND-TO-LOG)
 
-$(CLQR)-a4-booklet-%.pdf:	$(CLQR)-a4-booklet-%.ps
+clqr-a4-booklet-%.pdf:	clqr-a4-booklet-%.ps
 	$(PS2PDF) -sPAPERSIZE=a4 $< $@ $(SEND-TO-LOG)
 
-$(CLQR)-letter-booklet-%.ps:	$(CLQR)-letter-signature-%.ps color-black.flag
+clqr-letter-booklet-%.ps:	clqr-letter-signature-%.ps color-black.flag
 	$(PSNUP-LETTER) $< > $@ $(SEND-TO-LOG)
 
-$(CLQR)-a4-booklet-%.ps:	$(CLQR)-a4-signature-%.ps color-black.flag
+clqr-a4-booklet-%.ps:	clqr-a4-signature-%.ps color-black.flag
 	$(PSNUP-A4) $< > $@ $(SEND-TO-LOG)
 
-$(CLQR)-%-signature-all.ps:	$(CLQR)-%-consec.ps
+clqr-%-signature-all.ps:	clqr-%-consec.ps
 	$(PSBOOK-ALL) $< $@ $(SEND-TO-LOG)
 
-$(CLQR)-%-signature-four.ps:	$(CLQR)-%-consec.ps
+clqr-%-signature-four.ps:	clqr-%-consec.ps
 	$(PSBOOK-FOUR) $< $@ $(SEND-TO-LOG)
 
-$(CLQR)-%-consec.ps:	$(CLQR)-%.dvi color-colorful.flag
+clqr-%-consec.ps:	clqr-%.dvi color-colorful.flag
 	$(DVIPS) -o $@ $< $(SEND-TO-LOG)
 
-$(CLQR)-%.dvi:	$(CLQR).tex $(CLQR)-*.tex $(CLQR).*.tex $(CLQR)-types-and-classes.1 paper-%.flag revision-number
-	$(TOUCH) $(CLQR).ind $(SEND-TO-LOG)
-	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
-	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
-	$(MAKEINDEX) -s $(CLQR).ist $(CLQR).idx $(SEND-TO-LOG)
-	$(LATEX) $(CLQR).tex $(SEND-TO-LOG)
-	$(MV) $(CLQR).dvi $@ $(SEND-TO-LOG)
+clqr-%.dvi:	clqr.tex clqr-*.tex clqr.*.tex clqr-types-and-classes.1 paper-%.flag revision-number
+	$(TOUCH) clqr.ind $(SEND-TO-LOG)
+	$(LATEX) clqr.tex $(SEND-TO-LOG)
+	$(LATEX) clqr.tex $(SEND-TO-LOG)
+	$(MAKEINDEX) -s clqr.ist clqr.idx $(SEND-TO-LOG)
+	$(LATEX) clqr.tex $(SEND-TO-LOG)
+	$(MV) clqr.dvi $@ $(SEND-TO-LOG)
 
-$(CLQR)-types-and-classes.1 $(CLQR)-types-and-classes.2 \
-$(CLQR)-types-and-classes.3 $(CLQR)-types-and-classes.4 \
-$(CLQR)-types-and-classes.5:	$(CLQR)-types-and-classes.mp $(CLQR).macros.tex clqr.packages.tex
+clqr-types-and-classes.1 clqr-types-and-classes.2 \
+clqr-types-and-classes.3 clqr-types-and-classes.4 \
+clqr-types-and-classes.5:	clqr-types-and-classes.mp clqr.macros.tex clqr.packages.tex
 	$(MPOST) $< $(SEND-TO-LOG)
 
 paper-a4.flag:	
@@ -107,70 +104,57 @@ color-black.flag:
 	$(TOUCH) $@
 
 revision-number:
-	$(GIT_REVISION) | tee REVISION.tex > html/release-revision.txt
-	$(DATE) | tee DATE.tex > html/release-date.txt
+	$(GIT_REVISION) | tee REVISION.tex > release-revision.txt
+	$(DATE) | tee DATE.tex > release-date.txt
 
 clean:
-	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.out *.ps *.pdf *~ html/*~ \
-	*.flag *.jpg html/*.jpg *.tar.gz REVISION.tex DATE.tex \
-	      html/latest-changes.html html/release-revision.txt html/release-date.txt \
+	$(RM) *.dvi *.toc *.aux *.log *.idx *.ilg *.ind *.out *.ps *.pdf *~ \
+	*.flag *.jpg *.jpg *.tar.gz REVISION.tex DATE.tex \
+	latest-changes.html release-revision.txt release-date.txt \
 	      *.[12345] *.mpx mpxerr.tex paper-current.tex color-current.tex
 	$(RM) -r gh-pages
 
 
-# Project hosting, Berlios
+# Project hosting, Github
 
-publish:
-	$(MAKE) html/sample-frontcover.jpg \
-		html/sample-firstpage-all.jpg html/sample-firstpage-four.jpg \
-		html/sample-firstpage-consec.jpg html/sample-source.jpg \
-		html/latest-changes.html \
-		$(CLQR).tar.gz
-	$(MAKE) letter a4
-	$(MAKE) publishclean
-	$(RSYNC) --delete ./ trebb@shell.berlios.de:/home/groups/ftp/pub/clqr/clqr/ $(SEND-TO-LOG)
-	$(RSYNC) ./html/ trebb@shell.berlios.de:/home/groups/clqr/htdocs/ $(SEND-TO-LOG)
-
-html/sample-frontcover.jpg:	$(CLQR)-a4-consec.pdf
+sample-frontcover.jpg:	clqr-a4-consec.pdf
 	$(CONVERT) $<'[0]' -verbose -resize 40% temp.jpg $(SEND-TO-LOG)
 	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 	$(RM) temp.jpg
 
-html/sample-firstpage-%.jpg:	$(CLQR)-a4-booklet-%.pdf
+sample-firstpage-%.jpg:	clqr-a4-booklet-%.pdf
 	$(CONVERT) $<'[0]' -verbose -resize 15% temp.jpg $(SEND-TO-LOG)
 	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 	$(RM) temp.jpg
 
-html/sample-firstpage-consec.jpg:	$(CLQR)-a4-consec.pdf
+sample-firstpage-consec.jpg:	clqr-a4-consec.pdf
 	$(CONVERT) $<'[0]' -verbose -resize 15% temp.jpg $(SEND-TO-LOG)
 	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 	$(RM) temp.jpg
 
-html/sample-source.jpg:	$(CLQR)-numbers.tex
+sample-source.jpg:	clqr-numbers.tex
 	$(HEAD) -n 57  $< | $(TAIL) -n 40 | $(CONVERT) -font Courier -crop 120x80+30+2 +repage label:@- temp.jpg $(SEND-TO-LOG)
 	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 	$(RM) temp.jpg
 
-html/latest-changes.html:	$(CLQR).tex $(CLQR)-*.tex 
+latest-changes.html:	clqr.tex clqr-*.tex 
 	if $(GIT_LOG) -5 --pretty=format:"<p><i>%ci</i>%n<br />%s%n<br />%b</p>" > $@; then true; else true; fi $(SEND-TO-LOG)
-
-# Github
 
 gh-publish:
 	$(RM) -r gh-pages
 	mkdir gh-pages
-	$(MAKE) gh-pages/$(CLQR)-a4-booklet-all.pdf \
-		gh-pages/$(CLQR)-a4-booklet-four.pdf \
-		gh-pages/$(CLQR)-a4-consec.pdf \
-		gh-pages/$(CLQR)-letter-booklet-all.pdf \
-		gh-pages/$(CLQR)-letter-booklet-four.pdf \
-		gh-pages/$(CLQR)-letter-consec.pdf \
+	$(MAKE) gh-pages/clqr-a4-booklet-all.pdf \
+		gh-pages/clqr-a4-booklet-four.pdf \
+		gh-pages/clqr-a4-consec.pdf \
+		gh-pages/clqr-letter-booklet-all.pdf \
+		gh-pages/clqr-letter-booklet-four.pdf \
+		gh-pages/clqr-letter-consec.pdf \
 		gh-pages/sample-frontcover.jpg \
 		gh-pages/sample-firstpage-all.jpg \
 		gh-pages/sample-firstpage-four.jpg \
 		gh-pages/sample-firstpage-consec.jpg \
 		gh-pages/sample-source.jpg \
-		gh-pages/$(CLQR).tar.gz \
+		gh-pages/clqr.tar.gz \
 		gh-pages/404.html \
 		gh-pages/CNAME \
 		gh-pages/README \
@@ -184,11 +168,11 @@ gh-publish:
 		gh-pages/source.html
 	cd gh-pages; git init; git add ./; git commit -a -m "gh-pages pseudo commit"; git push git@github.com:trebb/clqr.git +master:gh-pages
 
-gh-pages/sample-%.jpg: html/sample-%.jpg
+gh-pages/sample-%.jpg: sample-%.jpg
 	$(CP) $< $@
 
-gh-pages/index.html: html-template/index.html html/latest-changes.html
-	sed -e "/<h3>Latest Changes<\/h3>/ r html/latest-changes.html" html-template/index.html > $@
+gh-pages/index.html: html-template/index.html latest-changes.html
+	sed -e "/<h3>Latest Changes<\/h3>/ r latest-changes.html" html-template/index.html > $@
 
 gh-pages/download.html: html-template/download.html revision-number
 	sed -e "/This is revision/ r REVISION.tex" -e "/<!- date of commit \/>/ r DATE.tex" html-template/download.html > $@
@@ -202,8 +186,5 @@ gh-pages/%.tar.gz: %.tar.gz
 gh-pages/%: html-template/%
 	$(CP) $< $@
 
-$(CLQR).tar.gz:	$(CLQR).tex $(CLQR)-*.tex 
-	if $(GIT_ARCHIVE) > $(CLQR).tar.gz; then true; else true; fi $(SEND-TO-LOG)
-
-publishclean:
-	$(RM) $(CLQR).{aux,idx,ilg,ind,log,out,toc} *.ps *.dvi $(CLQR)-types-and-classes.{log,mpx,1,2,3,4,5} *~ html/*~
+clqr.tar.gz:	clqr.tex clqr-*.tex 
+	if $(GIT_ARCHIVE) > clqr.tar.gz; then true; else true; fi $(SEND-TO-LOG)
