@@ -1,11 +1,11 @@
 
 clqr-arrays.tex,268
-\section{Arrays}Arrays11,428
-\label{section:Arrays}section:Arrays13,497
-\subsection{Predicates}Predicates16,572
-\subsection{Array Functions} Array47,1394
-\subsection{Vector Functions} Vector161,4651
-section~\ref{section:Sequences}section:Sequences165,4796
+\section{Arrays}Arrays11,434
+\label{section:Arrays}section:Arrays13,503
+\subsection{Predicates}Predicates16,578
+\subsection{Array Functions} Array47,1400
+\subsection{Vector Functions} Vector161,4657
+section~\ref{section:Sequences}section:Sequences165,4802
 
 clqr-characters.tex,262
 \section{Characters}Characters11,422
@@ -26,16 +26,16 @@ clqr-clos.tex,458
 \label{section:Method Combination Types}section:Method334,11460
 
 clqr-compiler.tex,840
-\section{Compiler}Compiler11,428
-\subsection{Predicates}Predicates15,551
-\subsection{Compilation}Compilation34,931
-  {\index{*COMPILE-FILE-PATHNAME*@\A COMPILE-FILE-PATHNAME\A}\index{*COMPILE-FILE-TRUENAME*@\A COMPILE-FILE-TRUENAME\A}\index{*LOAD-PATHNAME*@\A LOAD-PATHNAME\A}\index{*LOAD-TRUENAME*@\A LOAD-TRUENAME\A}*COMPILE-FILE-PATHNAME*@\A85,2720
-  {\index{*COMPILE-PRINT*@\A COMPILE-PRINT\A}\index{*COMPILE-VERBOSE*@\A COMPILE-VERBOSE\A}\index{*LOAD-PRINT*@\A LOAD-PRINT\A}\index{*LOAD-VERBOSE*@\A LOAD-VERBOSE\A}*COMPILE-PRINT*@\A93,3101
-\subsection[REPL~\&~Debug]{[REPL~\&~Debug]175,5930
-  {\index{*@\A}*@\A183,6253
-  {\index{*MACROEXPAND-HOOK*@\A MACROEXPAND-HOOK\A}*MACROEXPAND-HOOK*@\A224,7410
-  {\index{*TRACE-OUTPUT*@\A TRACE-OUTPUT\A}*TRACE-OUTPUT*@\A245,8018
-\subsection{Declarations}Declarations294,9232
+\section{Compiler}Compiler11,434
+\subsection{Predicates}Predicates15,557
+\subsection{Compilation}Compilation34,937
+  {\index{*COMPILE-FILE-PATHNAME*@\A COMPILE-FILE-PATHNAME\A}\index{*COMPILE-FILE-TRUENAME*@\A COMPILE-FILE-TRUENAME\A}\index{*LOAD-PATHNAME*@\A LOAD-PATHNAME\A}\index{*LOAD-TRUENAME*@\A LOAD-TRUENAME\A}*COMPILE-FILE-PATHNAME*@\A85,2726
+  {\index{*COMPILE-PRINT*@\A COMPILE-PRINT\A}\index{*COMPILE-VERBOSE*@\A COMPILE-VERBOSE\A}\index{*LOAD-PRINT*@\A LOAD-PRINT\A}\index{*LOAD-VERBOSE*@\A LOAD-VERBOSE\A}*COMPILE-PRINT*@\A93,3107
+\subsection[REPL~\&~Debug]{[REPL~\&~Debug]175,5936
+  {\index{*@\A}*@\A183,6259
+  {\index{*MACROEXPAND-HOOK*@\A MACROEXPAND-HOOK\A}*MACROEXPAND-HOOK*@\A224,7416
+  {\index{*TRACE-OUTPUT*@\A TRACE-OUTPUT\A}*TRACE-OUTPUT*@\A245,8024
+\subsection{Declarations}Declarations294,9239
 
 clqr-conditions-and-errors.tex,290
 \section{Conditions and Errors} Conditions11,428
@@ -44,41 +44,42 @@ For standardized condition types cf.\ Figure \ref{data-types}data-types14,513
   {\index{*DEBUGGER-HOOK*@\A DEBUGGER-HOOK\A}*DEBUGGER-HOOK*@\A280,10716
 
 clqr-conses.tex,687
-\section{Conses}Conses11,428
-\subsection{Predicates}Predicates15,549
-\subsection{Lists}Lists76,2139
-  \index{SEVENTH}SEVENTH126,3494
-  \index{EIGHTH}EIGHTH127,3513
-  \index{CAAR}CAAR139,3795
-  \index{CADR}CADR140,3811
-  \index{CDAR}CDAR141,3827
-  \index{CDDR}CDDR142,3843
-\subsection{Association Lists} Association258,7242
-\label{section:Association Lists}section:Association260,7325
-  {\index{ASSOC-IF-NOT}ASSOC-IF-NOT286,8137
-\subsection{Trees}Trees300,8423
-  \index{SUBST-IF}SUBST-IF328,9379
-  \index{SUBST-IF-NOT}SUBST-IF-NOT329,9399
-  \index{NSUBST-IF}NSUBST-IF330,9423
-  \index{NSUBST-IF-NOT}NSUBST-IF-NOT331,9444
-\subsection{Sets}Sets357,10199
+\section{Conses}Conses11,434
+\subsection{Predicates}Predicates15,555
+\subsection{Lists}Lists76,2145
+  \index{SEVENTH}SEVENTH126,3500
+  \index{EIGHTH}EIGHTH127,3519
+  \index{CAAR}CAAR139,3801
+  \index{CADR}CADR140,3817
+  \index{CDAR}CDAR141,3833
+  \index{CDDR}CDDR142,3849
+\subsection{Association Lists} Association262,7385
+\label{section:Association Lists}section:Association264,7468
+  {\index{ASSOC-IF-NOT}ASSOC-IF-NOT290,8280
+\subsection{Trees}Trees304,8566
+  \index{SUBST-IF}SUBST-IF332,9522
+  \index{SUBST-IF-NOT}SUBST-IF-NOT333,9542
+  \index{NSUBST-IF}NSUBST-IF334,9566
+  \index{NSUBST-IF-NOT}NSUBST-IF-NOT335,9587
+\subsection{Sets}Sets361,10342
 
-clqr-control-structure.tex,795
-\section{Control Structure}Control11,428
-\subsection{Predicates}Predicates15,559
-\subsection{Variables}Variables82,2427
-  \label{:property_lists}:property_lists146,4205
-\subsection{Functions}Functions178,5334
-\label{section:Functions}section:Functions180,5408
-\subsection{Macros}Macros340,10328
-\label{section:Macros}section:Macros342,10399
-\subsection{Control Flow}Control589,18222
-  {\label{:progn}:progn651,20341
-  (section \ref{section:Macros}section:Macros713,22515
-\subsection{Iteration}Iteration774,24250
-\subsection{Loop Facility}Loop820,25884
-    see below and Figure \ref{loop-overview}loop-overview836,26281
-      \raisebox{0em}[0em][0em]{\parbox[b]{4cm}{\caption{\protect\raggedright Loop Facility, Overview.\label{loop-overview}loop-overview1130,37089
+clqr-control-structure.tex,849
+\section{Control Structure}Control11,434
+\subsection{Predicates}Predicates15,565
+\subsection{Variables}Variables82,2433
+  \label{:property_lists}:property_lists146,4211
+    (section \ref{section:Macros}section:Macros210,6610
+\subsection{Functions}Functions218,6764
+\label{section:Functions}section:Functions220,6838
+\subsection{Macros}Macros380,11758
+\label{section:Macros}section:Macros382,11829
+\subsection{Control Flow}Control629,19652
+  {\label{:progn}:progn691,21747
+\subsection{Iteration}Iteration775,24258
+\subsection{Loop Facility}Loop821,25892
+\label{section:Loop Facility}section:Loop823,25970
+    see below and Figure \ref{loop-overview}loop-overview837,26318
+      \raisebox{0em}[0em][0em]{\parbox[b]{4cm}{\caption{\protect\raggedright Loop Facility, Overview.\label{loop-overview}loop-overview1131,37126
 
 clqr-external-environment.tex,393
 \section{External Environment}External11,422
@@ -90,7 +91,7 @@ clqr-external-environment.tex,393
     \index{MACHINE-VERSION}MACHINE-VERSION69,2116
 
 clqr-hash-tables.tex,35
-\section{Hash Tables} Hash11,416
+\section{Hash Tables} Hash11,422
 
 clqr-input-output.tex,4285
 \section{Input/Output}Input/Output11,428
@@ -126,49 +127,49 @@ clqr-input-output.tex,4285
   {\index{*PRINT-LENGTH*@\A PRINT-LENGTH\A}\index{*PRINT-LEVEL*@\A PRINT-LEVEL\A}\index{*PRINT-LINES*@\A PRINT-LINES\A}*PRINT-LENGTH*@\A641,19947
   {\index{*PRINT-MISER-WIDTH*@\A PRINT-MISER-WIDTH\A}*PRINT-MISER-WIDTH*@\A647,20231
   {\index{*PRINT-PRETTY*@\A PRINT-PRETTY\A}*PRINT-PRETTY*@\A653,20444
-  {\index{*PRINT-RADIX*@\A PRINT-RADIX\A}*PRINT-RADIX*@\A658,20555
-  {\index{*PRINT-READABLY*@\A PRINT-READABLY\A}*PRINT-READABLY*@\A663,20693
-  {\index{*PRINT-RIGHT-MARGIN*@\A PRINT-RIGHT-MARGIN\A}*PRINT-RIGHT-MARGIN*@\A669,20868
-  {\index{*PRINT-PPRINT-DISPATCH*@\A PRINT-PPRINT-DISPATCH\A}*PRINT-PPRINT-DISPATCH*@\A699,21913
-\subsection{Format}Format708,22073
-\label{section:Format}section:Format710,22131
-    {\index{\~S@$\sim$S}\~S@$\sim$S739,23270
-    {\index{\~R@$\sim$R}\~R@$\sim$R752,23893
-    {\index{\~D@$\sim$D}\~D@$\sim$D773,24679
-    {\index{\~F@$\sim$F}\~F@$\sim$F784,25210
-    {\index{\~E@$\sim$E}\~E@$\sim$E796,25702
-    {\index{\~\$@$\sim$\$}\~\$@$\sim$\$809,26317
-    {\index{\~C@$\sim$C}\~C@$\sim$C818,26635
-    {\index{\~(\~)@$\sim$( $\sim$)}%\~(\~)@$\sim$(830,27054
-    {\index{\~P@$\sim$P}\~P@$\sim$P839,27410
-    {\index{\~\%@$\sim$\%}\~\%@$\sim$\%848,27777
-    {\index{\~\&@$\sim$\&}\~\&@$\sim$\&854,27917
-    {\index{\~\_{}@$\sim$\_{}}%\~\_861,28168
-    {\index{\~\~bogus-ordering{}@$\sim\hookleftarrow$}%\~\~bogus-ordering868,28489
-    {\index{\~\textbar@$\sim${$"|$}}%\~\textbar@$\sim$874,28723
-    {\index{\~\~@$\sim$$\sim$}\~\~@$\sim$$\sim$880,28879
-    {\index{\~<\~>@$\sim$$<$ $\sim$$>$}%\~<\~>@$\sim$$<$892,29392
-    {\index{\~<\~:>@$\sim$$<$ $\sim$:$>$}%\~<\~:>@$\sim$$<$906,30030
-    {\index{\~I@$\sim$I}\~I@$\sim$I919,30652
-    {\index{\~T@$\sim$T}\~T@$\sim$T927,30904
-    {\index{\~*@$\sim$\A}\~*@$\sim$\A939,31441
-    {\index{\~\{\~\}@$\sim$$\{$ $\sim\}$}%\~\946,31699
-    {\index{\~\^{}@$\sim$\^{}}%\~\^957,32171
-    {\index{\~[\~]@$\sim$[ $\sim$]}%\~[\~]@$\sim$[969,32732
-    {\index{\~?@$\sim$?}\~?@$\sim$?980,33232
-    {\index{\~/ /@$\sim$/ /}%\~/992,33686
-    {\index{\~W@$\sim$W}\~W@$\sim$W1000,33987
-    {\index{V}V1008,34242
-\subsection{Streams}Streams1019,34493
-  {\label{open}open1052,35533
-  {\index{*TERMINAL-IO*@\A TERMINAL-IO\A}*TERMINAL-IO*@\A1196,40311
-  {\index{*STANDARD-INPUT*@\A STANDARD-INPUT\A}%*STANDARD-INPUT*@\A1203,40507
-    \index{*STANDARD-OUTPUT*@\A STANDARD-OUTPUT\A}%*STANDARD-OUTPUT*@\A1204,40556
-    \index{*ERROR-OUTPUT*@\A ERROR-OUTPUT\A}*ERROR-OUTPUT*@\A1205,40608
-  {\index{*DEBUG-IO*@\A DEBUG-IO\A}\index{*QUERY-IO*@\A QUERY-IO\A}*DEBUG-IO*@\A1212,40824
-\subsection[Paths and Files]{[Paths1220,41023
-  {\index{*DEFAULT-PATHNAME-DEFAULTS*@\A DEFAULT-PATHNAME-DEFAULTS\A}*DEFAULT-PATHNAME-DEFAULTS*@\A1292,43597
-    \index{*@\A}*@\A1349,45283
+  {\index{*PRINT-RADIX*@\A PRINT-RADIX\A}*PRINT-RADIX*@\A658,20557
+  {\index{*PRINT-READABLY*@\A PRINT-READABLY\A}*PRINT-READABLY*@\A663,20695
+  {\index{*PRINT-RIGHT-MARGIN*@\A PRINT-RIGHT-MARGIN\A}*PRINT-RIGHT-MARGIN*@\A669,20870
+  {\index{*PRINT-PPRINT-DISPATCH*@\A PRINT-PPRINT-DISPATCH\A}*PRINT-PPRINT-DISPATCH*@\A699,21915
+\subsection{Format}Format708,22075
+\label{section:Format}section:Format710,22133
+    {\index{\~S@$\sim$S}\~S@$\sim$S739,23272
+    {\index{\~R@$\sim$R}\~R@$\sim$R752,23895
+    {\index{\~D@$\sim$D}\~D@$\sim$D773,24681
+    {\index{\~F@$\sim$F}\~F@$\sim$F784,25212
+    {\index{\~E@$\sim$E}\~E@$\sim$E796,25704
+    {\index{\~\$@$\sim$\$}\~\$@$\sim$\$809,26319
+    {\index{\~C@$\sim$C}\~C@$\sim$C818,26637
+    {\index{\~(\~)@$\sim$( $\sim$)}%\~(\~)@$\sim$(830,27056
+    {\index{\~P@$\sim$P}\~P@$\sim$P839,27412
+    {\index{\~\%@$\sim$\%}\~\%@$\sim$\%848,27779
+    {\index{\~\&@$\sim$\&}\~\&@$\sim$\&854,27919
+    {\index{\~\_{}@$\sim$\_{}}%\~\_861,28170
+    {\index{\~\~bogus-ordering{}@$\sim\hookleftarrow$}%\~\~bogus-ordering868,28491
+    {\index{\~\textbar@$\sim${$"|$}}%\~\textbar@$\sim$874,28725
+    {\index{\~\~@$\sim$$\sim$}\~\~@$\sim$$\sim$880,28881
+    {\index{\~<\~>@$\sim$$<$ $\sim$$>$}%\~<\~>@$\sim$$<$892,29394
+    {\index{\~<\~:>@$\sim$$<$ $\sim$:$>$}%\~<\~:>@$\sim$$<$906,30032
+    {\index{\~I@$\sim$I}\~I@$\sim$I919,30654
+    {\index{\~T@$\sim$T}\~T@$\sim$T927,30906
+    {\index{\~*@$\sim$\A}\~*@$\sim$\A939,31443
+    {\index{\~\{\~\}@$\sim$$\{$ $\sim\}$}%\~\946,31701
+    {\index{\~\^{}@$\sim$\^{}}%\~\^957,32173
+    {\index{\~[\~]@$\sim$[ $\sim$]}%\~[\~]@$\sim$[969,32734
+    {\index{\~?@$\sim$?}\~?@$\sim$?980,33234
+    {\index{\~/ /@$\sim$/ /}%\~/992,33688
+    {\index{\~W@$\sim$W}\~W@$\sim$W1000,33989
+    {\index{V}V1008,34244
+\subsection{Streams}Streams1019,34495
+  {\label{open}open1052,35535
+  {\index{*TERMINAL-IO*@\A TERMINAL-IO\A}*TERMINAL-IO*@\A1196,40313
+  {\index{*STANDARD-INPUT*@\A STANDARD-INPUT\A}%*STANDARD-INPUT*@\A1203,40509
+    \index{*STANDARD-OUTPUT*@\A STANDARD-OUTPUT\A}%*STANDARD-OUTPUT*@\A1204,40558
+    \index{*ERROR-OUTPUT*@\A ERROR-OUTPUT\A}*ERROR-OUTPUT*@\A1205,40610
+  {\index{*DEBUG-IO*@\A DEBUG-IO\A}\index{*QUERY-IO*@\A QUERY-IO\A}*DEBUG-IO*@\A1212,40826
+\subsection[Paths and Files]{[Paths1220,41025
+  {\index{*DEFAULT-PATHNAME-DEFAULTS*@\A DEFAULT-PATHNAME-DEFAULTS\A}*DEFAULT-PATHNAME-DEFAULTS*@\A1292,43599
+    \index{*@\A}*@\A1349,45285
 
 clqr.macros.tex,2090
 \newenvironment{LIST}LIST10,403
@@ -230,64 +231,64 @@ clqr.macros.tex,2090
 \WithSuffix\newcommand\LKWD*[1]{\LKWD*[1]252,7394
 
 clqr-numbers.tex,3204
-\section{Numbers}Numbers11,428
-\subsection{Predicates}Predicates15,550
-  \index{>@$>$}>@$>$33,1057
-  \index{>=@$>$=}>=@$>$=34,1074
-  \index{<@$<$}<@$<$35,1093
-  \index{<=@$<$=}<=@$<$=36,1110
-\subsection[Numeric~Functns]{[Numeric~Functns]72,2029
-  {\index{*@\A}*@\A79,2250
-  {\index{*RANDOM-STATE*@\A RANDOM-STATE\A}*RANDOM-STATE*@\A220,6126
-\subsection{Logic Functions} Logic278,7499
-\label{section:Logic Functions}section:Logic280,7580
-\subsection{Integer Functions} Integer381,11043
-\subsection[Implementation- Dependent]{[Implementation-441,12691
-  \index{SHORT-FLOAT-EPSILON}SHORT-FLOAT-EPSILON452,13017
-  \index{SINGLE-FLOAT-EPSILON}SINGLE-FLOAT-EPSILON453,13048
-  \index{DOUBLE-FLOAT-EPSILON}DOUBLE-FLOAT-EPSILON454,13080
-  \index{LONG-FLOAT-EPSILON}LONG-FLOAT-EPSILON455,13112
-  \index{SHORT-FLOAT-NEGATIVE-EPSILON}SHORT-FLOAT-NEGATIVE-EPSILON456,13142
-  \index{SINGLE-FLOAT-NEGATIVE-EPSILON}SINGLE-FLOAT-NEGATIVE-EPSILON457,13182
-  \index{DOUBLE-FLOAT-NEGATIVE-EPSILON}DOUBLE-FLOAT-NEGATIVE-EPSILON458,13223
-  \index{LONG-FLOAT-NEGATIVE-EPSILON}LONG-FLOAT-NEGATIVE-EPSILON459,13264
-  \index{LEAST-NEGATIVE-SHORT-FLOAT}LEAST-NEGATIVE-SHORT-FLOAT475,13692
-  \index{LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT}LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT476,13730
-  \index{LEAST-NEGATIVE-SINGLE-FLOAT}LEAST-NEGATIVE-SINGLE-FLOAT477,13779
-  \index{LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT}LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT478,13818
-  \index{LEAST-NEGATIVE-DOUBLE-FLOAT}LEAST-NEGATIVE-DOUBLE-FLOAT479,13868
-  \index{LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT}LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT480,13907
-  \index{LEAST-NEGATIVE-LONG-FLOAT}LEAST-NEGATIVE-LONG-FLOAT481,13957
-  \index{LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT}LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT482,13994
-  \index{LEAST-POSITIVE-SHORT-FLOAT}LEAST-POSITIVE-SHORT-FLOAT483,14042
-  \index{LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT}LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT484,14080
-  \index{LEAST-POSITIVE-SINGLE-FLOAT}LEAST-POSITIVE-SINGLE-FLOAT485,14129
-  \index{LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT}LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT486,14168
-  \index{LEAST-POSITIVE-DOUBLE-FLOAT}LEAST-POSITIVE-DOUBLE-FLOAT487,14218
-  \index{LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT}LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT488,14257
-  \index{LEAST-POSITIVE-LONG-FLOAT}LEAST-POSITIVE-LONG-FLOAT489,14307
-  \index{LEAST-POSITIVE-NORMALIZED-LONG-FLOAT}LEAST-POSITIVE-NORMALIZED-LONG-FLOAT490,14344
-  \index{MOST-NEGATIVE-DOUBLE-FLOAT}MOST-NEGATIVE-DOUBLE-FLOAT504,14684
-  \index{MOST-NEGATIVE-LONG-FLOAT}MOST-NEGATIVE-LONG-FLOAT505,14722
-  \index{MOST-NEGATIVE-SHORT-FLOAT}MOST-NEGATIVE-SHORT-FLOAT506,14758
-  \index{MOST-NEGATIVE-SINGLE-FLOAT}MOST-NEGATIVE-SINGLE-FLOAT507,14795
-  \index{MOST-NEGATIVE-FIXNUM}MOST-NEGATIVE-FIXNUM508,14833
-  \index{MOST-POSITIVE-DOUBLE-FLOAT}MOST-POSITIVE-DOUBLE-FLOAT509,14865
-  \index{MOST-POSITIVE-LONG-FLOAT}MOST-POSITIVE-LONG-FLOAT510,14903
-  \index{MOST-POSITIVE-SHORT-FLOAT}MOST-POSITIVE-SHORT-FLOAT511,14939
-  \index{MOST-POSITIVE-SINGLE-FLOAT}MOST-POSITIVE-SINGLE-FLOAT512,14976
-  \index{MOST-POSITIVE-FIXNUM}MOST-POSITIVE-FIXNUM513,15014
+\section{Numbers}Numbers11,434
+\subsection{Predicates}Predicates15,556
+  \index{>@$>$}>@$>$33,1063
+  \index{>=@$>$=}>=@$>$=34,1080
+  \index{<@$<$}<@$<$35,1099
+  \index{<=@$<$=}<=@$<$=36,1116
+\subsection[Numeric~Functns]{[Numeric~Functns]72,2035
+  {\index{*@\A}*@\A79,2256
+  {\index{*RANDOM-STATE*@\A RANDOM-STATE\A}*RANDOM-STATE*@\A220,6150
+\subsection{Logic Functions} Logic278,7525
+\label{section:Logic Functions}section:Logic280,7606
+\subsection{Integer Functions} Integer381,11069
+\subsection[Implementation- Dependent]{[Implementation-441,12717
+  \index{SHORT-FLOAT-EPSILON}SHORT-FLOAT-EPSILON452,13043
+  \index{SINGLE-FLOAT-EPSILON}SINGLE-FLOAT-EPSILON453,13074
+  \index{DOUBLE-FLOAT-EPSILON}DOUBLE-FLOAT-EPSILON454,13106
+  \index{LONG-FLOAT-EPSILON}LONG-FLOAT-EPSILON455,13138
+  \index{SHORT-FLOAT-NEGATIVE-EPSILON}SHORT-FLOAT-NEGATIVE-EPSILON456,13168
+  \index{SINGLE-FLOAT-NEGATIVE-EPSILON}SINGLE-FLOAT-NEGATIVE-EPSILON457,13208
+  \index{DOUBLE-FLOAT-NEGATIVE-EPSILON}DOUBLE-FLOAT-NEGATIVE-EPSILON458,13249
+  \index{LONG-FLOAT-NEGATIVE-EPSILON}LONG-FLOAT-NEGATIVE-EPSILON459,13290
+  \index{LEAST-NEGATIVE-SHORT-FLOAT}LEAST-NEGATIVE-SHORT-FLOAT475,13718
+  \index{LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT}LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT476,13756
+  \index{LEAST-NEGATIVE-SINGLE-FLOAT}LEAST-NEGATIVE-SINGLE-FLOAT477,13805
+  \index{LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT}LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT478,13844
+  \index{LEAST-NEGATIVE-DOUBLE-FLOAT}LEAST-NEGATIVE-DOUBLE-FLOAT479,13894
+  \index{LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT}LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT480,13933
+  \index{LEAST-NEGATIVE-LONG-FLOAT}LEAST-NEGATIVE-LONG-FLOAT481,13983
+  \index{LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT}LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT482,14020
+  \index{LEAST-POSITIVE-SHORT-FLOAT}LEAST-POSITIVE-SHORT-FLOAT483,14068
+  \index{LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT}LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT484,14106
+  \index{LEAST-POSITIVE-SINGLE-FLOAT}LEAST-POSITIVE-SINGLE-FLOAT485,14155
+  \index{LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT}LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT486,14194
+  \index{LEAST-POSITIVE-DOUBLE-FLOAT}LEAST-POSITIVE-DOUBLE-FLOAT487,14244
+  \index{LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT}LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT488,14283
+  \index{LEAST-POSITIVE-LONG-FLOAT}LEAST-POSITIVE-LONG-FLOAT489,14333
+  \index{LEAST-POSITIVE-NORMALIZED-LONG-FLOAT}LEAST-POSITIVE-NORMALIZED-LONG-FLOAT490,14370
+  \index{MOST-NEGATIVE-DOUBLE-FLOAT}MOST-NEGATIVE-DOUBLE-FLOAT504,14710
+  \index{MOST-NEGATIVE-LONG-FLOAT}MOST-NEGATIVE-LONG-FLOAT505,14748
+  \index{MOST-NEGATIVE-SHORT-FLOAT}MOST-NEGATIVE-SHORT-FLOAT506,14784
+  \index{MOST-NEGATIVE-SINGLE-FLOAT}MOST-NEGATIVE-SINGLE-FLOAT507,14821
+  \index{MOST-NEGATIVE-FIXNUM}MOST-NEGATIVE-FIXNUM508,14859
+  \index{MOST-POSITIVE-DOUBLE-FLOAT}MOST-POSITIVE-DOUBLE-FLOAT509,14891
+  \index{MOST-POSITIVE-LONG-FLOAT}MOST-POSITIVE-LONG-FLOAT510,14929
+  \index{MOST-POSITIVE-SHORT-FLOAT}MOST-POSITIVE-SHORT-FLOAT511,14965
+  \index{MOST-POSITIVE-SINGLE-FLOAT}MOST-POSITIVE-SINGLE-FLOAT512,15002
+  \index{MOST-POSITIVE-FIXNUM}MOST-POSITIVE-FIXNUM513,15040
 
 clqr-packages-and-symbols.tex,434
-\section{Packages and Symbols}Packages11,428
-\subsection{Predicates}Predicates15,562
-\subsection{Packages}Packages30,898
-  {\index{*PACKAGE*@\A PACKAGE\A}*PACKAGE*@\A109,3223
-  {\index{*MODULES*@\A MODULES\A}*MODULES*@\A232,7014
-\subsection{Symbols}Symbols240,7154
-    \index{*GENSYM-COUNTER*@\A GENSYM-COUNTER\A}*GENSYM-COUNTER*@\A258,7774
-  {\index{VARIABLE}VARIABLE298,8940
-\subsection[Std Packages]{[Std320,9557
+\section{Packages and Symbols}Packages11,434
+\subsection{Predicates}Predicates15,568
+\subsection{Packages}Packages30,904
+  {\index{*PACKAGE*@\A PACKAGE\A}*PACKAGE*@\A109,3229
+  {\index{*MODULES*@\A MODULES\A}*MODULES*@\A233,7028
+\subsection{Symbols}Symbols241,7168
+    \index{*GENSYM-COUNTER*@\A GENSYM-COUNTER\A}*GENSYM-COUNTER*@\A259,7788
+  {\index{VARIABLE}VARIABLE299,8954
+\subsection[Std Packages]{[Std321,9571
 
 clqr.packages.tex,60
 \definecolor{inecolor24,677
@@ -311,129 +312,129 @@ clqr-structures.tex,39
 \section{Structures}Structures11,422
 
 clqr.tex,653
-\newcommand{\maintitle}\maintitle10,377
-\newcommand{\AUTHOR}\AUTHOR11,433
-\newcommand{\SUBJECT}\SUBJECT15,506
-\newcommand{\KEYWORDS}\KEYWORDS16,542
-\newcommand{\clearpagebeforeindex}\clearpagebeforeindex20,684
-\titleformat{\section}57,1673
-\titleformat{\subsection}60,1803
-\deftocheading{tocheading64,1977
-  \renewcommand{\rmdefault}\rmdefault90,2750
-        Quick Reference\index{CLQR}CLQR97,3003
-\section*{*128,3924
-\renewcommand{\indexpagestyle}\indexpagestyle168,5001
-\renewenvironment{theindex}theindex169,5041
-  [\section*{*178,5414
-    \renewcommand{\rmdefault}\rmdefault210,6383
-        \reflectbox{lectbox216,6601
+\newcommand{\maintitle}\maintitle10,383
+\newcommand{\AUTHOR}\AUTHOR11,439
+\newcommand{\SUBJECT}\SUBJECT15,512
+\newcommand{\KEYWORDS}\KEYWORDS16,548
+\newcommand{\clearpagebeforeindex}\clearpagebeforeindex20,690
+\titleformat{\section}57,1679
+\titleformat{\subsection}60,1809
+\deftocheading{tocheading64,1983
+  \renewcommand{\rmdefault}\rmdefault90,2756
+        Quick Reference\index{CLQR}CLQR97,3009
+\section*{*128,3930
+\renewcommand{\indexpagestyle}\indexpagestyle168,5007
+\renewenvironment{theindex}theindex169,5047
+  [\section*{*178,5420
+    \renewcommand{\rmdefault}\rmdefault210,6389
+        \reflectbox{lectbox216,6607
 
-clqr-types-and-classes.tex,4618
-\section{Types and Classes} Types11,428
-    \label{data-types}data-types26,931
-    \index{*@\A}*@\A28,961
-    \index{T}T29,979
-    \index{ATOM}ATOM30,994
-    \index{READTABLE}READTABLE31,1012
-    \index{PACKAGE}PACKAGE32,1035
-    \index{SYMBOL}SYMBOL33,1056
-    \index{KEYWORD}KEYWORD34,1076
-    \index{BOOLEAN}BOOLEAN35,1097
-    \index{RESTART}RESTART36,1118
-    \index{RANDOM-STATE}RANDOM-STATE37,1139
-    \index{HASH-TABLE}HASH-TABLE38,1165
-    \index{STRUCTURE-OBJECT}STRUCTURE-OBJECT39,1189
-    \index{STANDARD-OBJECT}STANDARD-OBJECT40,1219
-    \index{NULL}NULL41,1248
-    \index{CLASS}CLASS42,1266
-    \index{BUILT-IN-CLASS}BUILT-IN-CLASS43,1285
-    \index{STANDARD-CLASS}STANDARD-CLASS44,1313
-    \index{STRUCTURE-CLASS}STRUCTURE-CLASS45,1341
-    \index{METHOD}METHOD46,1370
-    \index{STANDARD-METHOD}STANDARD-METHOD47,1390
-    \index{METHOD-COMBINATION}METHOD-COMBINATION48,1419
-    \index{CHARACTER}CHARACTER49,1451
-    \index{FUNCTION}FUNCTION50,1474
-    \index{COMPILED-FUNCTION}COMPILED-FUNCTION51,1496
-    \index{GENERIC-FUNCTION}GENERIC-FUNCTION52,1527
-    \index{STANDARD-GENERIC-FUNCTION}STANDARD-GENERIC-FUNCTION53,1557
-    \index{PATHNAME}PATHNAME54,1596
-    \index{LOGICAL-PATHNAME}LOGICAL-PATHNAME55,1618
-    \index{NUMBER}NUMBER56,1648
-    \index{COMPLEX}COMPLEX57,1668
-    \index{REAL}REAL58,1689
-    \index{FLOAT}FLOAT59,1707
-    \index{SHORT-FLOAT}SHORT-FLOAT60,1726
-    \index{SINGLE-FLOAT}SINGLE-FLOAT61,1751
-    \index{DOUBLE-FLOAT}DOUBLE-FLOAT62,1777
-    \index{LONG-FLOAT}LONG-FLOAT63,1803
-    \index{RATIONAL}RATIONAL64,1827
-    \index{INTEGER}INTEGER65,1849
-    \index{RATIO}RATIO66,1870
-    \index{SIGNED-BYTE}SIGNED-BYTE67,1889
-    \index{FIXNUM}FIXNUM68,1914
-    \index{BIGNUM}BIGNUM69,1934
-    \index{UNSIGNED-BYTE}UNSIGNED-BYTE70,1954
-    \index{BIT}BIT71,1981
-    \index{LIST}LIST72,1998
-    \index{SEQUENCE}SEQUENCE73,2016
-    \index{CONS}CONS74,2038
-    \index{ARRAY}ARRAY75,2056
-    \index{SIMPLE-ARRAY}SIMPLE-ARRAY76,2075
-    \index{VECTOR}VECTOR77,2101
-    \index{STRING}STRING78,2121
-    \index{SIMPLE-STRING}SIMPLE-STRING79,2141
-    \index{BASE-STRING}BASE-STRING80,2168
-    \index{SIMPLE-BASE-STRING}SIMPLE-BASE-STRING81,2193
-    \index{SIMPLE-VECTOR}SIMPLE-VECTOR82,2225
-    \index{BIT-VECTOR}BIT-VECTOR83,2252
-    \index{SIMPLE-BIT-VECTOR}SIMPLE-BIT-VECTOR84,2276
-    \index{STREAM}STREAM85,2307
-    \index{FILE-STREAM}FILE-STREAM86,2327
-    \index{TWO-WAY-STREAM}TWO-WAY-STREAM87,2352
-    \index{SYNONYM-STREAM}SYNONYM-STREAM88,2380
-    \index{STRING-STREAM}STRING-STREAM89,2408
-    \index{BROADCAST-STREAM}BROADCAST-STREAM90,2435
-    \index{CONCATENATED-STREAM}CONCATENATED-STREAM91,2465
-    \index{ECHO-STREAM}ECHO-STREAM92,2498
-    \index{EXTENDED-CHAR}EXTENDED-CHAR93,2523
-    \index{BASE-CHAR}BASE-CHAR94,2550
-    \index{STANDARD-CHAR}STANDARD-CHAR95,2573
-    \index{CONDITION}CONDITION96,2600
-    \index{SERIOUS-CONDITION}SERIOUS-CONDITION97,2623
-    \index{STORAGE-CONDITION}STORAGE-CONDITION98,2654
-    \index{SIMPLE-TYPE-ERROR}SIMPLE-TYPE-ERROR99,2685
-    \index{TYPE-ERROR}TYPE-ERROR100,2716
-    \index{ERROR}ERROR101,2740
-    \index{PROGRAM-ERROR}PROGRAM-ERROR102,2759
-    \index{CONTROL-ERROR}CONTROL-ERROR103,2786
-    \index{PACKAGE-ERROR}PACKAGE-ERROR104,2813
-    \index{PRINT-NOT-READABLE}PRINT-NOT-READABLE105,2840
-    \index{STREAM-ERROR}STREAM-ERROR106,2872
-    \index{PARSE-ERROR}PARSE-ERROR107,2898
-    \index{CELL-ERROR}CELL-ERROR108,2923
-    \index{FILE-ERROR}FILE-ERROR109,2947
-    \index{ARITHMETIC-ERROR}ARITHMETIC-ERROR110,2971
-    \index{SIMPLE-CONDITION}SIMPLE-CONDITION111,3001
-    \index{WARNING}WARNING112,3031
-    \index{STYLE-WARNING}STYLE-WARNING113,3052
-    \index{SIMPLE-ERROR}SIMPLE-ERROR114,3079
-    \index{SIMPLE-WARNING}SIMPLE-WARNING115,3105
-    \index{UNDEFINED-FUNCTION}UNDEFINED-FUNCTION116,3133
-    \index{UNBOUND-VARIABLE}UNBOUND-VARIABLE117,3165
-    \index{UNBOUND-SLOT}UNBOUND-SLOT118,3195
-    \index{END-OF-FILE}END-OF-FILE119,3221
-    \index{READER-ERROR}READER-ERROR120,3246
-    \index{DIVISION-BY-ZERO}DIVISION-BY-ZERO121,3272
-    \index{FLOATING-POINT-INEXACT}FLOATING-POINT-INEXACT122,3302
-    \index{FLOATING-POINT-OVERFLOW}FLOATING-POINT-OVERFLOW123,3338
-    \index{FLOATING-POINT-UNDERFLOW}FLOATING-POINT-UNDERFLOW124,3375
-    \index{FLOATING-POINT-INVALID-OPERATION}FLOATING-POINT-INVALID-OPERATION125,3413
-    \index{*@\A}*@\A255,6815
-    As a type argument (cf.\ Figure \ref{data-types}data-types256,6833
+clqr-types-and-classes.tex,4619
+\section{Types and Classes} Types11,434
+    \label{data-types}data-types26,937
+    \index{*@\A}*@\A28,967
+    \index{T}T29,985
+    \index{ATOM}ATOM30,1000
+    \index{READTABLE}READTABLE31,1018
+    \index{PACKAGE}PACKAGE32,1041
+    \index{SYMBOL}SYMBOL33,1062
+    \index{KEYWORD}KEYWORD34,1082
+    \index{BOOLEAN}BOOLEAN35,1103
+    \index{RESTART}RESTART36,1124
+    \index{RANDOM-STATE}RANDOM-STATE37,1145
+    \index{HASH-TABLE}HASH-TABLE38,1171
+    \index{STRUCTURE-OBJECT}STRUCTURE-OBJECT39,1195
+    \index{STANDARD-OBJECT}STANDARD-OBJECT40,1225
+    \index{NULL}NULL41,1254
+    \index{CLASS}CLASS42,1272
+    \index{BUILT-IN-CLASS}BUILT-IN-CLASS43,1291
+    \index{STANDARD-CLASS}STANDARD-CLASS44,1319
+    \index{STRUCTURE-CLASS}STRUCTURE-CLASS45,1347
+    \index{METHOD}METHOD46,1376
+    \index{STANDARD-METHOD}STANDARD-METHOD47,1396
+    \index{METHOD-COMBINATION}METHOD-COMBINATION48,1425
+    \index{CHARACTER}CHARACTER49,1457
+    \index{FUNCTION}FUNCTION50,1480
+    \index{COMPILED-FUNCTION}COMPILED-FUNCTION51,1502
+    \index{GENERIC-FUNCTION}GENERIC-FUNCTION52,1533
+    \index{STANDARD-GENERIC-FUNCTION}STANDARD-GENERIC-FUNCTION53,1563
+    \index{PATHNAME}PATHNAME54,1602
+    \index{LOGICAL-PATHNAME}LOGICAL-PATHNAME55,1624
+    \index{NUMBER}NUMBER56,1654
+    \index{COMPLEX}COMPLEX57,1674
+    \index{REAL}REAL58,1695
+    \index{FLOAT}FLOAT59,1713
+    \index{SHORT-FLOAT}SHORT-FLOAT60,1732
+    \index{SINGLE-FLOAT}SINGLE-FLOAT61,1757
+    \index{DOUBLE-FLOAT}DOUBLE-FLOAT62,1783
+    \index{LONG-FLOAT}LONG-FLOAT63,1809
+    \index{RATIONAL}RATIONAL64,1833
+    \index{INTEGER}INTEGER65,1855
+    \index{RATIO}RATIO66,1876
+    \index{SIGNED-BYTE}SIGNED-BYTE67,1895
+    \index{FIXNUM}FIXNUM68,1920
+    \index{BIGNUM}BIGNUM69,1940
+    \index{UNSIGNED-BYTE}UNSIGNED-BYTE70,1960
+    \index{BIT}BIT71,1987
+    \index{LIST}LIST72,2004
+    \index{SEQUENCE}SEQUENCE73,2022
+    \index{CONS}CONS74,2044
+    \index{ARRAY}ARRAY75,2062
+    \index{SIMPLE-ARRAY}SIMPLE-ARRAY76,2081
+    \index{VECTOR}VECTOR77,2107
+    \index{STRING}STRING78,2127
+    \index{SIMPLE-STRING}SIMPLE-STRING79,2147
+    \index{BASE-STRING}BASE-STRING80,2174
+    \index{SIMPLE-BASE-STRING}SIMPLE-BASE-STRING81,2199
+    \index{SIMPLE-VECTOR}SIMPLE-VECTOR82,2231
+    \index{BIT-VECTOR}BIT-VECTOR83,2258
+    \index{SIMPLE-BIT-VECTOR}SIMPLE-BIT-VECTOR84,2282
+    \index{STREAM}STREAM85,2313
+    \index{FILE-STREAM}FILE-STREAM86,2333
+    \index{TWO-WAY-STREAM}TWO-WAY-STREAM87,2358
+    \index{SYNONYM-STREAM}SYNONYM-STREAM88,2386
+    \index{STRING-STREAM}STRING-STREAM89,2414
+    \index{BROADCAST-STREAM}BROADCAST-STREAM90,2441
+    \index{CONCATENATED-STREAM}CONCATENATED-STREAM91,2471
+    \index{ECHO-STREAM}ECHO-STREAM92,2504
+    \index{EXTENDED-CHAR}EXTENDED-CHAR93,2529
+    \index{BASE-CHAR}BASE-CHAR94,2556
+    \index{STANDARD-CHAR}STANDARD-CHAR95,2579
+    \index{CONDITION}CONDITION96,2606
+    \index{SERIOUS-CONDITION}SERIOUS-CONDITION97,2629
+    \index{STORAGE-CONDITION}STORAGE-CONDITION98,2660
+    \index{SIMPLE-TYPE-ERROR}SIMPLE-TYPE-ERROR99,2691
+    \index{TYPE-ERROR}TYPE-ERROR100,2722
+    \index{ERROR}ERROR101,2746
+    \index{PROGRAM-ERROR}PROGRAM-ERROR102,2765
+    \index{CONTROL-ERROR}CONTROL-ERROR103,2792
+    \index{PACKAGE-ERROR}PACKAGE-ERROR104,2819
+    \index{PRINT-NOT-READABLE}PRINT-NOT-READABLE105,2846
+    \index{STREAM-ERROR}STREAM-ERROR106,2878
+    \index{PARSE-ERROR}PARSE-ERROR107,2904
+    \index{CELL-ERROR}CELL-ERROR108,2929
+    \index{FILE-ERROR}FILE-ERROR109,2953
+    \index{ARITHMETIC-ERROR}ARITHMETIC-ERROR110,2977
+    \index{SIMPLE-CONDITION}SIMPLE-CONDITION111,3007
+    \index{WARNING}WARNING112,3037
+    \index{STYLE-WARNING}STYLE-WARNING113,3058
+    \index{SIMPLE-ERROR}SIMPLE-ERROR114,3085
+    \index{SIMPLE-WARNING}SIMPLE-WARNING115,3111
+    \index{UNDEFINED-FUNCTION}UNDEFINED-FUNCTION116,3139
+    \index{UNBOUND-VARIABLE}UNBOUND-VARIABLE117,3171
+    \index{UNBOUND-SLOT}UNBOUND-SLOT118,3201
+    \index{END-OF-FILE}END-OF-FILE119,3227
+    \index{READER-ERROR}READER-ERROR120,3252
+    \index{DIVISION-BY-ZERO}DIVISION-BY-ZERO121,3278
+    \index{FLOATING-POINT-INEXACT}FLOATING-POINT-INEXACT122,3308
+    \index{FLOATING-POINT-OVERFLOW}FLOATING-POINT-OVERFLOW123,3344
+    \index{FLOATING-POINT-UNDERFLOW}FLOATING-POINT-UNDERFLOW124,3381
+    \index{FLOATING-POINT-INVALID-OPERATION}FLOATING-POINT-INVALID-OPERATION125,3419
+    \index{*@\A}*@\A257,6854
+    As a type argument (cf.\ Figure \ref{data-types}data-types258,6872
 
 clqr-typographic-conventions.tex,20
-\section*{*10,415
+\section*{*10,421
 
 color-black.tex,168
 \newcommand{\linkcolor}\linkcolor3,65
@@ -448,16 +449,16 @@ color-colorful.tex,168
 \newcommand{\pdfpagelayout}\pdfpagelayout6,160
 
 color-current.tex,168
-\newcommand{\linkcolor}\linkcolor3,60
-\newcommand{\urlcolor}\urlcolor4,93
-\newcommand{\bookmarks}\bookmarks5,130
-\newcommand{\pdfpagelayout}\pdfpagelayout6,160
+\newcommand{\linkcolor}\linkcolor3,65
+\newcommand{\urlcolor}\urlcolor4,96
+\newcommand{\bookmarks}\bookmarks5,126
+\newcommand{\pdfpagelayout}\pdfpagelayout6,157
 
 paper-a4.tex,65
 \renewcommand{\clearpagebeforeindex}\clearpagebeforeindex6,154
 
 paper-current.tex,65
-\renewcommand{\clearpagebeforeindex}\clearpagebeforeindex6,154
+\renewcommand{\clearpagebeforeindex}\clearpagebeforeindex6,156
 
 paper-letter.tex,65
 \renewcommand{\clearpagebeforeindex}\clearpagebeforeindex6,156

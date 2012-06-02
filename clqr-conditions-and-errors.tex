@@ -1,4 +1,4 @@
-% Copyright (C) 2008, 2009, 2010, 2011 Bert Burgemeister
+% Copyright (C) 2008, 2009, 2010, 2011, 2012 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -64,7 +64,7 @@ page \pageref{data-types}.
   {
   Unless handled, signal as \kwd{condition}, \kwd{warning} or \kwd{error},
   respectively, \VAR{condition} or a new condition of \VAR{type} or,
-  with \FU{format} \VAR{control} and \VAR{arg}s (see p.\ \pageref{section:Format}),
+  with \FU{format} \VAR{control} and \VAR{arg}s (see page \pageref{section:Format}),
   \kwd{simple-condition}, \kwd{simple-warning}, or \kwd{simple-error}, respectively.
   From \FU{SIGNAL} and \FU{WARN}, return \retval{\NIL}.
   }
@@ -78,7 +78,7 @@ page \pageref{data-types}.
   {
   Unless handled, signal as correctable \kwd{error} \VAR{condition} or
   a new condition of \VAR{type} or, with \FU{format} \VAR{control} and
-  \VAR{arg}s (see p.\ \pageref{section:Format}),
+  \VAR{arg}s (see page \pageref{section:Format}),
   \kwd{simple-error}. In the debugger, use \FU{format} arguments
   \VAR{continue-control} and \VAR{continue-arg}s to tag the continue
   option. Return \retval{\NIL}.
@@ -105,7 +105,7 @@ page \pageref{data-types}.
     If \VAR{test}, which may depend on \VAR{place}s, returns \NIL,
     signal as correctable \kwd{error} \VAR{condition} or a new condition
     of \VAR{type} or, with \FU{format} \VAR{control} and \VAR{arg}s (see
-    p.\ \pageref{section:Format}), \kwd{error}. When using the
+    page \pageref{section:Format}), \kwd{error}. When using the
     debugger's continue option, \VAR{place}s can be altered before
     re-evaluation of \VAR{test}. Return \retval{\NIL}. 
   }
@@ -124,7 +124,7 @@ page \pageref{data-types}.
     a condition, bind \VAR{ord-$\lambda$}s to values of \VAR{foo} and
     return \retval{values of  \VAR{form}s} or, without a
     \kwd{:no-error} clause, return \retval{values of \VAR{foo}}. See
-    p.\ \pageref{section:Functions} for (\OPn{\VAR{ord-$\lambda$}}).
+    page \pageref{section:Functions} for (\OPn{\VAR{ord-$\lambda$}}).
   }
 
   \IT{(\MC*{HANDLER-BIND} (\OPn{(\VAR{condition-type}
@@ -142,7 +142,7 @@ page \pageref{data-types}.
     Return \retval{values of \VAR{form}s} unless \VAR{restart} is called
     during their evaluation. In this case, describe restart using
     \FU{format} \VAR{control} and \VAR{arg}s (see
-    p.\ \pageref{section:Format}) and return \retval{\NIL}
+    page \pageref{section:Format}) and return \retval{\NIL}
     and \retvalii{\T}.
   }
 
@@ -166,7 +166,7 @@ page \pageref{data-types}.
     \FU{invoke-restart-interactively}. If (\VAR{test-function}
     \VAR{condition}) returns \T, \VAR{foo} is made visible under
     \VAR{condition}. \OPn{\VAR{arg}} matches
-    (\OPn{\VAR{ord-$\lambda$}}); see p.\ \pageref{section:Functions}
+    (\OPn{\VAR{ord-$\lambda$}}); see page \pageref{section:Functions}
     for the latter.
   }
 
