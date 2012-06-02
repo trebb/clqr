@@ -41,10 +41,11 @@
       \xorGOO{\VAR{name}\\
       (\kwd{setf } \VAR{name})}{\}}\text{ }\Op{\VAR{definition}}}{\}})}
   {
-  Return \retval{compiled function} or replace \retval{\VAR{name}}'s
-  function definition with the compiled function. Return \retvalii{\T} in case
-  of warnings or errors, and \retvaliii{\T} in case of warnings
-  or errors excluding style warnings.
+    Return \retval{compiled function} or replace \retval{\VAR{name}}'s
+    function definition with the compiled function. Return
+    \retvalii{\T} in case of \kwd{warning}s or \kwd{error}s, and
+    \retvaliii{\T} in case of \kwd{warning}s or \kwd{error}s excluding
+    \kwd{style-warning}s.
   }
 
   \IT{(\FU*{COMPILE-FILE} \VAR{file} 
@@ -54,10 +55,10 @@
       \kwd{:external-format} \VAR{
         file-format}\DF{\kwd{:default}}}{\}})}
   {
-  Write compiled contents of \VAR{file} to \VAR{out-path}.
-  Return \retval{true output path} or \retval{\NIL}, \retvalii{\T}
-  in case of warnings or errors, \retvaliii{\T} in case of warnings
-  or errors excluding style warnings.
+    Write compiled contents of \VAR{file} to \VAR{out-path}.  Return
+    \retval{true output path} or \retval{\NIL}, \retvalii{\T} in case
+    of \kwd{warning}s or \kwd{error}s, \retvaliii{\T} in case of
+    \kwd{warning}s or \kwd{error}s excluding \kwd{style-warning}s.
   }
 
   \IT{(\FU*{COMPILE-FILE-PATHNAME} \VAR{file} \Op{\kwd{:output-file}
@@ -243,7 +244,7 @@
 
   \IT{\V{\A trace-output\A}}
   {\index{*TRACE-OUTPUT*@\A TRACE-OUTPUT\A}
-  Stream \MC{trace} and \MC{time} print their output on.
+    Output stream \MC{trace} and \MC{time} send their output to.
   }
 
   \IT{(\MC*{STEP} \VAR{form})}
@@ -277,8 +278,8 @@
 
   \IT{(\GFU*{DESCRIBE-OBJECT} \VAR{foo} \Op{\DES{\VAR{stream}}})}
   {
-  Send information about \VAR{foo} to \VAR{stream}. Not to be
-  called by user.
+    Send information about \VAR{foo} to \VAR{stream}.  Called by
+    \FU{describe}.
   }
 
   \IT{(\FU*{DISASSEMBLE} \VAR{function})}
@@ -286,6 +287,14 @@
   Send disassembled representation of \VAR{function} to
   \V{\A standard-output\A}. Return \retval{\NIL}.
   }
+
+  \IT{(\FU*{ROOM} \Op{\Goo{\NIL\XOR\kwd{:default}\XOR\T}\DF{\kwd{:default}}})}
+  {
+    Print information about internal storage management to \kwd{\A
+      standard-output\A}.
+  }
+
+
 
 \end{LIST}
 
@@ -311,25 +320,26 @@
 
   \IT{(\kwd*{DECLARE} \OPn{\NEV{\VAR{decl}}})}
   {
-  Inside certain forms, locally make declarations \OPn{\VAR{decl}}. \VAR{decl} can be:
-  \kwd{dynamic-extent},
-  \kwd{type},
-  \kwd{ftype},           
-  \kwd{ignorable},       
-  \kwd{ignore},     
-  \kwd{inline},     
-  \kwd{notinline},  
-  \kwd{optimize}, or
-  \kwd{special}.
-  See below.      
+    Inside certain forms, locally make declarations
+    \OPn{\VAR{decl}}. \VAR{decl} can be:
+    \kwd{dynamic-extent},
+    \kwd{type},
+    \kwd{ftype},           
+    \kwd{ignorable},       
+    \kwd{ignore},     
+    \kwd{inline},     
+    \kwd{notinline},  
+    \kwd{optimize}, or
+    \kwd{special}.
+    See below.      
   }
 
   \begin{LIST}{.5cm}
     
     \IT{(\kwd*{DECLARATION} \OPn{foo})}
     {
-    Make \VAR{foo}s names of declarations.
-   }
+      Make \VAR{foo}s names of declarations.
+    }
  
     \IT{(\kwd*{DYNAMIC-EXTENT} \OPn{\VAR{variable}} \OPn{(\kwd{function}
         \VAR{function})})}
@@ -342,8 +352,8 @@
     \IT{\arrGOO{(\Op{\kwd*{TYPE}} \VAR{ type} \OPn{\VAR{ variable}})\\
         (\kwd*{FTYPE} \VAR{ type} \OPn{\VAR{ function}})}{.}}
     {
-    Declare \VAR{variable}s or \VAR{function}s to be of \VAR{type}.
-  }
+      Declare \VAR{variable}s or \VAR{function}s to be of \VAR{type}.
+    }
 
     \IT{(\xorGOO{\kwd*{IGNORABLE}\\
         \kwd*{IGNORE}}{\}}
