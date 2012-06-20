@@ -22,7 +22,8 @@
     Classes (\includegraphics{clqr-types-and-classes.4}),
     Types (\includegraphics{clqr-types-and-classes.2}), and
     Condition Types
-    (\includegraphics{clqr-types-and-classes.5}).
+    (\includegraphics{clqr-types-and-classes.5}).\\
+    Every type is also the supertype of \NIL, the empty type.
     \label{data-types}%
     %
     \index{*@\A}%
@@ -208,9 +209,10 @@ For any class, there is always a corresponding type of the same name.
     \PROGN{\VAR{form}})}
   {
   Define type \retval{\VAR{foo}} which when referenced as (\VAR{foo}
-  \OPn{\NEV{\VAR{arg}}}) applies expanded \VAR{form}s to \VAR{arg}s
+  \OPn{\NEV{\VAR{arg}}}) (or as \VAR{foo} if \VAR{macro-$\lambda$}
+  doesn't contain any required parameters) applies expanded \VAR{form}s to \VAR{arg}s
   returning the new type. For (\OPn{\VAR{macro-$\lambda$}}) see
-  p.~\pageref{section:Macros} but with default value of \kwd{\A}
+  page \pageref{section:Macros} but with default value of \kwd{\A}
   instead of \NIL. \VAR{form}s are enclosed in an implicit \SO{block}
   named \VAR{foo}.
   }

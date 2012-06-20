@@ -713,9 +713,9 @@
 
   \IT{(\MC*{FORMATTER} \NEV{\VAR{control}})}
   {
-    Return \retval{function} of stream and a \kwd{\&rest} argument applying \FU{format} to
-    stream, \VAR{control}, and the \kwd{\&rest} argument
-    returning \NIL\ or any excess arguments. 
+    Return \retval{function} of \VAR{stream} and \OPn{\VAR{arg}}
+    applying \FU{format} to \VAR{stream}, \VAR{control}, and
+    \OPn{\VAR{arg}} returning \NIL\ or any excess \VAR{arg}s.
   }
 
   \IT{(\FU*{FORMAT} \Goo{\T\XOR\NIL\XOR\VAR{out-string}\XOR\VAR{out-stream}}
@@ -724,10 +724,11 @@
     Output string \VAR{control} which may
     contain \kwd{\TLD} directives possibly taking some
     \VAR{arg}s. Alternatively, \VAR{control} can be a function returned
-    by \MC{formatter} which is then applied to \VAR{out-stream} and \OPn{\VAR{arg}}.
-    Output to \VAR{out-string}, \VAR{out-stream} or, if first
-    argument is \T, to \V{\A standard-output\A}. Return \retval{\NIL}. If
-    first argument is \NIL, return \retval{formatted output}. 
+    by \MC{formatter} which is then applied to \VAR{out-stream} and
+    \OPn{\VAR{arg}}.  Output to \VAR{out-string}, \VAR{out-stream} or,
+    if first argument is \T, to \V{\A standard-output\A}. Return
+    \retval{\NIL}.  If first argument is \NIL, return
+    \retval{formatted output}. 
   }
 
   \begin{LIST}{.5cm}
