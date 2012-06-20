@@ -27,32 +27,39 @@
     \retval{\T} if \VAR{slot} in \VAR{instance} is bound.
   }
 
-  \IT{(\MC*{DEFCLASS} \VAR{foo} (\OPn{\VAR{superclass}}\DF{\kwd{standard-object}})
-    (\xorGOO{\VAR{slot}\\
+  \IT{(\MC*{DEFCLASS} \VAR{foo} 
+    (\OPn{\VAR{superclass}}\DF{\kwd{standard-object}})
+    (\xorGOO{%
+      \VAR{slot}\\
       (\VAR{slot }
-      \orGOO{\Goos{\kwd{:reader} \VAR{reader}}\\
-        \Goos{\kwd{:writer} \xorGOO{\VAR{writer}\\
+      \orGOO{%
+        \Goos{\kwd{:reader} \VAR{reader}}\\
+        \Goos{\kwd{:writer} \xorGOO{%
+            \VAR{writer}\\
             ({\kwd{setf}\VAR{ writer}})}{\}}} \\
         \Goos{\kwd{:accessor} \VAR{accessor}} \\
-        \kwd{:allocation } \xorGOO{\kwd{:instance}\\
+        \kwd{:allocation } \xorGOO{%
+          \kwd{:instance}\\
           \kwd{:class}}{\}}\DF{\kwd{:instance}}\\
         \Goos{\kwd{:initarg} \kwd{:}\VAR{initarg-name}} \\
         \kwd{:initform} \VAR{ form}\\
         \kwd{:type} \VAR{ type}\\
-        \kwd{:documentation} \VAR{ slot-doc}}{\}})}{\}^{\!\!\!*}})
-    \orGOO{(\kwd{:default-initargs } \Goos{\VAR{name}\VAR{ value}})\\
+        \kwd{:documentation}
+        \VAR{ slot-doc}}{\}})}{\}^{\!\!\!*}})
+    \orGOO{%
+      (\kwd{:default-initargs } \Goos{\VAR{name}\VAR{ value}})\\
       (\kwd{:documentation} \VAR{ class-doc})\\
       (\kwd{:metaclass} \VAR{ name}\DF{\kwd{standard-class}})}{\}})}
   {
-    Define, as a subclass of \VAR{superclass}es,
-    \retval{class \VAR{foo}}.
-    In a new instance \VAR{i}, a \VAR{slot}'s value defaults to 
-    \VAR{form} unless set via \kwd{:}\VAR{initarg-name}; it is readable
-    via (\VAR{reader} \VAR{i}) or (\VAR{accessor} \VAR{i}), and
-    writeable via (\VAR{writer} \VAR{value} \VAR{i}) or (\kwd{setf}
-    (\VAR{accessor} \VAR{i}) \VAR{value}).  With
-    \kwd{:allocation :class}, \VAR{slot} is shared by all instances of
-    class \VAR{foo}.
+    Define or modify \retval{class \VAR{foo}} as a subclass of
+    \VAR{superclass}es.  Transform existing instances, if any,
+    by \GFU{make-instances-obsolete}.  In a new instance \VAR{i} of
+    \VAR{foo}, a \VAR{slot}'s value defaults to \VAR{form} unless set
+    via \kwd{:}\VAR{initarg-name}; it is readable via (\VAR{reader}
+    \VAR{i}) or (\VAR{accessor} \VAR{i}), and writable via
+    (\VAR{writer} \VAR{value} \VAR{i}) or (\kwd{setf} (\VAR{accessor}
+    \VAR{i}) \VAR{value}).  \VAR{slot}s with \kwd{:allocation :class}
+    are shared by all instances of class \VAR{foo}.
   }
 
   \IT{(\FU*{FIND-CLASS} \VAR{symbol} \OP{\VAR{errorp}\DF{\T}
@@ -71,7 +78,7 @@
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
     Change local slots of \retval{\VAR{instance}} according to
-    \VAR{initarg}s.
+    \VAR{initarg}s by means of \GFU{shared-initialize}.
   }
 
   \IT{(\FU*{SLOT-VALUE} \VAR{foo} \VAR{slot})}
@@ -112,30 +119,45 @@
     \Goos{\kwd{:}\VAR{initarg} \VAR{value}} \OPn{\VAR{other-keyarg}})} 
   {
     Change class of \retval{\VAR{instance}} to \VAR{new-class}.
+    Retain the status of any slots that are common between
+    \VAR{instance}'s original class and \VAR{new-class}.  Initialize
+    any newly added slots with the \VAR{value}s of the corresponding
+    \VAR{initarg}s if any, or with the values of their
+    \kwd{:initform} forms if not.
   }
 
   \IT{(\GFU*{MAKE-INSTANCES-OBSOLETE} \VAR{class})}
   {
-    Update instances of \VAR{class}.
+    Update all existing instances of \VAR{class} using
+    \GFU{update-instance-for-redefined-class}.
   }
 
-  \IT{(\xorGOO{\GFU*{INITIALIZE-INSTANCE } (\VAR{instance})\\
-      \GFU*{UPDATE-INSTANCE-FOR-DIFFERENT-CLASS} \VAR{
-        previous }\VAR{current}}{\}}
-      \Goos{\kwd{:}\VAR{initarg}
+  \IT{(\xorGOO{%
+      \GFU*{INITIALIZE-INSTANCE } \VAR{instance}\\
+      \GFU*{UPDATE-INSTANCE-FOR-DIFFERENT-CLASS} 
+      \VAR{ previous }\VAR{current}}{\}}
+    \Goos{\kwd{:}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
-    Its primary method sets slots on behalf of \GFU{make-instance}/of
+    Set slots on behalf of \GFU{make-instance}/of
     \GFU{change-class} by means of \GFU{shared-initialize}. 
   }
 
-  \IT{(\GFU*{UPDATE-INSTANCE-FOR-REDEFINED-CLASS} \VAR{instances}
-    \VAR{added-slots} \VAR{discarded-slots} \VAR{property-list}
-     \Goos{\kwd{:}\VAR{initarg}
-      \VAR{value}} \OPn{\VAR{other-keyarg}})}
+  \IT{(\GFU*{UPDATE-INSTANCE-FOR-REDEFINED-CLASS}
+    \VAR{new-instance}
+    \VAR{added-slots}
+    \VAR{discarded-slots}
+    \VAR{discarded-slots-property-list}
+    \Goos{%
+      \kwd{:}\VAR{initarg}
+      \VAR{value}}
+    \OPn{\VAR{other-keyarg}})}
   {
-    Its primary method sets slots on behalf of
-    \GFU{make-instances-obsolete} by means of \GFU{shared-initialize}. 
+    On behalf of \GFU{make-instances-obsolete} and by means of
+    \GFU{shared-initialize}, set any \VAR{initarg} slots to their
+    corresponding \VAR{value}s; set any remaining \VAR{added-slots} to
+    the values of their \kwd{:initform} forms.  Not to be called by
+    user.
   }
 
   \IT{(\GFU*{ALLOCATE-INSTANCE} \VAR{class} \Goos{\kwd{:}\VAR{initarg}
@@ -146,31 +168,34 @@
   }
 
   \IT{(\GFU*{SHARED-INITIALIZE} \VAR{instance} 
-    \xorGOO{\VAR{slots}\\
+    \xorGOO{%
+      \VAR{initform-slots}\\
       \T}{\}}
-     \Goos{\kwd{:}\VAR{initarg}
-      \VAR{value}} \OPn{\VAR{other-keyarg}})}
+     \Goos{\kwd{:}%
+       \VAR{initarg-slot}
+       \VAR{value}} 
+     \OPn{\VAR{other-keyarg}})}
   {
-    Fill \VAR{instance}'s \VAR{slots} using \VAR{initarg}s and
+    Fill the \VAR{initarg-slot}s of \VAR{instance} with the
+    corresponding \VAR{value}s, and fill those \VAR{initform-slots}
+    that are not \VAR{initarg-slot}s with the values of their
     \kwd{:initform} forms.
   }
 
-  \IT{(\GFU*{SLOT-MISSING} \VAR{class} \VAR{object} \VAR{slot}
-    \xorGOO{\kwd{setf}\\
-      \kwd{slot-boundp}\\
-      \kwd{slot-makunbound}\\
-      \kwd{slot-value}}{\}}
-    \Op{\VAR{value}})}
+  \IT{\arrGOO{%
+      (\GFU*{SLOT-MISSING } \VAR{class } \VAR{instance } \VAR{slot }
+      \xorGOO{%
+        \kwd{setf}\\
+        \kwd{slot-boundp}\\
+        \kwd{slot-makunbound}\\
+        \kwd{slot-value}}{\}}
+      \Op{\VAR{value}})\\
+      (\GFU*{SLOT-UNBOUND } \VAR{class } \VAR{instance } \VAR{slot})}{.}}
   {
-    Called in case of attempted access to missing \VAR{slot}. Its primary
-    method signals \kwd{error}.
-  }
-
-  \IT{(\GFU*{SLOT-UNBOUND} \VAR{class} \VAR{instance} \VAR{slot})}
-  {
-    Called by \FU{slot-value} in case of unbound \VAR{slot}. Its primary
-    method signals \kwd{unbound-slot}.
-  }
+    Called on attempted access to non-existing or unbound
+    \VAR{slot}. Default methods signal \kwd{error}/\kwd{unbound-slot},
+    respectively.  Not to be called by user.
+}
 
 \end{LIST}
 
@@ -188,24 +213,30 @@
   \IT{(\MC*{DEFGENERIC}
     \xorGOO{\VAR{foo}\\ (\kwd{setf} \VAR{ foo})}{\}} 
     (\OPn{\VAR{required-var}}
-    \OP{\kwd{\&optional} \xorGOO{\VAR{var}\\
+    \OP{\kwd{\&optional} \xorGOO{%
+        \VAR{var}\\
         (\VAR{var})}{\}^{\!\!*}}}
     \OP{\kwd{\&rest} \VAR{var}}
     \OP{\kwd{\&key} \xorGOO{%
-      \VAR{var}\\
-      (\VAR{var}\XOR(\kwd{:}\VAR{key }
-          \VAR{var}))}{\}^{\!\!*}} \Op{\kwd{\&allow-other-keys}}})
-     \orGOO{%
-    (\kwd{:argument-precedence-order}\RP{\VAR{ required-var}})\\
-    (\kwd{declare }\RP{(\kwd{optimize}\OPn{\VAR{ arg}})})\\
-    (\kwd{:documentation } \NEV{\VAR{string}})\\
-    (\kwd{:generic-function-class} \VAR{ class}\DF{\kwd{standard-generic-function}})\\
-    (\kwd{:method-class} \VAR{ class}\DF{\kwd{standard-method}})\\
-    (\kwd{:method-combination} \VAR{ c-type}\DF{\kwd{standard}} \OPn{\VAR{ c-arg}})\\
-    \OPn{(\kwd{:method} \VAR{ defmethod-args})}}{\}})}
+        \VAR{var}\\
+        (\VAR{var}\XOR(\kwd{:}\VAR{key }
+        \VAR{var}))}{\}^{\!\!*}} \Op{\kwd{\&allow-other-keys}}})
+    \orGOO{%
+      (\kwd{:argument-precedence-order}\RP{\VAR{ required-var}})\\
+      (\kwd{declare }\RP{(\kwd{optimize}\VAR{ method-selection-optimization})})\\
+      (\kwd{:documentation } \NEV{\VAR{string}})\\
+      (\kwd{:generic-function-class} 
+      \VAR{ gf-class}\DF{\kwd{standard-generic-function}})\\
+      (\kwd{:method-class} \VAR{ method-class}\DF{\kwd{standard-method}})\\
+      (\kwd{:method-combination} 
+      \VAR{ c-type}\DF{\kwd{standard}} \OPn{\VAR{ c-arg}})\\
+      \OPn{(\kwd{:method} \VAR{ defmethod-args})}}{\}})}
   {
-    Define \retval{generic function} \VAR{foo}. \VAR{defmethod-args}
-    resemble those of \MC{defmethod}. For \VAR{c-type} see section
+    Define or modify \retval{generic function} \VAR{foo}.  Remove any
+    methods previously defined by defgeneric.  \VAR{gf-class} and the lambda
+    paramters \OPn{\VAR{required-var}} and \OPn{\VAR{var}} must be
+    compatible with existing methods.  \VAR{defmethod-args}
+    resemble those of \MC{defmethod}.  For \VAR{c-type} see section
     \ref{section:Method Combination Types}.
   }
 
@@ -213,18 +244,18 @@
     \xorGOO{\VAR{foo}\\ (\kwd{setf} \VAR{ foo})}{\}}
     \orGOO{%
       \kwd{:argument-precedence-order}\RP{\VAR{ required-var}}\\
-      \kwd{:declare }\RP{(\kwd{optimize}\OPn{\VAR{ arg}})}\\
+      \kwd{:declare }(\kwd{optimize}\VAR{ method-selection-optimization})\\
       \kwd{:documentation} \VAR{ string}\\
-      \kwd{:generic-function-class} \VAR{ class}\\
-      \kwd{:method-class} \VAR{ class}\\
+      \kwd{:generic-function-class} \VAR{ gf-class}\\
+      \kwd{:method-class} \VAR{ method-class}\\
       \kwd{:method-combination} \VAR{ c-type} \OPn{\VAR{ c-arg}}\\
       \kwd{:lambda-list} \VAR{ lambda-list}\\
       \kwd{:environment} \VAR{ environment}}{\}})}
   {
     Define or modify \retval{generic function}
-    \VAR{foo}. \kwd{:generic-function-class} and \kwd{:lambda-list} have
-    to be compatible with a pre-existing generic function or with
-    existing methods, respectively. Changes to \kwd{:method-class} do
+    \VAR{foo}. \VAR{gf-class} and \VAR{lambda-list}
+    must be compatible with a pre-existing generic function or with
+    existing methods, respectively. Changes to \VAR{method-class} do
     not propagate to existing methods. For \VAR{c-type} see section
     \ref{section:Method Combination Types}. 
   }
@@ -295,10 +326,12 @@
     \OPn{\VAR{arg}})}
   {
     Called on invocation of \VAR{generic-function} on \VAR{arg}s if
-    there is no applicable method. Default method signals \kwd{error}.
+    there is no applicable method.  Default method signals
+    \kwd{error}.  Not to be called by user.
   }
 
-  \IT{(\xorGOO{\FU*{INVALID-METHOD-ERROR} \VAR{ method}\\
+  \IT{(\xorGOO{%
+      \FU*{INVALID-METHOD-ERROR} \VAR{ method}\\
       \FU*{METHOD-COMBINATION-ERROR}}{\}}
     \VAR{control} \OPn{\VAR{arg}})}
   {
@@ -311,7 +344,8 @@
     \VAR{method} \OPn{\VAR{arg}})}
   {
     Called on invocation of \kwd{call-next-method} when there is no next
-    method. Default method signals \kwd{error}.
+    method.  Default method signals \kwd{error}.  Not to be called by
+    user.
   }
 
   \IT{(\GFU*{FUNCTION-KEYWORDS} \VAR{method})}
