@@ -48,14 +48,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
-  \IT{(\xorGOO{\FU*{MAKE-ARRAY}\VAR{ dimension-sizes }
+  \IT{(\xorGOO{%
+      \FU*{MAKE-ARRAY}\VAR{ dimension-sizes }
       \OP{\kwd{:adjustable} \VAR{ bool}\DF{\NIL}}\\
       \FU*{ADJUST-ARRAY } \DES{\VAR{array}}
-    \VAR{ dimension-sizes}}{\}}
+      \VAR{ dimension-sizes}}{\}}
     \orGOO{\kwd{:element-type} \VAR{ type}\DF{\T}\\
       \kwd{:fill-pointer } \Goo{\VAR{num}\XOR\VAR{bool}}\DF{\NIL}\\
       \xorGOO{\kwd{:initial-element} \VAR{ obj}\\
-        \kwd{:initial-contents} \VAR{ sequence}\\
+        \kwd{:initial-contents} \VAR{ tree-or-array}\\
         \kwd{:displaced-to } \VAR{array}\DF{\NIL}\text{ }
         \Op{\kwd{:displaced-index-offset } \VAR{i}\DF{\LIT{0}}}}{.}}{\}})}
   { 
