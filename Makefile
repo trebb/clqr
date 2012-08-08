@@ -143,12 +143,12 @@ latest-changes.html:	clqr.tex clqr-*.tex
 gh-publish:
 	$(RM) -r gh-pages
 	mkdir gh-pages
-	$(MAKE) gh-pages/clqr-a4-booklet-all.pdf \
+	$(MAKE) gh-pages/clqr-a4-consec.pdf \
+		gh-pages/clqr-letter-consec.pdf \
+		gh-pages/clqr-a4-booklet-all.pdf \
 		gh-pages/clqr-a4-booklet-four.pdf \
-		gh-pages/clqr-a4-consec.pdf \
 		gh-pages/clqr-letter-booklet-all.pdf \
 		gh-pages/clqr-letter-booklet-four.pdf \
-		gh-pages/clqr-letter-consec.pdf \
 		gh-pages/sample-frontcover.jpg \
 		gh-pages/sample-firstpage-all.jpg \
 		gh-pages/sample-firstpage-four.jpg \
