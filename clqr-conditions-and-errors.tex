@@ -111,9 +111,11 @@ page \pageref{data-types}.
   }
 
   \IT{(\MC*{HANDLER-CASE} \VAR{foo} 
+    \penalty-5
     \OPn{(\VAR{type} (\Op{\VAR{var}})
       \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
-      \PROGN{\VAR{condition-form}})} 
+      \PROGN{\VAR{condition-form}})}
+    \penalty-5
     \Op{(\kwd{:no-error} (\OPn{\VAR{ord-$\lambda$}})
       \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
       \PROGN{\VAR{form}})})}
@@ -146,7 +148,8 @@ page \pageref{data-types}.
     and \retvalii{\T}.
   }
 
-  \IT{(\MC*{RESTART-CASE} \VAR{form} \OPn{(\VAR{foo}
+  \IT{(\MC*{RESTART-CASE} \VAR{form}
+    \OPn{(\VAR{restart}
       (\OPn{\VAR{ord-$\lambda$}}) 
       \orGOO{\kwd{:interactive} \VAR{ arg-function}\\ 
         \kwd{:report } \xorGOO{%
@@ -156,18 +159,20 @@ page \pageref{data-types}.
       \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
       \PROGN{\VAR{restart-form}})})}
   {
-    Evaluate \VAR{form} with dynamically established restarts
-    \VAR{foo}. Return \retval{values of \VAR{form}} or, if by
-    (\FU{invoke-restart} \VAR{foo} \OPn{\VAR{arg}}) one restart
-    \VAR{foo} is called, use \VAR{string} or \VAR{report-function} (of
-    a stream) to print a description of restart \VAR{foo} and return
-    the \retval{values of its \VAR{restart-form}s}. \VAR{arg-function}
-    supplies appropriate \VAR{arg}s if \VAR{foo} is called by
-    \FU{invoke-restart-interactively}. If (\VAR{test-function}
-    \VAR{condition}) returns \T, \VAR{foo} is made visible under
-    \VAR{condition}. \OPn{\VAR{arg}} matches
-    (\OPn{\VAR{ord-$\lambda$}}); see page \pageref{section:Functions}
-    for the latter.
+    Return \retval{values of \VAR{form}} or, if during evaluation of
+    \VAR{form} one of the dynamically established \VAR{restart}s is
+    called, the \retval{values of its \VAR{restart-form}s}.  A
+    \VAR{restart} is visible under \VAR{condition} if (\kwd{funcall}
+    \kwd{\#'}\VAR{test-function} \VAR{condition}) returns \T.  If
+    presented in the debugger, \VAR{restart}s are described by
+    \VAR{string} or by \kwd{\#'}\VAR{report-function} (of a stream).
+    A \VAR{restart} can be called by (\kwd{invoke-restart}
+    \VAR{restart} \OPn{\VAR{arg}}), where \VAR{arg}s match
+    \OPn{\VAR{ord-$\lambda$}}, or by
+    (\kwd{invoke-restart-interactively} \VAR{restart}) where a list of
+    the respective \VAR{arg}s is supplied by
+    \kwd{\#'}\VAR{arg-function}.  See page \pageref{section:Functions}
+    for \OPn{\VAR{ord-$\lambda$}}.
   }
 
   \IT{(\MC*{RESTART-BIND} (\OPn{(\xorGOO{\NEV{\VAR{restart}}\\
