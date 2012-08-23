@@ -160,7 +160,7 @@ page \pageref{data-types}.
       \orGOO{\kwd{:interactive} \VAR{ arg-function}\\ 
         \kwd{:report } \xorGOO{%
           \VAR{report-function}\\
-          \VAR{string}\DF{\LIT{"}\VAR{foo}\LIT{"}}}{.}\\
+          \VAR{string}\DF{\LIT{"}\VAR{restart}\LIT{"}}}{.}\\
         \kwd{:test} \VAR{ test-function}\DF{\T}}{\}}
       \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
       \PROGN{\VAR{restart-form}})})}
@@ -181,15 +181,28 @@ page \pageref{data-types}.
     for \OPn{\VAR{ord-$\lambda$}}.
   }
 
-  \IT{(\MC*{RESTART-BIND} (\OPn{(\xorGOO{\NEV{\VAR{restart}}\\
+  \IT{(\MC*{RESTART-BIND}
+    (\OPn{(\xorGOO{%
+        \NEV{\VAR{restart}}\\
         \NIL}{\}}
-      \VAR{restart-function} \orGOO{\kwd{:interactive-function}
-        \VAR{ function}\\ 
-      \kwd{:report-function} \VAR{ function}\\
-      \kwd{:test-function} \VAR{ function}}{\}})}) \PROGN{\VAR{form}})}
+      \VAR{restart-function}
+      \orGOO{%
+        \kwd{:interactive-function} \VAR{ arg-function}\\ 
+        \kwd{:report-function} \VAR{ report-function}\\
+        \kwd{:test-function} \VAR{ test-function}}{\}})})
+    \PROGN{\VAR{form}})}
   {
-    Return \retval{values of \VAR{form}s} evaluated with
-    \VAR{restart}s dynamically bound to \VAR{restart-function}s. 
+    Return \retval{values of \VAR{form}s} evaluated with dynamically
+    established \VAR{restart}s whose \VAR{restart-function}s should
+    perform a non-local transfer of control.  A restart is visible
+    under \VAR{condition} if (\VAR{test-function} \VAR{condition})
+    returns \T.  If presented in the debugger, \VAR{restart}s ar
+    described by \VAR{restart-function} (of a stream).  A
+    \VAR{restart} can be called by (\kwd{invoke-restart} \VAR{restart}
+    \OPn{\VAR{arg}}), where \VAR{arg}s must be suitable for the
+    corresponding \VAR{restart-function}, or by
+    (\kwd{invoke-restart-interactively} \VAR{restart}) where a list of
+    the respective \VAR{arg}s is supplied by \VAR{arg-function}.
   }
 
   \IT{\arrGOO{(\FU*{INVOKE-RESTART} \VAR{ restart} \OPn{\VAR{ arg}})\\
