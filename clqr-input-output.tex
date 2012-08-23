@@ -827,7 +827,7 @@
         \KWD{\TLD(} \VAR{text} \KWD{\TLD)}\XOR
         \KWD{\TLD:(} \VAR{text} \KWD{\TLD)}\XOR
         \KWD{\TLD @(} \VAR{text} \KWD{\TLD)}\XOR
-        \KWD{\TLD:@(} \VAR{text} \KWD{\TLD)}}}
+        \KWD{\TLD @:(} \VAR{text} \KWD{\TLD)}}}
     {\index{\~(\~)@$\sim$( $\sim$)}%
       \EM{Case-Conversion. }
       Convert \VAR{text} to lowercase, convert first letter of each word
@@ -836,7 +836,7 @@
     }
 
     \IT{\Goo{\KWD{\TLD P}\XOR\KWD{\TLD:P}
-        \XOR\KWD{\TLD @P}\XOR\KWD{\TLD:@P}}}
+        \XOR\KWD{\TLD @P}\XOR\KWD{\TLD @:P}}}
     {\index{\~P@$\sim$P}%
       \EM{Plural. }
       If argument \kwd{eql} \LIT{1} print nothing, otherwise print \LIT{s};
@@ -858,7 +858,11 @@
       beginning of a line, or \VAR{n} newlines otherwise.
     }
 
-    \IT{\Goo{\KWD{\TLD\_}\XOR\KWD{\TLD:\_}\XOR\KWD{\TLD@\_}\XOR\KWD{\TLD:@\_}}}
+    \IT{\Goo{%
+        \KWD{\TLD\_}\XOR
+        \KWD{\TLD:\_}\XOR
+        \KWD{\TLD@\_}\XOR
+        \KWD{\TLD @:\_}}}
     {\index{\~\_{}@$\sim$\_{}}%
       \EM{Conditional Newline. }
       Print a newline like \kwd{pprint-newline} with argument
@@ -911,7 +915,7 @@
       on the remaining arguments, which are extracted by
       \kwd{pprint-pop}. With \KWD{:}, \VAR{prefix} and \VAR{suffix}
       default to \LIT{(} and \LIT{)}. When closed by
-      \KWD{\TLD:@\boldmath{$>$}}, spaces in \VAR{body} are replaced with
+      \KWD{\TLD @:\boldmath{$>$}}, spaces in \VAR{body} are replaced with
       conditional newlines. 
     }
 
@@ -948,7 +952,7 @@
       \EM{Iteration. }
       Use \VAR{text} repeatedly, up to \VAR{limit}, as control
       string for the elements of the list argument or (with
-      \kwd{@}) for the remaining arguments. With \kwd{:} or \kwd{:@},
+      \kwd{@}) for the remaining arguments. With \kwd{:} or \kwd{@:},
       list elements or remaining arguments should be
       lists of which a new one is used at each iteration step.
     }
@@ -977,19 +981,22 @@
       the argument to be read again if it is \T.
     }
 
-    \IT{\KWD{\TLD} \Op{\KWD{@}} \KWD{?}}
+    \IT{\Goo{%
+        \KWD{\TLD?}\XOR
+        \KWD{\TLD @?}}
+    }
     {\index{\~?@$\sim$?}%
       \EM{Recursive Processing. }
-      Process two arguments as control string and argument list. With
-      \kwd{@}, take one argument as control string and use then the
-      rest of the original arguments.
+      Process two arguments as control string and argument list, or
+      take one argument as control string and use then the rest of the
+      original arguments.
     }
 
     \IT{\KWD{\TLD} \OP{\VAR{prefix} \Goos{\kwd{,}%
           \VAR{prefix}}} 
       \Op{\kwd{:}} \Op{\kwd{@}} 
       \KWD{/}\OP{\VAR{package}
-        \LIT{:}\Op{\LIT{:}}\DF{\LIT{cl-user:}}}\VAR{function}\KWD{/}}
+        \Op{\LIT{:}}\LIT{:}\DF{\LIT{cl-user:}}}\VAR{function}\KWD{/}}
     {\index{\~/ /@$\sim$/ /}%
       \EM{Call Function. }
       Call all-uppercase \VAR{package\KWD{::}function} with the
