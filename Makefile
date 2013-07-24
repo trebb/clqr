@@ -118,17 +118,17 @@ clean:
 # Project hosting, Github
 
 sample-frontcover.jpg:	clqr-a4-consec.pdf
-	$(CONVERT) $<'[0]' -verbose -resize 40% temp.jpg $(SEND-TO-LOG)
+	$(CONVERT) $<'[0]' -verbose -background white -alpha remove -alpha off -resize 40% temp.jpg $(SEND-TO-LOG)
 	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 	$(RM) temp.jpg
 
 sample-firstpage-%.jpg:	clqr-a4-booklet-%.pdf
-	$(CONVERT) $<'[0]' -verbose -resize 15% temp.jpg $(SEND-TO-LOG)
+	$(CONVERT) $<'[0]' -verbose -background white -alpha remove -alpha off -resize 15% temp.jpg $(SEND-TO-LOG)
 	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 	$(RM) temp.jpg
 
 sample-firstpage-consec.jpg:	clqr-a4-consec.pdf
-	$(CONVERT) $<'[0]' -verbose -resize 15% temp.jpg $(SEND-TO-LOG)
+	$(CONVERT) $<'[0]' -verbose -background white -alpha remove -alpha off -resize 15% temp.jpg $(SEND-TO-LOG)
 	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 	$(RM) temp.jpg
 
