@@ -735,7 +735,7 @@
 
     \IT{\KWD{\TLD} \Op{\VAR{min-col}\DF{\LIT{0}}} \OP{\KWD{,}\Op{\VAR{col-inc}\DF{\LIT{1}}}
         \OP{\KWD{,}\Op{\VAR{min-pad}\DF{\LIT{0}}}
-          \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}
+          \OP{\KWD{,'}\VAR{pad-char}\DF{\textvisiblespace}}}}
       \KWD{\Op{:} \Op{@} \Goo{A\XOR S}}}
     {\index{\~S@$\sim$S}\index{\~A@$\sim$A}%
       \EM{Aesthetic/Standard. }
@@ -746,8 +746,8 @@
     }
     
     \IT{\KWD{\TLD} \Op{\VAR{radix}\DF{\LIT{10}}} \OP{\KWD{,}\Op{\VAR{width}}
-        \OP{\KWD{,}\Op{\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}
-          \OP{\KWD{,}\Op{\VAR{comma-char}\DF{\kwd{'}\LIT{,}}}
+        \OP{\KWD{,}\Op{\kwd{'}\VAR{pad-char}\DF{\textvisiblespace}}
+          \OP{\KWD{,}\Op{\kwd{'}\VAR{comma-char}\DF{\LIT{,}}}
             \OP{\KWD{,}\VAR{comma-interval}\DF{\LIT{3}}}}}}
       \KWD{\Op{:} \Op{@} R}}
     {\index{\~R@$\sim$R}%
@@ -767,8 +767,8 @@
     }
 
     \IT{\KWD{\TLD} \Op{\VAR{width}}
-      \OP{\KWD{,}\Op{\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}
-        \OP{\KWD{,}\Op{\VAR{comma-char}\DF{\kwd{'}\LIT{,}}}
+      \OP{\KWD{,}\Op{\kwd{'}\VAR{pad-char}\DF{\textvisiblespace}}
+        \OP{\KWD{,}\Op{\kwd{'}\VAR{comma-char}\DF{\LIT{,}}}
           \OP{\KWD{,}\VAR{comma-interval}\DF{\LIT{3}}}}}
       \KWD{\Op{:} \Op{@} \Goo{D\XOR B\XOR O\XOR X}}}
     {\index{\~D@$\sim$D}\index{\~B@$\sim$B}\index{\~O@$\sim$O}\index{\~X@$\sim$X}%
@@ -779,8 +779,8 @@
 
     \IT{\KWD{\TLD} \Op{\VAR{width}} \OP{\KWD{,}\Op{\VAR{dec-digits}}
         \OP{\KWD{,}\Op{\VAR{shift}\DF{\LIT{0}}} 
-          \OP{\KWD{,}\Op{\VAR{overflow-char}}
-            \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}}
+          \OP{\KWD{,}\Op{\kwd{'}\VAR{overflow-char}}
+            \OP{\KWD{,'}\VAR{pad-char}\DF{\textvisiblespace}}}}}
       \KWD{\Op{@} F}}
     {\index{\~F@$\sim$F}%
       \EM{Fixed-Format Floating-Point. } With
@@ -790,9 +790,9 @@
     \IT{\KWD{\TLD} \Op{\VAR{width}} \OP{\KWD{,}\Op{\VAR{dec-digits}}
         \OP{\KWD{,}\Op{\VAR{exp-digits}}
           \OP{\KWD{,}\Op{\VAR{scale-factor}\DF{\LIT{1}}}
-            \OP{\KWD{,}\Op{\VAR{overflow-char}}
-              \OP{\KWD{,}\Op{\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}
-                \OP{\KWD{,}\VAR{exp-char}}}}}}}
+            \OP{\KWD{,}\Op{\kwd{'}\VAR{overflow-char}}
+              \OP{\KWD{,}\Op{\kwd{'}\VAR{pad-char}\DF{\textvisiblespace}}
+                \OP{\KWD{,'}\VAR{exp-char}}}}}}}
       \KWD{\Op{@} \Goo{E\XOR  G}}}
     {\index{\~E@$\sim$E}\index{\~G@$\sim$G}%
       \EM{Exponential/General Floating-Point. }
@@ -805,7 +805,7 @@
     \IT{\KWD{\TLD} \Op{\VAR{dec-digits}\DF{\LIT{2}}}
       \OP{\KWD{,}\Op{\VAR{int-digits}\DF{\LIT{1}}}
         \OP{\KWD{,}\Op{\VAR{width}\DF{\LIT{0}}}
-          \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}
+          \OP{\KWD{,'}\VAR{pad-char}\DF{\textvisiblespace}}}}
       \Op{\KWD{:}} \Op{\kwd{@}} \KWD{\$}}
     {\index{\~\$@$\sim$\$}%
       \EM{Monetary Floating-Point. }
@@ -890,7 +890,7 @@
     \IT{\KWD{\TLD} \Op{\VAR{min-col}\DF{\LIT{0}}}
       \OP{\KWD{,}\Op{\VAR{col-inc}\DF{\LIT{1}}}
         \OP{\KWD{,}\Op{\VAR{min-pad}\DF{\LIT{0}}}
-          \OP{\KWD{,}\VAR{pad-char}\DF{\kwd{'}\textvisiblespace}}}}
+          \OP{\KWD{,'}\VAR{pad-char}\DF{\textvisiblespace}}}}
       \KWD{\Op{:} \Op{@} \boldmath{$<$}} 
       \OP{\VAR{nl-text} \KWD{\TLD}\Op{\VAR{spare}\DF{\LIT{0}} \Op{\KWD{,}\VAR{width}}}\kwd{:;}}
       \Goos{\VAR{text} \KWD{\TLD;}} \VAR{text} \KWD{\TLD\boldmath{$>$}}}
