@@ -1,4 +1,4 @@
-# Copyright (C) 2008, 2009, 2010, 2011, 2012 Bert Burgemeister
+# Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014 Bert Burgemeister
 #
 # Permission is granted to copy, distribute and/or modify this
 # document under the terms of the GNU Free Documentation License,
@@ -143,13 +143,14 @@ latest-changes.html:	clqr.tex clqr-*.tex
 gh-publish:
 	$(RM) -r gh-pages
 	mkdir gh-pages
-	$(MAKE) gh-pages/clqr-a4-consec.pdf \
-		gh-pages/clqr-letter-consec.pdf \
-		gh-pages/clqr-a4-booklet-all.pdf \
-		gh-pages/clqr-a4-booklet-four.pdf \
-		gh-pages/clqr-letter-booklet-all.pdf \
-		gh-pages/clqr-letter-booklet-four.pdf \
-		gh-pages/sample-frontcover.jpg \
+	$(MAKE) all
+	$(CP) clqr-a4-consec.pdf gh-pages/
+	$(CP) clqr-letter-consec.pdf gh-pages/
+	$(CP) clqr-a4-booklet-all.pdf gh-pages/
+	$(CP) clqr-a4-booklet-four.pdf gh-pages/
+	$(CP) clqr-letter-booklet-all.pdf gh-pages/
+	$(CP) clqr-letter-booklet-four.pdf gh-pages/
+	$(MAKE) gh-pages/sample-frontcover.jpg \
 		gh-pages/sample-firstpage-all.jpg \
 		gh-pages/sample-firstpage-four.jpg \
 		gh-pages/sample-firstpage-consec.jpg \
@@ -176,9 +177,6 @@ gh-pages/index.html: html-template/index.html latest-changes.html
 
 gh-pages/download.html: html-template/download.html revision-number
 	sed -e "/This is revision/ r REVISION.tex" -e "/<!- date of commit \/>/ r DATE.tex" html-template/download.html > $@
-
-gh-pages/%.pdf: %.pdf
-	$(CP) $< $@
 
 gh-pages/%.tar.gz: %.tar.gz
 	$(CP) $< $@

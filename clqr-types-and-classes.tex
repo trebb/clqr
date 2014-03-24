@@ -1,4 +1,4 @@
-% Copyright (C) 2008, 2009, 2010, 2011, 2012 Bert Burgemeister
+% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -159,9 +159,12 @@ For any class, there is always a corresponding type of the same name.
     \OP{(\xorGOO{\kwd*{OTHERWISE}\\
         \T}{\}} \PROGN{\VAR{b-form}\DF{\NIL}})})}
   {
-    Return \retval{values of the \VAR{a-form}s} whose \VAR{type} is
+    Return \retval{values of the first \OPn{\VAR{a-form}}} whose \VAR{type} is
     \VAR{foo} of. Return \retval{values of \VAR{b-form}s} if no
     \VAR{type} matches.
+    % Keep \OPn{\VAR{a-form}} instead of the otherwise preferable
+    % \VAR{a-form}s because we're talking about one set of a-forms out
+    % of several.
   }
 
   \IT{(\xorGOO{%
@@ -170,9 +173,12 @@ For any class, there is always a corresponding type of the same name.
     \VAR{foo}
     \OPn{(\NEV{\VAR{type}} \PROGN{\VAR{form}})})}
   {
-    Return \retval{values} of the first \OPn{\VAR{form}} whose \VAR{type} is
+    Return \retval{values of the first \OPn{\VAR{form}}} whose \VAR{type} is
     \VAR{foo} of.  Signal non-correctable/correctable \kwd{type-error}
     if no \VAR{type} matches.
+    % Keep \OPn{\VAR{form}} instead of the otherwise preferable
+    % \VAR{form}s because we're talking about one set of forms out
+    % of several.
   }
 
   \IT{(\FU*{TYPE-OF} \VAR{foo})}
