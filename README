@@ -3,17 +3,18 @@ short descriptions of the thousand or so symbols defined in the ANSI
 standard.
 
 
-It builds well on a Debian system with the packages
+It builds well on a Debian system with the packages texlive-metapost,
+texlive-latex-recommended, texlive-latex-extra, and their dependencies
+installed.
 
-  texlive-metapost,
-  texlive-latex-recommended,
-  texlive-latex-extra,
+On FreeBSD, (at least) ports gmake and texlive-full are required.
 
-and their dependencies installed.  If you have them all in place, type
+If you have those dependencies in place, type
 
   $ make
 
 and be patient.
+
 
 If you end up with three blank pages at the end you can try to blank a
 fourth page by changing

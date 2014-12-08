@@ -8,7 +8,7 @@
 
 SEND-TO-LOG	= | tee -a lastbuild.log
 
-LATEX		= latex 
+LATEX		= latex
 MAKEINDEX	= makeindex -c
 MPOST		= TEX=latex mpost
 DVIPS		= dvips
@@ -16,61 +16,65 @@ PSNUP-A4	= psnup -W10.5cm -H29.7cm -pa4 -2
 PSNUP-LETTER	= psnup -W4.25in -H11in -pletter -2
 PSBOOK-ALL	= psbook
 PSBOOK-FOUR	= psbook -s4
-PS2PDF		= ps2pdf -dPDFSETTINGS=/prepress 
+PS2PDF		= ps2pdf -dPDFSETTINGS=/prepress
 CONVERT		= convert
 MONTAGE		= montage
 HEAD		= head
 TAIL		= tail
 TOUCH		= touch
-CP		= cp --verbose
-RM		= rm --force --verbose
-MV		= mv --force --verbose
-MAKE		= make
+CP		= cp -v
+RM		= rm -f -v
+MV		= mv -f -v
+# trying to find GNU Make
+MAKE		= `which gmake || which make`
 GZIP		= gzip
 GIT_REVISION	= git describe | sed 's/\(.*-.*\)-.*/\1/'
 GIT_ARCHIVE	= git archive --format=tar --prefix=clqr/ HEAD | $(GZIP)
 GIT_LOG		= git log
-DATE		= git log HEAD^..HEAD --date=short | awk '/Date:/{print $$2}' | tr -d '\n\\' 
+DATE		= git log HEAD^..HEAD --date=short | awk '/Date:/{print $$2}' | tr -d '\n\\'
 
-all:	letter a4
+all: letter a4
 
-letter:	 
+letter:
 	$(MAKE) letter-booklets
 	$(MAKE) clqr-letter-consec.pdf
 
-a4:	
+a4:
 	$(MAKE) a4-booklets
-	$(MAKE) clqr-a4-consec.pdf 
+	$(MAKE) clqr-a4-consec.pdf
 
-letter-booklets:	clqr-letter-booklet-all.pdf clqr-letter-booklet-four.pdf
+letter-booklets: clqr-letter-booklet-all.pdf clqr-letter-booklet-four.pdf
 
-a4-booklets:	 clqr-a4-booklet-all.pdf clqr-a4-booklet-four.pdf 
+a4-booklets:  clqr-a4-booklet-all.pdf clqr-a4-booklet-four.pdf
 
-clqr-%-consec.pdf:	clqr-%-consec.ps
+clqr-letter-consec.pdf: clqr-letter-consec.ps
 	$(PS2PDF) $< $@ $(SEND-TO-LOG)
 
-clqr-letter-booklet-%.pdf:	clqr-letter-booklet-%.ps
+clqr-a4-consec.pdf: clqr-a4-consec.ps
+	$(PS2PDF) $< $@ $(SEND-TO-LOG)
+
+clqr-letter-booklet-%.pdf: clqr-letter-booklet-%.ps paper-letter.flag
 	$(PS2PDF) -sPAPERSIZE=letter $< $@ $(SEND-TO-LOG)
 
-clqr-a4-booklet-%.pdf:	clqr-a4-booklet-%.ps
+clqr-a4-booklet-%.pdf: clqr-a4-booklet-%.ps paper-a4.flag
 	$(PS2PDF) -sPAPERSIZE=a4 $< $@ $(SEND-TO-LOG)
 
-clqr-letter-booklet-%.ps:	clqr-letter-signature-%.ps color-black.flag
+clqr-letter-booklet-%.ps: clqr-letter-signature-%.ps color-black.flag
 	$(PSNUP-LETTER) $< > $@ $(SEND-TO-LOG)
 
-clqr-a4-booklet-%.ps:	clqr-a4-signature-%.ps color-black.flag
+clqr-a4-booklet-%.ps: clqr-a4-signature-%.ps color-black.flag
 	$(PSNUP-A4) $< > $@ $(SEND-TO-LOG)
 
-clqr-%-signature-all.ps:	clqr-%-consec.ps
+clqr-%-signature-all.ps: clqr-%-consec.ps
 	$(PSBOOK-ALL) $< $@ $(SEND-TO-LOG)
 
-clqr-%-signature-four.ps:	clqr-%-consec.ps
+clqr-%-signature-four.ps: clqr-%-consec.ps
 	$(PSBOOK-FOUR) $< $@ $(SEND-TO-LOG)
 
-clqr-%-consec.ps:	clqr-%.dvi color-colorful.flag
+clqr-%-consec.ps: clqr-%.dvi color-colorful.flag
 	$(DVIPS) -o $@ $< $(SEND-TO-LOG)
 
-clqr-%.dvi:	clqr.tex clqr-*.tex clqr.*.tex clqr-types-and-classes.1 paper-%.flag revision-number
+clqr-%.dvi: clqr.tex clqr-*.tex clqr.*.tex clqr-types-and-classes.1 paper-%.flag revision-number
 	$(TOUCH) clqr.ind $(SEND-TO-LOG)
 	$(LATEX) clqr.tex $(SEND-TO-LOG)
 	$(LATEX) clqr.tex $(SEND-TO-LOG)
@@ -80,25 +84,25 @@ clqr-%.dvi:	clqr.tex clqr-*.tex clqr.*.tex clqr-types-and-classes.1 paper-%.flag
 
 clqr-types-and-classes.1 clqr-types-and-classes.2 \
 clqr-types-and-classes.3 clqr-types-and-classes.4 \
-clqr-types-and-classes.5:	clqr-types-and-classes.mp clqr.macros.tex clqr.packages.tex
+clqr-types-and-classes.5: clqr-types-and-classes.mp clqr.macros.tex clqr.packages.tex
 	$(MPOST) $< $(SEND-TO-LOG)
 
-paper-a4.flag:	
+paper-a4.flag:
 	$(CP) paper-a4.tex paper-current.tex $(SEND-TO-LOG)
 	$(RM) paper-letter.flag $(SEND-TO-LOG)
 	$(TOUCH) $@
 
-paper-letter.flag:	
+paper-letter.flag:
 	$(CP) paper-letter.tex paper-current.tex $(SEND-TO-LOG)
 	$(RM) paper-a4.flag $(SEND-TO-LOG)
 	$(TOUCH) $@
 
-color-colorful.flag:	
+color-colorful.flag:
 	$(CP) color-colorful.tex color-current.tex $(SEND-TO-LOG)
 	$(RM) color-black.flag $(SEND-TO-LOG)
 	$(TOUCH) $@
 
-color-black.flag:	
+color-black.flag:
 	$(CP) color-black.tex color-current.tex $(SEND-TO-LOG)
 	$(RM) color-colorful.flag $(SEND-TO-LOG)
 	$(TOUCH) $@
@@ -117,27 +121,27 @@ clean:
 
 # Project hosting, Github
 
-sample-frontcover.jpg:	clqr-a4-consec.pdf
+sample-frontcover.jpg: clqr-a4-consec.pdf
 	$(CONVERT) $<'[0]' -verbose -background white -alpha remove -alpha off -resize 40% temp.jpg $(SEND-TO-LOG)
 	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 	$(RM) temp.jpg
 
-sample-firstpage-%.jpg:	clqr-a4-booklet-%.pdf
+sample-firstpage-%.jpg: clqr-a4-booklet-%.pdf
 	$(CONVERT) $<'[0]' -verbose -background white -alpha remove -alpha off -resize 15% temp.jpg $(SEND-TO-LOG)
 	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 	$(RM) temp.jpg
 
-sample-firstpage-consec.jpg:	clqr-a4-consec.pdf
+sample-firstpage-consec.jpg: clqr-a4-consec.pdf
 	$(CONVERT) $<'[0]' -verbose -background white -alpha remove -alpha off -resize 15% temp.jpg $(SEND-TO-LOG)
 	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 	$(RM) temp.jpg
 
-sample-source.jpg:	clqr-numbers.tex
+sample-source.jpg: clqr-numbers.tex
 	$(HEAD) -n 57  $< | $(TAIL) -n 40 | $(CONVERT) -font Courier -crop 120x80+30+2 +repage label:@- temp.jpg $(SEND-TO-LOG)
 	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 	$(RM) temp.jpg
 
-latest-changes.html:	clqr.tex clqr-*.tex 
+latest-changes.html: clqr.tex clqr-*.tex
 	if $(GIT_LOG) -5 --pretty=format:"<p><i>%ci</i>%n<br />%s%n<br />%b</p>" > $@; then true; else true; fi $(SEND-TO-LOG)
 
 gh-publish:
@@ -184,5 +188,5 @@ gh-pages/%.tar.gz: %.tar.gz
 gh-pages/%: html-template/%
 	$(CP) $< $@
 
-clqr.tar.gz:	clqr.tex clqr-*.tex 
+clqr.tar.gz: clqr.tex clqr-*.tex
 	if $(GIT_ARCHIVE) > clqr.tar.gz; then true; else true; fi $(SEND-TO-LOG)
