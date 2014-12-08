@@ -58,22 +58,33 @@ clqr-letter-booklet-%.pdf: clqr-letter-booklet-%.ps paper-letter.flag
 clqr-a4-booklet-%.pdf: clqr-a4-booklet-%.ps paper-a4.flag
 	$(PS2PDF) -sPAPERSIZE=a4 $< $@ $(SEND-TO-LOG)
 
-clqr-letter-booklet-%.ps: clqr-letter-signature-%.ps color-black.flag
+clqr-letter-booklet-%.ps: clqr-letter-signature-%.ps
 	$(PSNUP-LETTER) $< > $@ $(SEND-TO-LOG)
 
-clqr-a4-booklet-%.ps: clqr-a4-signature-%.ps color-black.flag
+clqr-a4-booklet-%.ps: clqr-a4-signature-%.ps
 	$(PSNUP-A4) $< > $@ $(SEND-TO-LOG)
 
-clqr-%-signature-all.ps: clqr-%-consec.ps
+clqr-%-signature-all.ps: clqr-%-consec-black.ps
 	$(PSBOOK-ALL) $< $@ $(SEND-TO-LOG)
 
-clqr-%-signature-four.ps: clqr-%-consec.ps
+clqr-%-signature-four.ps: clqr-%-consec-black.ps
 	$(PSBOOK-FOUR) $< $@ $(SEND-TO-LOG)
 
-clqr-%-consec.ps: clqr-%.dvi color-colorful.flag
+clqr-%-consec.ps: clqr-%-colorful.dvi
 	$(DVIPS) -o $@ $< $(SEND-TO-LOG)
 
-clqr-%.dvi: clqr.tex clqr-*.tex clqr.*.tex clqr-types-and-classes.1 paper-%.flag revision-number
+clqr-%-consec-black.ps: clqr-%-black.dvi
+	$(DVIPS) -o $@ $< $(SEND-TO-LOG)
+
+clqr-%-colorful.dvi: clqr.tex clqr-*.tex clqr.*.tex clqr-types-and-classes.1 paper-%.flag revision-number color-colorful.flag
+	$(TOUCH) clqr.ind $(SEND-TO-LOG)
+	$(LATEX) clqr.tex $(SEND-TO-LOG)
+	$(LATEX) clqr.tex $(SEND-TO-LOG)
+	$(MAKEINDEX) -s clqr.ist clqr.idx $(SEND-TO-LOG)
+	$(LATEX) clqr.tex $(SEND-TO-LOG)
+	$(MV) clqr.dvi $@ $(SEND-TO-LOG)
+
+clqr-%-black.dvi: clqr.tex clqr-*.tex clqr.*.tex clqr-types-and-classes.1 paper-%.flag revision-number color-black.flag
 	$(TOUCH) clqr.ind $(SEND-TO-LOG)
 	$(LATEX) clqr.tex $(SEND-TO-LOG)
 	$(LATEX) clqr.tex $(SEND-TO-LOG)
