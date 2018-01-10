@@ -1,4 +1,5 @@
-% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014 Bert Burgemeister
+% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014, 2018
+% Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -7,11 +8,11 @@
 %
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{CLOS} 
+\section{CLOS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Classes} 
+\subsection{Classes}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{LIST}{1cm}
@@ -26,7 +27,7 @@
     \retval{\T} if \VAR{slot} in \VAR{instance} is bound.
   }
 
-  \IT{(\MC*{DEFCLASS} \VAR{foo} 
+  \IT{(\MC*{DEFCLASS} \VAR{foo}
     (\OPn{\VAR{superclass}}\DF{\kwd{standard-object}})
     (\xorGOO{%
       \VAR{slot}\\
@@ -100,7 +101,7 @@
     Return \retval{values of \VAR{form}s} after evaluating them in a
     lexical environment with slots of \VAR{instance} visible as
     \kwd{setf}able \VAR{slot}s or \VAR{var}s/with \VAR{accessor}s of
-    \VAR{instance} visible as \kwd{setf}able \VAR{var}s. 
+    \VAR{instance} visible as \kwd{setf}able \VAR{var}s.
   }
 
   \IT{\arrGOO{(\GFU*{CLASS-NAME } \VAR{class})\\
@@ -115,7 +116,7 @@
   }
 
   \IT{(\GFU*{CHANGE-CLASS} \DES{\VAR{instance}} \VAR{new-class}
-    \Goos{\kwd{:}\VAR{initarg} \VAR{value}} \OPn{\VAR{other-keyarg}})} 
+    \Goos{\kwd{:}\VAR{initarg} \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
     Change class of \retval{\VAR{instance}} to \VAR{new-class}.
     Retain the status of any slots that are common between
@@ -133,13 +134,13 @@
 
   \IT{(\xorGOO{%
       \GFU*{INITIALIZE-INSTANCE } \VAR{instance}\\
-      \GFU*{UPDATE-INSTANCE-FOR-DIFFERENT-CLASS} 
+      \GFU*{UPDATE-INSTANCE-FOR-DIFFERENT-CLASS}
       \VAR{ previous }\VAR{current}}{\}}
     \Goos{\kwd{:}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
     Set slots on behalf of \GFU{make-instance}/of
-    \GFU{change-class} by means of \GFU{shared-initialize}. 
+    \GFU{change-class} by means of \GFU{shared-initialize}.
   }
 
   \IT{(\GFU*{UPDATE-INSTANCE-FOR-REDEFINED-CLASS}
@@ -163,16 +164,16 @@
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
     Return uninitialized \retval{instance} of \VAR{class}. Called by
-    \GFU{make-instance}. 
+    \GFU{make-instance}.
   }
 
-  \IT{(\GFU*{SHARED-INITIALIZE} \VAR{instance} 
+  \IT{(\GFU*{SHARED-INITIALIZE} \VAR{instance}
     \xorGOO{%
       \VAR{initform-slots}\\
       \T}{\}}
      \Goos{\kwd{:}%
        \VAR{initarg-slot}
-       \VAR{value}} 
+       \VAR{value}}
      \OPn{\VAR{other-keyarg}})}
   {
     Fill the \VAR{initarg-slot}s of \VAR{instance} with the
@@ -200,7 +201,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection[Generic~Functns]{Generic Functions} 
+\subsection[Generic~Functns]{Generic Functions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{LIST}{1cm}
@@ -210,7 +211,7 @@
   }
 
   \IT{(\MC*{DEFGENERIC}
-    \xorGOO{\VAR{foo}\\ (\kwd{setf} \VAR{ foo})}{\}} 
+    \xorGOO{\VAR{foo}\\ (\kwd{setf} \VAR{ foo})}{\}}
     (\OPn{\VAR{required-var}}
     \OP{\kwd{\&optional} \xorGOO{%
         \VAR{var}\\
@@ -224,10 +225,10 @@
       (\kwd{:argument-precedence-order}\RP{\VAR{ required-var}})\\
       (\kwd{declare }\RP{(\kwd{optimize}\VAR{ method-selection-optimization})})\\
       (\kwd{:documentation } \NEV{\VAR{string}})\\
-      (\kwd{:generic-function-class} 
+      (\kwd{:generic-function-class}
       \VAR{ gf-class}\DF{\kwd{standard-generic-function}})\\
       (\kwd{:method-class} \VAR{ method-class}\DF{\kwd{standard-method}})\\
-      (\kwd{:method-combination} 
+      (\kwd{:method-combination}
       \VAR{ c-type}\DF{\kwd{standard}} \OPn{\VAR{ c-arg}})\\
       \OPn{(\kwd{:method} \VAR{ defmethod-args})}}{\}})}
   {
@@ -256,12 +257,12 @@
     must be compatible with a pre-existing generic function or with
     existing methods, respectively. Changes to \VAR{method-class} do
     not propagate to existing methods. For \VAR{c-type} see section
-    \ref{section:Method Combination Types}. 
+    \ref{section:Method Combination Types}.
   }
 
-  \IT{(\MC*{DEFMETHOD} 
-    \xorGOO{\VAR{foo}\\ 
-      (\kwd{setf} \VAR{ foo})}{\}} 
+  \IT{(\MC*{DEFMETHOD}
+    \xorGOO{\VAR{foo}\\
+      (\kwd{setf} \VAR{ foo})}{\}}
     \Op{\xorGOO{\kwd{:before}\\
         \kwd{:after}\\
         \kwd{:around}\\
@@ -300,7 +301,7 @@
       \GFU*{REMOVE-METHOD}}{\}} \VAR{generic-function} \VAR{method})}
   {
     Add (if necessary) or remove (if any) \VAR{method} to/from
-    \retval{\VAR{generic-function}}. 
+    \retval{\VAR{generic-function}}.
   }
 
   \IT{(\GFU*{FIND-METHOD} \VAR{generic-function} \VAR{qualifiers}
@@ -362,7 +363,7 @@
 \end{LIST}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection[Method Combi- nation Types]{Method Combination Types} 
+\subsection[Method Combi- nation Types]{Method Combination Types}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{section:Method Combination Types}
 \begin{LIST}{1cm}
@@ -393,7 +394,7 @@
     Simple built-in \kwd{method-combination} types; have the same
     usage as the
     \VAR{c-type}s defined by the short form of
-    \MC{define-method-combination}. 
+    \MC{define-method-combination}.
   }
 
   \IT{(\MC*{DEFINE-METHOD-COMBINATION} \VAR{c-type}
@@ -424,22 +425,23 @@
   }
 
   \IT{(\MC*{DEFINE-METHOD-COMBINATION} \VAR{c-type}
-    (\OPn{\VAR{ord-$\lambda$}}) 
+    (\OPn{\VAR{ord-$\lambda$}})
     (\OPn{(\VAR{group} \xorGOO{%
         \kwd{\A}\\
         (\OPn{\VAR{qualifier}}\text{ } \OP{\kwd{\A}})\\
-        \VAR{predicate}}{\}} 
+        \VAR{predicate}}{\}}
       \orGOO{%
         \kwd{:description} \VAR{ control}\\
         \kwd{:order }
         \xorGOO{\kwd{:most-specific-first}\\
-          \kwd{:most-specific-last}}{\}}\DF{\kwd{:most-specific-first}}\\ 
+          \kwd{:most-specific-last}}{\}}\DF{\kwd{:most-specific-first}}\\
         \kwd{:required} \VAR{ bool}}{\}})})
     \orGOO{%
       (\kwd{:arguments } \OPn{\VAR{method-combination-$\lambda$}})\\
       (\kwd{:generic-function} \VAR{ symbol})\\
-      \OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\\
-      \NEV{\VAR{doc}}}{\}}
+      \orGOO{%
+        \OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\\
+        \NEV{\VAR{doc}}}{\}}}{\}}
     \PROGN{\VAR{body}})}
   {
     \EM{Long Form. } Define new \kwd{method-combination}
@@ -467,14 +469,14 @@
     From within an effective method form, call \VAR{method} with the
     arguments of the generic function and
     with information about its \VAR{next-method}s; return \retval{its
-      values}. 
+      values}.
   }
 
 \end{LIST}
 
 
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "clqr"
-%%% End: 
+%%% End:

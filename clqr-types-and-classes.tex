@@ -1,4 +1,5 @@
-% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014 Bert Burgemeister
+% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014, 2018
+% Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -8,7 +9,7 @@
 %
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Types and Classes} 
+\section{Types and Classes}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}
@@ -141,13 +142,13 @@ For any class, there is always a corresponding type of the same name.
   {
     Return \retval{\T} if \VAR{type-a} is a recognizable subtype of
     \VAR{type-b}, and \retvalii{\NIL} if the relationship could not be
-    determined. 
+    determined.
   }
 
   \IT{(\SO*{THE} \NEV{\VAR{type}} \VAR{form})}
   {
     Declare \retval{values of \VAR{form}} to be of
-    \VAR{type}. 
+    \VAR{type}.
   }
 
   \IT{(\FU*{COERCE} \VAR{object} \VAR{type})}
@@ -155,7 +156,7 @@ For any class, there is always a corresponding type of the same name.
     Coerce \retval{\VAR{object}} into \VAR{type}.
   }
 
-  \IT{(\MC*{TYPECASE} \VAR{foo} \OPn{(\NEV{\VAR{type}} \PROGN{\VAR{a-form}})} 
+  \IT{(\MC*{TYPECASE} \VAR{foo} \OPn{(\NEV{\VAR{type}} \PROGN{\VAR{a-form}})}
     \OP{(\xorGOO{\kwd*{OTHERWISE}\\
         \T}{\}} \PROGN{\VAR{b-form}\DF{\NIL}})})}
   {
@@ -200,64 +201,66 @@ For any class, there is always a corresponding type of the same name.
 
   \IT{(\FU*{ARRAY-ELEMENT-TYPE} \VAR{array})}
   {
-  Element \retval{type} \VAR{array} can hold.
+    Element \retval{type} \VAR{array} can hold.
   }
 
   \IT{(\FU*{UPGRADED-ARRAY-ELEMENT-TYPE} \VAR{type}
     \Op{\VAR{environment}\DF{\NIL}})}
   {
-  \retval{Element type} of most specialized array capable of holding
-  elements of \VAR{type}. 
+    \retval{Element type} of most specialized array capable of holding
+    elements of \VAR{type}.
   }
 
   \IT{(\MC*{DEFTYPE} \VAR{foo} (\OPn{\VAR{macro-$\lambda$}})
-    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \Op{\NEV{\VAR{doc}}} 
+    \orGOO{%
+      \OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\\
+      \NEV{\VAR{doc}}}{\}}
     \PROGN{\VAR{form}})}
   {
-  Define type \retval{\VAR{foo}} which when referenced as (\VAR{foo}
-  \OPn{\NEV{\VAR{arg}}}) (or as \VAR{foo} if \VAR{macro-$\lambda$}
-  doesn't contain any required parameters) applies expanded \VAR{form}s to \VAR{arg}s
-  returning the new type. For (\OPn{\VAR{macro-$\lambda$}}) see
-  page \pageref{section:Macros} but with default value of \kwd{\A}
-  instead of \NIL. \VAR{form}s are enclosed in an implicit \SO{block}
-  named \VAR{foo}.
+    Define type \retval{\VAR{foo}} which when referenced as (\VAR{foo}
+    \OPn{\NEV{\VAR{arg}}}) (or as \VAR{foo} if \VAR{macro-$\lambda$}
+    doesn't contain any required parameters) applies expanded \VAR{form}s to \VAR{arg}s
+    returning the new type. For (\OPn{\VAR{macro-$\lambda$}}) see
+    page \pageref{section:Macros} but with default value of \kwd{\A}
+    instead of \NIL. \VAR{form}s are enclosed in an implicit \SO{block}
+    named \VAR{foo}.
   }
 
   \IT{\arrGOO{(\kwd*{EQL } \VAR{foo})\\
       (\kwd*{MEMBER } \OPn{\VAR{foo}})}{.}}
   {
-  Specifier for a type comprising \VAR{foo} or \VAR{foo}s.
+    Specifier for a type comprising \VAR{foo} or \VAR{foo}s.
   }
 
   \IT{(\kwd*{SATISFIES} \VAR{predicate})}
   {
-  Type specifier for all objects satisfying \VAR{predicate}. 
+    Type specifier for all objects satisfying \VAR{predicate}.
   }
 
   \IT{(\kwd*{MOD} \VAR{n})}
   {
-  Type specifier for all non-negative integers $<n$.
+    Type specifier for all non-negative integers $<n$.
   }
 
   \IT{(\kwd*{NOT} \VAR{type})}
   {
-  Complement of type.
+    Complement of type.
   }
 
   \IT{(\kwd*{AND} \OPn{\VAR{type}}\DF{\T})}
   {
-  Type specifier for intersection of \VAR{type}s.
+    Type specifier for intersection of \VAR{type}s.
   }
 
   \IT{(\kwd*{OR} \OPn{\VAR{type}}\DF{\NIL})}
   {
-  Type specifier for union of \VAR{type}s.
+    Type specifier for union of \VAR{type}s.
   }
 
   \IT{(\kwd*{VALUES} \OPn{\VAR{type}} \OP{\OPn{\kwd{\&optional} \VAR{type}}
       \Op{\kwd{\&rest} \VAR{other-args}}})}
   {
-  Type specifier for multiple values.
+    Type specifier for multiple values.
   }
 
   \IT{\kwd{\A}}
@@ -265,11 +268,11 @@ For any class, there is always a corresponding type of the same name.
     \index{*@\A}%
     As a type argument (cf.\ Figure \ref{data-types}): no restriction.
   }
-  \end{LIST}
+\end{LIST}
 
 
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "clqr"
-%%% End: 
+%%% End:

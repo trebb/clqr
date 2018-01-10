@@ -1,55 +1,56 @@
-% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014 Bert Burgemeister
-%
+% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014, 2018
+% Bert Burgemeister
+% 
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
 % Version 1.2; with no Invariant Sections, no Front-Cover Texts and
 % no Back-Cover Texts. For details see file COPYING.
-%
+% 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \section{Control Structure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \subsection{Predicates}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \begin{LIST}{1cm}
 
   \IT{(\FU*{EQ} \VAR{foo bar})}
   {
-  \retval{\T} if \VAR{foo} and \VAR{bar} are identical.
+    \retval{\T} if \VAR{foo} and \VAR{bar} are identical.
   }
 
   \IT{(\FU*{EQL} \VAR{foo bar})}
   {
-  \retval{\T} if \VAR{foo} and \VAR{bar}
-  are identical, or the same \kwd{character}, or \kwd{number}s of the
-  same type and value. 
+    \retval{\T} if \VAR{foo} and \VAR{bar}
+    are identical, or the same \kwd{character}, or \kwd{number}s of the
+    same type and value.
   }
 
   \IT{(\FU*{EQUAL} \VAR{foo bar})}
   {
-  \retval{\T} if \VAR{foo} and \VAR{bar}
-  are \FU{EQL}, or are equivalent \kwd{pathname}s, or are \kwd{cons}es with
-  \FU{equal} cars and cdrs, or are \kwd{string}s or \kwd{bit-vector}s with
-  \FU{eql} elements below their fill pointers.
+    \retval{\T} if \VAR{foo} and \VAR{bar}
+    are \FU{EQL}, or are equivalent \kwd{pathname}s, or are \kwd{cons}es with
+    \FU{equal} cars and cdrs, or are \kwd{string}s or \kwd{bit-vector}s with
+    \FU{eql} elements below their fill pointers.
   }
 
   \IT{(\FU*{EQUALP} \VAR{foo bar})}
   {
-  \retval{\T} if \VAR{foo} and \VAR{bar} are identical; or are the
-  same \kwd{character} ignoring case; or are \kwd{number}s of the same
-  value ignoring type; or are equivalent \kwd{pathname}s; or are
-  \kwd{cons}es or \kwd{array}s of the same shape with \FU{equalp}
-  elements; or are structures of the same type with
-  \FU{equalp} elements; or are \kwd{hash-table}s of the same size
-  with the same \kwd{:test} function, the same keys in terms of
-  \kwd{:test} function, and \FU{equalp} elements.
+    \retval{\T} if \VAR{foo} and \VAR{bar} are identical; or are the
+    same \kwd{character} ignoring case; or are \kwd{number}s of the same
+    value ignoring type; or are equivalent \kwd{pathname}s; or are
+    \kwd{cons}es or \kwd{array}s of the same shape with \FU{equalp}
+    elements; or are structures of the same type with
+    \FU{equalp} elements; or are \kwd{hash-table}s of the same size
+    with the same \kwd{:test} function, the same keys in terms of
+    \kwd{:test} function, and \FU{equalp} elements.
   }
 
   \IT{(\FU*{NOT} \VAR{foo})\qquad\qquad\qquad}
   {
-  \retval{\T} if \VAR{foo} is \NIL; \retval{\NIL} otherwise.
+    \retval{\T} if \VAR{foo} is \NIL; \retval{\NIL} otherwise.
   }
 
   \IT{(\FU*{BOUNDP} \VAR{symbol})\qquad\qquad}
@@ -59,107 +60,107 @@
 
   \IT{(\FU*{CONSTANTP} \VAR{foo} \Op{\VAR{environment}\DF{\NIL}})}
   {
-  \retval{\T} if \VAR{foo} is a constant form.
+    \retval{\T} if \VAR{foo} is a constant form.
   }
 
   \IT{(\FU*{FUNCTIONP} \VAR{foo})\qquad\qquad}
   {
-  \retval{\T} if \VAR{foo} is of type \kwd{function}.
+    \retval{\T} if \VAR{foo} is of type \kwd{function}.
   }
 
   \IT{(\FU*{FBOUNDP} \xorGOO{\VAR{foo}\\
       (\kwd{setf } \VAR{foo})}{\}})}
   {
-  \retval{\T} if \VAR{foo} is a global function or macro.
+    \retval{\T} if \VAR{foo} is a global function or macro.
   }
 
 
 \end{LIST}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \subsection{Variables}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 \begin{LIST}{1cm}
 
   \IT{(\xorGOO{%
       \MC*{DEFCONSTANT}\\
       \MC*{DEFPARAMETER}}{\}} \NEV{\VAR{foo}} \VAR{form}
-      \Op{\NEV{\VAR{doc}}})}
+    \Op{\NEV{\VAR{doc}}})}
   {
-  Assign value of \VAR{form} to global constant/dynamic variable \retval{\VAR{foo}}.
+    Assign value of \VAR{form} to global constant/dynamic variable \retval{\VAR{foo}}.
   }
 
   \IT{(\MC*{DEFVAR} \NEV{\VAR{foo}} \OP{\VAR{form}
       \Op{\NEV{\VAR{doc}}}})}
   {
-  Unless bound already, assign value of \VAR{form} to dynamic variable
-  \retval{\VAR{foo}}. 
+    Unless bound already, assign value of \VAR{form} to dynamic variable
+    \retval{\VAR{foo}}.
   }
 
   \IT{(\xorGOO{\MC*{SETF}\\
       \MC*{PSETF}}{\}} \Goos{\VAR{place}
       \VAR{form}})}
   {
-  Set \VAR{place}s to primary values of \VAR{form}s. Return \retval{values
-    of last \VAR{form}}/\retval{\NIL}; work sequentially/in parallel, respectively. 
+    Set \VAR{place}s to primary values of \VAR{form}s. Return \retval{values
+      of last \VAR{form}}/\retval{\NIL}; work sequentially/in parallel, respectively.
   }
 
   \IT{(\xorGOO{\SO*{SETQ}\\
       \MC*{PSETQ}}{\}} \Goos{\VAR{symbol}
       \VAR{form}})}
   {
-  Set \VAR{symbol}s to primary values of \VAR{form}s. Return \retval{value
-    of last \VAR{form}}/\retval{\NIL}; work sequentially/in parallel, respectively. 
+    Set \VAR{symbol}s to primary values of \VAR{form}s. Return \retval{value
+      of last \VAR{form}}/\retval{\NIL}; work sequentially/in parallel, respectively.
   }
 
   \IT{(\FU*{SET} \DES{\VAR{symbol}} \VAR{foo})}
   {
-  Set \VAR{symbol}'s value cell to \retval{\VAR{foo}}. Deprecated.
+    Set \VAR{symbol}'s value cell to \retval{\VAR{foo}}. Deprecated.
   }
 
   \IT{(\MC*{MULTIPLE-VALUE-SETQ} \VAR{vars} \VAR{form})}
   {
-  Set elements of \VAR{vars} to the values of
-  \VAR{form}. Return \retval{\VAR{form}'s primary value}.
+    Set elements of \VAR{vars} to the values of
+    \VAR{form}. Return \retval{\VAR{form}'s primary value}.
   }
 
   \IT{(\MC*{SHIFTF} \RP{\DES{\VAR{place}}} \VAR{foo})}
   {
-  Store value of \VAR{foo} in rightmost \VAR{place} shifting values of
-  \VAR{place}s left, returning \retval{first \VAR{place}}. 
+    Store value of \VAR{foo} in rightmost \VAR{place} shifting values of
+    \VAR{place}s left, returning \retval{first \VAR{place}}.
   }
 
   \IT{(\MC*{ROTATEF} \OPn{\DES{\VAR{place}}})}
   {
-  Rotate values of \VAR{place}s left, old first becoming new last
-  \VAR{place}'s value. Return \retval{\NIL}.
+    Rotate values of \VAR{place}s left, old first becoming new last
+    \VAR{place}'s value. Return \retval{\NIL}.
   }
 
   \IT{(\FU*{MAKUNBOUND} \DES{\VAR{foo}})}
   {
-  Delete special variable \retval{\VAR{foo}} if any.
+    Delete special variable \retval{\VAR{foo}} if any.
   }
 
   \label{:property_lists}
   \IT{\arrGOO{(\FU*{GET} \VAR{ symbol} \VAR{ key }
-      \OP{\VAR{default}\DF{\NIL}})\\ 
+      \OP{\VAR{default}\DF{\NIL}})\\
       (\FU*{GETF} \VAR{ place} \VAR{ key }
       \OP{\VAR{default}\DF{\NIL}})}{.}}
   {
-  \retval{First entry \VAR{key}} from property list stored in
-  \VAR{symbol}/in \VAR{place}, respectively, or \retval{\VAR{default}} if
-  there is no \VAR{key}. \kwd{setf}able.
+    \retval{First entry \VAR{key}} from property list stored in
+    \VAR{symbol}/in \VAR{place}, respectively, or \retval{\VAR{default}} if
+    there is no \VAR{key}. \kwd{setf}able.
   }
 
   \IT{(\FU*{GET-PROPERTIES} \VAR{property-list} \VAR{keys})}
   {
-  Return \retval{key} and \retvalii{value} of first entry from \VAR{property-list}
-  matching a key from \VAR{keys}, and \retvaliii{tail of
-    \VAR{property-list}} starting with that key. Return \retval{\NIL},
-  \retvalii{\NIL}, and  \retvaliii{\NIL} if there was no matching key
-  in \VAR{property-list}.
+    Return \retval{key} and \retvalii{value} of first entry from \VAR{property-list}
+    matching a key from \VAR{keys}, and \retvaliii{tail of
+      \VAR{property-list}} starting with that key. Return \retval{\NIL},
+    \retvalii{\NIL}, and  \retvaliii{\NIL} if there was no matching key
+    in \VAR{property-list}.
   }
 
   \IT{\arrGOO{(\FU*{REMPROP } \DES{\VAR{symbol}} \VAR{ key})\\
@@ -174,20 +175,20 @@
   {
     Evaluate \VAR{form}s with locally established dynamic bindings of
     \VAR{symbols} to \VAR{values} or \NIL. Return \retval{values of
-      \VAR{form}s}. 
+      \VAR{form}s}.
   }
 
   \IT{(\xorGOO{%
-      \SO*{LET}\\ 
+      \SO*{LET}\\
       \SO*{LET\A}}{\}} (%
     \orGOO{\VAR{name}\\
-      (\VAR{name }\Op{\VAR{value}\DF{\NIL}})}{\}^{\!\!*}}) 
-    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} 
+      (\VAR{name }\Op{\VAR{value}\DF{\NIL}})}{\}^{\!\!*}})
+    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \PROGN{\VAR{form}})}
   {
     Evaluate \VAR{form}s with \VAR{name}s lexically bound (in parallel or
     sequentially, respectively) to \VAR{value}s. Return
-    \retval{values of \VAR{form}s}. 
+    \retval{values of \VAR{form}s}.
   }
 
   \IT{(\MC*{MULTIPLE-VALUE-BIND} (\OPn{\NEV{\VAR{var}}}) \VAR{values-form}
@@ -207,15 +208,15 @@
     \VAR{bar}, and return \retval{their
       values}. \VAR{destruct-$\lambda$} resembles \VAR{macro-$\lambda$}
     (section \ref{section:Macros}), but without any \kwd{\&environment}
-    clause. 
+    clause.
   }
 
 \end{LIST}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \subsection{Functions}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \label{section:Functions}
 
 \begin{flushleft}
@@ -229,29 +230,30 @@
   \Op{\kwd{\&rest} \VAR{var}}
   \penalty-5
   \OP{\kwd{\&key} \xorGOO{%
+      \VAR{var}\\
+      (\xorGOO{%
         \VAR{var}\\
-        (\xorGOO{%
-          \VAR{var}\\
-          (\kwd{:}\VAR{key } \VAR{var})}{\}}
+        (\kwd{:}\VAR{key } \VAR{var})}{\}}
       \text{ }\OP{\VAR{init}\DF{\NIL}\text{ }\Op{\VAR{supplied-p}}})}{\}^{\!\!*}}
-  \penalty-5
+    \penalty-5
     \Op{\kwd{\&allow-other-keys}}}
   \penalty-5
   \OP{\kwd{\&aux} \xorGOO{%
       \VAR{var}\\
       (\VAR{var } \Op{\VAR{init}\DF{\NIL}})}{\}^{\!\!*}}}).
 \end{flushleft}
-  \VAR{supplied-p} is \T\ if there is a corresponding
-  argument. \VAR{init} forms can refer to any \VAR{init} and
-  \VAR{supplied-p} to their left.
+\VAR{supplied-p} is \T\ if there is a corresponding
+argument. \VAR{init} forms can refer to any \VAR{init} and
+\VAR{supplied-p} to their left.
 
 \begin{LIST}{1cm}
-
+  
   \IT{(\xorGOO{\MC*{DEFUN }\xorGOO{\VAR{foo }(\VAR{\OPn{ord-$\lambda$}})\\
-      (\kwd{setf} \VAR{ foo})\text{ }(\VAR{new-value } \VAR{\OPn{ord-$\lambda$}})}{.}\\ 
+        (\kwd{setf} \VAR{ foo})\text{ }(\VAR{new-value } \VAR{\OPn{ord-$\lambda$}})}{.}\\
       \MC*{LAMBDA }(\VAR{\OPn{ord-$\lambda$}})}{\}}
-    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
-    \Op{\NEV{\VAR{doc}}} 
+    \orGOO{%
+      \OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\\
+      \NEV{\VAR{doc}}}{\}}
     \PROGN{\VAR{form}})}
   {
     Define a function named \retval{\VAR{foo}} or \retval{(\kwd{setf}
@@ -264,9 +266,11 @@
       \SO*{LABELS}}{\}}
     (\OPn{(\xorGOO{\VAR{foo }(\OPn{\VAR{ord-$\lambda$}})\\
         (\kwd{setf} \VAR{ foo})\text{ }(\VAR{new-value }\OPn{\VAR{ord-$\lambda$}})}{\}}
-      \OPn{(\kwd{declare} \OPn{\NEV{\VAR{local-decl}}})}
-      \Op{\NEV{\VAR{doc}}}
-      \PROGN{\VAR{local-form}})}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
+      \orGOO{%
+        \OPn{(\kwd{declare } \OPn{\NEV{\VAR{local-decl}}})}\\
+        \NEV{\VAR{doc}}}{\}}
+      \PROGN{\VAR{local-form}})})
+    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \PROGN{\VAR{form}})}
   {
     Evaluate \VAR{form}s with
@@ -274,7 +278,7 @@
     the same name are shadowed. Each \VAR{foo} is also the name of an
     implicit \SO{block} around its corresponding \OPn{\VAR{local-form}}.
     Only for \SO{LABELS}, functions \VAR{foo} are visible inside
-    \VAR{local-forms}. Return \retval{values of \VAR{form}s}. 
+    \VAR{local-forms}. Return \retval{values of \VAR{form}s}.
   }
 
   \IT{(\SO*{FUNCTION} \xorGOO{%
@@ -311,8 +315,8 @@
 
   \IT{(\FU*{VALUES} \OPn{\VAR{foo}})}
   {
-  Return as multiple values the \retval{primary values} of the
-  \VAR{foo}s. \kwd{setf}able. 
+    Return as multiple values the \retval{primary values} of the
+    \VAR{foo}s. \kwd{setf}able.
   }
 
   \IT{(\FU*{MULTIPLE-VALUE-LIST} \VAR{form})}
@@ -322,13 +326,13 @@
 
   \IT{(\MC*{NTH-VALUE} \VAR{n} \VAR{form})}
   {
-  Zero-indexed \retval{\VAR{n}th return value} of \VAR{form}.
+    Zero-indexed \retval{\VAR{n}th return value} of \VAR{form}.
   }
 
   \IT{(\FU*{COMPLEMENT} \VAR{function})}
   {
-  Return \retval{new function} with same arguments and same side effects
-  as \VAR{function}, but with complementary truth value.
+    Return \retval{new function} with same arguments and same side effects
+    as \VAR{function}, but with complementary truth value.
   }
 
   \IT{(\FU*{CONSTANTLY} \VAR{foo})}
@@ -338,46 +342,46 @@
 
   \IT{(\FU*{IDENTITY} \VAR{foo})}
   {
-  Return \retval{\VAR{foo}}.
+    Return \retval{\VAR{foo}}.
   }
 
   \IT{(\FU*{FUNCTION-LAMBDA-EXPRESSION} \VAR{function})}
   {
-  If available, return \retval{lambda expression} of \VAR{function},
-  \retvalii{\NIL} if \VAR{function} was defined in an environment
-  without bindings, and \retvaliii{name} of \VAR{function}. 
+    If available, return \retval{lambda expression} of \VAR{function},
+    \retvalii{\NIL} if \VAR{function} was defined in an environment
+    without bindings, and \retvaliii{name} of \VAR{function}.
   }
 
   \IT{(\FU*{FDEFINITION} \xorGOO{\VAR{foo}\\
       (\kwd{setf } \VAR{foo})}{\}})}
   {
-  \retval{Definition} of global function \VAR{foo}. \kwd{setf}able.
+    \retval{Definition} of global function \VAR{foo}. \kwd{setf}able.
   }
 
   \IT{(\FU*{FMAKUNBOUND} \VAR{foo})}
   {
-  Remove global function or macro definition \retval{\VAR{foo}}.
+    Remove global function or macro definition \retval{\VAR{foo}}.
   }
 
   \IT{\arrGOO{\CNS*{CALL-ARGUMENTS-LIMIT}\\
       \CNS*{LAMBDA-PARAMETERS-LIMIT}}{.}}
   {
-  Upper bound of the number of function arguments or lambda list
-  parameters, respectively; $\geq50$. 
+    Upper bound of the number of function arguments or lambda list
+    parameters, respectively; $\geq50$.
   }
 
   \IT{\CNS*{MULTIPLE-VALUES-LIMIT}}
   {
-  Upper bound of the number of values a multiple value can have;
-  $\geq20$. 
+    Upper bound of the number of values a multiple value can have;
+    $\geq20$.
   }
 
 \end{LIST}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \subsection{Macros}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \label{section:Macros}
 
 \begin{flushleft}
@@ -394,7 +398,7 @@
   \penalty-5
   \Op{\VAR{E}}
   \penalty-5
-  \Op{\kwd{\&optional} 
+  \Op{\kwd{\&optional}
     \xorGOO{%
       \VAR{var}\\
       (\xorGOO{%
@@ -414,7 +418,7 @@
   \penalty-5
   \Op{\VAR{E}}
   \penalty-5
-  \OP{\kwd{\&key} 
+  \OP{\kwd{\&key}
     \xorGOO{%
       \VAR{var}\\
       (\xorGOO{%
@@ -426,7 +430,7 @@
     \Op{\VAR{E}}
     \Op{\kwd{\&allow-other-keys}}}
   \penalty-5
-  \Op{\kwd{\&aux} 
+  \Op{\kwd{\&aux}
     \xorGOO{%
       \VAR{var}\\
       (\VAR{var } \Op{\VAR{init}\DF{\NIL}})}{\}^{\!\!*}}}
@@ -437,7 +441,7 @@
   \\
   \penalty-5
   (\Op{\kwd{\&whole}
-      \VAR{var}}
+    \VAR{var}}
   \penalty-5
   \Op{\VAR{E}}
   \penalty-5
@@ -447,7 +451,7 @@
   \penalty-5
   \Op{\VAR{E}}
   \penalty-5
-  \Op{\kwd{\&optional} 
+  \Op{\kwd{\&optional}
     \xorGOO{%
       \VAR{var}\\
       (\xorGOO{%
@@ -460,78 +464,84 @@
   \VAR{rest-var}).
   \penalty-5
 \end{flushleft}
-  One toplevel \Op{\VAR{E}} may be replaced by \kwd{\&environment}
-  \VAR{var}. \VAR{supplied-p} is \T\ if there is a corresponding
-  argument.  \VAR{init} forms can refer to any \VAR{init} and
-  \VAR{supplied-p} to their left.
+One toplevel \Op{\VAR{E}} may be replaced by \kwd{\&environment}
+\VAR{var}. \VAR{supplied-p} is \T\ if there is a corresponding
+argument.  \VAR{init} forms can refer to any \VAR{init} and
+\VAR{supplied-p} to their left.
 
 \begin{LIST}{1cm}
 
   \IT{(\xorGOO{\MC*{DEFMACRO}\\
       \FU*{DEFINE-COMPILER-MACRO}}{\}}
     \xorGOO{\VAR{foo}\\
-    (\kwd{setf } \VAR{foo})}{\}}
+      (\kwd{setf } \VAR{foo})}{\}}
     (\OPn{\VAR{macro-$\lambda$}})
-    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \Op{\NEV{\VAR{doc}}}
+    \orGOO{%
+      \OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\\
+      \NEV{\VAR{doc}}}{\}}
     \PROGN{\VAR{form}})}
   {
-  Define macro \retval{\VAR{foo}} which on evaluation as (\VAR{foo}
-  \VAR{tree}) applies expanded \VAR{form}s to arguments from
-  \VAR{tree}, which corresponds to \VAR{tree}-shaped
-  \VAR{macro-$\lambda$}s. \VAR{form}s are enclosed in an implicit
-  \SO{block} named \VAR{foo}.
+    Define macro \retval{\VAR{foo}} which on evaluation as (\VAR{foo}
+    \VAR{tree}) applies expanded \VAR{form}s to arguments from
+    \VAR{tree}, which corresponds to \VAR{tree}-shaped
+    \VAR{macro-$\lambda$}s. \VAR{form}s are enclosed in an implicit
+    \SO{block} named \VAR{foo}.
   }
-
+  
   \IT{(\MC*{DEFINE-SYMBOL-MACRO} \VAR{foo} \VAR{form})}
   {
-  Define symbol macro \retval{\VAR{foo}} which on evaluation evaluates
-  expanded \VAR{form}. 
+    Define symbol macro \retval{\VAR{foo}} which on evaluation
+    evaluates expanded \VAR{form}.
   }
-
+  
   \IT{(\SO*{MACROLET} (\OPn{(\VAR{foo} (\OPn{\VAR{macro-$\lambda$}})
-      \OPn{(\kwd{declare} \OPn{\NEV{\VAR{local-decl}}})} 
-      \Op{\NEV{\VAR{doc}}} \PROGN{\VAR{macro-form}})}) \OPn{(\kwd{declare}
+      \orGOO{%
+        \OPn{(\kwd{declare } \OPn{\NEV{\VAR{local-decl}}})}\\
+        \NEV{\VAR{doc}}}{\}} \PROGN{\VAR{macro-form}})})
+    \OPn{(\kwd{declare}
       \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{form}})}
   {
-  Evaluate \retval{\VAR{form}s} with locally defined mutually
-  invisible macros \VAR{foo} which are enclosed in implicit \SO{block}s
-  of the same name.
+    Evaluate \retval{\VAR{form}s} with locally defined mutually
+    invisible macros \VAR{foo} which are enclosed in implicit
+    \SO{block}s of the same name.
   }
 
   \IT{(\SO*{SYMBOL-MACROLET} (\OPn{(\VAR{foo}
       \VAR{expansion-form})}) \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \PROGN{\VAR{form}})}
   {
-  Evaluate \retval{\VAR{form}s} with locally defined symbol macros
-  \VAR{foo}. 
+    Evaluate \retval{\VAR{form}s} with locally defined symbol macros
+    \VAR{foo}.
   }
 
   \IT{(\MC*{DEFSETF} \NEV{\VAR{function}} \xorGOO{%
       \NEV{\VAR{updater}} \text{ } \Op{\NEV{\VAR{doc}}}\\
-      (\OPn{\VAR{setf-$\lambda$}}) \text{ } (\OPn{\VAR{s-var}}) \text{ } 
-        \OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\text{ }
-        \Op{\NEV{\VAR{doc}}} \text{ } \PROGN{\VAR{form}}}{\}})
+      (\OPn{\VAR{setf-$\lambda$}}) \text{ } (\OPn{\VAR{s-var}}) \text{ }
+      \orGOO{%
+        \OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\\
+        \NEV{\VAR{doc}}}{\}}
+      \text{ } \PROGN{\VAR{form}}}{\}})
     \penalty-5
-  where defsetf lambda list (\OPn{\VAR{setf-$\lambda$}}) has the form
-  \penalty-5
-  (\OPn{\VAR{var}}
-  \OP{\kwd{\&optional} \xorGOO{%
-      \VAR{var}\\
-      (\VAR{var } \OP{\VAR{init}\DF{\NIL}\text{ } \Op{\VAR{supplied-p}}})}{\}^{\!\!*}}}
-  \penalty-5
-  \Op{\kwd{\&rest} \VAR{var}}
-  \penalty-5
-  \OP{\kwd{\&key} \xorGOO{%
-      \VAR{var}\\
-      (\xorGOO{%
+    where defsetf lambda list (\OPn{\VAR{setf-$\lambda$}}) has the form
+    \penalty-5
+    (\OPn{\VAR{var}}
+    \OP{\kwd{\&optional} \xorGOO{%
         \VAR{var}\\
-        (\kwd{:}\VAR{key } \VAR{var})}{\}}
-      \text{ }\OP{\VAR{init}\DF{\NIL}\text{ }\Op{\VAR{supplied-p}}})}{\}^{\!\!*}}
+        (\VAR{var } \OP{\VAR{init}\DF{\NIL}\text{ } \Op{\VAR{supplied-p}}})}{\}^{\!\!*}}}
     \penalty-5
-    \Op{\kwd{\&allow-other-keys}}}
-  \penalty-5
-  \OP{\kwd{\&environment} \VAR{var}}%
-  )
+    \Op{\kwd{\&rest} \VAR{var}}
+    \penalty-5
+    \OP{\kwd{\&key} \xorGOO{%
+        \VAR{var}\\
+        (\xorGOO{%
+          \VAR{var}\\
+          (\kwd{:}\VAR{key } \VAR{var})}{\}}
+        \text{ }\OP{\VAR{init}\DF{\NIL}\text{ }\Op{\VAR{supplied-p}}})}{\}^{\!\!*}}
+      \penalty-5
+      \Op{\kwd{\&allow-other-keys}}}
+    \penalty-5
+    \OP{\kwd{\&environment} \VAR{var}}%
+    )
   }
   {
     Specify how to \kwd{setf} a place accessed by
@@ -550,11 +560,13 @@
 
   \IT{(\MC*{DEFINE-SETF-EXPANDER} \VAR{function}
     (\OPn{\VAR{macro-$\lambda$}})
-    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \Op{\NEV{\VAR{doc}}}
+    \orGOO{%
+      \OPn{(\kwd{declare } \OPn{\NEV{\VAR{decl}}})}\\
+      \NEV{\VAR{doc}}}{\}}
     \PROGN{\VAR{form}})}
   {
-  Specify how to \kwd{setf} a place accessed by
-  \retval{\VAR{function}}. On invocation of (\kwd{setf} (\VAR{function}
+    Specify how to \kwd{setf} a place accessed by
+    \retval{\VAR{function}}. On invocation of (\kwd{setf} (\VAR{function}
     \OPn{\VAR{arg}}) \VAR{value-form}), \OPn{\VAR{form}} must expand
     into code returning \VAR{arg-vars}, \VAR{args}, \VAR{newval-vars},
     \VAR{set-form}, and \VAR{get-form} as described with
@@ -572,74 +584,74 @@
     corresponding to the new values, and \retvaln{4}{\VAR{set-form}}
     and \retvaln{5}{\VAR{get-form}} specifying in terms of \VAR{arg-vars}
     and \VAR{newval-vars} how to \kwd{setf} and how to read
-    \VAR{place}. 
+    \VAR{place}.
   }
 
-  \IT{(\MC*{DEFINE-MODIFY-MACRO} \VAR{foo} 
+  \IT{(\MC*{DEFINE-MODIFY-MACRO} \VAR{foo}
     (\OP{\kwd{\&optional} \xorGOO{%
         \VAR{var}\\
         (\VAR{var } \OP{\VAR{init}\DF{\NIL}\text{ }
           \Op{\VAR{supplied-p}}})}{\}^{\!\!*}}}
-    \Op{\kwd{\&rest} \VAR{var}}) 
+    \Op{\kwd{\&rest} \VAR{var}})
     \VAR{function} \Op{\NEV{\VAR{doc}}})}
   {
-  Define macro \retval{\VAR{foo}} able to modify a place. On
-  invocation of (\VAR{foo} \VAR{place} \OPn{\VAR{arg}}), the value of
-  \VAR{function} applied to \VAR{place} and \VAR{arg}s will be stored into
-  \VAR{place} and returned.
-  } 
+    Define macro \retval{\VAR{foo}} able to modify a place. On
+    invocation of (\VAR{foo} \VAR{place} \OPn{\VAR{arg}}), the value of
+    \VAR{function} applied to \VAR{place} and \VAR{arg}s will be
+    stored into \VAR{place} and returned.
+  }
 
   \IT{\CNS*{LAMBDA-LIST-KEYWORDS}}
   {List of macro lambda list keywords. These are at least:
-    }
-    \begin{LIST}{.5cm}
+  }
+  \begin{LIST}{.5cm}
 
-      \IT{\kwd*{\&whole} \VAR{var}}
-      {Bind \VAR{var} to the entire macro call form.}
+    \IT{\kwd*{\&whole} \VAR{var}}
+    {Bind \VAR{var} to the entire macro call form.}
 
-      \IT{\kwd*{\&optional} \OPn{\VAR{var}}}
-      {Bind \VAR{var}s to corresponding arguments if any.}
+    \IT{\kwd*{\&optional} \OPn{\VAR{var}}}
+    {Bind \VAR{var}s to corresponding arguments if any.}
 
-      \IT{\Goo{%
-          \kwd*{\&rest}\XOR
-          \kwd*{\&body}} \VAR{var}}
-      {Bind \VAR{var} to a list of remaining arguments.}
+    \IT{\Goo{%
+        \kwd*{\&rest}\XOR
+        \kwd*{\&body}} \VAR{var}}
+    {Bind \VAR{var} to a list of remaining arguments.}
 
-      \IT{\kwd*{\&key} \OPn{\VAR{var}}}
-      {Bind \VAR{var}s to corresponding keyword arguments.}
+    \IT{\kwd*{\&key} \OPn{\VAR{var}}}
+    {Bind \VAR{var}s to corresponding keyword arguments.}
 
-      \IT{\kwd*{\&allow-other-keys}}
-      {
+    \IT{\kwd*{\&allow-other-keys}}
+    {
       Suppress keyword argument checking. Callers can do so using
       \kwd*{:allow-other-keys}~\T.
-      }
-      
-      \IT{\kwd*{\&environment} \VAR{var}}
-      {Bind \VAR{var} to the lexical compilation environment.}
+    }
 
-      \IT{\kwd*{\&aux} \OPn{\VAR{var}}}
-      {Bind \VAR{var}s as in \SO{let\A}.}
-          
-    \end{LIST}
+    \IT{\kwd*{\&environment} \VAR{var}}
+    {Bind \VAR{var} to the lexical compilation environment.}
+
+    \IT{\kwd*{\&aux} \OPn{\VAR{var}}}
+    {Bind \VAR{var}s as in \SO{let\A}.}
+
+  \end{LIST}
 \end{LIST}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \subsection{Control Flow}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \begin{LIST}{1cm}
 
   \IT{(\SO*{IF} \VAR{test} \VAR{then} \Op{\VAR{else}\DF{\NIL}})}
   {
     Return values of \retval{\VAR{then}} if \VAR{test} returns \T;
-    return values of \retval{\VAR{else}} otherwise. 
+    return values of \retval{\VAR{else}} otherwise.
   }
 
   \IT{(\MC*{COND} \OPn{(\VAR{test} \PROGN{\VAR{then}}\DF{\VAR{test}})})}
   {
-  Return the \retval{values} of the first \OPn{\VAR{then}} whose
-  \VAR{test} returns \T; return \retval{\NIL} if all \VAR{test}s
-  return \NIL.
+    Return the \retval{values} of the first \OPn{\VAR{then}} whose
+    \VAR{test} returns \T; return \retval{\NIL} if all \VAR{test}s
+    return \NIL.
   }
 
   \IT{(\xorGOO{\MC*{WHEN}\\
@@ -647,13 +659,13 @@
     \PROGN{\VAR{foo}})}
   {
     Evaluate \VAR{foo}s and return \retval{their values} if \VAR{test}
-    returns \T\ or \NIL, respectively. Return \retval{\NIL} otherwise. 
+    returns \T\ or \NIL, respectively. Return \retval{\NIL} otherwise.
   }
 
   \IT{(\MC*{CASE} \VAR{test} \OPn{(\xorGOO{(\OPn{\NEV{\VAR{key}}})\\
         \NEV{\VAR{key}}}{\}} \PROGN{\VAR{foo}})}
     \OP{(\xorGOO{\kwd*{OTHERWISE}\\
-      \T}{\}} \PROGN{\VAR{bar}})\DF{\NIL}})}
+        \T}{\}} \PROGN{\VAR{bar}})\DF{\NIL}})}
   {
     Return the \retval{values of the first \OPn{\VAR{foo}}} one of
     whose \VAR{key}s is \kwd{eql} \VAR{test}. Return \retval{values of
@@ -703,8 +715,8 @@
       (\MC*{PROG1} \VAR{ form-r} \OPn{\VAR{ form}})\\
       (\MC*{PROG2} \VAR{ form-a} \VAR{ form-r} \OPn{\VAR{ form}})}{.}}
   {
-  Evaluate forms in order. Return \retval{values/primary value},
-  respectively, of \VAR{form-r}. 
+    Evaluate forms in order. Return \retval{values/primary value},
+    respectively, of \VAR{form-r}.
   }
 
   \IT{(\xorGOO{\MC*{PROG}\\
@@ -712,34 +724,34 @@
     (\orGOO{%
       \VAR{name}\\
       (\VAR{name } \Op{\VAR{value}\DF{\NIL}})}{\}^{\!\!*}})
-    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} 
+    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \xorGOO{\NEV{\VAR{tag}}\\\VAR{form}}{\}^{\!\!*}})}
   {
     Evaluate \SO{TAGBODY}-like body with \VAR{name}s lexically bound (in
     parallel or sequentially, respectively) to \VAR{value}s. Return
     \retval{\NIL} or explicitly \retval{\MC{return}ed values}.
-    Implicitly, the whole form is a \SO{block} named \NIL. 
+    Implicitly, the whole form is a \SO{block} named \NIL.
   }
 
   \IT{(\SO*{UNWIND-PROTECT} \VAR{protected} \OPn{\VAR{cleanup}})}
   {
     Evaluate \VAR{protected} and then, no matter how control leaves
     \VAR{protected}, \VAR{cleanup}s. Return \retval{values of
-      \VAR{protected}}. 
+      \VAR{protected}}.
   }
 
   \IT{(\SO*{BLOCK} \VAR{name} \PROGN{\VAR{form}})}
-  { 
+  {
     Evaluate \VAR{form}s in a lexical environment, and
     return \retval{their values} unless interrupted by
-    \SO{RETURN-FROM}. 
+    \SO{RETURN-FROM}.
   }
 
   \IT{\arrGOO{(\SO*{RETURN-FROM } \VAR{foo } \Op{\VAR{result}\DF{\NIL}})\\
       (\MC*{RETURN } \Op{\VAR{result}\DF{\NIL}})}{.}}
   {
     Have nearest enclosing \SO{block} named \VAR{foo}/named \NIL,
-    respectively, return with values of \VAR{result}.  
+    respectively, return with values of \VAR{result}.
   }
 
   \IT{(\SO*{TAGBODY} \Goos{\NEV{\VAR{tag}}\XOR\VAR{form}})}
@@ -758,7 +770,7 @@
   \IT{(\SO*{CATCH} \VAR{tag} \PROGN{\VAR{form}})}
   {
     Evaluate \VAR{form}s and return \retval{their values} unless
-    interrupted by \SO{THROW}. 
+    interrupted by \SO{THROW}.
   }
 
   \IT{(\SO*{THROW} \VAR{tag} \VAR{form})}
@@ -776,19 +788,19 @@
 \end{LIST}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \subsection{Iteration}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 \begin{LIST}{1cm}
-  
+
   \IT{(\xorGOO{\MC*{DO}\\
       \MC*{DO\A}}{\}}
     (\xorGOO{%
       \VAR{var}\\
       (\VAR{var } \OP{ \VAR{start } \Op{\VAR{step}}})}{\}^{\!\!*}})
     (\VAR{stop} \PROGN{\VAR{result}})
-    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} 
+    \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \xorGOO{\NEV{\VAR{tag}}\\\VAR{form}}{\}^{\!\!*}})}
   {
     Evaluate \SO{TAGBODY}-like body with \VAR{var}s successively bound
@@ -806,7 +818,7 @@
     Evaluate \SO{TAGBODY}-like body with \VAR{var} successively bound
     to integers from 0 to $i - 1$. Upon evaluation of
     \retval{\VAR{result}}, \VAR{var} is \VAR{i}. Implicitly, the whole
-    form is a \SO{block} named \NIL. 
+    form is a \SO{block} named \NIL.
   }
 
   \IT{(\MC*{DOLIST }(\VAR{var} \VAR{list} \Op{\VAR{result}\DF{\NIL}})
@@ -816,20 +828,20 @@
     Evaluate \SO{TAGBODY}-like body with \VAR{var} successively bound
     to the elements of \VAR{list}. Upon evaluation of
     \retval{\VAR{result}}, \VAR{var} is \NIL. Implicitly, the whole form
-    is a \SO{block} named \NIL. 
+    is a \SO{block} named \NIL.
   }
 
 
 \end{LIST}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \subsection{Loop Facility}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \label{section:Loop Facility}
 
 \begin{LIST}{1cm}
 
-  \IT{(\MC*{LOOP} \OPn{\VAR{form}})} 
+  \IT{(\MC*{LOOP} \OPn{\VAR{form}})}
   {
     \EM{Simple Loop. } If \VAR{form}s do not contain any atomic Loop
     Facility keywords, evaluate them forever in an implicit \SO{block}
@@ -843,7 +855,7 @@
   }
 
   \begin{LIST}{.5cm}
-    
+
     \IT{\LKWD*{named} \VAR{n}\DF{\NIL}}
     {
       Give \MC{loop}'s implicit \SO{block} a name.
@@ -865,23 +877,23 @@
       where destructuring type specifier \VAR{d-type} has the form
       \penalty-5
       \GOO{\kwd{fixnum}\XOR
-      \kwd{float}\XOR
-      \T\XOR
-      \NIL\XOR
-      \GOo{%
-      \LKWD*{of-type}
-      \xorGOO{\VAR{type}\\
-      (\OPn{\VAR{type}})}{\}}}}
+        \kwd{float}\XOR
+        \T\XOR
+        \NIL\XOR
+        \GOo{%
+          \LKWD*{of-type}
+          \xorGOO{\VAR{type}\\
+            (\OPn{\VAR{type}})}{\}}}}
     }
     {
       Initialize (possibly trees of) local variables \VAR{var-s}
-      sequentially and \VAR{var-p} in parallel. 
+      sequentially and \VAR{var-p} in parallel.
     }
 
     \begin{figure}%
       \begin{center}%
         \begin{sideways}%
-          (%  
+          (%
           \arraycolsep0pt
           \(
           \text{\kwd{loop}}\text{ }
@@ -891,240 +903,240 @@
           \left\{
             \begin{array}{l}
               \text{\LKWD{with}
-                \xorGOO{%
-                  \VAR{var}\\
-                  (\OPn{\VAR{var}})}{\}}
-                \Op{\VAR{d-type}}
-                \Op{\LKWD{=} \VAR{foo}}}
+              \xorGOO{%
+              \VAR{var}\\
+              (\OPn{\VAR{var}})}{\}}
+              \Op{\VAR{d-type}}
+              \Op{\LKWD{=} \VAR{foo}}}
               \text{ }
               \{\text{\LKWD{and}
-                \xorGOO{%
-                  \VAR{var}\\
-                  (\OPn{\VAR{var}})}{\}}
-                \Op{\VAR{d-type}}
-                \Op{\LKWD{=} \VAR{bar}}}\}^{*} \\ \\[-2.4ex]
+              \xorGOO{%
+              \VAR{var}\\
+              (\OPn{\VAR{var}})}{\}}
+              \Op{\VAR{d-type}}
+              \Op{\LKWD{=} \VAR{bar}}}\}^{*} \\ \\[-2.4ex]
               \left.\!
-                \begin{array}{l}
-                  \text{\LKWD{for}}  \\
-                  \text{\LKWD{as}} 
-                \end{array}\right\}
+              \begin{array}{l}
+                \text{\LKWD{for}}  \\
+                \text{\LKWD{as}}
+              \end{array}\right\}
               \boxed{
-                \text{\xorGOO{%
-                    \VAR{var}\\
-                    (\OPn{\VAR{var}})}{\}}}%
-                \Op{\VAR{d-type}}
-                \left\{
+              \text{\xorGOO{%
+              \VAR{var}\\
+              (\OPn{\VAR{var}})}{\}}}%
+              \Op{\VAR{d-type}}
+              \left\{
+              \begin{array}{l}
+                \left.\!
+                \begin{array}{l}
+                  \OP{
+                  \left\{
                   \begin{array}{l}
-                    \left.\!
-                      \begin{array}{l}
-                        \OP{
-                          \left\{
-                            \begin{array}{l}
-                              \text{\LKWD{upfrom}}\\
-                              \text{\LKWD{from}}
-                            \end{array}
-                          \right\}
-                          \text{\VAR{start}\DF{\LIT{0}}}
-                        }\text{ }
-                        \OP{
-                          \left\{
-                            \begin{array}{l}
-                              \text{\LKWD{upto}}\\
-                              \text{\LKWD{to}}\\
-                              \text{\LKWD{below}}
-                            \end{array}
-                          \right\}
-                          \text{\VAR{form}}
-                        }\\
-                        \text{\LKWD{from} \VAR{start}}
-                        \left\{
-                          \begin{array}{l}
-                            \text{\LKWD{downto}}\\
-                            \text{\LKWD{above}}
-                          \end{array}
-                        \right\}              
-                        \text{\VAR{form }}\\
-                        \text{\LKWD{downfrom} \VAR{start}}\text{ }
-                        \OP{
-                          \left\{
-                            \begin{array}{l}
-                              \text{\LKWD{downto}}\\
-                              \text{\LKWD{to}}\\
-                              \text{\LKWD{above}}
-                            \end{array}
-                          \right\}            
-                          \text{\VAR{form}}
-                        }
-                      \end{array}
-                    \right\}
-                    \Op{   
-                      \text{\LKWD{by} \VAR{step}\DF{\LIT{1}}}
-                    }\\
-                    \left.\!
-                      \begin{array}{l}
-                        \text{\LKWD{in}} \\
-                        \text{\LKWD{on}}
-                      \end{array}
-                    \right\}
-                    \text{\VAR{list}}\text{ }
-                    \Op{
-                      \text{\LKWD{by} \VAR{function}\DF{\kwd{\#'cdr}}}
-                    }\\
-                    \text{\LKWD{=} \VAR{foo }} 
-                    \Op{
-                      \text{\LKWD{then} \VAR{bar}\DF{\VAR{foo}}}
-                    }\\
-                    \text{\LKWD{across} \VAR{vector}}\\
-                    \text{\LKWD{being}}
+                    \text{\LKWD{upfrom}}\\
+                    \text{\LKWD{from}}
+                  \end{array}
+                  \right\}
+                  \text{\VAR{start}\DF{\LIT{0}}}
+                  }\text{ }
+                  \OP{
+                  \left\{
+                  \begin{array}{l}
+                    \text{\LKWD{upto}}\\
+                    \text{\LKWD{to}}\\
+                    \text{\LKWD{below}}
+                  \end{array}
+                  \right\}
+                  \text{\VAR{form}}
+                  }\\
+                  \text{\LKWD{from} \VAR{start}}
+                  \left\{
+                  \begin{array}{l}
+                    \text{\LKWD{downto}}\\
+                    \text{\LKWD{above}}
+                  \end{array}
+                  \right\}
+                  \text{\VAR{form }}\\
+                  \text{\LKWD{downfrom} \VAR{start}}\text{ }
+                  \OP{
+                  \left\{
+                  \begin{array}{l}
+                    \text{\LKWD{downto}}\\
+                    \text{\LKWD{to}}\\
+                    \text{\LKWD{above}}
+                  \end{array}
+                  \right\}
+                  \text{\VAR{form}}
+                  }
+                \end{array}
+                \right\}
+                \Op{
+                \text{\LKWD{by} \VAR{step}\DF{\LIT{1}}}
+                }\\
+                \left.\!
+                \begin{array}{l}
+                  \text{\LKWD{in}} \\
+                  \text{\LKWD{on}}
+                \end{array}
+                \right\}
+                \text{\VAR{list}}\text{ }
+                \Op{
+                \text{\LKWD{by} \VAR{function}\DF{\kwd{\#'cdr}}}
+                }\\
+                \text{\LKWD{=} \VAR{foo }}
+                \Op{
+                \text{\LKWD{then} \VAR{bar}\DF{\VAR{foo}}}
+                }\\
+                \text{\LKWD{across} \VAR{vector}}\\
+                \text{\LKWD{being}}
+                \left\{
+                \begin{array}{l}
+                  \text{\LKWD{the}}\\
+                  \text{\LKWD{each}}
+                \end{array}
+                \right\}%
+                \left\{
+                \begin{array}{{l}}
+                  \left.\!
+                  \begin{array}{l}
+                    \text{\LKWD{hash-key\Op{s}}}
                     \left\{
-                      \begin{array}{l}
-                        \text{\LKWD{the}}\\          
-                        \text{\LKWD{each}}
-                      \end{array}
-                    \right\}%
+                    \begin{array}{l}
+                      \text{\LKWD{of}}\\
+                      \text{\LKWD{in}}
+                    \end{array}
+                    \right\}
+                    \text{\VAR{hash }}
+                    \Op{
+                    \text{\LKWD{using} (\LKWD{hash-value} \VAR{v})}%
+                    }\\
+                    \text{\LKWD{hash-value\Op{s}}}
                     \left\{
-                      \begin{array}{{l}}
-                        \left.\!
-                          \begin{array}{l}
-                            \text{\LKWD{hash-key\Op{s}}}
-                            \left\{
-                              \begin{array}{l}
-                                \text{\LKWD{of}}\\
-                                \text{\LKWD{in}}
-                              \end{array}
-                            \right\}
-                            \text{\VAR{hash }} 
-                            \Op{
-                              \text{\LKWD{using} (\LKWD{hash-value} \VAR{v})}%
-                            }\\
-                            \text{\LKWD{hash-value\Op{s}}}
-                            \left\{
-                              \begin{array}{l}
-                                \text{\LKWD{of}}\\
-                                \text{\LKWD{in}}
-                              \end{array}
-                            \right\}
-                            \text{\VAR{hash }}
-                            \Op{
-                              \text{\LKWD{using} (\LKWD{hash-key} \VAR{k})}%
-                            }\\
-                          \end{array}
-                        \right.\\
-                        \left.\!
-                          \begin{array}{l}
-                            \text{\LKWD{symbol\Op{s}}}\\
-                            \text{\LKWD{present-symbol\Op{s}}}\\
-                            \text{\LKWD{external-symbol\Op{s}}}
-                          \end{array}
-                        \right\}%
-                        \OP{
-                          \left\{
-                            \begin{array}{l}
-                              \text{\LKWD{of}}\\
-                              \text{\LKWD{in}}
-                            \end{array}
-                          \right\} \text{\VAR{package}\DF{\V{\A package\A}}}%
-                        }%
-                      \end{array}\!\!%
-                    \right.%
-                  \end{array}%
-                \right\}_{{}^{{}^{\displaystyle{\mathbb{F}_0}}}}
+                    \begin{array}{l}
+                      \text{\LKWD{of}}\\
+                      \text{\LKWD{in}}
+                    \end{array}
+                    \right\}
+                    \text{\VAR{hash }}
+                    \Op{
+                    \text{\LKWD{using} (\LKWD{hash-key} \VAR{k})}%
+                    }\\
+                  \end{array}
+                  \right.\\
+                  \left.\!
+                  \begin{array}{l}
+                    \text{\LKWD{symbol\Op{s}}}\\
+                    \text{\LKWD{present-symbol\Op{s}}}\\
+                    \text{\LKWD{external-symbol\Op{s}}}
+                  \end{array}
+                  \right\}%
+                  \OP{
+                  \left\{
+                  \begin{array}{l}
+                    \text{\LKWD{of}}\\
+                    \text{\LKWD{in}}
+                  \end{array}
+                  \right\} \text{\VAR{package}\DF{\V{\A package\A}}}%
+                  }%
+                \end{array}\!\!%
+                \right.%
+              \end{array}%
+              \right\}_{{}^{{}^{\displaystyle{\mathbb{F}_0}}}}
               }%boxed
               \left\{
-                \text{\LKWD{and} }\boxed{\mathbb{F}_i\!}
+              \text{\LKWD{and} }\boxed{\mathbb{F}_i\!}
               \right\}^{\!*}\\
               \\[-2.4ex]
               \boxed{\;\mathbb{T}_1\,}
-              
+
             \end{array}
           \right\}^{\displaystyle{\!\!*}}
           % Bottleneck
           \left\{
             \begin{array}{l}
               \boxed{
+              \left.\!
+              \begin{array}{l}
+                \text{\LKWD{do\Op{ing}}}
+                \text{ \VAR{form}}^{+}\\
                 \left.\!
-                  \begin{array}{l}
-                    \text{\LKWD{do\Op{ing}}}
-                    \text{ \VAR{form}}^{+}\\
-                    \left.\!
-                      \begin{array}{l}
-                        \text{\LKWD{if}}\\
-                        \text{\LKWD{when}}\\
-                        \text{\LKWD{unless}}
-                      \end{array}
-                    \right\}%
-                    \text{\VAR{test }}
-                    \boxed{\mathbb{C}_i\!}\{\text{\LKWD{and}}\,
-                    \boxed{\mathbb{C}_j\!}\}^{*}\Op{\text{\LKWD{else}}\,
-                      \boxed{\mathbb{C}_k\!}\{\text{\LKWD{and}}\,
-                      \boxed{\mathbb{C}_l\!}\}^{*}}
-                    \Op{\text{\LKWD{end}}}\!\!\!\!\!\!\!\\
-                    \text{\LKWD{return}}
-                    \left\{
-                      \begin{array}{l}
-                        \text{\VAR{form}}\\
-                        \text{\LKWD{it}}
-                      \end{array}
-                    \right.\\
-                    \left.\!
-                      \begin{array}{l}
-                        \text{\LKWD{collect\Op{ing}}}\\
-                        \text{\LKWD{append\Op{ing}}}\\
-                        \text{\LKWD{nconc\Op{ing}}}
-                      \end{array}
-                    \right\}
-                    \left\{
-                      \begin{array}{l}
-                        \text{\VAR{form}}\\
-                        \text{\LKWD{it}}
-                      \end{array}
-                    \right\} \Op{\text{\LKWD{into }\VAR{list}}}\\
-                    \left.\!
-                      \begin{array}{l}
-                        \text{\LKWD{count\Op{ing}}}\\
-                        \text{\LKWD{sum\Op{ming}}}\\
-                        \text{\LKWD{maximize}}\\
-                        \text{\LKWD{maximizing}}\\
-                        \text{\LKWD{minimize}}\\
-                        \text{\LKWD{minimizing}}
-                      \end{array}
-                    \right\}
-                    \left\{
-                      \begin{array}{l}
-                        \text{\VAR{form}}\\
-                        \text{\LKWD{it}}
-                      \end{array}
-                    \right\} 
-                    \Op{\text{\LKWD{into }\VAR{num}}}\text{ }
-                    \Op{\text{\VAR{type}}}
-                  \end{array}
-                \right._{{}^{{}^{\!\!\!\!\displaystyle{\mathbb{C}_0}}}}
+                \begin{array}{l}
+                  \text{\LKWD{if}}\\
+                  \text{\LKWD{when}}\\
+                  \text{\LKWD{unless}}
+                \end{array}
+                \right\}%
+                \text{\VAR{test }}
+                \boxed{\mathbb{C}_i\!}\{\text{\LKWD{and}}\,
+                \boxed{\mathbb{C}_j\!}\}^{*}\Op{\text{\LKWD{else}}\,
+                \boxed{\mathbb{C}_k\!}\{\text{\LKWD{and}}\,
+                \boxed{\mathbb{C}_l\!}\}^{*}}
+                \Op{\text{\LKWD{end}}}\!\!\!\!\!\!\!\\
+                \text{\LKWD{return}}
+                \left\{
+                \begin{array}{l}
+                  \text{\VAR{form}}\\
+                  \text{\LKWD{it}}
+                \end{array}
+                \right.\\
+                \left.\!
+                \begin{array}{l}
+                  \text{\LKWD{collect\Op{ing}}}\\
+                  \text{\LKWD{append\Op{ing}}}\\
+                  \text{\LKWD{nconc\Op{ing}}}
+                \end{array}
+                \right\}
+                \left\{
+                \begin{array}{l}
+                  \text{\VAR{form}}\\
+                  \text{\LKWD{it}}
+                \end{array}
+                \right\} \Op{\text{\LKWD{into }\VAR{list}}}\\
+                \left.\!
+                \begin{array}{l}
+                  \text{\LKWD{count\Op{ing}}}\\
+                  \text{\LKWD{sum\Op{ming}}}\\
+                  \text{\LKWD{maximize}}\\
+                  \text{\LKWD{maximizing}}\\
+                  \text{\LKWD{minimize}}\\
+                  \text{\LKWD{minimizing}}
+                \end{array}
+                \right\}
+                \left\{
+                \begin{array}{l}
+                  \text{\VAR{form}}\\
+                  \text{\LKWD{it}}
+                \end{array}
+                \right\}
+                \Op{\text{\LKWD{into }\VAR{num}}}\text{ }
+                \Op{\text{\VAR{type}}}
+              \end{array}
+              \right._{{}^{{}^{\!\!\!\!\displaystyle{\mathbb{C}_0}}}}
               }%boxed
               \\
               \\[-2.4ex]
               \boxed{
+              \left.\!
+              \begin{array}{l}
                 \left.\!
-                  \begin{array}{l}
-                    \left.\!
-                      \begin{array}{l}
-                        \text{\LKWD{initially}} \\
-                        \text{\LKWD{finally}} 
-                      \end{array} 
-                    \right\}
-                    \text{\VAR{form}}^{+}\\
-                    \text{\LKWD{repeat} \VAR{num}}\\
-                    \left.\!
-                      \begin{array}{l}
-                        \text{\LKWD{while}}\\
-                        \text{\LKWD{until}}\\
-                        \text{\LKWD{always}}\\
-                        \text{\LKWD{never}}\\
-                        \text{\LKWD{thereis}}
-                      \end{array}
-                    \right\} 
-                    \text{\VAR{test}}
-                  \end{array}
-                \right._{{}^{{}^{\displaystyle{\mathbb{T}_2}}}}
+                \begin{array}{l}
+                  \text{\LKWD{initially}} \\
+                  \text{\LKWD{finally}}
+                \end{array}
+                \right\}
+                \text{\VAR{form}}^{+}\\
+                \text{\LKWD{repeat} \VAR{num}}\\
+                \left.\!
+                \begin{array}{l}
+                  \text{\LKWD{while}}\\
+                  \text{\LKWD{until}}\\
+                  \text{\LKWD{always}}\\
+                  \text{\LKWD{never}}\\
+                  \text{\LKWD{thereis}}
+                \end{array}
+                \right\}
+                \text{\VAR{test}}
+              \end{array}
+              \right._{{}^{{}^{\displaystyle{\mathbb{T}_2}}}}
               }%boxed
             \end{array}
           \right\}^{\displaystyle{\!\!*}}
@@ -1140,17 +1152,17 @@
         \xorGOO{%
           \VAR{var-s}\\
           (\OPn{\VAR{var-s}})}{\}}
-        \Op{\VAR{d-type}}} 
+        \Op{\VAR{d-type}}}
       \GOos{\LKWD*{and}
         \xorGOO{%
           \VAR{var-p}\\
           (\OPn{\VAR{var-p}})}{\}}
         \Op{\VAR{d-type}}}}
     {
-    Begin of iteration control clauses. Initialize and step (possibly
-    trees of) local variables \VAR{var-s} sequentially and \VAR{var-p}
-    in parallel. Destructuring type specifier \VAR{d-type} as with
-    \LKWD{with}.
+      Begin of iteration control clauses. Initialize and step (possibly
+      trees of) local variables \VAR{var-s} sequentially and \VAR{var-p}
+      in parallel. Destructuring type specifier \VAR{d-type} as with
+      \LKWD{with}.
     }
 
     \begin{LIST}{.5cm}
@@ -1221,21 +1233,21 @@
         {
           Bind \VAR{var} successively to the accessible symbols, or
           the present symbols, or the external symbols respectively,
-          of \VAR{package}. 
+          of \VAR{package}.
         }
 
       \end{LIST}
     \end{LIST}
-    
+
     \IT{\Goo{\LKWD*{do}\XOR\LKWD*{doing}} \RP{\VAR{form}}}
     {
       Evaluate \VAR{form}s in every iteration.
     }
 
     \IT{\Goo{\LKWD*{if}\XOR\LKWD*{when}\XOR\LKWD*{unless}} \VAR{ test}
-      \VAR{i-clause} \Goos{\LKWD*{and} 
-        \VAR{j-clause}} \Op{\LKWD*{else} \VAR{k-clause} \Goos{\LKWD*{and} 
-          \VAR{l-clause}}} \Op{\LKWD*{end}}} 
+      \VAR{i-clause} \Goos{\LKWD*{and}
+        \VAR{j-clause}} \Op{\LKWD*{else} \VAR{k-clause} \Goos{\LKWD*{and}
+          \VAR{l-clause}}} \Op{\LKWD*{end}}}
     {
       If \VAR{test} returns \T, \T, or \NIL, respectively, evaluate
       \VAR{i-clause} and \VAR{j-clause}s; otherwise, evaluate
@@ -1271,7 +1283,7 @@
       Concatenate values of \VAR{form} or \LKWD{it}, which should be
       lists, into \VAR{list} by the means of \FU{append} or \FU{nconc},
       respectively.  If no \VAR{list} is given, collect into an
-      anonymous list which is returned after termination. 
+      anonymous list which is returned after termination.
     }
 
     \IT{\Goo{\LKWD*{count}\XOR\LKWD*{counting}}
@@ -1285,7 +1297,7 @@
 
     \IT{\Goo{\LKWD*{sum}\XOR\LKWD*{summing}}
       \Goo{\VAR{form}\XOR\LKWD*{it}} \Op{\LKWD*{into}
-        \VAR{sum}} \Op{\VAR{type}}} 
+        \VAR{sum}} \Op{\VAR{type}}}
     {
       Calculate the sum of the primary values of \VAR{form} or of \LKWD{it}.
       If no \VAR{sum} is given, sum into an anonymous variable
@@ -1295,10 +1307,10 @@
     \IT{\Goo{\LKWD*{maximize}\XOR\LKWD*{maximizing}\XOR
         \LKWD*{minimize}\XOR
         \LKWD*{minimizing}} \Goo{\VAR{form}\XOR\LKWD*{it}} \Op{\LKWD*{into}
-        \VAR{max-min}} \Op{\VAR{type}}} 
+        \VAR{max-min}} \Op{\VAR{type}}}
     {
       Determine the maximum or minimum, respectively, of the primary values of
-      \VAR{form} or of \LKWD{it}. 
+      \VAR{form} or of \LKWD{it}.
       If no \VAR{max-min} is given, use an anonymous variable
       which is returned after termination.
     }
@@ -1349,7 +1361,7 @@
 
 % LocalWords:  pt
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "clqr"
-%%% End: 
+%%% End:
