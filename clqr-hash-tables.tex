@@ -1,4 +1,4 @@
-% Copyright (C) 2008, 2009, 2012, 2014 Bert Burgemeister
+% Copyright (C) 2008, 2009, 2012, 2014, 2018 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -7,14 +7,14 @@
 %
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Hash Tables} 
+\section{Hash Tables}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The Loop Facility provides additional hash table-related
 functionality; see \kwd{loop}, page \pageref{section:Loop Facility}.
 
 Key-value storage similar to hash tables can as well be achieved using
 association lists and property lists; see
-pages \pageref{section:Association Lists} and \pageref{:property_lists}. 
+pages \pageref{section:Association Lists} and \pageref{:property_lists}.
 
 
 \begin{LIST}{1cm}
@@ -24,21 +24,21 @@ pages \pageref{section:Association Lists} and \pageref{:property_lists}.
   Return \retval{\T} if \VAR{foo} is of type \kwd{hash-table}.
   }
 
-  \IT{(\FU*{MAKE-HASH-TABLE} 
+  \IT{(\FU*{MAKE-HASH-TABLE}
     \orGOO{\kwd{:test }\Goo{\FU{eq}\XOR \FU{eql}\XOR
-        \FU{equal} \XOR \FU{equalp}}\DF{\kwd{\#'eql}}\\ 
+        \FU{equal} \XOR \FU{equalp}}\DF{\kwd{\#'eql}}\\
       \kwd{:size} \VAR{ int}\\
       \kwd{:rehash-size} \VAR{ num}\\
       \kwd{:rehash-threshold} \VAR{ num}}{\}})}
   {
-  Make a \retval{hash table}. 
+  Make a \retval{hash table}.
   }
 
   \IT{(\FU*{GETHASH} \VAR{key} \VAR{hash-table} \Op{\VAR{default}\DF{\NIL}})}
   {
   Return \retval{object} with \VAR{key} if any or \retval{\VAR{default}}
   otherwise; and \retvalii{\T} if found, \retvalii{\NIL}
-  otherwise. \kwd{setf}able. 
+  otherwise. \kwd{setf}able.
   }
 
   \IT{(\FU*{HASH-TABLE-COUNT} \VAR{hash-table})}
@@ -49,7 +49,7 @@ pages \pageref{section:Association Lists} and \pageref{:property_lists}.
   \IT{(\FU*{REMHASH} \VAR{key} \DES{\VAR{hash-table}})}
   {
   Remove from \VAR{hash-table} entry with \VAR{key} and return
-  \retval{\T} if it existed. Return \retval{\NIL} otherwise. 
+  \retval{\T} if it existed. Return \retval{\NIL} otherwise.
   }
 
   \IT{(\FU*{CLRHASH} \DES{\VAR{hash-table}})}
@@ -81,7 +81,7 @@ pages \pageref{section:Association Lists} and \pageref{:property_lists}.
       (\FU*{HASH-TABLE-REHASH-THRESHOLD} \VAR{ hash-table})}{.}}
   {
   Current \retval{size}, \retval{rehash-size}, or
-  \retval{rehash-threshold}, respectively, as used in \FU{make-hash-table}. 
+  \retval{rehash-threshold}, respectively, as used in \FU{make-hash-table}.
   }
 
   \IT{(\FU*{SXHASH} \VAR{foo})}
@@ -93,7 +93,7 @@ pages \pageref{section:Association Lists} and \pageref{:property_lists}.
 
 
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "clqr"
-%%% End: 
+%%% End:

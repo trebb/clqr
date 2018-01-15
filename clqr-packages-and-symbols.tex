@@ -1,4 +1,5 @@
-% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014 Bert Burgemeister
+% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014, 2018
+% Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -46,7 +47,7 @@ The Loop Facility provides additional means of symbol handling; see \kwd{loop}, 
     Possibly unexported \VAR{symbol} of \VAR{package}.
   }
 
-  \IT{(\MC*{DEFPACKAGE}\VAR{ foo} 
+  \IT{(\MC*{DEFPACKAGE}\VAR{ foo}
     \orGOO{%
       \OPn{(\kwd{:nicknames }\OPn{\VAR{nick}})}\\
       (\kwd{:documentation }\VAR{string})\\
@@ -84,13 +85,13 @@ The Loop Facility provides additional means of symbol handling; see \kwd{loop}, 
   }
 
   \IT{(\xorGOO{\FU*{USE-PACKAGE}\\
-    \FU*{UNUSE-PACKAGE}}{\}} 
+    \FU*{UNUSE-PACKAGE}}{\}}
     \VAR{other-packages}
     \Op{\VAR{package}\DF{\V{\A package\A}}})}
   {
     Make exported symbols of \VAR{other-packages} available in
     \VAR{package}, or remove them from \VAR{package},
-    respectively. Return \retval{\T}. 
+    respectively. Return \retval{\T}.
   }
 
   \IT{\arrGOO{%
@@ -127,7 +128,7 @@ The Loop Facility provides additional means of symbol handling; see \kwd{loop}, 
 
   \IT{(\FU*{FIND-PACKAGE} \VAR{name})}
   {
-    \retval{Package} with \VAR{name} (case-sensitive). 
+    \retval{Package} with \VAR{name} (case-sensitive).
   }
 
   \IT{(\FU*{FIND-ALL-SYMBOLS} \VAR{foo})}
@@ -169,7 +170,7 @@ The Loop Facility provides additional means of symbol handling; see \kwd{loop}, 
     packages. Return \retval{\T}.
   }
 
-  \IT{(\FU*{PACKAGE-SHADOWING-SYMBOLS} \VAR{package})} 
+  \IT{(\FU*{PACKAGE-SHADOWING-SYMBOLS} \VAR{package})}
   {
     \retval{List of symbols} of \VAR{package} that shadow any
     otherwise accessible, equally named symbols from other packages.
@@ -185,7 +186,7 @@ The Loop Facility provides additional means of symbol handling; see \kwd{loop}, 
   {
     Revert \VAR{symbols} to internal status. Return \retval{\T}.
   }
-  
+
   \IT{(\xorGOO{%
       \arrGOO{%
         \MC*{DO-SYMBOLS}\\
@@ -200,9 +201,9 @@ The Loop Facility provides additional means of symbol handling; see \kwd{loop}, 
   {
     Evaluate \SO{tagbody}-like body with \VAR{var} successively bound to every
     symbol from \VAR{package}, to every external symbol from
-    \VAR{package}, or to every symbol from all registered packages, 
+    \VAR{package}, or to every symbol from all registered packages,
     respectively. Return \retval{values of \VAR{result}}.  Implicitly,
-    the whole form is a \SO{block} named \NIL. 
+    the whole form is a \SO{block} named \NIL.
   }
 
   \IT{(\MC*{WITH-PACKAGE-ITERATOR} (\VAR{foo} \VAR{packages}
@@ -220,13 +221,13 @@ The Loop Facility provides additional means of symbol handling; see \kwd{loop}, 
   {
     If not in \V{\A modules\A}, try \VAR{paths} to load
     \VAR{module} from. Signal \kwd{error} if
-    unsuccessful. Deprecated. 
+    unsuccessful. Deprecated.
   }
 
   \IT{(\FU*{PROVIDE} \VAR{module})}
   {
     If not already there, add \VAR{module} to
-    \V{\A modules\A}. Deprecated. 
+    \V{\A modules\A}. Deprecated.
   }
 
   \IT{\V{\A modules\A}}
@@ -280,7 +281,7 @@ function (\kwd{function}, macro, or special operator \VAR{name}).
   {
   \retval{Name}, \retval{package}, \retval{property list},
   \retval{value}, or \retval{function}, respectively,
-  of \VAR{symbol}. \kwd{setf}able. 
+  of \VAR{symbol}. \kwd{setf}able.
   }
 
   \IT{(\xorGOO{%
@@ -311,14 +312,14 @@ function (\kwd{function}, macro, or special operator \VAR{name}).
   {
     Falsity; the empty list; the empty type, subtype of every type;
     \V{\A standard-input\A}; \V{\A standard-output\A}; the global
-    environment. 
+    environment.
   }
 
 \end{LIST}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection[Std Packages]{Standard Packages}
+\subsection{Standard Packages}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
@@ -330,7 +331,7 @@ function (\kwd{function}, macro, or special operator \VAR{name}).
 
   \IT{\kwd*{COMMON-LISP-USER}\XOR\kwd*{CL-USER}}
   {
-    Current package after startup; uses package \kwd{common-lisp}. 
+    Current package after startup; uses package \kwd{common-lisp}.
   }
 
   \IT{\kwd*{KEYWORD}}
@@ -340,7 +341,7 @@ function (\kwd{function}, macro, or special operator \VAR{name}).
 
 \end{LIST}
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "clqr"
-%%% End: 
+%%% End:

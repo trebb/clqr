@@ -1,44 +1,45 @@
-% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014 Bert Burgemeister
-%
+% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014, 2018
+% Bert Burgemeister
+% 
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
 % Version 1.2; with no Invariant Sections, no Front-Cover Texts and
 % no Back-Cover Texts. For details see file COPYING.
-%
+% 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Compiler} 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\section{Compiler}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Predicates} 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\subsection{Predicates}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 \begin{LIST}{1cm}
 
   \IT{(\FU*{SPECIAL-OPERATOR-P} \VAR{foo})}
   {
-  \retval{\T} if \VAR{foo} is a special operator.
+    \retval{\T} if \VAR{foo} is a special operator.
   }
 
   \IT{(\FU*{COMPILED-FUNCTION-P} \VAR{foo})}
   {
-  \retval{\T} if \VAR{foo} is of type \kwd{compiled-function}.
+    \retval{\T} if \VAR{foo} is of type \kwd{compiled-function}.
   }
 
 \end{LIST}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Compilation} 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\subsection{Compilation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 \begin{LIST}{1cm}
 
-  \IT{(\FU*{COMPILE} 
+  \IT{(\FU*{COMPILE}
     \xorGOO{\NIL\VAR{ definition}\\
       \xorGOO{\VAR{name}\\
-      (\kwd{setf } \VAR{name})}{\}}\text{ }\Op{\VAR{definition}}}{\}})}
+        (\kwd{setf } \VAR{name})}{\}}\text{ }\Op{\VAR{definition}}}{\}})}
   {
     Return \retval{compiled function} or replace \retval{\VAR{name}}'s
     function definition with the compiled function. Return
@@ -47,7 +48,7 @@
     \kwd{style-warning}s.
   }
 
-  \IT{(\FU*{COMPILE-FILE} \VAR{file} 
+  \IT{(\FU*{COMPILE-FILE} \VAR{file}
     \orGOO{\kwd{:output-file}\VAR{ out-path}\\
       \kwd{:verbose} \VAR{ bool}\DF{\V{\A compile-verbose\A}}\\
       \kwd{:print}\VAR{ bool}\DF{\V{\A compile-print\A}}\\
@@ -63,19 +64,19 @@
   \IT{(\FU*{COMPILE-FILE-PATHNAME} \VAR{file} \Op{\kwd{:output-file}
       \VAR{path}} \Op{\VAR{other-keyargs}})}
   {
-  \retval{Pathname} \FU{COMPILE-FILE} writes to if invoked with the
-  same arguments.
+    \retval{Pathname} \FU{COMPILE-FILE} writes to if invoked with the
+    same arguments.
   }
 
-  \IT{(\FU*{LOAD} \VAR{path} 
+  \IT{(\FU*{LOAD} \VAR{path}
     \orGOO{\kwd{:verbose} \VAR{ bool}\DF{\V{\A load-verbose\A}}\\
       \kwd{:print} \VAR{ bool}\DF{\V{\A load-print\A}}\\
       \kwd{:if-does-not-exist} \VAR{ bool}\DF{\T}\\
       \kwd{:external-format} \VAR{
         file-format}\DF{\kwd{:default}}}{\}})}
   {
-  Load source file or compiled file into Lisp environment. Return
-  \retval{\T} if successful. 
+    Load source file or compiled file into Lisp environment. Return
+    \retval{\T} if successful.
   }
 
   \IT{\arrGOO{\V{\A compile-file}\\
@@ -83,162 +84,162 @@
     \xorGOO{\kwd{pathname\A}\DF{\NIL}\\
       \kwd{truename\A}\DF{\NIL}}{.}}
   {\index{*COMPILE-FILE-PATHNAME*@\A COMPILE-FILE-PATHNAME\A}\index{*COMPILE-FILE-TRUENAME*@\A COMPILE-FILE-TRUENAME\A}\index{*LOAD-PATHNAME*@\A LOAD-PATHNAME\A}\index{*LOAD-TRUENAME*@\A LOAD-TRUENAME\A}
-  Input file used by \FU{compile-file}/by \FU{load}.
+    Input file used by \FU{compile-file}/by \FU{load}.
   }
 
   \IT{\arrGOO{\V{\A compile}\\
       \V{\A load}}{\}}\kwd{-}%
     \xorGOO{\kwd{print\A}\\
-      \kwd{verbose\A}}{.}}  
+      \kwd{verbose\A}}{.}}
   {\index{*COMPILE-PRINT*@\A COMPILE-PRINT\A}\index{*COMPILE-VERBOSE*@\A COMPILE-VERBOSE\A}\index{*LOAD-PRINT*@\A LOAD-PRINT\A}\index{*LOAD-VERBOSE*@\A LOAD-VERBOSE\A}
-  Defaults used by \FU{compile-file}/by \FU{load}.
+    Defaults used by \FU{compile-file}/by \FU{load}.
   }
 
   \IT{(\SO*{EVAL-WHEN} (%
     \orGOO{\Goo{\kwd{:compile-toplevel}\XOR\kwd{compile}}\\
       \Goo{\kwd{:load-toplevel}\XOR\kwd{load}}\\
-      \Goo{\kwd{:execute}\XOR\kwd{eval}}}{\}}) \PROGN{\VAR{form}})} 
+      \Goo{\kwd{:execute}\XOR\kwd{eval}}}{\}}) \PROGN{\VAR{form}})}
   {
-  Return \retval{values of \VAR{form}s} if
-  \SO{EVAL-WHEN} is in the top-level of a file being compiled, in the
-  top-level of a compiled file being loaded, or anywhere,
-  respectively. Return \retval{\NIL} if \VAR{form}s are not
-  evaluated. (\kwd{compile}, \kwd{load} and \kwd{eval} deprecated.) 
+    Return \retval{values of \VAR{form}s} if
+    \SO{EVAL-WHEN} is in the top-level of a file being compiled, in the
+    top-level of a compiled file being loaded, or anywhere,
+    respectively. Return \retval{\NIL} if \VAR{form}s are not
+    evaluated. (\kwd{compile}, \kwd{load} and \kwd{eval} deprecated.)
   }
 
   \IT{(\SO*{LOCALLY} \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
     \PROGN{\VAR{form}})}
   {
-  Evaluate \VAR{form}s in a lexical environment with declarations
-  \VAR{decl} in effect. Return \retval{values of \VAR{form}s}. 
+    Evaluate \VAR{form}s in a lexical environment with declarations
+    \VAR{decl} in effect. Return \retval{values of \VAR{form}s}.
   }
 
   \IT{(\MC*{WITH-COMPILATION-UNIT} (\Op{\kwd{:override}
       \VAR{bool}\DF{\NIL}}) \PROGN{\VAR{form}})}
   {
-  Return \retval{values of \VAR{form}s}. Warnings deferred by the
-  compiler until end of compilation are deferred until the end of
-  evaluation of \VAR{form}s. 
+    Return \retval{values of \VAR{form}s}. Warnings deferred by the
+    compiler until end of compilation are deferred until the end of
+    evaluation of \VAR{form}s.
   }
 
   \IT{(\SO*{LOAD-TIME-VALUE} \VAR{form}
     \Op{\NEV{\VAR{read-only}}\DF{\NIL}})}
   {
-  Evaluate \VAR{form} at compile time and treat \retval{its value} as
-  literal at run time. 
+    Evaluate \VAR{form} at compile time and treat \retval{its value} as
+    literal at run time.
   }
 
   \IT{(\SO*{QUOTE} \NEV{\VAR{foo}})}
   {
-  Return \retval{unevaluated \VAR{foo}}.
+    Return \retval{unevaluated \VAR{foo}}.
   }
 
   \IT{(\GFU*{MAKE-LOAD-FORM} \VAR{foo} \Op{\VAR{environment}})}
   {
-  Its methods are to return a \retval{creation form} which on
-  evaluation at \FU{load} time returns an object equivalent to
-  \VAR{foo}, and an optional \retvalii{initialization form} which on
-  evaluation performs some initialization of the object. 
+    Its methods are to return a \retval{creation form} which on
+    evaluation at \FU{load} time returns an object equivalent to
+    \VAR{foo}, and an optional \retvalii{initialization form} which on
+    evaluation performs some initialization of the object.
   }
 
   \IT{(\FU*{MAKE-LOAD-FORM-SAVING-SLOTS} \VAR{foo}
     \orGOO{\kwd{:slot-names} \VAR{ slots}\DF{all local slots}\\
       \kwd{:environment}  \VAR{ environment}}{\}})}
   {
-  Return a \retval{creation form} and an \retvalii{initialization
-    form} which on evaluation construct an object equivalent to
-  \VAR{foo} with \VAR{slots} initialized with the corresponding values
-  from \VAR{foo}. 
+    Return a \retval{creation form} and an \retvalii{initialization
+      form} which on evaluation construct an object equivalent to
+    \VAR{foo} with \VAR{slots} initialized with the corresponding values
+    from \VAR{foo}.
   }
 
   \IT{\arrGOO{(\FU*{MACRO-FUNCTION} \VAR{ symbol }
       \Op{\VAR{environment}})\\
-      (\FU*{COMPILER-MACRO-FUNCTION}\text{ } 
+      (\FU*{COMPILER-MACRO-FUNCTION}\text{ }
       \xorGOO{\VAR{name}\\
         (\kwd{setf } \VAR{name})}{\}}\text{ }
       \Op{\VAR{environment}})}{.}}
   {
-  Return specified \retval{macro function}, or \retval{compiler mac\-ro
-    func\-tion}, respectively, if any. Return \retval{\NIL}
-  otherwise. \kwd{setf}able. 
+    Return specified \retval{macro function}, or \retval{compiler mac\-ro
+      func\-tion}, respectively, if any. Return \retval{\NIL}
+    otherwise. \kwd{setf}able.
   }
-  
+
   \IT{(\FU*{EVAL} \VAR{arg})}
   {
-  Return \retval{values of value of \VAR{arg}} evaluated in global environment.
+    Return \retval{values of value of \VAR{arg}} evaluated in global environment.
   }
 
 \end{LIST}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection[REPL~\&~Debug]{REPL and Debugging} 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\subsection{REPL and Debugging}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 \begin{LIST}{1cm}
-  
+
   \IT{\arrGOO{\V*{+}\XOR\V*{++}\XOR\V*{+++}\\[1pt]
       \V{\A}\text{ }\XOR\text{ }\V{\A\A}\text{ }\XOR\text{ }\V{\A\A\A}\\[1pt]
       \V*{/}\text{ }\XOR\text{ }\V*{//}\text{ }\XOR\text{ }\V*{///}}{.}}
   {\index{*@\A}\index{**@\A\A}\index{***@\A\A\A}
-  Last, penultimate, or antepenultimate \retval{form} evaluated in the REPL, or
-  their respective \retval{primary value}, or a \retval{list} of their respective
-  values. 
+    Last, penultimate, or antepenultimate \retval{form} evaluated in the REPL, or
+    their respective \retval{primary value}, or a \retval{list} of their respective
+    values.
   }
 
   \IT{\V*{--}}
   {
-  \retval{Form} currently being evaluated by the REPL.
+    \retval{Form} currently being evaluated by the REPL.
   }
 
   \IT{(\FU*{APROPOS} \VAR{string} \Op{\VAR{package}\DF{\NIL}})}
   {
-  Print interned symbols containing \VAR{string}.
+    Print interned symbols containing \VAR{string}.
   }
 
   \IT{(\FU*{APROPOS-LIST} \VAR{string} \Op{\VAR{package}\DF{\NIL}})}
   {
-  \retval{List of interned symbols} containing \VAR{string}.
+    \retval{List of interned symbols} containing \VAR{string}.
   }
 
   \IT{(\FU*{DRIBBLE} \Op{\VAR{path}})}
   {
-  Save a record of interactive session to file at \VAR{path}. Without
-  \VAR{path}, close that file.
+    Save a record of interactive session to file at \VAR{path}. Without
+    \VAR{path}, close that file.
   }
 
   \IT{(\FU*{ED} \Op{\VAR{file-or-function}\DF{\NIL}})}
   {
-  Invoke editor if possible.
+    Invoke editor if possible.
   }
 
   \IT{(\xorGOO{\FU*{MACROEXPAND-1}\\
       \FU*{MACROEXPAND}}{\}} \VAR{form} \Op{\VAR{environment}\DF{\NIL}})}
   {
-  Return \retval{macro expansion}, once or entirely, respectively, of
-  \VAR{form} and \retvalii{\T} if \VAR{form} was a macro form. 
-  Return \retval{\VAR{form}} and \retvalii{\NIL} otherwise.
+    Return \retval{macro expansion}, once or entirely, respectively, of
+    \VAR{form} and \retvalii{\T} if \VAR{form} was a macro form.
+    Return \retval{\VAR{form}} and \retvalii{\NIL} otherwise.
   }
 
   \IT{\V{\A macroexpand-hook\A}}
   {\index{*MACROEXPAND-HOOK*@\A MACROEXPAND-HOOK\A}
-  Function of arguments expansion function, macro form, and
-  environment called by \FU{macroexpand-1} to generate macro
-  expansions. 
+    Function of arguments expansion function, macro form, and
+    environment called by \FU{macroexpand-1} to generate macro
+    expansions.
   }
 
   \IT{(\MC*{TRACE} \xorGOO{\VAR{function}\\
-    (\kwd{setf } \VAR{function})}{\}^{\!\!*}})}
+      (\kwd{setf } \VAR{function})}{\}^{\!\!*}})}
   {
-  Cause \VAR{function}s to be traced. With no arguments,
-  return \retval{list of traced functions}.
+    Cause \VAR{function}s to be traced. With no arguments,
+    return \retval{list of traced functions}.
   }
 
   \IT{(\MC*{UNTRACE} \xorGOO{\VAR{function}\\
-    (\kwd{setf } \VAR{function})}{\}^{\!\!*}})}
+      (\kwd{setf } \VAR{function})}{\}^{\!\!*}})}
   {
-  Stop \VAR{function}s, or each currently traced function, from being
-  traced. 
+    Stop \VAR{function}s, or each currently traced function, from being
+    traced.
   }
 
   \IT{\V{\A trace-output\A}}
@@ -248,21 +249,21 @@
 
   \IT{(\MC*{STEP} \VAR{form})}
   {
-  Step through evaluation of \VAR{form}. Return \retval{values of
-    \VAR{form}}. 
+    Step through evaluation of \VAR{form}. Return \retval{values of
+      \VAR{form}}.
   }
 
   \IT{(\FU*{BREAK} \Op{\VAR{control} \OPn{\VAR{arg}}})}
   {
-  Jump directly into debugger; return \retval{\NIL}.
-  See page \pageref{section:Format}, \FU{format}, for \VAR{control}
-  and \VAR{arg}s. 
+    Jump directly into debugger; return \retval{\NIL}.
+    See page \pageref{section:Format}, \FU{format}, for \VAR{control}
+    and \VAR{arg}s.
   }
 
   \IT{(\MC*{TIME} \VAR{form})}
   {
-  Evaluate \VAR{form}s and print timing information to
-  \V{\A trace-output\A}. Return \retval{values of \VAR{form}}. 
+    Evaluate \VAR{form}s and print timing information to
+    \V{\A trace-output\A}. Return \retval{values of \VAR{form}}.
   }
   \IT{(\FU*{INSPECT} \VAR{foo})}
   {
@@ -272,7 +273,7 @@
   \IT{(\FU*{DESCRIBE} \VAR{foo}
     \Op{\DES{\VAR{stream}}\DF{\V{\A standard-output\A}}})}
   {
-  Send information about \VAR{foo} to \VAR{stream}.
+    Send information about \VAR{foo} to \VAR{stream}.
   }
 
   \IT{(\GFU*{DESCRIBE-OBJECT} \VAR{foo} \Op{\DES{\VAR{stream}}})}
@@ -283,8 +284,8 @@
 
   \IT{(\FU*{DISASSEMBLE} \VAR{function})}
   {
-  Send disassembled representation of \VAR{function} to
-  \V{\A standard-output\A}. Return \retval{\NIL}.
+    Send disassembled representation of \VAR{function} to
+    \V{\A standard-output\A}. Return \retval{\NIL}.
   }
 
   \IT{(\FU*{ROOM} \Op{\Goo{\NIL\XOR\kwd{:default}\XOR\T}\DF{\kwd{:default}}})}
@@ -298,23 +299,23 @@
 \end{LIST}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \subsection{Declarations}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \begin{LIST}{1cm}
 
   \IT{\arrGOO{(\FU*{PROCLAIM} \VAR{ decl})\\
       (\MC*{DECLAIM } \OPn{\NEV{\VAR{decl}}})}{.}}
   {
-  Globally make declaration(s) \VAR{decl}. \VAR{decl} can be:
-  \kwd{declaration},      
-  \kwd{type},
-  \kwd{ftype},           
-  \kwd{inline},   
-  \kwd{notinline},
-  \kwd{optimize}, or
-  \kwd{special}.
-  See below.
+    Globally make declaration(s) \VAR{decl}. \VAR{decl} can be:
+    \kwd{declaration},
+    \kwd{type},
+    \kwd{ftype},
+    \kwd{inline},
+    \kwd{notinline},
+    \kwd{optimize}, or
+    \kwd{special}.
+    See below.
   }
 
   \IT{(\kwd*{DECLARE} \OPn{\NEV{\VAR{decl}}})}
@@ -323,23 +324,23 @@
     \OPn{\VAR{decl}}. \VAR{decl} can be:
     \kwd{dynamic-extent},
     \kwd{type},
-    \kwd{ftype},           
-    \kwd{ignorable},       
-    \kwd{ignore},     
-    \kwd{inline},     
-    \kwd{notinline},  
+    \kwd{ftype},
+    \kwd{ignorable},
+    \kwd{ignore},
+    \kwd{inline},
+    \kwd{notinline},
     \kwd{optimize}, or
     \kwd{special}.
-    See below.      
+    See below.
   }
 
   \begin{LIST}{.5cm}
-    
+
     \IT{(\kwd*{DECLARATION} \OPn{foo})}
     {
       Make \VAR{foo}s names of declarations.
     }
- 
+
     \IT{(\kwd*{DYNAMIC-EXTENT} \OPn{\VAR{variable}} \OPn{(\kwd{function}
         \VAR{function})})}
     {
@@ -360,15 +361,15 @@
         \VAR{var}\\
         (\kwd{function} \VAR{ function})}{\}^{\!\!*}})}
     {
-    Suppress warnings about used/unused bindings.
-  }
+      Suppress warnings about used/unused bindings.
+    }
 
     \IT{\arrGOO{(\kwd*{INLINE} \OPn{\VAR{ function}})\\
         (\kwd*{NOTINLINE} \OPn{\VAR{ function}})}{.}}
     {
-    Tell compiler to integrate/not to integrate, respectively, called
-    \VAR{function}s into the calling routine.
-  }
+      Tell compiler to integrate/not to integrate, respectively, called
+      \VAR{function}s into the calling routine.
+    }
 
     \IT{(\kwd*{OPTIMIZE} \orGOO{%
         \kwd*{COMPILATION-SPEED}\XOR(\kwd*{COMPILATION-SPEED}\VAR{ n}\DF{\LIT{3}})\\
@@ -377,14 +378,14 @@
         \kwd*{SPACE}\XOR(\kwd*{SPACE}\VAR{ n}\DF{\LIT{3}})\\
         \kwd*{SPEED}\XOR(\kwd*{SPEED}\VAR{ n}\DF{\LIT{3}})}{\}})}
     {
-    Tell compiler how to optimize. $n=0$ means unimportant, $n=1$ is
-    neutral, $n=3$ means important.
-  }
+      Tell compiler how to optimize. $n=0$ means unimportant, $n=1$ is
+      neutral, $n=3$ means important.
+    }
 
     \IT{(\kwd*{SPECIAL} \OPn{\VAR{var}})}
     {
-    Declare \VAR{var}s to be dynamic.
-  }
+      Declare \VAR{var}s to be dynamic.
+    }
 
   \end{LIST}
 \end{LIST}
@@ -394,7 +395,7 @@
 
 % LocalWords:  mac ro func tion
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "clqr"
-%%% End: 
+%%% End:

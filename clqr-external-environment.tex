@@ -1,4 +1,4 @@
-% Copyright (C) 2008, 2010, 2011, 2012, 2014 Bert Burgemeister
+% Copyright (C) 2008, 2010, 2011, 2012, 2014, 2018 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -17,26 +17,26 @@
     \retval{Current time}, or \retval{computing time},
     respectively, in clock ticks.
   }
-  
+
   \IT{\CNS*{INTERNAL-TIME-UNITS-PER-SECOND}}
   {
     Number of clock ticks per second.
   }
-  
+
   \IT{\arrGOO{%
       (\FU*{ENCODE-UNIVERSAL-TIME}
-      \VAR{\hspace{.7ex}sec} \VAR{\hspace{.7ex}min} 
-      \VAR{\hspace{.7ex}hour} \VAR{\hspace{.7ex}date}
-      \VAR{\hspace{.7ex}month} \VAR{\hspace{.7ex}year\hspace{1ex}}
-      \Op{\VAR{zone}\DF{curr}})\\ 
+      \VAR{ sec } \VAR{min }
+      \VAR{hour } \VAR{date }
+      \VAR{month } \VAR{year }
+      \Op{\VAR{zone}\DF{curr}})\\
       (\FU*{GET-UNIVERSAL-TIME})}{.}}
   {
     \retval{Seconds from 1900-01-01, 00:00}, ignoring leap seconds.
   }
 
-  \IT{\arrGOO{(\FU*{DECODE-UNIVERSAL-TIME} \VAR{ universal-time } 
+  \IT{\arrGOO{(\FU*{DECODE-UNIVERSAL-TIME} \VAR{ universal-time }
       \Op{\VAR{time-zone}\DF{current}})\\
-    (\FU*{GET-DECODED-TIME})}{.}}
+      (\FU*{GET-DECODED-TIME})}{.}}
   {
     Return \retval{second}, \retvalii{minute}, \retvaliii{hour},
     \retvaln{4}{date}, \retvaln{5}{month}, \retvaln{6}{year},
@@ -73,7 +73,7 @@
 \end{LIST}
 
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "clqr"
-%%% End: 
+%%% End:

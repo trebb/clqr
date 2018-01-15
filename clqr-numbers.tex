@@ -1,4 +1,5 @@
-% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014 Bert Burgemeister
+% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014, 2018
+% Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -7,11 +8,11 @@
 %
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Numbers} 
+\section{Numbers}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Predicates} 
+\subsection{Predicates}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{LIST}{1cm}
@@ -35,7 +36,7 @@
   \index{<=@$<$=}%
   Return \retval{\T} if \VAR{number}s are
   monotonically decreasing, monotonically non-increasing,
-  monotonically increasing, or monotonically non-decreasing, respectively. 
+  monotonically increasing, or monotonically non-decreasing, respectively.
   }
 
   \IT{\arrGOO{(\FU*{MINUSP} \VAR{ a})\\
@@ -68,7 +69,7 @@
 \end{LIST}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection[Numeric~Functns]{Numeric Functions} 
+\subsection{Numeric Functions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{LIST}{1cm}
@@ -193,7 +194,7 @@
   {
   Return as \kwd{integer} or \kwd{float}, respectively, \retval{$n/d$}
   rounded, or rounded towards $-\infty$, $+\infty$, or $0$,
-  respectively; and \retvalii{re\-main\-der}. 
+  respectively; and \retvalii{re\-main\-der}.
   }
 
   \IT{(\xorGOO{\FU*{MOD}\\
@@ -202,17 +203,17 @@
   \FU{truncate}, respectively, but return \retval{re\-main\-der} only.
   }
 
-  \IT{(\FU*{RANDOM} \VAR{limit} \Op{\DES{\VAR{state}}\DF{\V{\A random-state\A}}})} 
+  \IT{(\FU*{RANDOM} \VAR{limit} \Op{\DES{\VAR{state}}\DF{\V{\A random-state\A}}})}
   {
     Return non-negative \retval{random number} less than \VAR{limit},
-    and of the same type. 
+    and of the same type.
   }
 
   \IT{(\FU*{MAKE-RANDOM-STATE} \OP{\Goo{\VAR{state}\XOR\NIL\XOR\T}\DF{\NIL}})}
   {
     \retval{Copy} of \kwd{random-state} object \VAR{state} or of
     the current random state; or a randomly initialized fresh \retval{random
-    state}. 
+    state}.
   }
 
   \IT{\V{\A random-state\A}\qquad\qquad\qquad}
@@ -274,7 +275,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Logic Functions} 
+\subsection{Logic Functions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{section:Logic Functions}
 Negative integers are used in
@@ -288,7 +289,7 @@ two's complement representation.
   \retval{value} of bitwise logical \VAR{operation}. \VAR{operation}s
   are
   }
-  
+
   \begin{LIST}{.5cm}
     \IT{\CNS*{BOOLE-1}\qquad\qquad} {\retval{\VAR{int-a}}.}
     \IT{\CNS*{BOOLE-2}\qquad\qquad} {\retval{\VAR{int-b}}.}
@@ -370,20 +371,20 @@ two's complement representation.
   \IT{(\FU*{LOGCOUNT} \VAR{int})}
   {
     \retval{Number of 1 bits} in $\text{\VAR{int}}\ge 0$,
-    \retval{number of 0 bits} in $\text{\VAR{int}}< 0$. 
+    \retval{number of 0 bits} in $\text{\VAR{int}}< 0$.
   }
 
 
 \end{LIST}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Integer Functions} 
+\subsection{Integer Functions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
   \IT{(\FU*{INTEGER-LENGTH} \VAR{integer})}
   {
-  \retval{Number of bits} necessary to represent \VAR{integer}. 
+  \retval{Number of bits} necessary to represent \VAR{integer}.
   }
 
   \IT{(\FU*{LDB-TEST} \VAR{byte-spec} \VAR{integer})}
@@ -397,13 +398,13 @@ two's complement representation.
   Return copy of \retval{\VAR{integer}} arithmetically shifted left by
   \VAR{count} adding zeros
   at the right, or, for $\VAR{count}<0$, shifted right discarding
-  bits. 
+  bits.
   }
 
   \IT{(\FU*{LDB} \VAR{byte-spec} \VAR{integer})}
   {
   Extract \retval{byte} denoted by \VAR{byte-spec} from
-  \VAR{integer}. \kwd{setf}able. 
+  \VAR{integer}. \kwd{setf}able.
   }
 
   \IT{(\xorGOO{\FU*{DEPOSIT-FIELD}\\
@@ -412,7 +413,7 @@ two's complement representation.
   {
   Return \retval{\VAR{int-b}} with bits denoted by \VAR{byte-spec} replaced
   by corresponding bits of \VAR{int-a}, or by the low (\FU{byte-size}
-  \VAR{byte-spec}) bits of \VAR{int-a}, respectively. 
+  \VAR{byte-spec}) bits of \VAR{int-a}, respectively.
   }
 
   \IT{(\FU*{MASK-FIELD} \VAR{byte-spec} \VAR{integer})}
@@ -424,7 +425,7 @@ two's complement representation.
   \IT{(\FU*{BYTE} \VAR{size} \VAR{position})}
   {
   \retval{Byte specifier} for a byte of \VAR{size} bits starting at a
-  weight of $2^{\VAR{position}}$. 
+  weight of $2^{\VAR{position}}$.
   }
 
   \IT{\arrGOO{(\FU*{BYTE-SIZE} \VAR{ byte-spec})\\
@@ -437,7 +438,7 @@ two's complement representation.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection[Implementation- Dependent]{Implementation-Dependent} 
+\subsection{Implementation-Dependent}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
@@ -536,7 +537,7 @@ two's complement representation.
 
   \IT{(\FU*{UPGRADED-COMPLEX-PART-TYPE} \VAR{foo} \Op{\VAR{environment}\DF{\NIL}})}
   {\retval{Type} of most specialized \kwd{complex} number able to hold
-    parts of type \VAR{foo}. 
+    parts of type \VAR{foo}.
   }
 
 \end{LIST}
@@ -544,7 +545,7 @@ two's complement representation.
 
 % LocalWords:  de na der nored ored
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "clqr"
-%%% End: 
+%%% End:

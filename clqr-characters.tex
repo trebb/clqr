@@ -1,4 +1,4 @@
-% Copyright (C) 2008, 2010, 2011, 2014 Bert Burgemeister
+% Copyright (C) 2008, 2010, 2011, 2014, 2018 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -7,12 +7,12 @@
 %
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Characters} 
+\section{Characters}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The \kwd*{standard-char} type comprises \LIT{a}-\LIT{z},
 \LIT{A}-\LIT{Z}, \LIT{0}-\LIT{9}, \LIT{Newline}, \LIT{Space}, and
-\LIT{!?\$"'`.:,;*+-/|{\tt\char`\\}\TLD\_\^{}<=>\#\%@\&()[]\{\}}.
+\LIT{!?\$"'`.:,;*+-/|{\char`\\}\TLD\_\^{}<=>\#\%@\&()[]\{\}}.
 \index{NEWLINE}\index{SPACE}
 
 \begin{LIST}{1cm}
@@ -78,9 +78,9 @@ The \kwd*{standard-char} type comprises \LIT{a}-\LIT{z},
   }
 
   \IT{\arrGOO{
-      (\FU*{CHAR-GREATERP}\RP{\VAR{ character}})\\ 
-      (\FU*{CHAR-NOT-LESSP}\RP{\VAR{ character}})\\ 
-      (\FU*{CHAR-LESSP}\RP{\VAR{ character}})\\ 
+      (\FU*{CHAR-GREATERP}\RP{\VAR{ character}})\\
+      (\FU*{CHAR-NOT-LESSP}\RP{\VAR{ character}})\\
+      (\FU*{CHAR-LESSP}\RP{\VAR{ character}})\\
       (\FU*{CHAR-NOT-GREATERP}\RP{\VAR{ character}})}{.}}
   {
     Return \retval{\T} if \VAR{character}s are monotonically
@@ -104,7 +104,7 @@ The \kwd*{standard-char} type comprises \LIT{a}-\LIT{z},
   \IT{(\FU*{CHAR-NAME} \VAR{char})}
   {
     \VAR{char}'s \retval{name} if any, or
-    \retval{\NIL}. 
+    \retval{\NIL}.
   }
 
   \IT{(\FU*{NAME-CHAR} \VAR{foo})\qquad\qquad}
@@ -136,7 +136,7 @@ The \kwd*{standard-char} type comprises \LIT{a}-\LIT{z},
 
 \end{LIST}
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "clqr"
-%%% End: 
+%%% End:

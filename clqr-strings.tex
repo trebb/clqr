@@ -1,4 +1,4 @@
-% Copyright (C) 2008, 2010, 2014 Bert Burgemeister
+% Copyright (C) 2008, 2010, 2014, 2018 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -7,7 +7,7 @@
 %
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Strings} 
+\section{Strings}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Strings can as well be manipulated by array and sequence functions;
 see pages \pageref{section:Arrays} and \pageref{section:Sequences}.
@@ -22,7 +22,7 @@ see pages \pageref{section:Arrays} and \pageref{section:Sequences}.
   }
 
   \IT{(\xorGOO{\FU*{STRING=}\\\FU*{STRING-EQUAL}}{\}} \VAR{foo}
-    \VAR{bar} 
+    \VAR{bar}
     \orGOO{\kwd{:start1} \VAR{ start-foo}\DF{\LIT{0}}\\
       \kwd{:start2} \VAR{ start-bar}\DF{\LIT{0}}\\
       \kwd{:end1} \VAR{ end-foo}\DF{\NIL}\\
@@ -66,7 +66,7 @@ see pages \pageref{section:Arrays} and \pageref{section:Sequences}.
         \FU*{STRING-CAPITALIZE}\\
         \FU*{STRING-UPCASE}\\
         \FU*{STRING-DOWNCASE}}{\}}
-      \VAR{ x }  
+      \VAR{ x }
       \orGOO{\kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
         \kwd{:end} \VAR{ end}\DF{\NIL}}{\}})}{.}}
   {
@@ -80,13 +80,13 @@ see pages \pageref{section:Arrays} and \pageref{section:Sequences}.
       \FU*{NSTRING-CAPITALIZE}\\
       \FU*{NSTRING-UPCASE}\\
       \FU*{NSTRING-DOWNCASE}}{\}}
-    \VAR{\DES{string}}  
+    \VAR{\DES{string}}
     \orGOO{\kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}}{\}})}
   {
     Convert \VAR{string} into a \retval{string with capitalized
       words}, an \retval{all-uppercase string}, or an
-    \retval{all-lowercase string}, respectively. 
+    \retval{all-lowercase string}, respectively.
   }
 
   \IT{(\xorGOO{\FU*{STRING-TRIM}\\
@@ -95,7 +95,7 @@ see pages \pageref{section:Arrays} and \pageref{section:Sequences}.
   {
     Return \retval{\VAR{string}} with all characters in sequence
     \VAR{char-bag} removed from both ends, from the beginning, or from
-    the end, respectively. 
+    the end, respectively.
   }
 
   \IT{\arrGOO{(\FU*{CHAR} \VAR{ string} \VAR{ i})\\
@@ -117,7 +117,7 @@ see pages \pageref{section:Arrays} and \pageref{section:Sequences}.
 
 \end{LIST}
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "clqr"
-%%% End: 
+%%% End:

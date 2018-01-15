@@ -1,4 +1,5 @@
-% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014 Bert Burgemeister
+% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014, 2018
+% Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -7,7 +8,7 @@
 %
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conditions and Errors} 
+\section{Conditions and Errors}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 For standardized condition types cf.\ Figure \ref{data-types} on
@@ -17,7 +18,7 @@ page \pageref{data-types}.
   \IT{(\MC*{DEFINE-CONDITION}
     \VAR{foo} (\OPn{\VAR{parent-type}}\DF{\kwd{condition}})
     (\xorGOO{\VAR{slot}\\
-      (\VAR{slot } 
+      (\VAR{slot }
       \orGOO{\Goos{\kwd{:reader} \VAR{reader}}\\
         \Goos{\kwd{:writer} \xorGOO{%
             \VAR{writer}\\
@@ -46,7 +47,7 @@ page \pageref{data-types}.
     \VAR{report-function} of arguments condition and stream.
   }
 
-  \IT{(\FU*{MAKE-CONDITION} 
+  \IT{(\FU*{MAKE-CONDITION}
     \VAR{condition-type} \Goos{\kwd{:}\VAR{initarg-name} \VAR{value}})}
   {
   Return new \retval{instance of \VAR{condition-type}}.
@@ -59,7 +60,7 @@ page \pageref{data-types}.
     }{\}}
     \xorGOO{%
       \VAR{condition}\\
-      \VAR{condition-type}\text{ } \Goos{\kwd{:}\VAR{initarg-name} \VAR{value}}\\ 
+      \VAR{condition-type}\text{ } \Goos{\kwd{:}\VAR{initarg-name} \VAR{value}}\\
       \VAR{control}\text{ } \OPn{\VAR{arg}}%
     }{\}})}
   {
@@ -98,11 +99,11 @@ page \pageref{data-types}.
   Invoke debugger with \VAR{condition}.
   }
 
-  \IT{(\MC*{ASSERT} \VAR{test} \OP{(\OPn{\VAR{place}}) 
+  \IT{(\MC*{ASSERT} \VAR{test} \OP{(\OPn{\VAR{place}})
       \Op{%
         \xorGOO{%
           \VAR{condition}\text{ }  \OPn{\VAR{continue-arg}}\\
-          \VAR{condition-type}\text{ } 
+          \VAR{condition-type}\text{ }
           \Goos{\kwd{:}\VAR{initarg-name} \VAR{value}}\\
           \VAR{control}\text{ } \OPn{\VAR{arg}}}{\}}}})}
   {
@@ -115,7 +116,7 @@ page \pageref{data-types}.
     \VAR{test}. Return \retval{\NIL}.
   }
 
-  \IT{(\MC*{HANDLER-CASE} \VAR{foo} 
+  \IT{(\MC*{HANDLER-CASE} \VAR{foo}
     \penalty-5
     \OPn{(\VAR{type} (\Op{\VAR{var}})
       \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})}
@@ -139,7 +140,7 @@ page \pageref{data-types}.
   {
     Return \retval{values of \VAR{form}s} after evaluating them with
     \VAR{condition-type}s dynamically bound to their respective
-    \VAR{handler-function}s of argument condition. 
+    \VAR{handler-function}s of argument condition.
   }
 
   \IT{(\MC*{WITH-SIMPLE-RESTART} (\xorGOO{\VAR{restart}\\
@@ -155,8 +156,8 @@ page \pageref{data-types}.
 
   \IT{(\MC*{RESTART-CASE} \VAR{form}
     \OPn{(\VAR{restart}
-      (\OPn{\VAR{ord-$\lambda$}}) 
-      \orGOO{\kwd{:interactive} \VAR{ arg-function}\\ 
+      (\OPn{\VAR{ord-$\lambda$}})
+      \orGOO{\kwd{:interactive} \VAR{ arg-function}\\
         \kwd{:report } \xorGOO{%
           \VAR{report-function}\\
           \VAR{string}\DF{\LIT{"}\VAR{restart}\LIT{"}}}{.}\\
@@ -186,7 +187,7 @@ page \pageref{data-types}.
         \NIL}{\}}
       \VAR{restart-function}
       \orGOO{%
-        \kwd{:interactive-function} \VAR{ arg-function}\\ 
+        \kwd{:interactive-function} \VAR{ arg-function}\\
         \kwd{:report-function} \VAR{ report-function}\\
         \kwd{:test-function} \VAR{ test-function}}{\}})})
     \PROGN{\VAR{form}})}
@@ -247,7 +248,7 @@ page \pageref{data-types}.
   {
   Evaluate \VAR{form}s with \VAR{restarts}
   dynamically associated with \VAR{condition}. Return \retval{values
-    of \VAR{form}s}. 
+    of \VAR{form}s}.
   }
 
   \IT{\arrGOO{(\FU*{ARITHMETIC-ERROR-OPERATION} \VAR{ condition})\\
@@ -278,7 +279,7 @@ page \pageref{data-types}.
       (\FU*{STREAM-ERROR-STREAM } \VAR{condition})}{.}}
   {
   \retval{Package}, \retval{path}, or \retval{stream}, respectively,
-  which caused the \VAR{condition} of indicated type. 
+  which caused the \VAR{condition} of indicated type.
   }
 
   \IT{\arrGOO{(\FU*{TYPE-ERROR-DATUM} \VAR{ condition})\\
@@ -309,7 +310,7 @@ page \pageref{data-types}.
 \end{LIST}
 
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "clqr"
-%%% End: 
+%%% End:

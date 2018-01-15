@@ -1,4 +1,5 @@
-% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014 Bert Burgemeister
+% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2018
+% Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -7,11 +8,11 @@
 %
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Input/Output} 
+\section{Input/Output}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Predicates} 
+\subsection{Predicates}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{LIST}{1cm}
@@ -53,7 +54,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Reader} 
+\subsection{Reader}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{LIST}{1cm}
@@ -63,7 +64,7 @@
   {
     Ask user a question and return \retval{\T} or \retval{\NIL}
     depending on their answer. See page \pageref{section:Format},
-    \FU{format}, for \VAR{control} and \VAR{arg}s. 
+    \FU{format}, for \VAR{control} and \VAR{arg}s.
   }
 
   \IT{(\MC*{WITH-STANDARD-IO-SYNTAX} \PROGN{\VAR{form}})}
@@ -74,14 +75,14 @@
 
   \IT{(\xorGOO{\FU*{READ}\\
       \FU*{READ-PRESERVING-WHITESPACE}}{\}}
-    \OP{\DES{\VAR{stream}}\DF{\V{\A standard-input\A}} % standard-input not explicitly in standard 
-      \OP{\VAR{eof-err}\DF{\T} 
+    \OP{\DES{\VAR{stream}}\DF{\V{\A standard-input\A}} % standard-input not explicitly in standard
+      \OP{\VAR{eof-err}\DF{\T}
         \Op{\VAR{eof-val}\DF{\NIL} \Op{\VAR{recursive}\DF{\NIL}}}}})}
   {
     Read printed representation of \retval{object}.
   }
 
-  \IT{(\FU*{READ-FROM-STRING} \VAR{string} 
+  \IT{(\FU*{READ-FROM-STRING} \VAR{string}
     \OP{\VAR{eof-error}\DF{\T}
       \OP{\VAR{eof-val}\DF{\NIL}
         \OP{\orGOO{%
@@ -118,7 +119,7 @@
   }
 
   \IT{(\FU*{PEEK-CHAR}
-    \OP{\VAR{mode}\DF{\NIL} \OP{\DES{\VAR{stream}}\DF{\V{\A standard-input\A}} 
+    \OP{\VAR{mode}\DF{\NIL} \OP{\DES{\VAR{stream}}\DF{\V{\A standard-input\A}}
       \OP{\VAR{eof-error}\DF{\T} \Op{\VAR{eof-val}\DF{\NIL}
           \Op{\VAR{recursive}\DF{\NIL}}}}}})}
   {
@@ -131,7 +132,7 @@
     \Op{\DES{\VAR{stream}}\DF{\V{\A standard-input\A}}})}
   {
     Put last \FU{read-char}ed \VAR{character} back into \VAR{stream}; return
-    \retval{\NIL}. 
+    \retval{\NIL}.
   }
 
   \IT{(\FU*{READ-BYTE} \DES{\VAR{stream}} \OP{\VAR{eof-err}\DF{\T}
@@ -145,7 +146,7 @@
           \Op{\VAR{recursive}\DF{\NIL}}}}})}
   {
     Return a \retval{line of text} from \VAR{stream} and
-    \retvalii{\T} if line has been ended by end of file. 
+    \retvalii{\T} if line has been ended by end of file.
   }
 
   \IT{(\FU*{READ-SEQUENCE} \DES{\VAR{sequence}} \DES{\VAR{stream}}
@@ -161,7 +162,7 @@
   {
     \retval{Case sensitivity attribute} (one of \kwd{:upcase},
     \kwd{:downcase}, \kwd{:preserve}, \kwd{:invert}) of
-    \VAR{readtable}. \kwd{setf}able. 
+    \VAR{readtable}. \kwd{setf}able.
   }
 
   \IT{(\FU*{COPY-READTABLE} \OP{\VAR{from-readtable}\DF{\V{\A readtable\A}}
@@ -189,7 +190,7 @@
 
   \IT{\V{\A read-default-float-format\A}\DF{\kwd{single-float}}}
   {\index{*READ-DEFAULT-FLOAT-FORMAT*@\A READ-DEFAULT-FLOAT-FORMAT\A}
-    Floating point format to use when not indicated in the number read. 
+    Floating point format to use when not indicated in the number read.
   }
 
   \IT{\V{\A read-suppress\A}\DF{\NIL}}
@@ -220,7 +221,7 @@
   }
 
   \IT{(\FU*{SET-DISPATCH-MACRO-CHARACTER} \VAR{char} \VAR{sub-char}
-    \VAR{function} 
+    \VAR{function}
     \Op{\DES{\VAR{rt}}\DF{\V{\A readtable\A}}})}
   {
     Make \VAR{function} of stream, \VAR{n}, \VAR{sub-char} a dispatch
@@ -252,25 +253,25 @@
   \begin{LIST}{.5cm}
     \IT{\KWD{;;;;} \VAR{title}\qquad\qquad}
     {Short title for a block of code.}
-    
+
     \IT{\KWD{;;;} \VAR{intro}\qquad\qquad}
     {Description before a block of code.}
-    
+
     \IT{\KWD{;;} \VAR{state}\qquad\qquad}
     {State of program or of following code.}
-    
+
     \IT{\arrGOO{%
         \KWD{;}\VAR{explanation}\\
         \KWD{;}\VAR{ continuation}}{.}}
     {Regarding line on which it appears.}
-    
+
   \end{LIST}
-  
+
   \IT{\KWD*{(}\OPn{\VAR{foo}}\Op{ \KWD*{.} \VAR{bar}\DF{\NIL}}\KWD*{)}}
   {
     List of \VAR{foo}s with the terminating cdr \VAR{bar}.
   }
-  
+
   \IT{\KWD{"}\qquad\qquad}
   {\index{""}
     Begin and end of a string.
@@ -386,7 +387,7 @@
   {\index{\#<@\#$<$}%
     Have the reader signal \kwd{reader-error}.
   }
-  
+
   \IT{\arrGOO{\KWD*{\#+}\VAR{feature } \VAR{when-feature}\\
       \KWD*{\#--}\VAR{feature } \VAR{unless-feature}}{.}}
   {
@@ -412,13 +413,13 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Printer} 
+\subsection{Printer}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{LIST}{1cm}
 
-  \IT{(\xorGOO{\FU*{PRIN1}\\ 
+  \IT{(\xorGOO{\FU*{PRIN1}\\
       \FU*{PRINT}\\
       \FU*{PPRINT}\\
       \FU*{PRINC}}{\}}
@@ -441,7 +442,7 @@
   \IT{(\GFU*{PRINT-OBJECT} \VAR{object} \DES{\VAR{stream}})}
   {
     Print \retval{\VAR{object}} to \VAR{stream}. Called by the Lisp
-    printer. 
+    printer.
   }
 
   \IT{(\MC*{PRINT-UNREADABLE-OBJECT} (\VAR{foo} \DES{\VAR{stream}}
@@ -450,7 +451,7 @@
     \PROGN{\VAR{form}})}
   {
     Enclosed in \kwd{\#\boldmath$<$} and \kwd{\boldmath$>$}, print
-    \VAR{foo} by means of \VAR{form}s to \VAR{stream}. Return \retval{\NIL}. 
+    \VAR{foo} by means of \VAR{form}s to \VAR{stream}. Return \retval{\NIL}.
   }
 
   \IT{(\FU*{TERPRI} \Op{\DES{\VAR{stream}}\DF{\V{\A standard-output\A}}})}
@@ -487,7 +488,7 @@
   }
 
   \IT{(\FU*{WRITE-SEQUENCE} \VAR{sequence}
-   \DES{\VAR{stream}} \orGOO{\kwd{:start}\VAR{ start}\DF{\LIT{0}}\\ 
+   \DES{\VAR{stream}} \orGOO{\kwd{:start}\VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}}{\}})}
   {
     Write elements of \retval{\VAR{sequence}} to binary or character
@@ -547,7 +548,7 @@
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{form}})}
   {
     Evaluate \VAR{form}s, which should print \VAR{list}, with
-    \VAR{stream} locally bound to a pretty 
+    \VAR{stream} locally bound to a pretty
     printing stream which outputs to the original \VAR{stream}. If
     \VAR{list} is in fact not a list, it is printed by
     \FU{write}. Return \retval{\NIL}.
@@ -560,7 +561,7 @@
       Take \retval{next element} off \VAR{list}. If there is no remaining
       tail of \VAR{list}, or \V{\A print-length\A} or \V{\A print-circle\A} indicate
       printing should end, send element together with an appropriate
-      indicator to \VAR{stream}. 
+      indicator to \VAR{stream}.
     }
 
     \IT{(\FU*{PPRINT-TAB} \xorGOO{\kwd{:line}\\
@@ -572,7 +573,7 @@
       Move cursor forward to column number $c + ki$, $k \geq 0$ being as small
       as possible.
     }
-    
+
     \IT{(\FU*{PPRINT-INDENT} \xorGOO{%
         \kwd{:block}\\
         \kwd{:current}}{\}} \VAR{n}
@@ -581,13 +582,13 @@
       Specify indentation for innermost logical block relative to
       leftmost position/to current position. Return \retval{\NIL}.
     }
-    
+
     \IT{(\MC*{PPRINT-EXIT-IF-LIST-EXHAUSTED})}
     {
       If \VAR{list} is empty, terminate logical block. Return
       \retval{\NIL} otherwise.
     }
-    
+
   \end{LIST}
 
   \IT{(\FU*{PPRINT-NEWLINE} \xorGOO{%
@@ -598,7 +599,7 @@
     \OP{\DES{\VAR{stream}}\DF{\V{\A standard-output\A}}})}
   {
     Print a conditional newline if \VAR{stream} is a pretty printing
-    stream. Return \retval{\NIL}. 
+    stream. Return \retval{\NIL}.
   }
 
   \IT{\V{\A print-array\A}}
@@ -620,7 +621,7 @@
   \IT{\V{\A print-circle\A}\DF{\NIL}}
   {\index{*PRINT-CIRCLE*@\A PRINT-CIRCLE\A}
     If \T, avoid indefinite recursion while printing circular
-    structure. 
+    structure.
   }
 
   \IT{\V{\A print-escape\A}\DF{\T}}
@@ -661,7 +662,7 @@
   \IT{\V{\A print-readably\A}\DF{\NIL}}
   {\index{*PRINT-READABLY*@\A PRINT-READABLY\A}
     If \T, print \FU{read}ably or signal error
-    \kwd{print-not-readable}. 
+    \kwd{print-not-readable}.
   }
 
   \IT{\V{\A print-right-margin\A}\DF{\NIL}}
@@ -676,7 +677,7 @@
     Install entry comprising \VAR{function} of arguments stream and
     object to print; and \VAR{priority} as
     \VAR{type} into \VAR{table}. If \VAR{function}
-    is \NIL, remove \VAR{type} from \VAR{table}. Return \retval{\NIL}. 
+    is \NIL, remove \VAR{type} from \VAR{table}. Return \retval{\NIL}.
   }
 
   \IT{(\FU*{PPRINT-DISPATCH} \VAR{foo}
@@ -727,7 +728,7 @@
     \OPn{\VAR{arg}}.  Output to \VAR{out-string}, \VAR{out-stream} or,
     if first argument is \T, to \V{\A standard-output\A}. Return
     \retval{\NIL}.  If first argument is \NIL, return
-    \retval{formatted output}. 
+    \retval{formatted output}.
   }
 
   \begin{LIST}{.5cm}
@@ -743,7 +744,7 @@
       than \LIT{nil}; with \kwd{@}, add \VAR{pad-char}s on the left
       rather than on the right.
     }
-    
+
     \IT{\KWD{\TLD} \Op{\VAR{radix}\DF{\LIT{10}}} \OP{\KWD{,}\Op{\VAR{width}}
         \OP{\KWD{,}\Op{\kwd{'}\VAR{pad-char}\DF{\textvisiblespace}}
           \OP{\KWD{,}\Op{\kwd{'}\VAR{comma-char}\DF{\LIT{,}}}
@@ -753,7 +754,7 @@
       \EM{Radix. }
       (With one or more prefix arguments.) Print argument as number; with
       \KWD{:}, group digits \VAR{comma-interval} each; with \kwd{@},
-      always prepend a sign. 
+      always prepend a sign.
     }
 
     \IT{\Goo{\KWD{\TLD R}\XOR\KWD{\TLD :R}\XOR\KWD{\TLD
@@ -772,18 +773,18 @@
       \KWD{\Op{:} \Op{@} \Goo{D\XOR B\XOR O\XOR X}}}
     {\index{\~D@$\sim$D}\index{\~B@$\sim$B}\index{\~O@$\sim$O}\index{\~X@$\sim$X}%
       \EM{Decimal/Binary/Octal/Hexadecimal. }
-      Print integer argument as number. With \kwd{:}, group digits 
+      Print integer argument as number. With \kwd{:}, group digits
       \VAR{comma-interval} each; with \kwd{@}, always prepend a sign.
     }
 
     \IT{\KWD{\TLD} \Op{\VAR{width}} \OP{\KWD{,}\Op{\VAR{dec-digits}}
-        \OP{\KWD{,}\Op{\VAR{shift}\DF{\LIT{0}}} 
+        \OP{\KWD{,}\Op{\VAR{shift}\DF{\LIT{0}}}
           \OP{\KWD{,}\Op{\kwd{'}\VAR{overflow-char}}
             \OP{\KWD{,'}\VAR{pad-char}\DF{\textvisiblespace}}}}}
       \KWD{\Op{@} F}}
     {\index{\~F@$\sim$F}%
       \EM{Fixed-Format Floating-Point. } With
-      \kwd{@}, always pre\-pend a sign. 
+      \kwd{@}, always pre\-pend a sign.
     }
 
     \IT{\KWD{\TLD} \Op{\VAR{width}} \OP{\KWD{,}\Op{\VAR{dec-digits}}
@@ -798,7 +799,7 @@
       Print argument as floating-point number with \VAR{dec-digits}
       after decimal point and \VAR{exp-digits} in the signed
       exponent. With \KWD{\TLD G}, choose either \KWD{\TLD E} or
-      \KWD{\TLD F}. With \KWD{@}, always prepend a sign. 
+      \KWD{\TLD F}. With \KWD{@}, always prepend a sign.
     }
 
     \IT{\KWD{\TLD} \Op{\VAR{dec-digits}\DF{\LIT{2}}}
@@ -812,14 +813,14 @@
       put sign before any padding; with \KWD{@}, always prepend a
       sign.
     }
-    
+
     \IT{\Goo{\KWD{\TLD C}\XOR\KWD{\TLD :C}\XOR\KWD{\TLD
           @C}\XOR\KWD{\TLD @:C}}}
     {\index{\~C@$\sim$C}%
       \EM{Character. }
       Print, spell out, print in \kwd{\#$\backslash$} syntax, or tell
       how to type, respectively, argument as (possibly non-printing)
-      character. 
+      character.
     }
 
     \IT{\Goo{%
@@ -831,7 +832,7 @@
       \EM{Case-Conversion. }
       Convert \VAR{text} to lowercase, convert first letter of each word
       to uppercase, capitalize first word and convert the rest to
-      lowercase, or convert to uppercase, respectively. 
+      lowercase, or convert to uppercase, respectively.
     }
 
     \IT{\Goo{\KWD{\TLD P}\XOR\KWD{\TLD:P}
@@ -841,7 +842,7 @@
       If argument \kwd{eql} \LIT{1} print nothing, otherwise print \LIT{s};
       do the same for the previous argument; if argument \kwd{eql} \LIT{1}
       print \LIT{y}, otherwise print \LIT{ies}; do the same for the
-      previous argument, respectively.  
+      previous argument, respectively.
     }
 
     \IT{\KWD{\TLD} \Op{\VAR{n}\DF{\LIT{1}}} \KWD{\%}}
@@ -890,7 +891,7 @@
       \OP{\KWD{,}\Op{\VAR{col-inc}\DF{\LIT{1}}}
         \OP{\KWD{,}\Op{\VAR{min-pad}\DF{\LIT{0}}}
           \OP{\KWD{,'}\VAR{pad-char}\DF{\textvisiblespace}}}}
-      \KWD{\Op{:} \Op{@} \boldmath{$<$}} 
+      \KWD{\Op{:} \Op{@} \boldmath{$<$}}
       \OP{\VAR{nl-text} \KWD{\TLD}\Op{\VAR{spare}\DF{\LIT{0}} \Op{\KWD{,}\VAR{width}}}\kwd{:;}}
       \Goos{\VAR{text} \KWD{\TLD;}} \VAR{text} \KWD{\TLD\boldmath{$>$}}}
     {\index{\~<\~>@$\sim$$<$ $\sim$$>$}%
@@ -915,7 +916,7 @@
       \kwd{pprint-pop}. With \KWD{:}, \VAR{prefix} and \VAR{suffix}
       default to \LIT{(} and \LIT{)}. When closed by
       \KWD{\TLD @:\boldmath{$>$}}, spaces in \VAR{body} are replaced with
-      conditional newlines. 
+      conditional newlines.
     }
 
     \IT{\Goo{\KWD{\TLD} \Op{\VAR{n}\DF{\LIT{0}}}
@@ -923,7 +924,7 @@
     {\index{\~I@$\sim$I}%
       \EM{Indent. }
       Set indentation to \VAR{n} relative to leftmost/to current
-      position. 
+      position.
     }
 
     \IT{\KWD{\TLD} \Op{\VAR{c}\DF{\LIT{1}}}
@@ -961,7 +962,7 @@
     {\index{\~\^{}@$\sim$\^{}}%
       \EM{Escape Upward. }
       Leave immediately \kwd{\TLD\boldmath{$<$} \TLD\boldmath{$>$}},
-      \kwd{\TLD\boldmath{$<$} \TLD:\boldmath{$>$}}, 
+      \kwd{\TLD\boldmath{$<$} \TLD:\boldmath{$>$}},
       \kwd{\TLD\boldmath{$\{$} \TLD\boldmath{$\}$}}, \kwd{\TLD?}, or the
       entire \FU{format} operation. With one to three prefixes, act only
       if $x=0$, $x=y$, or $x\leq y \leq z$, respectively.
@@ -992,13 +993,13 @@
     }
 
     \IT{\KWD{\TLD} \OP{\VAR{prefix} \Goos{\kwd{,}%
-          \VAR{prefix}}} 
-      \Op{\kwd{:}} \Op{\kwd{@}} 
+          \VAR{prefix}}}
+      \Op{\kwd{:}} \Op{\kwd{@}}
       \KWD{/}\OP{\VAR{package}
         \Op{\LIT{:}}\LIT{:}\DF{\LIT{cl-user:}}}\VAR{function}\KWD{/}}
     {\index{\~/ /@$\sim$/ /}%
       \EM{Call Function. }
-      Call all-uppercase \VAR{package\KWD{::}function} with the
+      Call all-uppercase \VAR{package}\KWD{::}\VAR{function} with the
       arguments stream, format-ar\-gu\-ment, colon-p, at-sign-p and
       \VAR{prefix}es for printing format-argument.
     }
@@ -1023,7 +1024,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Streams} 
+\subsection{Streams}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{LIST}{1cm}
@@ -1089,17 +1090,17 @@
   {
     Return \retval{list of streams} \VAR{concatenated-stream} still
     has to read from/\VAR{broadcast-stream} is
-    broadcasting to. 
+    broadcasting to.
   }
 
   \IT{\arrGOO{%
-      (\FU*{TWO-WAY-STREAM-INPUT-STREAM} \VAR{ two-way-stream})\\ 
+      (\FU*{TWO-WAY-STREAM-INPUT-STREAM} \VAR{ two-way-stream})\\
       (\FU*{TWO-WAY-STREAM-OUTPUT-STREAM} \VAR{ two-way-stream})\\
       (\FU*{ECHO-STREAM-INPUT-STREAM} \VAR{ echo-stream})\\
       (\FU*{ECHO-STREAM-OUTPUT-STREAM} \VAR{ echo-stream})}{.}}
   {
     Return \retval{source stream} or \retval{sink stream} of
-    \VAR{two-way-stream}\slash\VAR{echo-stream}, respectively. 
+    \VAR{two-way-stream}\slash\VAR{echo-stream}, respectively.
   }
 
   \IT{(\FU*{SYNONYM-STREAM-SYMBOL} \VAR{synonym-stream})}
@@ -1118,7 +1119,7 @@
         \VAR{position}}{\}}})}
   {
     Return \retval{position within stream}, or set it to
-    \retval{\VAR{position}} and return \retval{\T} on success. 
+    \retval{\VAR{position}} and return \retval{\T} on success.
   }
 
   \IT{(\FU*{FILE-STRING-LENGTH} \VAR{stream} \VAR{foo})}
@@ -1151,7 +1152,7 @@
       \VAR{bool}\DF{\NIL}})}
   {
     Close \VAR{stream}. Return \retval{\T} if \VAR{stream} had been
-    open. If \kwd{:abort} is \T, delete associated file. 
+    open. If \kwd{:abort} is \T, delete associated file.
   }
 
   \IT{(\MC*{WITH-OPEN-FILE} (\VAR{stream} \VAR{path}
@@ -1167,10 +1168,10 @@
     \OPn{(\kwd{declare} \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{form}})}
   {
     Evaluate \VAR{form}s with \VAR{foo} locally bound to
-    \VAR{stream}. Return \retval{values of \VAR{form}s}. 
+    \VAR{stream}. Return \retval{values of \VAR{form}s}.
   }
 
-  \IT{(\MC*{WITH-INPUT-FROM-STRING} (\VAR{foo} \VAR{string} 
+  \IT{(\MC*{WITH-INPUT-FROM-STRING} (\VAR{foo} \VAR{string}
     \orGOO{\kwd{:index } \DES{\VAR{index}}\\
       \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}}{\}}) \OPn{(\kwd{declare}
@@ -1181,17 +1182,17 @@
       \VAR{form}s}; store next reading position into \VAR{index}.
   }
 
-  \IT{(\MC*{WITH-OUTPUT-TO-STRING} (\VAR{foo} 
+  \IT{(\MC*{WITH-OUTPUT-TO-STRING} (\VAR{foo}
     \OP{\DES{\VAR{string}}\DF{\NIL}
       \Op{\kwd{:element-type}
-        \VAR{type}\DF{\kwd{character}}}}) 
+        \VAR{type}\DF{\kwd{character}}}})
     \OPn{(\kwd{declare}
       \OPn{\NEV{\VAR{decl}}})} \PROGN{\VAR{form}})}
   {
     Evaluate \VAR{form}s with \VAR{foo} locally bound to an output
     \kwd{string-stream}. Append output to \VAR{string} and return
     \retval{values of \VAR{form}s} if \VAR{string} is given. Return
-    \retval{string containing output} otherwise. 
+    \retval{string containing output} otherwise.
   }
 
   \IT{(\FU*{STREAM-EXTERNAL-FORMAT} \VAR{stream})}
@@ -1210,7 +1211,7 @@
   {\index{*STANDARD-INPUT*@\A STANDARD-INPUT\A}%
     \index{*STANDARD-OUTPUT*@\A STANDARD-OUTPUT\A}%
     \index{*ERROR-OUTPUT*@\A ERROR-OUTPUT\A}
-    Standard input stream, standard output stream, 
+    Standard input stream, standard output stream,
     or standard error output stream, respectively.
   }
 
@@ -1224,12 +1225,12 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection[Paths and Files]{Pathnames and Files} 
+\subsection{Pathnames and Files}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{LIST}{1cm}
 
-  \IT{(\FU*{MAKE-PATHNAME} 
+  \IT{(\FU*{MAKE-PATHNAME}
     \orGOO{\kwd{:host } \Goo{\VAR{host}\XOR\NIL\XOR\kwd{:unspecific}}\\
       \kwd{:device } \Goo{\VAR{device}\XOR\NIL\XOR\kwd{:unspecific}}\\
       \kwd{:directory } \xorGOO{%
@@ -1279,7 +1280,7 @@
     Return \retval{pathname component}.
   }
 
-  \IT{(\FU*{PARSE-NAMESTRING} \VAR{foo} 
+  \IT{(\FU*{PARSE-NAMESTRING} \VAR{foo}
     \OP{\VAR{host}
       \OP{\VAR{default-pathname}\DF{\V{\A default-pathname-defaults\A}}
         \orGOO{\kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
@@ -1377,7 +1378,7 @@
   \IT{(\FU*{TRANSLATE-LOGICAL-PATHNAME} \VAR{path-or-stream})}
   {
     \retval{Physical pathname} corresponding to (possibly logical)
-    pathname of \VAR{path-or-stream}. 
+    pathname of \VAR{path-or-stream}.
   }
 
   \IT{\arrGOO{(\FU*{PROBE-FILE} \VAR{ file})\\
@@ -1433,7 +1434,7 @@
 
 % LocalWords:  ies argumenth ar gu ment
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "clqr"
-%%% End: 
+%%% End:

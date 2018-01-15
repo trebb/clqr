@@ -147,7 +147,7 @@ sample-firstpage-consec.jpg: clqr-a4-consec.pdf
 	$(RM) temp.jpg
 
 sample-source.jpg: clqr-numbers.tex
-	$(HEAD) -n 57  $< | $(TAIL) -n 40 | $(CONVERT) -font Courier -crop 120x80+30+2 +repage label:@- temp.jpg $(SEND-TO-LOG)
+	$(HEAD) -n 59  $< | $(TAIL) -n 40 | $(CONVERT) -font Courier -crop 120x80+30+2 +repage label:@- temp.jpg $(SEND-TO-LOG)
 	$(MONTAGE) temp.jpg -tile 1x1 -geometry +1+1 -background gray $@ $(SEND-TO-LOG)
 	$(RM) temp.jpg
 

@@ -1,4 +1,4 @@
-% Copyright (C) 2008, 2009, 2010, 2014 Bert Burgemeister
+% Copyright (C) 2008, 2009, 2010, 2014, 2018 Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -7,12 +7,12 @@
 %
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Sequences} 
+\section{Sequences}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{section:Sequences}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection[Seq.~Predicates]{Sequence Predicates} 
+\subsection{Sequence Predicates}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
@@ -21,7 +21,7 @@
     \RP{\VAR{sequence}})}
   {
   Return \retval{\NIL} or \retval{\T}, respectively, as soon as \VAR{test} on
-  any set of corresponding elements of \VAR{sequence}s returns \NIL. 
+  any set of corresponding elements of \VAR{sequence}s returns \NIL.
   }
 
   \IT{(\xorGOO{\FU*{SOME}\\
@@ -30,10 +30,10 @@
   {
   Return \retval{value of \VAR{test}} or \retval{\NIL}, respectively, as soon
   as \VAR{test} on any set of corresponding elements of
-  \VAR{sequence}s returns non-\NIL. 
+  \VAR{sequence}s returns non-\NIL.
   }
 
-  \IT{(\FU*{MISMATCH} \VAR{sequence-a} \VAR{sequence-b} 
+  \IT{(\FU*{MISMATCH} \VAR{sequence-a} \VAR{sequence-b}
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \xorGOO{%
         \kwd{:test} \VAR{ function}\DF{\kwd{\#'eql}}\\
@@ -53,7 +53,7 @@
 \end{LIST}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection[Seq.~Functions]{Sequence Functions} 
+\subsection{Sequence Functions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{LIST}{1cm}
@@ -74,10 +74,10 @@
   {
   Return \retval{interleaved sequence} of \VAR{type}. Merged sequence
   will be sorted if both  \VAR{sequence-a} and \VAR{sequence-b} are
-  sorted. 
+  sorted.
   }
 
-  \IT{(\FU*{FILL} \DES{\VAR{sequence}} \VAR{foo} 
+  \IT{(\FU*{FILL} \DES{\VAR{sequence}} \VAR{foo}
     \orGOO{\kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}}{\}})}
   {
@@ -90,7 +90,7 @@
     \VAR{sequence}} (being value of fill pointer if applicable).
     }
 
-  \IT{(\FU*{COUNT} \VAR{foo} \VAR{sequence} 
+  \IT{(\FU*{COUNT} \VAR{foo} \VAR{sequence}
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \xorGOO{%
         \kwd{:test} \VAR{ function}\DF{\kwd{\#'eql}}\\
@@ -104,7 +104,7 @@
   }
 
   \IT{(\xorGOO{\FU*{COUNT-IF}\\
-      \FU*{COUNT-IF-NOT}}{\}} \VAR{test} \VAR{sequence} 
+      \FU*{COUNT-IF-NOT}}{\}} \VAR{test} \VAR{sequence}
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
@@ -117,7 +117,7 @@
   \IT{(\FU*{ELT} \VAR{sequence} \VAR{index})}
   {Return \retval{element of
     \VAR{sequence}} pointed to by zero-indexed
-    \VAR{index}. \kwd{setf}able. 
+    \VAR{index}. \kwd{setf}able.
     }
 
   \IT{(\FU*{SUBSEQ} \VAR{sequence} \VAR{start}
@@ -142,7 +142,7 @@
   }
 
   \IT{(\xorGOO{\FU*{FIND}\\
-      \FU*{POSITION}}{\}} \VAR{foo} \VAR{sequence} 
+      \FU*{POSITION}}{\}} \VAR{foo} \VAR{sequence}
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \xorGOO{%
         \kwd{:test} \VAR{ function}\DF{\kwd{\#'eql}}\\
@@ -158,7 +158,7 @@
 
   \IT{(\xorGOO{\FU*{FIND-IF}\\
       \FU*{FIND-IF-NOT}\\\FU*{POSITION-IF}\\
-      \FU*{POSITION-IF-NOT}}{\}} \VAR{test} \VAR{sequence} 
+      \FU*{POSITION-IF-NOT}}{\}} \VAR{test} \VAR{sequence}
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
@@ -168,7 +168,7 @@
   its \retval{position} relative to the begin of \VAR{sequence}, respectively.
   }
 
-  \IT{(\FU*{SEARCH} \VAR{sequence-a} \VAR{sequence-b} 
+  \IT{(\FU*{SEARCH} \VAR{sequence-a} \VAR{sequence-b}
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \xorGOO{%
         \kwd{:test} \VAR{ function}\DF{\kwd{\#'eql}}\\
@@ -181,7 +181,7 @@
   {
   Search \VAR{sequence-b} for a subsequence matching
   \VAR{sequence-a}. Return \retval{position} in \VAR{sequence-b}, or
-  \retval{\NIL}. 
+  \retval{\NIL}.
   }
 
   \IT{(\xorGOO{\FU*{REMOVE} \VAR{ foo } \VAR{sequence}\\
@@ -221,7 +221,7 @@
       \FU*{DELETE-DUPLICATES } \DES{\VAR{sequence}}}{\}}
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \xorGOO{%
-        \kwd{:test} \VAR{ function}\DF{\kwd{\#'eql}}\\ 
+        \kwd{:test} \VAR{ function}\DF{\kwd{\#'eql}}\\
         \kwd{:test-not} \VAR{ function}}{.}\\
       \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
       \kwd{:end} \VAR{ end}\DF{\NIL}\\
@@ -232,7 +232,7 @@
 
   \IT{(\xorGOO{%
       \FU*{SUBSTITUTE} \VAR{ new} \VAR{ old } \VAR{sequence} \\
-      \FU*{NSUBSTITUTE} \VAR{ new} \VAR{ old } \DES{\VAR{sequence}} }{\}} 
+      \FU*{NSUBSTITUTE} \VAR{ new} \VAR{ old } \DES{\VAR{sequence}} }{\}}
     \orGOO{\kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \xorGOO{%
         \kwd{:test} \VAR{ function}\DF{\kwd{\#'eql}}\\
@@ -288,14 +288,14 @@
     \OPn{\VAR{sequence}})}
   {
   Store into \retval{\VAR{result-sequence}} successively values of
-  \VAR{function} applied to corresponding elements of the \VAR{sequence}s. 
+  \VAR{function} applied to corresponding elements of the \VAR{sequence}s.
   }
 
-  \IT{(\FU*{REDUCE} \VAR{function} \VAR{sequence} 
+  \IT{(\FU*{REDUCE} \VAR{function} \VAR{sequence}
     \orGOO{\kwd{:initial-value} \VAR{ foo}\DF{\NIL}\\
       \kwd{:from-end} \VAR{ bool}\DF{\NIL}\\
       \kwd{:start} \VAR{ start}\DF{\LIT{0}}\\
-      \kwd{:end} \VAR{ end}\DF{\NIL}\\ 
+      \kwd{:end} \VAR{ end}\DF{\NIL}\\
       \kwd{:key} \VAR{ function}}{\}})}
   {
   Starting with the first two elements of \VAR{sequence}, apply
@@ -313,7 +313,7 @@
 
 
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "clqr"
-%%% End: 
+%%% End:

@@ -1,4 +1,5 @@
-% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014 Bert Burgemeister
+% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014, 2018
+% Bert Burgemeister 
 %
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
@@ -7,12 +8,12 @@
 %
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Arrays} 
+\section{Arrays}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{section:Arrays}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Predicates} 
+\subsection{Predicates}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
@@ -30,7 +31,7 @@
       (\FU*{ARRAY-HAS-FILL-POINTER-P} \VAR{ array})}{.}}
   {
   \retval{\T} if \VAR{array} is adjustable/has a fill pointer,
-  respectively. 
+  respectively.
   }
 
   \IT{(\FU*{ARRAY-IN-BOUNDS-P} \VAR{array} \Op{\VAR{subscripts}})}
@@ -43,7 +44,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Array Functions} 
+\subsection{Array Functions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{LIST}{1cm}
 
@@ -58,8 +59,8 @@
         \kwd{:initial-contents} \VAR{ tree-or-array}\\
         \kwd{:displaced-to } \VAR{array}\DF{\NIL}\text{ }
         \Op{\kwd{:displaced-index-offset } \VAR{i}\DF{\LIT{0}}}}{.}}{\}})}
-  { 
-  Return fresh, or readjust, respectively, \retval{vector} or \retval{array}. 
+  {
+  Return fresh, or readjust, respectively, \retval{vector} or \retval{array}.
   }
 
   \IT{(\FU*{AREF} \VAR{array} \OP{\VAR{subscripts}})}
@@ -82,7 +83,7 @@
 
   \IT{(\FU*{ARRAY-DIMENSIONS} \VAR{array})}
   {
-  \retval{List} containing the lengths of \VAR{array}'s dimensions. 
+  \retval{List} containing the lengths of \VAR{array}'s dimensions.
   }
 
   \IT{(\FU*{ARRAY-DIMENSION} \VAR{array} \VAR{i})}
@@ -109,14 +110,14 @@
       (\FU*{SBIT} \VAR{ simple-bit-array } \Op{\VAR{subscripts}})}{.}}
   {
   Return \retval{element} of \VAR{bit-array} or of
-  \VAR{simple-bit-array}. \kwd{setf}\-able. 
+  \VAR{simple-bit-array}. \kwd{setf}\-able.
   }
 
   \IT{(\FU*{BIT-NOT} \DES{\VAR{bit-array}} \Op{\DES{\VAR{result-bit-array}}\DF{\NIL}})}
   {
   Return \retval{result} of bitwise negation of \VAR{bit-array}. If \VAR{result-bit-array} is \T, put
   result in \VAR{bit-array}; if it is \NIL, make a new array for
-  result. 
+  result.
   }
 
   \IT{(\xorGOO{%
@@ -136,7 +137,7 @@
   (cf.\ operations of \FU{boole}, page \pageref{section:Logic Functions}) on
   \VAR{bit-array-a} and  \VAR{bit-array-b}.  If \VAR{result-bit-array} is \T, put result in
   \VAR{bit-array-a}; if it is \NIL, make a new array for
-  result. 
+  result.
   }
 
   \IT{\CNS*{ARRAY-RANK-LIMIT}}
@@ -158,14 +159,14 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Vector Functions} 
+\subsection{Vector Functions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Vectors can as well be manipulated by sequence functions; see
-section~\ref{section:Sequences}. 
+section~\ref{section:Sequences}.
 
 \begin{LIST}{1cm}
-  
+
   \IT{(\FU*{VECTOR} \OPn{\VAR{foo}})}
   {
     Return fresh \retval{simple vector of \VAR{foo}s}.
@@ -182,7 +183,7 @@ section~\ref{section:Sequences}.
   Return \retval{\NIL} if \VAR{vector}'s fill pointer equals size of
   \VAR{vector}. Otherwise replace element of \VAR{vector} pointed to
   by \retval{fill pointer} with \VAR{foo}; then increment fill
-  pointer. 
+  pointer.
   }
 
   \IT{(\FU*{VECTOR-PUSH-EXTEND} \VAR{foo} \DES{\VAR{vector}}
@@ -208,7 +209,7 @@ section~\ref{section:Sequences}.
 
 
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "clqr"
-%%% End: 
+%%% End:

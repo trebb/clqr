@@ -1,4 +1,4 @@
-% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014 
+% Copyright (C) 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2018
 % Bert Burgemeister
 %
 % Permission is granted to copy, distribute and/or modify this
@@ -20,7 +20,10 @@
 \newcommand{\clearpagebeforeindex}{}
 %
 %
-\documentclass[8pt,pagesize,twoside,footinclude=false,headinclude=false]{scrartcl}
+\documentclass[fontsize=8pt,DIV=24,BCOR=3mm,pagesize,twoside,
+footinclude=false,headinclude=true,
+footsepline=.25pt,headsepline=.25pt,
+toc=flat]{scrartcl}
 %
 %
 %%%%%%%%%%%%%%%%%%
@@ -28,10 +31,10 @@
 \input{paper-current}
 %\setlength{\paperwidth}{10.5cm}
 %\setlength{\paperheight}{29.7cm}
-%%\areaset[3mm]{9cm}{28.3cm}
-%\typearea[2mm]{20}
 %\renewcommand{\clearpagebeforeindex}{\clearpage}
 %%%%%%%%%%%%%%%%%%
+%
+\recalctypearea
 %
 %%%%%%%%%%%%%%%%%%
 % outsourced hypertext colors
@@ -44,43 +47,58 @@
 %
 \input{clqr.packages}
 % should remain last usepackage:
-\usepackage%
-    [breaklinks,linktocpage,colorlinks,%
-      bookmarksnumbered,bookmarks=\bookmarks,%
-      linkcolor=\linkcolor,urlcolor=\urlcolor,%
-      pdfpagelayout=\pdfpagelayout,%
-      pdftitle=\maintitle,pdfauthor=\AUTHOR,%
-      pdfsubject=\SUBJECT,pdfkeywords=\KEYWORDS]%
-    {hyperref}
+\usepackage[%
+breaklinks,linktocpage,colorlinks,%
+bookmarksnumbered,bookmarks=\bookmarks,%
+linkcolor=\linkcolor,urlcolor=\urlcolor,%
+pdfpagelayout=\pdfpagelayout,%
+pdftitle=\maintitle,pdfauthor=\AUTHOR,%
+pdfsubject=\SUBJECT,pdfkeywords=\KEYWORDS]%
+{hyperref}
 %
 \makeindex
-\titleformat{\section}{\sffamily\mdseries\slshape}
-            {\huge\thesection}{.7em}{\huge}[{\titlerule[0.25pt]}]
-            
-\titleformat{\subsection}{\sffamily\mdseries\slshape}
-            {\Large\thesubsection}{.7em}{\Large}[{\titlerule[0.25pt]}]
-
+%
+\setkomafont{pageheadfoot}{\sffamily\mdseries\slshape}
+\setkomafont{pagenumber}{\sffamily\mdseries\slshape}
+\setkomafont{section}{\sffamily\mdseries\slshape\huge}
+\setkomafont{subsection}{\sffamily\mdseries\slshape\Large}
+%
+\makeatletter
+\renewcommand{\sectionlinesformat}[4]{%
+  \ifstr{#1}{section}{%
+    \parbox[t]{\linewidth}{%
+      \raggedsection\@hangfrom{\hskip #2#3}{#4}\par%
+      \kern-1\ht\strutbox\rule{\linewidth}{.25pt}%
+    }%
+  }{%
+    {%
+      \ifstr{#1}{subsection}{%
+        \parbox[t]{\linewidth}{%
+          \raggedsection\@hangfrom{\hskip #2#3}{#4}\par%
+          \kern-1\ht\strutbox\rule{\linewidth}{.25pt}%
+        }%
+      }{%
+        \@hangfrom{\hskip #2#3}{#4}}}}% 
+}
+\makeatother
+%
+\RedeclareSectionCommand[beforeskip=-2.5\baselineskip plus -1ex]{section}
+\RedeclareSectionCommand[beforeskip=-2.5\baselineskip plus -1ex,afterskip=.4\baselineskip]{subsection}
+\DeclareTOCStyleEntry[beforeskip=1.5ex plus 1pt]{tocline}{section}
+\DeclareTOCStyleEntry[entryformat=\sffamily\mdseries,pagenumberformat=\sffamily\mdseries]{tocline}{subsection}
+%
 % Kill toc header as we want it to span columns
 \deftocheading{toc}{}
-
-\titlecontents{section}%
-              [1.5em]%
-              {\vspace{.5em plus 1em minus .2em}\sffamily\bfseries\upshape\filright}%
-              {\contentslabel{1.5em}}%
-              {\hspace*{3em}}%
-              {\hfill\contentspage\vspace{.1em}}%
-
-\titlecontents{subsection}%
-              [4em]%
-              {\sffamily\mdseries\upshape\filright}%
-              {\contentslabel{2.5em}}%
-              {\hspace*{5.5em}}%
-              {\hspace{.5ex plus .5ex minus .3ex}\titlerule*[1em]{.}\contentspage}%
-
+%
 \input{clqr.macros}
 %
+\pagestyle{scrheadings}
+%
+%
 \begin{document}
-
+%
+%
+\markboth{\sffamily\mdseries\slshape\maintitle}{\sffamily\mdseries\slshape\maintitle}
 \newlength{\titlepagewidth}
 \setlength{\titlepagewidth}{8cm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -165,7 +183,6 @@
 %
 \clearpagebeforeindex % \clearpage dependent on paper size
 %
-\renewcommand{\indexpagestyle}{lispref}
 \renewenvironment{theindex}%
                  {\begin{list}{}%
                      {\setlength{\itemindent}{-1em}\setlength{\leftmargin}{1em}}%
@@ -175,10 +192,10 @@
                  {\end{list}}
 \begin{multicols}{4}
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  [\section*{Index}\vspace{-5ex}]
+  [\section*{Index}\vspace{-3ex}]
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   % Stock \printindex won't do as we want more than two columns.
-  \tiny\sffamily\input{clqr.ind}
+  \tiny\sffamily\mdseries\input{clqr.ind}
 \end{multicols}
 
 
@@ -187,18 +204,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \pagestyle{empty}
-\newcount\currentpage 
-\currentpage=\value{page} 
-\divide\currentpage by 4  
-\multiply\currentpage by 4  
+\newcount\currentpage
+\currentpage=\value{page}
+\divide\currentpage by 4
+\multiply\currentpage by 4
 \advance\currentpage by -\value{page}
 %
-\ifnum\the\currentpage=-3 
+\ifnum\the\currentpage=-3
 \rule{0pt}{0pt}\clearpage
 \else\ifnum\the\currentpage=-2
-\rule{0pt}{0pt}\clearpage\rule{0pt}{0pt}\clearpage 
+\rule{0pt}{0pt}\clearpage\rule{0pt}{0pt}\clearpage
 \else\ifnum\the\currentpage=-1
-\rule{0pt}{0pt}\clearpage\rule{0pt}{0pt}\clearpage\rule{0pt}{0pt}\clearpage 
+\rule{0pt}{0pt}\clearpage\rule{0pt}{0pt}\clearpage\rule{0pt}{0pt}\clearpage
 \fi\fi\fi
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -226,13 +243,13 @@
         \hfill
         Revision \input{REVISION}
         [\input{DATE}\hspace{-.65ex}]}
-      \makebox[\textwidth][l]{Copyright \copyright\ 2008 - 2014
+      \makebox[\textwidth][l]{Copyright \copyright\ 2008--2018
         \AUTHOR\hfill}
       \makebox[\textwidth][l]{\LaTeX\ source:
         \href{http://clqr.boundp.org}{http://clqr.boundp.org}
         \hfill
         \raisebox{-1mm}[0mm][0mm]{\includegraphics[origin=c,height=5mm,keepaspectratio,angle=-40]{housefly.eps}}
-      }\\[1mm] 
+      }\\[1mm]
       Permission is granted to copy, distribute and/or modify this
       document under the terms of the GNU Free Documentation License,
       Version 1.2; with no Invariant Sections, no Front-Cover Texts and
@@ -249,7 +266,7 @@
 
 % LocalWords:  ptm lightgray cl lispref theindex pt
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: t
-%%% End: 
+%%% End:
