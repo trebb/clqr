@@ -41,7 +41,7 @@
         \kwd{:allocation } \xorGOO{%
           \kwd{:instance}\\
           \kwd{:class}}{\}}\DF{\kwd{:instance}}\\
-        \Goos{\kwd{:initarg} \kwd{:}\VAR{initarg-name}} \\
+        \Goos{\kwd{:initarg} \Op{\kwd{:}}\VAR{initarg-name}} \\
         \kwd{:initform} \VAR{ form}\\
         \kwd{:type} \VAR{ type}\\
         \kwd{:documentation}
@@ -55,7 +55,7 @@
     \VAR{superclass}es.  Transform existing instances, if any,
     by \GFU{make-instances-obsolete}.  In a new instance \VAR{i} of
     \VAR{foo}, a \VAR{slot}'s value defaults to \VAR{form} unless set
-    via \kwd{:}\VAR{initarg-name}; it is readable via (\VAR{reader}
+    via \Op{\kwd{:}}\VAR{initarg-name}; it is readable via (\VAR{reader}
     \VAR{i}) or (\VAR{accessor} \VAR{i}), and writable via
     (\VAR{writer} \VAR{value} \VAR{i}) or (\kwd{setf} (\VAR{accessor}
     \VAR{i}) \VAR{value}).  \VAR{slot}s with \kwd{:allocation :class}
@@ -68,13 +68,13 @@
     Return \retval{class} named \VAR{symbol}. \kwd{setf}able.
   }
 
-  \IT{(\GFU*{MAKE-INSTANCE} \VAR{class} \Goos{\kwd{:}\VAR{initarg}
+  \IT{(\GFU*{MAKE-INSTANCE} \VAR{class} \Goos{\Op{\kwd{:}}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
     Make new \retval{instance of \VAR{class}}.
   }
 
-  \IT{(\GFU*{REINITIALIZE-INSTANCE} \VAR{instance} \Goos{\kwd{:}\VAR{initarg}
+  \IT{(\GFU*{REINITIALIZE-INSTANCE} \VAR{instance} \Goos{\Op{\kwd{:}}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
     Change local slots of \retval{\VAR{instance}} according to
@@ -116,7 +116,7 @@
   }
 
   \IT{(\GFU*{CHANGE-CLASS} \DES{\VAR{instance}} \VAR{new-class}
-    \Goos{\kwd{:}\VAR{initarg} \VAR{value}} \OPn{\VAR{other-keyarg}})}
+    \Goos{\Op{\kwd{:}}\VAR{initarg} \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
     Change class of \retval{\VAR{instance}} to \VAR{new-class}.
     Retain the status of any slots that are common between
@@ -136,7 +136,7 @@
       \GFU*{INITIALIZE-INSTANCE } \VAR{instance}\\
       \GFU*{UPDATE-INSTANCE-FOR-DIFFERENT-CLASS}
       \VAR{ previous }\VAR{current}}{\}}
-    \Goos{\kwd{:}\VAR{initarg}
+    \Goos{\Op{\kwd{:}}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
     Set slots on behalf of \GFU{make-instance}/of
@@ -149,7 +149,7 @@
     \VAR{discarded-slots}
     \VAR{discarded-slots-property-list}
     \Goos{%
-      \kwd{:}\VAR{initarg}
+      \Op{\kwd{:}}\VAR{initarg}
       \VAR{value}}
     \OPn{\VAR{other-keyarg}})}
   {
@@ -160,7 +160,7 @@
     user.
   }
 
-  \IT{(\GFU*{ALLOCATE-INSTANCE} \VAR{class} \Goos{\kwd{:}\VAR{initarg}
+  \IT{(\GFU*{ALLOCATE-INSTANCE} \VAR{class} \Goos{\Op{\kwd{:}}\VAR{initarg}
       \VAR{value}} \OPn{\VAR{other-keyarg}})}
   {
     Return uninitialized \retval{instance} of \VAR{class}. Called by
@@ -171,7 +171,7 @@
     \xorGOO{%
       \VAR{initform-slots}\\
       \T}{\}}
-     \Goos{\kwd{:}%
+     \Goos{\Op{\kwd{:}}%
        \VAR{initarg-slot}
        \VAR{value}}
      \OPn{\VAR{other-keyarg}})}
