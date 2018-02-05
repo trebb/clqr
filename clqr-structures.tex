@@ -40,15 +40,13 @@
           (\kwd{:type } \xorGOO{\kwd{list}\\
             \kwd{vector}\\
             (\kwd{vector }\NEV{\VAR{type}})}{\}})\text{ }
-          \orGOO{%
-            \kwd{:named}\\
-            (\kwd{:initial-offset } \NEV{\VAR{n}})\\
-          }{.}\\
+          \Op{(\kwd{:initial-offset } \NEV{\VAR{n}})}\\
           \xorGOO{
             (\kwd{:print-object } \Op{\NEV{\VAR{o-printer}}})\\
             (\kwd{:print-function } \Op{\NEV{\VAR{f-printer}}})
           }{.}
         }{.}\\
+        \kwd{:named}\\
         \xorGOO{%
           \kwd{:predicate}\\
           (\kwd{:predicate } \Op{\NEV{\VAR{p-name}}\DF{\VAR{foo}\LIT{-P}}})}{.}
@@ -85,7 +83,7 @@
     \VAR{bar} \VAR{stream} \VAR{print-level}), respectively.
     If \kwd{:type} without \kwd{:named} is given, no \VAR{foo}\LIT{-P}
     is created.
-}
+  }
 
   \IT{(\FU*{COPY-STRUCTURE} \VAR{structure})}
   {
