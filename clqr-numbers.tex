@@ -20,23 +20,23 @@
   \IT{\arrGOO{(\FU*{=}\RP{\VAR{
           number}})\\
       (\FU*{/=}\RP{\VAR{ number}})}{.}}
-     {
-       \retval{\T} if all \VAR{number}s, or
-       none, respectively,  are equal in value.
-     }
+  {
+    \retval{\T} if all \VAR{number}s, or
+    none, respectively,  are equal in value.
+  }
 
   \IT{\arrGOO{(\FU{\boldmath$>$}\RP{\VAR{
           number}})\\(\FU{\boldmath$>$=}\RP{\VAR{
           number}})\\(\FU{\boldmath$<$}\RP{\VAR{
           number}})\\(\FU{\boldmath$<$=}\RP{\VAR{ number}})}{.}}
   {
-  \index{>@$>$}%
-  \index{>=@$>$=}%
-  \index{<@$<$}%
-  \index{<=@$<$=}%
-  Return \retval{\T} if \VAR{number}s are
-  monotonically decreasing, monotonically non-increasing,
-  monotonically increasing, or monotonically non-decreasing, respectively.
+    \index{>@$>$}%
+    \index{>=@$>$=}%
+    \index{<@$<$}%
+    \index{<=@$<$=}%
+    Return \retval{\T} if \VAR{number}s are
+    monotonically decreasing, monotonically non-increasing,
+    monotonically increasing, or monotonically non-decreasing, respectively.
   }
 
   \IT{\arrGOO{(\FU*{MINUSP} \VAR{ a})\\
@@ -44,7 +44,7 @@
       (\FU*{PLUSP}
       \VAR{ a})}{.}}
   {
-  \retval{\T} if $a < 0$, $a = 0$, or $a > 0$, respectively.
+    \retval{\T} if $a < 0$, $a = 0$, or $a > 0$, respectively.
   }
 
   \IT{\arrGOO{(\FU*{EVENP } \VAR{int})\\
@@ -60,10 +60,10 @@
       (\FU*{INTEGERP} \VAR{ foo})\\
       (\FU*{COMPLEXP} \VAR{ foo})\\
       (\FU*{RANDOM-STATE-P} \VAR{ foo})
-      }{.}}
+    }{.}}
   {
-  \retval{\T} if \VAR{foo} is of
-  indicated type.
+    \retval{\T} if \VAR{foo} is of
+    indicated type.
   }
 
 \end{LIST}
@@ -77,35 +77,35 @@
   \IT{\arrGOO{(\FU*{+} \OPn{\VAR{ a}\DF{\LIT{0}}})\\
       (\FU{\A} \OPn{\VAR{ a}\DF{\LIT{1}}})}{.}}
   {\index{*@\A}
-  Return \retval{$\sum{a}$} or \retval{$\prod{a}$}, respectively.
+    Return \retval{$\sum{a}$} or \retval{$\prod{a}$}, respectively.
   }
 
   \IT{\arrGOO{(\FU*{--} \VAR{ a}\OPn{\VAR{ b}})\\
       (\FU*{/} \VAR{ a}
       \OPn{\VAR{ b}})}{.}}
   {
-  Return \retval{$a-\sum{b}$} or \retval{$a/\prod{b}$}, respectively. Without any
-  \VAR{b}s, return \retval{$-a$} or \retval{$1/a$}, respectively.
+    Return \retval{$a-\sum{b}$} or \retval{$a/\prod{b}$}, respectively. Without any
+    \VAR{b}s, return \retval{$-a$} or \retval{$1/a$}, respectively.
   }
 
   \IT{\arrGOO{(\FU*{1+} \VAR{ a})\\(\FU*{1--} \VAR{ a})}{.}}
   {Return \retval{$a+1$} or
-  \retval{$a-1$}, respectively.
+    \retval{$a-1$}, respectively.
   }
 
   \IT{(\xorGOO{\MC*{INCF}\\
       \MC*{DECF}}{\}} \DES{\VAR{place}}
     \Op{\VAR{delta}\DF{\LIT{1}}})}
   {
-  Increment or decrement the value of \VAR{place} by \VAR{delta}. Return \retval{new value}.
+    Increment or decrement the value of \VAR{place} by \VAR{delta}. Return \retval{new value}.
   }
 
   \IT{\arrGOO{%
       (\FU*{EXP } \VAR{p})\\
       (\FU*{EXPT } \VAR{b } \VAR{p})}{.}\qquad\qquad}
-     {
-       Return \retval{$\mbox{e}^p$} or \retval{$b^p$}, respectively.
-     }
+  {
+    Return \retval{$\mbox{e}^p$} or \retval{$b^p$}, respectively.
+  }
 
   \IT{(\FU*{LOG} \VAR{a} \Op{\VAR{b}\DF{e}})}
   {
@@ -122,14 +122,14 @@
   \IT{\arrGOO{(\FU*{LCM} \OPn{\VAR{ integer}}\DF{\LIT{1}})\\
       (\FU*{GCD} \OPn{\VAR{ integer}})}{.}}
   {
-  \retval{Least common multiple} or \retval{greatest common
-    de\-no\-mi\-na\-tor}, respectively, of \VAR{integer}s. (\kwd{gcd})
-  returns \retval{0}.
+    \retval{Least common multiple} or \retval{greatest common
+      de\-no\-mi\-na\-tor}, respectively, of \VAR{integer}s. (\kwd{gcd})
+    returns \retval{0}.
   }
 
   \IT{\CNS*{PI}\qquad\qquad}
   {
-  \kwd{long-float} approximation of $\pi$, Ludolph's number.
+    \kwd{long-float} approximation of $\pi$, Ludolph's number.
   }
 
   \IT{\arrGOO{(\FU*{SIN} \VAR{ a})\\
@@ -137,52 +137,52 @@
       (\FU*{TAN} \VAR{ a})}{.}}
   {
     \retval{$\sin a$}, \retval{$\cos
-    a$}, or \retval{$\tan a$}, respectively. (\VAR{a} in radians.)
+      a$}, or \retval{$\tan a$}, respectively. (\VAR{a} in radians.)
   }
 
   \IT{\arrGOO{(\FU*{ASIN} \VAR{ a})\\
       (\FU*{ACOS} \VAR{ a})}{.}}
   {
-  \retval{$\arcsin a$} or \retval{$\arccos
-    a$}, respectively, in radians.
+    \retval{$\arcsin a$} or \retval{$\arccos
+      a$}, respectively, in radians.
   }
 
   \IT{(\FU*{ATAN} \VAR{a} \Op{\VAR{b}\DF{\LIT{1}}})}
   {
-  \retval{$\arctan \frac{a}{b}$} in radians.
+    \retval{$\arctan \frac{a}{b}$} in radians.
   }
 
   \IT{\arrGOO{(\FU*{SINH} \VAR{ a})\\(\FU*{COSH} \VAR{ a})\\(\FU*{TANH}
       \VAR{ a})}{.}}
   {
-  \retval{$\sinh a$}, \retval{$\cosh
-    a$}, or \retval{$\tanh a$}, respectively.
+    \retval{$\sinh a$}, \retval{$\cosh
+      a$}, or \retval{$\tanh a$}, respectively.
   }
 
   \IT{\arrGOO{(\FU*{ASINH} \VAR{ a})\\
       (\FU*{ACOSH} \VAR{ a})
       \\(\FU*{ATANH} \VAR{ a})}{.}}
   {
-  \retval{$\operatorname{asinh} a$}, \retval{$\operatorname{acosh}
-    a$}, or \retval{$\operatorname{atanh} a$}, respectively.
+    \retval{$\operatorname{asinh} a$}, \retval{$\operatorname{acosh}
+      a$}, or \retval{$\operatorname{atanh} a$}, respectively.
   }
 
   \IT{(\FU*{CIS} \VAR{a})\qquad\qquad}
   {
-  Return
-  \retval{$\operatorname{e}^{\operatorname{i} a}$} $=$ \retval{$\cos a +
-    \operatorname{i}\sin a$}.
+    Return
+    \retval{$\operatorname{e}^{\operatorname{i} a}$} $=$ \retval{$\cos a +
+      \operatorname{i}\sin a$}.
   }
 
   \IT{(\FU*{CONJUGATE} \VAR{a})}
   {
     Return complex \retval{conjugate of \VAR{a}}.
-    }
+  }
 
   \IT{\arrGOO{(\FU*{MAX } \RP{\VAR{num}})\\
       (\FU*{MIN } \RP{\VAR{num}})}{.}}
   {
-  \retval{Greatest} or \retval{least}, respectively, of \VAR{num}s.
+    \retval{Greatest} or \retval{least}, respectively, of \VAR{num}s.
   }
 
   \IT{(\xorGOO{%
@@ -192,15 +192,15 @@
       \Goo{\FU*{TRUNCATE}\XOR\FU*{FTRUNCATE}}}{\}}
     \VAR{n} \Op{\VAR{d}\DF{\LIT{1}}})}
   {
-  Return as \kwd{integer} or \kwd{float}, respectively, \retval{$n/d$}
-  rounded, or rounded towards $-\infty$, $+\infty$, or $0$,
-  respectively; and \retvalii{re\-main\-der}.
+    Return as \kwd{integer} or \kwd{float}, respectively, \retval{$n/d$}
+    rounded, or rounded towards $-\infty$, $+\infty$, or $0$,
+    respectively; and \retvalii{re\-main\-der}.
   }
 
   \IT{(\xorGOO{\FU*{MOD}\\
       \FU*{REM}}{\}} \VAR{n} \VAR{d})}
   {Same as \FU{floor} or
-  \FU{truncate}, respectively, but return \retval{re\-main\-der} only.
+    \FU{truncate}, respectively, but return \retval{re\-main\-der} only.
   }
 
   \IT{(\FU*{RANDOM} \VAR{limit} \Op{\DES{\VAR{state}}\DF{\V{\A random-state\A}}})}
@@ -213,7 +213,7 @@
   {
     \retval{Copy} of \kwd{random-state} object \VAR{state} or of
     the current random state; or a randomly initialized fresh \retval{random
-    state}.
+      state}.
   }
 
   \IT{\V{\A random-state\A}\qquad\qquad\qquad}
@@ -223,25 +223,25 @@
 
   \IT{(\FU*{FLOAT-SIGN} \VAR{num-a} \Op{\VAR{num-b}\DF{\LIT{1}}})}
   {
-  \retval{\VAR{num-b}} with \VAR{num-a}'s sign.
+    \retval{\VAR{num-b}} with \VAR{num-a}'s sign.
   }
 
   \IT{(\FU*{SIGNUM} \VAR{n})}
   {\retval{Number} of magnitude 1
-  representing sign or phase of \VAR{n}.
+    representing sign or phase of \VAR{n}.
   }
 
   \IT{\arrGOO{(\FU*{NUMERATOR} \VAR{ rational})\\
       (\FU*{DENOMINATOR} \VAR{ rational})}{.}}
   {
-  \retval{Numerator} or \retval{denominator}, respectively, of
-  \VAR{rational}'s canonical form.
+    \retval{Numerator} or \retval{denominator}, respectively, of
+    \VAR{rational}'s canonical form.
   }
 
   \IT{\arrGOO{(\FU*{REALPART} \VAR{ number})\\
       (\FU*{IMAGPART} \VAR{ number})}{.}}
   {
-  \retval{Real part} or \retval{imaginary part}, respectively, of \VAR{number}.
+    \retval{Real part} or \retval{imaginary part}, respectively, of \VAR{number}.
   }
 
   \IT{(\FU*{COMPLEX} \VAR{real} \Op{\VAR{imag}\DF{\LIT{0}}})}
@@ -262,13 +262,13 @@
   \IT{\arrGOO{(\FU*{RATIONAL} \VAR{ real})\\
       (\FU*{RATIONALIZE} \VAR{ real})}{.}}
   {
-  Convert \VAR{real} to \retval{rational}. Assume complete/limited accuracy for \VAR{real}.
+    Convert \VAR{real} to \retval{rational}. Assume complete/limited accuracy for \VAR{real}.
   }
 
   \IT{(\FU*{FLOAT} \VAR{real}
     \Op{\VAR{prototype}\DF{\LIT{0.0F0}}})}
   {
-  Convert \VAR{real} into \retval{float} with type of \VAR{prototype}.
+    Convert \VAR{real} into \retval{float} with type of \VAR{prototype}.
   }
 
 \end{LIST}
@@ -285,9 +285,9 @@ two's complement representation.
 
   \IT{(\FU*{BOOLE} \VAR{operation} \VAR{int-a} \VAR{int-b})}
   {
-  Return
-  \retval{value} of bitwise logical \VAR{operation}. \VAR{operation}s
-  are
+    Return
+    \retval{value} of bitwise logical \VAR{operation}. \VAR{operation}s
+    are
   }
 
   \begin{LIST}{.5cm}
@@ -317,14 +317,14 @@ two's complement representation.
   \IT{\arrGOO{(\FU*{LOGEQV} \OPn{\VAR{ integer}})\\
       (\FU*{LOGAND} \OPn{\VAR{ integer}})}{.}}
   {
-  Return \retval{value of exclusive-nored or anded \VAR{integer}s},
-  respectively. Without any \VAR{integer}, return \retval{$-1$}.
+    Return \retval{value of exclusive-nored or anded \VAR{integer}s},
+    respectively. Without any \VAR{integer}, return \retval{$-1$}.
   }
 
   \IT{(\FU*{LOGANDC1} \VAR{int-a} \VAR{int-b})}
   {
     \retval{$\lnot \text{\VAR{int-a}} \land \text{\VAR{int-b}}$}.
-   }
+  }
 
   \IT{(\FU*{LOGANDC2} \VAR{int-a} \VAR{int-b})}
   {
@@ -333,20 +333,20 @@ two's complement representation.
 
   \IT{(\FU*{LOGNAND} \VAR{int-a} \VAR{int-b})\qquad}
   {
-  \retval{$\lnot(\text{\VAR{int-a}} \land \text{\VAR{int-b}})$}.
+    \retval{$\lnot(\text{\VAR{int-a}} \land \text{\VAR{int-b}})$}.
   }
 
   \IT{\arrGOO{(\FU*{LOGXOR} \OPn{\VAR{ integer}})\\
       (\FU*{LOGIOR} \OPn{\VAR{ integer}})}{.}}
   {
-  Return \retval{value of exclusive-ored or ored \VAR{integer}s},
-  respectively. Without any \VAR{integer}, return \retval{0}.
+    Return \retval{value of exclusive-ored or ored \VAR{integer}s},
+    respectively. Without any \VAR{integer}, return \retval{0}.
   }
 
   \IT{(\FU*{LOGORC1} \VAR{int-a} \VAR{int-b})}
   {
     \retval{$\lnot \text{\VAR{int-a}} \lor \text{\VAR{int-b}}$}.
- }
+  }
 
   \IT{(\FU*{LOGORC2} \VAR{int-a} \VAR{int-b})}
   {
@@ -365,7 +365,7 @@ two's complement representation.
 
   \IT{(\FU*{LOGTEST} \VAR{int-a} \VAR{int-b})}
   {Return \retval{\T} if
-  there is any bit set in \VAR{int-a} which is set in \VAR{int-b} as well.
+    there is any bit set in \VAR{int-a} which is set in \VAR{int-b} as well.
   }
 
   \IT{(\FU*{LOGCOUNT} \VAR{int})}
@@ -384,54 +384,54 @@ two's complement representation.
 
   \IT{(\FU*{INTEGER-LENGTH} \VAR{integer})}
   {
-  \retval{Number of bits} necessary to represent \VAR{integer}.
+    \retval{Number of bits} necessary to represent \VAR{integer}.
   }
 
   \IT{(\FU*{LDB-TEST} \VAR{byte-spec} \VAR{integer})}
   {
-  Return \retval{\T} if any bit specified by \VAR{byte-spec} in
-  \VAR{integer} is set.
+    Return \retval{\T} if any bit specified by \VAR{byte-spec} in
+    \VAR{integer} is set.
   }
 
   \IT{(\FU*{ASH} \VAR{integer} \VAR{count})}
   {
-  Return copy of \retval{\VAR{integer}} arithmetically shifted left by
-  \VAR{count} adding zeros
-  at the right, or, for $\VAR{count}<0$, shifted right discarding
-  bits.
+    Return copy of \retval{\VAR{integer}} arithmetically shifted left by
+    \VAR{count} adding zeros
+    at the right, or, for $\VAR{count}<0$, shifted right discarding
+    bits.
   }
 
   \IT{(\FU*{LDB} \VAR{byte-spec} \VAR{integer})}
   {
-  Extract \retval{byte} denoted by \VAR{byte-spec} from
-  \VAR{integer}. \kwd{setf}able.
+    Extract \retval{byte} denoted by \VAR{byte-spec} from
+    \VAR{integer}. \kwd{setf}able.
   }
 
   \IT{(\xorGOO{\FU*{DEPOSIT-FIELD}\\
       \FU*{DPB}}{\}}
     \VAR{int-a} \VAR{byte-spec} \VAR{int-b})}
   {
-  Return \retval{\VAR{int-b}} with bits denoted by \VAR{byte-spec} replaced
-  by corresponding bits of \VAR{int-a}, or by the low (\FU{byte-size}
-  \VAR{byte-spec}) bits of \VAR{int-a}, respectively.
+    Return \retval{\VAR{int-b}} with bits denoted by \VAR{byte-spec} replaced
+    by corresponding bits of \VAR{int-a}, or by the low (\FU{byte-size}
+    \VAR{byte-spec}) bits of \VAR{int-a}, respectively.
   }
 
   \IT{(\FU*{MASK-FIELD} \VAR{byte-spec} \VAR{integer})}
   {
-  Return copy of \retval{\VAR{integer}} with all bits unset but those denoted by
-  \VAR{byte-spec}. \kwd{setf}able.
+    Return copy of \retval{\VAR{integer}} with all bits unset but those denoted by
+    \VAR{byte-spec}. \kwd{setf}able.
   }
 
   \IT{(\FU*{BYTE} \VAR{size} \VAR{position})}
   {
-  \retval{Byte specifier} for a byte of \VAR{size} bits starting at a
-  weight of $2^{\VAR{position}}$.
+    \retval{Byte specifier} for a byte of \VAR{size} bits starting at a
+    weight of $2^{\VAR{position}}$.
   }
 
   \IT{\arrGOO{(\FU*{BYTE-SIZE} \VAR{ byte-spec})\\
       (\FU*{BYTE-POSITION} \VAR{ byte-spec})}{.}}
   {
-  \retval{Size} or \retval{position}, respectively,  of \VAR{byte-spec}.
+    \retval{Size} or \retval{position}, respectively,  of \VAR{byte-spec}.
   }
 
 \end{LIST}
@@ -449,15 +449,15 @@ two's complement representation.
     \xorGOO{\kwd{EPSILON}\\
       \kwd{NEGATIVE-EPSILON}}{.}}
   {
-  \index{SHORT-FLOAT-EPSILON}%
-  \index{SINGLE-FLOAT-EPSILON}%
-  \index{DOUBLE-FLOAT-EPSILON}%
-  \index{LONG-FLOAT-EPSILON}%
-  \index{SHORT-FLOAT-NEGATIVE-EPSILON}%
-  \index{SINGLE-FLOAT-NEGATIVE-EPSILON}%
-  \index{DOUBLE-FLOAT-NEGATIVE-EPSILON}%
-  \index{LONG-FLOAT-NEGATIVE-EPSILON}%
-  Smallest possible number making a difference when added or subtracted, respectively.
+    \index{SHORT-FLOAT-EPSILON}%
+    \index{SINGLE-FLOAT-EPSILON}%
+    \index{DOUBLE-FLOAT-EPSILON}%
+    \index{LONG-FLOAT-EPSILON}%
+    \index{SHORT-FLOAT-NEGATIVE-EPSILON}%
+    \index{SINGLE-FLOAT-NEGATIVE-EPSILON}%
+    \index{DOUBLE-FLOAT-NEGATIVE-EPSILON}%
+    \index{LONG-FLOAT-NEGATIVE-EPSILON}%
+    Smallest possible number making a difference when added or subtracted, respectively.
   }
 
   \IT{\arrGOO{%
@@ -472,23 +472,23 @@ two's complement representation.
       \kwd{DOUBLE-FLOAT}\\
       \kwd{LONG-FLOAT}}{.}}
   {
-  \index{LEAST-NEGATIVE-SHORT-FLOAT}%
-  \index{LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT}%
-  \index{LEAST-NEGATIVE-SINGLE-FLOAT}%
-  \index{LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT}%
-  \index{LEAST-NEGATIVE-DOUBLE-FLOAT}%
-  \index{LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT}%
-  \index{LEAST-NEGATIVE-LONG-FLOAT}%
-  \index{LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT}%
-  \index{LEAST-POSITIVE-SHORT-FLOAT}%
-  \index{LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT}%
-  \index{LEAST-POSITIVE-SINGLE-FLOAT}%
-  \index{LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT}%
-  \index{LEAST-POSITIVE-DOUBLE-FLOAT}%
-  \index{LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT}%
-  \index{LEAST-POSITIVE-LONG-FLOAT}%
-  \index{LEAST-POSITIVE-NORMALIZED-LONG-FLOAT}%
-  Available numbers closest to $-0$ or $+0$, respectively.
+    \index{LEAST-NEGATIVE-SHORT-FLOAT}%
+    \index{LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT}%
+    \index{LEAST-NEGATIVE-SINGLE-FLOAT}%
+    \index{LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT}%
+    \index{LEAST-NEGATIVE-DOUBLE-FLOAT}%
+    \index{LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT}%
+    \index{LEAST-NEGATIVE-LONG-FLOAT}%
+    \index{LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT}%
+    \index{LEAST-POSITIVE-SHORT-FLOAT}%
+    \index{LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT}%
+    \index{LEAST-POSITIVE-SINGLE-FLOAT}%
+    \index{LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT}%
+    \index{LEAST-POSITIVE-DOUBLE-FLOAT}%
+    \index{LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT}%
+    \index{LEAST-POSITIVE-LONG-FLOAT}%
+    \index{LEAST-POSITIVE-NORMALIZED-LONG-FLOAT}%
+    Available numbers closest to $-0$ or $+0$, respectively.
   }
 
   \IT{\arrGOO{\CNS{MOST-NEGATIVE}\\
@@ -501,29 +501,29 @@ two's complement representation.
       \kwd{LONG-FLOAT}\\
       \kwd{FIXNUM}}{.}}
   {
-  \index{MOST-NEGATIVE-DOUBLE-FLOAT}%
-  \index{MOST-NEGATIVE-LONG-FLOAT}%
-  \index{MOST-NEGATIVE-SHORT-FLOAT}%
-  \index{MOST-NEGATIVE-SINGLE-FLOAT}%
-  \index{MOST-NEGATIVE-FIXNUM}%
-  \index{MOST-POSITIVE-DOUBLE-FLOAT}%
-  \index{MOST-POSITIVE-LONG-FLOAT}%
-  \index{MOST-POSITIVE-SHORT-FLOAT}%
-  \index{MOST-POSITIVE-SINGLE-FLOAT}%
-  \index{MOST-POSITIVE-FIXNUM}%
-  Available numbers closest to $-\infty$ or $+\infty$, respectively.
+    \index{MOST-NEGATIVE-DOUBLE-FLOAT}%
+    \index{MOST-NEGATIVE-LONG-FLOAT}%
+    \index{MOST-NEGATIVE-SHORT-FLOAT}%
+    \index{MOST-NEGATIVE-SINGLE-FLOAT}%
+    \index{MOST-NEGATIVE-FIXNUM}%
+    \index{MOST-POSITIVE-DOUBLE-FLOAT}%
+    \index{MOST-POSITIVE-LONG-FLOAT}%
+    \index{MOST-POSITIVE-SHORT-FLOAT}%
+    \index{MOST-POSITIVE-SINGLE-FLOAT}%
+    \index{MOST-POSITIVE-FIXNUM}%
+    Available numbers closest to $-\infty$ or $+\infty$, respectively.
   }
 
   \IT{\arrGOO{(\FU*{DECODE-FLOAT} \VAR{ n})\\
       (\FU*{INTEGER-DECODE-FLOAT} \VAR{ n})}{.}}
   {
-  Return \retval{significand}, \retvalii{exponent}, and
-  \retvaliii{sign} of \kwd{float} \VAR{n}.
+    Return \retval{significand}, \retvalii{exponent}, and
+    \retvaliii{sign} of \kwd{float} \VAR{n}.
   }
 
-  \IT{(\FU*{SCALE-FLOAT} \VAR{n} \Op{\VAR{i}})}
+  \IT{(\FU*{SCALE-FLOAT} \VAR{n} \VAR{i})}
   {
-  With \VAR{n}'s radix $b$, return $n b^{i}$.
+    With \VAR{n}'s radix $b$, return $n b^{i}$.
   }
 
   \IT{\arrGOO{
@@ -531,8 +531,8 @@ two's complement representation.
       (\FU*{FLOAT-DIGITS} \VAR{ n})\\
       (\FU*{FLOAT-PRECISION} \VAR{ n})}{.}}
   {
-  \retval{Radix}, \retval{number of digits} in that radix, or
-  \retval{precision} in that radix, respectively, of float \VAR{n}.
+    \retval{Radix}, \retval{number of digits} in that radix, or
+    \retval{precision} in that radix, respectively, of float \VAR{n}.
   }
 
   \IT{(\FU*{UPGRADED-COMPLEX-PART-TYPE} \VAR{foo} \Op{\VAR{environment}\DF{\NIL}})}
