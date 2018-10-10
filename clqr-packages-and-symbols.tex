@@ -274,14 +274,19 @@ function (\kwd{function}, macro, or special operator \VAR{name}).
 
   \IT{\arrGOO{%
       (\FU*{SYMBOL-NAME} \VAR{ symbol})\\
-      (\FU*{SYMBOL-PACKAGE} \VAR{ symbol})\\
+      (\FU*{SYMBOL-PACKAGE} \VAR{ symbol})}{.}}
+  {
+    \retval{Name} or \retval{package}, respectively,
+    of \VAR{symbol}.
+  }
+
+  \IT{\arrGOO{%
       (\FU*{SYMBOL-PLIST} \VAR{ symbol})\\
       (\FU*{SYMBOL-VALUE} \VAR{ symbol})\\
       (\FU*{SYMBOL-FUNCTION} \VAR{ symbol})}{.}}
   {
-  \retval{Name}, \retval{package}, \retval{property list},
-  \retval{value}, or \retval{function}, respectively,
-  of \VAR{symbol}. \kwd{setf}able.
+    \retval{Property list}, \retval{value}, or \retval{function},
+    respectively, of \VAR{symbol}. \kwd{setf}able.
   }
 
   \IT{(\xorGOO{%
